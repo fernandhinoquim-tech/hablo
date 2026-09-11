@@ -1,0 +1,71 @@
+package com.ferolabs.hablo
+
+import android.content.Context
+import java.util.Calendar
+
+/** Guarda el progreso en el propio celular. Nada sale del teléfono. */
+class Store(context: Context) {
+
+    private val prefs = context.applicationContext
+        .getSharedPreferences("hablo_progress", Context.MODE_PRIVATE)
+
+    var teacherId: String?
+        get() = prefs.getString("teacher_id", null)
+        set(value) = prefs.edit().putString("teacher_id", value).apply()
+
+    /** Multiplicador global de velocidad de la voz (0.6 = lento, 1.4 = rápido). */
+    var speechScale: Float
+        get() = prefs.getFloat("speech_scale", 1.0f)
+        set(value) = prefs.edit().putFloat("speech_scale", value).apply()
+
+    var xp: Int
+        get() = prefs.getInt("xp", 0)
+        private set(value) = prefs.edit().putInt("xp", value).apply()
+
+    var streak: Int
+        get() = prefs.getInt("streak", 0)
+        private set(value) = prefs.edit().putInt("streak", value).apply()
+
+    /** Mejor puntaje obtenido en una lección, de 0 a 100. */
+    fun bestScore(lessonId: String): Int = prefs.getInt("score_$lessonId", 0)
+
+    fun recordLesson(lessonId: String, score: Int, earnedXp: Int) {
+        if (score > bestScore(lessonId)) {
+            prefs.edit().putInt("score_$lessonId", score).apply()
+        }
+        xp += earnedXp
+        touchStreak()
+    }
+
+    fun isCompleted(lessonId: String): Boolean = bestScore(lessonId) >= 60
+
+    /** Día absoluto desde 1970. Así el cambio de año no rompe la racha. */
+    private fun todayKey(): Int {
+        val c = Calendar.getInstance()
+        val millis = c.timeInMillis + c.get(Calendar.ZONE_OFFSET) + c.get(Calendar.DST_OFFSET)
+        return (millis / 86_400_000L).toInt()
+    }
+
+    /** Actualiza la racha: +1 si es un día nuevo consecutivo, reinicia si se saltó días. */
+    private fun touchStreak() {
+        val today = todayKey()
+        val last = prefs.getInt("last_day", 0)
+        if (last == today) return
+
+        val newStreak = when {
+            last == 0 -> 1
+            today - last == 1 -> streak + 1
+            else -> 1
+        }
+        prefs.edit()
+            .putInt("last_day", today)
+            .putInt("streak", newStreak)
+            .apply()
+    }
+
+    fun studiedToday(): Boolean = prefs.getInt("last_day", 0) == todayKey()
+
+    fun resetEverything() {
+        prefs.edit().clear().apply()
+    }
+}

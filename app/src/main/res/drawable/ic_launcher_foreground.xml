@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Burbuja de conversación -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M34,32h40a10,10 0 0 1 10,10v22a10,10 0 0 1 -10,10h-22l-13,11v-11h-5a10,10 0 0 1 -10,-10v-22a10,10 0 0 1 10,-10z" />
+
+    <!-- Tres puntos (hablando) -->
+    <path
+        android:fillColor="#FFE0714A"
+        android:pathData="M45,53m-4.2,0a4.2,4.2 0 1,0 8.4,0a4.2,4.2 0 1,0 -8.4,0" />
+    <path
+        android:fillColor="#FFE0714A"
+        android:pathData="M59,53m-4.2,0a4.2,4.2 0 1,0 8.4,0a4.2,4.2 0 1,0 -8.4,0" />
+    <path
+        android:fillColor="#FFE0714A"
+        android:pathData="M73,53m-4.2,0a4.2,4.2 0 1,0 8.4,0a4.2,4.2 0 1,0 -8.4,0" />
+</vector>

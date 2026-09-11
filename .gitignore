@@ -1,0 +1,22 @@
+*.iml
+.gradle/
+/local.properties
+/.idea/
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+app/build/
+out/
+.kotlin/
+
+# Motor, voces y reconocedor: los descarga Gradle solo, no van al repositorio
+app/libs/*.aar
+app/src/main/assets/tts/
+app/src/main/assets/asr/
+
+# Grabaciones de la voz de Fero y modelos de prueba para el banco de pruebas
+tools/asr-bench/corpus/
+tools/asr-bench/models/

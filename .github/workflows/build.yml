@@ -1,0 +1,72 @@
+name: Construir APK
+
+# Se ejecuta solo cada vez que se suben cambios, y también a mano desde
+# la pestaña Actions con el botón "Run workflow".
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Compilar e instalar
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar el código
+        uses: actions/checkout@v4
+
+      - name: Preparar Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Preparar Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.11.1'
+          # Este proyecto no incluye gradle wrapper a propósito: lo instala el CI.
+          validate-wrappers: false
+
+      - name: Compilar el APK
+        run: gradle --no-daemon --stacktrace assembleDebug
+
+      - name: Renombrar y medir el APK
+        id: apk
+        run: |
+          mkdir -p out
+          cp app/build/outputs/apk/debug/app-debug.apk "out/Hablo-v0.1-build${{ github.run_number }}.apk"
+          SIZE=$(du -h "out/Hablo-v0.1-build${{ github.run_number }}.apk" | cut -f1)
+          echo "size=$SIZE" >> "$GITHUB_OUTPUT"
+          echo "El APK pesa $SIZE"
+          ls -lh out/
+
+      - name: Guardar el APK como archivo descargable
+        uses: actions/upload-artifact@v4
+        with:
+          name: Hablo-APK
+          path: out/*.apk
+          retention-days: 30
+
+      - name: Publicar la versión para descargar desde el celular
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: build-${{ github.run_number }}
+          name: Hablo v0.1 · build ${{ github.run_number }}
+          body: |
+            APK de prueba de Hablo.
+
+            **Tamaño:** ${{ steps.apk.outputs.size }}
+
+            Descarga el archivo `.apk` de aquí abajo desde tu celular y ábrelo
+            para instalar. Android te va a pedir permiso para instalar apps de
+            esta fuente: acéptalo, es normal cuando la app no viene de Play Store.
+
+            Funciona 100% sin internet.
+          files: out/*.apk
+          draft: false
+          prerelease: true

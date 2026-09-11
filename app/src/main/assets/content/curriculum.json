@@ -1,0 +1,162 @@
+{
+  "version": 1,
+  "levels": [
+    {
+      "id": "A1",
+      "title": "Primeros pasos",
+      "goal": "Presentarte, pedir cosas y defenderte en situaciones básicas.",
+      "units": [
+        {
+          "id": "a1u1",
+          "emoji": "👋",
+          "title": "Saludar y presentarte",
+          "subtitle": "Lo primero que vas a necesitar siempre",
+          "lessons": [
+            {
+              "id": "a1u1l1",
+              "title": "Hola y encantado",
+              "exercises": [
+                {"type":"listen","audio":"Nice to meet you.","options":["Night to meet you.","Nice to meet you.","Nice to eat you."],"answer":1,
+                 "tip":"Ojo con meet (conocer) y eat (comer). La ee de meet es larga."},
+                {"type":"translate","es":"¿Cómo te llamas?","options":["How do you call yourself?","What's your name?","How are you called?"],"answer":1,
+                 "tip":"Error clásico del español: no se traduce literal. Siempre es What's your name?"},
+                {"type":"speak","text":"Nice to meet you.",
+                 "tip":"La t final de meet casi no se oye, pero la boca sí la hace."},
+                {"type":"build","es":"Me llamo Fernando.","answer":"My name is Fernando","extra":["call","me"]},
+                {"type":"listen","audio":"Where are you from?","options":["Where are you from?","Where you are from?","Where do you from?"],"answer":0},
+                {"type":"translate","es":"Soy de Colombia.","options":["I am of Colombia.","I come of Colombia.","I'm from Colombia."],"answer":2,
+                 "tip":"Origen se dice con from, nunca of."},
+                {"type":"speak","text":"I'm from Colombia.",
+                 "tip":"No digas \"ay am from\": I'm es una sola sílaba rápida, casi \"aim\"."},
+                {"type":"type","audio":"Good morning.","meaning":"Buenos días."}
+              ]
+            },
+            {
+              "id": "a1u1l2",
+              "title": "¿Cómo estás?",
+              "exercises": [
+                {"type":"translate","es":"¿Cómo estás?","options":["How are you?","How you are?","How is you?"],"answer":0},
+                {"type":"listen","audio":"I'm fine, thanks. And you?","options":["I'm fine, thanks. And you?","I fine, thanks. And you?","I'm find, thanks. And you?"],"answer":0},
+                {"type":"speak","text":"I'm fine, thank you.",
+                 "tip":"Thank you son dos palabras: \"zank iu\" con la lengua entre los dientes, no \"tenkiu\"."},
+                {"type":"build","es":"Encantado de conocerte.","answer":"Nice to meet you","extra":["know","for"]},
+                {"type":"type","audio":"See you tomorrow.","meaning":"Nos vemos mañana."},
+                {"type":"translate","es":"Que tengas un buen día.","options":["Have good day.","Have a nice day.","Having a nice day."],"answer":1,
+                 "tip":"No olvides el a. En inglés casi siempre hace falta antes de un sustantivo contable."},
+                {"type":"speak","text":"Have a nice day.",
+                 "tip":"Have a se pega y suena como una sola palabra: \"hava\"."}
+              ]
+            },
+            {
+              "id": "a1u1l3",
+              "title": "De dónde eres",
+              "exercises": [
+                {"type":"listen","audio":"Are you from Spain?","options":["Are you from Spain?","You are from Spain?","Do you from Spain?"],"answer":0},
+                {"type":"translate","es":"No, soy de Bogotá.","options":["No, I'm from Bogota.","No, I from Bogota.","No, I am of Bogota."],"answer":0},
+                {"type":"build","es":"Hablo español e inglés.","answer":"I speak Spanish and English","extra":["talk","the"]},
+                {"type":"speak","text":"I speak Spanish and English.",
+                 "tip":"Aquí está la trampa: speak y Spanish empiezan con s directa. Nada de \"espeak\" ni \"espanish\"."},
+                {"type":"type","audio":"I live in Colombia.","meaning":"Vivo en Colombia."},
+                {"type":"translate","es":"¿Hablas inglés?","options":["Do you speak English?","You speak English?","Speak you English?"],"answer":0,
+                 "tip":"Las preguntas en presente simple necesitan do adelante. En español no existe ese ayudante."},
+                {"type":"speak","text":"Do you speak English?"}
+              ]
+            }
+          ]
+        },
+        {
+          "id": "a1u2",
+          "emoji": "☕",
+          "title": "En la cafetería",
+          "subtitle": "Pedir algo sin ponerte nervioso",
+          "lessons": [
+            {
+              "id": "a1u2l1",
+              "title": "Pedir lo que quieres",
+              "exercises": [
+                {"type":"listen","audio":"Can I have a coffee, please?","options":["Can I have a coffee, please?","Can I has a coffee, please?","Can I have a copy, please?"],"answer":0},
+                {"type":"translate","es":"Quisiera un café, por favor.","options":["I like a coffee, please.","I'd like a coffee, please.","I want that coffee, please."],"answer":1,
+                 "tip":"I'd like es la forma educada. I want suena a exigencia."},
+                {"type":"speak","text":"I'd like a coffee, please.",
+                 "tip":"I'd es I would encogido. Suena \"aid\", en una sola sílaba."},
+                {"type":"build","es":"¿Cuánto cuesta?","answer":"How much is it","extra":["cost","does"]},
+                {"type":"type","audio":"Here you are.","meaning":"Aquí tiene.",
+                 "tip":"Es lo que dice el mesero al entregarte algo. También sirve Here you go."},
+                {"type":"translate","es":"Para llevar, por favor.","options":["For carry, please.","To take, please.","To go, please."],"answer":2,
+                 "tip":"En Reino Unido también se dice takeaway."},
+                {"type":"speak","text":"To go, please."}
+              ]
+            },
+            {
+              "id": "a1u2l2",
+              "title": "Cerrar la cuenta",
+              "exercises": [
+                {"type":"listen","audio":"Anything else?","options":["Any thing less?","Anything else?","Everything else?"],"answer":1},
+                {"type":"translate","es":"No, gracias. Eso es todo.","options":["No, thanks. That's all.","No, thanks. That's everything.","No, thank. That's all."],"answer":0},
+                {"type":"build","es":"La cuenta, por favor.","answer":"The check please","extra":["account","count"]},
+                {"type":"speak","text":"Can I have the check, please?",
+                 "tip":"En Reino Unido se dice bill en vez de check."},
+                {"type":"type","audio":"Do you take cards?","meaning":"¿Aceptan tarjetas?"},
+                {"type":"translate","es":"Gracias, que tenga buen día.","options":["Thanks you, have good day.","Thank you, have a nice day.","Thank you, have nice day."],"answer":1}
+              ]
+            },
+            {
+              "id": "a1u2l3",
+              "title": "Cuando algo sale mal",
+              "exercises": [
+                {"type":"translate","es":"Perdón, esto no es lo que pedí.","options":["Sorry, this isn't what I ordered.","Sorry, this not is what I ordered.","Sorry, this isn't what I asked."],"answer":0},
+                {"type":"listen","audio":"I'm so sorry, let me fix that.","options":["I'm so sorry, let me fix that.","I'm so sorry, let me fixed that.","I'm so sorry, leave me fix that."],"answer":0},
+                {"type":"speak","text":"Excuse me, could you help me?",
+                 "tip":"Excuse me es para llamar la atención de alguien. Sorry es para disculparte."},
+                {"type":"build","es":"¿Puede repetirlo, por favor?","answer":"Could you say that again please","extra":["repeat","for"]},
+                {"type":"type","audio":"No problem at all.","meaning":"No hay ningún problema."},
+                {"type":"speak","text":"I don't understand. Could you speak slower?",
+                 "tip":"Esta frase te va a salvar más veces que cualquier otra. Apréndetela de memoria."}
+              ]
+            }
+          ]
+        },
+        {
+          "id": "a1u3",
+          "emoji": "🙋",
+          "title": "Hablar de ti",
+          "subtitle": "Edad, trabajo y familia sin meter la pata",
+          "lessons": [
+            {
+              "id": "a1u3l1",
+              "title": "Tu edad y tu trabajo",
+              "exercises": [
+                {"type":"translate","es":"Tengo 25 años.","options":["I have 25 years.","I'm 25 years old.","I have 25 years old."],"answer":1,
+                 "tip":"El error número uno del hispanohablante. La edad va con to be: I am 25, no I have 25."},
+                {"type":"listen","audio":"How old are you?","options":["How old are you?","How are you old?","How much old are you?"],"answer":0},
+                {"type":"speak","text":"I'm twenty-five years old.",
+                 "tip":"Empieza con I'm, no con I have. Si te sale have, párate y repite."},
+                {"type":"build","es":"Trabajo en un banco.","answer":"I work at a bank","extra":["in","the"]},
+                {"type":"translate","es":"Mi hermana es doctora.","options":["My sister is doctor.","My sister she is doctor.","My sister is a doctor."],"answer":2,
+                 "tip":"Con profesiones el inglés exige el artículo a: is a doctor, is a teacher, is an engineer."},
+                {"type":"speak","text":"My sister is a doctor."},
+                {"type":"listen","audio":"What do you do for a living?","options":["What do you do for a living?","What you do for a living?","What do you do for living?"],"answer":0,
+                 "tip":"Es la forma normal de preguntar en qué trabajas."}
+              ]
+            },
+            {
+              "id": "a1u3l2",
+              "title": "Tu familia y tu rutina",
+              "exercises": [
+                {"type":"type","audio":"I have two brothers.","meaning":"Tengo dos hermanos."},
+                {"type":"translate","es":"Él trabaja los lunes.","options":["He work on Mondays.","He works in Mondays.","He works on Mondays."],"answer":2,
+                 "tip":"Dos cosas: la -s de tercera persona (he works) y que los días llevan on."},
+                {"type":"speak","text":"He works on Mondays.",
+                 "tip":"Esa -s del final hay que pronunciarla. Works, no work."},
+                {"type":"build","es":"Vivo en Bogotá con mi familia.","answer":"I live in Bogota with my family","extra":["at","the"]},
+                {"type":"translate","es":"Me levanto a las seis.","options":["I get up at six.","I get up in six.","I raise up at six."],"answer":0},
+                {"type":"speak","text":"I live in Bogota with my family."},
+                {"type":"type","audio":"My family is very important to me.","meaning":"Mi familia es muy importante para mí."}
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

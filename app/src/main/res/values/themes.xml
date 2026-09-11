@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Hablo" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">#FFFDF9F4</item>
+        <item name="android:statusBarColor">#FFFDF9F4</item>
+        <item name="android:navigationBarColor">#FFFDF9F4</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+</resources>
