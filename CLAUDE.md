@@ -75,7 +75,7 @@ B2 leyendo, escribiendo, escuchando y hablando.
 | Pieza | Qué es | Por qué esa |
 |---|---|---|
 | Voces | **Piper** vía sherpa-onnx (Apache 2.0) | Cuatro voces femeninas reales dentro del APK. Antes se usaba el TTS de Android y obligaba al usuario a descargar paquetes de voz por fuera. |
-| Voz → texto | **Moonshine base v2** (`moonshine-base-en-quantized-2026-02-27`, 2 archivos `.ort`, 140 MB) vía sherpa-onnx **1.13.8** | Elegido el 2026-09-12 con `tools/asr-bench` sobre 26 grabaciones reales de Fero. Tiny devolvía texto vacío en 4 de 26 con audio bueno y confundía palabras fáciles ("seatsbooks", "Can't you"); base no, y mantiene la honestidad (delata "chip", "espeak", "wok-ed"). Whisper base.en quedó descartado: **corrige** "espeak Espanish" a "speak Spanish" al 100 %. Parakeet 110m es el más honesto pero castiga también lo bien dicho. También se probaron los grandes (Fero dijo que el peso no importa): **Whisper small.en** (74 % promedio, el mejor adivinando) y **Parakeet 0.6B v2** (70 %) corrigen los dos "espeak Espanish" → "speak Spanish" al 100 %; Parakeet 0.6B es el único que delata "tink/tird", pero pierde "six books" dos veces. Se quedó Moonshine base: el único que delata "espeak" (el error insignia). Límite conocido: "tink" por "think" lo corrigen todos menos Parakeet 0.6B. Antes de reconocer, `Audio.kt` (`AudioPrep`) quita el DC, recorta el silencio, normaliza el pico y rechaza audio mudo/corto/ruidoso con "No te entendí, repite" en vez de dar 0 %. **Regla que no se negocia:** el reconocedor nunca ve la frase esperada (nada de hotwords ni sesgos); el objetivo solo se usa para puntuar después. |
+| Voz → texto | **Moonshine base v2** (`moonshine-base-en-quantized-2026-02-27`, 2 archivos `.ort`, 140 MB) vía sherpa-onnx **1.13.8** | Elegido el 2026-09-12 con `tools/asr-bench` sobre 26 grabaciones reales de Fero. Tiny devolvía texto vacío en 4 de 26 con audio bueno y confundía palabras fáciles ("seatsbooks", "Can't you"); base no, y mantiene la honestidad (delata "chip", "espeak", "wok-ed"). Whisper base.en quedó descartado: **corrige** "espeak Espanish" a "speak Spanish" al 100 %. Parakeet 110m es el más honesto pero castiga también lo bien dicho. También se probaron los grandes (Fero dijo que el peso no importa): **Whisper small.en** (74 % promedio, el mejor adivinando) y **Parakeet 0.6B v2** (70 %) corrigen los dos "espeak Espanish" → "speak Spanish" al 100 %; Parakeet 0.6B es el único que delata "tink/tird", pero pierde "six books" dos veces. Se quedó Moonshine base: el único que delata "espeak" (el error insignia). **Sobrecorrección medida** (errores plantados a propósito que el modelo "arregla" y puntúa BIEN, `tools/asr-bench/planted.txt`, 11 casos): Moonshine base **5/11 = 45 %** (think ×2, third, asked, spanish) · Whisper base/small 4/11 · Parakeet 0.6B 3/11 · Parakeet 110m 2/11. Con 11 casos esas cifras no se distinguen estadísticamente; lo que sí se ve es que cada modelo es ciego a sonidos distintos: Moonshine al `th` (3 de 4), Parakeet y Whisper a la `e` delante de `s` (espeak/Espanish, 2 de 2). Antes de reconocer, `Audio.kt` (`AudioPrep`) quita el DC, recorta el silencio, normaliza el pico y rechaza audio mudo/corto/ruidoso con "No te entendí, repite" en vez de dar 0 %. **Regla que no se negocia:** el reconocedor nunca ve la frase esperada (nada de hotwords ni sesgos); el objetivo solo se usa para puntuar después. |
 | IA (Fase 3) | **llama.cpp + Qwen 3 8B Q4** | Qwen es Apache 2.0 sin letra chica. Se descartó Gemma 2/3 porque sus "Gemma Terms of Use" permiten a Google cambiar las condiciones después. |
 | Interfaz | Kotlin + Jetpack Compose | Menos capas intermedias con tres motores nativos encima. |
 | Progreso | SharedPreferences | Suficiente; nada sale del teléfono. |
@@ -139,6 +139,29 @@ Medido en el S25 Ultra: el reconocedor arranca en 0,4 s y reconoce en 50–90 ms
 por frase. NoiseSuppressor se activa; AutomaticGainControl no existe en ese
 teléfono (lo cubre la normalización). Umbrales de las puertas: cero rechazos
 falsos en 26 grabaciones; silencio → TOO_SHORT.
+
+### Pendientes con condición (no se olvidan)
+
+- **Reafinar los umbrales de `AudioPrep` cuando el corpus llegue a ~100
+  grabaciones.** Hoy (2026-09-12) son 26, de un solo día, un solo cuarto, una
+  sola voz; los umbrales están afinados a eso. La app guarda las últimas 200
+  en el teléfono. Procedimiento: revisar `adb devices` → `adb pull
+  /sdcard/Android/data/com.ferolabs.hablo/files/grabaciones tools/asr-bench/corpus`
+  (acumula: lo que ya está en el PC no se pierde) → `python tools/asr-bench/bench.py --only quantized-2026`
+  → leer la sección **PUERTAS** (rechazos por puerta y mín/mediana/máx de
+  pico, rmsVoz, voz y SNR de las que pasaron) → mover las constantes en
+  `Audio.kt` **y** en `bench.py` para que las buenas pasen con margen y las
+  rechazadas sean solo las que de verdad no se oyen. Revisar también en los
+  `.txt` cuántas salieron `NO_OIDO NOTHING` con medidas buenas: eso es el
+  modelo fallando, no la puerta.
+- **Medir la sobrecorrección con más de 11 casos.** Una sesión de errores a
+  propósito por fenómeno (5 grabaciones cada uno: `sh`/`ch`, `th`, `-ed` como
+  sílaba, `e` delante de `s`, `v`/`b`, `h` muda, consonante final), anotarlas
+  en `tools/asr-bench/planted.txt` y correr `bench.py`. Con ~35 casos sí se
+  puede decidir si conviene un "jurado de dos" (Moonshine + Parakeet 0.6B: una
+  palabra cuenta BIEN solo si los dos la oyeron bien; en el corpus actual eso
+  bajaría la sobrecorrección a 2/11, a cambio de puntuar más duro lo bien
+  dicho). El peso del APK no es problema: Fero lo dijo.
 
 Siguiente:
 

@@ -316,7 +316,9 @@ class Listener(context: Context) {
     // un .txt con la frase, lo reconocido y las medidas. Vive en la carpeta
     // privada de la app (Android/data/com.ferolabs.hablo/files/grabaciones),
     // se lee por USB con adb y sirve para probar modelos y afinar umbrales en
-    // el PC sin recompilar. Se guardan solo las últimas KEEP_RECORDINGS.
+    // el PC sin recompilar. Se guardan solo las últimas KEEP_RECORDINGS
+    // (unos 150 KB cada una): con 200 el corpus llega a las ~100 que hacen
+    // falta para reafinar los umbrales sin tener que bajarlas cada semana.
     // ------------------------------------------------------------------------
 
     private fun recordingsDir(): File? = try {
@@ -393,6 +395,6 @@ class Listener(context: Context) {
 
     companion object {
         private const val TAG = "HabloListener"
-        private const val KEEP_RECORDINGS = 40
+        private const val KEEP_RECORDINGS = 200
     }
 }

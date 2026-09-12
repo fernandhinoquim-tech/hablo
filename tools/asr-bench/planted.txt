@@ -1,0 +1,10 @@
+# Errores plantados a propósito en el corpus: grabación + palabras dichas mal.
+# bench.py mide cuántos de estos el modelo "arregla" (sobrecorrección).
+# Las palabras van como en la frase objetivo (minúsculas, sin puntuación).
+# 2026-09-12, Fero, un cuarto, un día:
+20260912-010316.wav ship            # dijo "chip"
+20260912-010452.wav ship            # dijo "cheek/chip"
+20260912-010329.wav think third     # dijo "tink", "tird"
+20260912-010514.wav think third     # dijo "tink", "tird"
+20260912-010535.wav walked talked asked   # dijo "wok-ed", "tok-ed", "ask-ed"
+20260912-010554.wav speak spanish   # dijo "espeak", "Espanish"

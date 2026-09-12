@@ -279,13 +279,32 @@ def read_sidecar(wav_path):
     return info
 
 
+def read_planted(path):
+    """{nombre.wav: [palabra, ...]} de planted.txt; vacío si no existe."""
+    out = {}
+    if not os.path.exists(path):
+        return out
+    with open(path, encoding="utf-8") as f:
+        for line in f:
+            line = line.split("#", 1)[0].strip()
+            if not line:
+                continue
+            parts = line.split()
+            out[parts[0]] = [normalize(w) for w in parts[1:]]
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--corpus", default=os.path.join(HERE, "corpus"))
     ap.add_argument("--models", default=os.path.join(HERE, "models"))
     ap.add_argument("--only", nargs="*", help="solo modelos cuyo nombre contenga esto")
     ap.add_argument("--raw", action="store_true", help="también correr sobre el audio crudo, sin prep()")
+    ap.add_argument("--planted", default=os.path.join(HERE, "planted.txt"),
+                    help="lista de errores plantados a propósito (grabación + palabras)")
     args = ap.parse_args()
+
+    planted = read_planted(args.planted)
 
     wavs = sorted(glob.glob(os.path.join(args.corpus, "*.wav")))
     if not wavs:
@@ -298,12 +317,14 @@ def main():
         print("no hay modelos en", args.models)
         sys.exit(1)
 
-    totals = {name: {"pts": 0, "n": 0, "ms": 0.0} for name, _ in models}
+    totals = {name: {"pts": 0, "n": 0, "ms": 0.0, "fixed": [], "caught": []} for name, _ in models}
+    gate_stats = {"OK": [], "TOO_SHORT": [], "TOO_QUIET": [], "TOO_NOISY": []}
 
     for wav in wavs:
         raw = read_wav(wav)
         info = read_sidecar(wav)
         prepared, m, reason = prep(raw)
+        gate_stats[reason or "OK"].append(m)
         print("=" * 100)
         print(f"{os.path.basename(wav)}   frase: {info['frase']}")
         print(f"  app dijo:   {info['resultado']}")
@@ -321,6 +342,9 @@ def main():
                 totals[name]["pts"] += pct
                 totals[name]["n"] += 1
                 totals[name]["ms"] += secs * 1000
+            for w in planted.get(os.path.basename(wav), []):
+                ok = any(sw == w and st == "BIEN" for sw, st in scored)
+                (totals[name]["fixed"] if ok else totals[name]["caught"]).append(w)
             if args.raw:
                 text_r, secs_r = transcribe(rec, raw)
                 pct_r, _ = score(info["frase"], text_r)
@@ -332,6 +356,38 @@ def main():
     for name, t in totals.items():
         if t["n"]:
             print(f"  {name:<45} {t['pts'] / t['n']:5.1f}%   {t['ms'] / t['n']:6.0f} ms/frase   ({t['n']} grabaciones)")
+
+    n_planted = sum(len(v) for v in planted.values())
+    if n_planted:
+        print("=" * 100)
+        print(f"SOBRECORRECCIÓN: de {n_planted} errores plantados a propósito ({args.planted}),")
+        print("cuántos el modelo 'arregló' y puntuó como BIEN. Más bajo = más honesto.")
+        print("Ojo con la muestra: con ~10 errores, 3/11 y 5/11 no se distinguen estadísticamente.")
+        for name, t in totals.items():
+            fixed, caught = t["fixed"], t["caught"]
+            tot = len(fixed) + len(caught)
+            if not tot:
+                continue
+            print(f"  {name:<45} {len(fixed)}/{tot} = {100 * len(fixed) / tot:3.0f}%   arregló: {', '.join(fixed) or '-'}")
+
+    print("=" * 100)
+    print("PUERTAS: cuántas grabaciones rechazó cada puerta y en qué rango quedaron las medidas")
+    print("de las que pasaron (para reafinar los umbrales cuando el corpus crezca):")
+    for k, ms in gate_stats.items():
+        print(f"  {k:<10} {len(ms):3d}")
+    ok = gate_stats["OK"]
+    if ok:
+        def rng(key, fmt):
+            vals = sorted(x[key] for x in ok)
+            return (f"mín {fmt % vals[0]}  mediana {fmt % vals[len(vals) // 2]}  máx {fmt % vals[-1]}")
+        print(f"  pico     {rng('pico', '%.3f')}   (umbral MIN_PEAK={MIN_PEAK})")
+        print(f"  rmsVoz   {rng('rmsVoz', '%.4f')}   (umbral MIN_SPEECH_RMS={MIN_SPEECH_RMS})")
+        print(f"  voz      {rng('voz', '%.2fs')}   (umbral MIN_SPEECH_SECONDS={MIN_SPEECH_SECONDS})")
+        fiables = [x for x in ok if x["fiable"]]
+        if fiables:
+            vals = sorted(x["snr"] for x in fiables)
+            print(f"  snr      mín {vals[0]:.1f}  mediana {vals[len(vals) // 2]:.1f}  máx {vals[-1]:.1f} dB"
+                  f"   (umbral MIN_SNR_DB={MIN_SNR_DB}; {len(fiables)} de {len(ok)} con SNR fiable)")
 
 
 if __name__ == "__main__":
