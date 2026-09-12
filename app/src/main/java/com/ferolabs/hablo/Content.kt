@@ -9,6 +9,30 @@ import org.json.JSONArray
 import org.json.JSONObject
 
 /**
+ * Sonido que entrena un ejercicio de hablar. Es **obligatorio** en el
+ * contenido: decide qué jurado puntúa la frase (ver CLAUDE.md, "jurado por
+ * sonido"). Si un ejercicio queda sin etiqueta, el jurado no dispara y nadie
+ * se entera; por eso la carga falla ruidosamente si falta o no se reconoce.
+ * `general` es para frases que no trabajan un sonido en particular.
+ */
+enum class Sound(val key: String, val labelEs: String) {
+    SH("sh", "ship / sheep"),
+    TH("th", "el sonido th"),
+    H("h", "la h aspirada"),
+    V("v", "v contra b"),
+    ED("ed", "terminación -ed"),
+    FINAL("final", "consonantes al final"),
+    ES("es", "s inicial sin e"),
+    RL("rl", "la r y la l"),
+    GENERAL("general", "la frase completa");
+
+    companion object {
+        fun parse(key: String): Sound? = entries.firstOrNull { it.key == key }
+        val keys: String get() = entries.joinToString(", ") { it.key }
+    }
+}
+
+/**
  * Tipos de ejercicio.
  *
  * El contenido vive en assets/content/curriculum.json, no en el código: así se
@@ -51,9 +75,18 @@ sealed class Exercise {
     /** Lo dices en voz alta y se te puntúa palabra por palabra. */
     data class SpeakIt(
         val text: String,
+        val sound: Sound,
         override val tip: String? = null
     ) : Exercise()
 }
+
+/** Un ejercicio de pronunciación suelto: frase objetivo + por qué es difícil. */
+data class Drill(
+    val text: String,
+    val sound: Sound,
+    val focusEs: String,
+    val tipEs: String
+)
 
 data class Lesson(
     val id: String,
@@ -85,6 +118,10 @@ object Course {
     var levels: List<Level> = emptyList()
         private set
 
+    /** Los ejercicios de "Practicar pronunciación" (assets/content/drills.json). */
+    var drills: List<Drill> = emptyList()
+        private set
+
     var loaded by mutableStateOf(false)
         private set
 
@@ -94,19 +131,52 @@ object Course {
     fun load(context: Context) {
         if (loaded) return
         try {
-            val json = context.assets.open("content/curriculum.json")
-                .bufferedReader()
-                .use { it.readText() }
-            levels = parseLevels(JSONObject(json).getJSONArray("levels"))
+            levels = parseLevels(JSONObject(readAsset(context, "content/curriculum.json")).getJSONArray("levels"))
+            drills = parseDrills(JSONObject(readAsset(context, "content/drills.json")).getJSONArray("drills"))
             loaded = true
-            Log.i(TAG, "Curso cargado: ${levels.size} niveles, ${allLessons().size} lecciones")
+            Log.i(TAG, "Curso cargado: ${levels.size} niveles, ${allLessons().size} lecciones, ${drills.size} drills")
         } catch (e: Throwable) {
+            // Se muestra en la pantalla de inicio. Un contenido mal formado no
+            // se esconde: mejor una app que dice "arregla la lección X" que una
+            // que puntúa mal en silencio.
             Log.e(TAG, "No se pudo cargar el curso", e)
-            loadError = "${e.javaClass.simpleName}: ${e.message}"
+            loadError = e.message ?: e.javaClass.simpleName
             levels = emptyList()
+            drills = emptyList()
             loaded = true
         }
     }
+
+    private fun readAsset(context: Context, path: String): String =
+        context.assets.open(path).bufferedReader().use { it.readText() }
+
+    /**
+     * Lee el campo "sound" y revienta con un mensaje que dice exactamente dónde.
+     * `where` es algo como "lección a1u1l2, ejercicio 3".
+     */
+    private fun requireSound(o: JSONObject, where: String): Sound {
+        if (!o.has("sound") || o.isNull("sound")) {
+            throw IllegalArgumentException(
+                "$where: falta \"sound\" (el sonido que entrena). Valores válidos: ${Sound.keys}"
+            )
+        }
+        val key = o.getString("sound")
+        return Sound.parse(key) ?: throw IllegalArgumentException(
+            "$where: \"sound\": \"$key\" no existe. Valores válidos: ${Sound.keys}"
+        )
+    }
+
+    private fun parseDrills(arr: JSONArray): List<Drill> =
+        (0 until arr.length()).map { i ->
+            val o = arr.getJSONObject(i)
+            val where = "drills.json, drill ${i + 1}"
+            Drill(
+                text = o.getString("text"),
+                sound = requireSound(o, where),
+                focusEs = o.getString("focus"),
+                tipEs = o.getString("tip")
+            )
+        }
 
     private fun parseLevels(arr: JSONArray): List<Level> =
         (0 until arr.length()).map { i ->
@@ -134,10 +204,11 @@ object Course {
     private fun parseLessons(arr: JSONArray): List<Lesson> =
         (0 until arr.length()).map { i ->
             val o = arr.getJSONObject(i)
+            val id = o.getString("id")
             Lesson(
-                id = o.getString("id"),
+                id = id,
                 title = o.getString("title"),
-                exercises = parseExercises(o.getJSONArray("exercises"))
+                exercises = parseExercises(o.getJSONArray("exercises"), id)
             )
         }
 
@@ -146,12 +217,13 @@ object Course {
         return (0 until a.length()).map { a.getString(it) }
     }
 
-    private fun parseExercises(arr: JSONArray): List<Exercise> {
+    private fun parseExercises(arr: JSONArray, lessonId: String): List<Exercise> {
         val out = ArrayList<Exercise>(arr.length())
         for (i in 0 until arr.length()) {
             val o = arr.getJSONObject(i)
+            val where = "lección $lessonId, ejercicio ${i + 1}"
             val tip = if (o.isNull("tip")) null else o.optString("tip", "").ifBlank { null }
-            val ex = when (o.getString("type")) {
+            val ex = when (val type = o.getString("type")) {
                 "listen" -> Exercise.ListenChoose(
                     audio = o.getString("audio"),
                     options = strings(o, "options"),
@@ -177,11 +249,16 @@ object Course {
                 )
                 "speak" -> Exercise.SpeakIt(
                     text = o.getString("text"),
+                    sound = requireSound(o, where),
                     tip = tip
                 )
-                else -> null
+                // Antes un tipo desconocido se saltaba en silencio: un error de
+                // dedo en el JSON hacía desaparecer el ejercicio sin aviso.
+                else -> throw IllegalArgumentException(
+                    "$where: tipo \"$type\" desconocido (listen, translate, build, type, speak)"
+                )
             }
-            if (ex != null) out.add(ex)
+            out.add(ex)
         }
         return out
     }

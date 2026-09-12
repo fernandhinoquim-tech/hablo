@@ -1,0 +1,53 @@
+{
+  "_comentario": "Ejercicios de 'Practicar pronunciación'. Elegidos por lo que le cuesta a un hispanohablante, no por frecuencia genérica. 'sound' es OBLIGATORIO: decide qué jurado puntúa (sh, th, h, v, ed, final, es, rl, general). Si falta, la app lo dice en la pantalla de inicio y la compilación falla.",
+  "drills": [
+    {
+      "text": "The ship is very cheap.",
+      "sound": "sh",
+      "focus": "ship / sheep",
+      "tip": "La i de ship es corta y relajada, casi una e. La de sheep es larga. En español solo existe una i, por eso suenan igual al principio."
+    },
+    {
+      "text": "I think this is the third one.",
+      "sound": "th",
+      "focus": "el sonido th",
+      "tip": "Saca la punta de la lengua entre los dientes y sopla. No es ni s ni t ni d. Se siente ridículo, y así es como suena bien."
+    },
+    {
+      "text": "He has a happy home.",
+      "sound": "h",
+      "focus": "la h aspirada",
+      "tip": "En inglés la h SÍ suena: es un soplo de aire. En español es muda, por eso tendemos a comernos la palabra entera."
+    },
+    {
+      "text": "Very best, very good.",
+      "sound": "v",
+      "focus": "v contra b",
+      "tip": "La v se hace mordiendo el labio de abajo con los dientes de arriba. En español v y b suenan igual; en inglés son distintas."
+    },
+    {
+      "text": "I walked and talked and asked.",
+      "sound": "ed",
+      "focus": "terminación -ed",
+      "tip": "Aquí la -ed suena como t, no como \"ed\". Walked es \"wokt\", no \"wok-ed\"."
+    },
+    {
+      "text": "She needs six books.",
+      "sound": "final",
+      "focus": "consonantes al final",
+      "tip": "En español casi no cerramos palabras con consonante. Aquí hay que pronunciar la s y la ks del final, sin agregarles una e."
+    },
+    {
+      "text": "Can you speak Spanish?",
+      "sound": "es",
+      "focus": "s inicial sin e",
+      "tip": "Es \"speak\", no \"espeak\". Empieza directo con la s. Este es de los errores que más delatan a un hispanohablante."
+    },
+    {
+      "text": "It's a beautiful world.",
+      "sound": "rl",
+      "focus": "la r y la l finales",
+      "tip": "La r inglesa no vibra: la lengua se curva hacia atrás sin tocar nada."
+    }
+  ]
+}

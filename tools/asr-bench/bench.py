@@ -173,22 +173,40 @@ def score(target, heard):
 
 # ---------------------------------------------------------------------------
 # Jurados: qué modelo(s) puntúan cada frase según el sonido que entrena.
-# Copia de DRILLS (Pronunciation.kt). Un jurado toma, palabra por palabra, el
+# El sonido de cada frase sale del contenido (JSON). Un jurado toma, palabra por palabra, el
 # veredicto MÁS DURO de sus miembros: en una herramienta de aprendizaje, decir
 # "bien" cuando se dijo mal deja el error puesto; decir "mal" cuando se dijo
 # bien solo hace repetir. Criterio de Fero, 2026-09-12.
 # ---------------------------------------------------------------------------
 
-SOUND_OF_PHRASE = {
-    "the ship is very cheap": "sh",
-    "i think this is the third one": "th",
-    "he has a happy home": "h",
-    "very best very good": "v",
-    "i walked and talked and asked": "ed",
-    "she needs six books": "final",
-    "can you speak spanish": "es",
-    "it's a beautiful world": "rl",
-}
+CONTENT_DIR = os.path.normpath(os.path.join(HERE, "..", "..", "app", "src", "main", "assets", "content"))
+
+
+def load_sound_of_phrase():
+    """{frase normalizada: sonido} leído de drills.json y curriculum.json: la
+    etiqueta "sound" es obligatoria en el contenido, así que aquí no se
+    duplica ninguna lista. Si falta, se revienta igual que la app."""
+    import json
+    out = {}
+    with open(os.path.join(CONTENT_DIR, "drills.json"), encoding="utf-8") as f:
+        for i, d in enumerate(json.load(f)["drills"]):
+            if "sound" not in d:
+                sys.exit(f"drills.json, drill {i + 1}: falta 'sound'")
+            out[normalize(d["text"])] = d["sound"]
+    with open(os.path.join(CONTENT_DIR, "curriculum.json"), encoding="utf-8") as f:
+        for level in json.load(f)["levels"]:
+            for unit in level["units"]:
+                for lesson in unit["lessons"]:
+                    for i, e in enumerate(lesson["exercises"]):
+                        if e["type"] != "speak":
+                            continue
+                        if "sound" not in e:
+                            sys.exit(f"lección {lesson['id']}, ejercicio {i + 1}: falta 'sound'")
+                        out[normalize(e["text"])] = e["sound"]
+    return out
+
+
+SOUND_OF_PHRASE = load_sound_of_phrase()
 
 # Políticas a comparar. Clave = sonido ("*" = todos los demás), valor = lista
 # de fragmentos de nombre de modelo. Se evalúan solo si esos modelos cargaron.
@@ -201,6 +219,11 @@ POLICIES = {
                                     {"*": ["moonshine-base-en-quantized"],
                                      "th": ["moonshine-base-en-quantized", "parakeet-tdt-0.6b"],
                                      "ed": ["moonshine-base-en-quantized", "whisper-small"]},
+    # Parakeet 110m pesa 126 MB (el 0.6B, 660): si sirve igual como juez de th,
+    # convive mejor con los 5 GB del modelo de IA de la Fase 3.
+    "Por sonido: th->Parakeet110m": {"*": ["moonshine-base-en-quantized"],
+                                     "th": ["moonshine-base-en-quantized", "parakeet_tdt_ctc_110m"]},
+    "Jurado total M+Parakeet110m":  {"*": ["moonshine-base-en-quantized", "parakeet_tdt_ctc_110m"]},
 }
 
 SEVERITY = {"BIEN": 0, "DUDOSO": 1, "MAL": 2}

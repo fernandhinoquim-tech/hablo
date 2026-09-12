@@ -145,6 +145,66 @@ val fetchAsr = tasks.register("fetchAsr") {
     }
 }
 
+// ---------------------------------------------------------------------------
+// Revision del contenido antes de compilar. Un ejercicio de hablar sin su
+// etiqueta "sound" haria que el jurado por sonido no dispare y nadie se
+// enteraria; aqui la compilacion se cae y dice exactamente donde. La misma
+// revision la hace la app al arrancar (Content.kt), por si el JSON se edita
+// por fuera de Gradle.
+// ---------------------------------------------------------------------------
+
+val contentDir = File(projectDir, "src/main/assets/content")
+val validSounds = listOf("sh", "th", "h", "v", "ed", "final", "es", "rl", "general")
+val validTypes = listOf("listen", "translate", "build", "type", "speak")
+
+val checkContent = tasks.register("checkContent") {
+    inputs.dir(contentDir)
+    doLast {
+        val problems = ArrayList<String>()
+
+        fun checkSound(o: Map<*, *>, where: String) {
+            val sound = o["sound"]
+            when {
+                sound == null -> problems.add("$where: falta \"sound\". Valores: ${validSounds.joinToString(", ")}")
+                sound !in validSounds -> problems.add("$where: \"sound\": \"$sound\" no existe. Valores: ${validSounds.joinToString(", ")}")
+            }
+        }
+
+        val slurper = groovy.json.JsonSlurper()
+
+        val curriculum = slurper.parse(File(contentDir, "curriculum.json")) as Map<*, *>
+        val lessonIds = HashSet<String>()
+        for (level in curriculum["levels"] as List<*>) {
+            for (unit in (level as Map<*, *>)["units"] as List<*>) {
+                for (lesson in (unit as Map<*, *>)["lessons"] as List<*>) {
+                    val l = lesson as Map<*, *>
+                    val id = l["id"].toString()
+                    if (!lessonIds.add(id)) problems.add("leccion $id: id repetido")
+                    (l["exercises"] as List<*>).forEachIndexed { i, ex ->
+                        val e = ex as Map<*, *>
+                        val where = "leccion $id, ejercicio ${i + 1}"
+                        val type = e["type"]
+                        if (type !in validTypes) problems.add("$where: tipo \"$type\" desconocido")
+                        if (type == "speak") checkSound(e, where)
+                    }
+                }
+            }
+        }
+
+        val drills = slurper.parse(File(contentDir, "drills.json")) as Map<*, *>
+        (drills["drills"] as List<*>).forEachIndexed { i, d ->
+            checkSound(d as Map<*, *>, "drills.json, drill ${i + 1}")
+        }
+
+        if (problems.isNotEmpty()) {
+            throw GradleException(
+                "Contenido invalido (${problems.size}):\n  " + problems.joinToString("\n  ")
+            )
+        }
+        logger.lifecycle("  contenido revisado: ${lessonIds.size} lecciones, ${(drills["drills"] as List<*>).size} drills")
+    }
+}
+
 android {
     namespace = "com.ferolabs.hablo"
     compileSdk = 35
@@ -193,7 +253,7 @@ android {
 }
 
 tasks.named("preBuild") {
-    dependsOn(fetchSherpaAar, fetchVoices, fetchAsr)
+    dependsOn(checkContent, fetchSherpaAar, fetchVoices, fetchAsr)
 }
 
 dependencies {

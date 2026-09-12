@@ -30,6 +30,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -44,6 +45,16 @@ fun HomeScreen(
     onGreeting: () -> Unit
 ) {
     val accent = Color(teacher.color)
+
+    // La versión sale del paquete instalado, no de un texto fijo que se olvida.
+    val context = LocalContext.current
+    val appVersion = remember {
+        try {
+            context.packageManager.getPackageInfo(context.packageName, 0).versionName ?: "?"
+        } catch (e: Throwable) {
+            "?"
+        }
+    }
 
     val streak = remember(refreshKey) { store.streak }
     val xp = remember(refreshKey) { store.xp }
@@ -210,7 +221,7 @@ fun HomeScreen(
                 )
                 Spacer(Modifier.height(6.dp))
                 Text(
-                    "Versión 0.6 · ${Course.allLessons().size} lecciones · todo sin internet",
+                    "Versión $appVersion · ${Course.allLessons().size} lecciones · todo sin internet",
                     style = MaterialTheme.typography.labelMedium,
                     color = InkSoft
                 )

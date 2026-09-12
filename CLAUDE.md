@@ -44,7 +44,17 @@ B2 leyendo, escribiendo, escuchando y hablando.
 3. **Todo modelo o dato va empaquetado dentro del APK**, o al lado de la app en
    el teléfono. Nada se descarga en tiempo de ejecución.
 4. **El contenido vive en JSON**, no en Kotlin. Ver
-   `app/src/main/assets/content/curriculum.json`.
+   `app/src/main/assets/content/curriculum.json` (lecciones) y
+   `drills.json` (práctica de pronunciación).
+5. **Todo ejercicio de hablar lleva `"sound"` obligatorio** (`sh`, `th`, `h`,
+   `v`, `ed`, `final`, `es`, `rl` o `general`): es lo que decide qué jurado
+   lo puntúa. Si falta o está mal escrito, **la compilación se cae**
+   (`gradlew checkContent`, corre antes de `preBuild`) y, si el JSON se
+   editó por fuera, **la app lo dice en la pantalla de inicio** con lección y
+   número de ejercicio (`Content.kt`, `requireSound`). Nada de esto falla en
+   silencio a propósito: con 160 lecciones en la Fase 5, un ejercicio sin
+   etiqueta haría que el jurado no dispare y nadie se enteraría. Un tipo de
+   ejercicio desconocido también revienta (antes se saltaba callado).
 
 ---
 
@@ -86,6 +96,12 @@ vez y los meten en `assets/`. No están en el repositorio.
 
 El modelo de 8B (~5 GB) **no cabe dentro de un APK**: tiene que vivir como
 archivo aparte en el teléfono, copiado una vez por USB.
+
+**Esquema del contenido.** `curriculum.json`: niveles → unidades → lecciones
+→ ejercicios (`listen`, `translate`, `build`, `type`, `speak`). `drills.json`:
+lista de `drills` con `text`, `sound`, `focus`, `tip`. Los `speak` y los
+drills llevan `sound` obligatorio (regla dura 5). `bench.py` lee el sonido de
+cada frase de esos mismos JSON: no hay lista duplicada en ningún lado.
 
 **Corpus de voz y banco de pruebas.** La app guarda cada grabación cruda como
 WAV + un `.txt` (frase, resultado, medidas) en
@@ -179,9 +195,19 @@ falsos en 26 grabaciones; silencio → TOO_SHORT.
   | Jurado total Moonshine+Parakeet 0.6B en todo | 2 | 54,9 % (baja ship, six ×2, very, good ×2, world sin ganar honestidad) |
   | Por sonido: `th` → +Parakeet 0.6B | 2 | 61,4 % (cero daño colateral) |
   | Por sonido: `th` → +Parakeet, `ed` → +Whisper small | 1 | 61,4 % |
+  | Por sonido: `th` → +Parakeet **110m** | 4 | 61,4 % |
 
   El jurado por sonido da toda la honestidad del total sin su daño: el
-  segundo modelo solo opina donde sabe. Muestra chica (th: 4 casos de 2
+  segundo modelo solo opina donde sabe. **Parakeet 110m no sirve de juez de
+  `th`**: oye "tink" como *think* igual que Moonshine (2 de 2) y solo agrega
+  "tird"; su 2/11 general venía de `espeak` y `-ed`, donde no opinaría. El
+  0.6B es el único que oye la diferencia t/th.
+
+  **Memoria (pensando en la Fase 3):** Parakeet 0.6B int8 ocupa ~660 MB en
+  disco y ~1 GB cargado; Qwen3 8B Q4 ~5 GB; el teléfono tiene 12 GB. No
+  pueden convivir cargados. Regla: el juez se carga al entrar a un drill de su
+  sonido y se suelta al salir de la pantalla de pronunciación; el modelo de IA
+  se suelta al salir de la conversación. Nunca dos pesados a la vez. Muestra chica (th: 4 casos de 2
   grabaciones; -ed: 3 de una). **Regla de decisión** para no volver a
   discutirlo: con el corpus de ~35 casos, si el segundo modelo atrapa ≥4 de 5
   errores plantados de su sonido y no baja el promedio de las buenas de ese

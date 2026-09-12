@@ -45,6 +45,23 @@ fun PronunciationScreen(
     onBack: () -> Unit
 ) {
     val accent = Color(teacher.color)
+    val drills = Course.drills
+
+    // Sin drills no hay pantalla: el motivo (contenido mal formado) ya está en
+    // la pantalla de inicio, aquí solo se evita reventar con una lista vacía.
+    if (drills.isEmpty()) {
+        Column(modifier = Modifier.fillMaxSize()) {
+            TopBar("Pronunciación", onBack = onBack)
+            Text(
+                Course.loadError?.let { "No se pudo leer drills.json:\n$it" }
+                    ?: "No hay ejercicios de pronunciación en drills.json.",
+                style = MaterialTheme.typography.bodyLarge,
+                color = BadRed,
+                modifier = Modifier.padding(20.dp)
+            )
+        }
+        return
+    }
 
     var index by remember { mutableStateOf(0) }
     var result by remember { mutableStateOf<PronunciationResult?>(null) }
@@ -52,7 +69,7 @@ fun PronunciationScreen(
     var showTip by remember { mutableStateOf(false) }
     var permissionAsked by remember { mutableStateOf(false) }
 
-    val drill = DRILLS[index % DRILLS.size]
+    val drill = drills[index % drills.size]
 
     // El puntaje solo se calcula con lo que el reconocedor de verdad entendió.
     fun listen(target: String) {
@@ -93,7 +110,7 @@ fun PronunciationScreen(
 
     Column(modifier = Modifier.fillMaxSize()) {
 
-        TopBar("Pronunciación  ·  ${index + 1}/${DRILLS.size}", onBack = onBack)
+        TopBar("Pronunciación  ·  ${index + 1}/${drills.size}", onBack = onBack)
 
         Column(
             verticalArrangement = Arrangement.spacedBy(14.dp),
@@ -286,7 +303,7 @@ fun PronunciationScreen(
                 text = if (result == null) "Saltar esta frase" else "Siguiente frase",
                 container = accent
             ) {
-                index = (index + 1) % DRILLS.size
+                index = (index + 1) % drills.size
                 result = null
                 notHeard = null
                 showTip = false

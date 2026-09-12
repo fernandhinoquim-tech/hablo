@@ -12,66 +12,9 @@ data class PronunciationResult(
     val heard: String
 )
 
-/** Un ejercicio de pronunciación: frase objetivo + por qué es difícil. */
-data class Drill(
-    val text: String,
-    val focusEs: String,
-    val tipEs: String
-)
-
-/**
- * Ejercicios elegidos por lo que le cuesta a un hispanohablante,
- * no por frecuencia genérica.
- */
-val DRILLS: List<Drill> = listOf(
-    Drill(
-        text = "The ship is very cheap.",
-        focusEs = "ship / sheep",
-        tipEs = "La i de ship es corta y relajada, casi una e. La de sheep es larga. " +
-            "En español solo existe una i, por eso suenan igual al principio."
-    ),
-    Drill(
-        text = "I think this is the third one.",
-        focusEs = "el sonido th",
-        tipEs = "Saca la punta de la lengua entre los dientes y sopla. No es ni s ni t ni d. " +
-            "Se siente ridículo, y así es como suena bien."
-    ),
-    Drill(
-        text = "He has a happy home.",
-        focusEs = "la h aspirada",
-        tipEs = "En inglés la h SÍ suena: es un soplo de aire. En español es muda, " +
-            "por eso tendemos a comernos la palabra entera."
-    ),
-    Drill(
-        text = "Very best, very good.",
-        focusEs = "v contra b",
-        tipEs = "La v se hace mordiendo el labio de abajo con los dientes de arriba. " +
-            "En español v y b suenan igual; en inglés son distintas."
-    ),
-    Drill(
-        text = "I walked and talked and asked.",
-        focusEs = "terminación -ed",
-        tipEs = "Aquí la -ed suena como t, no como \"ed\". Walked es \"wokt\", " +
-            "no \"wok-ed\"."
-    ),
-    Drill(
-        text = "She needs six books.",
-        focusEs = "consonantes al final",
-        tipEs = "En español casi no cerramos palabras con consonante. Aquí hay que " +
-            "pronunciar la s y la ks del final, sin agregarles una e."
-    ),
-    Drill(
-        text = "Can you speak Spanish?",
-        focusEs = "s inicial sin e",
-        tipEs = "Es \"speak\", no \"espeak\". Empieza directo con la s. " +
-            "Este es de los errores que más delatan a un hispanohablante."
-    ),
-    Drill(
-        text = "It's a beautiful world.",
-        focusEs = "la r y la l finales",
-        tipEs = "La r inglesa no vibra: la lengua se curva hacia atrás sin tocar nada."
-    )
-)
+// Los ejercicios de pronunciación (Drill) viven en assets/content/drills.json
+// y los carga Course, igual que las lecciones: el contenido va en JSON, no en
+// Kotlin, y cada uno lleva su etiqueta "sound" obligatoria.
 
 // ---------------------------------------------------------------------------
 
