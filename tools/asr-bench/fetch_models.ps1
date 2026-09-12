@@ -1,5 +1,7 @@
 # Descarga los modelos candidatos para el banco de pruebas (solo en el PC).
-# Uso:  powershell -File tools\asr-bench\fetch_models.ps1
+# Uso:  powershell -File tools/asr-bench/fetch_models.ps1 [-Big]
+#   -Big: tambien los pesados (~1 GB), para responder "y si usamos el mejor?"
+param([switch]$Big)
 $ErrorActionPreference = "Stop"
 $root = Join-Path $PSScriptRoot "models"
 New-Item -ItemType Directory -Force $root | Out-Null
@@ -11,6 +13,12 @@ $packages = @(
     "sherpa-onnx-whisper-base.en",
     "sherpa-onnx-nemo-parakeet_tdt_ctc_110m-en-36000-int8"
 )
+if ($Big) {
+    $packages += @(
+        "sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8",
+        "sherpa-onnx-whisper-small.en"
+    )
+}
 
 foreach ($pkg in $packages) {
     $dir = Join-Path $root $pkg

@@ -13,7 +13,7 @@ plugins {
 // APK. Despues de eso la app habla sin depender de nada de Android.
 // ---------------------------------------------------------------------------
 
-val sherpaVersion = "1.13.2"
+val sherpaVersion = "1.13.8"
 
 val voicePackages = mapOf(
     "emma"   to "vits-piper-en_US-kristin-medium-int8",
@@ -102,16 +102,22 @@ val fetchVoices = tasks.register("fetchVoices") {
     }
 }
 
-val asrPackage = "sherpa-onnx-moonshine-tiny-en-int8"
+// Moonshine base v2 (export "quantized-2026-02-27"): dos archivos .ort. Se
+// eligió con el banco de pruebas tools/asr-bench sobre grabaciones reales:
+// tiny devolvía texto vacío en 4 de 26; base no, y sigue siendo honesto.
+val asrPackage = "sherpa-onnx-moonshine-base-en-quantized-2026-02-27"
 val asrAssetsDir = File(projectDir, "src/main/assets/asr")
 
 val fetchAsr = tasks.register("fetchAsr") {
     outputs.dir(asrAssetsDir)
     doLast {
-        if (File(asrAssetsDir, "tokens.txt").exists()) {
-            logger.lifecycle("  reconocimiento de voz ya listo")
+        // El marcador dice qué paquete hay instalado: si cambia, se vuelve a bajar.
+        val marker = File(asrAssetsDir, ".paquete")
+        if (marker.exists() && marker.readText().trim() == asrPackage) {
+            logger.lifecycle("  reconocimiento de voz ya listo ($asrPackage)")
             return@doLast
         }
+        asrAssetsDir.deleteRecursively()
         piperCache.mkdirs()
         val tarball = File(piperCache, "$asrPackage.tar.bz2")
         if (!tarball.exists() || tarball.length() < 1_000_000) {
@@ -130,11 +136,12 @@ val fetchAsr = tasks.register("fetchAsr") {
         asrAssetsDir.mkdirs()
         // Se copian solo los modelos y los tokens; los wav de prueba no hacen falta.
         extracted.walkTopDown()
-            .filter { it.isFile && (it.name.endsWith(".onnx") || it.name == "tokens.txt") }
+            .filter { it.isFile && (it.name.endsWith(".onnx") || it.name.endsWith(".ort") || it.name == "tokens.txt") }
             .forEach { f ->
                 f.copyTo(File(asrAssetsDir, f.name), overwrite = true)
                 logger.lifecycle("  asr: ${f.name} (${f.length() / 1024 / 1024} MB)")
             }
+        marker.writeText(asrPackage)
     }
 }
 
@@ -146,8 +153,8 @@ android {
         applicationId = "com.ferolabs.hablo"
         minSdk = 26
         targetSdk = 35
-        versionCode = 6
-        versionName = "0.6"
+        versionCode = 7
+        versionName = "0.7"
     }
 
     buildTypes {
@@ -175,7 +182,7 @@ android {
 
     // Los modelos no se comprimen: cargan mas rapido y pesan casi igual.
     androidResources {
-        noCompress += listOf("onnx")
+        noCompress += listOf("onnx", "ort")
     }
 
     packaging {
@@ -190,7 +197,8 @@ tasks.named("preBuild") {
 }
 
 dependencies {
-    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.aar"))))
+    // Solo el AAR de la version fijada: si en libs/ queda uno viejo, no se mezcla.
+    implementation(files("libs/sherpa-onnx-$sherpaVersion.aar"))
 
     implementation(platform("androidx.compose:compose-bom:2024.10.01"))
 

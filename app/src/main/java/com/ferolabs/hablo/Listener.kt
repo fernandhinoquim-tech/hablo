@@ -46,7 +46,7 @@ class Listener(context: Context) {
 
     private val sampleRate = AudioPrep.SAMPLE_RATE
     private val maxSeconds = 12
-    private val assetsVersion = "v1"
+    private val assetsVersion = "v2"
 
     var recording by mutableStateOf(false)
         private set
@@ -82,6 +82,10 @@ class Listener(context: Context) {
     private fun installAssets() {
         val root = modelsRoot()
         if (File(root, ".listo").exists()) return
+        // Versiones anteriores del reconocedor ya no sirven: se borran para no
+        // dejar cientos de MB muertos en el teléfono.
+        app.filesDir.listFiles { f -> f.isDirectory && f.name.startsWith("asr-") && f != root }
+            ?.forEach { it.deleteRecursively() }
         root.deleteRecursively()
         root.mkdirs()
         val names = app.assets.list("asr") ?: emptyArray()
@@ -100,20 +104,20 @@ class Listener(context: Context) {
         return try {
             installAssets()
             val root = modelsRoot()
+            // Moonshine base v2: encoder + decoder fusionado (.ort). sherpa-onnx
+            // detecta la variante por los campos que vienen llenos; el
+            // modelType se deja vacío igual que hace su propio binding de Python.
             val config = OfflineRecognizerConfig(
                 featConfig = FeatureConfig(sampleRate = sampleRate, featureDim = 80),
                 modelConfig = OfflineModelConfig(
                     moonshine = OfflineMoonshineModelConfig(
-                        preprocessor = File(root, "preprocess.onnx").absolutePath,
-                        encoder = File(root, "encode.int8.onnx").absolutePath,
-                        uncachedDecoder = File(root, "uncached_decode.int8.onnx").absolutePath,
-                        cachedDecoder = File(root, "cached_decode.int8.onnx").absolutePath
+                        encoder = File(root, "encoder_model.ort").absolutePath,
+                        mergedDecoder = File(root, "decoder_model_merged.ort").absolutePath
                     ),
                     tokens = File(root, "tokens.txt").absolutePath,
                     numThreads = 2,
                     debug = false,
-                    provider = "cpu",
-                    modelType = "moonshine"
+                    provider = "cpu"
                 )
             )
             val r = OfflineRecognizer(config = config)

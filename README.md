@@ -9,12 +9,14 @@ la `th`, la `h` aspirada, *speak* sin la `e` delante).
 
 ## Estado
 
-**Versión 0.6 — funcionando en el teléfono.**
+**Versión 0.7 — funcionando en el teléfono.**
 
 - [x] Cuatro profesoras para elegir, cada una con su propia voz neuronal
       (Piper), acento americano o británico, dentro del APK
 - [x] Botón de "más lento" en cada frase
-- [x] Reconocimiento de voz sin conexión (Moonshine vía sherpa-onnx)
+- [x] Reconocimiento de voz sin conexión (Moonshine base vía sherpa-onnx),
+      con limpieza del audio antes de reconocer y "No te entendí, repite"
+      cuando el audio viene mudo, cortado o con mucho ruido
 - [x] Puntaje de pronunciación palabra por palabra. Es honesto: baja cuando
       uno pronuncia mal a propósito, porque el reconocedor nunca sabe qué
       frase se esperaba
@@ -26,10 +28,6 @@ la `th`, la `h` aspirada, *speak* sin la `e` delante).
 - [ ] Fase 3 — conversación con IA dentro del celular (llama.cpp + Qwen 3)
 - [ ] Fase 4 — corrección de escritura explicada en español
 - [ ] Fase 5 — contenido completo de A1 a B2
-
-**En curso (0.7):** mejorar el reconocimiento de voz. Se limpia el audio antes
-de reconocer (silencio, volumen, ruido), se distingue "pronunciaste mal" de
-"no te escuché" y se está evaluando subir de modelo con grabaciones reales.
 
 ## Privacidad
 
@@ -55,7 +53,7 @@ APK. Después de eso la app no depende de nada externo.
 |---|---|
 | Kotlin + Jetpack Compose | Lenguaje e interfaz oficiales de Android |
 | Piper vía sherpa-onnx (Apache 2.0) | Voces neuronales en inglés, sin conexión |
-| Moonshine tiny int8 vía sherpa-onnx | Voz a texto, sin conexión, pensado para frases cortas |
+| Moonshine base v2 vía sherpa-onnx | Voz a texto, sin conexión, pensado para frases cortas. Elegido con grabaciones reales frente a Whisper y Parakeet porque no "corrige" lo que uno dice mal |
 | SharedPreferences | Guarda el progreso localmente |
 
 En la Fase 3 se suma **llama.cpp** (MIT) con **Qwen 3** (Apache 2.0) para la

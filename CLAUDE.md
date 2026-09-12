@@ -31,7 +31,9 @@ B2 leyendo, escribiendo, escuchando y hablando.
 2. **No actualizar el Android Gradle Plugin.** Android Studio va a ofrecer el
    "AGP Upgrade Assistant" cada vez. Decir que no. Las versiones están fijadas
    porque se sabe que funcionan juntas:
-   - Gradle 8.11.1 · AGP 8.7.3 · Kotlin 2.0.21 · Compose BOM 2024.10.01
+   - Gradle 8.11.1 · AGP 8.7.3 · Kotlin 2.0.21 · Compose BOM 2024.10.01 ·
+     sherpa-onnx 1.13.8 (el AAR sí se puede subir: no es parte de esta regla,
+     pero hay que borrar el AAR viejo de `app/libs/` y probar las voces)
    - compileSdk 35 · minSdk 26 · JDK 17 (el JDK del sistema es 25 y Gradle
      8.11.1 no lo soporta; Android Studio usa el 21)
    - **Ya pasó (2026-09-11):** el asistente quedó aceptado y cambió AGP a
@@ -73,7 +75,7 @@ B2 leyendo, escribiendo, escuchando y hablando.
 | Pieza | Qué es | Por qué esa |
 |---|---|---|
 | Voces | **Piper** vía sherpa-onnx (Apache 2.0) | Cuatro voces femeninas reales dentro del APK. Antes se usaba el TTS de Android y obligaba al usuario a descargar paquetes de voz por fuera. |
-| Voz → texto | **Moonshine tiny int8** vía sherpa-onnx | Diseñado para frases cortas. Verificado: **no** "corrige" la pronunciación del usuario, así que el puntaje es honesto. Antes de reconocer, `Audio.kt` (`AudioPrep`) quita el DC, recorta el silencio, normaliza el pico y rechaza audio mudo/corto/ruidoso con "No te entendí, repite" en vez de dar 0 %. **Regla que no se negocia:** el reconocedor nunca ve la frase esperada (nada de hotwords ni sesgos); el objetivo solo se usa para puntuar después. |
+| Voz → texto | **Moonshine base v2** (`moonshine-base-en-quantized-2026-02-27`, 2 archivos `.ort`, 140 MB) vía sherpa-onnx **1.13.8** | Elegido el 2026-09-12 con `tools/asr-bench` sobre 26 grabaciones reales de Fero. Tiny devolvía texto vacío en 4 de 26 con audio bueno y confundía palabras fáciles ("seatsbooks", "Can't you"); base no, y mantiene la honestidad (delata "chip", "espeak", "wok-ed"). Whisper base.en quedó descartado: **corrige** "espeak Espanish" a "speak Spanish" al 100 %. Parakeet 110m es el más honesto pero castiga también lo bien dicho. Límite conocido: "tink" por "think" lo corrigen los cinco modelos. Antes de reconocer, `Audio.kt` (`AudioPrep`) quita el DC, recorta el silencio, normaliza el pico y rechaza audio mudo/corto/ruidoso con "No te entendí, repite" en vez de dar 0 %. **Regla que no se negocia:** el reconocedor nunca ve la frase esperada (nada de hotwords ni sesgos); el objetivo solo se usa para puntuar después. |
 | IA (Fase 3) | **llama.cpp + Qwen 3 8B Q4** | Qwen es Apache 2.0 sin letra chica. Se descartó Gemma 2/3 porque sus "Gemma Terms of Use" permiten a Google cambiar las condiciones después. |
 | Interfaz | Kotlin + Jetpack Compose | Menos capas intermedias con tres motores nativos encima. |
 | Progreso | SharedPreferences | Suficiente; nada sale del teléfono. |
@@ -123,24 +125,20 @@ cambiar `prep()` en `bench.py` igual.
 
 ## Estado y plan
 
-**Versión actual: 0.6.** Funcionando en el teléfono de Fero.
+**Versión actual: 0.7.** Funcionando en el teléfono de Fero (2026-09-12).
 
-Hecho: cuatro profesoras con voces propias · reconocimiento de voz · puntaje de
-pronunciación palabra por palabra (verificado honesto) · 8 lecciones A1 en 3
-unidades con desbloqueo progresivo · ejercicios de hablar dentro de las
-lecciones · racha y puntos.
+Hecho: cuatro profesoras con voces propias · reconocimiento de voz con
+Moonshine base v2 · pipeline de audio (`Audio.kt`: DC, recorte, normalización
+por percentil, puertas de calidad) · "No te entendí, repite" en vez de 0 % ·
+puntaje de pronunciación palabra por palabra (verificado honesto con
+grabaciones a propósito mal dichas) · corpus de diagnóstico + banco de pruebas
+en el PC · 8 lecciones A1 en 3 unidades con desbloqueo progresivo · ejercicios
+de hablar dentro de las lecciones · racha y puntos.
 
-**En curso (hacia 0.7): arreglar el reconocimiento de voz.** El síntoma:
-a veces confunde palabras fáciles. Ya está en el teléfono el "build 1": pipeline
-de audio nuevo (`Audio.kt`), puertas de calidad y corpus de diagnóstico. Falta:
-(1) que Fero grabe el guion (8 frases bien, 4 mal a propósito, 1 en silencio,
-1 de lejos) para verificar en el teléfono y afinar umbrales; (2) correr
-`bench.py` con ese corpus y elegir entre Moonshine tiny (actual), Moonshine
-base int8, Moonshine v2 base, Whisper base.en y Parakeet 110m — gana el que
-siga delatando los errores a propósito y acierte más las frases bien dichas;
-(3) cambiar `asrPackage` en `app/build.gradle.kts` y la config en `Listener.kt`
-(subir `assetsVersion`); Moonshine v2 exigiría subir el AAR a sherpa-onnx
-1.13.8 porque el 1.13.2 no tiene `mergedDecoder`. Entonces sube a 0.7.
+Medido en el S25 Ultra: el reconocedor arranca en 0,4 s y reconoce en 50–90 ms
+por frase. NoiseSuppressor se activa; AutomaticGainControl no existe en ese
+teléfono (lo cubre la normalización). Umbrales de las puertas: cero rechazos
+falsos en 26 grabaciones; silencio → TOO_SHORT.
 
 Siguiente:
 
