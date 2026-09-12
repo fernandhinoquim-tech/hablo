@@ -9,7 +9,7 @@ la `th`, la `h` aspirada, *speak* sin la `e` delante).
 
 ## Estado
 
-**Versión 0.7 — funcionando en el teléfono.**
+**Versión 0.8 — funcionando en el teléfono.**
 
 - [x] Cuatro profesoras para elegir, cada una con su propia voz neuronal
       (Piper), acento americano o británico, dentro del APK
@@ -17,9 +17,13 @@ la `th`, la `h` aspirada, *speak* sin la `e` delante).
 - [x] Reconocimiento de voz sin conexión (Moonshine base vía sherpa-onnx),
       con limpieza del audio antes de reconocer y "No te entendí, repite"
       cuando el audio viene mudo, cortado o con mucho ruido
-- [x] Puntaje de pronunciación palabra por palabra. Es honesto: baja cuando
-      uno pronuncia mal a propósito, porque el reconocedor nunca sabe qué
-      frase se esperaba
+- [x] Evaluación de pronunciación **por fonema** (GOP, como las apps
+      comerciales): en cada ejercicio se evalúa el sonido que entrena, con
+      umbrales calibrados con grabaciones reales; verde / casi / falló, y un
+      mapa personal de sonidos. Por ahora `sh` y `h`; los demás sonidos se van
+      sumando a medida que se calibran
+- [x] Puntaje de palabras ("¿se entendió?") con un reconocedor que nunca ve la
+      frase esperada
 - [x] Práctica de pronunciación con los sonidos difíciles para
       hispanohablantes, con explicación en español
 - [x] 8 lecciones de nivel A1 en 3 unidades con desbloqueo progresivo y
@@ -54,6 +58,7 @@ APK. Después de eso la app no depende de nada externo.
 | Kotlin + Jetpack Compose | Lenguaje e interfaz oficiales de Android |
 | Piper vía sherpa-onnx (Apache 2.0) | Voces neuronales en inglés, sin conexión |
 | Moonshine base v2 vía sherpa-onnx | Voz a texto, sin conexión, pensado para frases cortas. Elegido con grabaciones reales frente a Whisper y Parakeet porque no "corrige" lo que uno dice mal |
+| wav2vec2 de fonemas (L2-ARCTIC) vía ONNX Runtime | Evaluación por fonema del sonido de cada ejercicio, con el diccionario CMU |
 | SharedPreferences | Guarda el progreso localmente |
 
 En la Fase 3 se suma **llama.cpp** (MIT) con **Qwen 3** (Apache 2.0) para la

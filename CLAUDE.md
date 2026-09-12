@@ -41,8 +41,15 @@ B2 leyendo, escribiendo, escuchando y hablando.
    "AGP Upgrade Assistant" cada vez. Decir que no. Las versiones están fijadas
    porque se sabe que funcionan juntas:
    - Gradle 8.11.1 · AGP 8.7.3 · Kotlin 2.0.21 · Compose BOM 2024.10.01 ·
-     sherpa-onnx 1.13.8 (el AAR sí se puede subir: no es parte de esta regla,
-     pero hay que borrar el AAR viejo de `app/libs/` y probar las voces)
+     **sherpa-onnx 1.13.4 + onnxruntime-android 1.27.0, y van juntos**: los
+     símbolos de `libonnxruntime.so` llevan etiqueta de versión
+     (`VERS_1.27.0`) y Android no deja que una JNI use otra versión. sherpa
+     1.13.4 está compilado contra ORT 1.27.0, que existe en Maven; 1.13.5–1.13.8
+     usan 1.27.1/1.28.2, que no. Para subir sherpa-onnx hay que mirar
+     `build-android-arm64-v8a.sh` de esa versión y que esa ORT esté en Maven;
+     si no, las voces o el modelo de fonemas mueren con "cannot locate symbol
+     OrtGetApiBase". `fetchSherpaAar` le quita al AAR su copia del `.so`;
+     borrar el AAR viejo de `app/libs/` al cambiar de versión.
    - compileSdk 35 · minSdk 26 · JDK 17 (el JDK del sistema es 25 y Gradle
      8.11.1 no lo soporta; Android Studio usa el 21)
    - **Ya pasó (2026-09-11):** el asistente quedó aceptado y cambió AGP a
@@ -94,7 +101,8 @@ B2 leyendo, escribiendo, escuchando y hablando.
 | Pieza | Qué es | Por qué esa |
 |---|---|---|
 | Voces | **Piper** vía sherpa-onnx (Apache 2.0) | Cuatro voces femeninas reales dentro del APK. Antes se usaba el TTS de Android y obligaba al usuario a descargar paquetes de voz por fuera. |
-| Voz → texto | **Moonshine base v2** (`moonshine-base-en-quantized-2026-02-27`, 2 archivos `.ort`, 140 MB) vía sherpa-onnx **1.13.8** | Elegido el 2026-09-12 con `tools/asr-bench` sobre 26 grabaciones reales de Fero. Tiny devolvía texto vacío en 4 de 26 con audio bueno y confundía palabras fáciles ("seatsbooks", "Can't you"); base no, y mantiene la honestidad (delata "chip", "espeak", "wok-ed"). Whisper base.en quedó descartado: **corrige** "espeak Espanish" a "speak Spanish" al 100 %. Parakeet 110m es el más honesto pero castiga también lo bien dicho. También se probaron los grandes (Fero dijo que el peso no importa): **Whisper small.en** (74 % promedio, el mejor adivinando) y **Parakeet 0.6B v2** (70 %) corrigen los dos "espeak Espanish" → "speak Spanish" al 100 %; Parakeet 0.6B es el único que delata "tink/tird", pero pierde "six books" dos veces. Se quedó Moonshine base: el único que delata "espeak" (el error insignia). **Sobrecorrección medida** (errores plantados a propósito que el modelo "arregla" y puntúa BIEN, `tools/asr-bench/planted.txt`, 11 casos): Moonshine base **5/11 = 45 %** (think ×2, third, asked, spanish) · Whisper base/small 4/11 · Parakeet 0.6B 3/11 · Parakeet 110m 2/11. Con 11 casos esas cifras no se distinguen estadísticamente; lo que sí se ve es que cada modelo es ciego a sonidos distintos: Moonshine al `th` (3 de 4), Parakeet y Whisper a la `e` delante de `s` (espeak/Espanish, 2 de 2). Antes de reconocer, `Audio.kt` (`AudioPrep`) quita el DC, recorta el silencio, normaliza el pico y rechaza audio mudo/corto/ruidoso con "No te entendí, repite" en vez de dar 0 %. **Regla que no se negocia:** el reconocedor nunca ve la frase esperada (nada de hotwords ni sesgos); el objetivo solo se usa para puntuar después. |
+| Voz → texto | **Moonshine base v2** (`moonshine-base-en-quantized-2026-02-27`, 2 archivos `.ort`, 140 MB) vía sherpa-onnx **1.13.4** | Elegido el 2026-09-12 con `tools/asr-bench` sobre 26 grabaciones reales de Fero. Tiny devolvía texto vacío en 4 de 26 con audio bueno y confundía palabras fáciles ("seatsbooks", "Can't you"); base no, y mantiene la honestidad (delata "chip", "espeak", "wok-ed"). Whisper base.en quedó descartado: **corrige** "espeak Espanish" a "speak Spanish" al 100 %. Parakeet 110m es el más honesto pero castiga también lo bien dicho. También se probaron los grandes (Fero dijo que el peso no importa): **Whisper small.en** (74 % promedio, el mejor adivinando) y **Parakeet 0.6B v2** (70 %) corrigen los dos "espeak Espanish" → "speak Spanish" al 100 %; Parakeet 0.6B es el único que delata "tink/tird", pero pierde "six books" dos veces. Se quedó Moonshine base: el único que delata "espeak" (el error insignia). **Sobrecorrección medida** (errores plantados a propósito que el modelo "arregla" y puntúa BIEN, `tools/asr-bench/planted.txt`, 11 casos): Moonshine base **5/11 = 45 %** (think ×2, third, asked, spanish) · Whisper base/small 4/11 · Parakeet 0.6B 3/11 · Parakeet 110m 2/11. Con 11 casos esas cifras no se distinguen estadísticamente; lo que sí se ve es que cada modelo es ciego a sonidos distintos: Moonshine al `th` (3 de 4), Parakeet y Whisper a la `e` delante de `s` (espeak/Espanish, 2 de 2). Antes de reconocer, `Audio.kt` (`AudioPrep`) quita el DC, recorta el silencio, normaliza el pico y rechaza audio mudo/corto/ruidoso con "No te entendí, repite" en vez de dar 0 %. **Regla que no se negocia:** el reconocedor nunca ve la frase esperada (nada de hotwords ni sesgos); el objetivo solo se usa para puntuar después. |
+| Pronunciación por fonema (GOP) | **wav2vec2-large-xlsr-53-l2-arctic-phoneme** int8 (317 MB) vía **onnxruntime-android 1.27.0**; `Gop.kt` + `PhonemeScorer.kt`; fonemas esperados de **CMUdict** (`assets/gop/cmudict.dict`); umbrales en `assets/gop/thresholds.json` | Es lo que hacen las apps comerciales (Azure, Speechace, ELSA): se conoce la frase, se alinean sus fonemas y se puntúa la confianza de cada uno; el reconocedor de palabras se queda solo para "¿se entendió?". Entrenado con habla no nativa anotada tal como se pronunció (incluye hispanohablantes). En el S25: carga 0,6 s, evalúa en 200–300 ms. Se carga al entrar a la pantalla y se suelta al salir. **Solo sonidos con umbral calibrado muestran veredicto** (hoy `sh` y `h`); los demás dicen "todavía no tiene evaluación calibrada". Para agregar un sonido: corpus etiquetado → `phoneme_eval.py` → `calibrate.py --sounds ...` → `thresholds.json`. El modelo lo exporta `phoneme_export.py`; `fetchGop` lo copia a assets (si falta, la app compila sin él y lo dice). |
 | IA (Fase 3) | **llama.cpp + Qwen 3 8B Q4** | Qwen es Apache 2.0 sin letra chica. Se descartó Gemma 2/3 porque sus "Gemma Terms of Use" permiten a Google cambiar las condiciones después. |
 | Interfaz | Kotlin + Jetpack Compose | Menos capas intermedias con tres motores nativos encima. |
 | Progreso | SharedPreferences | Suficiente; nada sale del teléfono. |
@@ -150,7 +158,9 @@ cambiar `prep()` en `bench.py` igual.
 
 ## Estado y plan
 
-**Versión actual: 0.7.** Funcionando en el teléfono de Fero (2026-09-12).
+**Versión actual: 0.8.** Funcionando en el teléfono de Fero (2026-09-12):
+evaluación por fonema (GOP) para `sh` y `h`, con rojo/amarillo calibrados y
+mapa personal de sonidos.
 
 Hecho: cuatro profesoras con voces propias · reconocimiento de voz con
 Moonshine base v2 · pipeline de audio (`Audio.kt`: DC, recorte, normalización
@@ -251,14 +261,14 @@ falsos en 26 grabaciones; silencio → TOO_SHORT.
   = frases 4–5 de cada sonido (14 frases × 2 tomas, 14 errores plantados que
   el umbral nunca vio).
 
-  **Cómo se le muestra a Fero (decidido):** un solo error por sesión, el más
-  consistente ("hoy la th te falló en 4 de 5 frases"), no una pantalla roja.
-  Dos umbrales: banda DUDOSO amarilla cerca del límite; castigar de más, pero
-  en amarillo. Mapa personal acumulado por fonema entre sesiones ("estos son
-  los 5 sonidos que fallas de verdad, medido en 300 frases"). La vocal antes
-  de "speak" queda como **hipótesis**, no hecho: si sobrevive al umbral
-  calibrado es acento real y entra al mapa; si no, era la falsa alarma que
-  predice el paper.
+  **Cómo se le muestra a Fero (decidido y construido en 0.8):** la tarjeta
+  "Sonido: …" con cada palabra del sonido ✓/~/✗ y una frase de resumen es lo
+  primero; "Se entendió: X %" (palabras) debajo; la transcripción cruda solo
+  bajo "Ver lo que oyó el dictado →". Arriba, "Hoy: <sonido> falló N de M".
+  Dos umbrales (`calibrate.py`): rojo = MCC máximo; amarillo = el más
+  permisivo con precisión ≥ 33 %. Castigar de más, pero en amarillo. Mapa
+  personal en el inicio ("Tu mapa de sonidos", `Store.soundStats`). La vocal
+  antes de "speak" sigue como **hipótesis** hasta calibrar `es`.
 
   Medición previa (2026-09-12) que motivó todo esto: puntuar FONEMAS (GOP) en
   vez de palabras. Idea de Fero: la sobrecorrección existe porque el reconocedor

@@ -7,9 +7,13 @@ import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.sqrt
 
-/** Lo que devuelve el reconocedor: o entendió algo, o no se pudo ni intentar. */
+/**
+ * Lo que devuelve el reconocedor: o entendió algo, o no se pudo ni intentar.
+ * [Heard.report] es el veredicto por fonema del sonido del ejercicio (GOP);
+ * null si ese sonido todavía no tiene umbral calibrado o el modelo no está.
+ */
 sealed class ListenResult {
-    data class Heard(val text: String) : ListenResult()
+    data class Heard(val text: String, val report: SoundReport? = null) : ListenResult()
     data class NotHeard(val reason: NotHeardReason) : ListenResult()
 }
 

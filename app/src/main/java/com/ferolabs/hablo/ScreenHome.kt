@@ -63,6 +63,14 @@ fun HomeScreen(
         Course.allLessons().associate { it.id to store.bestScore(it.id) }
     }
     val units = remember(refreshKey) { Course.allUnits() }
+    // Mapa personal de sonidos: qué sonidos fallas de verdad, acumulado entre
+    // sesiones. Solo aparece cuando ya hay algo medido.
+    val soundMap = remember(refreshKey) {
+        Sound.entries.filter { it != Sound.GENERAL }
+            .map { it to store.soundStats(it) }
+            .filter { it.second.tries > 0 }
+            .sortedByDescending { (_, st) -> st.mal.toFloat() / st.tries }
+    }
     val level = remember(refreshKey) { Course.levels.firstOrNull() }
 
     // Una unidad se abre cuando la anterior está terminada.
@@ -171,6 +179,36 @@ fun HomeScreen(
                     )
                 }
                 Text("›", style = MaterialTheme.typography.headlineMedium, color = accent)
+            }
+        }
+
+        if (soundMap.isNotEmpty()) {
+            item {
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(6.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(Color.White, RoundedCornerShape(16.dp))
+                        .border(1.dp, Line, RoundedCornerShape(16.dp))
+                        .padding(16.dp)
+                ) {
+                    Text("Tu mapa de sonidos", style = MaterialTheme.typography.titleMedium)
+                    soundMap.forEach { (sound, st) ->
+                        val color = when {
+                            st.mal * 2 >= st.tries -> BadRed
+                            st.mal + st.dudoso > 0 -> Color(0xFF8A5A00)
+                            else -> GoodGreen
+                        }
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Text(sound.labelEs, style = MaterialTheme.typography.bodyMedium, modifier = Modifier.weight(1f))
+                            Text(
+                                "${st.ok} de ${st.tries} bien" + if (st.dudoso > 0) " · ${st.dudoso} casi" else "",
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = color
+                            )
+                        }
+                    }
+                }
             }
         }
 

@@ -26,7 +26,10 @@ import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -41,11 +44,17 @@ fun PronunciationScreen(
     teacher: Teacher,
     speaker: Speaker,
     listener: Listener,
+    store: Store,
     say: (String, Float) -> Unit,
     onBack: () -> Unit
 ) {
     val accent = Color(teacher.color)
     val drills = Course.drills
+
+    // El modelo de fonemas se carga al entrar (tarda un par de segundos) y se
+    // suelta al salir: son ~400 MB que no deben quedarse en memoria.
+    LaunchedEffect(Unit) { listener.prepareSounds() }
+    DisposableEffect(Unit) { onDispose { listener.releaseSounds() } }
 
     // Sin drills no hay pantalla: el motivo (contenido mal formado) ya está en
     // la pantalla de inicio, aquí solo se evita reventar con una lista vacía.
@@ -65,22 +74,36 @@ fun PronunciationScreen(
 
     var index by remember { mutableStateOf(0) }
     var result by remember { mutableStateOf<PronunciationResult?>(null) }
+    var report by remember { mutableStateOf<SoundReport?>(null) }
     var notHeard by remember { mutableStateOf<NotHeardReason?>(null) }
     var showTip by remember { mutableStateOf(false) }
+    var showDetail by remember { mutableStateOf(false) }
     var permissionAsked by remember { mutableStateOf(false) }
+
+    // "Hoy": un solo mensaje por sesión, el sonido que más falló.
+    val sessionTries = remember { mutableStateMapOf<Sound, Int>() }
+    val sessionFails = remember { mutableStateMapOf<Sound, Int>() }
 
     val drill = drills[index % drills.size]
 
-    // El puntaje solo se calcula con lo que el reconocedor de verdad entendió.
-    fun listen(target: String) {
-        listener.startRecording(target) { r ->
+    // El porcentaje sale de lo que el reconocedor de palabras entendió; el
+    // veredicto del sonido, de la evaluación por fonema.
+    fun listen(target: String, sound: Sound) {
+        listener.startRecording(target, sound) { r ->
             when (r) {
                 is ListenResult.Heard -> {
                     result = scorePronunciation(target, r.text)
+                    report = r.report
                     notHeard = null
+                    r.report?.let { rep ->
+                        store.recordSound(rep.sound, rep.worst)
+                        sessionTries[rep.sound] = (sessionTries[rep.sound] ?: 0) + 1
+                        if (rep.worst == WordScore.MAL) sessionFails[rep.sound] = (sessionFails[rep.sound] ?: 0) + 1
+                    }
                 }
                 is ListenResult.NotHeard -> {
                     result = null
+                    report = null
                     notHeard = r.reason
                 }
             }
@@ -91,7 +114,7 @@ fun PronunciationScreen(
         ActivityResultContracts.RequestPermission()
     ) { granted ->
         permissionAsked = true
-        if (granted) listen(drill.text)
+        if (granted) listen(drill.text, drill.sound)
     }
 
     fun record() {
@@ -100,9 +123,11 @@ fun PronunciationScreen(
             return
         }
         result = null
+        report = null
         notHeard = null
+        showDetail = false
         if (listener.hasMicPermission()) {
-            listen(drill.text)
+            listen(drill.text, drill.sound)
         } else {
             permissionLauncher.launch(Manifest.permission.RECORD_AUDIO)
         }
@@ -119,6 +144,15 @@ fun PronunciationScreen(
                 .verticalScroll(rememberScrollState())
                 .padding(20.dp)
         ) {
+
+            val worstToday = sessionFails.entries.maxByOrNull { it.value }
+            if (worstToday != null && worstToday.value > 0) {
+                Text(
+                    "Hoy: ${worstToday.key.labelEs} falló ${worstToday.value} de ${sessionTries[worstToday.key] ?: worstToday.value}",
+                    style = MaterialTheme.typography.labelMedium,
+                    color = InkSoft
+                )
+            }
 
             Pill("Enfoque: ${drill.focusEs}", accent, Color(teacher.softColor))
 
@@ -202,7 +236,13 @@ fun PronunciationScreen(
             notHeard?.let { NotHeardBox(it) }
 
             // --- Resultado --------------------------------------------------
+            // Primero el sonido del ejercicio (GOP). El porcentaje de palabras
+            // queda como "¿se entendió?", y la transcripción cruda, escondida:
+            // es la salida de un modelo de dictado, no un veredicto.
+            report?.let { SoundVerdictCard(it) }
+
             result?.let { r ->
+                val hasReport = report != null
                 Column(
                     verticalArrangement = Arrangement.spacedBy(10.dp),
                     modifier = Modifier
@@ -212,16 +252,25 @@ fun PronunciationScreen(
                         .padding(16.dp)
                 ) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        Text(
-                            "${r.percent}%",
-                            style = MaterialTheme.typography.headlineLarge,
-                            color = when {
-                                r.percent >= 80 -> GoodGreen
-                                r.percent >= 50 -> Color(0xFF8A5A00)
-                                else -> BadRed
-                            },
-                            modifier = Modifier.weight(1f)
-                        )
+                        if (hasReport) {
+                            Text(
+                                "Se entendió: ${r.percent} %",
+                                style = MaterialTheme.typography.titleMedium,
+                                color = InkSoft,
+                                modifier = Modifier.weight(1f)
+                            )
+                        } else {
+                            Text(
+                                "${r.percent}%",
+                                style = MaterialTheme.typography.headlineLarge,
+                                color = when {
+                                    r.percent >= 80 -> GoodGreen
+                                    r.percent >= 50 -> Color(0xFF8A5A00)
+                                    else -> BadRed
+                                },
+                                modifier = Modifier.weight(1f)
+                            )
+                        }
                         if (listener.lastRecording != null) {
                             Box(
                                 contentAlignment = Alignment.Center,
@@ -235,6 +284,16 @@ fun PronunciationScreen(
                         }
                     }
 
+                    if (hasReport && !showDetail) {
+                        Text(
+                            "Ver lo que oyó el dictado →",
+                            style = MaterialTheme.typography.labelMedium,
+                            color = accent,
+                            modifier = Modifier.clickable { showDetail = true }
+                        )
+                    }
+
+                    if (!hasReport || showDetail) {
                     Text(
                         "Palabra por palabra:",
                         style = MaterialTheme.typography.labelMedium,
@@ -270,6 +329,7 @@ fun PronunciationScreen(
                         style = MaterialTheme.typography.bodyMedium,
                         color = InkSoft
                     )
+                    }
 
                     Text(
                         "El botón 👤 reproduce tu propia grabación. Compárala con la de ${teacher.name}.",
@@ -277,6 +337,16 @@ fun PronunciationScreen(
                         color = InkSoft
                     )
                 }
+            }
+
+            // Sonido sin umbral todavía, o modelo ausente: se dice, no se calla.
+            if (result != null && report == null && drill.sound != Sound.GENERAL) {
+                Text(
+                    listener.sounds.unavailableReason
+                        ?: "El sonido \"${drill.sound.labelEs}\" todavía no tiene evaluación por fonema calibrada.",
+                    style = MaterialTheme.typography.labelMedium,
+                    color = InkSoft
+                )
             }
 
             if (showTip) {
@@ -305,8 +375,10 @@ fun PronunciationScreen(
             ) {
                 index = (index + 1) % drills.size
                 result = null
+                report = null
                 notHeard = null
                 showTip = false
+                showDetail = false
             }
         }
     }

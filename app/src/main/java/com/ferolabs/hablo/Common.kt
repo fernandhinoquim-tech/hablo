@@ -128,6 +128,69 @@ fun NotHeardBox(reason: NotHeardReason) {
     }
 }
 
+/**
+ * Veredicto del sonido que entrena el ejercicio, fonema por fonema (GOP).
+ * Es lo primero que se ve: una palabra por fonema evaluado, verde / amarilla
+ * / roja, y una sola frase de resumen. Nunca la transcripción cruda.
+ */
+@Composable
+fun SoundVerdictCard(report: SoundReport) {
+    val worst = report.worst
+    val bg = when (worst) {
+        WordScore.BIEN -> GoodGreenSoft
+        WordScore.DUDOSO -> Color(0xFFFFF6E3)
+        WordScore.MAL -> BadRedSoft
+    }
+    val fg = when (worst) {
+        WordScore.BIEN -> GoodGreen
+        WordScore.DUDOSO -> Color(0xFF8A5A00)
+        WordScore.MAL -> BadRed
+    }
+    val failed = report.items.filter { it.verdict == WordScore.MAL }.map { it.word }.distinct()
+    val doubtful = report.items.filter { it.verdict == WordScore.DUDOSO }.map { it.word }.distinct()
+    Column(
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(bg, RoundedCornerShape(14.dp))
+            .border(1.dp, fg.copy(alpha = 0.35f), RoundedCornerShape(14.dp))
+            .padding(14.dp)
+    ) {
+        Text(
+            "Sonido: ${report.sound.labelEs}",
+            style = MaterialTheme.typography.labelMedium,
+            color = InkSoft
+        )
+        Text(
+            when {
+                failed.isNotEmpty() -> "Se te fue en: ${failed.joinToString(", ")}"
+                doubtful.isNotEmpty() -> "Casi. Revisa: ${doubtful.joinToString(", ")}"
+                else -> "¡Ese sonido salió bien!"
+            },
+            style = MaterialTheme.typography.titleMedium,
+            color = fg
+        )
+        Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+            report.items.forEach { item ->
+                val (ibg, ifg, mark) = when (item.verdict) {
+                    WordScore.BIEN -> Triple(Color.White, GoodGreen, "✓")
+                    WordScore.DUDOSO -> Triple(Color.White, Color(0xFF8A5A00), "~")
+                    WordScore.MAL -> Triple(Color.White, BadRed, "✗")
+                }
+                Text(
+                    "${item.word} $mark",
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = ifg,
+                    modifier = Modifier
+                        .background(ibg, RoundedCornerShape(8.dp))
+                        .border(1.dp, ifg.copy(alpha = 0.5f), RoundedCornerShape(8.dp))
+                        .padding(horizontal = 10.dp, vertical = 6.dp)
+                )
+            }
+        }
+    }
+}
+
 /** Etiqueta pequeña tipo píldora. */
 @Composable
 fun Pill(text: String, fg: Color, bg: Color) {

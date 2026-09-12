@@ -21,3 +21,6 @@ app/src/main/assets/asr/
 tools/asr-bench/corpus/
 tools/asr-bench/models/
 __pycache__/
+
+# Modelo de fonemas (GOP): lo copia Gradle desde tools/asr-bench/models/phoneme
+app/src/main/assets/gop/*.onnx

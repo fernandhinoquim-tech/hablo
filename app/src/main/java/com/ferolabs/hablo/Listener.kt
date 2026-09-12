@@ -64,6 +64,9 @@ class Listener(context: Context) {
     private var recognizer: OfflineRecognizer? = null
     private var recorder: AudioRecord? = null
 
+    /** Evaluación por fonema del sonido del ejercicio. Pesado: ver [prepareSounds] / [releaseSounds]. */
+    val sounds = PhonemeScorer(app)
+
     @Volatile
     private var shouldStop = false
 
@@ -133,14 +136,26 @@ class Listener(context: Context) {
 
     // ------------------------------------------------------------------------
 
+    /** Carga el modelo de fonemas en segundo plano (al entrar a una pantalla que lo usa). */
+    fun prepareSounds() {
+        worker.execute { sounds.ensureLoaded() }
+    }
+
+    /** Suelta el modelo de fonemas (al salir de la pantalla): ~400 MB que no deben quedarse. */
+    fun releaseSounds() {
+        worker.execute { sounds.release() }
+    }
+
     /**
      * Graba hasta que se llame a [stopRecording] o se cumplan 12 segundos,
      * y luego entrega el resultado en [onResult] (hilo de fondo).
      *
-     * [target] es solo para el registro de diagnóstico: el reconocedor no lo
-     * ve. Sesgarlo hacia la frase esperada haría mentir al puntaje.
+     * [target] no se le pasa al reconocedor de palabras: sesgarlo hacia la
+     * frase esperada haría mentir al puntaje. Sí se usa, junto con [sound],
+     * para la evaluación por fonema (GOP), que alinea los fonemas esperados
+     * con el audio y puntúa cada uno; ahí el puntaje puede ser bajo.
      */
-    fun startRecording(target: String, onResult: (ListenResult) -> Unit) {
+    fun startRecording(target: String, sound: Sound, onResult: (ListenResult) -> Unit) {
         if (recording) return
         if (!hasMicPermission()) {
             errorDetail = "Falta el permiso del micrófono."
@@ -171,7 +186,7 @@ class Listener(context: Context) {
             thinking = true
             val stamp = SimpleDateFormat("yyyyMMdd-HHmmss", Locale.US).format(Date())
             var analysis: AudioAnalysis? = null
-            var outcome = "?"
+            var outcome = ""
             try {
                 saveRawWav(stamp, raw)
 
@@ -202,12 +217,26 @@ class Listener(context: Context) {
                 val ms = System.currentTimeMillis() - t0
                 Log.i(TAG, "audio: ${a.summary()} | reconocido en ${ms}ms: '$text'")
 
+                // Veredicto por fonema del sonido del ejercicio. Si falla, no
+                // se pierde el resto: el reporte queda en null.
+                val report = if (sound == Sound.GENERAL) null else try {
+                    sounds.score(a.prepared, target, sound)
+                } catch (e: Throwable) {
+                    Log.e(TAG, "Falló la evaluación por fonema", e)
+                    null
+                }
+                if (report != null) {
+                    outcome += " | ${report.sound.key}: " + report.items.joinToString(" ") {
+                        "${it.word}/${it.phone}=%.2f:${it.verdict}".format(Locale.US, it.score)
+                    }
+                }
+
                 if (text.isBlank()) {
-                    outcome = "NO_OIDO NOTHING"
+                    outcome = "NO_OIDO NOTHING" + outcome
                     onResult(ListenResult.NotHeard(NotHeardReason.NOTHING))
                 } else {
-                    outcome = "OIDO $text"
-                    onResult(ListenResult.Heard(text))
+                    outcome = "OIDO $text" + outcome
+                    onResult(ListenResult.Heard(text, report))
                 }
             } catch (e: Throwable) {
                 Log.e(TAG, "Error reconociendo", e)
@@ -389,6 +418,7 @@ class Listener(context: Context) {
                 // sin acción
             }
             recognizer = null
+            sounds.release()
         }
         worker.shutdown()
     }

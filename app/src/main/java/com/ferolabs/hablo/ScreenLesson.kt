@@ -28,6 +28,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -70,19 +71,28 @@ fun LessonScreen(
     // Guarda posiciones del banco de palabras, no las palabras, para soportar repetidas.
     var built by remember { mutableStateOf(listOf<Int>()) }
     var speakResult by remember { mutableStateOf<PronunciationResult?>(null) }
+    var speakReport by remember { mutableStateOf<SoundReport?>(null) }
     var speakNotHeard by remember { mutableStateOf<NotHeardReason?>(null) }
+
+    // El modelo de fonemas solo hace falta si la lección tiene ejercicios de
+    // hablar con sonido evaluable; se suelta al salir.
+    val needsSounds = lesson.exercises.any { it is Exercise.SpeakIt && it.sound != Sound.GENERAL }
+    LaunchedEffect(Unit) { if (needsSounds) listener.prepareSounds() }
+    DisposableEffect(Unit) { onDispose { if (needsSounds) listener.releaseSounds() } }
 
     // Si no se pudo evaluar, speakResult queda en null: "Comprobar" sigue
     // apagado y el intento no cuenta ni a favor ni en contra.
-    fun listen(target: String) {
-        listener.startRecording(target) { r ->
+    fun listen(target: String, sound: Sound) {
+        listener.startRecording(target, sound) { r ->
             when (r) {
                 is ListenResult.Heard -> {
                     speakResult = scorePronunciation(target, r.text)
+                    speakReport = r.report
                     speakNotHeard = null
                 }
                 is ListenResult.NotHeard -> {
                     speakResult = null
+                    speakReport = null
                     speakNotHeard = r.reason
                 }
             }
@@ -93,11 +103,12 @@ fun LessonScreen(
     // lanzador de permisos tiene que declararse antes de cualquier return, y en
     // ese punto todavia no existe 'ex'.
     var speakTarget by remember { mutableStateOf("") }
+    var speakSound by remember { mutableStateOf(Sound.GENERAL) }
     val micLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.RequestPermission()
     ) { granted ->
         val target = speakTarget
-        if (granted && target.isNotBlank()) listen(target)
+        if (granted && target.isNotBlank()) listen(target, speakSound)
     }
 
     if (finished) {
@@ -138,6 +149,7 @@ fun LessonScreen(
         typed = ""
         built = listOf<Int>()
         speakResult = null
+        speakReport = null
         speakNotHeard = null
         checked = false
         wasCorrect = false
@@ -336,10 +348,12 @@ fun LessonScreen(
                                         listener.stopRecording()
                                     } else if (listener.hasMicPermission()) {
                                         speakResult = null
+                                        speakReport = null
                                         speakNotHeard = null
-                                        listen(ex.text)
+                                        listen(ex.text, ex.sound)
                                     } else {
                                         speakTarget = ex.text
+                                        speakSound = ex.sound
                                         micLauncher.launch(Manifest.permission.RECORD_AUDIO)
                                     }
                                 }
@@ -375,6 +389,8 @@ fun LessonScreen(
                     }
 
                     speakNotHeard?.let { NotHeardBox(it) }
+
+                    speakReport?.let { SoundVerdictCard(it) }
 
                     speakResult?.let { r ->
                         FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp)) {

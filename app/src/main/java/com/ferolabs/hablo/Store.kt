@@ -65,6 +65,29 @@ class Store(context: Context) {
 
     fun studiedToday(): Boolean = prefs.getInt("last_day", 0) == todayKey()
 
+    // --- Mapa personal de sonidos ---------------------------------------------
+    // Lo valioso no es la frase de hoy: es "estos son los sonidos que fallo de
+    // verdad, medido en muchas frases". Se acumula entre sesiones.
+
+    data class SoundStats(val tries: Int, val mal: Int, val dudoso: Int) {
+        val ok: Int get() = tries - mal - dudoso
+    }
+
+    fun soundStats(sound: Sound): SoundStats = SoundStats(
+        tries = prefs.getInt("sound_${sound.key}_tries", 0),
+        mal = prefs.getInt("sound_${sound.key}_mal", 0),
+        dudoso = prefs.getInt("sound_${sound.key}_dudoso", 0)
+    )
+
+    fun recordSound(sound: Sound, verdict: WordScore) {
+        val st = soundStats(sound)
+        prefs.edit()
+            .putInt("sound_${sound.key}_tries", st.tries + 1)
+            .putInt("sound_${sound.key}_mal", st.mal + if (verdict == WordScore.MAL) 1 else 0)
+            .putInt("sound_${sound.key}_dudoso", st.dudoso + if (verdict == WordScore.DUDOSO) 1 else 0)
+            .apply()
+    }
+
     fun resetEverything() {
         prefs.edit().clear().apply()
     }

@@ -169,6 +169,7 @@ fun HabloApp(speaker: Speaker, listener: Listener, store: Store) {
                             teacher = teacher,
                             speaker = speaker,
                             listener = listener,
+                            store = store,
                             say = say,
                             onBack = {
                                 speaker.stop()

@@ -1,0 +1,28 @@
+{
+  "_comentario": "Generado por tools/asr-bench/calibrate.py; no editar a mano. Puntaje por debajo de red = MAL, por debajo de yellow = DUDOSO.",
+  "model": "wav2vec2-large-xlsr-53-l2-arctic-phoneme",
+  "sounds": {
+    "sh": {
+      "score": "ins",
+      "red": -4.789,
+      "yellow": 3.253,
+      "red_precision": 0.86,
+      "red_recall": 0.86,
+      "yellow_precision": 0.33,
+      "yellow_recall": 0.86,
+      "n": 32,
+      "n_errors": 7
+    },
+    "h": {
+      "score": "af",
+      "red": -5.221,
+      "yellow": 0.232,
+      "red_precision": 0.83,
+      "red_recall": 1.0,
+      "yellow_precision": 0.33,
+      "yellow_recall": 1.0,
+      "n": 30,
+      "n_errors": 5
+    }
+  }
+}

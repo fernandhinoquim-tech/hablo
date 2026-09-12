@@ -1,5 +1,8 @@
 import java.io.File
 import java.net.URI
+import java.util.zip.ZipEntry
+import java.util.zip.ZipFile
+import java.util.zip.ZipOutputStream
 
 plugins {
     id("com.android.application")
@@ -13,7 +16,12 @@ plugins {
 // APK. Despues de eso la app habla sin depender de nada de Android.
 // ---------------------------------------------------------------------------
 
-val sherpaVersion = "1.13.8"
+// sherpa-onnx y onnxruntime-android tienen que estar compilados contra la MISMA
+// version de ONNX Runtime: los simbolos del motor llevan etiqueta de version
+// (VERS_1.27.0) y Android no deja que una JNI use otra. sherpa-onnx 1.13.4 usa
+// ORT 1.27.0, que existe en Maven; 1.13.5-1.13.8 usan 1.27.1/1.28.2, que no.
+val sherpaVersion = "1.13.4"
+val onnxRuntimeVersion = "1.27.0"
 
 val voicePackages = mapOf(
     "emma"   to "vits-piper-en_US-kristin-medium-int8",
@@ -34,6 +42,31 @@ fun download(url: String, target: File) {
     }
 }
 
+// El AAR de sherpa-onnx trae su propia copia de libonnxruntime.so. Se le quita
+// al descargarlo para que quede una sola en el APK: la oficial de
+// onnxruntime-android, de la misma version (ver sherpaVersion).
+fun stripBundledOnnxRuntime(aar: File) {
+    val tmp = File(aar.parentFile, aar.name + ".tmp")
+    var removed = 0
+    ZipFile(aar).use { zin ->
+        ZipOutputStream(tmp.outputStream().buffered()).use { zout ->
+            for (entry in zin.entries()) {
+                if (entry.name.endsWith("/libonnxruntime.so")) { removed++; continue }
+                zout.putNextEntry(ZipEntry(entry.name))
+                if (!entry.isDirectory) zin.getInputStream(entry).use { it.copyTo(zout) }
+                zout.closeEntry()
+            }
+        }
+    }
+    if (removed > 0) {
+        aar.delete()
+        tmp.renameTo(aar)
+        logger.lifecycle("  sherpa-onnx: quitadas $removed copias de libonnxruntime.so (se usa la de onnxruntime-android)")
+    } else {
+        tmp.delete()
+    }
+}
+
 val fetchSherpaAar = tasks.register("fetchSherpaAar") {
     val aar = File(libsDir, "sherpa-onnx-$sherpaVersion.aar")
     outputs.file(aar)
@@ -44,6 +77,7 @@ val fetchSherpaAar = tasks.register("fetchSherpaAar") {
                 aar
             )
         }
+        stripBundledOnnxRuntime(aar)
     }
 }
 
@@ -146,6 +180,32 @@ val fetchAsr = tasks.register("fetchAsr") {
 }
 
 // ---------------------------------------------------------------------------
+// Modelo de fonemas para GOP (evaluacion de pronunciacion por fonema).
+// Lo exporta tools/asr-bench/phoneme_export.py (Hugging Face -> ONNX int8);
+// aqui solo se copia a assets/gop/. Si no esta, la app compila igual y la
+// evaluacion por fonema queda apagada (la pantalla lo dice).
+// ---------------------------------------------------------------------------
+
+val gopModelName = "wav2vec2-large-xlsr-53-l2-arctic-phoneme"
+val gopSource = File(rootDir, "tools/asr-bench/models/phoneme/$gopModelName/model.int8.onnx")
+val gopAssetsDir = File(projectDir, "src/main/assets/gop")
+
+val fetchGop = tasks.register("fetchGop") {
+    outputs.dir(gopAssetsDir)
+    doLast {
+        val target = File(gopAssetsDir, "model.int8.onnx")
+        if (target.exists() && target.length() > 100_000_000) {
+            logger.lifecycle("  modelo de fonemas ya listo (${target.length() / 1024 / 1024} MB)")
+        } else if (gopSource.exists()) {
+            gopSource.copyTo(target, overwrite = true)
+            logger.lifecycle("  modelo de fonemas copiado (${target.length() / 1024 / 1024} MB)")
+        } else {
+            logger.warn("  AVISO: no hay modelo de fonemas en ${gopSource.path}; la app compila sin GOP. Correr tools/asr-bench/phoneme_export.py $gopModelName")
+        }
+    }
+}
+
+// ---------------------------------------------------------------------------
 // Revision del contenido antes de compilar. Un ejercicio de hablar sin su
 // etiqueta "sound" haria que el jurado por sonido no dispare y nadie se
 // enteraria; aqui la compilacion se cae y dice exactamente donde. La misma
@@ -196,6 +256,43 @@ val checkContent = tasks.register("checkContent") {
             checkSound(d as Map<*, *>, "drills.json, drill ${i + 1}")
         }
 
+        // Toda palabra que se pide decir en voz alta tiene que estar en el
+        // diccionario de pronunciacion: sin fonemas esperados no hay GOP y el
+        // sonido del ejercicio quedaria sin evaluar en silencio.
+        val dictFile = File(gopAssetsDir, "cmudict.dict")
+        if (dictFile.exists()) {
+            val known = HashSet<String>()
+            dictFile.forEachLine { line ->
+                if (!line.startsWith(";;;")) {
+                    val w = line.substringBefore(' ')
+                    known.add(w.substringBefore('('))
+                }
+            }
+            fun spokenWords(text: String): List<String> =
+                text.lowercase().replace('\u2019', '\'').replace('-', ' ')
+                    .filter { it.isLetterOrDigit() || it == ' ' || it == '\'' }
+                    .split(' ').filter { it.isNotBlank() }
+            val texts = ArrayList<Pair<String, String>>()
+            (drills["drills"] as List<*>).forEachIndexed { i, d ->
+                texts.add("drills.json, drill ${i + 1}" to ((d as Map<*, *>)["text"].toString()))
+            }
+            for (level in curriculum["levels"] as List<*>) {
+                for (unit in (level as Map<*, *>)["units"] as List<*>) {
+                    for (lesson in (unit as Map<*, *>)["lessons"] as List<*>) {
+                        val l = lesson as Map<*, *>
+                        (l["exercises"] as List<*>).forEachIndexed { i, ex ->
+                            val e = ex as Map<*, *>
+                            if (e["type"] == "speak") texts.add("leccion ${l["id"]}, ejercicio ${i + 1}" to e["text"].toString())
+                        }
+                    }
+                }
+            }
+            for ((where, text) in texts) {
+                val missing = spokenWords(text).filter { it !in known }
+                if (missing.isNotEmpty()) problems.add("$where: palabras que no estan en cmudict.dict: ${missing.joinToString(", ")} (agregarlas a assets/gop/cmudict-extra.dict)")
+            }
+        }
+
         if (problems.isNotEmpty()) {
             throw GradleException(
                 "Contenido invalido (${problems.size}):\n  " + problems.joinToString("\n  ")
@@ -213,8 +310,8 @@ android {
         applicationId = "com.ferolabs.hablo"
         minSdk = 26
         targetSdk = 35
-        versionCode = 7
-        versionName = "0.7"
+        versionCode = 8
+        versionName = "0.8"
     }
 
     buildTypes {
@@ -249,16 +346,32 @@ android {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
+        jniLibs {
+            // Por si un AAR viejo de sherpa-onnx en libs/ todavia trae su copia:
+            // que no rompa el empaquetado. La buena es la de onnxruntime-android
+            // (ver stripBundledOnnxRuntime).
+            pickFirsts += listOf(
+                "lib/arm64-v8a/libonnxruntime.so",
+                "lib/armeabi-v7a/libonnxruntime.so",
+                "lib/x86/libonnxruntime.so",
+                "lib/x86_64/libonnxruntime.so"
+            )
+        }
     }
 }
 
 tasks.named("preBuild") {
-    dependsOn(checkContent, fetchSherpaAar, fetchVoices, fetchAsr)
+    dependsOn(checkContent, fetchSherpaAar, fetchVoices, fetchAsr, fetchGop)
 }
 
 dependencies {
     // Solo el AAR de la version fijada: si en libs/ queda uno viejo, no se mezcla.
     implementation(files("libs/sherpa-onnx-$sherpaVersion.aar"))
+
+    // API Java de ONNX Runtime para el modelo de fonemas. Trae el motor nativo
+    // oficial, que usan tambien las voces y Moonshine (sherpa-onnx). Tiene que
+    // ser la misma version con la que se compilo sherpa-onnx: ver arriba.
+    implementation("com.microsoft.onnxruntime:onnxruntime-android:$onnxRuntimeVersion")
 
     implementation(platform("androidx.compose:compose-bom:2024.10.01"))
 
