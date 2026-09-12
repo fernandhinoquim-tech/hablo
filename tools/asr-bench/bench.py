@@ -172,6 +172,53 @@ def score(target, heard):
 
 
 # ---------------------------------------------------------------------------
+# Jurados: qué modelo(s) puntúan cada frase según el sonido que entrena.
+# Copia de DRILLS (Pronunciation.kt). Un jurado toma, palabra por palabra, el
+# veredicto MÁS DURO de sus miembros: en una herramienta de aprendizaje, decir
+# "bien" cuando se dijo mal deja el error puesto; decir "mal" cuando se dijo
+# bien solo hace repetir. Criterio de Fero, 2026-09-12.
+# ---------------------------------------------------------------------------
+
+SOUND_OF_PHRASE = {
+    "the ship is very cheap": "sh",
+    "i think this is the third one": "th",
+    "he has a happy home": "h",
+    "very best very good": "v",
+    "i walked and talked and asked": "ed",
+    "she needs six books": "final",
+    "can you speak spanish": "es",
+    "it's a beautiful world": "rl",
+}
+
+# Políticas a comparar. Clave = sonido ("*" = todos los demás), valor = lista
+# de fragmentos de nombre de modelo. Se evalúan solo si esos modelos cargaron.
+POLICIES = {
+    "Moonshine solo":               {"*": ["moonshine-base-en-quantized"]},
+    "Jurado total M+Parakeet0.6B":  {"*": ["moonshine-base-en-quantized", "parakeet-tdt-0.6b"]},
+    "Por sonido: th->Parakeet0.6B": {"*": ["moonshine-base-en-quantized"],
+                                     "th": ["moonshine-base-en-quantized", "parakeet-tdt-0.6b"]},
+    "Por sonido: th->Parakeet, ed->WhisperSmall":
+                                    {"*": ["moonshine-base-en-quantized"],
+                                     "th": ["moonshine-base-en-quantized", "parakeet-tdt-0.6b"],
+                                     "ed": ["moonshine-base-en-quantized", "whisper-small"]},
+}
+
+SEVERITY = {"BIEN": 0, "DUDOSO": 1, "MAL": 2}
+POINTS = {"BIEN": 100, "DUDOSO": 50, "MAL": 0}
+
+
+def jury_score(scored_by_model, members):
+    """Veredicto más duro por palabra entre los miembros. Devuelve (pct, scored)."""
+    lists = [scored_by_model[m] for m in members]
+    out = []
+    for i, (w, _) in enumerate(lists[0]):
+        worst = max((sl[i][1] for sl in lists), key=lambda st: SEVERITY[st])
+        out.append((w, worst))
+    pct = sum(POINTS[st] for _, st in out) // len(out) if out else 0
+    return pct, out
+
+
+# ---------------------------------------------------------------------------
 # Modelos
 # ---------------------------------------------------------------------------
 
@@ -279,6 +326,54 @@ def read_sidecar(wav_path):
     return info
 
 
+def report_juries(per_wav, planted, loaded):
+    """Compara las POLICIES sobre las grabaciones ya transcritas."""
+    def resolve(frag):
+        hits = [n for n in loaded if frag in n]
+        return hits[0] if hits else None
+
+    print("=" * 100)
+    print("JURADOS: mismo corpus, distintas políticas de quién puntúa cada frase.")
+    print("  'arregló' = errores plantados que quedaron BIEN (más bajo = más honesto).")
+    print("  'buenas' = promedio en las grabaciones sin errores plantados que pasaron la puerta")
+    print("  (más alto = castiga menos lo bien dicho; ojo, parte de eso puede ser acento real).")
+    for pname, policy in POLICIES.items():
+        members_by_sound = {}
+        ok = True
+        for sound, frags in policy.items():
+            members = [resolve(f) for f in frags]
+            if any(m is None for m in members):
+                ok = False
+                break
+            members_by_sound[sound] = members
+        if not ok:
+            print(f"  {pname:<45} (faltan modelos; no se evalúa)")
+            continue
+        fixed, caught, good_pts, good_n = [], [], 0, 0
+        extra_flags = []
+        for wav, d in per_wav.items():
+            if d["reason"] is not None or not d["frase"]:
+                continue
+            sound = SOUND_OF_PHRASE.get(normalize(d["frase"]), "*")
+            members = members_by_sound.get(sound, members_by_sound["*"])
+            pct, scored = jury_score(d["scored"], members)
+            if wav in planted:
+                for w in planted[wav]:
+                    hit = any(sw == w and st == "BIEN" for sw, st in scored)
+                    (fixed if hit else caught).append(w)
+            else:
+                good_pts += pct
+                good_n += 1
+                # palabras que el primario dio BIEN y el jurado bajó
+                primary = d["scored"][members[0]]
+                for (w, st_p), (_, st_j) in zip(primary, scored):
+                    if st_p == "BIEN" and st_j != "BIEN":
+                        extra_flags.append(f"{w}({wav[9:15]})")
+        tot = len(fixed) + len(caught)
+        print(f"  {pname:<45} arregló {len(fixed)}/{tot}   buenas {good_pts / max(1, good_n):5.1f}%"
+              + (f"   bajó además: {', '.join(extra_flags)}" if extra_flags else ""))
+
+
 def read_planted(path):
     """{nombre.wav: [palabra, ...]} de planted.txt; vacío si no existe."""
     out = {}
@@ -319,6 +414,8 @@ def main():
 
     totals = {name: {"pts": 0, "n": 0, "ms": 0.0, "fixed": [], "caught": []} for name, _ in models}
     gate_stats = {"OK": [], "TOO_SHORT": [], "TOO_QUIET": [], "TOO_NOISY": []}
+    # Para los jurados: {wav: {"frase":..., "reason":..., "scored": {modelo: [(palabra, veredicto)]}}}
+    per_wav = {}
 
     for wav in wavs:
         raw = read_wav(wav)
@@ -332,9 +429,11 @@ def main():
         print("  medidas PC:  dur=%.2fs voz=%.2fs pico=%.3f max=%.3f rmsVoz=%.4f piso=%.4f snr=%.1fdB%s ganancia=x%.1f  -> %s"
               % (m["dur"], m["voz"], m["pico"], m["max"], m["rmsVoz"], m["piso"], m["snr"],
                  "" if m["fiable"] else "(no fiable)", m["ganancia"], reason or "OK"))
+        per_wav[os.path.basename(wav)] = {"frase": info["frase"], "reason": reason, "scored": {}}
         for name, rec in models:
             text, secs = transcribe(rec, prepared)
             pct, scored = score(info["frase"], text)
+            per_wav[os.path.basename(wav)]["scored"][name] = scored
             bad = " ".join(w for w, s in scored if s != "BIEN")
             print(f"  {name:<45} {pct:3d}%  {secs*1000:5.0f}ms  '{text}'"
                   + (f"   [no calzó: {bad}]" if bad else ""))
@@ -369,6 +468,8 @@ def main():
             if not tot:
                 continue
             print(f"  {name:<45} {len(fixed)}/{tot} = {100 * len(fixed) / tot:3.0f}%   arregló: {', '.join(fixed) or '-'}")
+
+    report_juries(per_wav, planted, [name for name, _ in models])
 
     print("=" * 100)
     print("PUERTAS: cuántas grabaciones rechazó cada puerta y en qué rango quedaron las medidas")

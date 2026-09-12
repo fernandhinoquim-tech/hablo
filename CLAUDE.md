@@ -154,14 +154,43 @@ falsos en 26 grabaciones; silencio → TOO_SHORT.
   rechazadas sean solo las que de verdad no se oyen. Revisar también en los
   `.txt` cuántas salieron `NO_OIDO NOTHING` con medidas buenas: eso es el
   modelo fallando, no la puerta.
-- **Medir la sobrecorrección con más de 11 casos.** Una sesión de errores a
-  propósito por fenómeno (5 grabaciones cada uno: `sh`/`ch`, `th`, `-ed` como
-  sílaba, `e` delante de `s`, `v`/`b`, `h` muda, consonante final), anotarlas
-  en `tools/asr-bench/planted.txt` y correr `bench.py`. Con ~35 casos sí se
-  puede decidir si conviene un "jurado de dos" (Moonshine + Parakeet 0.6B: una
-  palabra cuenta BIEN solo si los dos la oyeron bien; en el corpus actual eso
-  bajaría la sobrecorrección a 2/11, a cambio de puntuar más duro lo bien
-  dicho). El peso del APK no es problema: Fero lo dijo.
+- **Medir la sobrecorrección con más de 11 casos y decidir el jurado por
+  sonido.** Una sesión de errores a propósito por fenómeno (5 grabaciones
+  cada uno: `sh`/`ch`, `th`, `-ed` como sílaba, `e` delante de `s`, `v`/`b`,
+  `h` muda, consonante final), anotarlas en `tools/asr-bench/planted.txt` y
+  correr `bench.py --only quantized-2026 parakeet-tdt-0.6b whisper-small`:
+  la sección **JURADOS** compara las políticas solas.
+
+  **Criterio de Fero (2026-09-12), vale para todo lo de puntaje:** decir
+  "bien" cuando se dijo mal es peor que decir "mal" cuando se dijo bien. El
+  falso "bien" deja el error puesto para siempre; el falso "mal" solo hace
+  repetir. Si hay que elegir, que castigue de más. Por eso un jurado toma,
+  palabra por palabra, el veredicto **más duro** de sus miembros.
+
+  **Diseño elegido para evaluar: jurado por sonido, no simétrico ni
+  permanente.** Cada drill lleva el sonido que entrena; el segundo modelo
+  corre **solo** en los drills donde Moonshine es ciego, se carga al entrar
+  a ese drill y se suelta al salir de la pantalla (no convive con los 5 GB
+  del modelo de IA de la Fase 3). Simulado sobre las 26 grabaciones de hoy:
+
+  | Política | arregló (de 11) | promedio en las buenas |
+  |---|---|---|
+  | Moonshine solo | 5 | 61,4 % |
+  | Jurado total Moonshine+Parakeet 0.6B en todo | 2 | 54,9 % (baja ship, six ×2, very, good ×2, world sin ganar honestidad) |
+  | Por sonido: `th` → +Parakeet 0.6B | 2 | 61,4 % (cero daño colateral) |
+  | Por sonido: `th` → +Parakeet, `ed` → +Whisper small | 1 | 61,4 % |
+
+  El jurado por sonido da toda la honestidad del total sin su daño: el
+  segundo modelo solo opina donde sabe. Muestra chica (th: 4 casos de 2
+  grabaciones; -ed: 3 de una). **Regla de decisión** para no volver a
+  discutirlo: con el corpus de ~35 casos, si el segundo modelo atrapa ≥4 de 5
+  errores plantados de su sonido y no baja el promedio de las buenas de ese
+  sonido más de 5 puntos, se construye para ese sonido. Costo estimado:
+  +660 MB de APK por Parakeet (+375 por Whisper small; el peso no importa,
+  Fero lo dijo; alternativa: ponerlos al lado de la app como el modelo de IA),
+  ~0,5 s más en esos drills, ~150 líneas (etiqueta `sound` en `Drill`, segundo
+  reconocedor perezoso en `Listener`, combinación "más duro" en
+  `scorePronunciation`, y la pantalla muestra lo que oyó cada uno).
 
 Siguiente:
 
