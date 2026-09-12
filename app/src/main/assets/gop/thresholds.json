@@ -6,6 +6,7 @@
       "score": "ins",
       "red": -4.789,
       "yellow": 3.253,
+      "yellow_only": false,
       "red_precision": 0.86,
       "red_recall": 0.86,
       "yellow_precision": 0.33,
@@ -17,12 +18,49 @@
       "score": "af",
       "red": -5.221,
       "yellow": 0.232,
+      "yellow_only": false,
       "red_precision": 0.83,
       "red_recall": 1.0,
       "yellow_precision": 0.33,
       "yellow_recall": 1.0,
       "n": 30,
       "n_errors": 5
+    },
+    "th": {
+      "score": "af",
+      "red": -1000000000.0,
+      "yellow": 0.397,
+      "yellow_only": true,
+      "red_precision": 0.0,
+      "red_recall": 0.0,
+      "yellow_precision": 0.38,
+      "yellow_recall": 1.0,
+      "n": 32,
+      "n_errors": 9
+    },
+    "ed": {
+      "score": "ins",
+      "red": -1000000000.0,
+      "yellow": -4.132,
+      "yellow_only": true,
+      "red_precision": 0.0,
+      "red_recall": 0.0,
+      "yellow_precision": 1.0,
+      "yellow_recall": 0.38,
+      "n": 22,
+      "n_errors": 8
+    },
+    "es": {
+      "score": "ins",
+      "red": -1000000000.0,
+      "yellow": -2.071,
+      "yellow_only": true,
+      "red_precision": 0.0,
+      "red_recall": 0.0,
+      "yellow_precision": 0.57,
+      "yellow_recall": 0.57,
+      "n": 18,
+      "n_errors": 7
     }
   }
 }

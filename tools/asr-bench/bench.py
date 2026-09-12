@@ -339,7 +339,7 @@ def read_wav(path):
 
 def read_sidecar(wav_path):
     txt = wav_path[:-4] + ".txt"
-    info = {"frase": "", "resultado": "", "medidas": ""}
+    info = {"frase": "", "resultado": "", "medidas": "", "etiqueta": ""}
     if os.path.exists(txt):
         with open(txt, encoding="utf-8") as f:
             for line in f:

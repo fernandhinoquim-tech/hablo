@@ -191,6 +191,48 @@ fun SoundVerdictCard(report: SoundReport) {
     }
 }
 
+/**
+ * "¿Te sonó como a la profesora?": la opinión del alumno sobre su propia toma,
+ * después de oírse. Alimenta la recalibración en el PC; no cambia nada en el
+ * momento. Vale sobre todo para lo que uno sí puede oír (una h que se cae, una
+ * sílaba de más); para ship/sheep o v/b el oído del alumno es justo el problema.
+ */
+@Composable
+fun SelfLabelRow(answered: Boolean, onLabel: (String) -> Unit) {
+    Column(
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(Color.White, RoundedCornerShape(12.dp))
+            .border(1.dp, Line, RoundedCornerShape(12.dp))
+            .padding(12.dp)
+    ) {
+        if (answered) {
+            Text("Gracias. Eso me ayuda a afinar la evaluación.", style = MaterialTheme.typography.bodyMedium, color = InkSoft)
+            return@Column
+        }
+        Text(
+            "Oye a la profesora (🔊) y luego a ti (👤). ¿Te sonó igual?",
+            style = MaterialTheme.typography.bodyMedium,
+            color = Ink
+        )
+        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            listOf("Igual" to "igual", "Distinto" to "distinto", "No sé" to "nose").forEach { (label, key) ->
+                Text(
+                    label,
+                    style = MaterialTheme.typography.labelLarge,
+                    color = Ink,
+                    modifier = Modifier
+                        .background(Cream, RoundedCornerShape(10.dp))
+                        .border(1.dp, Line, RoundedCornerShape(10.dp))
+                        .clickable { onLabel(key) }
+                        .padding(horizontal = 14.dp, vertical = 9.dp)
+                )
+            }
+        }
+    }
+}
+
 /** Etiqueta pequeña tipo píldora. */
 @Composable
 fun Pill(text: String, fg: Color, bg: Color) {

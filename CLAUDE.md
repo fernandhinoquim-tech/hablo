@@ -102,7 +102,7 @@ B2 leyendo, escribiendo, escuchando y hablando.
 |---|---|---|
 | Voces | **Piper** vía sherpa-onnx (Apache 2.0) | Cuatro voces femeninas reales dentro del APK. Antes se usaba el TTS de Android y obligaba al usuario a descargar paquetes de voz por fuera. |
 | Voz → texto | **Moonshine base v2** (`moonshine-base-en-quantized-2026-02-27`, 2 archivos `.ort`, 140 MB) vía sherpa-onnx **1.13.4** | Elegido el 2026-09-12 con `tools/asr-bench` sobre 26 grabaciones reales de Fero. Tiny devolvía texto vacío en 4 de 26 con audio bueno y confundía palabras fáciles ("seatsbooks", "Can't you"); base no, y mantiene la honestidad (delata "chip", "espeak", "wok-ed"). Whisper base.en quedó descartado: **corrige** "espeak Espanish" a "speak Spanish" al 100 %. Parakeet 110m es el más honesto pero castiga también lo bien dicho. También se probaron los grandes (Fero dijo que el peso no importa): **Whisper small.en** (74 % promedio, el mejor adivinando) y **Parakeet 0.6B v2** (70 %) corrigen los dos "espeak Espanish" → "speak Spanish" al 100 %; Parakeet 0.6B es el único que delata "tink/tird", pero pierde "six books" dos veces. Se quedó Moonshine base: el único que delata "espeak" (el error insignia). **Sobrecorrección medida** (errores plantados a propósito que el modelo "arregla" y puntúa BIEN, `tools/asr-bench/planted.txt`, 11 casos): Moonshine base **5/11 = 45 %** (think ×2, third, asked, spanish) · Whisper base/small 4/11 · Parakeet 0.6B 3/11 · Parakeet 110m 2/11. Con 11 casos esas cifras no se distinguen estadísticamente; lo que sí se ve es que cada modelo es ciego a sonidos distintos: Moonshine al `th` (3 de 4), Parakeet y Whisper a la `e` delante de `s` (espeak/Espanish, 2 de 2). Antes de reconocer, `Audio.kt` (`AudioPrep`) quita el DC, recorta el silencio, normaliza el pico y rechaza audio mudo/corto/ruidoso con "No te entendí, repite" en vez de dar 0 %. **Regla que no se negocia:** el reconocedor nunca ve la frase esperada (nada de hotwords ni sesgos); el objetivo solo se usa para puntuar después. |
-| Pronunciación por fonema (GOP) | **wav2vec2-large-xlsr-53-l2-arctic-phoneme** int8 (317 MB) vía **onnxruntime-android 1.27.0**; `Gop.kt` + `PhonemeScorer.kt`; fonemas esperados de **CMUdict** (`assets/gop/cmudict.dict`); umbrales en `assets/gop/thresholds.json` | Es lo que hacen las apps comerciales (Azure, Speechace, ELSA): se conoce la frase, se alinean sus fonemas y se puntúa la confianza de cada uno; el reconocedor de palabras se queda solo para "¿se entendió?". Entrenado con habla no nativa anotada tal como se pronunció (incluye hispanohablantes). En el S25: carga 0,6 s, evalúa en 200–300 ms. Se carga al entrar a la pantalla y se suelta al salir. **Solo sonidos con umbral calibrado muestran veredicto** (hoy `sh` y `h`); los demás dicen "todavía no tiene evaluación calibrada". Para agregar un sonido: corpus etiquetado → `phoneme_eval.py` → `calibrate.py --sounds ...` → `thresholds.json`. El modelo lo exporta `phoneme_export.py`; `fetchGop` lo copia a assets (si falta, la app compila sin él y lo dice). |
+| Pronunciación por fonema (GOP) | **wav2vec2-large-xlsr-53-l2-arctic-phoneme** int8 (317 MB) vía **onnxruntime-android 1.27.0**; `Gop.kt` + `PhonemeScorer.kt`; fonemas esperados de **CMUdict** (`assets/gop/cmudict.dict`); umbrales en `assets/gop/thresholds.json` | Es lo que hacen las apps comerciales (Azure, Speechace, ELSA): se conoce la frase, se alinean sus fonemas y se puntúa la confianza de cada uno; el reconocedor de palabras se queda solo para "¿se entendió?". Entrenado con habla no nativa anotada tal como se pronunció (incluye hispanohablantes). En el S25: carga 0,6 s, evalúa en 200–300 ms. Se carga al entrar a la pantalla y se suelta al salir. **Solo sonidos con umbral calibrado muestran veredicto**: `sh` y `h` en rojo/amarillo (precisión del rojo ≥ 66 %); `th`, `ed`, `es` **solo en amarillo** (`calibrate.py --yellow-only`: precisión entre 33 y 66 %, el rojo nunca dispara); `v`, `final` y `rl` sin veredicto (por debajo del 33 %) y la pantalla lo dice. Para mover un sonido de categoría: más corpus etiquetado → `phoneme_eval.py` → `calibrate.py --sounds sh h --yellow-only th ed es` → `thresholds.json`. **Etiqueta del alumno:** después de cada intento la app pregunta "¿Te sonó igual?" (Igual / Distinto / No sé) y lo anexa como `etiqueta:` al `.txt` de la grabación (`Listener.labelLastRecording`); solo se usa al recalibrar, nunca en tiempo real. Vale sobre todo para lo audible (h caída, sílaba de más, e+s); para ship/sheep y v/b el oído del alumno es el problema. El modelo lo exporta `phoneme_export.py`; `fetchGop` lo copia a assets (si falta, la app compila sin él y lo dice). |
 | IA (Fase 3) | **llama.cpp + Qwen 3 8B Q4** | Qwen es Apache 2.0 sin letra chica. Se descartó Gemma 2/3 porque sus "Gemma Terms of Use" permiten a Google cambiar las condiciones después. |
 | Interfaz | Kotlin + Jetpack Compose | Menos capas intermedias con tres motores nativos encima. |
 | Progreso | SharedPreferences | Suficiente; nada sale del teléfono. |
@@ -159,8 +159,23 @@ cambiar `prep()` en `bench.py` igual.
 ## Estado y plan
 
 **Versión actual: 0.8.** Funcionando en el teléfono de Fero (2026-09-12):
-evaluación por fonema (GOP) para `sh` y `h`, con rojo/amarillo calibrados y
-mapa personal de sonidos.
+evaluación por fonema (GOP) — `sh` y `h` en rojo/amarillo, `th`/`ed`/`es`
+solo amarillo — mapa personal de sonidos, etiqueta del alumno tras cada
+intento, y 40 drills (5 por sonido, `drills.json`). Fero, al oírse: "detecté
+que hablo mal y por qué entiende lo que entiende; no hay desfase entre lo que
+pronuncio y lo que entiende".
+
+**Fase 3 arranca aquí (2026-09-12).** Investigado antes de construir: el
+camino es el ejemplo oficial `examples/llama.android` de llama.cpp (módulo
+nativo compilado desde fuente con CMake + NDK dentro de la app, puente JNI
+propio; nada de AARs de terceros). Velocidad esperable en el 8 Elite:
+~10–13 tokens/s para 8B por CPU (Qualcomm reporta 12,9 t/s con su runtime
+para un 8B w4a16); hay backend OpenCL para Adreno 830 para después. Memoria:
+Qwen3 8B Q4_K_M ≈ 4,9 GB + contexto ≈ 5,3 GB: cabe en 12 GB solo con
+Moonshine y el modelo de fonemas descargados en esa pantalla. Plan B si va
+lento: Qwen3 4B (~2,5 GB). Primer paso: NDK + CMake por línea de comandos,
+puente mínimo (cargar, generar con streaming) y una pantalla de prueba que
+mida tokens/s reales en el teléfono antes de escribir escenarios.
 
 Hecho: cuatro profesoras con voces propias · reconocimiento de voz con
 Moonshine base v2 · pipeline de audio (`Audio.kt`: DC, recorte, normalización

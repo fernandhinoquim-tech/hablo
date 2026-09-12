@@ -1,12 +1,37 @@
 {
-  "_comentario": "Ejercicios de 'Practicar pronunciación'. Elegidos por lo que le cuesta a un hispanohablante, no por frecuencia genérica. 'sound' es OBLIGATORIO: decide qué jurado puntúa (sh, th, h, v, ed, final, es, rl, general). Si falta, la app lo dice en la pantalla de inicio y la compilación falla.",
+  "_comentario": "Ejercicios de 'Practicar pronunciación'. Elegidos por lo que le cuesta a un hispanohablante, no por frecuencia genérica. Cinco frases por sonido, agrupadas. 'sound' es OBLIGATORIO: decide qué evaluación por fonema se muestra (sh, th, h, v, ed, final, es, rl, general). Si falta, la app lo dice en la pantalla de inicio y la compilación falla.",
   "drills": [
     {
       "text": "The ship is very cheap.",
       "sound": "sh",
       "focus": "ship / sheep",
-      "tip": "La i de ship es corta y relajada, casi una e. La de sheep es larga. En español solo existe una i, por eso suenan igual al principio."
+      "tip": "La i de ship es corta y relajada, casi una e. La de sheep es larga. En español solo existe una i, por eso suenan igual al principio. Y la sh es un soplo largo, sin la t de \"ch\"."
     },
+    {
+      "text": "She sells fresh fish.",
+      "sound": "sh",
+      "focus": "sh, no ch",
+      "tip": "Tres sh en una frase: she, fresh, fish. Es un soplo continuo, como pidiendo silencio. Si sale \"chi\", metiste una t delante."
+    },
+    {
+      "text": "Wash your shoes.",
+      "sound": "sh",
+      "focus": "sh al final y al principio",
+      "tip": "Wash termina en sh (no \"watch\", que termina en ch). Shoes empieza con el mismo soplo."
+    },
+    {
+      "text": "Show me the shop.",
+      "sound": "sh",
+      "focus": "sh, no ch",
+      "tip": "Show y shop: la lengua no toca el paladar; solo pasa aire. \"Chop\" es otra palabra (picar)."
+    },
+    {
+      "text": "I wish I had cash.",
+      "sound": "sh",
+      "focus": "sh al final",
+      "tip": "Wish y cash terminan en un soplo largo. \"Witch\" (bruja) termina en ch: la diferencia importa."
+    },
+
     {
       "text": "I think this is the third one.",
       "sound": "th",
@@ -14,11 +39,61 @@
       "tip": "Saca la punta de la lengua entre los dientes y sopla. No es ni s ni t ni d. Se siente ridículo, y así es como suena bien."
     },
     {
+      "text": "Thank you very much.",
+      "sound": "th",
+      "focus": "th, no t",
+      "tip": "\"Tank you\" es un tanque. Lengua entre los dientes antes de la a: thank."
+    },
+    {
+      "text": "My birthday is on Thursday.",
+      "sound": "th",
+      "focus": "th en medio y al principio",
+      "tip": "Birthday y Thursday llevan la misma th sorda. Sopla con la lengua entre los dientes las dos veces."
+    },
+    {
+      "text": "Nothing is free.",
+      "sound": "th",
+      "focus": "th en medio de palabra",
+      "tip": "Nothing: la th va en medio. Si sale \"notting\", la lengua se quedó detrás de los dientes."
+    },
+    {
+      "text": "Both teeth hurt.",
+      "sound": "th",
+      "focus": "th al final",
+      "tip": "Both y teeth terminan en th. No la cambies por t: \"teet\" no existe."
+    },
+
+    {
       "text": "He has a happy home.",
       "sound": "h",
       "focus": "la h aspirada",
       "tip": "En inglés la h SÍ suena: es un soplo de aire. En español es muda, por eso tendemos a comernos la palabra entera."
     },
+    {
+      "text": "How are you?",
+      "sound": "h",
+      "focus": "la h de how",
+      "tip": "How empieza con un soplo, como empañando un vidrio. Sin él suena \"ow\"."
+    },
+    {
+      "text": "Her hat is here.",
+      "sound": "h",
+      "focus": "tres h seguidas",
+      "tip": "Her, hat, here: tres soplos. Es la j suave del Caribe (\"jamón\" dicho suavecito), no la j fuerte del centro del país."
+    },
+    {
+      "text": "I hope you are hungry.",
+      "sound": "h",
+      "focus": "h delante de vocal",
+      "tip": "Hope y hungry: el soplo va antes de la vocal. \"Ope\" y \"ungry\" son como suenan sin la h."
+    },
+    {
+      "text": "Hello, my name is Ana.",
+      "sound": "h",
+      "focus": "la h de hello",
+      "tip": "La palabra más repetida del idioma empieza con h aspirada. \"Ello\" no es hello."
+    },
+
     {
       "text": "Very best, very good.",
       "sound": "v",
@@ -26,11 +101,73 @@
       "tip": "La v se hace mordiendo el labio de abajo con los dientes de arriba. En español v y b suenan igual; en inglés son distintas."
     },
     {
+      "text": "Very good.",
+      "sound": "v",
+      "focus": "la v de very",
+      "tip": "Dientes de arriba sobre el labio de abajo, y que vibre. \"Bery\" es con los dos labios; very, no."
+    },
+    {
+      "text": "We live in a village.",
+      "sound": "v",
+      "focus": "v en medio",
+      "tip": "Live y village: la v está en medio de vocales, donde más tienta hacerla b. Muerde el labio."
+    },
+    {
+      "text": "Give me the video.",
+      "sound": "v",
+      "focus": "v al final y al principio",
+      "tip": "Give termina en v (labio mordido hasta el final) y video empieza igual."
+    },
+    {
+      "text": "Seven or eleven?",
+      "sound": "v",
+      "focus": "v en los números",
+      "tip": "Seven y eleven llevan v, no b. Los números se dicen mil veces: vale la pena."
+    },
+    {
+      "text": "I never drive at night.",
+      "sound": "v",
+      "focus": "v al final de drive",
+      "tip": "Never y drive: la última v de drive se muerde hasta el final, no se abre en b."
+    },
+
+    {
       "text": "I walked and talked and asked.",
       "sound": "ed",
       "focus": "terminación -ed",
       "tip": "Aquí la -ed suena como t, no como \"ed\". Walked es \"wokt\", no \"wok-ed\"."
     },
+    {
+      "text": "I walked to school.",
+      "sound": "ed",
+      "focus": "-ed como t",
+      "tip": "Walked = \"wokt\", una sola sílaba. La e de -ed no se pronuncia."
+    },
+    {
+      "text": "She worked all day.",
+      "sound": "ed",
+      "focus": "-ed como t",
+      "tip": "Worked = \"workt\". Si dices \"work-ed\" agregas una sílaba que no existe."
+    },
+    {
+      "text": "We watched a movie.",
+      "sound": "ed",
+      "focus": "-ed como t",
+      "tip": "Watched = \"wacht\". La d final se pega a la t sin vocal en medio."
+    },
+    {
+      "text": "He stopped the car.",
+      "sound": "ed",
+      "focus": "-ed como t",
+      "tip": "Stopped = \"stopt\". Una sílaba, y sin e delante de la s."
+    },
+    {
+      "text": "They laughed a lot.",
+      "sound": "ed",
+      "focus": "-ed como t",
+      "tip": "Laughed = \"laft\": la gh suena f y la -ed suena t."
+    },
+
     {
       "text": "She needs six books.",
       "sound": "final",
@@ -38,11 +175,73 @@
       "tip": "En español casi no cerramos palabras con consonante. Aquí hay que pronunciar la s y la ks del final, sin agregarles una e."
     },
     {
+      "text": "I want some milk.",
+      "sound": "final",
+      "focus": "la k final de milk",
+      "tip": "Milk termina en k. Sin ella queda \"mil\". Ciérrala aunque parezca exagerado."
+    },
+    {
+      "text": "The desk is old.",
+      "sound": "final",
+      "focus": "sk y ld al final",
+      "tip": "Desk termina en sk y old en ld. Dos consonantes seguidas al final: las dos suenan."
+    },
+    {
+      "text": "He asked for help.",
+      "sound": "final",
+      "focus": "la p final de help",
+      "tip": "Help cierra con p. Asked cierra con skt. Nada de \"hel\" ni \"ask\"."
+    },
+    {
+      "text": "It's cold outside.",
+      "sound": "final",
+      "focus": "la d final de cold",
+      "tip": "Cold termina en d. \"Col\" es otra palabra en español. Que se oiga la d."
+    },
+    {
+      "text": "Just a second.",
+      "sound": "final",
+      "focus": "la t final de just",
+      "tip": "Just termina en t y second en d. Cierra las dos."
+    },
+
+    {
       "text": "Can you speak Spanish?",
       "sound": "es",
       "focus": "s inicial sin e",
       "tip": "Es \"speak\", no \"espeak\". Empieza directo con la s. Este es de los errores que más delatan a un hispanohablante."
     },
+    {
+      "text": "I speak English.",
+      "sound": "es",
+      "focus": "s inicial sin e",
+      "tip": "Speak empieza con s directa. Truco: pega la s a la palabra anterior: \"I-speak\"."
+    },
+    {
+      "text": "The school is big.",
+      "sound": "es",
+      "focus": "s inicial sin e",
+      "tip": "School: s, luego k. Sin e delante. \"Eschool\" es el error más común del español."
+    },
+    {
+      "text": "My brother is a student.",
+      "sound": "es",
+      "focus": "s inicial sin e",
+      "tip": "Student, no \"estudent\". Empieza con la s sola y sigue con la t."
+    },
+    {
+      "text": "Stop right now.",
+      "sound": "es",
+      "focus": "s inicial sin e",
+      "tip": "Stop: s directa. \"Estop\" agrega una vocal que en inglés no está."
+    },
+    {
+      "text": "It's a special day.",
+      "sound": "es",
+      "focus": "s inicial sin e",
+      "tip": "Special empieza con sp, sin e delante. \"Especial\" es la palabra en español."
+    },
+
     {
       "text": "It's a beautiful world.",
       "sound": "rl",

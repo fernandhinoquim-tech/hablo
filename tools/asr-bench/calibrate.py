@@ -64,13 +64,15 @@ def evaluate(rs, red, yellow):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--sounds", nargs="+", required=True)
+    ap.add_argument("--sounds", nargs="+", required=True, help="sonidos con rojo y amarillo (precisión del rojo >= 66 %)")
+    ap.add_argument("--yellow-only", nargs="*", default=[], help="sonidos solo en amarillo: precisión entre 33 y 66 %, nunca rojo")
     ap.add_argument("--rows", default=os.path.join(HERE, "corpus", "rows.csv"))
     args = ap.parse_args()
 
     rows = list(csv.DictReader(open(args.rows, encoding="utf-8")))
     out = {}
-    for snd in args.sounds:
+    for snd in args.sounds + args.yellow_only:
+        yellow_only = snd in args.yellow_only
         key = SCORE_OF[snd]
         sign = -1 if key == "ins" else 1
         rs = [dict(r, sc=sign * float(r[key])) for r in rows if r["sound"] == snd]
@@ -90,13 +92,20 @@ def main():
         # para la app: ajuste final con todo lo etiquetado (ya verificado arriba)
         b_all, yellow_all = fit(rs)
         ev = evaluate(rs, b_all["thr"], yellow_all)
+        # Solo amarillo: el rojo nunca dispara y el amarillo usa el umbral de
+        # MCC máximo (el mejor equilibrio), no el más permisivo: con precisión
+        # de 33-60 % no vale la pena teñir de amarillo casi todo.
+        red_value = -1e9 if yellow_only else round(b_all["thr"], 3)
+        if yellow_only:
+            yellow_all = b_all["thr"]
+            ev = evaluate(rs, red_value, yellow_all)
         out[snd] = {
-            "score": key, "red": round(b_all["thr"], 3), "yellow": round(yellow_all, 3),
+            "score": key, "red": red_value, "yellow": round(yellow_all, 3), "yellow_only": yellow_only,
             "red_precision": round(ev["rojo"][2], 2), "red_recall": round(ev["rojo"][3], 2),
             "yellow_precision": round(ev["amarillo"][2], 2), "yellow_recall": round(ev["amarillo"][3], 2),
             "n": len(rs), "n_errors": sum(int(r["label"]) for r in rs),
         }
-        print(f"  para la app (todo): red<{b_all['thr']:.2f} ({ev['rojo'][2]:.0%} de {ev['rojo'][0]}), yellow<{yellow_all:.2f} ({ev['amarillo'][2]:.0%} de {ev['amarillo'][0]})")
+        print(f"  para la app (todo): red<{red_value:.2f} ({ev['rojo'][2]:.0%} de {ev['rojo'][0]}){' [SOLO AMARILLO]' if yellow_only else ''}, yellow<{yellow_all:.2f} ({ev['amarillo'][2]:.0%} de {ev['amarillo'][0]})")
 
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     with open(OUT, "w", encoding="utf-8") as f:

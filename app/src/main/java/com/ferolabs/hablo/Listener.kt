@@ -74,6 +74,29 @@ class Listener(context: Context) {
     var lastRecording: FloatArray? = null
         private set
 
+    /** Sello (nombre de archivo) de la última grabación guardada, para etiquetarla. */
+    @Volatile
+    private var lastStamp: String? = null
+
+    /**
+     * Lo que el propio Fero opina de su última toma después de oírse
+     * ("igual" / "distinto" / "nose"). Se anexa al .txt de esa grabación y
+     * solo se usa al recalibrar en el PC; nada cambia en tiempo real, para que
+     * un error de oído nunca "enseñe" nada.
+     */
+    fun labelLastRecording(label: String) {
+        val stamp = lastStamp ?: return
+        worker.execute {
+            try {
+                val dir = recordingsDir() ?: return@execute
+                File(dir, "$stamp.txt").appendText("etiqueta: $label\n")
+                Log.i(TAG, "Etiqueta de $stamp: $label")
+            } catch (e: Throwable) {
+                // sin acción: es solo diagnóstico
+            }
+        }
+    }
+
     fun hasMicPermission(): Boolean =
         ContextCompat.checkSelfPermission(app, Manifest.permission.RECORD_AUDIO) ==
             PackageManager.PERMISSION_GRANTED
@@ -185,6 +208,7 @@ class Listener(context: Context) {
 
             thinking = true
             val stamp = SimpleDateFormat("yyyyMMdd-HHmmss", Locale.US).format(Date())
+            lastStamp = stamp
             var analysis: AudioAnalysis? = null
             var outcome = ""
             try {

@@ -78,6 +78,7 @@ fun PronunciationScreen(
     var notHeard by remember { mutableStateOf<NotHeardReason?>(null) }
     var showTip by remember { mutableStateOf(false) }
     var showDetail by remember { mutableStateOf(false) }
+    var labeled by remember { mutableStateOf(false) }
     var permissionAsked by remember { mutableStateOf(false) }
 
     // "Hoy": un solo mensaje por sesión, el sonido que más falló.
@@ -126,6 +127,7 @@ fun PronunciationScreen(
         report = null
         notHeard = null
         showDetail = false
+        labeled = false
         if (listener.hasMicPermission()) {
             listen(drill.text, drill.sound)
         } else {
@@ -339,6 +341,13 @@ fun PronunciationScreen(
                 }
             }
 
+            if (result != null) {
+                SelfLabelRow(answered = labeled) { key ->
+                    listener.labelLastRecording(key)
+                    labeled = true
+                }
+            }
+
             // Sonido sin umbral todavía, o modelo ausente: se dice, no se calla.
             if (result != null && report == null && drill.sound != Sound.GENERAL) {
                 Text(
@@ -379,6 +388,7 @@ fun PronunciationScreen(
                 notHeard = null
                 showTip = false
                 showDetail = false
+                labeled = false
             }
         }
     }
