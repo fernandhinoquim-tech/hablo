@@ -222,6 +222,16 @@ def load_models(models_dir, only=None):
                     task="transcribe",
                     num_threads=4,
                 )
+            elif find(d, "joiner", ".onnx"):
+                # Transducer de NeMo (parakeet-tdt-0.6b-v2): encoder + decoder + joiner.
+                rec = sherpa_onnx.OfflineRecognizer.from_transducer(
+                    encoder=find(d, "encoder", ".onnx"),
+                    decoder=find(d, "decoder", ".onnx"),
+                    joiner=find(d, "joiner", ".onnx"),
+                    tokens=find(d, "tokens.txt"),
+                    model_type="nemo_transducer",
+                    num_threads=4,
+                )
             elif "ctc" in pkg:
                 rec = sherpa_onnx.OfflineRecognizer.from_nemo_ctc(
                     model=find(d, "model", ".onnx"),
