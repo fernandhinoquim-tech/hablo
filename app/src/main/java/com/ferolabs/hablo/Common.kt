@@ -97,6 +97,37 @@ fun TipBox(text: String) {
     }
 }
 
+/**
+ * Aviso de "no te entendí": el audio no sirvió para evaluar. No es un error
+ * del alumno y por eso no lleva porcentaje ni palabras en rojo.
+ */
+@Composable
+fun NotHeardBox(reason: NotHeardReason) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(Color(0xFFFFF6E3), RoundedCornerShape(12.dp))
+            .border(1.dp, Color(0xFFF0DFB9), RoundedCornerShape(12.dp))
+            .padding(14.dp)
+    ) {
+        Text(
+            "No te entendí, repite",
+            style = MaterialTheme.typography.titleMedium,
+            color = Color(0xFF8A5A00)
+        )
+        Text(
+            reason.hintEs,
+            style = MaterialTheme.typography.bodyMedium,
+            color = Color(0xFF4A3A12)
+        )
+        Text(
+            "Esto no cuenta como error.",
+            style = MaterialTheme.typography.labelMedium,
+            color = InkSoft
+        )
+    }
+}
+
 /** Etiqueta pequeña tipo píldora. */
 @Composable
 fun Pill(text: String, fg: Color, bg: Color) {

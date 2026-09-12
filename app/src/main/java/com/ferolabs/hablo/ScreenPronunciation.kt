@@ -48,20 +48,33 @@ fun PronunciationScreen(
 
     var index by remember { mutableStateOf(0) }
     var result by remember { mutableStateOf<PronunciationResult?>(null) }
+    var notHeard by remember { mutableStateOf<NotHeardReason?>(null) }
     var showTip by remember { mutableStateOf(false) }
     var permissionAsked by remember { mutableStateOf(false) }
 
     val drill = DRILLS[index % DRILLS.size]
 
+    // El puntaje solo se calcula con lo que el reconocedor de verdad entendió.
+    fun listen(target: String) {
+        listener.startRecording(target) { r ->
+            when (r) {
+                is ListenResult.Heard -> {
+                    result = scorePronunciation(target, r.text)
+                    notHeard = null
+                }
+                is ListenResult.NotHeard -> {
+                    result = null
+                    notHeard = r.reason
+                }
+            }
+        }
+    }
+
     val permissionLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.RequestPermission()
     ) { granted ->
         permissionAsked = true
-        if (granted) {
-            listener.startRecording { heard ->
-                result = scorePronunciation(drill.text, heard)
-            }
-        }
+        if (granted) listen(drill.text)
     }
 
     fun record() {
@@ -70,10 +83,9 @@ fun PronunciationScreen(
             return
         }
         result = null
+        notHeard = null
         if (listener.hasMicPermission()) {
-            listener.startRecording { heard ->
-                result = scorePronunciation(drill.text, heard)
-            }
+            listen(drill.text)
         } else {
             permissionLauncher.launch(Manifest.permission.RECORD_AUDIO)
         }
@@ -169,6 +181,9 @@ fun PronunciationScreen(
                 }
             }
 
+            // --- No se pudo evaluar ------------------------------------------
+            notHeard?.let { NotHeardBox(it) }
+
             // --- Resultado --------------------------------------------------
             result?.let { r ->
                 Column(
@@ -234,8 +249,7 @@ fun PronunciationScreen(
                     }
 
                     Text(
-                        if (r.heard.isBlank()) "No entendí nada. ¿Estabas muy lejos del micrófono?"
-                        else "Entendí: \"${r.heard}\"",
+                        "Entendí: \"${r.heard}\"",
                         style = MaterialTheme.typography.bodyMedium,
                         color = InkSoft
                     )
@@ -274,6 +288,7 @@ fun PronunciationScreen(
             ) {
                 index = (index + 1) % DRILLS.size
                 result = null
+                notHeard = null
                 showTip = false
             }
         }

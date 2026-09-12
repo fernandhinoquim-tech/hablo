@@ -70,6 +70,24 @@ fun LessonScreen(
     // Guarda posiciones del banco de palabras, no las palabras, para soportar repetidas.
     var built by remember { mutableStateOf(listOf<Int>()) }
     var speakResult by remember { mutableStateOf<PronunciationResult?>(null) }
+    var speakNotHeard by remember { mutableStateOf<NotHeardReason?>(null) }
+
+    // Si no se pudo evaluar, speakResult queda en null: "Comprobar" sigue
+    // apagado y el intento no cuenta ni a favor ni en contra.
+    fun listen(target: String) {
+        listener.startRecording(target) { r ->
+            when (r) {
+                is ListenResult.Heard -> {
+                    speakResult = scorePronunciation(target, r.text)
+                    speakNotHeard = null
+                }
+                is ListenResult.NotHeard -> {
+                    speakResult = null
+                    speakNotHeard = r.reason
+                }
+            }
+        }
+    }
 
     // La frase a evaluar vive en estado, no se captura del ejercicio actual: el
     // lanzador de permisos tiene que declararse antes de cualquier return, y en
@@ -79,11 +97,7 @@ fun LessonScreen(
         ActivityResultContracts.RequestPermission()
     ) { granted ->
         val target = speakTarget
-        if (granted && target.isNotBlank()) {
-            listener.startRecording { heard ->
-                speakResult = scorePronunciation(target, heard)
-            }
-        }
+        if (granted && target.isNotBlank()) listen(target)
     }
 
     if (finished) {
@@ -124,6 +138,7 @@ fun LessonScreen(
         typed = ""
         built = listOf<Int>()
         speakResult = null
+        speakNotHeard = null
         checked = false
         wasCorrect = false
     }
@@ -321,9 +336,8 @@ fun LessonScreen(
                                         listener.stopRecording()
                                     } else if (listener.hasMicPermission()) {
                                         speakResult = null
-                                        listener.startRecording { heard ->
-                                            speakResult = scorePronunciation(ex.text, heard)
-                                        }
+                                        speakNotHeard = null
+                                        listen(ex.text)
                                     } else {
                                         speakTarget = ex.text
                                         micLauncher.launch(Manifest.permission.RECORD_AUDIO)
@@ -341,7 +355,7 @@ fun LessonScreen(
                             when {
                                 listener.thinking -> "Analizando…"
                                 listener.recording -> "Grabando… toca para terminar"
-                                speakResult != null -> "Toca para intentarlo otra vez"
+                                speakResult != null || speakNotHeard != null -> "Toca para intentarlo otra vez"
                                 else -> "Toca y dilo"
                             },
                             style = MaterialTheme.typography.bodyMedium,
@@ -359,6 +373,8 @@ fun LessonScreen(
                             )
                         }
                     }
+
+                    speakNotHeard?.let { NotHeardBox(it) }
 
                     speakResult?.let { r ->
                         FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
@@ -385,8 +401,7 @@ fun LessonScreen(
                             }
                         }
                         Text(
-                            "${r.percent}%  ·  " + if (r.heard.isBlank()) "no te escuché"
-                            else "entendí: \"${r.heard}\"",
+                            "${r.percent}%  ·  entendí: \"${r.heard}\"",
                             style = MaterialTheme.typography.labelMedium,
                             color = InkSoft
                         )
