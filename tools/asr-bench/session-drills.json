@@ -1,0 +1,215 @@
+{
+  "_comentario": "Sesión de grabación para medir sobrecorrección y falsas alarmas por sonido. Se copia ENCIMA de app/src/main/assets/content/drills.json solo para la sesión y después se restaura con git. Cada frase se graba dos veces: primero bien dicha, después con el error indicado en 'tip'. 5 frases por sonido, un solo error plantado por frase.",
+  "drills": [
+    {
+      "text": "The ship is very cheap.",
+      "sound": "sh",
+      "focus": "sh (1/5) · Toma 1: dila bien. Toma 2: di CHIP en vez de ship.",
+      "tip": "Sesión de grabación para el banco de pruebas. Primero la toma buena, después la mala."
+    },
+    {
+      "text": "She sells fresh fish.",
+      "sound": "sh",
+      "focus": "sh (2/5) · Toma 1: dila bien. Toma 2: di CHEE en vez de she.",
+      "tip": "Sesión de grabación para el banco de pruebas. Primero la toma buena, después la mala."
+    },
+    {
+      "text": "Wash your shoes.",
+      "sound": "sh",
+      "focus": "sh (3/5) · Toma 1: dila bien. Toma 2: di WATCH en vez de wash.",
+      "tip": "Sesión de grabación para el banco de pruebas. Primero la toma buena, después la mala."
+    },
+    {
+      "text": "Show me the shop.",
+      "sound": "sh",
+      "focus": "sh (4/5) · Toma 1: dila bien. Toma 2: di CHOP en vez de shop.",
+      "tip": "Sesión de grabación para el banco de pruebas. Primero la toma buena, después la mala."
+    },
+    {
+      "text": "I wish I had cash.",
+      "sound": "sh",
+      "focus": "sh (5/5) · Toma 1: dila bien. Toma 2: di WITCH en vez de wish.",
+      "tip": "Sesión de grabación para el banco de pruebas. Primero la toma buena, después la mala."
+    },
+    {
+      "text": "I think this is the third one.",
+      "sound": "th",
+      "focus": "th (1/5) · Toma 1: dila bien. Toma 2: di TINK en vez de think (el resto bien).",
+      "tip": "Sesión de grabación para el banco de pruebas. Primero la toma buena, después la mala."
+    },
+    {
+      "text": "Thank you very much.",
+      "sound": "th",
+      "focus": "th (2/5) · Toma 1: dila bien. Toma 2: di TANK you.",
+      "tip": "Sesión de grabación para el banco de pruebas. Primero la toma buena, después la mala."
+    },
+    {
+      "text": "My birthday is on Thursday.",
+      "sound": "th",
+      "focus": "th (3/5) · Toma 1: dila bien. Toma 2: di TURSDAY (birthday bien).",
+      "tip": "Sesión de grabación para el banco de pruebas. Primero la toma buena, después la mala."
+    },
+    {
+      "text": "Nothing is free.",
+      "sound": "th",
+      "focus": "th (4/5) · Toma 1: dila bien. Toma 2: di NOTTING.",
+      "tip": "Sesión de grabación para el banco de pruebas. Primero la toma buena, después la mala."
+    },
+    {
+      "text": "Both teeth hurt.",
+      "sound": "th",
+      "focus": "th (5/5) · Toma 1: dila bien. Toma 2: di TEET en vez de teeth (both bien).",
+      "tip": "Sesión de grabación para el banco de pruebas. Primero la toma buena, después la mala."
+    },
+    {
+      "text": "He has a happy home.",
+      "sound": "h",
+      "focus": "h (1/5) · Toma 1: dila bien. Toma 2: di OME en vez de home (las otras h bien).",
+      "tip": "Sesión de grabación para el banco de pruebas. Primero la toma buena, después la mala."
+    },
+    {
+      "text": "How are you?",
+      "sound": "h",
+      "focus": "h (2/5) · Toma 1: dila bien. Toma 2: di OW are you (sin la h).",
+      "tip": "Sesión de grabación para el banco de pruebas. Primero la toma buena, después la mala."
+    },
+    {
+      "text": "Her hat is here.",
+      "sound": "h",
+      "focus": "h (3/5) · Toma 1: dila bien. Toma 2: di AT en vez de hat (her y here bien).",
+      "tip": "Sesión de grabación para el banco de pruebas. Primero la toma buena, después la mala."
+    },
+    {
+      "text": "I hope you are hungry.",
+      "sound": "h",
+      "focus": "h (4/5) · Toma 1: dila bien. Toma 2: di OPE en vez de hope (hungry bien).",
+      "tip": "Sesión de grabación para el banco de pruebas. Primero la toma buena, después la mala."
+    },
+    {
+      "text": "Hello, my name is Ana.",
+      "sound": "h",
+      "focus": "h (5/5) · Toma 1: dila bien. Toma 2: di ELLO (sin la h).",
+      "tip": "Sesión de grabación para el banco de pruebas. Primero la toma buena, después la mala."
+    },
+    {
+      "text": "Very good.",
+      "sound": "v",
+      "focus": "v (1/5) · Toma 1: dila bien (v con los dientes en el labio). Toma 2: di BERY good.",
+      "tip": "Sesión de grabación para el banco de pruebas. Primero la toma buena, después la mala."
+    },
+    {
+      "text": "We live in a village.",
+      "sound": "v",
+      "focus": "v (2/5) · Toma 1: dila bien. Toma 2: di BILLAGE (live bien).",
+      "tip": "Sesión de grabación para el banco de pruebas. Primero la toma buena, después la mala."
+    },
+    {
+      "text": "Give me the video.",
+      "sound": "v",
+      "focus": "v (3/5) · Toma 1: dila bien. Toma 2: di BIDEO (give bien).",
+      "tip": "Sesión de grabación para el banco de pruebas. Primero la toma buena, después la mala."
+    },
+    {
+      "text": "Seven or eleven?",
+      "sound": "v",
+      "focus": "v (4/5) · Toma 1: dila bien. Toma 2: di SEBEN (eleven bien).",
+      "tip": "Sesión de grabación para el banco de pruebas. Primero la toma buena, después la mala."
+    },
+    {
+      "text": "I never drive at night.",
+      "sound": "v",
+      "focus": "v (5/5) · Toma 1: dila bien. Toma 2: di DRIBE (never bien).",
+      "tip": "Sesión de grabación para el banco de pruebas. Primero la toma buena, después la mala."
+    },
+    {
+      "text": "I walked to school.",
+      "sound": "ed",
+      "focus": "-ed (1/5) · Toma 1: dila bien (wokt). Toma 2: di WOK-ED, con la ed como sílaba aparte.",
+      "tip": "Sesión de grabación para el banco de pruebas. Primero la toma buena, después la mala."
+    },
+    {
+      "text": "She worked all day.",
+      "sound": "ed",
+      "focus": "-ed (2/5) · Toma 1: dila bien (workt). Toma 2: di WORK-ED.",
+      "tip": "Sesión de grabación para el banco de pruebas. Primero la toma buena, después la mala."
+    },
+    {
+      "text": "We watched a movie.",
+      "sound": "ed",
+      "focus": "-ed (3/5) · Toma 1: dila bien (wacht). Toma 2: di WATCH-ED.",
+      "tip": "Sesión de grabación para el banco de pruebas. Primero la toma buena, después la mala."
+    },
+    {
+      "text": "He stopped the car.",
+      "sound": "ed",
+      "focus": "-ed (4/5) · Toma 1: dila bien (stopt). Toma 2: di STOP-ED.",
+      "tip": "Sesión de grabación para el banco de pruebas. Primero la toma buena, después la mala."
+    },
+    {
+      "text": "They laughed a lot.",
+      "sound": "ed",
+      "focus": "-ed (5/5) · Toma 1: dila bien (laft). Toma 2: di LAUGH-ED.",
+      "tip": "Sesión de grabación para el banco de pruebas. Primero la toma buena, después la mala."
+    },
+    {
+      "text": "I speak English.",
+      "sound": "es",
+      "focus": "s inicial (1/5) · Toma 1: dila bien (speak, con la s directa). Toma 2: di ESPEAK.",
+      "tip": "Sesión de grabación para el banco de pruebas. Primero la toma buena, después la mala."
+    },
+    {
+      "text": "The school is big.",
+      "sound": "es",
+      "focus": "s inicial (2/5) · Toma 1: dila bien. Toma 2: di ESCHOOL.",
+      "tip": "Sesión de grabación para el banco de pruebas. Primero la toma buena, después la mala."
+    },
+    {
+      "text": "My brother is a student.",
+      "sound": "es",
+      "focus": "s inicial (3/5) · Toma 1: dila bien. Toma 2: di ESTUDENT.",
+      "tip": "Sesión de grabación para el banco de pruebas. Primero la toma buena, después la mala."
+    },
+    {
+      "text": "Stop right now.",
+      "sound": "es",
+      "focus": "s inicial (4/5) · Toma 1: dila bien. Toma 2: di ESTOP.",
+      "tip": "Sesión de grabación para el banco de pruebas. Primero la toma buena, después la mala."
+    },
+    {
+      "text": "It's a special day.",
+      "sound": "es",
+      "focus": "s inicial (5/5) · Toma 1: dila bien. Toma 2: di ESPECIAL.",
+      "tip": "Sesión de grabación para el banco de pruebas. Primero la toma buena, después la mala."
+    },
+    {
+      "text": "I want some milk.",
+      "sound": "final",
+      "focus": "consonante final (1/5) · Toma 1: dila bien (con la k de milk). Toma 2: di MIL, sin la k.",
+      "tip": "Sesión de grabación para el banco de pruebas. Primero la toma buena, después la mala."
+    },
+    {
+      "text": "The desk is old.",
+      "sound": "final",
+      "focus": "consonante final (2/5) · Toma 1: dila bien. Toma 2: di DES, sin la k.",
+      "tip": "Sesión de grabación para el banco de pruebas. Primero la toma buena, después la mala."
+    },
+    {
+      "text": "He asked for help.",
+      "sound": "final",
+      "focus": "consonante final (3/5) · Toma 1: dila bien. Toma 2: di HEL, sin la p (asked bien).",
+      "tip": "Sesión de grabación para el banco de pruebas. Primero la toma buena, después la mala."
+    },
+    {
+      "text": "It's cold outside.",
+      "sound": "final",
+      "focus": "consonante final (4/5) · Toma 1: dila bien. Toma 2: di COL, sin la d.",
+      "tip": "Sesión de grabación para el banco de pruebas. Primero la toma buena, después la mala."
+    },
+    {
+      "text": "Just a second.",
+      "sound": "final",
+      "focus": "consonante final (5/5) · Toma 1: dila bien. Toma 2: di JUS, sin la t.",
+      "tip": "Sesión de grabación para el banco de pruebas. Primero la toma buena, después la mala."
+    }
+  ]
+}

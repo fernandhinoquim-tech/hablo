@@ -203,6 +203,41 @@ falsos en 26 grabaciones; silencio → TOO_SHORT.
   "tird"; su 2/11 general venía de `espeak` y `-ed`, donde no opinaría. El
   0.6B es el único que oye la diferencia t/th.
 
+  **Camino alternativo medido el 2026-09-12: puntuar FONEMAS (GOP) en vez de
+  palabras.** Idea de Fero: la sobrecorrección existe porque el reconocedor
+  tiene modelo de lenguaje; un reconocedor de fonemas no sabe qué es una
+  palabra. Se exportaron a ONNX (`tools/asr-bench/phoneme_export.py`) y se
+  corrieron sobre el mismo corpus (`phoneme_eval.py`):
+  `mrrubino/wav2vec2-large-xlsr-53-l2-arctic-phoneme` (Apache 2.0, entrenado
+  con transcripciones de lo que DE VERDAD pronuncian hablantes no nativos,
+  incluidos hispanohablantes; 40 símbolos IPA) y
+  `vitouphy/wav2vec2-xls-r-300m-timit-phoneme` (nativos, TIMIT). Ambos 315 M
+  parámetros: 1,26 GB fp32 → **317 MB int8**; **~0,5 s por frase en el PC**
+  (el S25 corre Moonshine a 1,2–1,8× el PC → ~0,6–1 s; falta medirlo en el
+  teléfono). Resultado L2-ARCTIC: atrapa **9 de 11** errores plantados en el
+  fonema exacto (θ→t **4 de 4**, ʃ→tʃ 2/2, -ed 3/3 como palabra; falla
+  "Espanish" como todos), es decir la honestidad del jurado con **un solo
+  modelo para todos los sonidos**. El costo: marca algún fonema en **66 de 88
+  palabras bien dichas** (v→b, ɪ→i, ð→d, -d y -z finales caídos, h de home):
+  casi todo es acento real que Moonshine tapa, pero en crudo sería una
+  pantalla llena de rojo. Hallazgo clave: **los dos modelos de fonemas oyen
+  una vocal antes de "speak" en la toma que Fero dio por buena** (ɛspik /
+  ɪspik) — el enfoque por palabras estaba ocultando el error insignia.
+  Expected phones: CMUdict (`pip install cmudict`) + tabla ARPAbet→IPA en
+  `phoneme_eval.py`; para la app se precalcularían al construir y se
+  guardarían en el JSON. Para correrlo en el teléfono hace falta la API Java
+  de ONNX Runtime (`com.microsoft.onnxruntime:onnxruntime-android:1.28.0`,
+  45 MB, dependencia normal de Gradle; el AAR de sherpa-onnx trae el motor
+  1.28.2 sin API Java; misma versión de API, se comparte el `.so` con
+  `pickFirst`). **Diseño propuesto si se adopta:** porcentaje por palabras
+  (Moonshine) para "¿se entendió?" + veredicto por fonema **solo sobre el
+  sonido que entrena el drill** (la etiqueta `sound`), con puntaje por
+  posterior (GOP) para que lo dudoso salga DUDOSO y no MAL. Eso haría
+  innecesario el jurado. Decisión pendiente de la sesión de ~35 errores
+  plantados (`tools/asr-bench/session-drills.json`, cada frase dos tomas:
+  buena y mala): mide sobrecorrección y **falsas alarmas sobre el fonema
+  objetivo** en tomas buenas, que es lo que decide si es usable.
+
   **Memoria (pensando en la Fase 3):** Parakeet 0.6B int8 ocupa ~660 MB en
   disco y ~1 GB cargado; Qwen3 8B Q4 ~5 GB; el teléfono tiene 12 GB. No
   pueden convivir cargados. Regla: el juez se carga al entrar a un drill de su
