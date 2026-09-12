@@ -45,18 +45,28 @@ SPEECH_RATIO = 3.0
 SPEECH_MIN_RMS = 0.004
 PAD_BEFORE = 0.25
 PAD_AFTER = 0.35
-MIN_SPEECH_SECONDS = 0.20
-MIN_PEAK = 0.010
-MIN_SPEECH_RMS = 0.003
-MIN_SNR_DB = 8.0
-TARGET_PEAK = 0.9
+MIN_SPEECH_SECONDS = 0.15
+MIN_PEAK = 0.005
+MIN_SPEECH_RMS = 0.0015
+MIN_SNR_DB = 5.0
+MIN_SILENT_FRACTION = 0.25     # sin este mínimo de tramas calladas, el SNR no es fiable
+PEAK_PERCENTILE = 0.99         # el "pico" ignora un golpe suelto
+TARGET_PEAK = 0.5              # a 0.9 se recortarían picos de vocales; ver Audio.kt
 MAX_GAIN = 30.0
+
+
+def percentile_abs(x: np.ndarray, p: float) -> float:
+    if x.size == 0:
+        return 0.0
+    a = np.sort(np.abs(x))
+    return float(a[min(x.size - 1, int(x.size * p))])
 
 
 def prep(raw: np.ndarray):
     """Devuelve (audio_preparado, medidas, motivo_de_rechazo_o_None)."""
     x = raw.astype(np.float32) - np.float32(raw.mean())
-    peak = float(np.abs(x).max()) if x.size else 0.0
+    peak = percentile_abs(x, PEAK_PERCENTILE)
+    max_abs = float(np.abs(x).max()) if x.size else 0.0
     frames = max(1, x.size // FRAME)
     rms = np.zeros(frames, dtype=np.float32)
     for f in range(frames):
@@ -68,25 +78,27 @@ def prep(raw: np.ndarray):
     voiced = np.where(rms > threshold)[0]
     total = x.size / SAMPLE_RATE
     if voiced.size == 0:
-        m = dict(dur=total, voz=0.0, pico=peak, rmsVoz=0.0, piso=noise, snr=0.0, ganancia=1.0)
+        m = dict(dur=total, voz=0.0, pico=peak, max=max_abs, rmsVoz=0.0, piso=noise,
+                 snr=0.0, fiable=False, ganancia=1.0)
         return x, m, "TOO_SHORT"
     first, last = int(voiced[0]), int(voiced[-1])
     speech_rms = math.sqrt(float((rms[voiced] ** 2).sum()) / voiced.size)
     snr = 20.0 * math.log10(speech_rms / noise)
+    snr_reliable = (frames - voiced.size) / frames >= MIN_SILENT_FRACTION
     a = max(0, first * FRAME - int(PAD_BEFORE * SAMPLE_RATE))
     b = min(x.size, (last + 1) * FRAME + int(PAD_AFTER * SAMPLE_RATE))
     cut = x[a:b]
-    cut_peak = float(np.abs(cut).max()) if cut.size else 0.0
+    cut_peak = percentile_abs(cut, PEAK_PERCENTILE)
     gain = min(MAX_GAIN, TARGET_PEAK / cut_peak) if cut_peak > 0 else 1.0
     prepared = np.clip(cut * np.float32(gain), -1.0, 1.0).astype(np.float32)
-    m = dict(dur=total, voz=voiced.size * FRAME / SAMPLE_RATE, pico=peak,
-             rmsVoz=speech_rms, piso=noise, snr=snr, ganancia=gain)
+    m = dict(dur=total, voz=voiced.size * FRAME / SAMPLE_RATE, pico=peak, max=max_abs,
+             rmsVoz=speech_rms, piso=noise, snr=snr, fiable=snr_reliable, ganancia=gain)
     reason = None
     if m["voz"] < MIN_SPEECH_SECONDS:
         reason = "TOO_SHORT"
     elif peak < MIN_PEAK or speech_rms < MIN_SPEECH_RMS:
         reason = "TOO_QUIET"
-    elif snr < MIN_SNR_DB:
+    elif snr_reliable and snr < MIN_SNR_DB:
         reason = "TOO_NOISY"
     return prepared, m, reason
 
@@ -286,9 +298,9 @@ def main():
         print(f"{os.path.basename(wav)}   frase: {info['frase']}")
         print(f"  app dijo:   {info['resultado']}")
         print(f"  medidas app: {info['medidas']}")
-        print("  medidas PC:  dur=%.2fs voz=%.2fs pico=%.3f rmsVoz=%.4f piso=%.4f snr=%.1fdB ganancia=x%.1f  -> %s"
-              % (m["dur"], m["voz"], m["pico"], m["rmsVoz"], m["piso"], m["snr"], m["ganancia"],
-                 reason or "OK"))
+        print("  medidas PC:  dur=%.2fs voz=%.2fs pico=%.3f max=%.3f rmsVoz=%.4f piso=%.4f snr=%.1fdB%s ganancia=x%.1f  -> %s"
+              % (m["dur"], m["voz"], m["pico"], m["max"], m["rmsVoz"], m["piso"], m["snr"],
+                 "" if m["fiable"] else "(no fiable)", m["ganancia"], reason or "OK"))
         for name, rec in models:
             text, secs = transcribe(rec, prepared)
             pct, scored = score(info["frase"], text)
