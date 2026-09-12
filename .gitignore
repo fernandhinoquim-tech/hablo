@@ -20,3 +20,4 @@ app/src/main/assets/asr/
 # Grabaciones de la voz de Fero y modelos de prueba para el banco de pruebas
 tools/asr-bench/corpus/
 tools/asr-bench/models/
+__pycache__/
