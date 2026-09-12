@@ -18,6 +18,15 @@ B2 leyendo, escribiendo, escuchando y hablando.
   verificar dos veces antes que hacerle probar tres.
 - **Sé honesto sobre los límites.** Prefiere una advertencia incómoda a una
   promesa que no se cumple. Si algo no va a funcionar bien, dilo antes.
+- **No trabajar a ciegas.** Regla de Fero (2026-09-12), textual: *"de aquí en
+  adelante no vamos a trabajar a ciegas, consultas información en la web, lees
+  cosas similares y las aplicamos con tus correcciones, tenemos que agilizar
+  esto"*. En la práctica: antes de elegir un modelo, un umbral o una forma de
+  corregir, buscar si alguien ya lo midió, y citar la cifra en el commit.
+  Media hora de lectura ahorra una tarde de banco de pruebas. El ejemplo que
+  originó la regla: el detector de fonemas marcaba 66 de 88 palabras bien
+  dichas y se iba a diagnosticar acento; un paper (abajo, "GOP") mostró que
+  es la línea base conocida de GOP sin umbral (precisión 0,165).
 - Compila con `gradlew` e instala en su **Samsung Galaxy S25 Ultra** por USB
   (`adb`). El emulador tiene el disco lleno y no sirve para el micrófono.
 
@@ -203,8 +212,56 @@ falsos en 26 grabaciones; silencio → TOO_SHORT.
   "tird"; su 2/11 general venía de `espeak` y `-ed`, donde no opinaría. El
   0.6B es el único que oye la diferencia t/th.
 
-  **Camino alternativo medido el 2026-09-12: puntuar FONEMAS (GOP) en vez de
-  palabras.** Idea de Fero: la sobrecorrección existe porque el reconocedor
+  **VEREDICTO de Fero (2026-09-12): gana GOP con un solo modelo. El jurado
+  por sonido y Parakeet 110m quedan descartados; no hay que medirlos más.**
+  Razones: misma detección (9 de 11) con un modelo en vez de dos; memoria
+  (Moonshine 140 MB + GOP 317 MB ≈ 460 MB, contra ≥ 740 MB del jurado, y en
+  la Fase 3 van 5 GB de Qwen encima); sin tabla de ruteo sonido→modelo que
+  se desincronice con 160 lecciones. Solo se vuelve al jurado si GOP no pasa
+  la barra del 66 % (abajo).
+
+  **Dos cifras publicadas que gobiernan el diseño:**
+  - Interspeech 2025, *Enhancing GOP in CTC-Based Mispronunciation Detection
+    with Phonological Knowledge* (arXiv 2506.02080): la línea base de GOP con
+    alineación forzada sobre MPC da **recall 0,929 y precisión 0,165**: el
+    83,5 % de lo que marca como mal dicho estaba bien ("overclassification of
+    correct pronunciations as mispronunciations"). El 66/88 medido aquí es
+    ese comportamiento, no el acento de Fero. Un `argmax` + alineación no es
+    GOP: GOP es una **puntuación de confianza contra un umbral**, y el umbral
+    se elige "selecting the GOP percentile that maximized MCC".
+  - Silpachai et al. 2024, *Language Learning & Technology*, "Corrective
+    feedback accuracy and pronunciation improvement: feedback that is 'good
+    enough'": con corrección exacta al **66 %** los alumnos mejoraron igual que
+    con 100 %; al 33 % mejoraron significativamente menos. **Barra dura: de
+    cada tres correcciones mostradas, al menos dos verdaderas. Por debajo del
+    33 % es peor que no corregir.** La salida cruda del detector (~14 %) está
+    por debajo de eso: no se muestra nunca en crudo.
+
+  **Plan de trabajo GOP, en orden:** (1) puntuación por fonema = número, no
+  binario: log-posterior del fonema esperado en sus tramas alineadas por
+  forzado CTC, menos el máximo sobre fonemas (documentar la variante);
+  (2) umbral = percentil de GOP que maximiza MCC sobre el corpus, reportando
+  percentil, MCC y matriz de confusión; (3) el veredicto se limita al sonido
+  del ejercicio (etiqueta `sound`): en un drill de `th` solo θ/ð pueden
+  marcarse, lo demás se calcula y no se muestra; (4) reportar la precisión de
+  lo que se MOSTRARÍA: "de N correcciones mostradas, M eran errores reales →
+  X % (barra ≥ 66 %)"; (5) calibrar con una partición y verificar con otra
+  para no sobreajustar el umbral a 26 grabaciones. Partición: calibración =
+  corpus del 12-09 (26) + frases 1–3 de cada sonido de la sesión; verificación
+  = frases 4–5 de cada sonido (14 frases × 2 tomas, 14 errores plantados que
+  el umbral nunca vio).
+
+  **Cómo se le muestra a Fero (decidido):** un solo error por sesión, el más
+  consistente ("hoy la th te falló en 4 de 5 frases"), no una pantalla roja.
+  Dos umbrales: banda DUDOSO amarilla cerca del límite; castigar de más, pero
+  en amarillo. Mapa personal acumulado por fonema entre sesiones ("estos son
+  los 5 sonidos que fallas de verdad, medido en 300 frases"). La vocal antes
+  de "speak" queda como **hipótesis**, no hecho: si sobrevive al umbral
+  calibrado es acento real y entra al mapa; si no, era la falsa alarma que
+  predice el paper.
+
+  Medición previa (2026-09-12) que motivó todo esto: puntuar FONEMAS (GOP) en
+  vez de palabras. Idea de Fero: la sobrecorrección existe porque el reconocedor
   tiene modelo de lenguaje; un reconocedor de fonemas no sabe qué es una
   palabra. Se exportaron a ONNX (`tools/asr-bench/phoneme_export.py`) y se
   corrieron sobre el mismo corpus (`phoneme_eval.py`):
@@ -223,20 +280,17 @@ falsos en 26 grabaciones; silencio → TOO_SHORT.
   pantalla llena de rojo. Hallazgo clave: **los dos modelos de fonemas oyen
   una vocal antes de "speak" en la toma que Fero dio por buena** (ɛspik /
   ɪspik) — el enfoque por palabras estaba ocultando el error insignia.
-  Expected phones: CMUdict (`pip install cmudict`) + tabla ARPAbet→IPA en
-  `phoneme_eval.py`; para la app se precalcularían al construir y se
-  guardarían en el JSON. Para correrlo en el teléfono hace falta la API Java
+  (Nota: ese 66 de 88 era el binario del argmax, no GOP; ver el veredicto
+  arriba.) Expected phones: CMUdict (`pip install cmudict`) + tabla
+  ARPAbet→IPA en `phoneme_eval.py`; para la app se precalcularían al
+  construir y se guardarían en el JSON. Para correrlo en el teléfono hace falta la API Java
   de ONNX Runtime (`com.microsoft.onnxruntime:onnxruntime-android:1.28.0`,
   45 MB, dependencia normal de Gradle; el AAR de sherpa-onnx trae el motor
   1.28.2 sin API Java; misma versión de API, se comparte el `.so` con
-  `pickFirst`). **Diseño propuesto si se adopta:** porcentaje por palabras
-  (Moonshine) para "¿se entendió?" + veredicto por fonema **solo sobre el
-  sonido que entrena el drill** (la etiqueta `sound`), con puntaje por
-  posterior (GOP) para que lo dudoso salga DUDOSO y no MAL. Eso haría
-  innecesario el jurado. Decisión pendiente de la sesión de ~35 errores
-  plantados (`tools/asr-bench/session-drills.json`, cada frase dos tomas:
-  buena y mala): mide sobrecorrección y **falsas alarmas sobre el fonema
-  objetivo** en tomas buenas, que es lo que decide si es usable.
+  `pickFirst`). Diseño: porcentaje por palabras (Moonshine) para "¿se entendió?" +
+  veredicto GOP solo sobre el sonido del drill. La sesión de 35 frases
+  (`tools/asr-bench/session-drills.json`, dos tomas por frase) calibra y
+  verifica el umbral.
 
   **Memoria (pensando en la Fase 3):** Parakeet 0.6B int8 ocupa ~660 MB en
   disco y ~1 GB cargado; Qwen3 8B Q4 ~5 GB; el teléfono tiene 12 GB. No
