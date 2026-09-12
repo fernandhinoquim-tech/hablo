@@ -39,9 +39,12 @@ jobs:
         id: apk
         run: |
           mkdir -p out
-          cp app/build/outputs/apk/debug/app-debug.apk "out/Hablo-v0.1-build${{ github.run_number }}.apk"
-          SIZE=$(du -h "out/Hablo-v0.1-build${{ github.run_number }}.apk" | cut -f1)
+          # La versión se lee del build.gradle.kts para no tenerla repetida aquí.
+          VERSION=$(sed -n 's/.*versionName = "\([^"]*\)".*/\1/p' app/build.gradle.kts)
+          cp app/build/outputs/apk/debug/app-debug.apk "out/Hablo-v${VERSION}-build${{ github.run_number }}.apk"
+          SIZE=$(du -h "out/Hablo-v${VERSION}-build${{ github.run_number }}.apk" | cut -f1)
           echo "size=$SIZE" >> "$GITHUB_OUTPUT"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "El APK pesa $SIZE"
           ls -lh out/
 
@@ -56,7 +59,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: build-${{ github.run_number }}
-          name: Hablo v0.1 · build ${{ github.run_number }}
+          name: Hablo v${{ steps.apk.outputs.version }} · build ${{ github.run_number }}
           body: |
             APK de prueba de Hablo.
 

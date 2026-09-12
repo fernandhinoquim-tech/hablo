@@ -34,10 +34,37 @@ B2 leyendo, escribiendo, escuchando y hablando.
    - Gradle 8.11.1 · AGP 8.7.3 · Kotlin 2.0.21 · Compose BOM 2024.10.01
    - compileSdk 35 · minSdk 26 · JDK 17 (el JDK del sistema es 25 y Gradle
      8.11.1 no lo soporta; Android Studio usa el 21)
+   - **Ya pasó (2026-09-11):** el asistente quedó aceptado y cambió AGP a
+     8.13.2, Gradle a 8.13 y agregó el plugin foojay en `settings.gradle.kts`.
+     Se revirtió con `git checkout`. Si `git status` muestra cambios en
+     `build.gradle.kts`, `settings.gradle.kts` o `gradle-wrapper.properties`
+     que nadie pidió, es eso: revertirlos, no comitearlos.
 3. **Todo modelo o dato va empaquetado dentro del APK**, o al lado de la app en
    el teléfono. Nada se descarga en tiempo de ejecución.
 4. **El contenido vive en JSON**, no en Kotlin. Ver
    `app/src/main/assets/content/curriculum.json`.
+
+---
+
+## Repositorio y herramientas
+
+- **Repo:** https://github.com/fernandhinoquim-tech/hablo (privado, rama `main`).
+  Existe también un `fchavesv/hablo` vacío que **no se usa**: el navegador y
+  GitHub Desktop de Fero están con la cuenta fernandhinoquim-tech.
+- **Un commit y push cada vez que algo quede funcionando.** Cada push a `main`
+  dispara GitHub Actions (`.github/workflows/build.yml`), que compila el APK y
+  lo publica como Release `build-N`; si aparece el tag, la compilación pasó.
+- **git no está en el PATH.** Se usa el de GitHub Desktop:
+  `C:\Users\ferna\AppData\Local\GitHubDesktop\app-3.6.4\resources\app\git\cmd\git.exe`
+  (si GitHub Desktop se actualiza, cambia `app-3.6.4`). Para push hace falta,
+  en la misma shell: agregar `...\git\cmd` y `...\git\mingw64\bin` al PATH,
+  `GCM_INTERACTIVE=always` y `GIT_TERMINAL_PROMPT=0`. El token ya está guardado
+  en el Administrador de credenciales de Windows; no vuelve a pedir login.
+- **Compilar:** `$env:JAVA_HOME="C:\Users\ferna\.jdks\jbr-21.0.11"; .\gradlew assembleDebug`
+  (el `java` del PATH es 1.8 y el jbr de Android Studio es 25: ninguno sirve).
+- **Instalar:** `C:\Users\ferna\AppData\Local\Android\Sdk\platform-tools\adb.exe install -r app\build\outputs\apk\debug\app-debug.apk`.
+  Teléfono: serial `R5GL11XGA6F`. Logs del reconocedor: `adb logcat -s HabloListener`.
+- **Banco de pruebas de voz:** `tools/asr-bench/` (ver abajo, "Corpus de voz").
 
 ---
 
@@ -46,7 +73,7 @@ B2 leyendo, escribiendo, escuchando y hablando.
 | Pieza | Qué es | Por qué esa |
 |---|---|---|
 | Voces | **Piper** vía sherpa-onnx (Apache 2.0) | Cuatro voces femeninas reales dentro del APK. Antes se usaba el TTS de Android y obligaba al usuario a descargar paquetes de voz por fuera. |
-| Voz → texto | **Moonshine tiny int8** vía sherpa-onnx | Diseñado para frases cortas. Verificado: **no** "corrige" la pronunciación del usuario, así que el puntaje es honesto. |
+| Voz → texto | **Moonshine tiny int8** vía sherpa-onnx | Diseñado para frases cortas. Verificado: **no** "corrige" la pronunciación del usuario, así que el puntaje es honesto. Antes de reconocer, `Audio.kt` (`AudioPrep`) quita el DC, recorta el silencio, normaliza el pico y rechaza audio mudo/corto/ruidoso con "No te entendí, repite" en vez de dar 0 %. **Regla que no se negocia:** el reconocedor nunca ve la frase esperada (nada de hotwords ni sesgos); el objetivo solo se usa para puntuar después. |
 | IA (Fase 3) | **llama.cpp + Qwen 3 8B Q4** | Qwen es Apache 2.0 sin letra chica. Se descartó Gemma 2/3 porque sus "Gemma Terms of Use" permiten a Google cambiar las condiciones después. |
 | Interfaz | Kotlin + Jetpack Compose | Menos capas intermedias con tres motores nativos encima. |
 | Progreso | SharedPreferences | Suficiente; nada sale del teléfono. |
@@ -57,6 +84,16 @@ vez y los meten en `assets/`. No están en el repositorio.
 
 El modelo de 8B (~5 GB) **no cabe dentro de un APK**: tiene que vivir como
 archivo aparte en el teléfono, copiado una vez por USB.
+
+**Corpus de voz y banco de pruebas.** La app guarda cada grabación cruda como
+WAV + un `.txt` (frase, resultado, medidas) en
+`Android/data/com.ferolabs.hablo/files/grabaciones` (últimas 40). Se bajan con
+`adb pull` a `tools/asr-bench/corpus/` (ignorado en git: es la voz de Fero) y
+`python tools/asr-bench/bench.py` corre varios modelos sobre ellas en el PC,
+replicando `AudioPrep` en Python. Así se comparan modelos y se afinan umbrales
+sin recompilar ni gastar ciclos de Fero. `fetch_models.ps1` baja los candidatos
+a `tools/asr-bench/models/` (también ignorado). Si se cambia `AudioPrep.analyze`,
+cambiar `prep()` en `bench.py` igual.
 
 ---
 
@@ -74,6 +111,12 @@ archivo aparte en el teléfono, copiado una vez por USB.
 - `sumOf { }` con literales enteros es ambiguo entre `Int` y `Long`. Usar un
   bucle explícito.
 - Un `object` de Kotlin no puede tener `companion object`.
+- `AudioEffect.setEnabled()` devuelve `int`: Kotlin no lo expone como
+  propiedad; hay que llamar `setEnabled(true)`, no `enabled = true`.
+- `"%.2f".format(x)` usa la configuración regional (coma decimal en español).
+  Para logs que se leen desde el PC, pasar `Locale.US`.
+- Fero graba con el teléfono desconectado del cable: `adb` se queda colgado
+  si el teléfono no está. Revisar `adb devices` antes de cualquier `adb shell`.
 - El `when` sobre `Exercise` tiene **cinco** subclases. Fácil olvidar una.
 
 ---
@@ -86,6 +129,18 @@ Hecho: cuatro profesoras con voces propias · reconocimiento de voz · puntaje d
 pronunciación palabra por palabra (verificado honesto) · 8 lecciones A1 en 3
 unidades con desbloqueo progresivo · ejercicios de hablar dentro de las
 lecciones · racha y puntos.
+
+**En curso (hacia 0.7): arreglar el reconocimiento de voz.** El síntoma:
+a veces confunde palabras fáciles. Ya está en el teléfono el "build 1": pipeline
+de audio nuevo (`Audio.kt`), puertas de calidad y corpus de diagnóstico. Falta:
+(1) que Fero grabe el guion (8 frases bien, 4 mal a propósito, 1 en silencio,
+1 de lejos) para verificar en el teléfono y afinar umbrales; (2) correr
+`bench.py` con ese corpus y elegir entre Moonshine tiny (actual), Moonshine
+base int8, Moonshine v2 base, Whisper base.en y Parakeet 110m — gana el que
+siga delatando los errores a propósito y acierte más las frases bien dichas;
+(3) cambiar `asrPackage` en `app/build.gradle.kts` y la config en `Listener.kt`
+(subir `assetsVersion`); Moonshine v2 exigiría subir el AAR a sherpa-onnx
+1.13.8 porque el 1.13.2 no tiene `mergedDecoder`. Entonces sube a 0.7.
 
 Siguiente:
 
