@@ -178,6 +178,11 @@ def main():
     planted = bench.read_planted(args.planted)
     errors = dict(ERROR_PHONES)
     errors.update(load_session_errors(args.session_errors))
+    # tomas buenas de la sesión: cualquier otra grabación de la sesión es una
+    # repetición descartada y no se usa
+    good_path = os.path.join(HERE, "session-good.txt")
+    session_good = set(open(good_path, encoding="utf-8").read().split()) if os.path.exists(good_path) else set()
+    session_prefix = "20260912-15"
     sound_of = dict(bench.SOUND_OF_PHRASE)
     sound_of.update(EXTRA_SOUNDS)
 
@@ -187,6 +192,8 @@ def main():
     for wav in sorted(glob.glob(os.path.join(args.corpus, "*.wav"))):
         base = os.path.basename(wav)
         if base in SKIP:
+            continue
+        if base.startswith(session_prefix) and base not in planted and base not in session_good:
             continue
         raw = bench.read_wav(wav)
         info_w = bench.read_sidecar(wav)
@@ -237,6 +244,12 @@ def main():
 
     print("=" * 100)
     print(f"latencia media PC: {ms_total / max(1, n):.0f} ms por grabación; {len(rows)} fonemas objetivo evaluados")
+    # volcado para análisis por sonido (rows.csv junto al corpus)
+    with open(os.path.join(args.corpus, "rows.csv"), "w", encoding="utf-8") as f:
+        f.write("part,wav,sound,word,phone,kind,label,fa,af,ins,afx\n")
+        for r in rows:
+            snd = sound_of.get(bench.normalize(bench.read_sidecar(os.path.join(args.corpus, r[1]))["frase"]), "?")
+            f.write(",".join(str(x) for x in (r[0], r[1], snd, r[2], r[3], r[4], r[5], f"{r[6]:.3f}", f"{r[7]:.3f}", f"{r[8]:.3f}", f"{r[9]:.3f}")) + "\n")
 
     def report(title, sel, score_fn):
         cal = [r for r in rows if r[0] == "calib" and sel(r)]

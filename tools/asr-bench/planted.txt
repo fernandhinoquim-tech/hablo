@@ -8,3 +8,41 @@
 20260912-010514.wav think third     # dijo "tink", "tird"
 20260912-010535.wav walked talked asked   # dijo "wok-ed", "tok-ed", "ask-ed"
 20260912-010554.wav speak spanish   # dijo "espeak", "Espanish"
+
+
+# --- sesión 20260912-15 (toma mala de cada frase) ---
+20260912-153934.wav ship   # sesión: The ship is very cheap.
+20260912-154047.wav she   # sesión: She sells fresh fish.
+20260912-154117.wav wash   # sesión: Wash your shoes.
+20260912-154139.wav shop   # sesión: Show me the shop.
+20260912-154205.wav wish   # sesión: I wish I had cash.
+20260912-154232.wav think   # sesión: I think this is the third one.
+20260912-154259.wav thank   # sesión: Thank you very much.
+20260912-154332.wav thursday   # sesión: My birthday is on Thursday.
+20260912-154412.wav nothing   # sesión: Nothing is free.
+20260912-154434.wav teeth   # sesión: Both teeth hurt.
+20260912-154536.wav home   # sesión: He has a happy home.
+20260912-154555.wav how   # sesión: How are you?
+20260912-155120.wav hat   # sesión: Her hat is here.
+20260912-155142.wav hope   # sesión: I hope you are hungry.
+20260912-155200.wav hello   # sesión: Hello, my name is Ana.
+20260912-155224.wav very   # sesión: Very good.
+20260912-155243.wav village   # sesión: We live in a village.
+20260912-155300.wav video   # sesión: Give me the video.
+20260912-155316.wav seven   # sesión: Seven or eleven?
+20260912-155332.wav drive   # sesión: I never drive at night.
+20260912-155358.wav walked   # sesión: I walked to school.
+20260912-155511.wav worked   # sesión: She worked all day.
+20260912-155527.wav watched   # sesión: We watched a movie.
+20260912-155550.wav stopped   # sesión: He stopped the car.
+20260912-155612.wav laughed   # sesión: They laughed a lot.
+20260912-155630.wav speak   # sesión: I speak English.
+20260912-155657.wav school   # sesión: The school is big.
+20260912-155713.wav student   # sesión: My brother is a student.
+20260912-155733.wav stop   # sesión: Stop right now.
+20260912-155750.wav special   # sesión: It's a special day.
+20260912-155814.wav milk   # sesión: I want some milk.
+20260912-155829.wav desk   # sesión: The desk is old.
+20260912-155846.wav help   # sesión: He asked for help.
+20260912-155900.wav cold   # sesión: It's cold outside.
+20260912-155914.wav just   # sesión: Just a second.

@@ -6,6 +6,8 @@ toma BUENA y la última la toma MALA (si Fero repitió, valen las dos últimas).
 Escribe:
   planted.txt          (se agregan las tomas malas con su palabra)
   session-errors.json  {"<wav>|<palabra>": [tipo, idx]}  para phoneme_eval.py
+  session-good.txt     (las tomas buenas; las repeticiones descartadas no
+                        cuentan como buenas ni como malas)
 y muestra la lista de grabaciones de VERIFICACIÓN (frases 4 y 5 de cada
 sonido), que se pasan a phoneme_eval.py --verify.
 
@@ -111,6 +113,9 @@ def main():
     old.update(errors)
     with open(path, "w", encoding="utf-8") as f:
         json.dump(old, f, ensure_ascii=False, indent=1)
+
+    with open(os.path.join(HERE, "session-good.txt"), "a", encoding="utf-8") as f:
+        f.write("\n".join(good) + "\n")
 
     print(f"frases completas: {len(planted_lines)} de {len(order)}")
     if missing:

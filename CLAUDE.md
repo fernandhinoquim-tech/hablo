@@ -292,6 +292,52 @@ falsos en 26 grabaciones; silencio → TOO_SHORT.
   (`tools/asr-bench/session-drills.json`, dos tomas por frase) calibra y
   verifica el umbral.
 
+  **Resultados de la sesión de 35 frases (2026-09-12, 70 tomas + repeticiones;
+  etiquetas con `session_labels.py`; partición: calibración = corpus 12-09 +
+  frases 1-3, verificación = frases 4-5):**
+  - **Palabras (Moonshine base):** de 35 tomas buenas, solo **15** salieron
+    con todas las palabras bien (43 %); de 35 errores plantados, **14** los
+    "arregló" (40 %: 4 de 5 h caídas, 3 de 5 e+s, tank→thank, Tursday→
+    Thursday, bideo→video…). Es el "siento que no me entiende" de Fero,
+    medido: falla en las dos direcciones. No se muestra más "Entendí: …"
+    como veredicto de pronunciación.
+  - **GOP (L2-ARCTIC, umbral por MCC), precisión de lo que se mostraría,
+    por sonido.** "Estricta" = toda marca en toma buena es falsa alarma;
+    "ajustada" = la marca cuenta como real si ≥ 2 de 3 reconocedores de
+    palabras independientes (Moonshine, Parakeet 0.6B, Whisper small)
+    tampoco entendieron esa palabra (`label_check.py`; proxy de error real,
+    porque las tomas "buenas" de un alumno traen errores de verdad y sin
+    fonetista no hay verdad-terreno mejor):
+
+    | sonido | puntaje | mostradas | estricta | ajustada | recall |
+    |---|---|---|---|---|---|
+    | sh | INS | 7 | 86 % | 100 % | 86 % |
+    | h | AF | 6 | 83 % | 83 % | 100 % |
+    | ed | AF | 21 | 38 % | 95 % | 100 % |
+    | th | AF | 24 | 38 % | 62 % | 100 % |
+    | final | AF | 19 | 26 % | 58 % | 100 % |
+    | es | INS | 7 | 57 % | 57 % | 57 % |
+    | v | AF | 13 | 23 % | 46 % | 60 % |
+
+    Global (todas las sustituciones juntas, GOP-AF): calibración 28 %,
+    verificación 44 % con recall 80 %. GOP-FA (la línea base del paper): 24 %.
+    Conclusión: **sh y h pasan la barra del 66 % ya; ed pasa si se aceptan las
+    etiquetas ajustadas; th, final, v y es quedan entre el 33 % y el 66 %**:
+    ni "peor que nada" ni "suficiente". Ahí va la banda amarilla: rojo solo
+    con el umbral de alta precisión (percentil que da ≥ 66 % estricta en
+    calibración), amarillo con el umbral MCC. Los sonidos que ni así llegan
+    se muestran solo en amarillo hasta tener mejor verdad-terreno.
+  - Hipótesis de la vocal antes de s: en 3 de 11 tomas buenas el INS supera
+    el umbral (3,5 / 4,6 / 5,5). Sigue viva; los reconocedores de palabras no
+    sirven de proxy aquí porque son ciegos a ese error.
+  - Cómo lo hacen las apps comerciales (Azure Pronunciation Assessment,
+    Speechace, ELSA): **evaluación "scripted"**: conocen la frase, alinean a
+    la fuerza sus fonemas con el audio y puntúan la confianza de cada uno
+    (GOP); agregan a palabra y frase; **nunca muestran "lo que oyeron" como
+    texto libre**. Usar la frase esperada para ALINEAR fonemas no es sesgar el
+    reconocedor: el puntaje puede ser bajo. La regla "el reconocedor de
+    palabras nunca ve la frase esperada" sigue igual para Moonshine.
+
   **Memoria (pensando en la Fase 3):** Parakeet 0.6B int8 ocupa ~660 MB en
   disco y ~1 GB cargado; Qwen3 8B Q4 ~5 GB; el teléfono tiene 12 GB. No
   pueden convivir cargados. Regla: el juez se carga al entrar a un drill de su
