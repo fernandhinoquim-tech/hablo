@@ -17,6 +17,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -89,6 +92,7 @@ fun ConversationScreen(
     // El motor puede cambiar a mitad de charla si el de internet se cae.
     var actual by remember { mutableStateOf(if (engine.usable()) engine else local) }
     var engineNote by remember { mutableStateOf<String?>(null) }
+    var showHelp by remember { mutableStateOf(false) }
     val listState = rememberLazyListState()
 
     val opening = scenario.opening.replace("{teacher}", teacher.name)
@@ -256,6 +260,77 @@ fun ConversationScreen(
                 color = Color(0xFF8A5A00),
                 modifier = Modifier.padding(horizontal = 20.dp, vertical = 4.dp)
             )
+        }
+
+        // --- Ayudas de gramática ------------------------------------------
+        // Fero (2026-09-13): "ayudas para saber qué y cómo preguntar, solo
+        // gramática porque se supone que el vocabulario lo debo llevar". Por eso
+        // son patrones con hueco y la explicación dice CUÁNDO se usa, no qué
+        // significa: las palabras las pone él.
+        val ayudas = remember(scenario.id) { scenario.help + Course.helpCommon }
+        if (ayudas.isNotEmpty()) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(Cream)
+                    .padding(horizontal = 16.dp)
+            ) {
+                Text(
+                    if (showHelp) "Ocultar ayudas ▾" else "💡 ¿Cómo lo digo?",
+                    style = MaterialTheme.typography.labelLarge,
+                    color = accent,
+                    modifier = Modifier
+                        .clickable { showHelp = !showHelp }
+                        .padding(vertical = 8.dp)
+                )
+                if (showHelp) {
+                    Column(
+                        verticalArrangement = Arrangement.spacedBy(2.dp),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .heightIn(max = 240.dp)
+                            .verticalScroll(rememberScrollState())
+                            .background(Color.White, RoundedCornerShape(12.dp))
+                            .border(1.dp, Line, RoundedCornerShape(12.dp))
+                            .padding(10.dp)
+                    ) {
+                        ayudas.forEachIndexed { i, a ->
+                            if (i == scenario.help.size && scenario.help.isNotEmpty()) {
+                                Text(
+                                    "Para cualquier momento",
+                                    style = MaterialTheme.typography.labelMedium,
+                                    color = InkSoft,
+                                    modifier = Modifier.padding(top = 10.dp, bottom = 4.dp)
+                                )
+                            }
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                modifier = Modifier.fillMaxWidth()
+                            ) {
+                                Column(
+                                    modifier = Modifier
+                                        .weight(1f)
+                                        // Tocar la frase la escribe en la caja: se completa el
+                                        // hueco y se envía, en vez de escribirla entera.
+                                        .clickable { draft = a.en.replace("___", "").replace("  ", " ").trim() }
+                                        .padding(vertical = 6.dp)
+                                ) {
+                                    Text(a.en, style = MaterialTheme.typography.bodyLarge, color = Ink)
+                                    Text(a.es, style = MaterialTheme.typography.labelMedium, color = InkSoft)
+                                }
+                                Text(
+                                    "🔊",
+                                    style = MaterialTheme.typography.titleMedium,
+                                    modifier = Modifier
+                                        .clickable { say(a.en.replace("___", "something"), 1f) }
+                                        .padding(8.dp)
+                                )
+                            }
+                        }
+                    }
+                    Spacer(Modifier.height(8.dp))
+                }
+            }
         }
 
         // --- Entrada: micrófono o teclado ----------------------------------

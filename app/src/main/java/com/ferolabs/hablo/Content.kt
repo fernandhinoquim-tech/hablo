@@ -84,6 +84,14 @@ sealed class Exercise {
  * Escenario de conversación con la IA (Fase 3): una situación cerrada donde
  * la profesora hace un papel y el alumno tiene metas. Vive en scenarios.json.
  */
+/**
+ * Una ayuda de gramática para la conversación: el patrón en inglés y, en
+ * español, CUÁNDO se usa y qué trampa tiene. Nunca vocabulario: Fero decidió
+ * el 2026-09-13 que las palabras las pone él ("se supone que el vocabulario
+ * lo debo llevar"); la app pone la estructura.
+ */
+data class Ayuda(val en: String, val es: String)
+
 data class Scenario(
     val id: String,
     val title: String,
@@ -96,6 +104,8 @@ data class Scenario(
     val opening: String,
     /** Frases que el alumno debería intentar usar. */
     val targets: List<String>,
+    /** Cómo preguntar y cómo responder en esta situación. */
+    val help: List<Ayuda>,
     /** Trampas típicas del hispanohablante en esta situación, en español. */
     val watch: List<String>
 )
@@ -157,7 +167,9 @@ object Course {
         try {
             levels = parseLevels(JSONObject(readAsset(context, "content/curriculum.json")).getJSONArray("levels"))
             drills = parseDrills(JSONObject(readAsset(context, "content/drills.json")).getJSONArray("drills"))
-            scenarios = parseScenarios(JSONObject(readAsset(context, "content/scenarios.json")).getJSONArray("scenarios"))
+            val scenariosJson = JSONObject(readAsset(context, "content/scenarios.json"))
+            helpCommon = parseAyudas(scenariosJson.optJSONArray("helpCommon"), "scenarios.json, helpCommon")
+            scenarios = parseScenarios(scenariosJson.getJSONArray("scenarios"))
             loaded = true
             Log.i(TAG, "Curso cargado: ${levels.size} niveles, ${allLessons().size} lecciones, ${drills.size} drills, ${scenarios.size} escenarios")
         } catch (e: Throwable) {
@@ -209,9 +221,23 @@ object Course {
             Scenario(
                 id = req("id"), title = req("title"), emoji = o.optString("emoji", "💬"),
                 level = req("level"), goalEs = req("goalEs"), role = req("role"),
-                opening = req("opening"), targets = targets, watch = watch
+                opening = req("opening"), targets = targets,
+                help = parseAyudas(o.optJSONArray("help"), where), watch = watch
             )
         }
+
+    private fun parseAyudas(arr: JSONArray?, where: String): List<Ayuda> {
+        if (arr == null) return emptyList()
+        return (0 until arr.length()).map { i ->
+            val o = arr.getJSONObject(i)
+            val en = o.optString("en")
+            val es = o.optString("es")
+            if (en.isBlank() || es.isBlank()) {
+                throw IllegalArgumentException("$where: ayuda ${i + 1} sin \"en\" o sin \"es\"")
+            }
+            Ayuda(en, es)
+        }
+    }
 
     private fun parseDrills(arr: JSONArray): List<Drill> =
         (0 until arr.length()).map { i ->
@@ -319,6 +345,10 @@ object Course {
     fun lessonById(id: String): Lesson? = allLessons().firstOrNull { it.id == id }
 
     fun scenarioById(id: String): Scenario? = scenarios.firstOrNull { it.id == id }
+
+    /** Ayudas que sirven en cualquier charla (pedir que repita, preguntar una palabra…). */
+    var helpCommon: List<Ayuda> = emptyList()
+        private set
 
     fun unitOfLesson(lessonId: String): CourseUnit? =
         allUnits().firstOrNull { u -> u.lessons.any { it.id == lessonId } }

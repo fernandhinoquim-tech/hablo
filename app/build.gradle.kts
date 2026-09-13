@@ -310,6 +310,14 @@ val checkContent = tasks.register("checkContent") {
                 if ((o[key] as? List<*>).isNullOrEmpty()) problems.add("$where: \"$key\" vacio")
             }
             if (o["id"] != null && !scenarioIds.add(o["id"].toString())) problems.add("$where: id repetido")
+            // Las ayudas de gramatica son opcionales, pero si estan tienen que
+            // traer el patron en ingles y la explicacion en espanol.
+            (o["help"] as? List<*>)?.forEachIndexed { j, h ->
+                val a = h as? Map<*, *>
+                val en = a?.get("en")?.toString().orEmpty()
+                val es = a?.get("es")?.toString().orEmpty()
+                if (en.isBlank() || es.isBlank()) problems.add("$where: ayuda ${j + 1} sin \"en\" o sin \"es\"")
+            }
         }
 
         // Toda palabra que se pide decir en voz alta tiene que estar en el
