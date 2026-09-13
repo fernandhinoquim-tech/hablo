@@ -47,6 +47,7 @@ fun LessonScreen(
     lesson: Lesson,
     teacher: Teacher,
     listener: Listener,
+    progreso: Progreso,
     speaking: Boolean,
     showFace: Boolean,
     say: (String, Float) -> Unit,
@@ -183,6 +184,15 @@ fun LessonScreen(
         is Exercise.TypeWhatYouHear ->
             normalizeAnswer(typed) == normalizeAnswer(ex.audio)
         is Exercise.SpeakIt -> (speakResult?.percent ?: 0) >= 60
+    }
+
+    /** Lo que respondió el alumno, para el cuaderno de errores. */
+    fun givenText(): String = when (ex) {
+        is Exercise.ListenChoose -> ex.options.getOrElse(chosen) { "" }
+        is Exercise.TranslateChoose -> ex.options.getOrElse(chosen) { "" }
+        is Exercise.BuildSentence -> built.joinToString(" ") { bank[it] }
+        is Exercise.TypeWhatYouHear -> typed
+        is Exercise.SpeakIt -> speakResult?.heard ?: ""
     }
 
     fun correctText(): String = when (ex) {
@@ -471,6 +481,7 @@ fun LessonScreen(
                     } else {
                         // Vuelve una sola vez, al final de la lección.
                         if (repeated.add(index)) queue.add(index)
+                        progreso.anotarFallo(lesson.id, tipoDe(ex), givenText(), correctText())
                         say(correctText(), 0.85f)
                     }
                     checked = true
@@ -664,4 +675,13 @@ private fun ResultsScreen(
         Spacer(Modifier.height(24.dp))
         BigButton("Volver al inicio", container = accent) { onDone() }
     }
+}
+
+/** Nombre corto del tipo de ejercicio, para el informe. */
+private fun tipoDe(ex: Exercise): String = when (ex) {
+    is Exercise.ListenChoose -> "escuchar"
+    is Exercise.TranslateChoose -> "traducir"
+    is Exercise.BuildSentence -> "armar"
+    is Exercise.TypeWhatYouHear -> "escribir"
+    is Exercise.SpeakIt -> "hablar"
 }

@@ -39,6 +39,7 @@ fun SettingsScreen(
     llm: Llm,
     cloud: CloudLlm,
     claude: ClaudeLlm,
+    progreso: Progreso,
     engineId: String,
     onEngineChange: (String) -> Unit,
     onChangeTeacher: () -> Unit,
@@ -52,6 +53,7 @@ fun SettingsScreen(
     var confirmReset by remember { mutableStateOf(false) }
     var showFaces by remember { mutableStateOf(store.showFaces) }
     var engine by remember { mutableStateOf(engineId) }
+    val context = androidx.compose.ui.platform.LocalContext.current
     var cloudTest by remember { mutableStateOf("") }
     val appVersion = remember {
         try {
@@ -137,6 +139,54 @@ fun SettingsScreen(
                 )
                 Spacer(Modifier.height(4.dp))
                 BigButton("Probar la voz", container = accent) { onTestVoice(speed) }
+            }
+
+            // --- El informe para practicar fuera de la app ------------------------
+            // Idea de Fero (2026-09-13): que la app le entregue un archivo con lo
+            // que hace bien y mal para subirlo a su proyecto de Claude y practicar
+            // allí. Se genera entero en el teléfono: no cuesta nada ni usa la red.
+            var informeUri by remember { mutableStateOf<android.net.Uri?>(null) }
+            var informeAviso by remember { mutableStateOf("") }
+            SettingsCard {
+                Text("Tu informe para practicar", style = MaterialTheme.typography.labelMedium, color = InkSoft)
+                Spacer(Modifier.height(6.dp))
+                Text(
+                    "Un archivo con tus sonidos flojos, las frases que fallaste, lo que la " +
+                        "profesora te corrigió y qué te conviene practicar. Se guarda en " +
+                        "Descargas y lo puedes subir a tu chat de Claude para seguir ahí.",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = Ink
+                )
+                Spacer(Modifier.height(12.dp))
+                BigButton("Descargar mi informe", container = accent) {
+                    val texto = progreso.informe(store, teacher)
+                    val uri = progreso.guardarEnDescargas(texto)
+                    informeUri = uri
+                    informeAviso = if (uri != null) {
+                        "Guardado en Descargas. Búscalo como hablo-…md"
+                    } else {
+                        "No se pudo guardar el archivo."
+                    }
+                }
+                if (informeAviso.isNotBlank()) {
+                    Spacer(Modifier.height(8.dp))
+                    Text(informeAviso, style = MaterialTheme.typography.labelMedium, color = InkSoft)
+                }
+                informeUri?.let { uri ->
+                    Spacer(Modifier.height(10.dp))
+                    BigButton("Enviarlo a Claude", container = InkSoft) {
+                        progreso.compartir(context, uri)
+                    }
+                }
+                if (!progreso.hayAlgo()) {
+                    Spacer(Modifier.height(8.dp))
+                    Text(
+                        "Todavía no hay errores anotados: practica pronunciación o haz una " +
+                            "lección y el informe se llena solo.",
+                        style = MaterialTheme.typography.labelMedium,
+                        color = InkSoft
+                    )
+                }
             }
 
             // --- Quién responde en la conversación --------------------------------
@@ -297,6 +347,7 @@ fun SettingsScreen(
                     Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                         Box(modifier = Modifier.weight(1f)) {
                             BigButton("Sí, borrar", container = BadRed) {
+                                progreso.borrarTodo()
                                 onReset()
                                 confirmReset = false
                             }

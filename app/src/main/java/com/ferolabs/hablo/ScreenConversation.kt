@@ -76,8 +76,8 @@ fun ConversationScreen(
     say: (String, Float) -> Unit,
     /** Lee sin interrumpir lo que ya suena: para ir leyendo frase por frase. */
     sayQueued: (String) -> Unit,
-    /** Lee la correccion EN ESPANOL, con la voz espanola. */
-    saySpanish: (String) -> Unit,
+    /** Cuaderno de errores: guarda lo que la profesora corrige. */
+    progreso: Progreso,
     onBack: () -> Unit
 ) {
     val accent = Color(teacher.color)
@@ -146,9 +146,9 @@ fun ConversationScreen(
             history.add("assistant" to partial)
             val rest = if (spokenUpTo < english.length) english.substring(spokenUpTo).trim() else ""
             if (rest.isNotBlank()) sayQueued(rest)
-            // La correccion se OYE, no solo se lee: con la voz espanola, detras
-            // de la respuesta en ingles. Fero: "en ocasiones hay cosas que no entiendo".
-            if (!correction.isNullOrBlank()) saySpanish(correction)
+            // La corrección se LEE, no se oye: Fero probó la voz española y la
+            // rechazó ("no me gusta el cambio de voz"). Se anota para el informe.
+            if (!correction.isNullOrBlank()) progreso.anotarCorreccion(correction)
         }
         val motor = actual
         motor.chat(

@@ -73,7 +73,6 @@ class Speaker(context: Context) {
     // --- Internos ------------------------------------------------------------
 
     private var piper: OfflineTts? = null
-    private var piperEs: OfflineTts? = null
     private var piperBroken = false
     private var track: AudioTrack? = null
 
@@ -210,70 +209,6 @@ class Speaker(context: Context) {
         }
     }
 
-    /**
-     * Voz española, aparte de la de la profesora: explica y corrige en español.
-     * Es un segundo modelo cargado a la vez (~21 MB) en vez de intercambiarlo,
-     * porque en una conversación se alterna inglés y español frase a frase y
-     * recargar el modelo cada vez costaría casi un segundo por cambio.
-     */
-    private fun ensureSpanishLoaded(): Boolean {
-        if (piperBroken) return false
-        piperEs?.let { return true }
-        return try {
-            val root = voicesRoot()
-            val model = File(root, "$SPANISH_VOICE/model.onnx")
-            if (!model.isFile) {
-                Log.w(TAG, "no hay voz en español instalada")
-                return false
-            }
-            piperEs = OfflineTts(
-                config = OfflineTtsConfig(
-                    model = OfflineTtsModelConfig(
-                        vits = OfflineTtsVitsModelConfig(
-                            model = model.absolutePath,
-                            lexicon = "",
-                            tokens = File(root, "$SPANISH_VOICE/tokens.txt").absolutePath,
-                            dataDir = File(root, "espeak-ng-data").absolutePath
-                        ),
-                        numThreads = 2,
-                        debug = false,
-                        provider = "cpu"
-                    )
-                )
-            )
-            Log.i(TAG, "Voz en español cargada")
-            true
-        } catch (e: Throwable) {
-            Log.e(TAG, "No cargó la voz en español", e)
-            false
-        }
-    }
-
-    /**
-     * Lee una explicación o corrección EN ESPAÑOL, sin interrumpir lo que ya
-     * suena (va a la misma cola que [speakQueued]). Si no hay voz española
-     * instalada no dice nada: el texto ya está en pantalla.
-     */
-    fun speakSpanishQueued(text: String, rateScale: Float = 1.0f) {
-        if (text.isBlank()) return
-        val id = requestId.get()
-        worker.execute {
-            if (id != requestId.get()) return@execute
-            if (!ensureSpanishLoaded()) return@execute
-            val engine = piperEs ?: return@execute
-            busy = true
-            try {
-                val audio = engine.generate(text = text, sid = 0, speed = (0.95f * rateScale).coerceIn(0.5f, 1.6f))
-                if (id != requestId.get()) return@execute
-                play(audio.samples, engine.sampleRate(), id)
-            } catch (e: Throwable) {
-                Log.e(TAG, "Falló el audio en español", e)
-            } finally {
-                busy = false
-            }
-        }
-    }
-
     private fun releasePiper() {
         try {
             piper?.release()
@@ -282,12 +217,6 @@ class Speaker(context: Context) {
         }
         piper = null
         loadedVoice = null
-        try {
-            piperEs?.release()
-        } catch (e: Throwable) {
-            // sin acción
-        }
-        piperEs = null
     }
 
     // ------------------------------------------------------------------------
@@ -515,8 +444,5 @@ class Speaker(context: Context) {
 
     companion object {
         private const val TAG = "HabloSpeaker"
-
-        /** Carpeta de la voz española dentro de assets/tts (ver voicePackages en build.gradle.kts). */
-        const val SPANISH_VOICE = "es"
     }
 }

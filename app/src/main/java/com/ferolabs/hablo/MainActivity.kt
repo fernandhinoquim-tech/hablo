@@ -37,10 +37,11 @@ class MainActivity : ComponentActivity() {
         val cloud = CloudLlm(this)
         val claude = ClaudeLlm(this)
         val store = Store(this)
+        val prog = Progreso(this)
         Course.load(this)
 
         setContent {
-            HabloApp(speaker = sp, listener = li, llm = ai, cloud = cloud, claude = claude, store = store)
+            HabloApp(speaker = sp, listener = li, llm = ai, cloud = cloud, claude = claude, store = store, progreso = prog)
         }
     }
 
@@ -71,7 +72,15 @@ private sealed class Route {
 }
 
 @Composable
-fun HabloApp(speaker: Speaker, listener: Listener, llm: Llm, cloud: CloudLlm, claude: ClaudeLlm, store: Store) {
+fun HabloApp(
+    speaker: Speaker,
+    listener: Listener,
+    llm: Llm,
+    cloud: CloudLlm,
+    claude: ClaudeLlm,
+    store: Store,
+    progreso: Progreso
+) {
 
     var teacherId by remember { mutableStateOf(store.teacherId) }
     var speechScale by remember { mutableStateOf(store.speechScale) }
@@ -164,6 +173,7 @@ fun HabloApp(speaker: Speaker, listener: Listener, llm: Llm, cloud: CloudLlm, cl
                                 lesson = lesson,
                                 teacher = teacher,
                                 listener = listener,
+                                progreso = progreso,
                                 speaking = speaker.busy,
                                 showFace = store.showFaces,
                                 say = say,
@@ -217,7 +227,7 @@ fun HabloApp(speaker: Speaker, listener: Listener, llm: Llm, cloud: CloudLlm, cl
                                 showFace = store.showFaces,
                                 say = say,
                                 sayQueued = { text -> speaker.speakQueued(text, teacher, speechScale) },
-                                saySpanish = { text -> speaker.speakSpanishQueued(text, speechScale) },
+                                progreso = progreso,
                                 onBack = {
                                     speaker.stop()
                                     listener.stopRecording()
@@ -238,6 +248,7 @@ fun HabloApp(speaker: Speaker, listener: Listener, llm: Llm, cloud: CloudLlm, cl
                             speaker = speaker,
                             listener = listener,
                             store = store,
+                            progreso = progreso,
                             say = say,
                             onBack = {
                                 speaker.stop()
@@ -259,6 +270,7 @@ fun HabloApp(speaker: Speaker, listener: Listener, llm: Llm, cloud: CloudLlm, cl
                             llm = llm,
                             cloud = cloud,
                             claude = claude,
+                            progreso = progreso,
                             engineId = engineId,
                             onEngineChange = { id ->
                                 engineId = id

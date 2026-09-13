@@ -46,6 +46,7 @@ fun PronunciationScreen(
     speaker: Speaker,
     listener: Listener,
     store: Store,
+    progreso: Progreso,
     say: (String, Float) -> Unit,
     onBack: () -> Unit
 ) {
@@ -124,6 +125,7 @@ fun PronunciationScreen(
                     result = scorePronunciation(target, r.text)
                     report = r.report
                     notHeard = null
+                    progreso.anotarIntento(target, sound, r.report)
                     r.report?.let { rep ->
                         store.recordSound(rep.sound, rep.worst)
                         sessionTries[rep.sound] = (sessionTries[rep.sound] ?: 0) + 1
