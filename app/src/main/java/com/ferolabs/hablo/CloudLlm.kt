@@ -176,8 +176,11 @@ class CloudLlm(context: Context) {
             if (code != 200) {
                 val err = try { conn.errorStream?.bufferedReader()?.readText() ?: "" } catch (e: Throwable) { "" }
                 conn.disconnect()
-                // Si el modelo no acepta thinkingConfig, se reintenta sin él.
-                if (attempt == 0 && code == 400 && err.contains("thinking", ignoreCase = true)) {
+                // Un 400 casi siempre es que ese modelo no acepta thinkingConfig
+                // (gemini-3.6-flash lo rechazó con "invalid argument" a secas, sin
+                // nombrarlo): se reintenta una vez sin él antes de darlo por perdido.
+                if (attempt == 0 && code == 400) {
+                    Log.w(TAG, "$model: HTTP 400 (${shortError(err)}); reintento sin thinkingConfig")
                     payload = JSONObject(body.toString()).also {
                         it.getJSONObject("generationConfig").remove("thinkingConfig")
                     }
@@ -188,6 +191,8 @@ class CloudLlm(context: Context) {
                     429 -> Failure("cuota agotada ($msg)", retryable = true)
                     404 -> Failure("modelo no disponible ($msg)", retryable = true)
                     503 -> Failure("Google saturado ($msg)", retryable = true)
+                    // el 400 que sobrevive al reintento es de ese modelo: el siguiente puede servir
+                    400 -> Failure("petición rechazada ($msg)", retryable = true)
                     else -> Failure("HTTP $code: $msg", retryable = false)
                 }
             }
