@@ -46,6 +46,7 @@ fun SettingsScreen(
     val accent = Color(teacher.color)
     var speed by remember { mutableStateOf(store.speechScale) }
     var confirmReset by remember { mutableStateOf(false) }
+    var showFaces by remember { mutableStateOf(store.showFaces) }
 
     Column(modifier = Modifier.fillMaxSize()) {
         TopBar("Ajustes", onBack = onBack)
@@ -62,7 +63,7 @@ fun SettingsScreen(
                 Text("Tu profesora", style = MaterialTheme.typography.labelMedium, color = InkSoft)
                 Spacer(Modifier.height(8.dp))
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    TeacherAvatar(teacher = teacher, speaking = speaker.busy, size = 56.dp)
+                    TeacherAvatar(teacher = teacher, speaking = speaker.busy, size = 56.dp, showFace = showFaces)
                     Spacer(Modifier.size(12.dp))
                     Column(modifier = Modifier.weight(1f)) {
                         Text(teacher.name, style = MaterialTheme.typography.titleMedium)
@@ -75,6 +76,27 @@ fun SettingsScreen(
                 }
                 Spacer(Modifier.height(12.dp))
                 BigButton("Cambiar de profesora", container = accent) { onChangeTeacher() }
+                Spacer(Modifier.height(10.dp))
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable {
+                            showFaces = !showFaces
+                            store.showFaces = showFaces
+                        }
+                ) {
+                    Text(
+                        "Mostrar la cara de la profesora",
+                        style = MaterialTheme.typography.bodyMedium,
+                        modifier = Modifier.weight(1f)
+                    )
+                    Text(
+                        if (showFaces) "Sí" else "Solo la voz",
+                        style = MaterialTheme.typography.labelLarge,
+                        color = accent
+                    )
+                }
             }
 
             SettingsCard {

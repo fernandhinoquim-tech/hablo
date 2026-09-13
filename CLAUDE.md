@@ -397,9 +397,16 @@ Siguiente:
   cerrados, ciclo completo de voz. El avatar ya está: Fero generó los cuatro
   retratos (originales en `avatares/`, 2 por profesora: boca cerrada y
   abierta, mismo encuadre); recortados a 768² en
-  `res/drawable-nodpi/avatar_<id>[_habla].webp`; `TeacherAvatar` alterna los
-  dos cuadros mientras `speaker.busy` (truco de dos cuadros). Se ve en el
-  inicio, al elegir profesora, en Ajustes y en el resultado de la lección.
+  `res/drawable-nodpi/avatar_<id>[_habla].webp`; `TeacherAvatar` muestra el
+  retrato **quieto** y, mientras `speaker.busy`, un halo del color de la
+  profesora que late (dos ondas). **El truco de dos cuadros (abrir/cerrar la
+  boca) se probó y Fero lo rechazó: "se ve muy falso"; no volver a intentar
+  bocas animadas con fotos.** Los cuadros `*_habla` quedan sin usar. Ajustes
+  tiene "Mostrar la cara de la profesora" (`Store.showFaces`): apagado, un
+  círculo con la inicial y el mismo halo. Se ve en el inicio, al elegir
+  profesora, en Ajustes y en el resultado de la lección. Avatares hablantes
+  neuronales (LivePortrait, SadTalker) no corren en tiempo real en el
+  teléfono; descartados para lo que genera la IA.
 - **Fase 4 — Escritura y corrección**, con motor de reglas de errores de
   hispanohablante (no dejarlo todo a la IA: las reglas no alucinan).
 - **Fase 5 — Contenido A1→B2.** 160 lecciones, 4.200 palabras, 50 escenarios,

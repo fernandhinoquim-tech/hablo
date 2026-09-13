@@ -47,6 +47,7 @@ fun LessonScreen(
     teacher: Teacher,
     listener: Listener,
     speaking: Boolean,
+    showFace: Boolean,
     say: (String, Float) -> Unit,
     onFinish: (score: Int, correct: Int) -> Unit,
     onExit: () -> Unit
@@ -117,6 +118,7 @@ fun LessonScreen(
         ResultsScreen(
             teacher = teacher,
             speaking = speaking,
+            showFace = showFace,
             score = score,
             correct = correctCount,
             total = total,
@@ -594,6 +596,7 @@ private fun FeedbackBox(
 private fun ResultsScreen(
     teacher: Teacher,
     speaking: Boolean,
+    showFace: Boolean,
     score: Int,
     correct: Int,
     total: Int,
@@ -616,7 +619,7 @@ private fun ResultsScreen(
             .fillMaxSize()
             .padding(28.dp)
     ) {
-        TeacherAvatar(teacher = teacher, speaking = speaking, size = 120.dp)
+        TeacherAvatar(teacher = teacher, speaking = speaking, size = 120.dp, showFace = showFace)
         Spacer(Modifier.height(12.dp))
         Text(
             "$score%",

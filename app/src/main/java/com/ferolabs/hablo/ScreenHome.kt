@@ -100,7 +100,8 @@ fun HomeScreen(
                     teacher = teacher,
                     speaking = speaker.busy,
                     size = 64.dp,
-                    modifier = Modifier.clickable { onGreeting() }
+                    modifier = Modifier.clickable { onGreeting() },
+                    showFace = store.showFaces
                 )
                 Spacer(Modifier.size(12.dp))
                 Column(modifier = Modifier.weight(1f)) {

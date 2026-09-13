@@ -149,6 +149,7 @@ fun HabloApp(speaker: Speaker, listener: Listener, llm: Llm, store: Store) {
                                 teacher = teacher,
                                 listener = listener,
                                 speaking = speaker.busy,
+                                showFace = store.showFaces,
                                 say = say,
                                 onFinish = { score, correct ->
                                     store.recordLesson(lesson.id, score, correct * 10)

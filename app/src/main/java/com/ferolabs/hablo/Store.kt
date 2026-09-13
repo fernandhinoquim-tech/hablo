@@ -13,6 +13,11 @@ class Store(context: Context) {
         get() = prefs.getString("teacher_id", null)
         set(value) = prefs.edit().putString("teacher_id", value).apply()
 
+    /** Mostrar el retrato de la profesora (si no, solo la voz y el halo). */
+    var showFaces: Boolean
+        get() = prefs.getBoolean("show_faces", true)
+        set(value) = prefs.edit().putBoolean("show_faces", value).apply()
+
     /** Multiplicador global de velocidad de la voz (0.6 = lento, 1.4 = rápido). */
     var speechScale: Float
         get() = prefs.getFloat("speech_scale", 1.0f)

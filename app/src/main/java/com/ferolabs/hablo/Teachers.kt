@@ -28,20 +28,13 @@ data class Teacher(
     val color: Long,
     val softColor: Long
 ) {
-    /** Retrato (boca cerrada) y cuadro "hablando" (boca abierta), en drawable-nodpi. */
+    /** Retrato en drawable-nodpi. (Los cuadros *_habla se probaron para mover la boca y se veían falsos: no se usan.) */
     val avatar: Int
         get() = when (id) {
             "emma" -> R.drawable.avatar_emma
             "sophie" -> R.drawable.avatar_sophie
             "mia" -> R.drawable.avatar_mia
             else -> R.drawable.avatar_grace
-        }
-    val avatarTalking: Int
-        get() = when (id) {
-            "emma" -> R.drawable.avatar_emma_habla
-            "sophie" -> R.drawable.avatar_sophie_habla
-            "mia" -> R.drawable.avatar_mia_habla
-            else -> R.drawable.avatar_grace_habla
         }
 }
 

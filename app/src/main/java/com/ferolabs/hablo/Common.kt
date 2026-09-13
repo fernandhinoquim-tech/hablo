@@ -17,14 +17,15 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -35,7 +36,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import kotlinx.coroutines.delay
 
 /** Botón principal, grande y fácil de tocar. */
 @Composable
@@ -247,34 +247,69 @@ fun SelfLabelRow(answered: Boolean, onLabel: (String) -> Unit) {
 }
 
 /**
- * Retrato de la profesora. Mientras [speaking] es true alterna el cuadro de
- * boca cerrada y el de boca abierta (dos imágenes generadas con el mismo
- * encuadre) y se mueve apenas: el truco de dos cuadros, barato y creíble.
+ * Retrato de la profesora, quieto. Mientras [speaking] es true, un halo de su
+ * color late alrededor, como en los asistentes de voz: dice "está hablando"
+ * sin fingir una boca (el truco de dos cuadros se probó y se veía falso).
+ * Con [showFace] en false no hay foto: un círculo con la inicial y el mismo halo.
  */
 @Composable
-fun TeacherAvatar(teacher: Teacher, speaking: Boolean, size: Dp, modifier: Modifier = Modifier) {
-    var mouthOpen by remember { mutableStateOf(false) }
-    LaunchedEffect(speaking) {
-        if (!speaking) {
-            mouthOpen = false
-            return@LaunchedEffect
+fun TeacherAvatar(
+    teacher: Teacher,
+    speaking: Boolean,
+    size: Dp,
+    modifier: Modifier = Modifier,
+    showFace: Boolean = true
+) {
+    val accent = Color(teacher.color)
+    val pulse = rememberInfiniteTransition(label = "halo")
+    val t by pulse.animateFloat(
+        initialValue = 0f, targetValue = 1f,
+        animationSpec = infiniteRepeatable(tween(1100, easing = LinearEasing), RepeatMode.Restart),
+        label = "ring"
+    )
+    Box(contentAlignment = Alignment.Center, modifier = modifier.size(size)) {
+        if (speaking) {
+            // dos ondas desfasadas que se expanden y se apagan
+            for (phase in 0..1) {
+                val p = (t + phase * 0.5f) % 1f
+                Box(
+                    modifier = Modifier
+                        .size(size)
+                        .graphicsLayer {
+                            scaleX = 1f + 0.32f * p
+                            scaleY = 1f + 0.32f * p
+                            alpha = (1f - p) * 0.55f
+                        }
+                        .border(3.dp, accent, CircleShape)
+                )
+            }
         }
-        while (true) {
-            delay(if (mouthOpen) 110L else (90L + (30..160).random()))
-            mouthOpen = !mouthOpen
+        if (showFace) {
+            Image(
+                painter = painterResource(teacher.avatar),
+                contentDescription = teacher.name,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .size(size)
+                    .clip(CircleShape)
+                    .border(2.dp, accent.copy(alpha = if (speaking) 0.9f else 0.45f), CircleShape)
+            )
+        } else {
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier
+                    .size(size)
+                    .background(Color(teacher.softColor), CircleShape)
+                    .border(2.dp, accent.copy(alpha = if (speaking) 0.9f else 0.45f), CircleShape)
+            ) {
+                Text(
+                    teacher.name.take(1),
+                    style = MaterialTheme.typography.headlineMedium,
+                    color = accent
+                )
+            }
         }
     }
-    val scale by animateFloatAsState(if (speaking && mouthOpen) 1.03f else 1f, label = "avatar")
-    Image(
-        painter = painterResource(if (mouthOpen) teacher.avatarTalking else teacher.avatar),
-        contentDescription = teacher.name,
-        contentScale = ContentScale.Crop,
-        modifier = modifier
-            .size(size)
-            .graphicsLayer { scaleX = scale; scaleY = scale }
-            .clip(CircleShape)
-            .border(2.dp, Color(teacher.color).copy(alpha = 0.5f), CircleShape)
-    )
 }
 
 /** Etiqueta pequeña tipo píldora. */
