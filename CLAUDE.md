@@ -394,9 +394,12 @@ falsos en 26 grabaciones; silencio → TOO_SHORT.
 Siguiente:
 
 - **Fase 3 — Conversación con IA.** llama.cpp + Qwen3 8B, ~50 escenarios
-  cerrados, ciclo completo de voz. Incluye el avatar animado de la profesora:
-  Fero va a generar cuatro retratos con una herramienta de imágenes y hay que
-  integrarlos.
+  cerrados, ciclo completo de voz. El avatar ya está: Fero generó los cuatro
+  retratos (originales en `avatares/`, 2 por profesora: boca cerrada y
+  abierta, mismo encuadre); recortados a 768² en
+  `res/drawable-nodpi/avatar_<id>[_habla].webp`; `TeacherAvatar` alterna los
+  dos cuadros mientras `speaker.busy` (truco de dos cuadros). Se ve en el
+  inicio, al elegir profesora, en Ajustes y en el resultado de la lección.
 - **Fase 4 — Escritura y corrección**, con motor de reglas de errores de
   hispanohablante (no dejarlo todo a la IA: las reglas no alucinan).
 - **Fase 5 — Contenido A1→B2.** 160 lecciones, 4.200 palabras, 50 escenarios,

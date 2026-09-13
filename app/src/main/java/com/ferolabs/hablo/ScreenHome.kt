@@ -96,15 +96,12 @@ fun HomeScreen(
 
         item {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Box(
-                    contentAlignment = Alignment.Center,
-                    modifier = Modifier
-                        .size(48.dp)
-                        .background(Color(teacher.softColor), CircleShape)
-                        .clickable { onGreeting() }
-                ) {
-                    Text(teacher.emoji, style = MaterialTheme.typography.titleLarge)
-                }
+                TeacherAvatar(
+                    teacher = teacher,
+                    speaking = speaker.busy,
+                    size = 64.dp,
+                    modifier = Modifier.clickable { onGreeting() }
+                )
                 Spacer(Modifier.size(12.dp))
                 Column(modifier = Modifier.weight(1f)) {
                     Text("Tu profesora", style = MaterialTheme.typography.labelMedium, color = InkSoft)

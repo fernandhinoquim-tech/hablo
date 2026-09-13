@@ -17,12 +17,25 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.foundation.Image
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.delay
 
 /** Botón principal, grande y fácil de tocar. */
 @Composable
@@ -231,6 +244,37 @@ fun SelfLabelRow(answered: Boolean, onLabel: (String) -> Unit) {
             }
         }
     }
+}
+
+/**
+ * Retrato de la profesora. Mientras [speaking] es true alterna el cuadro de
+ * boca cerrada y el de boca abierta (dos imágenes generadas con el mismo
+ * encuadre) y se mueve apenas: el truco de dos cuadros, barato y creíble.
+ */
+@Composable
+fun TeacherAvatar(teacher: Teacher, speaking: Boolean, size: Dp, modifier: Modifier = Modifier) {
+    var mouthOpen by remember { mutableStateOf(false) }
+    LaunchedEffect(speaking) {
+        if (!speaking) {
+            mouthOpen = false
+            return@LaunchedEffect
+        }
+        while (true) {
+            delay(if (mouthOpen) 110L else (90L + (30..160).random()))
+            mouthOpen = !mouthOpen
+        }
+    }
+    val scale by animateFloatAsState(if (speaking && mouthOpen) 1.03f else 1f, label = "avatar")
+    Image(
+        painter = painterResource(if (mouthOpen) teacher.avatarTalking else teacher.avatar),
+        contentDescription = teacher.name,
+        contentScale = ContentScale.Crop,
+        modifier = modifier
+            .size(size)
+            .graphicsLayer { scaleX = scale; scaleY = scale }
+            .clip(CircleShape)
+            .border(2.dp, Color(teacher.color).copy(alpha = 0.5f), CircleShape)
+    )
 }
 
 /** Etiqueta pequeña tipo píldora. */

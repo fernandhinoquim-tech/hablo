@@ -106,6 +106,7 @@ fun HabloApp(speaker: Speaker, listener: Listener, llm: Llm, store: Store) {
                         TeacherPickerScreen(
                             currentId = teacherId,
                             isFirstTime = first,
+                            speaking = speaker.busy,
                             onPreview = { t -> speaker.speak(t.greeting, t, speechScale) },
                             onChoose = { t ->
                                 speaker.stop()
@@ -147,6 +148,7 @@ fun HabloApp(speaker: Speaker, listener: Listener, llm: Llm, store: Store) {
                                 lesson = lesson,
                                 teacher = teacher,
                                 listener = listener,
+                                speaking = speaker.busy,
                                 say = say,
                                 onFinish = { score, correct ->
                                     store.recordLesson(lesson.id, score, correct * 10)

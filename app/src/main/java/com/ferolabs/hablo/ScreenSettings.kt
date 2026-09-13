@@ -62,14 +62,7 @@ fun SettingsScreen(
                 Text("Tu profesora", style = MaterialTheme.typography.labelMedium, color = InkSoft)
                 Spacer(Modifier.height(8.dp))
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Box(
-                        contentAlignment = Alignment.Center,
-                        modifier = Modifier
-                            .size(46.dp)
-                            .background(Color(teacher.softColor), CircleShape)
-                    ) {
-                        Text(teacher.emoji, style = MaterialTheme.typography.titleLarge)
-                    }
+                    TeacherAvatar(teacher = teacher, speaking = speaker.busy, size = 56.dp)
                     Spacer(Modifier.size(12.dp))
                     Column(modifier = Modifier.weight(1f)) {
                         Text(teacher.name, style = MaterialTheme.typography.titleMedium)

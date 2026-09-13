@@ -46,6 +46,7 @@ fun LessonScreen(
     lesson: Lesson,
     teacher: Teacher,
     listener: Listener,
+    speaking: Boolean,
     say: (String, Float) -> Unit,
     onFinish: (score: Int, correct: Int) -> Unit,
     onExit: () -> Unit
@@ -115,6 +116,7 @@ fun LessonScreen(
         val score = if (total == 0) 0 else (correctCount * 100) / total
         ResultsScreen(
             teacher = teacher,
+            speaking = speaking,
             score = score,
             correct = correctCount,
             total = total,
@@ -591,6 +593,7 @@ private fun FeedbackBox(
 @Composable
 private fun ResultsScreen(
     teacher: Teacher,
+    speaking: Boolean,
     score: Int,
     correct: Int,
     total: Int,
@@ -613,7 +616,7 @@ private fun ResultsScreen(
             .fillMaxSize()
             .padding(28.dp)
     ) {
-        Text(teacher.emoji, style = MaterialTheme.typography.headlineLarge)
+        TeacherAvatar(teacher = teacher, speaking = speaking, size = 120.dp)
         Spacer(Modifier.height(12.dp))
         Text(
             "$score%",

@@ -1,0 +1,4 @@
+Aqui van los retratos de las profesoras (los genera Fero).
+Nombres exactos: emma.png, sophie.png, mia.png, grace.png (boca cerrada)
+   y opcional: emma_habla.png, sophie_habla.png, mia_habla.png, grace_habla.png (boca abierta, mismo encuadre).
+Cuadradas, 1024x1024, PNG o JPG.

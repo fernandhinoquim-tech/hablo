@@ -27,7 +27,23 @@ data class Teacher(
     val voiceSlot: Int,
     val color: Long,
     val softColor: Long
-)
+) {
+    /** Retrato (boca cerrada) y cuadro "hablando" (boca abierta), en drawable-nodpi. */
+    val avatar: Int
+        get() = when (id) {
+            "emma" -> R.drawable.avatar_emma
+            "sophie" -> R.drawable.avatar_sophie
+            "mia" -> R.drawable.avatar_mia
+            else -> R.drawable.avatar_grace
+        }
+    val avatarTalking: Int
+        get() = when (id) {
+            "emma" -> R.drawable.avatar_emma_habla
+            "sophie" -> R.drawable.avatar_sophie_habla
+            "mia" -> R.drawable.avatar_mia_habla
+            else -> R.drawable.avatar_grace_habla
+        }
+}
 
 val TEACHERS: List<Teacher> = listOf(
     Teacher(

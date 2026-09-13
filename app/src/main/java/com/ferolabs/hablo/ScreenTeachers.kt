@@ -33,11 +33,14 @@ import androidx.compose.ui.unit.dp
 fun TeacherPickerScreen(
     currentId: String?,
     isFirstTime: Boolean,
+    speaking: Boolean,
     onPreview: (Teacher) -> Unit,
     onChoose: (Teacher) -> Unit,
     onBack: (() -> Unit)?
 ) {
     var selected by remember(currentId) { mutableStateOf(currentId ?: TEACHERS[0].id) }
+    // A quién se le pidió hablar: solo ese retrato mueve la boca.
+    var previewing by remember { mutableStateOf<String?>(null) }
     val selectedTeacher = teacherById(selected)
 
     Column(modifier = Modifier.fillMaxSize()) {
@@ -74,9 +77,11 @@ fun TeacherPickerScreen(
                 TeacherCard(
                     teacher = t,
                     isSelected = t.id == selected,
+                    speaking = speaking && previewing == t.id,
                     onSelect = { selected = t.id },
                     onPreview = {
                         selected = t.id
+                        previewing = t.id
                         onPreview(t)
                     }
                 )
@@ -114,6 +119,7 @@ fun TeacherPickerScreen(
 private fun TeacherCard(
     teacher: Teacher,
     isSelected: Boolean,
+    speaking: Boolean,
     onSelect: () -> Unit,
     onPreview: () -> Unit
 ) {
@@ -134,15 +140,7 @@ private fun TeacherCard(
             .padding(16.dp)
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Box(
-                contentAlignment = Alignment.Center,
-                modifier = Modifier
-                    .size(52.dp)
-                    .background(Color(teacher.softColor), CircleShape)
-                    .border(1.dp, accent.copy(alpha = 0.35f), CircleShape)
-            ) {
-                Text(teacher.emoji, style = MaterialTheme.typography.headlineMedium)
-            }
+            TeacherAvatar(teacher = teacher, speaking = speaking, size = 64.dp)
 
             Spacer(Modifier.size(14.dp))
 
