@@ -379,6 +379,25 @@ cargada** (`ensureVoiceLoaded` libera y recarga), así que "una profesora al aza
 por ítem" en la pantalla de Oído serían 12 recargas por bloque: hay que
 pre-sintetizar o rotar por bloque.
 
+**Decisiones de Fero sobre voz e informe (2026-09-13, tarde).** (a) Las
+correcciones **solo en texto**: probó la voz española leyendo la línea
+`CORRECCIÓN:` y la rechazó ("no me gusta el cambio de voz"); la voz `es_MX` se
+quitó del APK, de `voicePackages` y de `Speaker`. Si algún día se retoma, el
+problema de fondo sigue: cada voz Piper es de un idioma, y la voz inglesa de la
+profesora leyendo español es ininteligible, así que cualquier explicación
+hablada en español obliga a cambiar de voz. (b) Pronunciación y los `speak` de
+las lecciones se quedan **siempre en el teléfono** (sin internet, sin coste);
+la conversación puede usar cualquier motor. (c) **Informe descargable**
+(`Progreso.kt`): idea suya para subirlo a su proyecto de Claude y practicar
+allí. Cuaderno en `filesDir/progreso.json` (intentos con veredicto por fonema,
+ejercicios fallados con lo que puso, correcciones de la profesora, y un diario
+por día de ejercicios/frases habladas/turnos/lecciones), y un Markdown en
+español que se arma **entero en el teléfono**: sin coste, sin red, y solo sale
+cuando él toca "Descargar mi informe" en Ajustes. Lleva un bloque final de
+instrucciones para su tutor de IA. (d) La memoria entre sesiones va **solo en
+la charla libre**, no en los escenarios de práctica, y el resumen lo hará una
+sola llamada a Haiku al cerrar la charla.
+
 ### Pendientes con condición (no se olvidan)
 
 - **Reafinar los umbrales de `AudioPrep` cuando el corpus llegue a ~100

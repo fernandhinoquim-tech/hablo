@@ -41,9 +41,18 @@ class Progreso(context: Context) {
     /** Una corrección de la profesora en la conversación (la línea en español). */
     data class Correccion(val fecha: String, val texto: String)
 
+    /**
+     * Qué se hizo cada día. Sin esto el informe solo cuenta errores, y Fero
+     * preguntó por lo contrario: "no solo de lo que se habla, sino qué se ha
+     * hecho en la app". Cuatro contadores por día, nada más: cabe todo el año
+     * en unos pocos kilobytes.
+     */
+    enum class Actividad { EJERCICIO, INTENTO, TURNO, LECCION }
+
     private var intentos = ArrayList<Intento>()
     private var fallos = ArrayList<Fallo>()
     private var correcciones = ArrayList<Correccion>()
+    private var diario = LinkedHashMap<String, IntArray>()
     private var cargado = false
 
     // ------------------------------------------------------------------ leer
@@ -83,6 +92,12 @@ class Progreso(context: Context) {
                     correcciones.add(Correccion(o.optString("f"), o.optString("texto")))
                 }
             }
+            json.optJSONObject("diario")?.let { d ->
+                for (fecha in d.keys()) {
+                    val a = d.optJSONArray(fecha) ?: continue
+                    diario[fecha] = IntArray(4) { a.optInt(it, 0) }
+                }
+            }
         } catch (e: Throwable) {
             // Un archivo roto no puede tumbar la app ni borrar el resto: se empieza de cero.
             Log.e(TAG, "progreso.json ilegible; se ignora", e)
@@ -116,6 +131,9 @@ class Progreso(context: Context) {
                 })
                 .put("correcciones", JSONArray().also { a ->
                     correcciones.forEach { a.put(JSONObject().put("f", it.fecha).put("texto", it.texto)) }
+                })
+                .put("diario", JSONObject().also { d ->
+                    diario.forEach { (fecha, c) -> d.put(fecha, JSONArray().also { a -> c.forEach { a.put(it) } }) }
                 })
             file.writeText(json.toString())
         } catch (e: Throwable) {
@@ -160,9 +178,20 @@ class Progreso(context: Context) {
         guardar()
     }
 
+    /** Suma uno al contador del día. Se llama en cada ejercicio, intento, turno o lección. */
+    @Synchronized
+    fun anotarActividad(que: Actividad) {
+        cargar()
+        val hoy = hoy()
+        val fila = diario.getOrPut(hoy) { IntArray(4) }
+        fila[que.ordinal]++
+        while (diario.size > MAX_DIAS) diario.remove(diario.keys.first())
+        guardar()
+    }
+
     @Synchronized
     fun borrarTodo() {
-        intentos.clear(); fallos.clear(); correcciones.clear()
+        intentos.clear(); fallos.clear(); correcciones.clear(); diario.clear()
         cargado = true
         file.delete()
     }
@@ -170,7 +199,7 @@ class Progreso(context: Context) {
     @Synchronized
     fun hayAlgo(): Boolean {
         cargar()
-        return intentos.isNotEmpty() || fallos.isNotEmpty() || correcciones.isNotEmpty()
+        return intentos.isNotEmpty() || fallos.isNotEmpty() || correcciones.isNotEmpty() || diario.isNotEmpty()
     }
 
     // ---------------------------------------------------------------- informe
@@ -195,6 +224,45 @@ class Progreso(context: Context) {
         b.appendLine("- Profesora en la app: ${teacher.name} (${teacher.accent.label}).")
         b.appendLine("- Progreso: ${store.xp} puntos, racha de ${store.streak} días.")
         b.appendLine()
+
+        // --- 0. Lo hecho -------------------------------------------------------
+        b.appendLine("## 0. Lo que llevo hecho en la app")
+        b.appendLine()
+        val totales = IntArray(4)
+        diario.values.forEach { fila -> for (i in 0 until 4) totales[i] += fila[i] }
+        val hechas = Course.allLessons().filter { store.bestScore(it.id) > 0 }
+        val pendientes = Course.allLessons().filter { store.bestScore(it.id) == 0 }
+        b.appendLine("- Días que he practicado: **${diario.size}**" +
+            (if (diario.isNotEmpty()) " (del ${diario.keys.first()} al ${diario.keys.last()})" else ""))
+        b.appendLine("- Racha actual: ${store.streak} días · ${store.xp} puntos")
+        b.appendLine("- Lecciones hechas: **${hechas.size} de ${Course.allLessons().size}**")
+        b.appendLine("- Ejercicios respondidos: ${totales[Actividad.EJERCICIO.ordinal]} · " +
+            "frases dichas en voz alta: ${totales[Actividad.INTENTO.ordinal]} · " +
+            "turnos de conversación: ${totales[Actividad.TURNO.ordinal]}")
+        b.appendLine()
+
+        if (hechas.isNotEmpty()) {
+            b.appendLine("| Lección | Mi mejor puntaje |")
+            b.appendLine("|---|---:|")
+            for (l in hechas) b.appendLine("| ${l.title} | ${store.bestScore(l.id)} |")
+            b.appendLine()
+        }
+        if (pendientes.isNotEmpty()) {
+            b.appendLine("Todavía no he hecho: " + pendientes.joinToString(", ") { it.title } + ".")
+            b.appendLine()
+        }
+
+        val ultimos = diario.entries.toList().takeLast(14)
+        if (ultimos.size > 1) {
+            b.appendLine("Mis últimos días (ejercicios · frases habladas · turnos de charla · lecciones terminadas):")
+            b.appendLine()
+            b.appendLine("| Día | Ejercicios | Habladas | Turnos | Lecciones |")
+            b.appendLine("|---|---:|---:|---:|---:|")
+            for ((fecha, c) in ultimos.reversed()) {
+                b.appendLine("| $fecha | ${c[0]} | ${c[1]} | ${c[2]} | ${c[3]} |")
+            }
+            b.appendLine()
+        }
 
         // --- 1. Sonidos -------------------------------------------------------
         b.appendLine("## 1. Mis sonidos (medido por la app, no por mí)")
@@ -390,5 +458,6 @@ class Progreso(context: Context) {
         private const val MAX_INTENTOS = 300
         private const val MAX_FALLOS = 200
         private const val MAX_CORRECCIONES = 100
+        private const val MAX_DIAS = 400
     }
 }

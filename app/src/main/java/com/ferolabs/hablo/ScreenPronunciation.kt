@@ -126,6 +126,7 @@ fun PronunciationScreen(
                     report = r.report
                     notHeard = null
                     progreso.anotarIntento(target, sound, r.report)
+                    progreso.anotarActividad(Progreso.Actividad.INTENTO)
                     r.report?.let { rep ->
                         store.recordSound(rep.sound, rep.worst)
                         sessionTries[rep.sound] = (sessionTries[rep.sound] ?: 0) + 1

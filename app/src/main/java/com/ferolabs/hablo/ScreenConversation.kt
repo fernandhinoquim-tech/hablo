@@ -180,6 +180,7 @@ fun ConversationScreen(
         draft = ""
         bubbles.add(Bubble(fromTeacher = false, text = clean))
         history.add("user" to clean)
+        progreso.anotarActividad(Progreso.Actividad.TURNO)
         ask()
     }
 

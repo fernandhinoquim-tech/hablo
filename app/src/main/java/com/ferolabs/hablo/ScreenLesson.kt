@@ -473,6 +473,7 @@ fun LessonScreen(
         ) {
             if (!checked) {
                 BigButton("Comprobar", enabled = canCheck(), container = accent) {
+                    progreso.anotarActividad(Progreso.Actividad.EJERCICIO)
                     wasCorrect = evaluate()
                     if (wasCorrect) {
                         // Solo puntúa el primer intento: lo repetido no infla la nota.
@@ -495,6 +496,7 @@ fun LessonScreen(
                         pos += 1
                         reset()
                     } else {
+                        progreso.anotarActividad(Progreso.Actividad.LECCION)
                         finished = true
                     }
                 }
