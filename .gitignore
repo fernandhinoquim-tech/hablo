@@ -24,3 +24,7 @@ __pycache__/
 
 # Modelo de fonemas (GOP): lo copia Gradle desde tools/asr-bench/models/phoneme
 app/src/main/assets/gop/*.onnx
+
+# Codigo fuente de llama.cpp: lo descarga Gradle (fetchLlamaCpp)
+app/src/main/cpp/llama.cpp/
+app/.cxx/

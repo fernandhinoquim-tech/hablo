@@ -206,6 +206,44 @@ val fetchGop = tasks.register("fetchGop") {
 }
 
 // ---------------------------------------------------------------------------
+// Motor de IA (Fase 3): llama.cpp se compila desde el codigo fuente dentro de
+// la app (cpp/CMakeLists.txt). Aqui se descarga ese codigo, fijado a una
+// version, a cpp/llama.cpp/ (no va al repositorio: son ~150 MB).
+// ---------------------------------------------------------------------------
+
+val llamaCppVersion = "0.4.0"
+val llamaCppDir = File(projectDir, "src/main/cpp/llama.cpp")
+
+val fetchLlamaCpp = tasks.register("fetchLlamaCpp") {
+    outputs.dir(llamaCppDir)
+    doLast {
+        val marker = File(llamaCppDir, ".version")
+        if (marker.exists() && marker.readText().trim() == llamaCppVersion) {
+            logger.lifecycle("  llama.cpp $llamaCppVersion ya listo")
+            return@doLast
+        }
+        piperCache.mkdirs()
+        val zip = File(piperCache, "llama.cpp-$llamaCppVersion.zip")
+        if (!zip.exists() || zip.length() < 1_000_000) {
+            download("https://github.com/ggml-org/llama.cpp/archive/refs/tags/v$llamaCppVersion.zip", zip)
+        }
+        llamaCppDir.deleteRecursively()
+        val extracted = File(piperCache, "llama.cpp-src")
+        extracted.deleteRecursively()
+        copy {
+            from(zipTree(zip))
+            into(extracted)
+        }
+        // el zip trae una carpeta raiz llama.cpp-<version>/
+        val root = extracted.listFiles()?.firstOrNull { it.isDirectory }
+            ?: throw GradleException("El zip de llama.cpp no trae carpeta raiz")
+        root.copyRecursively(llamaCppDir, overwrite = true)
+        marker.writeText(llamaCppVersion)
+        logger.lifecycle("  llama.cpp $llamaCppVersion listo en ${llamaCppDir.path}")
+    }
+}
+
+// ---------------------------------------------------------------------------
 // Revision del contenido antes de compilar. Un ejercicio de hablar sin su
 // etiqueta "sound" haria que el jurado por sonido no dispare y nadie se
 // enteraria; aqui la compilacion se cae y dice exactamente donde. La misma
@@ -306,12 +344,34 @@ android {
     namespace = "com.ferolabs.hablo"
     compileSdk = 35
 
+    // NDK y CMake por version: AGP los descarga al SDK si faltan. No es el
+    // asistente de AGP; AGP/Gradle/Kotlin siguen fijados (regla dura 2).
+    ndkVersion = "27.2.12479018"
+
     defaultConfig {
         applicationId = "com.ferolabs.hablo"
         minSdk = 26
         targetSdk = 35
         versionCode = 8
         versionName = "0.8"
+
+        // Solo el procesador del S25 Ultra. De paso el APK deja de llevar las
+        // copias de sherpa-onnx y ONNX Runtime para x86/armv7 (~100 MB menos).
+        ndk {
+            abiFilters += listOf("arm64-v8a")
+        }
+        externalNativeBuild {
+            cmake {
+                arguments += "-DCMAKE_BUILD_TYPE=Release"
+            }
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path("src/main/cpp/CMakeLists.txt")
+            version = "3.22.1"
+        }
     }
 
     buildTypes {
@@ -361,7 +421,7 @@ android {
 }
 
 tasks.named("preBuild") {
-    dependsOn(checkContent, fetchSherpaAar, fetchVoices, fetchAsr, fetchGop)
+    dependsOn(checkContent, fetchSherpaAar, fetchVoices, fetchAsr, fetchGop, fetchLlamaCpp)
 }
 
 dependencies {

@@ -103,7 +103,7 @@ B2 leyendo, escribiendo, escuchando y hablando.
 | Voces | **Piper** vía sherpa-onnx (Apache 2.0) | Cuatro voces femeninas reales dentro del APK. Antes se usaba el TTS de Android y obligaba al usuario a descargar paquetes de voz por fuera. |
 | Voz → texto | **Moonshine base v2** (`moonshine-base-en-quantized-2026-02-27`, 2 archivos `.ort`, 140 MB) vía sherpa-onnx **1.13.4** | Elegido el 2026-09-12 con `tools/asr-bench` sobre 26 grabaciones reales de Fero. Tiny devolvía texto vacío en 4 de 26 con audio bueno y confundía palabras fáciles ("seatsbooks", "Can't you"); base no, y mantiene la honestidad (delata "chip", "espeak", "wok-ed"). Whisper base.en quedó descartado: **corrige** "espeak Espanish" a "speak Spanish" al 100 %. Parakeet 110m es el más honesto pero castiga también lo bien dicho. También se probaron los grandes (Fero dijo que el peso no importa): **Whisper small.en** (74 % promedio, el mejor adivinando) y **Parakeet 0.6B v2** (70 %) corrigen los dos "espeak Espanish" → "speak Spanish" al 100 %; Parakeet 0.6B es el único que delata "tink/tird", pero pierde "six books" dos veces. Se quedó Moonshine base: el único que delata "espeak" (el error insignia). **Sobrecorrección medida** (errores plantados a propósito que el modelo "arregla" y puntúa BIEN, `tools/asr-bench/planted.txt`, 11 casos): Moonshine base **5/11 = 45 %** (think ×2, third, asked, spanish) · Whisper base/small 4/11 · Parakeet 0.6B 3/11 · Parakeet 110m 2/11. Con 11 casos esas cifras no se distinguen estadísticamente; lo que sí se ve es que cada modelo es ciego a sonidos distintos: Moonshine al `th` (3 de 4), Parakeet y Whisper a la `e` delante de `s` (espeak/Espanish, 2 de 2). Antes de reconocer, `Audio.kt` (`AudioPrep`) quita el DC, recorta el silencio, normaliza el pico y rechaza audio mudo/corto/ruidoso con "No te entendí, repite" en vez de dar 0 %. **Regla que no se negocia:** el reconocedor nunca ve la frase esperada (nada de hotwords ni sesgos); el objetivo solo se usa para puntuar después. |
 | Pronunciación por fonema (GOP) | **wav2vec2-large-xlsr-53-l2-arctic-phoneme** int8 (317 MB) vía **onnxruntime-android 1.27.0**; `Gop.kt` + `PhonemeScorer.kt`; fonemas esperados de **CMUdict** (`assets/gop/cmudict.dict`); umbrales en `assets/gop/thresholds.json` | Es lo que hacen las apps comerciales (Azure, Speechace, ELSA): se conoce la frase, se alinean sus fonemas y se puntúa la confianza de cada uno; el reconocedor de palabras se queda solo para "¿se entendió?". Entrenado con habla no nativa anotada tal como se pronunció (incluye hispanohablantes). En el S25: carga 0,6 s, evalúa en 200–300 ms. Se carga al entrar a la pantalla y se suelta al salir. **Solo sonidos con umbral calibrado muestran veredicto**: `sh` y `h` en rojo/amarillo (precisión del rojo ≥ 66 %); `th`, `ed`, `es` **solo en amarillo** (`calibrate.py --yellow-only`: precisión entre 33 y 66 %, el rojo nunca dispara); `v`, `final` y `rl` sin veredicto (por debajo del 33 %) y la pantalla lo dice. Para mover un sonido de categoría: más corpus etiquetado → `phoneme_eval.py` → `calibrate.py --sounds sh h --yellow-only th ed es` → `thresholds.json`. **Etiqueta del alumno:** después de cada intento la app pregunta "¿Te sonó igual?" (Igual / Distinto / No sé) y lo anexa como `etiqueta:` al `.txt` de la grabación (`Listener.labelLastRecording`); solo se usa al recalibrar, nunca en tiempo real. Vale sobre todo para lo audible (h caída, sílaba de más, e+s); para ship/sheep y v/b el oído del alumno es el problema. El modelo lo exporta `phoneme_export.py`; `fetchGop` lo copia a assets (si falta, la app compila sin él y lo dice). |
-| IA (Fase 3) | **llama.cpp + Qwen 3 8B Q4** | Qwen es Apache 2.0 sin letra chica. Se descartó Gemma 2/3 porque sus "Gemma Terms of Use" permiten a Google cambiar las condiciones después. |
+| IA (Fase 3) | **llama.cpp 0.4.0 compilado dentro de la app** (`app/src/main/cpp/`: `CMakeLists.txt` + `llm_jni.cpp`, puente JNI propio con solo la API C; `Llm.kt`) + **Qwen3 8B Q4_K_M** (`Qwen3-8B-Q4_K_M.gguf`, 5,03 GB) | Qwen es Apache 2.0 sin letra chica. Se descartó Gemma 2/3 porque sus "Gemma Terms of Use" permiten a Google cambiar las condiciones después. El código de llama.cpp lo baja `fetchLlamaCpp` (fijado a una versión) y lo compila el NDK 27.2 con CMake 3.22.1, que AGP descarga por versión (no es el asistente). Solo arm64 (`abiFilters`): el APK bajó ~90 MB al soltar x86/armv7. El modelo vive en `Android/data/com.ferolabs.hablo/files/modelos/` (sin permisos; se llena con `adb push`; **desinstalar la app lo borra**). **Medido en el S25 (2026-09-12): carga en 9 s, prompt a 27 t/s, respuesta a 11,0 t/s** con 6 hilos, contexto 2048, mmap. Se queda el 8B. Laboratorio en Ajustes: cargar, probar (la respuesta la lee la profesora con Piper), liberar. Sampler: min_p 0.05, top_p 0.9, temp 0.6; Qwen3 con `/no_think` en el system prompt. |
 | Interfaz | Kotlin + Jetpack Compose | Menos capas intermedias con tres motores nativos encima. |
 | Progreso | SharedPreferences | Suficiente; nada sale del teléfono. |
 
@@ -165,7 +165,14 @@ intento, y 40 drills (5 por sonido, `drills.json`). Fero, al oírse: "detecté
 que hablo mal y por qué entiende lo que entiende; no hay desfase entre lo que
 pronuncio y lo que entiende".
 
-**Fase 3 arranca aquí (2026-09-12).** Investigado antes de construir: el
+**Fase 3 arrancó (2026-09-12): motor listo y medido** — ver la fila "IA" de
+la tabla. Lo que sigue: pantalla de conversación con el ciclo completo
+(profesora habla con Piper → Fero habla → Moonshine transcribe → Qwen responde
+→ Piper lee; corrección de errores de hispanohablante en español), ~50
+escenarios cerrados en JSON (regla 4, con validación en `checkContent`), y
+el avatar de la profesora. Memoria: al entrar a la conversación se sueltan el
+modelo de fonemas y se carga Qwen; Moonshine (140 MB) y Piper (~100 MB) sí
+conviven con él. Investigado antes de construir: el
 camino es el ejemplo oficial `examples/llama.android` de llama.cpp (módulo
 nativo compilado desde fuente con CMake + NDK dentro de la app, puente JNI
 propio; nada de AARs de terceros). Velocidad esperable en el 8 Elite:
@@ -362,6 +369,12 @@ falsos en 26 grabaciones; silencio → TOO_SHORT.
     texto libre**. Usar la frase esperada para ALINEAR fonemas no es sesgar el
     reconocedor: el puntaje puede ser bajo. La regla "el reconocedor de
     palabras nunca ve la frase esperada" sigue igual para Moonshine.
+
+  **Fonemas cubiertos:** el modelo reconoce los 39 fonemas del inglés y se
+  calculan todos en cada frase, pero solo se muestra el sonido del drill. Sin
+  categoría todavía: las **vocales** (ɪ/i de ship/sheep — la desviación más
+  frecuente de Fero en el corpus —, æ, ʌ, ə), la -s final, w/j. La vocal ɪ/i
+  es el siguiente sonido a calibrar (pregunta de Fero, 2026-09-12).
 
   **Memoria (pensando en la Fase 3):** Parakeet 0.6B int8 ocupa ~660 MB en
   disco y ~1 GB cargado; Qwen3 8B Q4 ~5 GB; el teléfono tiene 12 GB. No

@@ -4,8 +4,8 @@
     {
       "text": "The ship is very cheap.",
       "sound": "sh",
-      "focus": "ship / sheep",
-      "tip": "La i de ship es corta y relajada, casi una e. La de sheep es larga. En español solo existe una i, por eso suenan igual al principio. Y la sh es un soplo largo, sin la t de \"ch\"."
+      "focus": "sh (y la i corta de ship)",
+      "tip": "La sh es un soplo largo, sin la t de \"ch\": ship, no \"chip\". Y la i de ship es corta y relajada, casi una e; la de sheep es larga. En español solo existe una i, por eso suenan igual al principio. (La vocal todavía no se evalúa por fonema; la sh sí.)"
     },
     {
       "text": "She sells fresh fish.",

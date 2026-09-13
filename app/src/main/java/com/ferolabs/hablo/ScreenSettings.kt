@@ -36,6 +36,7 @@ fun SettingsScreen(
     teacher: Teacher,
     store: Store,
     speaker: Speaker,
+    llm: Llm,
     onChangeTeacher: () -> Unit,
     onTestVoice: (Float) -> Unit,
     onSpeedChange: (Float) -> Unit,
@@ -109,6 +110,56 @@ fun SettingsScreen(
                 )
                 Spacer(Modifier.height(4.dp))
                 BigButton("Probar la voz", container = accent) { onTestVoice(speed) }
+            }
+
+            // --- Laboratorio de IA (Fase 3): medir antes de construir ----------
+            var reply by remember { mutableStateOf("") }
+            SettingsCard {
+                Text("Laboratorio de IA (Fase 3)", style = MaterialTheme.typography.labelMedium, color = InkSoft)
+                Spacer(Modifier.height(8.dp))
+                val present = llm.modelPresent()
+                Text(
+                    if (present) "Modelo: ${Llm.MODEL_NAME} (${llm.modelFile.length() / 1_000_000_000.0} GB)"
+                    else "Falta el modelo. Se copia por USB a:\n${llm.modelFile.absolutePath}",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = if (present) Ink else BadRed
+                )
+                Spacer(Modifier.height(8.dp))
+                if (llm.status.isNotBlank()) {
+                    Text(llm.status, style = MaterialTheme.typography.labelMedium, color = InkSoft)
+                    Spacer(Modifier.height(8.dp))
+                }
+                if (!llm.loaded) {
+                    BigButton("Cargar el modelo", enabled = present && !llm.busy, container = accent) {
+                        speaker.stop()
+                        llm.load()
+                    }
+                } else {
+                    BigButton("Probar: preséntate en inglés", enabled = !llm.busy, container = accent) {
+                        reply = ""
+                        llm.chat(
+                            messages = listOf(
+                                "system" to "You are ${teacher.name}, a warm English teacher for Spanish speakers. " +
+                                    "Reply in simple English (A2 level), two sentences maximum. /no_think",
+                                "user" to "Hi! Please introduce yourself and ask me one question."
+                            ),
+                            onToken = { piece -> reply += piece },
+                            // Ciclo de voz completo: lo que escribe la IA lo dice la profesora.
+                            onDone = { if (reply.isNotBlank()) speaker.speak(reply.trim(), teacher, speed) }
+                        )
+                    }
+                    if (reply.isNotBlank()) {
+                        Spacer(Modifier.height(8.dp))
+                        Text(reply.trim(), style = MaterialTheme.typography.bodyLarge, color = Ink)
+                    }
+                    Spacer(Modifier.height(8.dp))
+                    Text(
+                        "Liberar el modelo",
+                        style = MaterialTheme.typography.labelLarge,
+                        color = InkSoft,
+                        modifier = Modifier.clickable { llm.release() }
+                    )
+                }
             }
 
             SettingsCard {

@@ -16,7 +16,7 @@ import org.json.JSONObject
  * `general` es para frases que no trabajan un sonido en particular.
  */
 enum class Sound(val key: String, val labelEs: String) {
-    SH("sh", "ship / sheep"),
+    SH("sh", "la sh (ship, fish)"),
     TH("th", "el sonido th"),
     H("h", "la h aspirada"),
     V("v", "v contra b"),

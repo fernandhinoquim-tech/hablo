@@ -23,6 +23,7 @@ class MainActivity : ComponentActivity() {
 
     private var speaker: Speaker? = null
     private var listener: Listener? = null
+    private var llm: Llm? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,11 +32,13 @@ class MainActivity : ComponentActivity() {
         speaker = sp
         val li = Listener(this)
         listener = li
+        val ai = Llm(this)
+        llm = ai
         val store = Store(this)
         Course.load(this)
 
         setContent {
-            HabloApp(speaker = sp, listener = li, store = store)
+            HabloApp(speaker = sp, listener = li, llm = ai, store = store)
         }
     }
 
@@ -49,6 +52,8 @@ class MainActivity : ComponentActivity() {
         speaker = null
         listener?.release()
         listener = null
+        llm?.release()
+        llm = null
         super.onDestroy()
     }
 }
@@ -62,7 +67,7 @@ private sealed class Route {
 }
 
 @Composable
-fun HabloApp(speaker: Speaker, listener: Listener, store: Store) {
+fun HabloApp(speaker: Speaker, listener: Listener, llm: Llm, store: Store) {
 
     var teacherId by remember { mutableStateOf(store.teacherId) }
     var speechScale by remember { mutableStateOf(store.speechScale) }
@@ -188,6 +193,7 @@ fun HabloApp(speaker: Speaker, listener: Listener, store: Store) {
                             teacher = teacher,
                             store = store,
                             speaker = speaker,
+                            llm = llm,
                             onChangeTeacher = { route = Route.PickTeacher },
                             onTestVoice = { s ->
                                 speaker.speak(teacher.greeting, teacher, s)
