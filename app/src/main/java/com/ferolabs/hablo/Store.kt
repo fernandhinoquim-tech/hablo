@@ -111,6 +111,27 @@ class Store(context: Context) {
         const val ENGINE_GEMINI = "gemini"
     }
 
+    // --- Intentos de hoy por frase de pronunciación ---------------------------
+    // Machacar la misma frase quince veces en una noche vale la mitad que
+    // repartirla en días: en entrenamiento de sonidos, la misma práctica
+    // espaciada rinde aproximadamente el doble que amontonada. La app no lo
+    // prohíbe, pero deja de proponer la frase cuando ya se trabajó hoy.
+
+    fun drillTriesToday(key: String): Int =
+        if (prefs.getInt("drill_day", 0) != todayKey()) 0 else prefs.getInt("drill_$key", 0)
+
+    fun recordDrillTry(key: String) {
+        val e = prefs.edit()
+        val previas = if (prefs.getInt("drill_day", 0) == todayKey()) {
+            prefs.getInt("drill_$key", 0)
+        } else {
+            // Día nuevo: se borran los contadores del día anterior.
+            prefs.all.keys.filter { it.startsWith("drill_") }.forEach { e.remove(it) }
+            0
+        }
+        e.putInt("drill_day", todayKey()).putInt("drill_$key", previas + 1).apply()
+    }
+
     fun resetEverything() {
         prefs.edit().clear().apply()
     }

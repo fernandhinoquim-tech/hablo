@@ -37,6 +37,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import kotlin.random.Random
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
@@ -86,6 +87,32 @@ fun PronunciationScreen(
     val sessionFails = remember { mutableStateMapOf<Sound, Int>() }
 
     val drill = drills[index % drills.size]
+    val triesToday = store.drillTriesToday(drill.text)
+
+    /**
+     * Siguiente frase. Antes era `(index + 1) % 40`: siempre el mismo orden, y
+     * en una sesión Fero repitió 15 frases 96 veces. Ahora se sortea entre las
+     * que no ha trabajado hoy, dando más peso al sonido que peor le va según su
+     * mapa personal, y nunca sale la misma dos veces seguidas.
+     */
+    fun pickNext(current: Int): Int {
+        val frescas = drills.indices.filter {
+            it != current && store.drillTriesToday(drills[it].text) < MAX_TRIES_PER_DAY
+        }
+        val pool = frescas.ifEmpty { drills.indices.filter { it != current } }
+        if (pool.isEmpty()) return current
+        fun peso(i: Int): Double {
+            val st = store.soundStats(drills[i].sound)
+            if (st.tries == 0) return 1.5                       // sin datos: vale la pena probarlo
+            return 0.5 + (st.mal * 2.0 + st.dudoso) / st.tries  // cuanto peor va, más sale
+        }
+        var r = Random.nextDouble() * pool.sumOf { peso(it) }
+        for (i in pool) {
+            r -= peso(i)
+            if (r <= 0) return i
+        }
+        return pool.last()
+    }
 
     // El porcentaje sale de lo que el reconocedor de palabras entendió; el
     // veredicto del sonido, de la evaluación por fonema.
@@ -93,6 +120,7 @@ fun PronunciationScreen(
         listener.startRecording(target, sound) { r ->
             when (r) {
                 is ListenResult.Heard -> {
+                    store.recordDrillTry(target)
                     result = scorePronunciation(target, r.text)
                     report = r.report
                     notHeard = null
@@ -137,7 +165,7 @@ fun PronunciationScreen(
 
     Column(modifier = Modifier.fillMaxSize()) {
 
-        TopBar("Pronunciación  ·  ${index + 1}/${drills.size}", onBack = onBack)
+        TopBar("Pronunciación", onBack = onBack)
 
         Column(
             verticalArrangement = Arrangement.spacedBy(14.dp),
@@ -157,6 +185,15 @@ fun PronunciationScreen(
             }
 
             Pill("Enfoque: ${drill.focusEs}", accent, Color(teacher.softColor))
+
+            if (triesToday >= MAX_TRIES_PER_DAY) {
+                Text(
+                    "Esta frase ya la trabajaste $triesToday veces hoy. Repetirla más hoy " +
+                        "rinde la mitad que volver a ella mañana: toca \"Siguiente frase\".",
+                    style = MaterialTheme.typography.labelMedium,
+                    color = Color(0xFF8A5A00)
+                )
+            }
 
             Text(
                 drill.text,
@@ -254,25 +291,16 @@ fun PronunciationScreen(
                         .padding(16.dp)
                 ) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        if (hasReport) {
-                            Text(
-                                "Se entendió: ${r.percent} %",
-                                style = MaterialTheme.typography.titleMedium,
-                                color = InkSoft,
-                                modifier = Modifier.weight(1f)
-                            )
-                        } else {
-                            Text(
-                                "${r.percent}%",
-                                style = MaterialTheme.typography.headlineLarge,
-                                color = when {
-                                    r.percent >= 80 -> GoodGreen
-                                    r.percent >= 50 -> Color(0xFF8A5A00)
-                                    else -> BadRed
-                                },
-                                modifier = Modifier.weight(1f)
-                            )
-                        }
+                        // Este número mide si el DICTADO entendió las palabras, no
+                        // cómo se pronunciaron: el propio banco de pruebas midió que
+                        // "arregla" 14 de 35 errores puestos a propósito. Se muestra
+                        // por lo que es y nunca como nota grande de pronunciación.
+                        Text(
+                            "Se te entendió: ${r.percent} % de las palabras",
+                            style = MaterialTheme.typography.titleMedium,
+                            color = InkSoft,
+                            modifier = Modifier.weight(1f)
+                        )
                         if (listener.lastRecording != null) {
                             Box(
                                 contentAlignment = Alignment.Center,
@@ -382,7 +410,7 @@ fun PronunciationScreen(
                 text = if (result == null) "Saltar esta frase" else "Siguiente frase",
                 container = accent
             ) {
-                index = (index + 1) % drills.size
+                index = pickNext(index)
                 result = null
                 report = null
                 notHeard = null
@@ -393,3 +421,6 @@ fun PronunciationScreen(
         }
     }
 }
+
+/** Tope de intentos por frase y día antes de que la app empuje a cambiar de frase. */
+private const val MAX_TRIES_PER_DAY = 5

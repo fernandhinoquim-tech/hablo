@@ -44,6 +44,7 @@ class PhonemeScorer(context: Context) {
 
     private class Threshold(val score: String, val red: Double, val yellow: Double)
 
+
     private var session: OrtSession? = null
     private var id2sym: Map<Int, String> = emptyMap()
     private var sym2id: Map<String, Int> = emptyMap()
@@ -117,7 +118,24 @@ class PhonemeScorer(context: Context) {
         for (key in sounds.keys()) {
             val s = Sound.parse(key) ?: continue
             val o = sounds.getJSONObject(key)
-            out[s] = Threshold(o.getString("score"), o.getDouble("red"), o.getDouble("yellow"))
+            // Una banda cuya precisión medida no llega al mínimo no se
+            // muestra: se apaga poniéndole un umbral inalcanzable.
+            val redOk = o.optDouble("red_precision", 0.0) >= MIN_PRECISION
+            val yellowOk = o.optDouble("yellow_precision", 0.0) >= MIN_PRECISION
+            if (!redOk && !yellowOk) {
+                Log.w(
+                    TAG,
+                    "sonido $key sin banda utilizable (precisión rojo " +
+                        o.optDouble("red_precision", 0.0) + ", amarillo " +
+                        o.optDouble("yellow_precision", 0.0) + "): no se evalúa"
+                )
+                continue
+            }
+            out[s] = Threshold(
+                o.getString("score"),
+                if (redOk) o.getDouble("red") else Double.NEGATIVE_INFINITY,
+                if (yellowOk) o.getDouble("yellow") else Double.NEGATIVE_INFINITY
+            )
         }
         thresholds = out
     }
@@ -291,6 +309,17 @@ class PhonemeScorer(context: Context) {
     }
 
     companion object {
+        /**
+         * Precisión mínima medida para MOSTRAR una banda de color. Medido en
+         * el teléfono de Fero (2026-09-13): con el amarillo de `sh` calibrado
+         * al 33 % salieron 24 avisos "dudoso" en 33 intentos, y 9 de cada 10
+         * en `th`; una señal que casi siempre suena deja de informar. El
+         * proyecto ya había adoptado la barra del 66 % (Silpachai 2024) para
+         * lo que se muestra; 0,50 es el mínimo para el amarillo, que es un
+         * aviso suave y no un veredicto.
+         */
+        const val MIN_PRECISION = 0.50
+
         private const val TAG = "HabloGop"
     }
 }

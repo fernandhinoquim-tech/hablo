@@ -31,6 +31,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -61,7 +62,14 @@ fun LessonScreen(
         return
     }
 
-    var index by remember { mutableStateOf(0) }
+    // Cola de ejercicios en vez de una lista recorrida de principio a fin: lo
+    // que se falla vuelve al final y se repite hasta acertarlo (recuperación
+    // con retroalimentación, que es donde está el efecto: g = 0,73 con
+    // retroalimentación contra 0,39 sin ella, Rowland 2014).
+    val queue = remember { mutableStateListOf<Int>().also { it.addAll(lesson.exercises.indices) } }
+    val repeated = remember { HashSet<Int>() }
+    var pos by remember { mutableStateOf(0) }
+    val index = queue[pos.coerceIn(0, queue.size - 1)]
     var correctCount by remember { mutableStateOf(0) }
     var checked by remember { mutableStateOf(false) }
     var wasCorrect by remember { mutableStateOf(false) }
@@ -130,7 +138,7 @@ fun LessonScreen(
 
     val ex = lesson.exercises[index]
 
-    val bank = remember(index) {
+    val bank = remember(pos) {
         when (ex) {
             is Exercise.BuildSentence ->
                 (ex.answer.split(" ") + ex.extraWords).shuffled()
@@ -139,7 +147,7 @@ fun LessonScreen(
     }
 
     // Al entrar a un ejercicio de escucha, la profesora dice la frase sola.
-    LaunchedEffect(index) {
+    LaunchedEffect(pos) {
         when (ex) {
             is Exercise.ListenChoose -> say(ex.audio, 1f)
             is Exercise.TypeWhatYouHear -> say(ex.audio, 1f)
@@ -188,12 +196,12 @@ fun LessonScreen(
     Column(modifier = Modifier.fillMaxSize()) {
 
         TopBar(
-            title = "${lesson.title}  ·  ${index + 1}/$total",
+            title = "${lesson.title}  ·  ${pos + 1}/${queue.size}",
             onBack = onExit
         )
 
         LinearProgressIndicator(
-            progress = { (index.toFloat()) / total.toFloat() },
+            progress = { pos.toFloat() / queue.size.toFloat() },
             color = accent,
             trackColor = Line,
             modifier = Modifier
@@ -212,6 +220,9 @@ fun LessonScreen(
             when (ex) {
 
                 is Exercise.ListenChoose -> {
+                    // Orden nuevo en cada ejercicio: si no, se aprueba tocando
+                    // siempre la primera casilla sin saber inglés.
+                    val order = remember(pos) { ex.options.indices.shuffled() }
                     Text("Escucha y elige lo que oíste", style = MaterialTheme.typography.titleLarge)
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(12.dp),
@@ -226,20 +237,21 @@ fun LessonScreen(
                             color = InkSoft
                         )
                     }
-                    ex.options.forEachIndexed { i, opt ->
-                        OptionRow(opt, i, chosen, checked, ex.answer, accent) { if (!checked) chosen = i }
+                    order.forEach { i ->
+                        OptionRow(ex.options[i], i, chosen, checked, ex.answer, accent) { if (!checked) chosen = i }
                     }
                 }
 
                 is Exercise.TranslateChoose -> {
+                    val order = remember(pos) { ex.options.indices.shuffled() }
                     Text("¿Cómo se dice en inglés?", style = MaterialTheme.typography.titleLarge)
                     Text(
                         "\"${ex.es}\"",
                         style = MaterialTheme.typography.headlineMedium,
                         color = accent
                     )
-                    ex.options.forEachIndexed { i, opt ->
-                        OptionRow(opt, i, chosen, checked, ex.answer, accent) { if (!checked) chosen = i }
+                    order.forEach { i ->
+                        OptionRow(ex.options[i], i, chosen, checked, ex.answer, accent) { if (!checked) chosen = i }
                     }
                 }
 
@@ -453,20 +465,23 @@ fun LessonScreen(
                 BigButton("Comprobar", enabled = canCheck(), container = accent) {
                     wasCorrect = evaluate()
                     if (wasCorrect) {
-                        correctCount += 1
-                        say(teacher.encouragement[index % teacher.encouragement.size], 1f)
+                        // Solo puntúa el primer intento: lo repetido no infla la nota.
+                        if (index !in repeated) correctCount += 1
+                        say(teacher.encouragement[pos % teacher.encouragement.size], 1f)
                     } else {
+                        // Vuelve una sola vez, al final de la lección.
+                        if (repeated.add(index)) queue.add(index)
                         say(correctText(), 0.85f)
                     }
                     checked = true
                 }
             } else {
                 BigButton(
-                    text = if (index + 1 < total) "Continuar" else "Ver resultado",
+                    text = if (pos + 1 < queue.size) "Continuar" else "Ver resultado",
                     container = if (wasCorrect) GoodGreen else accent
                 ) {
-                    if (index + 1 < total) {
-                        index += 1
+                    if (pos + 1 < queue.size) {
+                        pos += 1
                         reset()
                     } else {
                         finished = true
