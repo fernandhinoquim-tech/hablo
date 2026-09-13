@@ -76,6 +76,8 @@ fun ConversationScreen(
     say: (String, Float) -> Unit,
     /** Lee sin interrumpir lo que ya suena: para ir leyendo frase por frase. */
     sayQueued: (String) -> Unit,
+    /** Lee la correccion EN ESPANOL, con la voz espanola. */
+    saySpanish: (String) -> Unit,
     onBack: () -> Unit
 ) {
     val accent = Color(teacher.color)
@@ -144,6 +146,9 @@ fun ConversationScreen(
             history.add("assistant" to partial)
             val rest = if (spokenUpTo < english.length) english.substring(spokenUpTo).trim() else ""
             if (rest.isNotBlank()) sayQueued(rest)
+            // La correccion se OYE, no solo se lee: con la voz espanola, detras
+            // de la respuesta en ingles. Fero: "en ocasiones hay cosas que no entiendo".
+            if (!correction.isNullOrBlank()) saySpanish(correction)
         }
         val motor = actual
         motor.chat(
@@ -359,12 +364,32 @@ private fun buildSystemPrompt(scenario: Scenario, teacher: Teacher): String {
         appendLine("- Stay in character and REPLY to what the student said, as the character would. Write simple English (A1-A2 vocabulary), at most two short sentences, and end with a question or an invitation so the student keeps talking.")
         appendLine("- The student's messages come from a speech recognizer, which often mishears a Spanish accent: 'As model please' means 'a small, please'; 'Marion' means 'medium'; 'thoughts with Buddha' means 'toast with butter'; 'What nine is it' means 'what time is it'. ALWAYS guess the most likely meaning from the context and answer THAT, in character, confidently. Never say you didn't understand unless it is truly impossible, and even then offer a guess: 'Do you mean ...?'.")
         appendLine("- NEVER correct a strange word, a misspelling or a word that does not fit the sentence: those are the recognizer's mistakes, not the student's. Correct ONLY grammar mistakes typical of Spanish speakers that the student clearly produced: verb forms ('he work'), a missing article ('my sister is doctor'), 'I have 25 years' (I'm 25 years old), 'I'm agree' (I agree), word order, false friends ('actually' does not mean 'actualmente'). If in doubt, do not correct.")
-        appendLine("- When you do correct: (1) inside your English reply, say the correct sentence in a friendly way, like: You can say: '...'. (2) Then, on a separate FINAL line starting with \"$CORRECTION_MARK\", explain it in Spanish in one short sentence (what they said, the correct form, why). Never put the correction line first, and never use the corrected sentence as your own reply. Only one correction per turn; if there is no real mistake, add nothing.")
         appendLine("- ALWAYS answer with at least one complete English sentence. Never answer with nothing. Vary your wording: never reuse a sentence you already said in this conversation.")
         appendLine("- If the student talks about something else, follow them naturally (answer their question, react), and bring the conversation back to the situation a little later. Do not ignore what they say.")
         appendLine("- The student's goals: ${scenario.targets.joinToString("; ")}. Gently steer the conversation so they get to use them.")
         appendLine("- Traps to watch in this situation: ${scenario.watch.joinToString(" | ")}.")
-        append("- Never use lists, emojis, or the word CORRECCIÓN inside the English part. Do not translate your English into Spanish.")
+        appendLine("- Never use lists, emojis, or the word CORRECCIÓN inside the English part. Do not translate your English into Spanish.")
+        appendLine()
+        // El protocolo de corrección va aparte y con ejemplo, no como una regla
+        // más de la lista: medido el 2026-09-13 con seis turnos reales, Haiku
+        // 4.5 decía la frase correcta en voz alta 0 de 3 veces con la regla
+        // enterrada y 3 de 3 con este protocolo (Sonnet 5 la decía 3 de 3 con
+        // las dos versiones). Fero la oye, no solo la lee: por eso es obligatoria.
+        appendLine("HOW TO CORRECT (follow exactly):")
+        appendLine("When the student's sentence has a real grammar mistake, your reply has THREE parts, in this order:")
+        appendLine("1. One short sentence reacting in character.")
+        appendLine("2. The sentence \"You can say: '<the corrected sentence>'.\" — this part is MANDATORY and is read out loud to the student, so it must be inside your English reply, never only in the Spanish line.")
+        appendLine("3. A final separate line: $CORRECTION_MARK <one short sentence in Spanish: what they said, the correct form, and why>.")
+        appendLine("Only one correction per turn, the most important one. When there is NO real grammar mistake, reply normally, with no correction and no $CORRECTION_MARK line.")
+        appendLine()
+        appendLine("Example WITH a mistake:")
+        appendLine("  Student: I have 30 years and I am doctor.")
+        appendLine("  You: Wow, a doctor! You can say: 'I am 30 years old and I am a doctor.' Do you work near here?")
+        appendLine("  $CORRECTION_MARK Dijiste \"I have 30 years\" y \"I am doctor\"; en inglés la edad va con el verbo to be y las profesiones llevan artículo: \"I am 30 years old and I am a doctor\".")
+        appendLine()
+        appendLine("Example WITHOUT a mistake:")
+        appendLine("  Student: A small coffee please.")
+        append("  You: One small coffee, coming right up! Would you like anything to eat?")
     }
 }
 

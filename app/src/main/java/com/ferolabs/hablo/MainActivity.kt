@@ -217,6 +217,7 @@ fun HabloApp(speaker: Speaker, listener: Listener, llm: Llm, cloud: CloudLlm, cl
                                 showFace = store.showFaces,
                                 say = say,
                                 sayQueued = { text -> speaker.speakQueued(text, teacher, speechScale) },
+                                saySpanish = { text -> speaker.speakSpanishQueued(text, speechScale) },
                                 onBack = {
                                     speaker.stop()
                                     listener.stopRecording()

@@ -23,7 +23,11 @@ plugins {
 val sherpaVersion = "1.13.4"
 val onnxRuntimeVersion = "1.27.0"
 
+// Las cuatro profesoras hablan inglés; "es" es la voz que explica y corrige en
+// español (Fero: "en ocasiones hay cosas que no entiendo"). Una voz inglesa
+// leyendo español es ininteligible, así que hacen falta dos modelos.
 val voicePackages = mapOf(
+    "es"     to "vits-piper-es_MX-claude-high-int8",
     "emma"   to "vits-piper-en_US-kristin-medium-int8",
     "sophie" to "vits-piper-en_GB-jenny_dioco-medium-int8",
     "mia"    to "vits-piper-en_US-ljspeech-medium-int8",
