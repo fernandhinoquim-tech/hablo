@@ -44,14 +44,16 @@ B2 leyendo, escribiendo, escuchando y hablando.
    de respaldo sin internet. La clave está en
    `C:\Users\ferna\Hablo-modelos\claude.key` y en
    `files/modelos/claude.key` del teléfono.
-   Lo que sigue siendo regla: (a) el permiso lo usa **únicamente**
-   `CloudLlm.kt`; nada más en la app abre una conexión, ni para descargar
-   modelos ni para telemetría; (b) sale **solo texto** (prompt del escenario +
+   Lo que sigue siendo regla: (a) el permiso lo usan **únicamente**
+   `ClaudeLlm.kt` y `CloudLlm.kt`; nada más en la app abre una conexión, ni
+   para descargar modelos ni para telemetría; (b) sale **solo texto** (prompt del escenario +
    la charla ya transcrita); **nunca audio**; dictado y voces siguen en el
-   teléfono; (c) interruptor en Ajustes **apagado por defecto** y muerto sin
-   clave; (d) la clave vive en `files/modelos/gemini.key` en el teléfono y en
-   `C:\Users\ferna\Hablo-modelos\gemini.key` en el PC: **jamás en el código,
-   en el repo, en un commit ni en un log**. Lecciones, pronunciación y
+   teléfono; (c) se elige en Ajustes quién responde
+   ("Tu profesora de conversación": Claude, Gemini o la IA del teléfono), y sin
+   clave esa opción está muerta; (d) las claves viven en `files/modelos/*.key`
+   en el teléfono y en `C:\Users\ferna\Hablo-modelos\*.key` en el PC, con
+   `*.key` en `.gitignore`: **jamás en el código, en el repo, en un commit ni
+   en un log**. Lecciones, pronunciación y
    progreso no tocan la red.
 2. **No actualizar el Android Gradle Plugin.** Android Studio va a ofrecer el
    "AGP Upgrade Assistant" cada vez. Decir que no. Las versiones están fijadas
