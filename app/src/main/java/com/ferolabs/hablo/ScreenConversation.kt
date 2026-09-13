@@ -56,9 +56,9 @@ private const val CORRECTION_MARK = "CORRECCIÓN:"
  * o escribe → la IA responde en su papel y, si hubo un error típico de
  * hispanohablante, lo corrige en español → Piper lee la parte en inglés.
  *
- * Dos motores: Gemini por internet ([CloudLlm], si el interruptor de Ajustes
- * está encendido y hay clave) o Qwen en el teléfono ([Llm]). Si Gemini no
- * responde a mitad de charla, se sigue con Qwen sin perder la conversación.
+ * El motor lo elige Ajustes ([ChatEngine]): Claude, Gemini o la IA del
+ * teléfono. Si el de internet falla a mitad de charla, se sigue con el local
+ * sin perder el hilo.
  *
  * Memoria: al entrar se suelta el modelo de fonemas y, en modo local, se
  * carga Qwen (~5 GB); al salir se suelta. Parakeet y Piper sí conviven con él.
@@ -69,9 +69,9 @@ fun ConversationScreen(
     teacher: Teacher,
     speaker: Speaker,
     listener: Listener,
-    llm: Llm,
-    cloud: CloudLlm,
-    useCloud: Boolean,
+    engine: ChatEngine,
+    /** Respaldo si el de internet se cae a mitad de charla. */
+    local: LocalEngine,
     showFace: Boolean,
     say: (String, Float) -> Unit,
     /** Lee sin interrumpir lo que ya suena: para ir leyendo frase por frase. */
@@ -84,42 +84,32 @@ fun ConversationScreen(
     var draft by remember { mutableStateOf("") }
     var notHeard by remember { mutableStateOf<NotHeardReason?>(null) }
     var loadFailed by remember { mutableStateOf(false) }
-    // Por internet mientras Gemini responda; si falla, se baja al teléfono.
-    var cloudMode by remember { mutableStateOf(useCloud && cloud.keyPresent()) }
-    var cloudNote by remember { mutableStateOf<String?>(null) }
+    // El motor puede cambiar a mitad de charla si el de internet se cae.
+    var actual by remember { mutableStateOf(if (engine.usable()) engine else local) }
+    var engineNote by remember { mutableStateOf<String?>(null) }
     val listState = rememberLazyListState()
 
     val opening = scenario.opening.replace("{teacher}", teacher.name)
-    // Un prompt por motor: ask() elige en el momento, porque el modo puede cambiar a mitad de charla.
-    val cloudPrompt = remember(scenario.id, teacher.id) { buildSystemPrompt(scenario, teacher, local = false) }
-    val localPrompt = remember(scenario.id, teacher.id) { buildSystemPrompt(scenario, teacher, local = true) }
-    val ready = cloudMode || llm.loaded
-    val engineBusy = if (cloudMode) cloud.busy else llm.busy
+    val basePrompt = remember(scenario.id, teacher.id) { buildSystemPrompt(scenario, teacher) }
+    val ready = actual.ready()
+    val engineBusy = actual.busy
 
-    // Cargar la IA al entrar; soltarla al salir. Nunca con el modelo de fonemas
-    // cargado. Mientras la profesora dice la apertura, el modelo ya procesa el
-    // prompt de sistema: el primer turno del alumno no paga esos ~250 tokens.
+    // Preparar el motor al entrar y soltarlo al salir. Nunca con el modelo de
+    // fonemas cargado: el de la conversación puede pesar 5 GB.
     LaunchedEffect(Unit) {
         listener.releaseSounds()
         listener.prepareConversation()
-        if (cloudMode) {
-            cloud.startConversation()
-            startConversation(bubbles, history, opening, say)
-        } else {
-            val begin = {
-                startConversation(bubbles, history, opening, say)
-                llm.startConversation(listOf("system" to localPrompt) + history.toList())
-            }
-            if (llm.loaded) begin() else llm.load { ok -> if (ok) begin() else loadFailed = true }
-        }
+        startConversation(bubbles, history, opening, say)
+        actual.start(actual.systemPrompt(basePrompt), history.toList()) { ok -> if (!ok) loadFailed = true }
     }
     DisposableEffect(Unit) {
         onDispose {
             speaker.stop()
             listener.stopRecording()
             listener.releaseConversation()
-            llm.stop()
-            llm.release()
+            actual.stop()
+            actual.release()
+            local.release()
         }
     }
 
@@ -155,28 +145,26 @@ fun ConversationScreen(
             val rest = if (spokenUpTo < english.length) english.substring(spokenUpTo).trim() else ""
             if (rest.isNotBlank()) sayQueued(rest)
         }
-        if (cloudMode) {
-            cloud.chat(system = cloudPrompt, messages = history.toList(), onToken = onToken) { error ->
-                if (error == null || partial.any { it.isLetterOrDigit() }) {
-                    finish()
-                } else {
-                    // Gemini no dijo nada: el resto de la charla sigue en el teléfono.
-                    bubbles.removeAt(idx)
-                    cloudMode = false
-                    if (llm.modelPresent()) {
-                        cloudNote = "Gemini no respondió ($error). Sigo con la IA del teléfono."
-                        if (llm.loaded) ask() else llm.load { ok -> if (ok) ask() else loadFailed = true }
-                    } else {
-                        cloudNote = "Gemini no respondió ($error) y no hay modelo de IA en el teléfono."
-                    }
+        val motor = actual
+        motor.chat(
+            system = motor.systemPrompt(basePrompt),
+            messages = history.toList(),
+            onToken = onToken
+        ) { error ->
+            if (error == null || partial.any { it.isLetterOrDigit() }) {
+                finish()
+            } else if (motor !== local && local.usable()) {
+                // El de internet no dijo nada: el resto de la charla sigue en el teléfono.
+                bubbles.removeAt(idx)
+                actual = local
+                engineNote = "${motor.label} no respondió ($error). Sigo con la IA del teléfono."
+                local.start(local.systemPrompt(basePrompt), history.toList()) { ok ->
+                    if (ok) ask() else loadFailed = true
                 }
+            } else {
+                bubbles.removeAt(idx)
+                engineNote = error
             }
-        } else {
-            llm.chat(
-                messages = listOf("system" to localPrompt) + history.toList(),
-                onToken = onToken,
-                onDone = { finish() }
-            )
         }
     }
 
@@ -218,16 +206,16 @@ fun ConversationScreen(
                 color = accent
             )
             Text(
-                if (cloudMode) "Por internet · ${cloud.model}" else "IA del teléfono · sin internet",
+                actual.label,
                 style = MaterialTheme.typography.labelSmall,
                 color = InkSoft
             )
         }
 
-        if (!cloudMode && !llm.loaded && !loadFailed) {
+        if (!ready && !loadFailed) {
             Column(modifier = Modifier.padding(20.dp)) {
                 Text(
-                    "Despertando a ${teacher.name}… (carga 5 GB, unos segundos)",
+                    "Despertando a ${teacher.name}…",
                     style = MaterialTheme.typography.bodyMedium,
                     color = InkSoft
                 )
@@ -237,7 +225,7 @@ fun ConversationScreen(
         }
         if (loadFailed) {
             Text(
-                llm.status.ifBlank { "No se pudo cargar el modelo de IA." },
+                actual.status.ifBlank { "No se pudo cargar el modelo de IA." },
                 style = MaterialTheme.typography.bodyMedium,
                 color = BadRed,
                 modifier = Modifier.padding(20.dp)
@@ -255,7 +243,7 @@ fun ConversationScreen(
         }
 
         notHeard?.let { NotHeardBox(it) }
-        cloudNote?.let {
+        engineNote?.let {
             Text(
                 it,
                 style = MaterialTheme.typography.labelMedium,
@@ -362,7 +350,7 @@ private fun startConversation(
  * la corrección al alumno va en español. El "sello de la casa" (los errores de
  * quien piensa en español) va explícito, más las trampas del escenario.
  */
-private fun buildSystemPrompt(scenario: Scenario, teacher: Teacher, local: Boolean): String {
+private fun buildSystemPrompt(scenario: Scenario, teacher: Teacher): String {
     val origin = if (teacher.accent == Accent.UK) "from England" else "from the United States"
     return buildString {
         appendLine("You are ${teacher.name}, a warm English teacher $origin. You are role-playing with a Spanish-speaking beginner (level ${scenario.level}).")
@@ -376,8 +364,7 @@ private fun buildSystemPrompt(scenario: Scenario, teacher: Teacher, local: Boole
         appendLine("- If the student talks about something else, follow them naturally (answer their question, react), and bring the conversation back to the situation a little later. Do not ignore what they say.")
         appendLine("- The student's goals: ${scenario.targets.joinToString("; ")}. Gently steer the conversation so they get to use them.")
         appendLine("- Traps to watch in this situation: ${scenario.watch.joinToString(" | ")}.")
-        appendLine("- Never use lists, emojis, or the word CORRECCIÓN inside the English part. Do not translate your English into Spanish.")
-        if (local) append("/no_think")
+        append("- Never use lists, emojis, or the word CORRECCIÓN inside the English part. Do not translate your English into Spanish.")
     }
 }
 
@@ -451,15 +438,13 @@ private fun BubbleView(b: Bubble, teacher: Teacher, accent: Color) {
 @Composable
 fun ScenariosScreen(
     teacher: Teacher,
-    llm: Llm,
-    cloud: CloudLlm,
-    useCloud: Boolean,
+    engine: ChatEngine,
+    local: LocalEngine,
     onPick: (Scenario) -> Unit,
     onBack: () -> Unit
 ) {
     val accent = Color(teacher.color)
-    val cloudMode = useCloud && cloud.keyPresent()
-    val canTalk = cloudMode || llm.modelPresent()
+    val canTalk = engine.usable() || local.usable()
     Column(modifier = Modifier.fillMaxSize()) {
         TopBar("Conversar con ${teacher.name}", onBack = onBack)
         LazyColumn(
@@ -474,10 +459,10 @@ fun ScenariosScreen(
                             .background(BadRedSoft, RoundedCornerShape(12.dp))
                             .padding(14.dp)
                     ) {
-                        Text("Falta el modelo de IA", style = MaterialTheme.typography.labelLarge, color = BadRed)
+                        Text("Falta quien haga de profesora", style = MaterialTheme.typography.labelLarge, color = BadRed)
                         Text(
-                            "Se copia una vez por USB a:\n${llm.modelFile.absolutePath}\n" +
-                                "O enciende la conversación por internet en Ajustes.",
+                            "Elige en Ajustes quién responde: Claude o Gemini por internet, " +
+                                "o copia el modelo de IA al teléfono por USB.",
                             style = MaterialTheme.typography.bodyMedium,
                             color = Ink
                         )
@@ -491,8 +476,7 @@ fun ScenariosScreen(
                     color = InkSoft
                 )
                 Text(
-                    if (cloudMode) "Hoy responde por internet (Gemini). Se puede apagar en Ajustes."
-                    else "Responde desde el teléfono, sin internet.",
+                    "Hoy responde: ${if (engine.usable()) engine.label else local.label}. Se cambia en Ajustes.",
                     style = MaterialTheme.typography.labelMedium,
                     color = accent
                 )

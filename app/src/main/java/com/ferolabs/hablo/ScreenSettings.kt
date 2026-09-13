@@ -38,7 +38,9 @@ fun SettingsScreen(
     speaker: Speaker,
     llm: Llm,
     cloud: CloudLlm,
-    onCloudChange: (Boolean) -> Unit,
+    claude: ClaudeLlm,
+    engineId: String,
+    onEngineChange: (String) -> Unit,
     onChangeTeacher: () -> Unit,
     onTestVoice: (Float) -> Unit,
     onSpeedChange: (Float) -> Unit,
@@ -49,7 +51,7 @@ fun SettingsScreen(
     var speed by remember { mutableStateOf(store.speechScale) }
     var confirmReset by remember { mutableStateOf(false) }
     var showFaces by remember { mutableStateOf(store.showFaces) }
-    var useCloud by remember { mutableStateOf(store.cloudConversation) }
+    var engine by remember { mutableStateOf(engineId) }
     var cloudTest by remember { mutableStateOf("") }
     val appVersion = remember {
         try {
@@ -137,60 +139,86 @@ fun SettingsScreen(
                 BigButton("Probar la voz", container = accent) { onTestVoice(speed) }
             }
 
-            // --- Conversación por internet (Gemini) ------------------------------
+            // --- Quién responde en la conversación --------------------------------
             SettingsCard {
-                Text("Conversación por internet", style = MaterialTheme.typography.labelMedium, color = InkSoft)
-                Spacer(Modifier.height(8.dp))
-                val hasKey = cloud.keyPresent()
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .clickable(enabled = hasKey) {
-                            useCloud = !useCloud
-                            onCloudChange(useCloud)
-                        }
-                ) {
-                    Text(
-                        "La profesora responde con Gemini (Google)",
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = if (hasKey) Ink else InkSoft,
-                        modifier = Modifier.weight(1f)
-                    )
-                    Text(
-                        if (!hasKey) "Sin clave" else if (useCloud) "Encendido" else "Apagado",
-                        style = MaterialTheme.typography.labelLarge,
-                        color = if (hasKey) accent else BadRed
-                    )
-                }
-                Spacer(Modifier.height(8.dp))
+                Text("Tu profesora de conversación", style = MaterialTheme.typography.labelMedium, color = InkSoft)
+                Spacer(Modifier.height(4.dp))
                 Text(
-                    if (hasKey)
-                        "Solo se envía el texto de la conversación (lo que dijiste, ya transcrito en el " +
-                            "teléfono, y lo que ella responde). Nunca tu voz. Lecciones, pronunciación y " +
-                            "voces siguen sin internet. Nivel gratuito de Google: unos 100 turnos al día " +
-                            "con los modelos buenos y 500 más con el rápido; Google puede usar ese texto " +
-                            "para mejorar sus productos."
-                    else
-                        "Falta la clave de Gemini. Se copia una vez por USB a:\n${cloud.keyFile.absolutePath}",
+                    "Quién contesta cuando hablas con ella. Solo viaja el texto de la charla; " +
+                        "tu voz nunca sale del teléfono, y las lecciones y la pronunciación " +
+                        "funcionan igual sin internet.",
                     style = MaterialTheme.typography.labelMedium,
                     color = InkSoft
                 )
-                if (hasKey) {
-                    Spacer(Modifier.height(10.dp))
-                    BigButton("Probar la conexión", container = accent) {
-                        cloudTest = "Probando…"
-                        cloud.testConnection { cloudTest = it }
+                Spacer(Modifier.height(10.dp))
+
+                val opciones = buildList {
+                    ClaudeLlm.MODELOS.forEach { (id, texto) ->
+                        add(EngineOption(id, texto.first, texto.second, claude.keyPresent(), "Falta la clave de Claude"))
                     }
-                    if (cloudTest.isNotBlank()) {
-                        Spacer(Modifier.height(6.dp))
-                        Text(cloudTest, style = MaterialTheme.typography.labelMedium, color = Ink)
-                    }
-                    if (cloud.status.isNotBlank()) {
-                        Spacer(Modifier.height(6.dp))
-                        Text("Última respuesta: ${cloud.status}", style = MaterialTheme.typography.labelSmall, color = InkSoft)
+                    add(EngineOption(Store.ENGINE_GEMINI, "Gemini (Google)", "gratis · a veces tarda o se agota", cloud.keyPresent(), "Falta la clave de Gemini"))
+                    add(EngineOption(Store.ENGINE_LOCAL, "IA del teléfono", "sin internet · más lenta y más torpe", llm.modelPresent(), "Falta el modelo en el teléfono"))
+                }
+                opciones.forEach { op ->
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable(enabled = op.disponible) {
+                                engine = op.id
+                                onEngineChange(op.id)
+                                cloudTest = ""
+                            }
+                            .padding(vertical = 8.dp)
+                    ) {
+                        Text(
+                            if (engine == op.id) "●" else "○",
+                            style = MaterialTheme.typography.titleMedium,
+                            color = if (op.disponible) accent else Line
+                        )
+                        Spacer(Modifier.size(10.dp))
+                        Column(modifier = Modifier.weight(1f)) {
+                            Text(
+                                op.nombre,
+                                style = MaterialTheme.typography.bodyLarge,
+                                color = if (op.disponible) Ink else InkSoft
+                            )
+                            Text(
+                                if (op.disponible) op.detalle else op.falta,
+                                style = MaterialTheme.typography.labelMedium,
+                                color = if (op.disponible) InkSoft else BadRed
+                            )
+                        }
                     }
                 }
+
+                Spacer(Modifier.height(6.dp))
+                BigButton("Probar la conexión", enabled = engine != Store.ENGINE_LOCAL, container = accent) {
+                    cloudTest = "Probando…"
+                    if (engine.startsWith("claude")) {
+                        claude.model = engine
+                        claude.testConnection { cloudTest = it }
+                    } else {
+                        cloud.testConnection { cloudTest = it }
+                    }
+                }
+                if (cloudTest.isNotBlank()) {
+                    Spacer(Modifier.height(6.dp))
+                    Text(cloudTest, style = MaterialTheme.typography.labelMedium, color = Ink)
+                }
+                val ultima = if (engine.startsWith("claude")) claude.status else cloud.status
+                if (ultima.isNotBlank()) {
+                    Spacer(Modifier.height(6.dp))
+                    Text("Última respuesta: $ultima", style = MaterialTheme.typography.labelSmall, color = InkSoft)
+                }
+                Spacer(Modifier.height(8.dp))
+                Text(
+                    "Claude se paga por uso con tu clave; el precio de arriba es a 30 turnos " +
+                        "diarios. Gemini es gratis pero con tope diario, y Google puede usar ese " +
+                        "texto para mejorar sus productos.",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = InkSoft
+                )
             }
 
             // --- Laboratorio de IA (Fase 3): medir antes de construir ----------
@@ -334,3 +362,12 @@ private fun SettingsCard(content: @Composable () -> Unit) {
         content()
     }
 }
+
+/** Una opción de la lista "quién te responde". */
+private data class EngineOption(
+    val id: String,
+    val nombre: String,
+    val detalle: String,
+    val disponible: Boolean,
+    val falta: String
+)

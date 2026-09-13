@@ -35,11 +35,12 @@ class MainActivity : ComponentActivity() {
         val ai = Llm(this)
         llm = ai
         val cloud = CloudLlm(this)
+        val claude = ClaudeLlm(this)
         val store = Store(this)
         Course.load(this)
 
         setContent {
-            HabloApp(speaker = sp, listener = li, llm = ai, cloud = cloud, store = store)
+            HabloApp(speaker = sp, listener = li, llm = ai, cloud = cloud, claude = claude, store = store)
         }
     }
 
@@ -70,11 +71,20 @@ private sealed class Route {
 }
 
 @Composable
-fun HabloApp(speaker: Speaker, listener: Listener, llm: Llm, cloud: CloudLlm, store: Store) {
+fun HabloApp(speaker: Speaker, listener: Listener, llm: Llm, cloud: CloudLlm, claude: ClaudeLlm, store: Store) {
 
     var teacherId by remember { mutableStateOf(store.teacherId) }
     var speechScale by remember { mutableStateOf(store.speechScale) }
-    var useCloud by remember { mutableStateOf(store.cloudConversation) }
+    // Quién responde en la conversación; se puede cambiar en Ajustes sin reiniciar.
+    var engineId by remember { mutableStateOf(store.conversationEngine) }
+    val local = remember { LocalEngine(llm) }
+    val engine: ChatEngine = remember(engineId) {
+        when {
+            engineId.startsWith("claude") -> claude.also { it.model = engineId }
+            engineId == Store.ENGINE_GEMINI -> cloud
+            else -> local
+        }
+    }
     var progressTick by remember { mutableStateOf(0) }
 
     var route by remember {
@@ -180,9 +190,8 @@ fun HabloApp(speaker: Speaker, listener: Listener, llm: Llm, cloud: CloudLlm, st
                         }
                         ScenariosScreen(
                             teacher = teacher,
-                            llm = llm,
-                            cloud = cloud,
-                            useCloud = useCloud,
+                            engine = engine,
+                            local = local,
                             onPick = { sc -> listener.releaseSounds(); route = Route.Talking(sc.id) },
                             onBack = { speaker.stop(); route = Route.Home }
                         )
@@ -203,9 +212,8 @@ fun HabloApp(speaker: Speaker, listener: Listener, llm: Llm, cloud: CloudLlm, st
                                 teacher = teacher,
                                 speaker = speaker,
                                 listener = listener,
-                                llm = llm,
-                                cloud = cloud,
-                                useCloud = useCloud,
+                                engine = engine,
+                                local = local,
                                 showFace = store.showFaces,
                                 say = say,
                                 sayQueued = { text -> speaker.speakQueued(text, teacher, speechScale) },
@@ -249,9 +257,11 @@ fun HabloApp(speaker: Speaker, listener: Listener, llm: Llm, cloud: CloudLlm, st
                             speaker = speaker,
                             llm = llm,
                             cloud = cloud,
-                            onCloudChange = { on ->
-                                useCloud = on
-                                store.cloudConversation = on
+                            claude = claude,
+                            engineId = engineId,
+                            onEngineChange = { id ->
+                                engineId = id
+                                store.conversationEngine = id
                             },
                             onChangeTeacher = { route = Route.PickTeacher },
                             onTestVoice = { s ->

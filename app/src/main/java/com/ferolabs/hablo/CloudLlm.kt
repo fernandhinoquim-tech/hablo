@@ -39,16 +39,21 @@ import java.util.concurrent.Executors
  * La clave vive en files/modelos/gemini.key (se copia por USB), nunca en el
  * código ni en el repositorio.
  */
-class CloudLlm(context: Context) {
+class CloudLlm(context: Context) : ChatEngine {
 
     private val app = context.applicationContext
     private val worker = Executors.newSingleThreadExecutor()
 
-    var busy by mutableStateOf(false)
+    override var busy by mutableStateOf(false)
         private set
 
-    var status by mutableStateOf("")
+    override var status by mutableStateOf("")
         private set
+
+    override val label: String get() = "$model · gratis"
+
+    override fun ready() = keyPresent()
+    override fun usable() = keyPresent()
 
     /** Peldaño actual de la escalera; se reinicia con cada conversación. */
     private var rung by mutableStateOf(0)
@@ -66,8 +71,9 @@ class CloudLlm(context: Context) {
         null
     }
 
-    fun startConversation() {
+    override fun start(system: String, history: List<Pair<String, String>>, onReady: (Boolean) -> Unit) {
         rung = 0
+        onReady(true)
     }
 
     /**
@@ -76,7 +82,7 @@ class CloudLlm(context: Context) {
      * [onToken] (hilo de fondo); [onDone] recibe null si todo salió bien o el
      * mensaje de error para mostrar.
      */
-    fun chat(
+    override fun chat(
         system: String,
         messages: List<Pair<String, String>>,
         onToken: (String) -> Unit,

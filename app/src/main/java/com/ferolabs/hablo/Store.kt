@@ -21,12 +21,15 @@ class Store(context: Context) {
         set(value) = prefs.edit().putBoolean("show_faces", value).apply()
 
     /**
-     * Conversación por internet con Gemini en vez de la IA del teléfono.
-     * Apagado por defecto; solo tiene efecto si existe la clave (CloudLlm).
+     * Quién hace de profesora en la conversación: [ENGINE_LOCAL] (la IA del
+     * teléfono, sin internet), [ENGINE_GEMINI] (gratis, con altibajos) o un id
+     * de modelo de Claude (de pago). Por internet solo va el texto.
+     * Migra solo desde el interruptor de la 0.9.
      */
-    var cloudConversation: Boolean
-        get() = prefs.getBoolean("cloud_conversation", false)
-        set(value) = prefs.edit().putBoolean("cloud_conversation", value).apply()
+    var conversationEngine: String
+        get() = prefs.getString("conversation_engine", null)
+            ?: if (prefs.getBoolean("cloud_conversation", false)) ENGINE_GEMINI else ENGINE_LOCAL
+        set(value) = prefs.edit().putString("conversation_engine", value).apply()
 
     /** Multiplicador global de velocidad de la voz (0.6 = lento, 1.4 = rápido). */
     var speechScale: Float
@@ -101,6 +104,11 @@ class Store(context: Context) {
             .putInt("sound_${sound.key}_mal", st.mal + if (verdict == WordScore.MAL) 1 else 0)
             .putInt("sound_${sound.key}_dudoso", st.dudoso + if (verdict == WordScore.DUDOSO) 1 else 0)
             .apply()
+    }
+
+    companion object {
+        const val ENGINE_LOCAL = "local"
+        const val ENGINE_GEMINI = "gemini"
     }
 
     fun resetEverything() {
