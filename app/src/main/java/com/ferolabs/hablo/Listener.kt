@@ -386,17 +386,21 @@ class Listener(context: Context) {
         var count = 0
         val chunk = ShortArray(bufferSize / 2)
 
-        // Corte automático por silencio (solo en conversación).
-        var noiseFloor = 0f          // RMS del ruido, estimado con los primeros trozos
-        var floorChunks = 0
+        // Corte automático por silencio (solo en conversación). El piso de ruido
+        // es el MÍNIMO continuo de la energía por trozo: así funciona aunque el
+        // alumno empiece a hablar desde el primer instante (el piso lo dan las
+        // pausas entre palabras), que fue lo que rompió la primera versión.
+        var noiseFloor = Float.MAX_VALUE
         var heardSpeech = false
         var silentMs = 0
         var speechMs = 0
+        // trozos de 100 ms para que el corte sea preciso
+        val readSize = if (autoStop) min(chunk.size, sampleRate / 10) else chunk.size
 
         try {
             rec.startRecording()
             while (!shouldStop && count < limit) {
-                val n = rec.read(chunk, 0, min(chunk.size, limit - count))
+                val n = rec.read(chunk, 0, min(readSize, limit - count))
                 if (n <= 0) continue
                 var peak = 0f
                 var energy = 0.0
@@ -412,13 +416,8 @@ class Listener(context: Context) {
                 if (autoStop) {
                     val rms = kotlin.math.sqrt(energy / n).toFloat()
                     val chunkMs = n * 1000 / sampleRate
-                    if (floorChunks < 3) {
-                        // los primeros ~0,4 s son el piso (el usuario aún no habla)
-                        noiseFloor = maxOf(noiseFloor, rms)
-                        floorChunks++
-                        continue
-                    }
-                    val threshold = maxOf(noiseFloor * 2.5f, AUTO_STOP_MIN_RMS)
+                    noiseFloor = minOf(noiseFloor, maxOf(rms, 0.001f))
+                    val threshold = maxOf(noiseFloor * 3f, AUTO_STOP_MIN_RMS)
                     if (rms > threshold) {
                         speechMs += chunkMs
                         silentMs = 0

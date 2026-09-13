@@ -34,11 +34,12 @@ class MainActivity : ComponentActivity() {
         listener = li
         val ai = Llm(this)
         llm = ai
+        val cloud = CloudLlm(this)
         val store = Store(this)
         Course.load(this)
 
         setContent {
-            HabloApp(speaker = sp, listener = li, llm = ai, store = store)
+            HabloApp(speaker = sp, listener = li, llm = ai, cloud = cloud, store = store)
         }
     }
 
@@ -69,10 +70,11 @@ private sealed class Route {
 }
 
 @Composable
-fun HabloApp(speaker: Speaker, listener: Listener, llm: Llm, store: Store) {
+fun HabloApp(speaker: Speaker, listener: Listener, llm: Llm, cloud: CloudLlm, store: Store) {
 
     var teacherId by remember { mutableStateOf(store.teacherId) }
     var speechScale by remember { mutableStateOf(store.speechScale) }
+    var useCloud by remember { mutableStateOf(store.cloudConversation) }
     var progressTick by remember { mutableStateOf(0) }
 
     var route by remember {
@@ -179,6 +181,8 @@ fun HabloApp(speaker: Speaker, listener: Listener, llm: Llm, store: Store) {
                         ScenariosScreen(
                             teacher = teacher,
                             llm = llm,
+                            cloud = cloud,
+                            useCloud = useCloud,
                             onPick = { sc -> listener.releaseSounds(); route = Route.Talking(sc.id) },
                             onBack = { speaker.stop(); route = Route.Home }
                         )
@@ -200,6 +204,8 @@ fun HabloApp(speaker: Speaker, listener: Listener, llm: Llm, store: Store) {
                                 speaker = speaker,
                                 listener = listener,
                                 llm = llm,
+                                cloud = cloud,
+                                useCloud = useCloud,
                                 showFace = store.showFaces,
                                 say = say,
                                 sayQueued = { text -> speaker.speakQueued(text, teacher, speechScale) },
@@ -242,6 +248,11 @@ fun HabloApp(speaker: Speaker, listener: Listener, llm: Llm, store: Store) {
                             store = store,
                             speaker = speaker,
                             llm = llm,
+                            cloud = cloud,
+                            onCloudChange = { on ->
+                                useCloud = on
+                                store.cloudConversation = on
+                            },
                             onChangeTeacher = { route = Route.PickTeacher },
                             onTestVoice = { s ->
                                 speaker.speak(teacher.greeting, teacher, s)

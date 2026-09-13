@@ -37,6 +37,8 @@ fun SettingsScreen(
     store: Store,
     speaker: Speaker,
     llm: Llm,
+    cloud: CloudLlm,
+    onCloudChange: (Boolean) -> Unit,
     onChangeTeacher: () -> Unit,
     onTestVoice: (Float) -> Unit,
     onSpeedChange: (Float) -> Unit,
@@ -47,6 +49,14 @@ fun SettingsScreen(
     var speed by remember { mutableStateOf(store.speechScale) }
     var confirmReset by remember { mutableStateOf(false) }
     var showFaces by remember { mutableStateOf(store.showFaces) }
+    var useCloud by remember { mutableStateOf(store.cloudConversation) }
+    var cloudTest by remember { mutableStateOf("") }
+    val appVersion = remember {
+        try {
+            val context = store.context
+            context.packageManager.getPackageInfo(context.packageName, 0).versionName ?: "?"
+        } catch (e: Throwable) { "?" }
+    }
 
     Column(modifier = Modifier.fillMaxSize()) {
         TopBar("Ajustes", onBack = onBack)
@@ -125,6 +135,62 @@ fun SettingsScreen(
                 )
                 Spacer(Modifier.height(4.dp))
                 BigButton("Probar la voz", container = accent) { onTestVoice(speed) }
+            }
+
+            // --- Conversación por internet (Gemini) ------------------------------
+            SettingsCard {
+                Text("Conversación por internet", style = MaterialTheme.typography.labelMedium, color = InkSoft)
+                Spacer(Modifier.height(8.dp))
+                val hasKey = cloud.keyPresent()
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable(enabled = hasKey) {
+                            useCloud = !useCloud
+                            onCloudChange(useCloud)
+                        }
+                ) {
+                    Text(
+                        "La profesora responde con Gemini (Google)",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = if (hasKey) Ink else InkSoft,
+                        modifier = Modifier.weight(1f)
+                    )
+                    Text(
+                        if (!hasKey) "Sin clave" else if (useCloud) "Encendido" else "Apagado",
+                        style = MaterialTheme.typography.labelLarge,
+                        color = if (hasKey) accent else BadRed
+                    )
+                }
+                Spacer(Modifier.height(8.dp))
+                Text(
+                    if (hasKey)
+                        "Solo se envía el texto de la conversación (lo que dijiste, ya transcrito en el " +
+                            "teléfono, y lo que ella responde). Nunca tu voz. Lecciones, pronunciación y " +
+                            "voces siguen sin internet. Nivel gratuito de Google: unos 100 turnos al día " +
+                            "con los modelos buenos y 500 más con el rápido; Google puede usar ese texto " +
+                            "para mejorar sus productos."
+                    else
+                        "Falta la clave de Gemini. Se copia una vez por USB a:\n${cloud.keyFile.absolutePath}",
+                    style = MaterialTheme.typography.labelMedium,
+                    color = InkSoft
+                )
+                if (hasKey) {
+                    Spacer(Modifier.height(10.dp))
+                    BigButton("Probar la conexión", container = accent) {
+                        cloudTest = "Probando…"
+                        cloud.testConnection { cloudTest = it }
+                    }
+                    if (cloudTest.isNotBlank()) {
+                        Spacer(Modifier.height(6.dp))
+                        Text(cloudTest, style = MaterialTheme.typography.labelMedium, color = Ink)
+                    }
+                    if (cloud.status.isNotBlank()) {
+                        Spacer(Modifier.height(6.dp))
+                        Text("Última respuesta: ${cloud.status}", style = MaterialTheme.typography.labelSmall, color = InkSoft)
+                    }
+                }
             }
 
             // --- Laboratorio de IA (Fase 3): medir antes de construir ----------
@@ -233,20 +299,19 @@ fun SettingsScreen(
             SettingsCard {
                 Text("Sobre Hablo", style = MaterialTheme.typography.labelMedium, color = InkSoft)
                 Spacer(Modifier.height(6.dp))
-                Text("Versión 0.6", style = MaterialTheme.typography.bodyLarge)
+                Text("Versión $appVersion", style = MaterialTheme.typography.bodyLarge)
                 Spacer(Modifier.height(8.dp))
                 Text(
-                    "Esta app no pide permiso de internet: no puede conectarse ni aunque " +
-                        "quisiera. Todo tu progreso vive solo en este celular.",
+                    "Todo funciona sin internet y tu progreso vive solo en este celular. " +
+                        "La única excepción, si la enciendes arriba, es la conversación con Gemini.",
                     style = MaterialTheme.typography.bodyMedium,
                     color = InkSoft
                 )
                 Spacer(Modifier.height(10.dp))
                 Text(
-                    "Voces: Piper (MIT) sobre sherpa-onnx (Apache 2.0), incluidas dentro " +
-                        "de la app.\n" +
-                        "Próximamente: reconocimiento de voz y conversación con IA, " +
-                        "también sin conexión.",
+                    "Voces: Piper (MIT) sobre sherpa-onnx (Apache 2.0). Dictado: Moonshine y " +
+                        "Parakeet. Fonemas: wav2vec2. IA en el teléfono: llama.cpp + Qwen3 8B. " +
+                        "Todo dentro de la app o en su carpeta.",
                     style = MaterialTheme.typography.labelMedium,
                     color = InkSoft
                 )

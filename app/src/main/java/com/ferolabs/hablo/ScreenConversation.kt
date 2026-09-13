@@ -52,12 +52,16 @@ private const val CORRECTION_MARK = "CORRECCIÓN:"
 
 /**
  * Conversación con la IA en un escenario cerrado (Fase 3). El ciclo completo:
- * la profesora abre hablando (Piper) → el alumno habla (Moonshine transcribe)
- * o escribe → Qwen responde en su papel y, si hubo un error típico de
+ * la profesora abre hablando (Piper) → el alumno habla (Parakeet transcribe)
+ * o escribe → la IA responde en su papel y, si hubo un error típico de
  * hispanohablante, lo corrige en español → Piper lee la parte en inglés.
  *
- * Memoria: al entrar se suelta el modelo de fonemas y se carga Qwen (~5 GB);
- * al salir se suelta Qwen. Moonshine y Piper sí conviven con él.
+ * Dos motores: Gemini por internet ([CloudLlm], si el interruptor de Ajustes
+ * está encendido y hay clave) o Qwen en el teléfono ([Llm]). Si Gemini no
+ * responde a mitad de charla, se sigue con Qwen sin perder la conversación.
+ *
+ * Memoria: al entrar se suelta el modelo de fonemas y, en modo local, se
+ * carga Qwen (~5 GB); al salir se suelta. Parakeet y Piper sí conviven con él.
  */
 @Composable
 fun ConversationScreen(
@@ -66,6 +70,8 @@ fun ConversationScreen(
     speaker: Speaker,
     listener: Listener,
     llm: Llm,
+    cloud: CloudLlm,
+    useCloud: Boolean,
     showFace: Boolean,
     say: (String, Float) -> Unit,
     /** Lee sin interrumpir lo que ya suena: para ir leyendo frase por frase. */
@@ -78,10 +84,17 @@ fun ConversationScreen(
     var draft by remember { mutableStateOf("") }
     var notHeard by remember { mutableStateOf<NotHeardReason?>(null) }
     var loadFailed by remember { mutableStateOf(false) }
+    // Por internet mientras Gemini responda; si falla, se baja al teléfono.
+    var cloudMode by remember { mutableStateOf(useCloud && cloud.keyPresent()) }
+    var cloudNote by remember { mutableStateOf<String?>(null) }
     val listState = rememberLazyListState()
 
     val opening = scenario.opening.replace("{teacher}", teacher.name)
-    val systemPrompt = remember(scenario.id, teacher.id) { buildSystemPrompt(scenario, teacher) }
+    // Un prompt por motor: ask() elige en el momento, porque el modo puede cambiar a mitad de charla.
+    val cloudPrompt = remember(scenario.id, teacher.id) { buildSystemPrompt(scenario, teacher, local = false) }
+    val localPrompt = remember(scenario.id, teacher.id) { buildSystemPrompt(scenario, teacher, local = true) }
+    val ready = cloudMode || llm.loaded
+    val engineBusy = if (cloudMode) cloud.busy else llm.busy
 
     // Cargar la IA al entrar; soltarla al salir. Nunca con el modelo de fonemas
     // cargado. Mientras la profesora dice la apertura, el modelo ya procesa el
@@ -89,11 +102,16 @@ fun ConversationScreen(
     LaunchedEffect(Unit) {
         listener.releaseSounds()
         listener.prepareConversation()
-        val begin = {
+        if (cloudMode) {
+            cloud.startConversation()
             startConversation(bubbles, history, opening, say)
-            llm.startConversation(listOf("system" to systemPrompt) + history.toList())
+        } else {
+            val begin = {
+                startConversation(bubbles, history, opening, say)
+                llm.startConversation(listOf("system" to localPrompt) + history.toList())
+            }
+            if (llm.loaded) begin() else llm.load { ok -> if (ok) begin() else loadFailed = true }
         }
-        if (llm.loaded) begin() else llm.load { ok -> if (ok) begin() else loadFailed = true }
     }
     DisposableEffect(Unit) {
         onDispose {
@@ -110,41 +128,66 @@ fun ConversationScreen(
         if (bubbles.isNotEmpty()) listState.animateScrollToItem(bubbles.size - 1)
     }
 
-    fun send(text: String) {
-        val clean = text.trim()
-        if (clean.isEmpty() || llm.busy || !llm.loaded) return
-        notHeard = null
-        draft = ""
-        bubbles.add(Bubble(fromTeacher = false, text = clean))
-        history.add("user" to clean)
+    /** Pide la respuesta al último mensaje del historial con el motor que toque. */
+    fun ask() {
         bubbles.add(Bubble(fromTeacher = true, text = "", streaming = true))
         val idx = bubbles.size - 1
         var partial = ""
         var spokenUpTo = 0   // hasta dónde de la parte en inglés ya se mandó a leer
-        llm.chat(
-            messages = listOf("system" to systemPrompt) + history.toList(),
-            onToken = { piece ->
-                partial += piece
-                val english = visibleEnglish(partial)
-                bubbles[idx] = Bubble(fromTeacher = true, text = english, streaming = true)
-                // Leer frase por frase apenas termina cada una: la profesora
-                // empieza a hablar mientras la IA sigue escribiendo.
-                val end = lastSentenceEnd(english, spokenUpTo)
-                if (end > spokenUpTo) {
-                    sayQueued(english.substring(spokenUpTo, end).trim())
-                    spokenUpTo = end
-                }
-            },
-            onDone = {
-                val (english, correction) = splitReply(partial)
-                bubbles[idx] = Bubble(fromTeacher = true, text = english, correctionEs = correction)
-                // exactamente lo generado (sin recortar): la memoria del modelo
-                // tiene esos tokens y el siguiente turno se apoya en ellos
-                history.add("assistant" to partial)
-                val rest = if (spokenUpTo < english.length) english.substring(spokenUpTo).trim() else ""
-                if (rest.isNotBlank()) sayQueued(rest)
+        val onToken: (String) -> Unit = { piece ->
+            partial += piece
+            val english = visibleEnglish(partial)
+            bubbles[idx] = Bubble(fromTeacher = true, text = english, streaming = true)
+            // Leer frase por frase apenas termina cada una: la profesora
+            // empieza a hablar mientras la IA sigue escribiendo.
+            val end = lastSentenceEnd(english, spokenUpTo)
+            if (end > spokenUpTo) {
+                sayQueued(english.substring(spokenUpTo, end).trim())
+                spokenUpTo = end
             }
-        )
+        }
+        val finish = {
+            val (english, correction) = splitReply(partial)
+            bubbles[idx] = Bubble(fromTeacher = true, text = english, correctionEs = correction)
+            // exactamente lo generado (sin recortar): la memoria del modelo
+            // local tiene esos tokens y el siguiente turno se apoya en ellos
+            history.add("assistant" to partial)
+            val rest = if (spokenUpTo < english.length) english.substring(spokenUpTo).trim() else ""
+            if (rest.isNotBlank()) sayQueued(rest)
+        }
+        if (cloudMode) {
+            cloud.chat(system = cloudPrompt, messages = history.toList(), onToken = onToken) { error ->
+                if (error == null || partial.any { it.isLetterOrDigit() }) {
+                    finish()
+                } else {
+                    // Gemini no dijo nada: el resto de la charla sigue en el teléfono.
+                    bubbles.removeAt(idx)
+                    cloudMode = false
+                    if (llm.modelPresent()) {
+                        cloudNote = "Gemini no respondió ($error). Sigo con la IA del teléfono."
+                        if (llm.loaded) ask() else llm.load { ok -> if (ok) ask() else loadFailed = true }
+                    } else {
+                        cloudNote = "Gemini no respondió ($error) y no hay modelo de IA en el teléfono."
+                    }
+                }
+            }
+        } else {
+            llm.chat(
+                messages = listOf("system" to localPrompt) + history.toList(),
+                onToken = onToken,
+                onDone = { finish() }
+            )
+        }
+    }
+
+    fun send(text: String) {
+        val clean = text.trim()
+        if (clean.isEmpty() || engineBusy || !ready) return
+        notHeard = null
+        draft = ""
+        bubbles.add(Bubble(fromTeacher = false, text = clean))
+        history.add("user" to clean)
+        ask()
     }
 
     fun listen() {
@@ -174,9 +217,14 @@ fun ConversationScreen(
                 style = MaterialTheme.typography.labelMedium,
                 color = accent
             )
+            Text(
+                if (cloudMode) "Por internet · ${cloud.model}" else "IA del teléfono · sin internet",
+                style = MaterialTheme.typography.labelSmall,
+                color = InkSoft
+            )
         }
 
-        if (!llm.loaded && !loadFailed) {
+        if (!cloudMode && !llm.loaded && !loadFailed) {
             Column(modifier = Modifier.padding(20.dp)) {
                 Text(
                     "Despertando a ${teacher.name}… (carga 5 GB, unos segundos)",
@@ -207,6 +255,14 @@ fun ConversationScreen(
         }
 
         notHeard?.let { NotHeardBox(it) }
+        cloudNote?.let {
+            Text(
+                it,
+                style = MaterialTheme.typography.labelMedium,
+                color = Color(0xFF8A5A00),
+                modifier = Modifier.padding(horizontal = 20.dp, vertical = 4.dp)
+            )
+        }
 
         // --- Entrada: micrófono o teclado ----------------------------------
         Column(
@@ -225,7 +281,7 @@ fun ConversationScreen(
                 Spacer(Modifier.height(8.dp))
             }
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                val canTalk = llm.loaded && !llm.busy && !listener.thinking
+                val canTalk = ready && !engineBusy && !listener.thinking
                 Box(
                     contentAlignment = Alignment.Center,
                     modifier = Modifier
@@ -262,7 +318,7 @@ fun ConversationScreen(
                 when {
                     listener.recording -> "Habla; cuando te calles, se envía solo."
                     listener.thinking -> "Escuchando lo que dijiste…"
-                    llm.busy && llm.loaded -> "${teacher.name} está pensando…"
+                    engineBusy && ready -> "${teacher.name} está pensando…"
                     else -> "Toca el micrófono y habla."
                 },
                 style = MaterialTheme.typography.labelMedium,
@@ -306,21 +362,22 @@ private fun startConversation(
  * la corrección al alumno va en español. El "sello de la casa" (los errores de
  * quien piensa en español) va explícito, más las trampas del escenario.
  */
-private fun buildSystemPrompt(scenario: Scenario, teacher: Teacher): String {
+private fun buildSystemPrompt(scenario: Scenario, teacher: Teacher, local: Boolean): String {
     val origin = if (teacher.accent == Accent.UK) "from England" else "from the United States"
     return buildString {
         appendLine("You are ${teacher.name}, a warm English teacher $origin. You are role-playing with a Spanish-speaking beginner (level ${scenario.level}).")
         appendLine("Situation: ${scenario.role}")
         appendLine("Rules:")
         appendLine("- Stay in character and REPLY to what the student said, as the character would. Write simple English (A1-A2 vocabulary), at most two short sentences, and end with a question or an invitation so the student keeps talking.")
-        appendLine("- ALWAYS answer with at least one complete English sentence, even if the student's message is unclear: then ask them to repeat or clarify, in character. Never answer with nothing, and never repeat a sentence you already said.")
+        appendLine("- The student's messages come from a speech recognizer, which often mishears a Spanish accent: 'As model please' means 'a small, please'; 'Marion' means 'medium'; 'thoughts with Buddha' means 'toast with butter'; 'What nine is it' means 'what time is it'. ALWAYS guess the most likely meaning from the context and answer THAT, in character, confidently. Never say you didn't understand unless it is truly impossible, and even then offer a guess: 'Do you mean ...?'.")
+        appendLine("- NEVER correct a strange word, a misspelling or a word that does not fit the sentence: those are the recognizer's mistakes, not the student's. Correct ONLY grammar mistakes typical of Spanish speakers that the student clearly produced: verb forms ('he work'), a missing article ('my sister is doctor'), 'I have 25 years' (I'm 25 years old), 'I'm agree' (I agree), word order, false friends ('actually' does not mean 'actualmente'). If in doubt, do not correct.")
+        appendLine("- When you do correct: (1) inside your English reply, say the correct sentence in a friendly way, like: You can say: '...'. (2) Then, on a separate FINAL line starting with \"$CORRECTION_MARK\", explain it in Spanish in one short sentence (what they said, the correct form, why). Never put the correction line first, and never use the corrected sentence as your own reply. Only one correction per turn; if there is no real mistake, add nothing.")
+        appendLine("- ALWAYS answer with at least one complete English sentence. Never answer with nothing. Vary your wording: never reuse a sentence you already said in this conversation.")
         appendLine("- If the student talks about something else, follow them naturally (answer their question, react), and bring the conversation back to the situation a little later. Do not ignore what they say.")
         appendLine("- The student's goals: ${scenario.targets.joinToString("; ")}. Gently steer the conversation so they get to use them.")
-        appendLine("- If the student's message has a mistake typical of Spanish speakers, do two things: (1) inside your English reply, say the correct sentence out loud in a friendly way, like: You can say: '...'. (2) Then, on a separate final line starting with \"$CORRECTION_MARK\", explain it in Spanish in one short sentence (what they said, the correct form, why). Never put the correction line first, and never use the corrected sentence as your own reply. Only one correction per turn; if there is no real mistake, add nothing.")
         appendLine("- Traps to watch in this situation: ${scenario.watch.joinToString(" | ")}.")
-        appendLine("- General traps: 'I have 25 years' (say 'I'm 25 years old'); 'he work' (he works); a missing article ('my sister is doctor'); 'I'm agree' (I agree); 'actually' does not mean 'actualmente'.")
         appendLine("- Never use lists, emojis, or the word CORRECCIÓN inside the English part. Do not translate your English into Spanish.")
-        append("/no_think")
+        if (local) append("/no_think")
     }
 }
 
@@ -395,17 +452,21 @@ private fun BubbleView(b: Bubble, teacher: Teacher, accent: Color) {
 fun ScenariosScreen(
     teacher: Teacher,
     llm: Llm,
+    cloud: CloudLlm,
+    useCloud: Boolean,
     onPick: (Scenario) -> Unit,
     onBack: () -> Unit
 ) {
     val accent = Color(teacher.color)
+    val cloudMode = useCloud && cloud.keyPresent()
+    val canTalk = cloudMode || llm.modelPresent()
     Column(modifier = Modifier.fillMaxSize()) {
         TopBar("Conversar con ${teacher.name}", onBack = onBack)
         LazyColumn(
             verticalArrangement = Arrangement.spacedBy(12.dp),
             modifier = Modifier.weight(1f).padding(20.dp)
         ) {
-            if (!llm.modelPresent()) {
+            if (!canTalk) {
                 item {
                     Column(
                         modifier = Modifier
@@ -415,7 +476,8 @@ fun ScenariosScreen(
                     ) {
                         Text("Falta el modelo de IA", style = MaterialTheme.typography.labelLarge, color = BadRed)
                         Text(
-                            "Se copia una vez por USB a:\n${llm.modelFile.absolutePath}",
+                            "Se copia una vez por USB a:\n${llm.modelFile.absolutePath}\n" +
+                                "O enciende la conversación por internet en Ajustes.",
                             style = MaterialTheme.typography.bodyMedium,
                             color = Ink
                         )
@@ -428,6 +490,12 @@ fun ScenariosScreen(
                     style = MaterialTheme.typography.bodyMedium,
                     color = InkSoft
                 )
+                Text(
+                    if (cloudMode) "Hoy responde por internet (Gemini). Se puede apagar en Ajustes."
+                    else "Responde desde el teléfono, sin internet.",
+                    style = MaterialTheme.typography.labelMedium,
+                    color = accent
+                )
             }
             items(Course.scenarios) { sc ->
                 Row(
@@ -436,7 +504,7 @@ fun ScenariosScreen(
                         .fillMaxWidth()
                         .background(Color.White, RoundedCornerShape(16.dp))
                         .border(1.dp, Line, RoundedCornerShape(16.dp))
-                        .clickable(enabled = llm.modelPresent()) { onPick(sc) }
+                        .clickable(enabled = canTalk) { onPick(sc) }
                         .padding(16.dp)
                 ) {
                     Text(sc.emoji, style = MaterialTheme.typography.headlineMedium)

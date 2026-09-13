@@ -28,3 +28,6 @@ app/src/main/assets/gop/*.onnx
 # Codigo fuente de llama.cpp: lo descarga Gradle (fetchLlamaCpp)
 app/src/main/cpp/llama.cpp/
 app/.cxx/
+
+# Claves de API: nunca al repo (la de Gemini vive fuera, en la carpeta Hablo-modelos del PC)
+*.key

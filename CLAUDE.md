@@ -1,6 +1,7 @@
 # Hablo — reglas del proyecto
 
-App Android para aprender inglés que funciona **100% sin internet**, hecha
+App Android para aprender inglés que funciona **sin internet** (única
+excepción, opcional y apagada por defecto: la conversación con Gemini), hecha
 específicamente para hispanohablantes. Es un proyecto personal de Fero
 (fernandhinoquim@gmail.com), no un producto comercial. Meta: llevarlo de A1 a
 B2 leyendo, escribiendo, escuchando y hablando.
@@ -34,9 +35,19 @@ B2 leyendo, escribiendo, escuchando y hablando.
 
 ## Reglas duras — no romper
 
-1. **Sin permiso de internet.** El `AndroidManifest.xml` no declara
-   `INTERNET` a propósito. No es una promesa: es imposibilidad técnica. No lo
-   agregues por ninguna razón.
+1. **Internet solo para la conversación, y solo si Fero la enciende.** Hasta
+   la 0.8 el manifiesto no declaraba `INTERNET` a propósito. El 2026-09-12
+   Fero decidió probar Gemini para la conversación ("probemos con gemini")
+   porque el 8B local corregía errores del dictado como si fueran del alumno.
+   Lo que sigue siendo regla: (a) el permiso lo usa **únicamente**
+   `CloudLlm.kt`; nada más en la app abre una conexión, ni para descargar
+   modelos ni para telemetría; (b) sale **solo texto** (prompt del escenario +
+   la charla ya transcrita); **nunca audio**; dictado y voces siguen en el
+   teléfono; (c) interruptor en Ajustes **apagado por defecto** y muerto sin
+   clave; (d) la clave vive en `files/modelos/gemini.key` en el teléfono y en
+   `C:\Users\ferna\Hablo-modelos\gemini.key` en el PC: **jamás en el código,
+   en el repo, en un commit ni en un log**. Lecciones, pronunciación y
+   progreso no tocan la red.
 2. **No actualizar el Android Gradle Plugin.** Android Studio va a ofrecer el
    "AGP Upgrade Assistant" cada vez. Decir que no. Las versiones están fijadas
    porque se sabe que funcionan juntas:
@@ -103,7 +114,8 @@ B2 leyendo, escribiendo, escuchando y hablando.
 | Voces | **Piper** vía sherpa-onnx (Apache 2.0) | Cuatro voces femeninas reales dentro del APK. Antes se usaba el TTS de Android y obligaba al usuario a descargar paquetes de voz por fuera. |
 | Voz → texto | **Moonshine base v2** (`moonshine-base-en-quantized-2026-02-27`, 2 archivos `.ort`, 140 MB) vía sherpa-onnx **1.13.4** | Elegido el 2026-09-12 con `tools/asr-bench` sobre 26 grabaciones reales de Fero. Tiny devolvía texto vacío en 4 de 26 con audio bueno y confundía palabras fáciles ("seatsbooks", "Can't you"); base no, y mantiene la honestidad (delata "chip", "espeak", "wok-ed"). Whisper base.en quedó descartado: **corrige** "espeak Espanish" a "speak Spanish" al 100 %. Parakeet 110m es el más honesto pero castiga también lo bien dicho. También se probaron los grandes (Fero dijo que el peso no importa): **Whisper small.en** (74 % promedio, el mejor adivinando) y **Parakeet 0.6B v2** (70 %) corrigen los dos "espeak Espanish" → "speak Spanish" al 100 %; Parakeet 0.6B es el único que delata "tink/tird", pero pierde "six books" dos veces. Se quedó Moonshine base: el único que delata "espeak" (el error insignia). **Sobrecorrección medida** (errores plantados a propósito que el modelo "arregla" y puntúa BIEN, `tools/asr-bench/planted.txt`, 11 casos): Moonshine base **5/11 = 45 %** (think ×2, third, asked, spanish) · Whisper base/small 4/11 · Parakeet 0.6B 3/11 · Parakeet 110m 2/11. Con 11 casos esas cifras no se distinguen estadísticamente; lo que sí se ve es que cada modelo es ciego a sonidos distintos: Moonshine al `th` (3 de 4), Parakeet y Whisper a la `e` delante de `s` (espeak/Espanish, 2 de 2). Antes de reconocer, `Audio.kt` (`AudioPrep`) quita el DC, recorta el silencio, normaliza el pico y rechaza audio mudo/corto/ruidoso con "No te entendí, repite" en vez de dar 0 %. **Regla que no se negocia:** el reconocedor nunca ve la frase esperada (nada de hotwords ni sesgos); el objetivo solo se usa para puntuar después. |
 | Pronunciación por fonema (GOP) | **wav2vec2-large-xlsr-53-l2-arctic-phoneme** int8 (317 MB) vía **onnxruntime-android 1.27.0**; `Gop.kt` + `PhonemeScorer.kt`; fonemas esperados de **CMUdict** (`assets/gop/cmudict.dict`); umbrales en `assets/gop/thresholds.json` | Es lo que hacen las apps comerciales (Azure, Speechace, ELSA): se conoce la frase, se alinean sus fonemas y se puntúa la confianza de cada uno; el reconocedor de palabras se queda solo para "¿se entendió?". Entrenado con habla no nativa anotada tal como se pronunció (incluye hispanohablantes). En el S25: carga 0,6 s, evalúa en 200–300 ms. Se carga al entrar a la pantalla y se suelta al salir. **Solo sonidos con umbral calibrado muestran veredicto**: `sh` y `h` en rojo/amarillo (precisión del rojo ≥ 66 %); `th`, `ed`, `es` **solo en amarillo** (`calibrate.py --yellow-only`: precisión entre 33 y 66 %, el rojo nunca dispara); `v`, `final` y `rl` sin veredicto (por debajo del 33 %) y la pantalla lo dice. Para mover un sonido de categoría: más corpus etiquetado → `phoneme_eval.py` → `calibrate.py --sounds sh h --yellow-only th ed es` → `thresholds.json`. **Etiqueta del alumno:** después de cada intento la app pregunta "¿Te sonó igual?" (Igual / Distinto / No sé) y lo anexa como `etiqueta:` al `.txt` de la grabación (`Listener.labelLastRecording`); solo se usa al recalibrar, nunca en tiempo real. Vale sobre todo para lo audible (h caída, sílaba de más, e+s); para ship/sheep y v/b el oído del alumno es el problema. El modelo lo exporta `phoneme_export.py`; `fetchGop` lo copia a assets (si falta, la app compila sin él y lo dice). |
-| IA (Fase 3) | **llama.cpp 0.4.0 compilado dentro de la app** (`app/src/main/cpp/`: `CMakeLists.txt` + `llm_jni.cpp`, puente JNI propio con solo la API C; `Llm.kt`) + **Qwen3 8B Q4_K_M** (`Qwen3-8B-Q4_K_M.gguf`, 5,03 GB) | Qwen es Apache 2.0 sin letra chica. Se descartó Gemma 2/3 porque sus "Gemma Terms of Use" permiten a Google cambiar las condiciones después. El código de llama.cpp lo baja `fetchLlamaCpp` (fijado a una versión) y lo compila el NDK 27.2 con CMake 3.22.1, que AGP descarga por versión (no es el asistente). Solo arm64 (`abiFilters`): el APK bajó ~90 MB al soltar x86/armv7. El modelo vive en `Android/data/com.ferolabs.hablo/files/modelos/` (sin permisos; se llena con `adb push`; **desinstalar la app lo borra**). **Medido en el S25 (2026-09-12): carga en 9 s, prompt a 27 t/s, respuesta a 11,0 t/s** con 6 hilos, contexto 2048, mmap. Se queda el 8B. Laboratorio en Ajustes: cargar, probar (la respuesta la lee la profesora con Piper), liberar. Sampler: min_p 0.05, top_p 0.9, temp 0.6; Qwen3 con `/no_think` en el system prompt. |
+| IA por internet (Fase 3, opcional) | **Gemini API** (`CloudLlm.kt`, REST `streamGenerateContent?alt=sse` con `HttpURLConnection` + `org.json`, sin SDK) | Elegido por Fero el 2026-09-12 tras rechazar la calidad del 8B local. Escalera de modelos por cuota (ver "Estado y plan"). Solo texto; el interruptor de Ajustes lo enciende; la clave va por USB. Regla dura 1. |
+| IA en el teléfono (Fase 3) | **llama.cpp 0.4.0 compilado dentro de la app** (`app/src/main/cpp/`: `CMakeLists.txt` + `llm_jni.cpp`, puente JNI propio con solo la API C; `Llm.kt`) + **Qwen3 8B Q4_K_M** (`Qwen3-8B-Q4_K_M.gguf`, 5,03 GB) | Qwen es Apache 2.0 sin letra chica. Se descartó Gemma 2/3 porque sus "Gemma Terms of Use" permiten a Google cambiar las condiciones después. El código de llama.cpp lo baja `fetchLlamaCpp` (fijado a una versión) y lo compila el NDK 27.2 con CMake 3.22.1, que AGP descarga por versión (no es el asistente). Solo arm64 (`abiFilters`): el APK bajó ~90 MB al soltar x86/armv7. El modelo vive en `Android/data/com.ferolabs.hablo/files/modelos/` (sin permisos; se llena con `adb push`; **desinstalar la app lo borra**). **Medido en el S25 (2026-09-12): carga en 9 s, prompt a 27 t/s, respuesta a 11,0 t/s** con 6 hilos, contexto 2048, mmap. Se queda el 8B. Laboratorio en Ajustes: cargar, probar (la respuesta la lee la profesora con Piper), liberar. Sampler: min_p 0.05, top_p 0.9, temp 0.6; Qwen3 con `/no_think` en el system prompt. |
 | Interfaz | Kotlin + Jetpack Compose | Menos capas intermedias con tres motores nativos encima. |
 | Progreso | SharedPreferences | Suficiente; nada sale del teléfono. |
 
@@ -153,28 +165,63 @@ cambiar `prep()` en `bench.py` igual.
 - Fero graba con el teléfono desconectado del cable: `adb` se queda colgado
   si el teléfono no está. Revisar `adb devices` antes de cualquier `adb shell`.
 - El `when` sobre `Exercise` tiene **cinco** subclases. Fácil olvidar una.
+- **Heredocs de Bash comen las barras invertidas** (`\\n` llega como `\n`,
+  `\d` se rompe): los scripts Python de edición se escriben con la
+  herramienta Write al scratchpad y se ejecutan desde ahí. Un heredoc solo
+  sirve si el script no tiene ni una barra invertida.
+- `Llm.stop()` llamaba a `nativeStop()` sin comprobar `loaded`: sin el
+  modelo cargado la librería nativa no existe y es `UnsatisfiedLinkError`
+  (pasaba al salir de una conversación por internet). Cualquier `external
+  fun` de `Llm` va detrás de `if (loaded)`.
 
 ---
 
 ## Estado y plan
 
-**Versión actual: 0.8.** Funcionando en el teléfono de Fero (2026-09-12):
+**Versión actual: 0.9** (conversación por internet con Gemini, ver abajo).
+**0.8** funcionando en el teléfono de Fero (2026-09-12):
 evaluación por fonema (GOP) — `sh` y `h` en rojo/amarillo, `th`/`ed`/`es`
 solo amarillo — mapa personal de sonidos, etiqueta del alumno tras cada
 intento, y 40 drills (5 por sonido, `drills.json`). Fero, al oírse: "detecté
 que hablo mal y por qué entiende lo que entiende; no hay desfase entre lo que
 pronuncio y lo que entiende".
 
-**Decisión de Fero (2026-09-12): la conversación sigue 100 % sin internet;
-se hace lo mejor posible así, y si no le convence, se paga la nube.** Las
-apps pagas (ELSA, Speak, Praktika) son fluidas porque corren en servidores
-con modelos de la clase GPT-4; aquí corre un 8B a 11 t/s en el teléfono. Si
-un día se abre la nube: interruptor en Ajustes apagado por defecto, solo
-texto (nunca audio), reconocimiento y voz siguen locales. Verificado
-2026-09-12: ni la suscripción de claude.ai ni Google AI Plus incluyen API;
-Claude API ≈ $0,70 (Haiku 4.5) a $3–4 (Opus 5) al mes para 20 turnos
-diarios y no entrena con lo enviado; Gemini API tiene nivel gratuito sin
-tarjeta pero usa los datos para mejorar productos (el pago no).
+**Decisión de Fero (2026-09-12, misma noche, dos pasos).** Primero: "la
+conversación sigue sin internet; si no me gusta, pagamos". Se hizo lo mejor
+posible en local (fluidez, auto-corte, prompt caritativo) y al probarlo dijo
+"no me gusta": en el log, Qwen 8B corregía en inglés lo que el dictado había
+oído mal ("As model please", "Mail and sewer", "What nine is it") como si
+fueran errores del alumno. Segundo: **"probemos con gemini"** → 0.9 trae la
+conversación por internet con Gemini (`CloudLlm.kt`), interruptor en
+Ajustes apagado por defecto, solo texto, Qwen queda de respaldo (si Gemini
+no responde a mitad de charla se sigue en el teléfono sin perder el hilo).
+Contexto verificado antes: las apps pagas (ELSA, Speak, Praktika) son fluidas
+porque corren en servidores con modelos grandes; ni la suscripción de
+claude.ai ni Google AI Plus incluyen API; Claude API ≈ $0,70 (Haiku 4.5) a
+$3–4 (Opus 5) al mes para 20 turnos diarios y no entrena con lo enviado;
+Gemini API tiene nivel gratuito sin tarjeta pero usa los datos para mejorar
+productos (el pago no).
+
+**Gemini, medido el 2026-09-12 (PC, `tools/asr-bench/gemini_bench.py`, con
+las frases reales del dictado de Fero):** `gemini-3.8-flash` sin razonar
+(`thinkingBudget: 0`) acertó 5/5 — no corrigió 'As model please', 'thoughts
+with Buddha' ni 'What nine is it', y sí corrigió 'I have 25 years' y 'My
+sister is doctor, she work' con la línea `CORRECCIÓN:` en español — en
+1,0–2,5 s por turno; `gemini-3.5-flash-lite` 6/7 (una corrección falsa) en
+0,6–1,1 s; `gemma-4-31b-it` piensa en voz alta 17–30 s por turno
+(descartado); `gemini-2.5-flash` ya no existe para cuentas nuevas (404).
+**Cuotas del nivel gratuito** (leídas en aistudio.google.com/rate-limit con
+la cuenta de Fero): cada Flash 3.x (3.8, 3.7, 3.6, 3.5, 3) tiene **5
+peticiones/minuto y 20 al día**, cada uno con su propia cuota; Flash-Lite
+(3.5 y 3.1) 15/minuto y 500/día; Gemma 4 30/minuto y 14.400/día. Por eso
+`CloudLlm.LADDER` es una **escalera**: 3.8 → 3.7 → 3.6 → 3.5 → 3 →
+3.5-lite; ante 429 (cuota), 404 o 503 (saturado) se sube un peldaño en la
+misma charla (≈100 turnos/día con los buenos y 500 más con Lite). Si un día
+se pasa al nivel pago: desaparece el tope diario, Flash cuesta centavos al
+mes y Google deja de usar el texto para entrenar. Errores que sí se ven:
+un 400/401 (clave mala) se muestra tal cual; un 503 en todos los peldaños
+también. `Probar la conexión` en Ajustes lista los modelos que acepta la
+clave y avisa si falta alguno de la escalera.
 
 **Fase 3, estado (2026-09-12): la conversación ya existe** (`ScreenConversation.kt`,
 `assets/content/scenarios.json` con 5 escenarios A1, validados en

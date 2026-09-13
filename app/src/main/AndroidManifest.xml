@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- La app no pide permiso de internet a propósito: funciona 100% sin conexión. -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <!-- Internet SOLO para la conversación con Gemini (CloudLlm), y solo si el
+         alumno enciende el interruptor en Ajustes. Lecciones, pronunciación,
+         voces y dictado siguen 100% en el teléfono. Decisión de Fero, 2026-09-12. -->
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <queries>
         <intent>

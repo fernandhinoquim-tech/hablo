@@ -3,10 +3,12 @@ package com.ferolabs.hablo
 import android.content.Context
 import java.util.Calendar
 
-/** Guarda el progreso en el propio celular. Nada sale del teléfono. */
+/** Guarda el progreso en el propio celular. Nada de esto sale del teléfono. */
 class Store(context: Context) {
 
-    private val prefs = context.applicationContext
+    val context: Context = context.applicationContext
+
+    private val prefs = this.context
         .getSharedPreferences("hablo_progress", Context.MODE_PRIVATE)
 
     var teacherId: String?
@@ -17,6 +19,14 @@ class Store(context: Context) {
     var showFaces: Boolean
         get() = prefs.getBoolean("show_faces", true)
         set(value) = prefs.edit().putBoolean("show_faces", value).apply()
+
+    /**
+     * Conversación por internet con Gemini en vez de la IA del teléfono.
+     * Apagado por defecto; solo tiene efecto si existe la clave (CloudLlm).
+     */
+    var cloudConversation: Boolean
+        get() = prefs.getBoolean("cloud_conversation", false)
+        set(value) = prefs.edit().putBoolean("cloud_conversation", value).apply()
 
     /** Multiplicador global de velocidad de la voz (0.6 = lento, 1.4 = rápido). */
     var speechScale: Float

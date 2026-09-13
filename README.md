@@ -1,6 +1,7 @@
 # Hablo
 
-App Android para aprender inglés que funciona **100% sin internet**.
+App Android para aprender inglés que funciona **sin internet** (con una sola
+excepción opcional: la conversación con Gemini, apagada por defecto).
 
 Hecha específicamente para hispanohablantes: corrige los errores que comete
 alguien que piensa en español (*"I have 20 years"*, los falsos amigos, la `-s`
@@ -29,15 +30,21 @@ la `th`, la `h` aspirada, *speak* sin la `e` delante).
 - [x] 8 lecciones de nivel A1 en 3 unidades con desbloqueo progresivo y
       5 tipos de ejercicio (escuchar, traducir, armar, escribir, hablar)
 - [x] Racha, puntos y progreso guardados en el celular
-- [ ] Fase 3 — conversación con IA dentro del celular (llama.cpp + Qwen 3)
+- [x] Fase 3 — conversación con IA en escenarios: por internet con Gemini
+      (si se enciende en Ajustes) o dentro del celular (llama.cpp + Qwen 3)
 - [ ] Fase 4 — corrección de escritura explicada en español
 - [ ] Fase 5 — contenido completo de A1 a B2
 
 ## Privacidad
 
-La app **no pide permiso de internet** en el `AndroidManifest.xml`. No es que
-prometa no conectarse: técnicamente no puede. Todo el progreso vive en el
-teléfono y ningún audio sale de él.
+Hasta la versión 0.8 la app no pedía permiso de internet. Desde la 0.9 lo
+pide **solo** para la conversación con Gemini, que está apagada por defecto y
+no funciona sin una clave que se copia a mano al teléfono. Cuando está
+encendida sale únicamente el **texto** de la charla (lo que dijiste, ya
+transcrito en el teléfono, y lo que responde la profesora); **nunca tu voz**.
+Lecciones, pronunciación, voces, dictado y progreso siguen sin tocar la red.
+Con el nivel gratuito de Google, ese texto puede usarse para mejorar sus
+productos; con el nivel pago, no.
 
 ## Cómo se compila
 

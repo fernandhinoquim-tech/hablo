@@ -185,7 +185,10 @@ class Llm(context: Context) {
         }
     }
 
-    fun stop() = nativeStop()
+    /** Corta la generación en curso. Sin modelo cargado no hay librería nativa: no tocar. */
+    fun stop() {
+        if (loaded) nativeStop()
+    }
 
     fun release() {
         worker.execute {
