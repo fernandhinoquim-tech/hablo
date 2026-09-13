@@ -80,6 +80,26 @@ sealed class Exercise {
     ) : Exercise()
 }
 
+/**
+ * Escenario de conversación con la IA (Fase 3): una situación cerrada donde
+ * la profesora hace un papel y el alumno tiene metas. Vive en scenarios.json.
+ */
+data class Scenario(
+    val id: String,
+    val title: String,
+    val emoji: String,
+    val level: String,
+    val goalEs: String,
+    /** Papel de la profesora, en inglés, para el system prompt. */
+    val role: String,
+    /** Primera frase de la profesora; {teacher} se reemplaza por su nombre. */
+    val opening: String,
+    /** Frases que el alumno debería intentar usar. */
+    val targets: List<String>,
+    /** Trampas típicas del hispanohablante en esta situación, en español. */
+    val watch: List<String>
+)
+
 /** Un ejercicio de pronunciación suelto: frase objetivo + por qué es difícil. */
 data class Drill(
     val text: String,
@@ -122,6 +142,10 @@ object Course {
     var drills: List<Drill> = emptyList()
         private set
 
+    /** Los escenarios de conversación (assets/content/scenarios.json). */
+    var scenarios: List<Scenario> = emptyList()
+        private set
+
     var loaded by mutableStateOf(false)
         private set
 
@@ -133,8 +157,9 @@ object Course {
         try {
             levels = parseLevels(JSONObject(readAsset(context, "content/curriculum.json")).getJSONArray("levels"))
             drills = parseDrills(JSONObject(readAsset(context, "content/drills.json")).getJSONArray("drills"))
+            scenarios = parseScenarios(JSONObject(readAsset(context, "content/scenarios.json")).getJSONArray("scenarios"))
             loaded = true
-            Log.i(TAG, "Curso cargado: ${levels.size} niveles, ${allLessons().size} lecciones, ${drills.size} drills")
+            Log.i(TAG, "Curso cargado: ${levels.size} niveles, ${allLessons().size} lecciones, ${drills.size} drills, ${scenarios.size} escenarios")
         } catch (e: Throwable) {
             // Se muestra en la pantalla de inicio. Un contenido mal formado no
             // se esconde: mejor una app que dice "arregla la lección X" que una
@@ -143,6 +168,7 @@ object Course {
             loadError = e.message ?: e.javaClass.simpleName
             levels = emptyList()
             drills = emptyList()
+            scenarios = emptyList()
             loaded = true
         }
     }
@@ -165,6 +191,27 @@ object Course {
             "$where: \"sound\": \"$key\" no existe. Valores válidos: ${Sound.keys}"
         )
     }
+
+    private fun parseScenarios(arr: JSONArray): List<Scenario> =
+        (0 until arr.length()).map { i ->
+            val o = arr.getJSONObject(i)
+            val where = "scenarios.json, escenario ${i + 1}"
+            fun req(key: String): String {
+                if (!o.has(key) || o.isNull(key) || o.getString(key).isBlank()) {
+                    throw IllegalArgumentException("$where: falta \"$key\"")
+                }
+                return o.getString(key)
+            }
+            val targets = strings(o, "targets")
+            val watch = strings(o, "watch")
+            if (targets.isEmpty()) throw IllegalArgumentException("$where: \"targets\" vacío")
+            if (watch.isEmpty()) throw IllegalArgumentException("$where: \"watch\" vacío")
+            Scenario(
+                id = req("id"), title = req("title"), emoji = o.optString("emoji", "💬"),
+                level = req("level"), goalEs = req("goalEs"), role = req("role"),
+                opening = req("opening"), targets = targets, watch = watch
+            )
+        }
 
     private fun parseDrills(arr: JSONArray): List<Drill> =
         (0 until arr.length()).map { i ->
@@ -270,6 +317,8 @@ object Course {
     fun allLessons(): List<Lesson> = allUnits().flatMap { it.lessons }
 
     fun lessonById(id: String): Lesson? = allLessons().firstOrNull { it.id == id }
+
+    fun scenarioById(id: String): Scenario? = scenarios.firstOrNull { it.id == id }
 
     fun unitOfLesson(lessonId: String): CourseUnit? =
         allUnits().firstOrNull { u -> u.lessons.any { it.id == lessonId } }

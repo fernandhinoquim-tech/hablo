@@ -227,7 +227,20 @@ class Speaker(context: Context) {
         if (text.isBlank()) return
         val id = requestId.incrementAndGet()
         stopAudio()
+        speakInternal(text, teacher, rateScale, id)
+    }
 
+    /**
+     * Igual que [speak] pero SIN interrumpir lo que ya suena: se pone a la
+     * cola del mismo hilo. Sirve para leer una respuesta frase por frase a
+     * medida que la IA la escribe. Un [speak] o [stop] posterior vacía la cola.
+     */
+    fun speakQueued(text: String, teacher: Teacher, rateScale: Float = 1.0f) {
+        if (text.isBlank()) return
+        speakInternal(text, teacher, rateScale, requestId.get())
+    }
+
+    private fun speakInternal(text: String, teacher: Teacher, rateScale: Float, id: Long) {
         worker.execute {
             if (id != requestId.get()) return@execute
             busy = true

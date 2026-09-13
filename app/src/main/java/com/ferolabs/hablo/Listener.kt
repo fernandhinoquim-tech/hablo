@@ -19,6 +19,7 @@ import com.k2fsa.sherpa.onnx.OfflineModelConfig
 import com.k2fsa.sherpa.onnx.OfflineMoonshineModelConfig
 import com.k2fsa.sherpa.onnx.OfflineRecognizer
 import com.k2fsa.sherpa.onnx.OfflineRecognizerConfig
+import com.k2fsa.sherpa.onnx.OfflineTransducerModelConfig
 import java.io.File
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
@@ -63,6 +64,67 @@ class Listener(context: Context) {
 
     private var recognizer: OfflineRecognizer? = null
     private var recorder: AudioRecord? = null
+
+    /**
+     * Reconocedor para CONVERSAR: Parakeet 0.6B (NVIDIA, transducer). Al
+     * conversar se quiere el que mejor adivina lo que quisiste decir, no el
+     * honesto: en las 35 tomas buenas de la sesión sacó 20 frases perfectas
+     * (Moonshine 15) y 88,9 % promedio. Pesa 660 MB: vive al lado de la app
+     * (Android/data/.../files/modelos/parakeet/, por USB), se carga al entrar
+     * a la conversación y se suelta al salir. Si no está, se usa Moonshine.
+     * Para calificar pronunciación sigue Moonshine: ese no corrige.
+     */
+    private var convRecognizer: OfflineRecognizer? = null
+
+    private fun convDir(): File = File(app.getExternalFilesDir("modelos"), "parakeet")
+
+    fun conversationModelPresent(): Boolean = File(convDir(), "encoder.int8.onnx").length() > 100_000_000L
+
+    private fun ensureConvRecognizer(): OfflineRecognizer? {
+        convRecognizer?.let { return it }
+        if (!conversationModelPresent()) return null
+        return try {
+            val d = convDir()
+            val t0 = System.currentTimeMillis()
+            val config = OfflineRecognizerConfig(
+                featConfig = FeatureConfig(sampleRate = sampleRate, featureDim = 80),
+                modelConfig = OfflineModelConfig(
+                    transducer = OfflineTransducerModelConfig(
+                        encoder = File(d, "encoder.int8.onnx").absolutePath,
+                        decoder = File(d, "decoder.int8.onnx").absolutePath,
+                        joiner = File(d, "joiner.int8.onnx").absolutePath
+                    ),
+                    tokens = File(d, "tokens.txt").absolutePath,
+                    numThreads = 4,
+                    debug = false,
+                    provider = "cpu",
+                    modelType = "nemo_transducer"
+                )
+            )
+            val r = OfflineRecognizer(config = config)
+            convRecognizer = r
+            Log.i(TAG, "Reconocedor de conversación (Parakeet) listo en ${System.currentTimeMillis() - t0} ms")
+            r
+        } catch (e: Throwable) {
+            Log.e(TAG, "No arrancó Parakeet; se usa Moonshine", e)
+            null
+        }
+    }
+
+    fun prepareConversation() {
+        worker.execute { ensureConvRecognizer() }
+    }
+
+    fun releaseConversation() {
+        worker.execute {
+            try {
+                convRecognizer?.release()
+            } catch (e: Throwable) {
+                // sin acción
+            }
+            convRecognizer = null
+        }
+    }
 
     /** Evaluación por fonema del sonido del ejercicio. Pesado: ver [prepareSounds] / [releaseSounds]. */
     val sounds = PhonemeScorer(app)
@@ -178,7 +240,21 @@ class Listener(context: Context) {
      * para la evaluación por fonema (GOP), que alinea los fonemas esperados
      * con el audio y puntúa cada uno; ahí el puntaje puede ser bajo.
      */
-    fun startRecording(target: String, sound: Sound, onResult: (ListenResult) -> Unit) {
+    /**
+     * En conversación la grabación se corta sola: cuando ya hubo voz y siguen
+     * [AUTO_STOP_SILENCE_MS] de silencio, se deja de grabar sin tocar nada.
+     * Umbrales relativos al piso de ruido medido en los primeros instantes.
+     */
+    @Volatile
+    private var autoStop = false
+
+    fun startRecording(
+        target: String,
+        sound: Sound,
+        conversation: Boolean = false,
+        onResult: (ListenResult) -> Unit
+    ) {
+        autoStop = conversation
         if (recording) return
         if (!hasMicPermission()) {
             errorDetail = "Falta el permiso del micrófono."
@@ -226,7 +302,7 @@ class Listener(context: Context) {
                     return@execute
                 }
 
-                val r = ensureRecognizer()
+                val r = (if (conversation) ensureConvRecognizer() else null) ?: ensureRecognizer()
                 if (r == null) {
                     outcome = "sin reconocedor"
                     onResult(ListenResult.NotHeard(NotHeardReason.NOTHING))
@@ -310,19 +386,55 @@ class Listener(context: Context) {
         var count = 0
         val chunk = ShortArray(bufferSize / 2)
 
+        // Corte automático por silencio (solo en conversación).
+        var noiseFloor = 0f          // RMS del ruido, estimado con los primeros trozos
+        var floorChunks = 0
+        var heardSpeech = false
+        var silentMs = 0
+        var speechMs = 0
+
         try {
             rec.startRecording()
             while (!shouldStop && count < limit) {
                 val n = rec.read(chunk, 0, min(chunk.size, limit - count))
                 if (n <= 0) continue
                 var peak = 0f
+                var energy = 0.0
                 for (i in 0 until n) {
                     val v = chunk[i] / 32768f
                     samples[count++] = v
                     val a = abs(v)
                     if (a > peak) peak = a
+                    energy += (v * v).toDouble()
                 }
                 level = min(1f, peak * 3f)
+
+                if (autoStop) {
+                    val rms = kotlin.math.sqrt(energy / n).toFloat()
+                    val chunkMs = n * 1000 / sampleRate
+                    if (floorChunks < 3) {
+                        // los primeros ~0,4 s son el piso (el usuario aún no habla)
+                        noiseFloor = maxOf(noiseFloor, rms)
+                        floorChunks++
+                        continue
+                    }
+                    val threshold = maxOf(noiseFloor * 2.5f, AUTO_STOP_MIN_RMS)
+                    if (rms > threshold) {
+                        speechMs += chunkMs
+                        silentMs = 0
+                        if (speechMs >= AUTO_STOP_MIN_SPEECH_MS) heardSpeech = true
+                    } else {
+                        silentMs += chunkMs
+                        if (heardSpeech && silentMs >= AUTO_STOP_SILENCE_MS) {
+                            Log.i(TAG, "corte automático: ${speechMs}ms de voz, ${silentMs}ms de silencio (piso %.4f)".format(Locale.US, noiseFloor))
+                            break
+                        }
+                        if (!heardSpeech && silentMs >= AUTO_STOP_NO_SPEECH_MS) {
+                            Log.i(TAG, "corte automático: nadie habló")
+                            break
+                        }
+                    }
+                }
             }
         } finally {
             try {
@@ -443,6 +555,12 @@ class Listener(context: Context) {
             }
             recognizer = null
             sounds.release()
+            try {
+                convRecognizer?.release()
+            } catch (e: Throwable) {
+                // sin acción
+            }
+            convRecognizer = null
         }
         worker.shutdown()
     }
@@ -450,5 +568,14 @@ class Listener(context: Context) {
     companion object {
         private const val TAG = "HabloListener"
         private const val KEEP_RECORDINGS = 200
+
+        /** Silencio después de hablar que cierra el turno. Más corto = más ágil, pero corta pausas largas. */
+        private const val AUTO_STOP_SILENCE_MS = 1100
+        /** Voz acumulada mínima para considerar que el usuario habló. */
+        private const val AUTO_STOP_MIN_SPEECH_MS = 250
+        /** Si nadie habla en este tiempo, se corta (el alumno tocó sin querer). */
+        private const val AUTO_STOP_NO_SPEECH_MS = 6000
+        /** RMS mínimo absoluto para contar como voz (evita que un cuarto muy silencioso dispare con nada). */
+        private const val AUTO_STOP_MIN_RMS = 0.008f
     }
 }

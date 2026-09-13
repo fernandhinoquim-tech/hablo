@@ -165,14 +165,52 @@ intento, y 40 drills (5 por sonido, `drills.json`). Fero, al oírse: "detecté
 que hablo mal y por qué entiende lo que entiende; no hay desfase entre lo que
 pronuncio y lo que entiende".
 
-**Fase 3 arrancó (2026-09-12): motor listo y medido** — ver la fila "IA" de
-la tabla. Lo que sigue: pantalla de conversación con el ciclo completo
-(profesora habla con Piper → Fero habla → Moonshine transcribe → Qwen responde
-→ Piper lee; corrección de errores de hispanohablante en español), ~50
-escenarios cerrados en JSON (regla 4, con validación en `checkContent`), y
-el avatar de la profesora. Memoria: al entrar a la conversación se sueltan el
-modelo de fonemas y se carga Qwen; Moonshine (140 MB) y Piper (~100 MB) sí
-conviven con él. Investigado antes de construir: el
+**Decisión de Fero (2026-09-12): la conversación sigue 100 % sin internet;
+se hace lo mejor posible así, y si no le convence, se paga la nube.** Las
+apps pagas (ELSA, Speak, Praktika) son fluidas porque corren en servidores
+con modelos de la clase GPT-4; aquí corre un 8B a 11 t/s en el teléfono. Si
+un día se abre la nube: interruptor en Ajustes apagado por defecto, solo
+texto (nunca audio), reconocimiento y voz siguen locales. Verificado
+2026-09-12: ni la suscripción de claude.ai ni Google AI Plus incluyen API;
+Claude API ≈ $0,70 (Haiku 4.5) a $3–4 (Opus 5) al mes para 20 turnos
+diarios y no entrena con lo enviado; Gemini API tiene nivel gratuito sin
+tarjeta pero usa los datos para mejorar productos (el pago no).
+
+**Fase 3, estado (2026-09-12): la conversación ya existe** (`ScreenConversation.kt`,
+`assets/content/scenarios.json` con 5 escenarios A1, validados en
+`checkContent`). Ciclo: la profesora abre hablando (Piper) → el alumno habla
+(**Parakeet 0.6B** transcribe: al conversar se quiere el que mejor adivina,
+no el honesto; en las 35 tomas buenas de la sesión sacó 20 perfectas contra
+15 de Moonshine; vive al lado de la app en `files/modelos/parakeet/`, se
+carga al entrar y se suelta al salir; si falta, Moonshine) o escribe → Qwen
+responde en su papel y corrige en español en una línea `CORRECCIÓN:` (se
+extrae esté donde esté; el resto se lee en voz alta, **frase por frase
+mientras se genera** con `Speaker.speakQueued`) → Piper. La grabación se
+**corta sola** al callarse (1,1 s de silencio tras haber hablado; piso de
+ruido medido en los primeros 0,4 s; `AUTO_STOP_*` en `Listener`).
+Memoria: al entrar se suelta el modelo de fonemas y se carga Qwen; Moonshine,
+Parakeet y Piper conviven con él (~7 GB en total).
+
+**Cómo se mantiene fluido (medido):** el prompt de sistema (~400 tokens con
+la apertura) se procesa mientras la profesora saluda; después cada turno son
+10–20 tokens nuevos (0,4–0,5 s) porque la memoria del modelo (KV cache) es
+la verdad y `Llm.kt` solo le da el texto que la plantilla agrega
+(`formattedSoFar` + `nativeFeed`); la respuesta sale a 10–11 t/s. **Trampas
+ya pisadas:** (1) sin penalización de repetición el modelo copiaba su frase
+anterior ocho turnos seguidos → `llama_sampler_init_penalties(…, 128, 1.18)`;
+(2) respuestas vacías (1–2 tokens) que, al entrar al historial, enseñaban al
+modelo a callarse → "vacía" = sin letras ni números, hasta 2 reintentos con
+otra semilla y luego una frase de recuperación que también entra a la
+memoria; (3) la corrección iba primero y el separador dejaba la parte hablada
+vacía → se extrae la línea `CORRECCIÓN:` esté donde esté; (4) `<think>` en
+Qwen3 NO es token de control: sale como texto y se limpia con `stripThinking`;
+(5) el historial debe guardar la respuesta EXACTA generada (sin recortar):
+si no, el prefijo no coincide y se reprocesa todo. Modo sin razonamiento
+(`/no_think`): razonar costaría 5–15 s por turno.
+
+Lo que sigue: probar la fluidez con auto-corte; sumar escenarios hacia ~50;
+opcional una voz Piper en español (`es_MX`) para leer la corrección. Investigado
+antes de construir: el
 camino es el ejemplo oficial `examples/llama.android` de llama.cpp (módulo
 nativo compilado desde fuente con CMake + NDK dentro de la app, puente JNI
 propio; nada de AARs de terceros). Velocidad esperable en el 8 Elite:

@@ -64,6 +64,8 @@ private sealed class Route {
     data class Running(val lessonId: String) : Route()
     data object Settings : Route()
     data object Pronunciation : Route()
+    data object Scenarios : Route()
+    data class Talking(val scenarioId: String) : Route()
 }
 
 @Composable
@@ -129,12 +131,14 @@ fun HabloApp(speaker: Speaker, listener: Listener, llm: Llm, store: Store) {
                             speaker = speaker,
                             onOpenLesson = { lesson -> route = Route.Running(lesson.id) },
                             onSettings = { route = Route.Settings },
-                            onPronunciation = { route = Route.Pronunciation },
+                            onPronunciation = { llm.release(); route = Route.Pronunciation },
+                            onConversation = { route = Route.Scenarios },
                             onGreeting = { say(teacher.greeting, 1f) }
                         )
                     }
 
                     is Route.Running -> {
+                        llm.release()
                         val lesson = Course.lessonById(current.lessonId)
                         BackHandler {
                             speaker.stop()
@@ -162,6 +166,47 @@ fun HabloApp(speaker: Speaker, listener: Listener, llm: Llm, store: Store) {
                                     speaker.stop()
                                     listener.stopRecording()
                                     route = Route.Home
+                                }
+                            )
+                        }
+                    }
+
+                    is Route.Scenarios -> {
+                        BackHandler {
+                            speaker.stop()
+                            route = Route.Home
+                        }
+                        ScenariosScreen(
+                            teacher = teacher,
+                            llm = llm,
+                            onPick = { sc -> listener.releaseSounds(); route = Route.Talking(sc.id) },
+                            onBack = { speaker.stop(); route = Route.Home }
+                        )
+                    }
+
+                    is Route.Talking -> {
+                        val scenario = Course.scenarioById(current.scenarioId)
+                        BackHandler {
+                            speaker.stop()
+                            listener.stopRecording()
+                            route = Route.Scenarios
+                        }
+                        if (scenario == null) {
+                            route = Route.Scenarios
+                        } else {
+                            ConversationScreen(
+                                scenario = scenario,
+                                teacher = teacher,
+                                speaker = speaker,
+                                listener = listener,
+                                llm = llm,
+                                showFace = store.showFaces,
+                                say = say,
+                                sayQueued = { text -> speaker.speakQueued(text, teacher, speechScale) },
+                                onBack = {
+                                    speaker.stop()
+                                    listener.stopRecording()
+                                    route = Route.Scenarios
                                 }
                             )
                         }

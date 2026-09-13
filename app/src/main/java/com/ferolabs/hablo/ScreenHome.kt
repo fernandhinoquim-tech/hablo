@@ -42,6 +42,7 @@ fun HomeScreen(
     onOpenLesson: (Lesson) -> Unit,
     onSettings: () -> Unit,
     onPronunciation: () -> Unit,
+    onConversation: () -> Unit,
     onGreeting: () -> Unit
 ) {
     val accent = Color(teacher.color)
@@ -172,6 +173,35 @@ fun HomeScreen(
                     Text("Practicar pronunciación", style = MaterialTheme.typography.titleMedium)
                     Text(
                         "Los sonidos que más nos cuestan a los hispanohablantes",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = InkSoft
+                    )
+                }
+                Text("›", style = MaterialTheme.typography.headlineMedium, color = accent)
+            }
+        }
+
+        item {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(Color.White, RoundedCornerShape(16.dp))
+                    .border(1.dp, accent.copy(alpha = 0.35f), RoundedCornerShape(16.dp))
+                    .clickable { onConversation() }
+                    .padding(16.dp)
+            ) {
+                Box(
+                    contentAlignment = Alignment.Center,
+                    modifier = Modifier.size(46.dp).background(Color(teacher.softColor), CircleShape)
+                ) {
+                    Text("💬", style = MaterialTheme.typography.titleLarge)
+                }
+                Spacer(Modifier.size(14.dp))
+                Column(modifier = Modifier.weight(1f)) {
+                    Text("Conversar con ${teacher.name}", style = MaterialTheme.typography.titleMedium)
+                    Text(
+                        "Situaciones reales, con corrección en español",
                         style = MaterialTheme.typography.bodyMedium,
                         color = InkSoft
                     )

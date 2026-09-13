@@ -24,9 +24,10 @@ struct Engine {
     llama_sampler * sampler = nullptr;
     const llama_vocab * vocab = nullptr;
     int n_ctx = 0;
-    int n_past = 0;          // tokens ya en la memoria del contexto
+    int n_past = 0;                  // tokens ya en la memoria del contexto
+    int answer_start = 0;            // donde empezo la respuesta en curso
     bool generating = false;
-    std::string pending;     // bytes UTF-8 incompletos entre tokens
+    std::string pending;             // bytes UTF-8 incompletos entre tokens
 };
 
 Engine * g = nullptr;
@@ -108,11 +109,14 @@ Java_com_ferolabs_hablo_Llm_nativeLoad(JNIEnv * env, jobject, jstring jpath, jin
     e->vocab = llama_model_get_vocab(model);
     e->n_ctx = (int) llama_n_ctx(ctx);
 
+    // Penalizacion de repeticion: sin ella el modelo copia su frase anterior
+    // turno tras turno (visto en la cafeteria: la misma respuesta ocho veces).
     llama_sampler_chain_params sp = llama_sampler_chain_default_params();
     e->sampler = llama_sampler_chain_init(sp);
+    llama_sampler_chain_add(e->sampler, llama_sampler_init_penalties(llama_vocab_n_tokens(e->vocab), 128, 1.18f, 0.0f, 0.0f));
     llama_sampler_chain_add(e->sampler, llama_sampler_init_min_p(0.05f, 1));
     llama_sampler_chain_add(e->sampler, llama_sampler_init_top_p(0.9f, 1));
-    llama_sampler_chain_add(e->sampler, llama_sampler_init_temp(0.6f));
+    llama_sampler_chain_add(e->sampler, llama_sampler_init_temp(0.7f));
     llama_sampler_chain_add(e->sampler, llama_sampler_init_dist(LLAMA_DEFAULT_SEED));
 
     g = e;
@@ -123,7 +127,7 @@ Java_com_ferolabs_hablo_Llm_nativeLoad(JNIEnv * env, jobject, jstring jpath, jin
 }
 
 extern "C" JNIEXPORT jstring JNICALL
-Java_com_ferolabs_hablo_Llm_nativeApplyTemplate(JNIEnv * env, jobject, jobjectArray roles, jobjectArray contents) {
+Java_com_ferolabs_hablo_Llm_nativeApplyTemplate(JNIEnv * env, jobject, jobjectArray roles, jobjectArray contents, jboolean add_ass) {
     if (!g) return env->NewStringUTF("");
     jsize n = env->GetArrayLength(roles);
     std::vector<std::string> r(n), c(n);
@@ -137,49 +141,77 @@ Java_com_ferolabs_hablo_Llm_nativeApplyTemplate(JNIEnv * env, jobject, jobjectAr
     }
     const char * tmpl = llama_model_chat_template(g->model, nullptr);
     std::vector<char> buf(total * 2 + 1024);
-    int32_t len = llama_chat_apply_template(tmpl, msgs.data(), msgs.size(), true, buf.data(), (int32_t) buf.size());
+    int32_t len = llama_chat_apply_template(tmpl, msgs.data(), msgs.size(), add_ass, buf.data(), (int32_t) buf.size());
     if (len < 0) {
         LOGE("la plantilla de chat del modelo no se pudo aplicar");
         return env->NewStringUTF("");
     }
     if ((size_t) len > buf.size()) {
         buf.resize(len + 1);
-        len = llama_chat_apply_template(tmpl, msgs.data(), msgs.size(), true, buf.data(), (int32_t) buf.size());
+        len = llama_chat_apply_template(tmpl, msgs.data(), msgs.size(), add_ass, buf.data(), (int32_t) buf.size());
     }
     return env->NewStringUTF(std::string(buf.data(), len).c_str());
 }
 
-// Procesa el prompt completo (borra la memoria anterior) y deja todo listo
-// para generar. Devuelve el numero de tokens del prompt, o negativo si fallo.
-extern "C" JNIEXPORT jint JNICALL
-Java_com_ferolabs_hablo_Llm_nativeStart(JNIEnv * env, jobject, jstring jprompt) {
-    if (!g) return -1;
-    std::string prompt = jstr(env, jprompt);
-    std::vector<llama_token> toks = tokenize(g->vocab, prompt, true);
-    if (toks.empty()) return -2;
-    if ((int) toks.size() >= g->n_ctx - 16) {
-        LOGE("prompt de %zu tokens no cabe en el contexto de %d", toks.size(), g->n_ctx);
-        return -3;
-    }
+// Conversacion por deltas: la memoria del modelo (KV cache) guarda todo lo
+// procesado y lo generado; cada turno solo se le da el texto nuevo que la
+// plantilla agrega al final. Nada se vuelve a procesar.
 
+extern "C" JNIEXPORT void JNICALL
+Java_com_ferolabs_hablo_Llm_nativeReset(JNIEnv *, jobject) {
+    if (!g) return;
     llama_memory_clear(llama_get_memory(g->ctx), true);
     g->n_past = 0;
+    g->answer_start = 0;
+    g->generating = false;
     g->pending.clear();
-    llama_sampler_reset(g->sampler);
+}
 
-    // por lotes de n_batch
+// Procesa [text] (con sus tokens de control) a continuacion de lo que ya hay.
+// Devuelve cuantos tokens proceso, o -3 si no cabe en el contexto.
+extern "C" JNIEXPORT jint JNICALL
+Java_com_ferolabs_hablo_Llm_nativeFeed(JNIEnv * env, jobject, jstring jtext) {
+    if (!g) return -1;
+    std::string text = jstr(env, jtext);
+    if (text.empty()) return 0;
+    // add_special=false: el BOS lo pone la plantilla si hace falta; parse_special=true
+    // para que <|im_start|> y compania sean tokens de control, no texto.
+    std::vector<llama_token> toks = tokenize(g->vocab, text, false);
+    if (toks.empty()) return 0;
+    if (g->n_past + (int) toks.size() >= g->n_ctx - 64) {
+        LOGE("no caben %zu tokens mas en el contexto (%d de %d)", toks.size(), g->n_past, g->n_ctx);
+        return -3;
+    }
     const int n_batch = 512;
     for (size_t i = 0; i < toks.size(); i += n_batch) {
         int n = std::min((size_t) n_batch, toks.size() - i);
         llama_batch batch = llama_batch_get_one(toks.data() + i, n);
         if (llama_decode(g->ctx, batch) != 0) {
-            LOGE("llama_decode fallo procesando el prompt");
+            LOGE("llama_decode fallo procesando texto");
             return -4;
         }
         g->n_past += n;
     }
-    g->generating = true;
     return (jint) toks.size();
+}
+
+extern "C" JNIEXPORT void JNICALL
+Java_com_ferolabs_hablo_Llm_nativeBeginAnswer(JNIEnv *, jobject) {
+    if (!g) return;
+    g->answer_start = g->n_past;
+    g->pending.clear();
+    llama_sampler_reset(g->sampler);
+    g->generating = true;
+}
+
+// Descarta lo generado desde nativeBeginAnswer (para reintentar).
+extern "C" JNIEXPORT void JNICALL
+Java_com_ferolabs_hablo_Llm_nativeDiscardAnswer(JNIEnv *, jobject) {
+    if (!g) return;
+    llama_memory_seq_rm(llama_get_memory(g->ctx), 0, (llama_pos) g->answer_start, -1);
+    g->n_past = g->answer_start;
+    g->generating = false;
+    g->pending.clear();
 }
 
 // Siguiente trozo de texto, o null cuando el modelo termino (o no cabe mas).
@@ -196,8 +228,10 @@ Java_com_ferolabs_hablo_Llm_nativeNext(JNIEnv * env, jobject) {
         g->generating = false;
         return nullptr;
     }
+    // special=false: los tokens de control (<think>, <|im_end|>...) no se
+    // convierten en texto; solo las palabras.
     char piece[256];
-    int n = llama_token_to_piece(g->vocab, tok, piece, sizeof(piece), 0, true);
+    int n = llama_token_to_piece(g->vocab, tok, piece, sizeof(piece), 0, false);
     if (n > 0) g->pending.append(piece, n);
 
     llama_batch batch = llama_batch_get_one(&tok, 1);

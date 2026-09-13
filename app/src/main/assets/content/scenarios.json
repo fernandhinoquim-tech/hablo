@@ -1,0 +1,85 @@
+{
+  "_comentario": "Escenarios de conversación con la IA (Fase 3). Cada uno es una situación cerrada: la profesora hace un papel (role), abre con una frase (opening) y el alumno tiene metas (targets). 'watch' son las trampas típicas del hispanohablante en esa situación: la IA las corrige en español. Todos los campos son obligatorios (checkContent).",
+  "scenarios": [
+    {
+      "id": "conocerse",
+      "title": "Conocer a alguien",
+      "emoji": "👋",
+      "level": "A1",
+      "goalEs": "Preséntate: tu nombre, de dónde eres, tu edad y qué haces. Hazle una pregunta a ella.",
+      "role": "You are chatting with a new student at a language exchange in a park. You are friendly and curious.",
+      "opening": "Hi! I don't think we've met. I'm {teacher}. What's your name?",
+      "targets": ["My name is ...", "I'm from ...", "I'm ... years old", "I'm a ... / I work as a ..."],
+      "watch": [
+        "'I have 25 years' → se dice 'I'm 25 years old'",
+        "'My sister is doctor' → hace falta el artículo: 'is a doctor'",
+        "'I am agree' → 'I agree', sin am",
+        "'How do you call yourself?' → 'What's your name?'"
+      ]
+    },
+    {
+      "id": "cafeteria",
+      "title": "En la cafetería",
+      "emoji": "☕",
+      "level": "A1",
+      "goalEs": "Pide un café y algo de comer, pregunta cuánto cuesta y dile si es para llevar.",
+      "role": "You are a barista at a small coffee shop. Take the order, ask about size and milk, say the price, and ask if it's for here or to go.",
+      "opening": "Hi there, welcome! What can I get for you today?",
+      "targets": ["I'd like a ...", "How much is it?", "To go, please.", "Can I have ...?"],
+      "watch": [
+        "'I want a coffee' suena a exigencia → 'I'd like a coffee' o 'Can I have a coffee?'",
+        "'For carry' / 'to take' → 'to go'",
+        "'How much cost?' → 'How much is it?'",
+        "'Give me' sin please suena brusco"
+      ]
+    },
+    {
+      "id": "camino",
+      "title": "Preguntar el camino",
+      "emoji": "🗺️",
+      "level": "A1",
+      "goalEs": "Estás perdido. Pregunta cómo llegar a la estación de tren y confirma las indicaciones.",
+      "role": "You are a local person on the street. Give simple directions to the train station: go straight, turn left at the bank, it's on the right, about five minutes.",
+      "opening": "Hello! You look a little lost. Can I help you?",
+      "targets": ["Excuse me, how do I get to ...?", "Is it far?", "On the left / on the right", "Thank you so much!"],
+      "watch": [
+        "'Where is the station?' está bien, pero 'Where the station is?' no",
+        "'Excuse me' para pedir ayuda; 'sorry' es para disculparse",
+        "'Far' no lleva 'of': 'Is it far?' o 'Is it far from here?'",
+        "'In the left' → 'on the left'"
+      ]
+    },
+    {
+      "id": "tienda",
+      "title": "En una tienda de ropa",
+      "emoji": "👕",
+      "level": "A1",
+      "goalEs": "Busca una camiseta: pregunta por tu talla, otro color y el precio. Decide si la compras.",
+      "role": "You are a shop assistant in a clothes store. Help the customer find a T-shirt: ask the size, offer colors, say the price, and offer the fitting room.",
+      "opening": "Hi! Are you looking for anything in particular today?",
+      "targets": ["I'm looking for ...", "Do you have it in ...?", "Can I try it on?", "I'll take it."],
+      "watch": [
+        "'I search a T-shirt' → 'I'm looking for a T-shirt'",
+        "'Medium size' se dice 'a medium' o 'size medium'",
+        "'Can I prove it?' → 'Can I try it on?' (probar ropa es try on)",
+        "'Blue color' → solo 'blue'"
+      ]
+    },
+    {
+      "id": "hotel",
+      "title": "Llegar al hotel",
+      "emoji": "🏨",
+      "level": "A1",
+      "goalEs": "Haz el check-in: di que tienes una reserva, deletrea tu apellido, pregunta por el desayuno y el wifi.",
+      "role": "You are a hotel receptionist. Ask for the name and the reservation, confirm two nights, explain breakfast time and the wifi password, and give the room number.",
+      "opening": "Good evening, welcome to the Park Hotel. Do you have a reservation?",
+      "targets": ["I have a reservation under the name ...", "What time is breakfast?", "What's the wifi password?", "Thank you, have a good night."],
+      "watch": [
+        "'I have a reserve' → 'I have a reservation'",
+        "'The breakfast is included?' → 'Is breakfast included?' (la pregunta invierte el orden)",
+        "'What hour is the breakfast?' → 'What time is breakfast?'",
+        "'Actually' no significa actualmente: es 'de hecho'"
+      ]
+    }
+  ]
+}

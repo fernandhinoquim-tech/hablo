@@ -294,6 +294,21 @@ val checkContent = tasks.register("checkContent") {
             checkSound(d as Map<*, *>, "drills.json, drill ${i + 1}")
         }
 
+        // Escenarios de conversacion: todos los campos, sin excepcion.
+        val scenarios = slurper.parse(File(contentDir, "scenarios.json")) as Map<*, *>
+        val scenarioIds = HashSet<String>()
+        (scenarios["scenarios"] as List<*>).forEachIndexed { i, sc ->
+            val o = sc as Map<*, *>
+            val where = "scenarios.json, escenario ${i + 1}"
+            for (key in listOf("id", "title", "level", "goalEs", "role", "opening")) {
+                if (o[key] == null || o[key].toString().isBlank()) problems.add("$where: falta \"$key\"")
+            }
+            for (key in listOf("targets", "watch")) {
+                if ((o[key] as? List<*>).isNullOrEmpty()) problems.add("$where: \"$key\" vacio")
+            }
+            if (o["id"] != null && !scenarioIds.add(o["id"].toString())) problems.add("$where: id repetido")
+        }
+
         // Toda palabra que se pide decir en voz alta tiene que estar en el
         // diccionario de pronunciacion: sin fonemas esperados no hay GOP y el
         // sonido del ejercicio quedaria sin evaluar en silencio.
@@ -336,7 +351,7 @@ val checkContent = tasks.register("checkContent") {
                 "Contenido invalido (${problems.size}):\n  " + problems.joinToString("\n  ")
             )
         }
-        logger.lifecycle("  contenido revisado: ${lessonIds.size} lecciones, ${(drills["drills"] as List<*>).size} drills")
+        logger.lifecycle("  contenido revisado: ${lessonIds.size} lecciones, ${(drills["drills"] as List<*>).size} drills, ${scenarioIds.size} escenarios")
     }
 }
 
