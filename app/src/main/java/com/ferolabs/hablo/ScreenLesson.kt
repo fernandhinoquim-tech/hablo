@@ -160,8 +160,13 @@ fun LessonScreen(
             is Exercise.TypeWhatYouHear -> say(ex.audio, 1f)
             is Exercise.SpeakIt -> say(ex.text, 1f)
             is Exercise.Shadow -> say(ex.text, 1f)
-            // El par mínimo: suena la palabra, NO se muestra cuál fue.
-            is Exercise.MinimalPair -> say(ex.answer, 1f)
+            // El par mínimo: suena la palabra, NO se muestra cuál fue. Va dentro de
+            // una portadora neutra porque Piper con una palabra suelta de medio
+            // segundo es inestable: medido con las cuatro voces y el modelo de
+            // fonemas (tools/content/oir_pares.py), el fonema distintivo del par
+            // aparece en 63 de 96 casos con la palabra sola y en 78 de 96 con
+            // "The word is ___.". La portadora no da pistas: es la misma siempre.
+            is Exercise.MinimalPair -> say(carrier(ex.answer), 1f)
             else -> {}
         }
     }
@@ -625,8 +630,8 @@ fun LessonScreen(
                         horizontalArrangement = Arrangement.spacedBy(12.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        SpeakerButton(big = true, tint = accent) { say(ex.answer, 1f) }
-                        SpeakerButton(slow = true, tint = accent.copy(alpha = 0.75f)) { say(ex.answer, 0.6f) }
+                        SpeakerButton(big = true, tint = accent) { say(carrier(ex.answer), 1f) }
+                        SpeakerButton(slow = true, tint = accent.copy(alpha = 0.75f)) { say(carrier(ex.answer), 0.7f) }
                         Text(
                             "${teacher.name} dice UNA de estas. Toca la que oíste.",
                             style = MaterialTheme.typography.bodyMedium,
@@ -901,3 +906,6 @@ private fun tipoDe(ex: Exercise): String = when (ex) {
     is Exercise.Shadow -> "repetir"
     is Exercise.MinimalPair -> "oído"
 }
+
+/** La frase portadora con la que suena la palabra de un par mínimo. La misma que mide `tools/content/oir_pares.py`. */
+private fun carrier(word: String) = "The word is $word."

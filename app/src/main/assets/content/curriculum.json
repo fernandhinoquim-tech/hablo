@@ -50,7 +50,11 @@
                 {"id": "a1u1l2e4", "type": "build", "es": "Encantado de conocerte.", "answer": "Nice to meet you", "extra": ["know", "for"]},
                 {"id": "a1u1l2e5", "type": "type", "audio": "See you tomorrow.", "meaning": "Nos vemos mañana."},
                 {"id": "a1u1l2e6", "type": "translate", "es": "Que tengas un buen día.", "options": ["Have good day.", "Have a nice day.", "Having a nice day."], "answer": "Have a nice day.", "tip": "No olvides el a. En inglés casi siempre hace falta antes de un sustantivo contable."},
-                {"id": "a1u1l2e7", "type": "speak", "text": "Have a nice day.", "sound": "h", "tip": "Have a se pega y suena como una sola palabra: \"hava\"."}
+                {"id": "a1u1l2e7", "type": "speak", "text": "Have a nice day.", "sound": "h", "tip": "Have a se pega y suena como una sola palabra: \"hava\"."},
+                {"id": "a1u1l2e8", "type": "cloze", "es": "Tengo hambre.", "text": "I ___ hungry.", "answer": "am", "accept": ["feel"], "tip": "El hambre en inglés se ES, no se tiene. Nada de 'I have hungry'."},
+                {"id": "a1u1l2e9", "type": "write", "es": "Estoy cansado, gracias.", "answer": "I'm tired, thank you.", "accept": ["I'm tired, thanks."], "tip": "Cansado se es: I'm tired. thanks y thank you sirven las dos."},
+                {"id": "a1u1l2e10", "type": "shadow", "text": "I'm fine, thanks. And you?", "tip": "Va en dos golpes: «I'm FINE thanks» / «and YOU?». La segunda parte sube al final."},
+                {"id": "a1u1l2e11", "type": "minimalPair", "options": ["bad", "bed"], "answer": "bed", "sentence": "The bed is small.", "tip": "bad es abierta, casi «bæd»; bed es cerrada, como la e española. Muy fácil de confundir."}
               ]
             },
             {
@@ -68,7 +72,10 @@
                 {"id": "a1u1l3e4", "type": "speak", "text": "I speak Spanish and English.", "sound": "es", "tip": "Aquí está la trampa: speak y Spanish empiezan con s directa. Nada de \"espeak\" ni \"espanish\"."},
                 {"id": "a1u1l3e5", "type": "type", "audio": "I live in Colombia.", "meaning": "Vivo en Colombia."},
                 {"id": "a1u1l3e6", "type": "translate", "es": "¿Hablas inglés?", "options": ["Do you speak English?", "You speak English?", "Speak you English?"], "answer": "Do you speak English?", "tip": "Las preguntas en presente simple necesitan do adelante. En español no existe ese ayudante."},
-                {"id": "a1u1l3e7", "type": "speak", "text": "Do you speak English?", "sound": "es"}
+                {"id": "a1u1l3e7", "type": "speak", "text": "Do you speak English?", "sound": "es"},
+                {"id": "a1u1l3e8", "type": "cloze", "es": "¿De dónde eres?", "text": "Where are you ___?", "answer": "from", "accept": [], "tip": "El from se va al final. No es 'From where are you?'."},
+                {"id": "a1u1l3e9", "type": "write", "es": "Soy colombiano y hablo español.", "answer": "I'm Colombian and I speak Spanish.", "accept": ["I am from Colombia and I speak Spanish."], "tip": "Repetir el I es lo más claro. Y al escribir de verdad, Colombian y Spanish van con mayúscula."},
+                {"id": "a1u1l3e10", "type": "shadow", "text": "Where are you from?", "tip": "Se dice pegado, casi «WEAR-a-yu-FROM». No separes palabra por palabra."}
               ]
             }
           ]
@@ -94,7 +101,10 @@
                 {"id": "a1u2l1e4", "type": "build", "es": "¿Cuánto cuesta?", "answer": "How much is it", "extra": ["cost", "does"]},
                 {"id": "a1u2l1e5", "type": "type", "audio": "Here you are.", "meaning": "Aquí tiene.", "tip": "Es lo que dice el mesero al entregarte algo. También sirve Here you go."},
                 {"id": "a1u2l1e6", "type": "translate", "es": "Para llevar, por favor.", "options": ["For carry, please.", "To take, please.", "To go, please."], "answer": "To go, please.", "tip": "En Reino Unido también se dice takeaway."},
-                {"id": "a1u2l1e7", "type": "speak", "text": "To go, please.", "sound": "general"}
+                {"id": "a1u2l1e7", "type": "speak", "text": "To go, please.", "sound": "general"},
+                {"id": "a1u2l1e8", "type": "cloze", "es": "¿Me da un café, por favor?", "text": "Can I ___ a coffee, please?", "answer": "have", "accept": ["get", "order"], "tip": "Can I have es la fórmula normal. Can I get también sirve y es más americana."},
+                {"id": "a1u2l1e9", "type": "write", "es": "Quisiera un té, por favor.", "answer": "I'd like a tea, please.", "accept": ["I'd like some tea, please.", "I would like a tea, please.", "I would like some tea, please.", "I'd like tea, please.", "I would like tea, please."], "tip": "I'd like para pedir. El please no es adorno: en inglés se espera."},
+                {"id": "a1u2l1e10", "type": "shadow", "text": "Can I have a coffee, please?", "tip": "El peso cae en «COFFEE» y en «PLEASE». Lo del medio pasa rápido."}
               ]
             },
             {
@@ -111,7 +121,10 @@
                 {"id": "a1u2l2e3", "type": "build", "es": "La cuenta, por favor.", "answer": "The check please", "extra": ["account", "count"]},
                 {"id": "a1u2l2e4", "type": "speak", "text": "Can I have the check, please?", "sound": "general", "tip": "En Reino Unido se dice bill en vez de check."},
                 {"id": "a1u2l2e5", "type": "type", "audio": "Do you take cards?", "meaning": "¿Aceptan tarjetas?"},
-                {"id": "a1u2l2e6", "type": "translate", "es": "Gracias, que tenga buen día.", "options": ["Thanks you, have good day.", "Thank you, have a nice day.", "Thank you, have nice day."], "answer": "Thank you, have a nice day."}
+                {"id": "a1u2l2e6", "type": "translate", "es": "Gracias, que tenga buen día.", "options": ["Thanks you, have good day.", "Thank you, have a nice day.", "Thank you, have nice day."], "answer": "Thank you, have a nice day."},
+                {"id": "a1u2l2e7", "type": "cloze", "es": "¿Me trae la cuenta, por favor?", "text": "Can I have the ___, please?", "answer": "bill", "accept": ["check"], "tip": "bill en inglés británico, check en americano. account NO: esa es la del banco."},
+                {"id": "a1u2l2e8", "type": "write", "es": "¿Puedo pagar con tarjeta?", "answer": "Can I pay by card?", "accept": ["Can I pay with a card?", "Can I pay by credit card?", "Can I pay with a credit card?", "Can I pay with my card?"], "tip": "by card o with a card, las dos valen. Después de can, el verbo sin to."},
+                {"id": "a1u2l2e9", "type": "shadow", "text": "Can I pay by card?", "tip": "Cinco palabras de un tirón. No pares antes de «card»."}
               ]
             },
             {
@@ -128,7 +141,10 @@
                 {"id": "a1u2l3e3", "type": "speak", "text": "Excuse me, could you help me?", "sound": "general", "tip": "Excuse me es para llamar la atención de alguien. Sorry es para disculparte."},
                 {"id": "a1u2l3e4", "type": "build", "es": "¿Puede repetirlo, por favor?", "answer": "Could you say that again please", "extra": ["repeat", "for"]},
                 {"id": "a1u2l3e5", "type": "type", "audio": "No problem at all.", "meaning": "No hay ningún problema."},
-                {"id": "a1u2l3e6", "type": "speak", "text": "I don't understand. Could you speak slower?", "sound": "es", "tip": "Esta frase te va a salvar más veces que cualquier otra. Apréndetela de memoria."}
+                {"id": "a1u2l3e6", "type": "speak", "text": "I don't understand. Could you speak slower?", "sound": "es", "tip": "Esta frase te va a salvar más veces que cualquier otra. Apréndetela de memoria."},
+                {"id": "a1u2l3e7", "type": "cloze", "es": "Perdón, ¿dónde está el baño?", "text": "___ me, where is the bathroom?", "answer": "Excuse", "accept": ["Pardon"], "tip": "Para llamar la atención va Excuse me. Sorry es cuando ya hiciste algo."},
+                {"id": "a1u2l3e8", "type": "write", "es": "Perdón, llego tarde.", "answer": "Sorry, I'm late.", "accept": ["I'm sorry, I'm late."], "tip": "Aquí sí va sorry: ya pasó. Y lo normal es be late, no arrive late."},
+                {"id": "a1u2l3e9", "type": "shadow", "text": "Excuse me, can you help me?", "tip": "Dos bloques: «exCUSE me» / «can you HELP me». El acento de excuse va en la segunda sílaba."}
               ]
             }
           ]
@@ -154,7 +170,10 @@
                 {"id": "a1u3l1e4", "type": "build", "es": "Trabajo en un banco.", "answer": "I work at a bank", "extra": ["in", "the"]},
                 {"id": "a1u3l1e5", "type": "translate", "es": "Mi hermana es doctora.", "options": ["My sister is doctor.", "My sister she is doctor.", "My sister is a doctor."], "answer": "My sister is a doctor.", "tip": "Con profesiones el inglés exige el artículo a: is a doctor, is a teacher, is an engineer."},
                 {"id": "a1u3l1e6", "type": "speak", "text": "My sister is a doctor.", "sound": "general"},
-                {"id": "a1u3l1e7", "type": "listen", "audio": "What do you do for a living?", "options": ["What do you do for a living?", "What you do for a living?", "What do you do for living?"], "answer": "What do you do for a living?", "tip": "Es la forma normal de preguntar en qué trabajas."}
+                {"id": "a1u3l1e7", "type": "listen", "audio": "What do you do for a living?", "options": ["What do you do for a living?", "What you do for a living?", "What do you do for living?"], "answer": "What do you do for a living?", "tip": "Es la forma normal de preguntar en qué trabajas."},
+                {"id": "a1u3l1e8", "type": "cloze", "es": "Tengo veinticinco años.", "text": "I am twenty-five years ___.", "answer": "old", "accept": [], "tip": "years old, siempre las dos. Y el verbo es am, no have."},
+                {"id": "a1u3l1e9", "type": "write", "es": "Mi hermana es ingeniera.", "answer": "My sister is an engineer.", "accept": ["My sister's an engineer."], "tip": "Profesión con artículo, y engineer empieza con sonido de vocal: an."},
+                {"id": "a1u3l1e10", "type": "shadow", "text": "I'm twenty-five years old.", "tip": "El golpe fuerte va en «FIVE» y en «OLD». El resto se desliza."}
               ]
             },
             {
@@ -172,7 +191,10 @@
                 {"id": "a1u3l2e4", "type": "build", "es": "Vivo en Bogotá con mi familia.", "answer": "I live in Bogota with my family", "extra": ["at", "the"]},
                 {"id": "a1u3l2e5", "type": "translate", "es": "Me levanto a las seis.", "options": ["I get up at six.", "I get up in six.", "I raise up at six."], "answer": "I get up at six."},
                 {"id": "a1u3l2e6", "type": "speak", "text": "I live in Bogota with my family.", "sound": "th"},
-                {"id": "a1u3l2e7", "type": "type", "audio": "My family is very important to me.", "meaning": "Mi familia es muy importante para mí."}
+                {"id": "a1u3l2e7", "type": "type", "audio": "My family is very important to me.", "meaning": "Mi familia es muy importante para mí."},
+                {"id": "a1u3l2e8", "type": "cloze", "es": "El carro de mi hermano es nuevo.", "text": "My ___ car is new.", "answer": "brother's", "accept": [], "tip": "El dueño va primero y con 's. No es 'the car of my brother'."},
+                {"id": "a1u3l2e9", "type": "write", "es": "Tengo dos hermanas y un hermano.", "answer": "I have two sisters and one brother.", "accept": ["I have two sisters and a brother.", "I've got two sisters and one brother.", "I've got two sisters and a brother."], "tip": "En inglés hay que decir si son hermanas o hermanos: no hay una palabra de uso diario para «hermanos» mixto (existe siblings, pero es formal)."},
+                {"id": "a1u3l2e10", "type": "shadow", "text": "I have two sisters and one brother.", "tip": "Frase larga: divídela en «I have TWO sisters» / «and ONE brother»."}
               ]
             }
           ]
@@ -199,7 +221,11 @@
                 {"id": "a1u4l1e5", "type": "build", "es": "Ella se levanta a las seis.", "answer": "She gets up at six.", "extra": ["get", "in", "the"], "tip": "gets con -s. Y las horas llevan at: at six."},
                 {"id": "a1u4l1e6", "type": "type", "audio": "He speaks Spanish and English.", "meaning": "Él habla español e inglés.", "tip": "speaks con -s. Fíjate que speak empieza con s, no con e."},
                 {"id": "a1u4l1e7", "type": "speak", "text": "He speaks Spanish every day.", "sound": "es", "tip": "No digas «espeaks espanish». En inglés la s inicial arranca sola, sin e delante."},
-                {"id": "a1u4l1e8", "type": "speak", "text": "She studies at home.", "sound": "es", "tip": "studies suena «STA-dis». Tampoco lleva e delante."}
+                {"id": "a1u4l1e8", "type": "speak", "text": "She studies at home.", "sound": "es", "tip": "studies suena «STA-dis». Tampoco lleva e delante."},
+                {"id": "a1u4l1e9", "type": "cloze", "es": "Ella trabaja en un hospital.", "text": "She ___ in a hospital.", "answer": "works", "accept": [], "tip": "she lleva la -s: works."},
+                {"id": "a1u4l1e10", "type": "write", "es": "Mi hermano estudia inglés todos los días.", "answer": "My brother studies English every day.", "accept": ["My brother studies English daily."], "tip": "Los verbos de consonante + y cambian a -ies: study → studies. Y English con mayúscula."},
+                {"id": "a1u4l1e11", "type": "shadow", "text": "He speaks Spanish every day.", "tip": "Cinco palabras seguidas, sin pausa. Fíjate que speaks y Spanish arrancan con s pura."},
+                {"id": "a1u4l1e12", "type": "minimalPair", "options": ["live", "leave"], "answer": "leave", "sentence": "I leave at six.", "tip": "leave es larga («liiv»); live es corta («liv»). Cambian el significado por completo."}
               ]
             },
             {
@@ -218,7 +244,10 @@
                 {"id": "a1u4l2e5", "type": "build", "es": "Nosotros no trabajamos los domingos.", "answer": "We don't work on Sundays.", "extra": ["doesn't", "in", "works"], "tip": "We lleva don't. Y los días con on."},
                 {"id": "a1u4l2e6", "type": "type", "audio": "She doesn't live here.", "meaning": "Ella no vive aquí.", "tip": "doesn't se escribe con apóstrofo: does + not."},
                 {"id": "a1u4l2e7", "type": "speak", "text": "I don't understand.", "sound": "general", "tip": "Frase de oro: úsala sin miedo cuando no entiendas."},
-                {"id": "a1u4l2e8", "type": "speak", "text": "Do you have a phone?", "sound": "h", "tip": "La h de have se sopla de verdad. En español la h es muda; aquí no."}
+                {"id": "a1u4l2e8", "type": "speak", "text": "Do you have a phone?", "sound": "h", "tip": "La h de have se sopla de verdad. En español la h es muda; aquí no."},
+                {"id": "a1u4l2e9", "type": "cloze", "es": "Ella no come carne.", "text": "She ___ eat meat.", "answer": "doesn't", "accept": [], "tip": "doesn't con she. Y eat se queda sin -s porque el doesn't ya la tiene."},
+                {"id": "a1u4l2e10", "type": "write", "es": "¿Hablas inglés?", "answer": "Do you speak English?", "accept": ["Can you speak English?"], "tip": "La pregunta necesita el ayudante Do. No basta con el tono."},
+                {"id": "a1u4l2e11", "type": "shadow", "text": "I don't understand.", "tip": "Tres palabras que valen oro. «I don't unnerSTAND», con el peso al final."}
               ]
             },
             {
@@ -237,7 +266,11 @@
                 {"id": "a1u4l3e5", "type": "build", "es": "Él normalmente trabaja en casa.", "answer": "He usually works at home.", "extra": ["work", "in", "always"], "tip": "usually antes del verbo, y works con -s."},
                 {"id": "a1u4l3e6", "type": "type", "audio": "They never watch TV.", "meaning": "Ellos nunca ven televisión.", "tip": "watch se escribe con t: w-a-t-c-h."},
                 {"id": "a1u4l3e7", "type": "speak", "text": "I never study at night.", "sound": "es", "tip": "study arranca con st-, sin e delante. Ni «estudy» ni «estadi»."},
-                {"id": "a1u4l3e8", "type": "speak", "text": "She is always happy.", "sound": "h", "tip": "happy con la h soplada. «Api» no se entiende."}
+                {"id": "a1u4l3e8", "type": "speak", "text": "She is always happy.", "sound": "h", "tip": "happy con la h soplada. «Api» no se entiende."},
+                {"id": "a1u4l3e9", "type": "cloze", "es": "Siempre tomo café por la mañana.", "text": "I ___ drink coffee in the morning.", "answer": "always", "accept": [], "tip": "always va justo antes del verbo, no después."},
+                {"id": "a1u4l3e10", "type": "write", "es": "Ella nunca trabaja los domingos.", "answer": "She never works on Sundays.", "accept": ["She never works on Sunday.", "She never works Sundays."], "tip": "never antes del verbo, works con -s, y los días con on."},
+                {"id": "a1u4l3e11", "type": "shadow", "text": "She is always late.", "tip": "El peso cae en «LATE». Di las cuatro palabras completas, sin contraer."},
+                {"id": "a1u4l3e12", "type": "minimalPair", "options": ["watch", "wash"], "answer": "wash", "sentence": "I wash my hands.", "tip": "wash termina en sh («shhh»); watch termina en ch. Nosotros las mezclamos."}
               ]
             }
           ]
@@ -264,7 +297,11 @@
                 {"id": "a1u5l1e5", "type": "build", "es": "Hay una tienda cerca de mi casa.", "answer": "There is a store near my house.", "extra": ["are", "in", "houses"], "tip": "Una tienda, singular: there is."},
                 {"id": "a1u5l1e6", "type": "type", "audio": "There are four people in my family.", "meaning": "Somos cuatro en mi familia.", "tip": "people ya es plural: nunca peoples."},
                 {"id": "a1u5l1e7", "type": "speak", "text": "There is a store near here.", "sound": "es", "tip": "store empieza con st-. Nada de «estore»."},
-                {"id": "a1u5l1e8", "type": "speak", "text": "There are three houses.", "sound": "th", "tip": "La th de three: la lengua asoma entre los dientes. No es «tri» ni «fri»."}
+                {"id": "a1u5l1e8", "type": "speak", "text": "There are three houses.", "sound": "th", "tip": "La th de three: la lengua asoma entre los dientes. No es «tri» ni «fri»."},
+                {"id": "a1u5l1e9", "type": "cloze", "es": "Hay dos cuartos.", "text": "There ___ two bedrooms.", "answer": "are", "accept": [], "tip": "Dos cuartos son plural: there are."},
+                {"id": "a1u5l1e10", "type": "write", "es": "Hay una tienda cerca de aquí.", "answer": "There is a store near here.", "accept": ["There's a store near here.", "There is a shop near here.", "There's a shop near here.", "There is a store nearby.", "There's a store nearby."], "tip": "Una sola tienda: there is. store y shop sirven las dos."},
+                {"id": "a1u5l1e11", "type": "shadow", "text": "There are three houses here.", "tip": "Cuidado con three: lengua entre los dientes, y sin parar antes de houses."},
+                {"id": "a1u5l1e12", "type": "minimalPair", "options": ["three", "tree"], "answer": "three", "sentence": "I have three books.", "tip": "three empieza con th (lengua entre los dientes); tree con t normal."}
               ]
             },
             {
@@ -283,7 +320,10 @@
                 {"id": "a1u5l2e5", "type": "build", "es": "Ella es maestra en una escuela.", "answer": "She is a teacher at a school.", "extra": ["the", "teachers", "on"], "tip": "Profesión con a, y el sitio con at."},
                 {"id": "a1u5l2e6", "type": "type", "audio": "I am a student.", "meaning": "Soy estudiante.", "tip": "student lleva a delante, y se escribe sin e inicial."},
                 {"id": "a1u5l2e7", "type": "speak", "text": "I am a student here.", "sound": "es", "tip": "student, no «estudent». Arranca con la s sola."},
-                {"id": "a1u5l2e8", "type": "speak", "text": "She is a teacher.", "sound": "general", "tip": "No te comas el a: is a teacher."}
+                {"id": "a1u5l2e8", "type": "speak", "text": "She is a teacher.", "sound": "general", "tip": "No te comas el a: is a teacher."},
+                {"id": "a1u5l2e9", "type": "cloze", "es": "Mi hermana es doctora.", "text": "My sister is ___ doctor.", "answer": "a", "accept": [], "tip": "Las profesiones siempre llevan a o an. Este es el error número uno."},
+                {"id": "a1u5l2e10", "type": "write", "es": "Me gusta el café pero no me gusta el té.", "answer": "I like coffee but I don't like tea.", "accept": [], "tip": "En general, sin artículo: coffee y tea pelados."},
+                {"id": "a1u5l2e11", "type": "shadow", "text": "I am a student here.", "tip": "Di «I am» completo, sin contraer. El peso en «STU-dent»."}
               ]
             },
             {
@@ -302,7 +342,11 @@
                 {"id": "a1u5l3e5", "type": "build", "es": "El gato está debajo de la cama.", "answer": "The cat is under the bed.", "extra": ["on", "in", "beds"], "tip": "under ya significa «debajo de»: no lleva of."},
                 {"id": "a1u5l3e6", "type": "type", "audio": "My house is behind the school.", "meaning": "Mi casa está detrás de la escuela.", "tip": "behind lleva la h en medio y sí se oye: bi-HAIND."},
                 {"id": "a1u5l3e7", "type": "speak", "text": "The book is on the shelf.", "sound": "sh", "tip": "shelf empieza con sh, ese sonido de «shhh». No es «chelf»."},
-                {"id": "a1u5l3e8", "type": "speak", "text": "My house is behind the school.", "sound": "h", "tip": "house y behind: las dos h se soplan."}
+                {"id": "a1u5l3e8", "type": "speak", "text": "My house is behind the school.", "sound": "h", "tip": "house y behind: las dos h se soplan."},
+                {"id": "a1u5l3e9", "type": "cloze", "es": "El libro está en la mesa.", "text": "The book is ___ the table.", "answer": "on", "accept": [], "tip": "Encima de una superficie: on. in sería dentro de la mesa."},
+                {"id": "a1u5l3e10", "type": "write", "es": "Las llaves están debajo de la cama.", "answer": "The keys are under the bed.", "accept": ["The keys are underneath the bed."], "tip": "under ya significa «debajo de»: no lleva of detrás."},
+                {"id": "a1u5l3e11", "type": "shadow", "text": "The store is next to the bank.", "tip": "next to va pegado, suena casi «NEKS-to». Y no olvides el to."},
+                {"id": "a1u5l3e12", "type": "minimalPair", "options": ["chair", "share"], "answer": "chair", "sentence": "The chair is next to the table.", "tip": "chair empieza con ch; share con sh («shhh»). Es el par que más se nos mezcla."}
               ]
             }
           ]
@@ -329,7 +373,10 @@
                 {"id": "a1u6l1e5", "type": "build", "es": "El bebé está durmiendo.", "answer": "The baby is sleeping.", "extra": ["are", "sleep", "sleeps"], "tip": "is porque the baby es uno solo."},
                 {"id": "a1u6l1e6", "type": "type", "audio": "I am learning English.", "meaning": "Estoy aprendiendo inglés.", "tip": "learning con dos partes: learn + ing."},
                 {"id": "a1u6l1e7", "type": "speak", "text": "I am studying English now.", "sound": "es", "tip": "studying arranca con st-. Sin e delante."},
-                {"id": "a1u6l1e8", "type": "speak", "text": "She is shopping with her mother.", "sound": "sh", "tip": "shopping con sh de «shhh». Y la h de her también se sopla."}
+                {"id": "a1u6l1e8", "type": "speak", "text": "She is shopping with her mother.", "sound": "sh", "tip": "shopping con sh de «shhh». Y la h de her también se sopla."},
+                {"id": "a1u6l1e9", "type": "cloze", "es": "Estoy comiendo.", "text": "I ___ eating.", "answer": "am", "accept": [], "tip": "El -ing nunca va solo: necesita am, is o are delante."},
+                {"id": "a1u6l1e10", "type": "write", "es": "Ella está trabajando ahora mismo.", "answer": "She is working right now.", "accept": ["She's working right now.", "She is working now.", "She's working now."], "tip": "Ahora mismo: presente continuo, is + working."},
+                {"id": "a1u6l1e11", "type": "shadow", "text": "What are you doing?", "tip": "Suena casi «WHAT-are-ya-DOO-ing». Cuatro palabras en un solo golpe."}
               ]
             },
             {
@@ -348,7 +395,10 @@
                 {"id": "a1u6l2e5", "type": "build", "es": "Ella no entiende la pregunta.", "answer": "She doesn't understand the question.", "extra": ["understanding", "is", "not"], "tip": "understand es de cabeza: nunca en continuo."},
                 {"id": "a1u6l2e6", "type": "type", "audio": "We are waiting for the bus.", "meaning": "Estamos esperando el bus.", "tip": "wait siempre lleva for: wait for something."},
                 {"id": "a1u6l2e7", "type": "speak", "text": "I don't understand the question.", "sound": "general", "tip": "Frase útil de verdad. Dila entera y sin prisa."},
-                {"id": "a1u6l2e8", "type": "speak", "text": "He is speaking Spanish.", "sound": "es", "tip": "speaking y Spanish: las dos empiezan con s pura, sin e."}
+                {"id": "a1u6l2e8", "type": "speak", "text": "He is speaking Spanish.", "sound": "es", "tip": "speaking y Spanish: las dos empiezan con s pura, sin e."},
+                {"id": "a1u6l2e9", "type": "cloze", "es": "Quiero un teléfono nuevo.", "text": "I ___ a new phone.", "answer": "want", "accept": [], "tip": "want nunca lleva -ing. Es de los verbos que no van en continuo."},
+                {"id": "a1u6l2e10", "type": "write", "es": "Trabajo en un banco, pero hoy estoy trabajando en casa.", "answer": "I work in a bank, but today I'm working at home.", "accept": ["I work at a bank, but today I'm working at home.", "I work in a bank, but today I'm working from home.", "I work at a bank, but today I'm working from home.", "I work in a bank, but I'm working at home today."], "tip": "Los dos presentes en una frase: la rutina con work, el hoy con am working."},
+                {"id": "a1u6l2e11", "type": "shadow", "text": "I don't understand the question.", "tip": "Frase de cinco palabras. El peso en «STAND» y en «QUES-tion»."}
               ]
             },
             {
@@ -367,7 +417,11 @@
                 {"id": "a1u6l3e5", "type": "build", "es": "El carro de mi hermano es rojo.", "answer": "My brother's car is red.", "extra": ["of", "brothers", "the"], "tip": "La pertenencia se marca con 's, no con of."},
                 {"id": "a1u6l3e6", "type": "type", "audio": "This is not my bag.", "meaning": "Este no es mi bolso.", "tip": "this is not, o this isn't."},
                 {"id": "a1u6l3e7", "type": "speak", "text": "This is my brother.", "sound": "th", "tip": "La th de this: lengua entre los dientes y con voz. No es «dis»."},
-                {"id": "a1u6l3e8", "type": "speak", "text": "These are those books.", "sound": "th", "tip": "Dos th: these y those. Lengua entre los dientes en las dos."}
+                {"id": "a1u6l3e8", "type": "speak", "text": "These are those books.", "sound": "th", "tip": "Dos th: these y those. Lengua entre los dientes en las dos."},
+                {"id": "a1u6l3e9", "type": "cloze", "es": "Estas son mis llaves.", "text": "___ are my keys.", "answer": "These", "accept": [], "tip": "Varias y cerca: these. Y con are, no is."},
+                {"id": "a1u6l3e10", "type": "write", "es": "Ese es mi teléfono.", "answer": "That is my phone.", "accept": ["That's my phone."], "tip": "Uno solo y lejos: that."},
+                {"id": "a1u6l3e11", "type": "shadow", "text": "This is my brother.", "tip": "Empieza con th sonora. Suena «DHIS-is-my-BRO-ther», sin cortar."},
+                {"id": "a1u6l3e12", "type": "minimalPair", "options": ["think", "sink"], "answer": "think", "sentence": "I think it is late.", "tip": "think saca la lengua; sink no. Si dices «sink» estás diciendo «lavaplatos»."}
               ]
             }
           ]
@@ -394,7 +448,11 @@
                 {"id": "a1u7l1e5", "type": "build", "es": "¿Tienes algo de tiempo?", "answer": "Do you have any time?", "extra": ["many", "times", "much"], "tip": "En pregunta va any. Y time así no lleva -s."},
                 {"id": "a1u7l1e6", "type": "type", "audio": "We need some milk.", "meaning": "Necesitamos leche.", "tip": "En afirmativo va some. milk no lleva -s."},
                 {"id": "a1u7l1e7", "type": "speak", "text": "How much does this cost?", "sound": "h", "tip": "La h de How se sopla. Es la pregunta más útil de una tienda."},
-                {"id": "a1u7l1e8", "type": "speak", "text": "I need some sugar.", "sound": "sh", "tip": "sugar no suena «su-gar»: es «SHU-gar», con sh."}
+                {"id": "a1u7l1e8", "type": "speak", "text": "I need some sugar.", "sound": "sh", "tip": "sugar no suena «su-gar»: es «SHU-gar», con sh."},
+                {"id": "a1u7l1e9", "type": "cloze", "es": "¿Cuánto dinero tienes?", "text": "How ___ money do you have?", "answer": "much", "accept": [], "tip": "El dinero no se cuenta en inglés: much. Se cuentan los billetes, no el dinero."},
+                {"id": "a1u7l1e10", "type": "write", "es": "No tengo azúcar.", "answer": "I don't have any sugar.", "accept": ["I have no sugar.", "I don't have sugar."], "tip": "En negativo, some se vuelve any. Y sugar nunca lleva -s."},
+                {"id": "a1u7l1e11", "type": "shadow", "text": "How much does this cost?", "tip": "La pregunta de cualquier tienda. Suena «how MUCH does this COST», en dos golpes."},
+                {"id": "a1u7l1e12", "type": "minimalPair", "options": ["much", "match"], "answer": "much", "sentence": "How much is it?", "tip": "much lleva una vocal central y relajada, entre la a y la o; match lleva la a bien abierta y estirada hacia adelante («mætch»)."}
               ]
             },
             {
@@ -413,7 +471,10 @@
                 {"id": "a1u7l2e5", "type": "build", "es": "Quisiéramos una mesa para dos.", "answer": "We'd like a table for two.", "extra": ["want", "to", "of"], "tip": "We'd like = we would like. Aquí no hay verbo después, así que no lleva to."},
                 {"id": "a1u7l2e6", "type": "type", "audio": "Would you like to sit down?", "meaning": "¿Quiere sentarse?", "tip": "sit down, dos palabras."},
                 {"id": "a1u7l2e7", "type": "speak", "text": "I would like a coffee, please.", "sound": "general", "tip": "Dila completa y con calma. Es tu frase para cualquier mostrador."},
-                {"id": "a1u7l2e8", "type": "speak", "text": "Would you like to sit here?", "sound": "h", "tip": "La h de here se sopla."}
+                {"id": "a1u7l2e8", "type": "speak", "text": "Would you like to sit here?", "sound": "h", "tip": "La h de here se sopla."},
+                {"id": "a1u7l2e9", "type": "cloze", "es": "Me gustaría ver el menú.", "text": "I'd like ___ see the menu.", "answer": "to", "accept": [], "tip": "Si después de would like va un verbo, lleva to."},
+                {"id": "a1u7l2e10", "type": "write", "es": "Quisiéramos una mesa para dos, por favor.", "answer": "We'd like a table for two, please.", "accept": ["We would like a table for two, please.", "We'd like a table for two people, please.", "We would like a table for two people, please."], "tip": "Aquí no hay verbo después, así que no lleva to."},
+                {"id": "a1u7l2e11", "type": "shadow", "text": "I would like a coffee, please.", "tip": "Seis palabras completas, sin contraer. El peso en «COFFEE» y «PLEASE»."}
               ]
             },
             {
@@ -432,7 +493,11 @@
                 {"id": "a1u7l3e5", "type": "build", "es": "No puedo ir hoy.", "answer": "I can't go today.", "extra": ["to", "don't", "goes"], "tip": "can't + verbo pelado."},
                 {"id": "a1u7l3e6", "type": "type", "audio": "Can you speak more slowly?", "meaning": "¿Puede hablar más despacio?", "tip": "Guárdala: te va a salvar en cualquier conversación."},
                 {"id": "a1u7l3e7", "type": "speak", "text": "Can you help me, please?", "sound": "h", "tip": "help con la h soplada. «Elp» no se entiende."},
-                {"id": "a1u7l3e8", "type": "speak", "text": "Can you speak more slowly?", "sound": "es", "tip": "speak sin e delante, y slowly con la l bien marcada."}
+                {"id": "a1u7l3e8", "type": "speak", "text": "Can you speak more slowly?", "sound": "es", "tip": "speak sin e delante, y slowly con la l bien marcada."},
+                {"id": "a1u7l3e9", "type": "cloze", "es": "¿Puedes ayudarme?", "text": "Can you ___ me?", "answer": "help", "accept": [], "tip": "Después de can, el verbo va desnudo: sin to y sin -s."},
+                {"id": "a1u7l3e10", "type": "write", "es": "Ella puede hablar tres idiomas.", "answer": "She can speak three languages.", "accept": [], "tip": "can no cambia nunca, y lo que sigue tampoco lleva -s."},
+                {"id": "a1u7l3e11", "type": "shadow", "text": "Can you speak more slowly?", "tip": "Guárdala para cuando te hablen rápido. Sube el tono al final."},
+                {"id": "a1u7l3e12", "type": "minimalPair", "options": ["can", "can't"], "answer": "can't", "sentence": "I can't go today.", "tip": "La diferencia es la t final de can't. Si no la sueltas, dices lo contrario de lo que quieres."}
               ]
             }
           ]
@@ -459,7 +524,10 @@
                 {"id": "a1u8l1e5", "type": "build", "es": "¿Estabas en el trabajo ayer?", "answer": "Were you at work yesterday?", "extra": ["was", "in", "the"], "tip": "you → were, y at work sin the."},
                 {"id": "a1u8l1e6", "type": "type", "audio": "It was a good day.", "meaning": "Fue un buen día.", "tip": "it → was, y a good day con artículo."},
                 {"id": "a1u8l1e7", "type": "speak", "text": "I was at home last night.", "sound": "h", "tip": "home con h soplada."},
-                {"id": "a1u8l1e8", "type": "speak", "text": "They were at the shop.", "sound": "sh", "tip": "shop con sh de «shhh», no «chop»."}
+                {"id": "a1u8l1e8", "type": "speak", "text": "They were at the shop.", "sound": "sh", "tip": "shop con sh de «shhh», no «chop»."},
+                {"id": "a1u8l1e9", "type": "cloze", "es": "Estuve en la fiesta.", "text": "I was ___ the party.", "answer": "at", "accept": [], "tip": "Eventos con at: at the party, at work, at school. in sería dentro."},
+                {"id": "a1u8l1e10", "type": "write", "es": "Ellos estaban cansados ayer.", "answer": "They were tired yesterday.", "accept": ["Yesterday they were tired."], "tip": "they siempre con were, nunca was."},
+                {"id": "a1u8l1e11", "type": "shadow", "text": "I was at home last night.", "tip": "Seis palabras de un tirón. El peso en «HOME» y en «NIGHT»."}
               ]
             },
             {
@@ -478,7 +546,11 @@
                 {"id": "a1u8l2e5", "type": "build", "es": "Estudiamos inglés el año pasado.", "answer": "We studied English last year.", "extra": ["study", "studyed", "in"], "tip": "study cambia la y: studied. Y «el año pasado» es last year, sin the."},
                 {"id": "a1u8l2e6", "type": "type", "audio": "She asked me a question.", "meaning": "Ella me hizo una pregunta.", "tip": "asked se escribe con -ed aunque suene «askt»."},
                 {"id": "a1u8l2e7", "type": "speak", "text": "I walked to work yesterday.", "sound": "ed", "tip": "walked es UNA sílaba: «wokt». Si dices «wok-ed» te lo va a marcar."},
-                {"id": "a1u8l2e8", "type": "speak", "text": "She asked and I answered.", "sound": "ed", "tip": "asked «askt», answered «AN-serd». Ninguna de las dos gana una sílaba."}
+                {"id": "a1u8l2e8", "type": "speak", "text": "She asked and I answered.", "sound": "ed", "tip": "asked «askt», answered «AN-serd». Ninguna de las dos gana una sílaba."},
+                {"id": "a1u8l2e9", "type": "cloze", "es": "Ayer caminé al trabajo.", "text": "Yesterday I ___ to work.", "answer": "walked", "accept": [], "tip": "walked se escribe con -ed pero suena «wokt», en una sola sílaba."},
+                {"id": "a1u8l2e10", "type": "write", "es": "Estudiamos inglés el año pasado.", "answer": "We studied English last year.", "accept": ["Last year we studied English."], "tip": "study cambia la y: studied. Y «el año pasado» es last year, sin the."},
+                {"id": "a1u8l2e11", "type": "shadow", "text": "She asked me a question.", "tip": "asked es «askt», una sílaba. Si suena «ask-ed» se te alarga la frase entera."},
+                {"id": "a1u8l2e12", "type": "minimalPair", "options": ["walked", "worked"], "answer": "worked", "sentence": "I worked all day.", "tip": "Las dos terminan en «t». Lo que cambia es la vocal: wor- lleva r."}
               ]
             },
             {
@@ -497,7 +569,10 @@
                 {"id": "a1u8l3e5", "type": "build", "es": "Ellos vinieron a mi casa.", "answer": "They came to my house.", "extra": ["comed", "come", "in"], "tip": "come → came."},
                 {"id": "a1u8l3e6", "type": "type", "audio": "I took the bus to work.", "meaning": "Tomé el bus al trabajo.", "tip": "take → took."},
                 {"id": "a1u8l3e7", "type": "speak", "text": "I went home early.", "sound": "h", "tip": "home con la h soplada."},
-                {"id": "a1u8l3e8", "type": "speak", "text": "She said three things.", "sound": "th", "tip": "three y things: las dos con la lengua entre los dientes."}
+                {"id": "a1u8l3e8", "type": "speak", "text": "She said three things.", "sound": "th", "tip": "three y things: las dos con la lengua entre los dientes."},
+                {"id": "a1u8l3e9", "type": "cloze", "es": "Fui al médico ayer.", "text": "I ___ to the doctor yesterday.", "answer": "went", "accept": [], "tip": "go se vuelve went. No existe goed."},
+                {"id": "a1u8l3e10", "type": "write", "es": "Ella tuvo un problema con su carro.", "answer": "She had a problem with her car.", "accept": ["She had a problem with the car."], "tip": "have se vuelve had, para todas las personas."},
+                {"id": "a1u8l3e11", "type": "shadow", "text": "I took the bus to work.", "tip": "Frase corta y muy usada. «I TOOK the bus to WORK»."}
               ]
             },
             {
@@ -516,7 +591,10 @@
                 {"id": "a1u8l4e5", "type": "build", "es": "No vi la película.", "answer": "I didn't see the movie.", "extra": ["saw", "seen", "not"], "tip": "didn't + see. El saw no va porque el did ya carga el pasado."},
                 {"id": "a1u8l4e6", "type": "type", "audio": "Did you have a good weekend?", "meaning": "¿Tuviste un buen fin de semana?", "tip": "Did + have, no had. Pregunta de lunes por la mañana."},
                 {"id": "a1u8l4e7", "type": "speak", "text": "I didn't have time.", "sound": "h", "tip": "have con la h soplada."},
-                {"id": "a1u8l4e8", "type": "speak", "text": "Did you watch the show?", "sound": "sh", "tip": "show con sh. Y watch termina en ch, que es distinto."}
+                {"id": "a1u8l4e8", "type": "speak", "text": "Did you watch the show?", "sound": "sh", "tip": "show con sh. Y watch termina en ch, que es distinto."},
+                {"id": "a1u8l4e9", "type": "cloze", "es": "No fui a la fiesta.", "text": "I didn't ___ to the party.", "answer": "go", "accept": [], "tip": "didn't ya carga el pasado: el verbo vuelve a su forma normal."},
+                {"id": "a1u8l4e10", "type": "write", "es": "¿Hablaste con ella ayer?", "answer": "Did you speak with her yesterday?", "accept": ["Did you talk to her yesterday?", "Did you speak to her yesterday?", "Did you talk with her yesterday?"], "tip": "Did + speak, no spoke. El pasado ya está en el did."},
+                {"id": "a1u8l4e11", "type": "shadow", "text": "Did you have a good weekend?", "tip": "La pregunta del lunes. Suena «did-ya HAVE a good WEEKend?»."}
               ]
             }
           ]
@@ -543,7 +621,10 @@
                 {"id": "a1u9l1e5", "type": "build", "es": "¿Qué vas a hacer mañana?", "answer": "What are you going to do tomorrow?", "extra": ["goes", "did", "does"], "tip": "What + are you + going to + do."},
                 {"id": "a1u9l1e6", "type": "type", "audio": "I am going to call you later.", "meaning": "Te voy a llamar más tarde.", "tip": "call you, sin to en medio."},
                 {"id": "a1u9l1e7", "type": "speak", "text": "I am going to study tonight.", "sound": "es", "tip": "study sin e delante."},
-                {"id": "a1u9l1e8", "type": "speak", "text": "She is going to help me.", "sound": "h", "tip": "help con la h soplada."}
+                {"id": "a1u9l1e8", "type": "speak", "text": "She is going to help me.", "sound": "h", "tip": "help con la h soplada."},
+                {"id": "a1u9l1e9", "type": "cloze", "es": "Voy a viajar la próxima semana.", "text": "I am ___ to travel next week.", "answer": "going", "accept": [], "tip": "Las tres piezas: am + going + to. Si falta alguna, la frase se rompe."},
+                {"id": "a1u9l1e10", "type": "write", "es": "¿Qué vas a hacer mañana?", "answer": "What are you going to do tomorrow?", "accept": ["What will you do tomorrow?", "What are you doing tomorrow?"], "tip": "Con going to es lo ya planeado. Las tres formas se usan a diario."},
+                {"id": "a1u9l1e11", "type": "shadow", "text": "I am going to study tonight.", "tip": "Di «going to» completo. El peso cae en «STU-dy» y en «to-NIGHT»."}
               ]
             },
             {
@@ -562,7 +643,11 @@
                 {"id": "a1u9l2e5", "type": "build", "es": "Te llamaré mañana.", "answer": "I will call you tomorrow.", "extra": ["to", "calling", "called"], "tip": "will + call, sin to."},
                 {"id": "a1u9l2e6", "type": "type", "audio": "It won't be easy.", "meaning": "No será fácil.", "tip": "won't se escribe w-o-n-apóstrofo-t."},
                 {"id": "a1u9l2e7", "type": "speak", "text": "I think it will be hot.", "sound": "th", "tip": "think con la lengua entre los dientes. No es «tink»."},
-                {"id": "a1u9l2e8", "type": "speak", "text": "I will help you with this.", "sound": "h", "tip": "help con h soplada, y this con th."}
+                {"id": "a1u9l2e8", "type": "speak", "text": "I will help you with this.", "sound": "h", "tip": "help con h soplada, y this con th."},
+                {"id": "a1u9l2e9", "type": "cloze", "es": "Creo que lloverá.", "text": "I think it ___ rain.", "answer": "will", "accept": [], "tip": "will + verbo desnudo: sin to y sin -s."},
+                {"id": "a1u9l2e10", "type": "write", "es": "No lo olvidaré.", "answer": "I won't forget.", "accept": ["I won't forget it."], "tip": "won't es will not. Se escribe raro pero se usa muchísimo."},
+                {"id": "a1u9l2e11", "type": "shadow", "text": "I think it will be hot.", "tip": "think con la lengua entre los dientes, y sin parar antes de «hot»."},
+                {"id": "a1u9l2e12", "type": "minimalPair", "options": ["want", "won't"], "answer": "won't", "sentence": "I won't be late.", "tip": "won't es larga, como «wount»; want es corta. Cambian la frase entera."}
               ]
             },
             {
@@ -581,7 +666,11 @@
                 {"id": "a1u9l3e5", "type": "build", "es": "Hoy está más frío que ayer.", "answer": "Today is colder than yesterday.", "extra": ["more", "that", "cold"], "tip": "cold es corto: colder than."},
                 {"id": "a1u9l3e6", "type": "type", "audio": "My English is better now.", "meaning": "Mi inglés está mejor ahora.", "tip": "better, no more good."},
                 {"id": "a1u9l3e7", "type": "speak", "text": "This is better than that.", "sound": "th", "tip": "Tres th: this, than, that. Lengua entre los dientes en las tres."},
-                {"id": "a1u9l3e8", "type": "speak", "text": "This shop is cheaper.", "sound": "sh", "tip": "shop con sh. cheaper empieza con ch, que es otro sonido."}
+                {"id": "a1u9l3e8", "type": "speak", "text": "This shop is cheaper.", "sound": "sh", "tip": "shop con sh. cheaper empieza con ch, que es otro sonido."},
+                {"id": "a1u9l3e9", "type": "cloze", "es": "Mi carro es más grande que el tuyo.", "text": "My car is ___ than yours.", "answer": "bigger", "accept": [], "tip": "big es corto: bigger. Nada de more big."},
+                {"id": "a1u9l3e10", "type": "write", "es": "Este hotel es más caro que el otro.", "answer": "This hotel is more expensive than the other one.", "accept": ["This hotel is more expensive than the other."], "tip": "expensive es largo: lleva more. Y se compara con than, no con that."},
+                {"id": "a1u9l3e11", "type": "shadow", "text": "This is better than that.", "tip": "Tres th en la misma frase: this, than, that. Despacio la primera vez."},
+                {"id": "a1u9l3e12", "type": "minimalPair", "options": ["cheap", "sheep"], "answer": "cheap", "sentence": "This hotel is cheap.", "tip": "cheap empieza con ch; sheep con sh. Es el par que más se nos mezcla."}
               ]
             }
           ]

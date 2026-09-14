@@ -1,0 +1,766 @@
+{
+ "a1u1l2": [
+  {
+   "type": "cloze",
+   "es": "Tengo hambre.",
+   "text": "I ___ hungry.",
+   "answer": "am",
+   "accept": [
+    "feel"
+   ],
+   "tip": "El hambre en inglés se ES, no se tiene. Nada de 'I have hungry'."
+  },
+  {
+   "type": "write",
+   "es": "Estoy cansado, gracias.",
+   "answer": "I'm tired, thank you.",
+   "accept": [
+    "I'm tired, thanks."
+   ],
+   "tip": "Cansado se es: I'm tired. thanks y thank you sirven las dos."
+  },
+  {
+   "type": "shadow",
+   "text": "I'm fine, thanks. And you?",
+   "tip": "Va en dos golpes: «I'm FINE thanks» / «and YOU?». La segunda parte sube al final."
+  },
+  {
+   "type": "minimalPair",
+   "options": [
+    "bad",
+    "bed"
+   ],
+   "answer": "bed",
+   "sentence": "The bed is small.",
+   "tip": "bad es abierta, casi «bæd»; bed es cerrada, como la e española. Muy fácil de confundir."
+  }
+ ],
+ "a1u1l3": [
+  {
+   "type": "cloze",
+   "es": "¿De dónde eres?",
+   "text": "Where are you ___?",
+   "answer": "from",
+   "accept": [],
+   "tip": "El from se va al final. No es 'From where are you?'."
+  },
+  {
+   "type": "write",
+   "es": "Soy colombiano y hablo español.",
+   "answer": "I'm Colombian and I speak Spanish.",
+   "accept": [
+    "I am from Colombia and I speak Spanish."
+   ],
+   "tip": "Repetir el I es lo más claro. Y al escribir de verdad, Colombian y Spanish van con mayúscula."
+  },
+  {
+   "type": "shadow",
+   "text": "Where are you from?",
+   "tip": "Se dice pegado, casi «WEAR-a-yu-FROM». No separes palabra por palabra."
+  }
+ ],
+ "a1u2l1": [
+  {
+   "type": "cloze",
+   "es": "¿Me da un café, por favor?",
+   "text": "Can I ___ a coffee, please?",
+   "answer": "have",
+   "accept": [
+    "get",
+    "order"
+   ],
+   "tip": "Can I have es la fórmula normal. Can I get también sirve y es más americana."
+  },
+  {
+   "type": "write",
+   "es": "Quisiera un té, por favor.",
+   "answer": "I'd like a tea, please.",
+   "accept": [
+    "I'd like some tea, please.",
+    "I would like a tea, please.",
+    "I would like some tea, please.",
+    "I'd like tea, please.",
+    "I would like tea, please."
+   ],
+   "tip": "I'd like para pedir. El please no es adorno: en inglés se espera."
+  },
+  {
+   "type": "shadow",
+   "text": "Can I have a coffee, please?",
+   "tip": "El peso cae en «COFFEE» y en «PLEASE». Lo del medio pasa rápido."
+  }
+ ],
+ "a1u2l2": [
+  {
+   "type": "cloze",
+   "es": "¿Me trae la cuenta, por favor?",
+   "text": "Can I have the ___, please?",
+   "answer": "bill",
+   "accept": [
+    "check"
+   ],
+   "tip": "bill en inglés británico, check en americano. account NO: esa es la del banco."
+  },
+  {
+   "type": "write",
+   "es": "¿Puedo pagar con tarjeta?",
+   "answer": "Can I pay by card?",
+   "accept": [
+    "Can I pay with a card?",
+    "Can I pay by credit card?",
+    "Can I pay with a credit card?",
+    "Can I pay with my card?"
+   ],
+   "tip": "by card o with a card, las dos valen. Después de can, el verbo sin to."
+  },
+  {
+   "type": "shadow",
+   "text": "Can I pay by card?",
+   "tip": "Cinco palabras de un tirón. No pares antes de «card»."
+  }
+ ],
+ "a1u2l3": [
+  {
+   "type": "cloze",
+   "es": "Perdón, ¿dónde está el baño?",
+   "text": "___ me, where is the bathroom?",
+   "answer": "Excuse",
+   "accept": [
+    "Pardon"
+   ],
+   "tip": "Para llamar la atención va Excuse me. Sorry es cuando ya hiciste algo."
+  },
+  {
+   "type": "write",
+   "es": "Perdón, llego tarde.",
+   "answer": "Sorry, I'm late.",
+   "accept": [
+    "I'm sorry, I'm late."
+   ],
+   "tip": "Aquí sí va sorry: ya pasó. Y lo normal es be late, no arrive late."
+  },
+  {
+   "type": "shadow",
+   "text": "Excuse me, can you help me?",
+   "tip": "Dos bloques: «exCUSE me» / «can you HELP me». El acento de excuse va en la segunda sílaba."
+  }
+ ],
+ "a1u3l1": [
+  {
+   "type": "cloze",
+   "es": "Tengo veinticinco años.",
+   "text": "I am twenty-five years ___.",
+   "answer": "old",
+   "accept": [],
+   "tip": "years old, siempre las dos. Y el verbo es am, no have."
+  },
+  {
+   "type": "write",
+   "es": "Mi hermana es ingeniera.",
+   "answer": "My sister is an engineer.",
+   "accept": [
+    "My sister's an engineer."
+   ],
+   "tip": "Profesión con artículo, y engineer empieza con sonido de vocal: an."
+  },
+  {
+   "type": "shadow",
+   "text": "I'm twenty-five years old.",
+   "tip": "El golpe fuerte va en «FIVE» y en «OLD». El resto se desliza."
+  }
+ ],
+ "a1u3l2": [
+  {
+   "type": "cloze",
+   "es": "El carro de mi hermano es nuevo.",
+   "text": "My ___ car is new.",
+   "answer": "brother's",
+   "accept": [],
+   "tip": "El dueño va primero y con 's. No es 'the car of my brother'."
+  },
+  {
+   "type": "write",
+   "es": "Tengo dos hermanas y un hermano.",
+   "answer": "I have two sisters and one brother.",
+   "accept": [
+    "I have two sisters and a brother.",
+    "I've got two sisters and one brother.",
+    "I've got two sisters and a brother."
+   ],
+   "tip": "En inglés hay que decir si son hermanas o hermanos: no hay una palabra de uso diario para «hermanos» mixto (existe siblings, pero es formal)."
+  },
+  {
+   "type": "shadow",
+   "text": "I have two sisters and one brother.",
+   "tip": "Frase larga: divídela en «I have TWO sisters» / «and ONE brother»."
+  }
+ ],
+ "a1u4l1": [
+  {
+   "type": "cloze",
+   "es": "Ella trabaja en un hospital.",
+   "text": "She ___ in a hospital.",
+   "answer": "works",
+   "accept": [],
+   "tip": "she lleva la -s: works."
+  },
+  {
+   "type": "write",
+   "es": "Mi hermano estudia inglés todos los días.",
+   "answer": "My brother studies English every day.",
+   "accept": [
+    "My brother studies English daily."
+   ],
+   "tip": "Los verbos de consonante + y cambian a -ies: study → studies. Y English con mayúscula."
+  },
+  {
+   "type": "shadow",
+   "text": "He speaks Spanish every day.",
+   "tip": "Cinco palabras seguidas, sin pausa. Fíjate que speaks y Spanish arrancan con s pura."
+  },
+  {
+   "type": "minimalPair",
+   "options": [
+    "live",
+    "leave"
+   ],
+   "answer": "leave",
+   "sentence": "I leave at six.",
+   "tip": "leave es larga («liiv»); live es corta («liv»). Cambian el significado por completo."
+  }
+ ],
+ "a1u4l2": [
+  {
+   "type": "cloze",
+   "es": "Ella no come carne.",
+   "text": "She ___ eat meat.",
+   "answer": "doesn't",
+   "accept": [],
+   "tip": "doesn't con she. Y eat se queda sin -s porque el doesn't ya la tiene."
+  },
+  {
+   "type": "write",
+   "es": "¿Hablas inglés?",
+   "answer": "Do you speak English?",
+   "accept": [
+    "Can you speak English?"
+   ],
+   "tip": "La pregunta necesita el ayudante Do. No basta con el tono."
+  },
+  {
+   "type": "shadow",
+   "text": "I don't understand.",
+   "tip": "Tres palabras que valen oro. «I don't unnerSTAND», con el peso al final."
+  }
+ ],
+ "a1u4l3": [
+  {
+   "type": "cloze",
+   "es": "Siempre tomo café por la mañana.",
+   "text": "I ___ drink coffee in the morning.",
+   "answer": "always",
+   "accept": [],
+   "tip": "always va justo antes del verbo, no después."
+  },
+  {
+   "type": "write",
+   "es": "Ella nunca trabaja los domingos.",
+   "answer": "She never works on Sundays.",
+   "accept": [
+    "She never works on Sunday.",
+    "She never works Sundays."
+   ],
+   "tip": "never antes del verbo, works con -s, y los días con on."
+  },
+  {
+   "type": "shadow",
+   "text": "She is always late.",
+   "tip": "El peso cae en «LATE». Di las cuatro palabras completas, sin contraer."
+  },
+  {
+   "type": "minimalPair",
+   "options": [
+    "watch",
+    "wash"
+   ],
+   "answer": "wash",
+   "sentence": "I wash my hands.",
+   "tip": "wash termina en sh («shhh»); watch termina en ch. Nosotros las mezclamos."
+  }
+ ],
+ "a1u5l1": [
+  {
+   "type": "cloze",
+   "es": "Hay dos cuartos.",
+   "text": "There ___ two bedrooms.",
+   "answer": "are",
+   "accept": [],
+   "tip": "Dos cuartos son plural: there are."
+  },
+  {
+   "type": "write",
+   "es": "Hay una tienda cerca de aquí.",
+   "answer": "There is a store near here.",
+   "accept": [
+    "There's a store near here.",
+    "There is a shop near here.",
+    "There's a shop near here.",
+    "There is a store nearby.",
+    "There's a store nearby."
+   ],
+   "tip": "Una sola tienda: there is. store y shop sirven las dos."
+  },
+  {
+   "type": "shadow",
+   "text": "There are three houses here.",
+   "tip": "Cuidado con three: lengua entre los dientes, y sin parar antes de houses."
+  },
+  {
+   "type": "minimalPair",
+   "options": [
+    "three",
+    "tree"
+   ],
+   "answer": "three",
+   "sentence": "I have three books.",
+   "tip": "three empieza con th (lengua entre los dientes); tree con t normal."
+  }
+ ],
+ "a1u5l2": [
+  {
+   "type": "cloze",
+   "es": "Mi hermana es doctora.",
+   "text": "My sister is ___ doctor.",
+   "answer": "a",
+   "accept": [],
+   "tip": "Las profesiones siempre llevan a o an. Este es el error número uno."
+  },
+  {
+   "type": "write",
+   "es": "Me gusta el café pero no me gusta el té.",
+   "answer": "I like coffee but I don't like tea.",
+   "accept": [],
+   "tip": "En general, sin artículo: coffee y tea pelados."
+  },
+  {
+   "type": "shadow",
+   "text": "I am a student here.",
+   "tip": "Di «I am» completo, sin contraer. El peso en «STU-dent»."
+  }
+ ],
+ "a1u5l3": [
+  {
+   "type": "cloze",
+   "es": "El libro está en la mesa.",
+   "text": "The book is ___ the table.",
+   "answer": "on",
+   "accept": [],
+   "tip": "Encima de una superficie: on. in sería dentro de la mesa."
+  },
+  {
+   "type": "write",
+   "es": "Las llaves están debajo de la cama.",
+   "answer": "The keys are under the bed.",
+   "accept": [
+    "The keys are underneath the bed."
+   ],
+   "tip": "under ya significa «debajo de»: no lleva of detrás."
+  },
+  {
+   "type": "shadow",
+   "text": "The store is next to the bank.",
+   "tip": "next to va pegado, suena casi «NEKS-to». Y no olvides el to."
+  },
+  {
+   "type": "minimalPair",
+   "options": [
+    "chair",
+    "share"
+   ],
+   "answer": "chair",
+   "sentence": "The chair is next to the table.",
+   "tip": "chair empieza con ch; share con sh («shhh»). Es el par que más se nos mezcla."
+  }
+ ],
+ "a1u6l1": [
+  {
+   "type": "cloze",
+   "es": "Estoy comiendo.",
+   "text": "I ___ eating.",
+   "answer": "am",
+   "accept": [],
+   "tip": "El -ing nunca va solo: necesita am, is o are delante."
+  },
+  {
+   "type": "write",
+   "es": "Ella está trabajando ahora mismo.",
+   "answer": "She is working right now.",
+   "accept": [
+    "She's working right now.",
+    "She is working now.",
+    "She's working now."
+   ],
+   "tip": "Ahora mismo: presente continuo, is + working."
+  },
+  {
+   "type": "shadow",
+   "text": "What are you doing?",
+   "tip": "Suena casi «WHAT-are-ya-DOO-ing». Cuatro palabras en un solo golpe."
+  }
+ ],
+ "a1u6l2": [
+  {
+   "type": "cloze",
+   "es": "Quiero un teléfono nuevo.",
+   "text": "I ___ a new phone.",
+   "answer": "want",
+   "accept": [],
+   "tip": "want nunca lleva -ing. Es de los verbos que no van en continuo."
+  },
+  {
+   "type": "write",
+   "es": "Trabajo en un banco, pero hoy estoy trabajando en casa.",
+   "answer": "I work in a bank, but today I'm working at home.",
+   "accept": [
+    "I work at a bank, but today I'm working at home.",
+    "I work in a bank, but today I'm working from home.",
+    "I work at a bank, but today I'm working from home.",
+    "I work in a bank, but I'm working at home today."
+   ],
+   "tip": "Los dos presentes en una frase: la rutina con work, el hoy con am working."
+  },
+  {
+   "type": "shadow",
+   "text": "I don't understand the question.",
+   "tip": "Frase de cinco palabras. El peso en «STAND» y en «QUES-tion»."
+  }
+ ],
+ "a1u6l3": [
+  {
+   "type": "cloze",
+   "es": "Estas son mis llaves.",
+   "text": "___ are my keys.",
+   "answer": "These",
+   "accept": [],
+   "tip": "Varias y cerca: these. Y con are, no is."
+  },
+  {
+   "type": "write",
+   "es": "Ese es mi teléfono.",
+   "answer": "That is my phone.",
+   "accept": [
+    "That's my phone."
+   ],
+   "tip": "Uno solo y lejos: that."
+  },
+  {
+   "type": "shadow",
+   "text": "This is my brother.",
+   "tip": "Empieza con th sonora. Suena «DHIS-is-my-BRO-ther», sin cortar."
+  },
+  {
+   "type": "minimalPair",
+   "options": [
+    "think",
+    "sink"
+   ],
+   "answer": "think",
+   "sentence": "I think it is late.",
+   "tip": "think saca la lengua; sink no. Si dices «sink» estás diciendo «lavaplatos»."
+  }
+ ],
+ "a1u7l1": [
+  {
+   "type": "cloze",
+   "es": "¿Cuánto dinero tienes?",
+   "text": "How ___ money do you have?",
+   "answer": "much",
+   "accept": [],
+   "tip": "El dinero no se cuenta en inglés: much. Se cuentan los billetes, no el dinero."
+  },
+  {
+   "type": "write",
+   "es": "No tengo azúcar.",
+   "answer": "I don't have any sugar.",
+   "accept": [
+    "I have no sugar.",
+    "I don't have sugar."
+   ],
+   "tip": "En negativo, some se vuelve any. Y sugar nunca lleva -s."
+  },
+  {
+   "type": "shadow",
+   "text": "How much does this cost?",
+   "tip": "La pregunta de cualquier tienda. Suena «how MUCH does this COST», en dos golpes."
+  },
+  {
+   "type": "minimalPair",
+   "options": [
+    "much",
+    "match"
+   ],
+   "answer": "much",
+   "sentence": "How much is it?",
+   "tip": "much lleva una vocal central y relajada, entre la a y la o; match lleva la a bien abierta y estirada hacia adelante («mætch»)."
+  }
+ ],
+ "a1u7l2": [
+  {
+   "type": "cloze",
+   "es": "Me gustaría ver el menú.",
+   "text": "I'd like ___ see the menu.",
+   "answer": "to",
+   "accept": [],
+   "tip": "Si después de would like va un verbo, lleva to."
+  },
+  {
+   "type": "write",
+   "es": "Quisiéramos una mesa para dos, por favor.",
+   "answer": "We'd like a table for two, please.",
+   "accept": [
+    "We would like a table for two, please.",
+    "We'd like a table for two people, please.",
+    "We would like a table for two people, please."
+   ],
+   "tip": "Aquí no hay verbo después, así que no lleva to."
+  },
+  {
+   "type": "shadow",
+   "text": "I would like a coffee, please.",
+   "tip": "Seis palabras completas, sin contraer. El peso en «COFFEE» y «PLEASE»."
+  }
+ ],
+ "a1u7l3": [
+  {
+   "type": "cloze",
+   "es": "¿Puedes ayudarme?",
+   "text": "Can you ___ me?",
+   "answer": "help",
+   "accept": [],
+   "tip": "Después de can, el verbo va desnudo: sin to y sin -s."
+  },
+  {
+   "type": "write",
+   "es": "Ella puede hablar tres idiomas.",
+   "answer": "She can speak three languages.",
+   "accept": [],
+   "tip": "can no cambia nunca, y lo que sigue tampoco lleva -s."
+  },
+  {
+   "type": "shadow",
+   "text": "Can you speak more slowly?",
+   "tip": "Guárdala para cuando te hablen rápido. Sube el tono al final."
+  },
+  {
+   "type": "minimalPair",
+   "options": [
+    "can",
+    "can't"
+   ],
+   "answer": "can't",
+   "sentence": "I can't go today.",
+   "tip": "La diferencia es la t final de can't. Si no la sueltas, dices lo contrario de lo que quieres."
+  }
+ ],
+ "a1u8l1": [
+  {
+   "type": "cloze",
+   "es": "Estuve en la fiesta.",
+   "text": "I was ___ the party.",
+   "answer": "at",
+   "accept": [],
+   "tip": "Eventos con at: at the party, at work, at school. in sería dentro."
+  },
+  {
+   "type": "write",
+   "es": "Ellos estaban cansados ayer.",
+   "answer": "They were tired yesterday.",
+   "accept": [
+    "Yesterday they were tired."
+   ],
+   "tip": "they siempre con were, nunca was."
+  },
+  {
+   "type": "shadow",
+   "text": "I was at home last night.",
+   "tip": "Seis palabras de un tirón. El peso en «HOME» y en «NIGHT»."
+  }
+ ],
+ "a1u8l2": [
+  {
+   "type": "cloze",
+   "es": "Ayer caminé al trabajo.",
+   "text": "Yesterday I ___ to work.",
+   "answer": "walked",
+   "accept": [],
+   "tip": "walked se escribe con -ed pero suena «wokt», en una sola sílaba."
+  },
+  {
+   "type": "write",
+   "es": "Estudiamos inglés el año pasado.",
+   "answer": "We studied English last year.",
+   "accept": [
+    "Last year we studied English."
+   ],
+   "tip": "study cambia la y: studied. Y «el año pasado» es last year, sin the."
+  },
+  {
+   "type": "shadow",
+   "text": "She asked me a question.",
+   "tip": "asked es «askt», una sílaba. Si suena «ask-ed» se te alarga la frase entera."
+  },
+  {
+   "type": "minimalPair",
+   "options": [
+    "walked",
+    "worked"
+   ],
+   "answer": "worked",
+   "sentence": "I worked all day.",
+   "tip": "Las dos terminan en «t». Lo que cambia es la vocal: wor- lleva r."
+  }
+ ],
+ "a1u8l3": [
+  {
+   "type": "cloze",
+   "es": "Fui al médico ayer.",
+   "text": "I ___ to the doctor yesterday.",
+   "answer": "went",
+   "accept": [],
+   "tip": "go se vuelve went. No existe goed."
+  },
+  {
+   "type": "write",
+   "es": "Ella tuvo un problema con su carro.",
+   "answer": "She had a problem with her car.",
+   "accept": [
+    "She had a problem with the car."
+   ],
+   "tip": "have se vuelve had, para todas las personas."
+  },
+  {
+   "type": "shadow",
+   "text": "I took the bus to work.",
+   "tip": "Frase corta y muy usada. «I TOOK the bus to WORK»."
+  }
+ ],
+ "a1u8l4": [
+  {
+   "type": "cloze",
+   "es": "No fui a la fiesta.",
+   "text": "I didn't ___ to the party.",
+   "answer": "go",
+   "accept": [],
+   "tip": "didn't ya carga el pasado: el verbo vuelve a su forma normal."
+  },
+  {
+   "type": "write",
+   "es": "¿Hablaste con ella ayer?",
+   "answer": "Did you speak with her yesterday?",
+   "accept": [
+    "Did you talk to her yesterday?",
+    "Did you speak to her yesterday?",
+    "Did you talk with her yesterday?"
+   ],
+   "tip": "Did + speak, no spoke. El pasado ya está en el did."
+  },
+  {
+   "type": "shadow",
+   "text": "Did you have a good weekend?",
+   "tip": "La pregunta del lunes. Suena «did-ya HAVE a good WEEKend?»."
+  }
+ ],
+ "a1u9l1": [
+  {
+   "type": "cloze",
+   "es": "Voy a viajar la próxima semana.",
+   "text": "I am ___ to travel next week.",
+   "answer": "going",
+   "accept": [],
+   "tip": "Las tres piezas: am + going + to. Si falta alguna, la frase se rompe."
+  },
+  {
+   "type": "write",
+   "es": "¿Qué vas a hacer mañana?",
+   "answer": "What are you going to do tomorrow?",
+   "accept": [
+    "What will you do tomorrow?",
+    "What are you doing tomorrow?"
+   ],
+   "tip": "Con going to es lo ya planeado. Las tres formas se usan a diario."
+  },
+  {
+   "type": "shadow",
+   "text": "I am going to study tonight.",
+   "tip": "Di «going to» completo. El peso cae en «STU-dy» y en «to-NIGHT»."
+  }
+ ],
+ "a1u9l2": [
+  {
+   "type": "cloze",
+   "es": "Creo que lloverá.",
+   "text": "I think it ___ rain.",
+   "answer": "will",
+   "accept": [],
+   "tip": "will + verbo desnudo: sin to y sin -s."
+  },
+  {
+   "type": "write",
+   "es": "No lo olvidaré.",
+   "answer": "I won't forget.",
+   "accept": [
+    "I won't forget it."
+   ],
+   "tip": "won't es will not. Se escribe raro pero se usa muchísimo."
+  },
+  {
+   "type": "shadow",
+   "text": "I think it will be hot.",
+   "tip": "think con la lengua entre los dientes, y sin parar antes de «hot»."
+  },
+  {
+   "type": "minimalPair",
+   "options": [
+    "want",
+    "won't"
+   ],
+   "answer": "won't",
+   "sentence": "I won't be late.",
+   "tip": "won't es larga, como «wount»; want es corta. Cambian la frase entera."
+  }
+ ],
+ "a1u9l3": [
+  {
+   "type": "cloze",
+   "es": "Mi carro es más grande que el tuyo.",
+   "text": "My car is ___ than yours.",
+   "answer": "bigger",
+   "accept": [],
+   "tip": "big es corto: bigger. Nada de more big."
+  },
+  {
+   "type": "write",
+   "es": "Este hotel es más caro que el otro.",
+   "answer": "This hotel is more expensive than the other one.",
+   "accept": [
+    "This hotel is more expensive than the other."
+   ],
+   "tip": "expensive es largo: lleva more. Y se compara con than, no con that."
+  },
+  {
+   "type": "shadow",
+   "text": "This is better than that.",
+   "tip": "Tres th en la misma frase: this, than, that. Despacio la primera vez."
+  },
+  {
+   "type": "minimalPair",
+   "options": [
+    "cheap",
+    "sheep"
+   ],
+   "answer": "cheap",
+   "sentence": "This hotel is cheap.",
+   "tip": "cheap empieza con ch; sheep con sh. Es el par que más se nos mezcla."
+  }
+ ]
+}

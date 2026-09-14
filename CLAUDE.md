@@ -182,6 +182,23 @@ accept, extra, meaning, sentence, tip`, un ejercicio por línea: lo escribe
 entrega va a `contenido-nuevo/`; se valida con `tools/content/validar.py
 <curriculum.json>`, se integra con el script, y el lote integrado se mueve a
 `contenido-nuevo/integrado/<fecha>/` para que no queden dos copias vivas.
+Para AÑADIR ejercicios a lecciones que ya existen: `tools/content/anexar.py
+<adiciones.json>` con `{id de lección: [ejercicios]}`; numera los ids a
+continuación y no toca nada de lo que había. El validador vigente es
+`tools/content/validar2.py` (el de Cowork, con los nueve tipos y las
+contracciones). **A1 quedó en 300 ejercicios el 2026-09-14** (161 de
+producción, 53 %; antes 62, 30 %).
+
+**Pares mínimos y Piper (medido el 2026-09-14, `tools/content/oir_pares.py`):**
+con una palabra suelta de medio segundo Piper es inestable (Emma dijo "bed"
+como un balbuceo de un segundo) y el fonema distintivo del par aparece en 63
+de 96 casos (voz × palabra, juzgado por el modelo de fonemas); dentro de la
+portadora "The word is ___." aparece en 78 de 96. Por eso `minimalPair` suena
+siempre así, y el script mide igual. Dos hallazgos para el contenido:
+**"live" es heterónimo** y Piper lo lee /laɪv/ (el par live/leave no sirve
+con estas voces), y `three`, `think`, `match` y `want/won't` salen con su
+fonema en solo 2 de 4 voces: mejor otros pares o aceptar que dependen de la
+profesora. `can/can't` sí conserva la /t/ (3–4 de 4).
 `drills.json`: lista de `drills` con `text`, `sound`, `focus`, `tip`.
 `bench.py` lee el sonido de cada frase de esos mismos JSON.
 
