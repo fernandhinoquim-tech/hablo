@@ -134,7 +134,7 @@ vez y los meten en `assets/`. No están en el repositorio.
 El modelo de 8B (~5 GB) **no cabe dentro de un APK**: tiene que vivir como
 archivo aparte en el teléfono, copiado una vez por USB.
 
-**Esquema del contenido (v2, 2026-09-14).** `curriculum.json`: `levels` →
+**Esquema del contenido (v2, 2026-09-14; nueve tipos desde la tarde).** `curriculum.json`: `levels` →
 `units` (`id`, `emoji`, `title`, `subtitle`) → `lessons` (`id`, `title`,
 **`theory`**, `exercises`) → ejercicios. Reglas que hacen caer la compilación
 (`checkContent`) y la carga (`Content.kt`, con tests en `ContentTest.kt`):
@@ -152,10 +152,31 @@ archivo aparte en el teléfono, copiado una vez por USB.
 - `type`: `audio`, `meaning` (no vacío).
 - `speak`: `text`, `sound` (regla dura 5); toda palabra de `text` tiene que
   estar en `cmudict.dict`.
+- **Los cuatro tipos de producción (2026-09-14, propuesta de Cowork en
+  `contenido-nuevo/integrado/…/tipos-de-ejercicio.md`, con su evidencia):**
+  - `write`: `es`, `answer`, `accept` (alternativas válidas, sin repetir la
+    respuesta ni entre sí — con contracciones expandidas: "I'm" = "I am").
+    Ve el español y escribe el inglés. d = 1,38 sobre elegir entre opciones
+    en pruebas de producción (KATE Journal 30).
+  - `cloze`: `text` con exactamente un hueco `___`, `answer`, `es`, `accept`.
+  - `shadow`: `text` (en cmudict). La profesora lo dice y el alumno lo repite
+    enseguida. Se mide que salgan las palabras (≥ 60 %) y se MUESTRA "tú X s ·
+    ella Y s" como dato; **nunca se puntúa por fonema** (la revisión de
+    shadowing 2025 lo da inconcluso para sonidos sueltos).
+  - `minimalPair`: `options` (palabras sueltas, en cmudict, ≥ 2, sin
+    repetir), `answer` entre ellas, `sentence` opcional (debe contener la
+    palabra). Suena la palabra y se IDENTIFICA cuál fue (g = 0,95), nunca
+    "¿son iguales?" (g = 0,57). La voz es la de la profesora de la lección
+    (rotar por bloque, no por ítem: `Speaker` tiene una sola voz cargada).
+  - La corrección de `write`/`cloze` dice QUÉ falló (`Correccion.kt`:
+    "Te faltó la terminación «-s»: es «works», no «work»", "Te faltó la
+    palabra «a»", "Sobra la palabra «am»", orden cambiado), comparando con la
+    respuesta o alternativa más parecida. g = 0,73 con corrección contra 0,39
+    sin ella (Rowland 2014). Tests en `NuevosTiposTest.kt`.
 - `tip` es opcional en todos (32 de los 55 originales no lo traen; el
   contenido nuevo lo trae siempre).
 El orden de claves es `id, type, audio, es, text, sound, options, answer,
-extra, meaning, tip`, un ejercicio por línea: lo escribe
+accept, extra, meaning, sentence, tip`, un ejercicio por línea: lo escribe
 `tools/content/migrar_a1.py` (idempotente; también convierte `answer` de
 índice a texto e inserta fichas). **Bandeja de entrada:** lo que Claude Cowork
 entrega va a `contenido-nuevo/`; se valida con `tools/content/validar.py
@@ -196,7 +217,9 @@ cambiar `prep()` en `bench.py` igual.
   Para logs que se leen desde el PC, pasar `Locale.US`.
 - Fero graba con el teléfono desconectado del cable: `adb` se queda colgado
   si el teléfono no está. Revisar `adb devices` antes de cualquier `adb shell`.
-- El `when` sobre `Exercise` tiene **cinco** subclases. Fácil olvidar una.
+- El `when` sobre `Exercise` tiene **nueve** subclases (listen, translate,
+  build, type, speak, write, cloze, shadow, minimalPair). Fácil olvidar una;
+  el compilador avisa porque la clase es `sealed`.
 - **Heredocs de Bash comen las barras invertidas** (`\\n` llega como `\n`,
   `\d` se rompe): los scripts Python de edición se escriben con la
   herramienta Write al scratchpad y se ejecutan desde ahí. Un heredoc solo

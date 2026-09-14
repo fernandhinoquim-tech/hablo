@@ -13,7 +13,12 @@ import kotlin.math.sqrt
  * null si ese sonido todavía no tiene umbral calibrado o el modelo no está.
  */
 sealed class ListenResult {
-    data class Heard(val text: String, val report: SoundReport? = null) : ListenResult()
+    data class Heard(
+        val text: String,
+        val report: SoundReport? = null,
+        /** Cuánto duró la voz del alumno (sin silencios), para el shadowing. */
+        val speechSeconds: Float = 0f
+    ) : ListenResult()
     data class NotHeard(val reason: NotHeardReason) : ListenResult()
 }
 

@@ -49,6 +49,8 @@ fun LessonScreen(
     listener: Listener,
     progreso: Progreso,
     speaking: Boolean,
+    /** Cuánto duró lo último que dijo la profesora (para el shadowing). */
+    lastSpokenSeconds: () -> Float,
     showFace: Boolean,
     say: (String, Float) -> Unit,
     onFinish: (score: Int, correct: Int) -> Unit,
@@ -84,6 +86,9 @@ fun LessonScreen(
     var speakResult by remember { mutableStateOf<PronunciationResult?>(null) }
     var speakReport by remember { mutableStateOf<SoundReport?>(null) }
     var speakNotHeard by remember { mutableStateOf<NotHeardReason?>(null) }
+    // Shadowing: cuánto tardó él y cuánto ella, como dato, no como nota.
+    var studentSeconds by remember { mutableStateOf(0f) }
+    var teacherSeconds by remember { mutableStateOf(0f) }
 
     // El modelo de fonemas solo hace falta si la lección tiene ejercicios de
     // hablar con sonido evaluable; se suelta al salir.
@@ -100,6 +105,7 @@ fun LessonScreen(
                     speakResult = scorePronunciation(target, r.text)
                     speakReport = r.report
                     speakNotHeard = null
+                    studentSeconds = r.speechSeconds
                 }
                 is ListenResult.NotHeard -> {
                     speakResult = null
@@ -153,6 +159,9 @@ fun LessonScreen(
             is Exercise.ListenChoose -> say(ex.audio, 1f)
             is Exercise.TypeWhatYouHear -> say(ex.audio, 1f)
             is Exercise.SpeakIt -> say(ex.text, 1f)
+            is Exercise.Shadow -> say(ex.text, 1f)
+            // El par mínimo: suena la palabra, NO se muestra cuál fue.
+            is Exercise.MinimalPair -> say(ex.answer, 1f)
             else -> {}
         }
     }
@@ -164,6 +173,8 @@ fun LessonScreen(
         speakResult = null
         speakReport = null
         speakNotHeard = null
+        studentSeconds = 0f
+        teacherSeconds = 0f
         checked = false
         wasCorrect = false
     }
@@ -174,6 +185,10 @@ fun LessonScreen(
         is Exercise.BuildSentence -> built.isNotEmpty()
         is Exercise.TypeWhatYouHear -> typed.isNotBlank()
         is Exercise.SpeakIt -> speakResult != null
+        is Exercise.WriteIt -> typed.isNotBlank()
+        is Exercise.Cloze -> typed.isNotBlank()
+        is Exercise.Shadow -> speakResult != null
+        is Exercise.MinimalPair -> chosen >= 0
     }
 
     fun evaluate(): Boolean = when (ex) {
@@ -184,6 +199,18 @@ fun LessonScreen(
         is Exercise.TypeWhatYouHear ->
             normalizeAnswer(typed) == normalizeAnswer(ex.audio)
         is Exercise.SpeakIt -> (speakResult?.percent ?: 0) >= 60
+        is Exercise.WriteIt -> Correccion.acepta(typed, ex.answer, ex.accept)
+        is Exercise.Cloze -> Correccion.acepta(typed, ex.answer, ex.accept)
+        // Shadowing: que salgan las palabras. El ritmo se muestra, no se califica.
+        is Exercise.Shadow -> (speakResult?.percent ?: 0) >= 60
+        is Exercise.MinimalPair -> chosen == ex.answerIndex
+    }
+
+    /** Qué falló, en español, para write y cloze. Null si no hay nada concreto que decir. */
+    fun diagnosis(): String? = when (ex) {
+        is Exercise.WriteIt -> Correccion.diagnostico(typed, ex.answer, ex.accept)
+        is Exercise.Cloze -> Correccion.diagnostico(typed, ex.answer, ex.accept)
+        else -> null
     }
 
     /** Lo que respondió el alumno, para el cuaderno de errores. */
@@ -193,6 +220,10 @@ fun LessonScreen(
         is Exercise.BuildSentence -> built.joinToString(" ") { bank[it] }
         is Exercise.TypeWhatYouHear -> typed
         is Exercise.SpeakIt -> speakResult?.heard ?: ""
+        is Exercise.WriteIt -> typed
+        is Exercise.Cloze -> typed
+        is Exercise.Shadow -> speakResult?.heard ?: ""
+        is Exercise.MinimalPair -> ex.options.getOrElse(chosen) { "" }
     }
 
     fun correctText(): String = when (ex) {
@@ -201,6 +232,10 @@ fun LessonScreen(
         is Exercise.BuildSentence -> ex.answer
         is Exercise.TypeWhatYouHear -> ex.audio
         is Exercise.SpeakIt -> ex.text
+        is Exercise.WriteIt -> ex.answer
+        is Exercise.Cloze -> ex.full
+        is Exercise.Shadow -> ex.text
+        is Exercise.MinimalPair -> ex.answer
     }
 
     Column(modifier = Modifier.fillMaxSize()) {
@@ -449,6 +484,174 @@ fun LessonScreen(
                         )
                     }
                 }
+
+                is Exercise.WriteIt -> {
+                    Text("Escríbelo en inglés", style = MaterialTheme.typography.titleLarge)
+                    Text(ex.es, style = MaterialTheme.typography.headlineSmall, color = Ink)
+                    OutlinedTextField(
+                        value = typed,
+                        onValueChange = { if (!checked) typed = it },
+                        singleLine = true,
+                        readOnly = checked,
+                        placeholder = { Text("Escribe la frase en inglés...") },
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    Text(
+                        "Sin opciones ni fichas: escribirlo de memoria es lo que más se queda. " +
+                            "No te preocupes por mayúsculas ni puntos.",
+                        style = MaterialTheme.typography.labelMedium,
+                        color = InkSoft
+                    )
+                }
+
+                is Exercise.Cloze -> {
+                    Text("Completa el hueco", style = MaterialTheme.typography.titleLarge)
+                    Text(
+                        ex.before + "______" + ex.after,
+                        style = MaterialTheme.typography.headlineSmall,
+                        color = Ink
+                    )
+                    Text("Significa: ${ex.es}", style = MaterialTheme.typography.bodyMedium, color = InkSoft)
+                    OutlinedTextField(
+                        value = typed,
+                        onValueChange = { if (!checked) typed = it },
+                        singleLine = true,
+                        readOnly = checked,
+                        placeholder = { Text("Lo que va en el hueco...") },
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                }
+
+                is Exercise.Shadow -> {
+                    Text("Repite con ${teacher.name}", style = MaterialTheme.typography.titleLarge)
+                    Text(ex.text, style = MaterialTheme.typography.headlineMedium, color = accent)
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(12.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        SpeakerButton(big = true, tint = accent) { say(ex.text, 1f) }
+                        Text(
+                            "Óyela y repítela ENSEGUIDA, siguiendo su ritmo, sin pausas. " +
+                                "Aquí no se juzga cada sonido: se practica el ritmo.",
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = InkSoft
+                        )
+                    }
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Box(
+                            contentAlignment = Alignment.Center,
+                            modifier = Modifier
+                                .size(84.dp)
+                                .background(if (listener.recording) BadRed else accent, CircleShape)
+                                .clickable(enabled = !listener.thinking && !checked) {
+                                    if (listener.recording) {
+                                        listener.stopRecording()
+                                    } else if (listener.hasMicPermission()) {
+                                        speakResult = null
+                                        speakReport = null
+                                        speakNotHeard = null
+                                        teacherSeconds = lastSpokenSeconds()
+                                        listen(ex.text, Sound.GENERAL)
+                                    } else {
+                                        speakTarget = ex.text
+                                        speakSound = Sound.GENERAL
+                                        micLauncher.launch(Manifest.permission.RECORD_AUDIO)
+                                    }
+                                }
+                        ) {
+                            Text(
+                                if (listener.recording) "■" else "🎤",
+                                style = MaterialTheme.typography.headlineMedium,
+                                color = Color.White
+                            )
+                        }
+                        Spacer(Modifier.height(8.dp))
+                        Text(
+                            when {
+                                listener.thinking -> "Analizando…"
+                                listener.recording -> "Grabando… toca para terminar"
+                                speakResult != null || speakNotHeard != null -> "Toca para intentarlo otra vez"
+                                else -> "Toca y repítela"
+                            },
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = if (listener.recording) BadRed else InkSoft
+                        )
+                    }
+
+                    speakNotHeard?.let { NotHeardBox(it) }
+
+                    speakResult?.let { r ->
+                        FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                            r.words.forEach { sw ->
+                                val ok = sw.score == WordScore.BIEN
+                                Text(
+                                    sw.word,
+                                    style = MaterialTheme.typography.bodyLarge,
+                                    color = if (ok) GoodGreen else Color(0xFF8A5A00),
+                                    modifier = Modifier
+                                        .padding(vertical = 3.dp)
+                                        .background(if (ok) GoodGreenSoft else Color(0xFFFFF6E3), RoundedCornerShape(8.dp))
+                                        .padding(horizontal = 10.dp, vertical = 6.dp)
+                                )
+                            }
+                        }
+                        // Ritmo: un dato, no una nota. Nada de inventar un porcentaje.
+                        if (teacherSeconds > 0f && studentSeconds > 0f) {
+                            val ratio = studentSeconds / teacherSeconds
+                            Text(
+                                "Tú: %.1f s · %s: %.1f s — %s".format(
+                                    java.util.Locale("es"),
+                                    studentSeconds, teacher.name, teacherSeconds,
+                                    when {
+                                        ratio <= 1.15f -> "vas a su ritmo."
+                                        ratio <= 1.5f -> "vas bien, pégate más a su ritmo."
+                                        else -> "más seguido, sin pausas entre palabras."
+                                    }
+                                ),
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = InkSoft
+                            )
+                        }
+                    }
+                }
+
+                is Exercise.MinimalPair -> {
+                    val order = remember(pos) { ex.options.indices.shuffled() }
+                    Text("¿Cuál palabra oíste?", style = MaterialTheme.typography.titleLarge)
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(12.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        SpeakerButton(big = true, tint = accent) { say(ex.answer, 1f) }
+                        SpeakerButton(slow = true, tint = accent.copy(alpha = 0.75f)) { say(ex.answer, 0.6f) }
+                        Text(
+                            "${teacher.name} dice UNA de estas. Toca la que oíste.",
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = InkSoft
+                        )
+                    }
+                    order.forEach { i ->
+                        OptionRow(ex.options[i], i, chosen, checked, ex.answerIndex, accent) { if (!checked) chosen = i }
+                    }
+                    if (checked && ex.sentence != null) {
+                        Text(
+                            "Óyela en una frase →  ${ex.sentence}",
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = accent,
+                            modifier = Modifier.clickable { say(ex.sentence, 1f) }
+                        )
+                    }
+                    if (checked) {
+                        Text(
+                            "Entrenar el oído mejora la boca, pero no del todo: después de oír, dilo tú.",
+                            style = MaterialTheme.typography.labelMedium,
+                            color = InkSoft
+                        )
+                    }
+                }
             }
 
             if (checked) {
@@ -456,6 +659,7 @@ fun LessonScreen(
                 FeedbackBox(
                     ok = wasCorrect,
                     correctText = correctText(),
+                    detail = if (wasCorrect) null else diagnosis(),
                     teacher = teacher,
                     tip = ex.tip,
                     onReplay = { say(correctText(), 1f) }
@@ -580,6 +784,8 @@ private fun WordChip(
 private fun FeedbackBox(
     ok: Boolean,
     correctText: String,
+    /** Qué falló exactamente ("te faltó la -s de works"); es la mitad del efecto de corregir. */
+    detail: String? = null,
     teacher: Teacher,
     tip: String?,
     onReplay: () -> Unit
@@ -607,6 +813,10 @@ private fun FeedbackBox(
                 style = MaterialTheme.typography.bodyLarge,
                 color = Ink
             )
+            if (!ok && detail != null) {
+                Spacer(Modifier.height(6.dp))
+                Text(detail, style = MaterialTheme.typography.bodyMedium, color = BadRed)
+            }
             if (!ok) {
                 Spacer(Modifier.height(4.dp))
                 Text(
@@ -684,6 +894,10 @@ private fun tipoDe(ex: Exercise): String = when (ex) {
     is Exercise.ListenChoose -> "escuchar"
     is Exercise.TranslateChoose -> "traducir"
     is Exercise.BuildSentence -> "armar"
-    is Exercise.TypeWhatYouHear -> "escribir"
+    is Exercise.TypeWhatYouHear -> "dictado"
     is Exercise.SpeakIt -> "hablar"
+    is Exercise.WriteIt -> "escribir"
+    is Exercise.Cloze -> "completar"
+    is Exercise.Shadow -> "repetir"
+    is Exercise.MinimalPair -> "oído"
 }

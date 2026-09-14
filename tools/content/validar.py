@@ -10,7 +10,7 @@ import json, sys, os, re
 
 DICT = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "app", "src", "main", "assets", "gop", "cmudict.dict")
 SOUNDS = {"sh","th","h","v","ed","final","es","rl","general"}
-TYPES  = {"listen","translate","build","type","speak"}
+TYPES  = {"listen","translate","build","type","speak","write","cloze","shadow","minimalPair"}
 
 def known_words():
     k = set()
@@ -20,6 +20,23 @@ def known_words():
             w = line.split(" ", 1)[0]
             k.add(w.split("(")[0])
     return k
+
+CONTRACCIONES = [("i'm","i am"),("you're","you are"),("we're","we are"),("they're","they are"),
+    ("isn't","is not"),("aren't","are not"),("wasn't","was not"),("weren't","were not"),
+    ("don't","do not"),("doesn't","does not"),("didn't","did not"),("can't","can not"),("cannot","can not"),
+    ("couldn't","could not"),("won't","will not"),("wouldn't","would not"),("shouldn't","should not"),
+    ("i'll","i will"),("you'll","you will"),("he'll","he will"),("she'll","she will"),("it'll","it will"),
+    ("we'll","we will"),("they'll","they will"),("i've","i have"),("you've","you have"),("we've","we have"),
+    ("they've","they have"),("let's","let us")]
+
+def suelta(text):
+    """Como normalizeAnswer() en la app, y ademas expande contracciones: I'm = I am."""
+    t = text.lower().replace("\u2019", "'")
+    t = "".join(c for c in t if c.isalnum() or c in " '")
+    t = " " + " ".join(t.split()) + " "
+    for corta, larga in CONTRACCIONES:
+        t = t.replace(" " + corta + " ", " " + larga + " ")
+    return t.strip()
 
 def spoken(text):
     t = text.lower().replace("’", "'").replace("-", " ")
@@ -80,6 +97,39 @@ def validate(path):
                     elif t == "type":
                         if not e.get("audio"): p.append(f"{w}: falta \"audio\"")
                         if not e.get("meaning"): p.append(f"{w}: falta \"meaning\"")
+                    elif t in ("write", "cloze"):
+                        a = e.get("answer", "")
+                        if not isinstance(a, str) or not a.strip(): p.append(f"{w}: falta \"answer\"")
+                        if not e.get("es"): p.append(f"{w}: falta \"es\"")
+                        acc = e.get("accept", [])
+                        if not isinstance(acc, list): p.append(f"{w}: \"accept\" debe ser una lista")
+                        else:
+                            vistas = {suelta(a)} if isinstance(a, str) else set()
+                            for x in acc:
+                                if not str(x).strip(): p.append(f"{w}: \"accept\" tiene una entrada vacia")
+                                elif suelta(x) in vistas: p.append(f"{w}: \"accept\" repite la respuesta o se repite -> {x!r}")
+                                else: vistas.add(suelta(x))
+                        if t == "cloze":
+                            txt = e.get("text", "")
+                            if txt.count("___") != 1: p.append(f"{w}: \"text\" tiene que tener exactamente un hueco ___ (tiene {txt.count('___')})")
+                    elif t == "shadow":
+                        txt = e.get("text", "")
+                        if not txt: p.append(f"{w}: falta \"text\"")
+                        miss = [x for x in spoken(txt) if x not in known]
+                        if miss: p.append(f"{w}: fuera de cmudict: {', '.join(miss)}")
+                    elif t == "minimalPair":
+                        opts = e.get("options") or []
+                        a = e.get("answer")
+                        if len(opts) < 2: p.append(f"{w}: menos de 2 opciones")
+                        if len(set(opts)) != len(opts): p.append(f"{w}: opciones repetidas")
+                        if a not in opts: p.append(f"{w}: answer no esta entre las opciones -> {a!r}")
+                        for x in opts:
+                            if " " in str(x).strip(): p.append(f"{w}: las opciones de un par minimo son palabras sueltas -> {x!r}")
+                            miss = [y for y in spoken(str(x)) if y not in known]
+                            if miss: p.append(f"{w}: fuera de cmudict: {', '.join(miss)}")
+                        sent = e.get("sentence")
+                        if sent and isinstance(a, str) and a.lower() not in sent.lower():
+                            p.append(f"{w}: \"sentence\" no contiene la palabra {a!r}")
                     elif t == "speak":
                         s = e.get("sound")
                         if s is None: p.append(f"{w}: falta \"sound\"")

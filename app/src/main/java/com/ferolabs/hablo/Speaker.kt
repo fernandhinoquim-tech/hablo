@@ -66,6 +66,10 @@ class Speaker(context: Context) {
     var busy by mutableStateOf(false)
         private set
 
+    /** Duración del último audio generado por Piper, en segundos (shadowing: "tú 3,1 s, ella 2,2 s"). */
+    var lastSpokenSeconds by mutableStateOf(0f)
+        private set
+
     /** Nombre de la voz cargada en memoria, si hay alguna. */
     var loadedVoice by mutableStateOf<String?>(null)
         private set
@@ -253,6 +257,7 @@ class Speaker(context: Context) {
                         try {
                             val audio = engine.generate(text = text, sid = 0, speed = speed)
                             if (id != requestId.get()) return@execute
+                            lastSpokenSeconds = audio.samples.size.toFloat() / engine.sampleRate()
                             play(audio.samples, engine.sampleRate(), id)
                             return@execute
                         } catch (e: Throwable) {

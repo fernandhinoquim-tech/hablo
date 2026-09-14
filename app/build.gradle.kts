@@ -256,7 +256,7 @@ val fetchLlamaCpp = tasks.register("fetchLlamaCpp") {
 
 val contentDir = File(projectDir, "src/main/assets/content")
 val validSounds = listOf("sh", "th", "h", "v", "ed", "final", "es", "rl", "general")
-val validTypes = listOf("listen", "translate", "build", "type", "speak")
+val validTypes = setOf("listen", "translate", "build", "type", "speak", "write", "cloze", "shadow", "minimalPair")
 
 val checkContent = tasks.register("checkContent") {
     inputs.dir(contentDir)
@@ -318,6 +318,49 @@ val checkContent = tasks.register("checkContent") {
                             if (type == "listen" && textOf(e["audio"]) != answer) problems.add("$where: en listen, \"audio\" y \"answer\" deben ser iguales")
                         }
                         if (type == "type" && textOf(e["meaning"]).isBlank()) problems.add("$where: falta \"meaning\"")
+
+                        // Los cuatro tipos de produccion (2026-09-14).
+                        // Misma lista que Correccion.kt: "I'm fine" y "I am fine" son la misma respuesta.
+                        val contracciones = listOf("i'm" to "i am", "you're" to "you are", "we're" to "we are", "they're" to "they are",
+                            "isn't" to "is not", "aren't" to "are not", "wasn't" to "was not", "weren't" to "were not",
+                            "don't" to "do not", "doesn't" to "does not", "didn't" to "did not", "can't" to "can not", "cannot" to "can not",
+                            "couldn't" to "could not", "won't" to "will not", "wouldn't" to "would not", "shouldn't" to "should not",
+                            "i'll" to "i will", "you'll" to "you will", "he'll" to "he will", "she'll" to "she will", "it'll" to "it will",
+                            "we'll" to "we will", "they'll" to "they will", "i've" to "i have", "you've" to "you have", "we've" to "we have",
+                            "they've" to "they have", "let's" to "let us")
+                        fun normaliza(t: String): String {
+                            var x = " " + t.lowercase().replace("\u2019", "'")
+                                .filter { it.isLetterOrDigit() || it == ' ' || it == '\'' }.trim().replace(Regex("\\s+"), " ") + " "
+                            for ((corta, larga) in contracciones) x = x.replace(" $corta ", " $larga ")
+                            return x.trim()
+                        }
+                        if (type == "write" || type == "cloze") {
+                            val answer = textOf(e["answer"])
+                            if (answer.isBlank()) problems.add("$where: falta \"answer\"")
+                            if (textOf(e["es"]).isBlank()) problems.add("$where: falta \"es\"")
+                            val accept = (e["accept"] as? List<*>)?.map { textOf(it) } ?: emptyList()
+                            val vistas = hashSetOf(normaliza(answer))
+                            for (a in accept) {
+                                if (a.isBlank()) problems.add("$where: \"accept\" tiene una entrada vacia")
+                                else if (!vistas.add(normaliza(a))) problems.add("$where: \"accept\" repite la respuesta o se repite: \"$a\"")
+                            }
+                            if (type == "cloze") {
+                                val text = textOf(e["text"])
+                                val huecos = text.windowed(3).count { it == "___" }
+                                if (huecos != 1) problems.add("$where: \"text\" tiene que tener exactamente un hueco ___ (tiene $huecos)")
+                            }
+                        }
+                        if (type == "shadow" && textOf(e["text"]).isBlank()) problems.add("$where: falta \"text\"")
+                        if (type == "minimalPair") {
+                            val options = (e["options"] as? List<*>)?.map { textOf(it) } ?: emptyList()
+                            val answer = textOf(e["answer"])
+                            if (options.size < 2) problems.add("$where: \"options\" necesita al menos 2 palabras")
+                            if (options.toSet().size != options.size) problems.add("$where: opciones repetidas")
+                            if (answer.isBlank() || answer !in options) problems.add("$where: \"answer\" no esta entre las opciones: \"$answer\"")
+                            options.filter { it.contains(' ') }.forEach { problems.add("$where: las opciones de un par minimo son palabras sueltas: \"$it\"") }
+                            val sentence = textOf(e["sentence"])
+                            if (sentence.isNotBlank() && !sentence.lowercase().contains(answer.lowercase())) problems.add("$where: \"sentence\" no contiene la palabra \"$answer\"")
+                        }
                         if (type == "build") {
                             val propias = textOf(e["answer"]).split(" ").map { it.lowercase() }.filter { it.isNotEmpty() }.toSet()
                             val extra = (e["extra"] as? List<*>)?.map { textOf(it) } ?: emptyList()
@@ -385,7 +428,13 @@ val checkContent = tasks.register("checkContent") {
                         val l = lesson as Map<*, *>
                         (l["exercises"] as List<*>).forEachIndexed { i, ex ->
                             val e = ex as Map<*, *>
-                            if (e["type"] == "speak") texts.add("leccion ${l["id"]}, ejercicio ${i + 1}" to e["text"].toString())
+                            val where = "leccion ${l["id"]}, ejercicio ${i + 1}"
+                            when (e["type"]) {
+                                "speak", "shadow" -> texts.add(where to e["text"].toString())
+                                // Las palabras del par las DICE la profesora: si no estan en el
+                                // diccionario, la voz las inventa y el ejercicio miente.
+                                "minimalPair" -> (e["options"] as? List<*>)?.forEach { texts.add(where to it.toString()) }
+                            }
                         }
                     }
                 }

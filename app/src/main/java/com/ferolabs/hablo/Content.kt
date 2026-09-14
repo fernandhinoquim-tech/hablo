@@ -97,6 +97,70 @@ sealed class Exercise {
         val sound: Sound,
         override val tip: String? = null
     ) : Exercise()
+
+    /**
+     * Ves el español y ESCRIBES el inglés, sin opciones ni fichas: recuperación
+     * productiva pura (d = 1,38 sobre elegir entre opciones en pruebas de
+     * producción, y empata en las receptivas: KATE Journal 30). [accept] son
+     * las otras respuestas válidas; marcar mal una buena es el peor fallo.
+     */
+    data class WriteIt(
+        override val id: String,
+        val es: String,
+        val answer: String,
+        val accept: List<String> = emptyList(),
+        override val tip: String? = null
+    ) : Exercise()
+
+    /**
+     * Frase en inglés con un hueco `___` que se ESCRIBE (no se elige): apunta
+     * al punto de gramática exacto de la lección.
+     */
+    data class Cloze(
+        override val id: String,
+        val text: String,
+        val answer: String,
+        val es: String,
+        val accept: List<String> = emptyList(),
+        override val tip: String? = null
+    ) : Exercise() {
+        val before: String get() = text.substringBefore(BLANK)
+        val after: String get() = text.substringAfter(BLANK)
+        /** La frase completa con la respuesta puesta. */
+        val full: String get() = text.replace(BLANK, answer)
+
+        companion object {
+            const val BLANK = "___"
+        }
+    }
+
+    /**
+     * La profesora dice la frase y el alumno la repite enseguida, siguiendo el
+     * ritmo. Se mide que salgan las palabras y cuánto tardó él contra ella;
+     * NUNCA por fonema: la revisión sistemática de shadowing (2025) lo da
+     * probado para fluidez y prosodia e inconcluso para sonidos sueltos.
+     */
+    data class Shadow(
+        override val id: String,
+        val text: String,
+        override val tip: String? = null
+    ) : Exercise()
+
+    /**
+     * Pares mínimos: suena UNA palabra y se identifica cuál fue (ship/sheep).
+     * Identificar (g = 0,95) rinde casi el doble que "¿son iguales?" (g = 0,57),
+     * Uchihara, Karas & Thomson 2025. La corrección es exacta: la app sabe
+     * qué palabra sintetizó. [sentence] es opcional, para oírla en contexto.
+     */
+    data class MinimalPair(
+        override val id: String,
+        val options: List<String>,
+        val answer: String,
+        val sentence: String? = null,
+        override val tip: String? = null
+    ) : Exercise() {
+        val answerIndex: Int get() = options.indexOf(answer)
+    }
 }
 
 /**
@@ -345,6 +409,24 @@ object Course {
         return Theory(title = req("title"), body = req("body"), trap = req("trap"))
     }
 
+    private fun req(o: JSONObject, key: String, where: String): String {
+        val v = if (o.isNull(key)) "" else o.optString(key, "")
+        if (v.isBlank()) throw IllegalArgumentException("$where: falta \"$key\"")
+        return v
+    }
+
+    /** Un ejercicio de producir texto: respuesta no vacía y alternativas que no la repitan. */
+    private fun checkProduced(where: String, answer: String, accept: List<String>) {
+        if (answer.isBlank()) throw IllegalArgumentException("$where: falta \"answer\"")
+        // Con contracciones expandidas: "I'm fine" y "I am fine" son la misma respuesta.
+        val vistas = HashSet<String>()
+        vistas.add(Correccion.suelta(answer))
+        for (a in accept) {
+            if (a.isBlank()) throw IllegalArgumentException("$where: \"accept\" tiene una entrada vacía")
+            if (!vistas.add(Correccion.suelta(a))) throw IllegalArgumentException("$where: \"accept\" repite la respuesta o se repite: \"$a\"")
+        }
+    }
+
     /** Las opciones de un ejercicio de elegir: al menos dos, sin repetidas, y la respuesta entre ellas. */
     private fun checkChoice(where: String, options: List<String>, answer: String) {
         if (options.size < 2) throw IllegalArgumentException("$where: \"options\" necesita al menos 2 opciones")
@@ -409,10 +491,39 @@ object Course {
                     sound = requireSound(o, where),
                     tip = tip
                 )
+                "write" -> {
+                    val answer = o.optString("answer", "")
+                    val accept = strings(o, "accept")
+                    checkProduced(where, answer, accept)
+                    Exercise.WriteIt(id = id, es = req(o, "es", where), answer = answer, accept = accept, tip = tip)
+                }
+                "cloze" -> {
+                    val text = req(o, "text", where)
+                    val answer = o.optString("answer", "")
+                    val accept = strings(o, "accept")
+                    checkProduced(where, answer, accept)
+                    val huecos = text.windowed(Exercise.Cloze.BLANK.length).count { it == Exercise.Cloze.BLANK }
+                    if (huecos != 1) throw IllegalArgumentException("$where: \"text\" tiene que tener exactamente un hueco ${Exercise.Cloze.BLANK} (tiene $huecos)")
+                    Exercise.Cloze(id = id, text = text, answer = answer, es = req(o, "es", where), accept = accept, tip = tip)
+                }
+                "shadow" -> Exercise.Shadow(id = id, text = req(o, "text", where), tip = tip)
+                "minimalPair" -> {
+                    val options = strings(o, "options")
+                    val answer = o.optString("answer", "")
+                    checkChoice(where, options, answer)
+                    for (w in options) {
+                        if (w.trim().contains(' ')) throw IllegalArgumentException("$where: las opciones de un par mínimo son palabras sueltas: \"$w\"")
+                    }
+                    val sentence = o.optString("sentence", "").ifBlank { null }
+                    if (sentence != null && !sentence.lowercase().contains(answer.lowercase())) {
+                        throw IllegalArgumentException("$where: \"sentence\" no contiene la palabra \"$answer\"")
+                    }
+                    Exercise.MinimalPair(id = id, options = options, answer = answer, sentence = sentence, tip = tip)
+                }
                 // Antes un tipo desconocido se saltaba en silencio: un error de
                 // dedo en el JSON hacía desaparecer el ejercicio sin aviso.
                 else -> throw IllegalArgumentException(
-                    "$where: tipo \"$type\" desconocido (listen, translate, build, type, speak)"
+                    "$where: tipo \"$type\" desconocido (listen, translate, build, type, speak, write, cloze, shadow, minimalPair)"
                 )
             }
             out.add(ex)

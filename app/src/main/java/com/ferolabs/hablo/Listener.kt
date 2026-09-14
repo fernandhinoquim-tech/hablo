@@ -336,7 +336,7 @@ class Listener(context: Context) {
                     onResult(ListenResult.NotHeard(NotHeardReason.NOTHING))
                 } else {
                     outcome = "OIDO $text" + outcome
-                    onResult(ListenResult.Heard(text, report))
+                    onResult(ListenResult.Heard(text, report, a.speechSeconds))
                 }
             } catch (e: Throwable) {
                 Log.e(TAG, "Error reconociendo", e)

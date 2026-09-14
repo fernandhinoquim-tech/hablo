@@ -35,7 +35,7 @@ PORTADAS = {
     "a1u9": ("✈️", "Going to, will y comparar"),
 }
 
-ORDEN_EJERCICIO = ["id", "type", "audio", "es", "text", "sound", "options", "answer", "extra", "meaning", "tip"]
+ORDEN_EJERCICIO = ["id", "type", "audio", "es", "text", "sound", "options", "answer", "accept", "extra", "meaning", "sentence", "tip"]
 
 
 def ordenar(e):

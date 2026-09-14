@@ -28,7 +28,11 @@
                 {"id": "a1u1l1e5", "type": "listen", "audio": "Where are you from?", "options": ["Where are you from?", "Where you are from?", "Where do you from?"], "answer": "Where are you from?"},
                 {"id": "a1u1l1e6", "type": "translate", "es": "Soy de Colombia.", "options": ["I am of Colombia.", "I come of Colombia.", "I'm from Colombia."], "answer": "I'm from Colombia.", "tip": "Origen se dice con from, nunca of."},
                 {"id": "a1u1l1e7", "type": "speak", "text": "I'm from Colombia.", "sound": "general", "tip": "No digas \"ay am from\": I'm es una sola sílaba rápida, casi \"aim\"."},
-                {"id": "a1u1l1e8", "type": "type", "audio": "Good morning.", "meaning": "Buenos días."}
+                {"id": "a1u1l1e8", "type": "type", "audio": "Good morning.", "meaning": "Buenos días."},
+                {"id": "a1u1l1e9", "type": "write", "es": "Soy de Colombia.", "answer": "I'm from Colombia.", "accept": ["I come from Colombia."], "tip": "Origen con to be: I'm from... Nunca 'I am of Colombia'."},
+                {"id": "a1u1l1e10", "type": "cloze", "es": "Me llamo Fernando.", "text": "My name ___ Fernando.", "answer": "is", "accept": [], "tip": "'My name is': el nombre 'es', no 'se llama'. Nada de 'My name calls'."},
+                {"id": "a1u1l1e11", "type": "shadow", "text": "Nice to meet you.", "tip": "Cuatro palabras, un solo golpe de voz: NICE-to-MEET-you. Sin parar entre ellas."},
+                {"id": "a1u1l1e12", "type": "minimalPair", "options": ["ship", "sheep"], "answer": "sheep", "sentence": "The sheep is white.", "tip": "sheep es larga, como 'siiip'; ship es corta y relajada. En español solo tenemos la corta."}
               ]
             },
             {

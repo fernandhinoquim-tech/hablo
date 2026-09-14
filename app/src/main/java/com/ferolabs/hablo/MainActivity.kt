@@ -175,6 +175,7 @@ fun HabloApp(
                                 listener = listener,
                                 progreso = progreso,
                                 speaking = speaker.busy,
+                                lastSpokenSeconds = { speaker.lastSpokenSeconds },
                                 showFace = store.showFaces,
                                 say = say,
                                 onFinish = { score, correct ->
