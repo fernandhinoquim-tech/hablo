@@ -39,26 +39,43 @@ enum class Sound(val key: String, val labelEs: String) {
  * pueden agregar cientos de lecciones sin tocar Kotlin ni recompilar la lógica.
  */
 sealed class Exercise {
+    /**
+     * Único en todo el curso, formato `<lección>e<n>` (p. ej. `a1u1l1e3`).
+     * Es la clave del mazo de repaso, del cuaderno de errores y del informe:
+     * sin id, lo que se falla no se puede volver a preguntar mañana.
+     */
+    abstract val id: String
     abstract val tip: String?
 
-    /** Escuchas una frase y eliges cuál fue. */
+    /**
+     * Escuchas una frase y eliges cuál fue. [answer] es el TEXTO de la opción
+     * correcta, no su posición: así se verifica solo al cargar (tiene que
+     * estar en [options]) y sobrevive a que las opciones se barajen.
+     */
     data class ListenChoose(
+        override val id: String,
         val audio: String,
         val options: List<String>,
-        val answer: Int,
+        val answer: String,
         override val tip: String? = null
-    ) : Exercise()
+    ) : Exercise() {
+        val answerIndex: Int get() = options.indexOf(answer)
+    }
 
-    /** Ves español y eliges la traducción correcta. */
+    /** Ves español y eliges la traducción correcta. Mismo contrato que [ListenChoose]. */
     data class TranslateChoose(
+        override val id: String,
         val es: String,
         val options: List<String>,
-        val answer: Int,
+        val answer: String,
         override val tip: String? = null
-    ) : Exercise()
+    ) : Exercise() {
+        val answerIndex: Int get() = options.indexOf(answer)
+    }
 
     /** Armas la frase tocando palabras. */
     data class BuildSentence(
+        override val id: String,
         val es: String,
         val answer: String,
         val extraWords: List<String> = emptyList(),
@@ -67,6 +84,7 @@ sealed class Exercise {
 
     /** Escribes lo que escuchaste. */
     data class TypeWhatYouHear(
+        override val id: String,
         val audio: String,
         val meaningEs: String,
         override val tip: String? = null
@@ -74,11 +92,26 @@ sealed class Exercise {
 
     /** Lo dices en voz alta y se te puntúa palabra por palabra. */
     data class SpeakIt(
+        override val id: String,
         val text: String,
         val sound: Sound,
         override val tip: String? = null
     ) : Exercise()
 }
+
+/**
+ * La ficha de teoría de una lección: qué se usa y cómo, en español, corto.
+ * [trap] es el sello de la casa: el error concreto que comete quien piensa en
+ * español, y por qué. Obligatoria en toda lección (el parser y `checkContent`
+ * revientan si falta un campo): con 200 lecciones, una sin explicación es una
+ * lección a ciegas.
+ */
+data class Theory(
+    val title: String,
+    /** Puede llevar **negrita** con dobles asteriscos. */
+    val body: String,
+    val trap: String
+)
 
 /**
  * Escenario de conversación con la IA (Fase 3): una situación cerrada donde
@@ -121,6 +154,7 @@ data class Drill(
 data class Lesson(
     val id: String,
     val title: String,
+    val theory: Theory,
     val exercises: List<Exercise>
 )
 
@@ -165,7 +199,7 @@ object Course {
     fun load(context: Context) {
         if (loaded) return
         try {
-            levels = parseLevels(JSONObject(readAsset(context, "content/curriculum.json")).getJSONArray("levels"))
+            levels = parseCurriculum(readAsset(context, "content/curriculum.json"))
             drills = parseDrills(JSONObject(readAsset(context, "content/drills.json")).getJSONArray("drills"))
             val scenariosJson = JSONObject(readAsset(context, "content/scenarios.json"))
             helpCommon = parseAyudas(scenariosJson.optJSONArray("helpCommon"), "scenarios.json, helpCommon")
@@ -251,18 +285,32 @@ object Course {
             )
         }
 
-    private fun parseLevels(arr: JSONArray): List<Level> =
+    /**
+     * Lo que se comprueba al cargar. Vive aquí (Kotlin puro, sin Android) para
+     * poder probarlo en el PC con `./gradlew test`; los ids que ya se vieron se
+     * pasan de lección en lección para exigir que sean únicos en todo el curso.
+     */
+    private class Seen {
+        val lessons = HashSet<String>()
+        val exercises = HashSet<String>()
+    }
+
+    /** Parsea el texto de `curriculum.json`. Revienta con un mensaje que dice dónde. */
+    fun parseCurriculum(text: String): List<Level> =
+        parseLevels(JSONObject(text).getJSONArray("levels"), Seen())
+
+    private fun parseLevels(arr: JSONArray, seen: Seen): List<Level> =
         (0 until arr.length()).map { i ->
             val o = arr.getJSONObject(i)
             Level(
                 id = o.getString("id"),
                 title = o.getString("title"),
                 goal = o.optString("goal", ""),
-                units = parseUnits(o.getJSONArray("units"))
+                units = parseUnits(o.getJSONArray("units"), seen)
             )
         }
 
-    private fun parseUnits(arr: JSONArray): List<CourseUnit> =
+    private fun parseUnits(arr: JSONArray, seen: Seen): List<CourseUnit> =
         (0 until arr.length()).map { i ->
             val o = arr.getJSONObject(i)
             CourseUnit(
@@ -270,57 +318,93 @@ object Course {
                 emoji = o.optString("emoji", "📘"),
                 title = o.getString("title"),
                 subtitle = o.optString("subtitle", ""),
-                lessons = parseLessons(o.getJSONArray("lessons"))
+                lessons = parseLessons(o.getJSONArray("lessons"), seen)
             )
         }
 
-    private fun parseLessons(arr: JSONArray): List<Lesson> =
+    private fun parseLessons(arr: JSONArray, seen: Seen): List<Lesson> =
         (0 until arr.length()).map { i ->
             val o = arr.getJSONObject(i)
             val id = o.getString("id")
+            if (!seen.lessons.add(id)) throw IllegalArgumentException("lección $id: id repetido")
             Lesson(
                 id = id,
                 title = o.getString("title"),
-                exercises = parseExercises(o.getJSONArray("exercises"), id)
+                theory = parseTheory(o.optJSONObject("theory"), "lección $id"),
+                exercises = parseExercises(o.getJSONArray("exercises"), id, seen)
             )
         }
+
+    private fun parseTheory(o: JSONObject?, where: String): Theory {
+        if (o == null) throw IllegalArgumentException("$where: falta \"theory\" (title, body y trap)")
+        fun req(key: String): String {
+            val v = if (o.isNull(key)) "" else o.optString(key, "")
+            if (v.isBlank()) throw IllegalArgumentException("$where: \"theory\" sin \"$key\"")
+            return v
+        }
+        return Theory(title = req("title"), body = req("body"), trap = req("trap"))
+    }
+
+    /** Las opciones de un ejercicio de elegir: al menos dos, sin repetidas, y la respuesta entre ellas. */
+    private fun checkChoice(where: String, options: List<String>, answer: String) {
+        if (options.size < 2) throw IllegalArgumentException("$where: \"options\" necesita al menos 2 opciones")
+        val repetidas = options.groupBy { it.trim() }.filter { it.value.size > 1 }.keys
+        if (repetidas.isNotEmpty()) throw IllegalArgumentException("$where: opciones repetidas: ${repetidas.joinToString(" | ")}")
+        if (answer.isBlank()) throw IllegalArgumentException("$where: falta \"answer\" (el texto de la opción correcta)")
+        if (answer !in options) throw IllegalArgumentException("$where: \"answer\" no está entre las opciones: \"$answer\"")
+    }
 
     private fun strings(o: JSONObject, key: String): List<String> {
         val a = o.optJSONArray(key) ?: return emptyList()
         return (0 until a.length()).map { a.getString(it) }
     }
 
-    private fun parseExercises(arr: JSONArray, lessonId: String): List<Exercise> {
+    private fun parseExercises(arr: JSONArray, lessonId: String, seen: Seen): List<Exercise> {
         val out = ArrayList<Exercise>(arr.length())
         for (i in 0 until arr.length()) {
             val o = arr.getJSONObject(i)
             val where = "lección $lessonId, ejercicio ${i + 1}"
             val tip = if (o.isNull("tip")) null else o.optString("tip", "").ifBlank { null }
+            val id = o.optString("id", "").trim()
+            if (id.isBlank()) throw IllegalArgumentException("$where: falta \"id\" (formato ${lessonId}e${i + 1})")
+            if (!seen.exercises.add(id)) throw IllegalArgumentException("$where: id \"$id\" repetido en el curso")
             val ex = when (val type = o.getString("type")) {
-                "listen" -> Exercise.ListenChoose(
-                    audio = o.getString("audio"),
-                    options = strings(o, "options"),
-                    answer = o.getInt("answer"),
-                    tip = tip
-                )
-                "translate" -> Exercise.TranslateChoose(
-                    es = o.getString("es"),
-                    options = strings(o, "options"),
-                    answer = o.getInt("answer"),
-                    tip = tip
-                )
-                "build" -> Exercise.BuildSentence(
-                    es = o.getString("es"),
-                    answer = o.getString("answer"),
-                    extraWords = strings(o, "extra"),
-                    tip = tip
-                )
-                "type" -> Exercise.TypeWhatYouHear(
-                    audio = o.getString("audio"),
-                    meaningEs = o.optString("meaning", ""),
-                    tip = tip
-                )
+                "listen" -> {
+                    val options = strings(o, "options")
+                    val answer = o.optString("answer", "")
+                    checkChoice(where, options, answer)
+                    val audio = o.getString("audio")
+                    // Lo que suena tiene que ser la opción correcta; si no, el audio no es ninguna.
+                    if (audio != answer) throw IllegalArgumentException("$where: en listen, \"audio\" y \"answer\" deben ser iguales")
+                    Exercise.ListenChoose(id = id, audio = audio, options = options, answer = answer, tip = tip)
+                }
+                "translate" -> {
+                    val options = strings(o, "options")
+                    val answer = o.optString("answer", "")
+                    checkChoice(where, options, answer)
+                    Exercise.TranslateChoose(id = id, es = o.getString("es"), options = options, answer = answer, tip = tip)
+                }
+                "build" -> {
+                    val answer = o.getString("answer")
+                    val extra = strings(o, "extra")
+                    // Una palabra "extra" que ya está en la frase no distrae a nadie.
+                    val propias = answer.split(" ").map { it.trim().lowercase() }.filter { it.isNotEmpty() }.toSet()
+                    val repetidas = extra.filter { it.trim().lowercase() in propias }
+                    if (repetidas.isNotEmpty()) {
+                        throw IllegalArgumentException("$where: \"extra\" repite palabras de la respuesta: ${repetidas.joinToString(", ")}")
+                    }
+                    if (extra.map { it.trim().lowercase() }.toSet().size != extra.size) {
+                        throw IllegalArgumentException("$where: \"extra\" tiene palabras repetidas")
+                    }
+                    Exercise.BuildSentence(id = id, es = o.getString("es"), answer = answer, extraWords = extra, tip = tip)
+                }
+                "type" -> {
+                    val meaning = o.optString("meaning", "")
+                    if (meaning.isBlank()) throw IllegalArgumentException("$where: falta \"meaning\" (qué significa lo que se escribe)")
+                    Exercise.TypeWhatYouHear(id = id, audio = o.getString("audio"), meaningEs = meaning, tip = tip)
+                }
                 "speak" -> Exercise.SpeakIt(
+                    id = id,
                     text = o.getString("text"),
                     sound = requireSound(o, where),
                     tip = tip

@@ -1,0 +1,43 @@
+{
+  "_comentario": "Fichas de teoría para las 8 lecciones que ya existen. Se insertan como campo \"theory\" en cada lección de curriculum.json, sin tocar sus ejercicios.",
+  "a1u1l1": {
+    "title": "En inglés el sujeto nunca se calla",
+    "body": "En español el verbo ya dice quién habla: «soy Fero», «trabajo aquí». El sujeto sobra.\n\nEn inglés **no**. Siempre hay que decir quién:\n\n*Am Fero* ❌ → ***I** am Fero* ✅\n*Is my brother* ❌ → ***He** is my brother* ✅\n\nY el verbo **to be** tiene tres formas en presente:\n**I am** · **you/we/they are** · **he/she/it is**\n\nAl hablar casi siempre se contraen: *I'm, you're, he's, she's, it's, we're, they're*.",
+    "trap": "Dejar caer el sujeto («Am from Colombia») es lo primero que delata a un hispanohablante, y cuesta quitárselo porque en español suena redundante. En inglés la frase sin sujeto está incompleta: **I'm from Colombia**."
+  },
+  "a1u1l2": {
+    "title": "Lo que en español «se tiene», en inglés «se es»",
+    "body": "Para decir cómo estás, el inglés usa **to be** donde nosotros usamos «tener» o «estar».\n\n*I **am** fine.* (estoy bien)\n*I **am** tired.* (estoy cansado)\n*I **am** hungry.* (tengo hambre)\n*I **am** cold.* (tengo frío)\n*I **am** thirty.* (tengo treinta)\n\nY la pregunta es fija, se aprende entera:\n***How are you?*** → *I'm fine, thanks. And you?*",
+    "trap": "«Tengo hambre» sale como *I have hunger* y «tengo frío» como *I have cold* — que además significa «tengo un resfriado». En inglés esas cosas se **son**, no se tienen: **I am hungry**, **I am cold**."
+  },
+  "a1u1l3": {
+    "title": "De dónde eres, y las mayúsculas",
+    "body": "La pregunta y la respuesta son fijas:\n\n***Where are you from?*** → *I'm from Colombia.*\n\nFíjate en el orden: el **from** se va al final. No es *From where are you?*\n\nY hay dos palabras distintas, el país y la gente:\n\n*Colombia → Colombian* · *Spain → Spanish* · *Mexico → Mexican*\n*I'm from **Colombia**.* / *I'm **Colombian**.*",
+    "trap": "En inglés los países, los idiomas y las nacionalidades **van con mayúscula siempre**: English, Spanish, Colombian. En español las escribimos en minúscula, así que la mano las escribe mal sin darse cuenta. *i speak spanish* ❌ → *I speak **S**panish* ✅"
+  },
+  "a1u2l1": {
+    "title": "Pedir sin sonar brusco",
+    "body": "En un mostrador hay tres formas, de más directa a más amable:\n\n*I want a coffee.* — correcta pero seca\n***Can I have** a coffee, please?* — normal, la que más se usa\n***I'd like** a coffee, please.* — la más cuidada\n\nY el **please** no es adorno: en inglés se espera. Sin él, la frase suena a orden aunque la gramática esté perfecta.",
+    "trap": "«Quiero un café» es perfectamente educado en español, así que *I want a coffee* sale solo. Pero en inglés suena a niño exigiendo. Usa **Can I have a coffee, please?** — con esa te mueves en cualquier sitio."
+  },
+  "a1u2l2": {
+    "title": "«La cuenta» no es the account",
+    "body": "Al terminar de comer, la cuenta se pide así:\n\n*Can I have **the bill**, please?* (británico)\n*Can I have **the check**, please?* (americano)\n\nOtras que vas a necesitar:\n*Can I pay **by card**?* · *Do you take **cash**?* · *Keep the change.*\n\nY si van a medias: *Can we **split** it?*",
+    "trap": "**the account** es un falso amigo: es la cuenta del banco, no la del restaurante. Pedir *the account* en una mesa deja a todo el mundo desconcertado. Es **the bill** o **the check**."
+  },
+  "a1u2l3": {
+    "title": "Sorry y excuse me no son lo mismo",
+    "body": "Las dos se traducen «perdón», pero se usan en momentos distintos.\n\n**Excuse me** — *antes*: para llamar la atención, pedir paso, interrumpir.\n*Excuse me, where is the bathroom?*\n\n**Sorry** — *después*: cuando ya hiciste algo o algo salió mal.\n*Sorry, I'm late.* · *Sorry about that.*\n\nRegla corta: **excuse me** para molestar, **sorry** para disculparte.",
+    "trap": "Como en español «perdón» sirve para las dos, se usa *sorry* para llamar al mesero — y suena a que hiciste algo malo. Para llamar a alguien es **Excuse me**."
+  },
+  "a1u3l1": {
+    "title": "La edad no se tiene: se es",
+    "body": "Este es **el** error insignia del hispanohablante, y vale la pena grabárselo:\n\n*I have 25 years* ❌\n***I am 25 years old*** ✅\n(o simplemente ***I'm 25***)\n\nY la pregunta: ***How old are you?*** — literalmente «qué tan viejo eres». Suena raro traducido, pero es la única forma.\n\nPara el trabajo, acuérdate del artículo:\n*I'm **a** teacher.* · *She's **an** engineer.*",
+    "trap": "*I have 25 years* es gramaticalmente perfecto en español y completamente roto en inglés. La edad, el hambre, el frío, el miedo y el sueño: todo eso en inglés **se es**, no se tiene."
+  },
+  "a1u3l2": {
+    "title": "Para decir de quién es algo",
+    "body": "En español todo se hace con «de»: «la casa de mi hermano». En inglés hay dos formas y la más común es la que menos se parece.\n\n**'s** — para personas, y va al revés que en español:\n*my brother**'s** house* (la casa de mi hermano)\n*Maria**'s** car* (el carro de María)\n\nEl dueño va **primero**, luego 's, luego la cosa.\n\n**of** — para cosas, no para personas:\n*the name **of** the street*",
+    "trap": "*The house of my brother* es comprensible pero suena a traducción. Lo natural es **my brother's house**. Cuesta porque hay que darle la vuelta a la frase entera, no solo cambiar una palabra."
+  }
+}

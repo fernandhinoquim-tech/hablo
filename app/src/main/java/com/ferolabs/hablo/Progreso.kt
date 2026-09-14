@@ -36,7 +36,7 @@ class Progreso(context: Context) {
     data class Intento(val fecha: String, val frase: String, val sonido: String, val veredicto: String, val palabras: String)
 
     /** Un ejercicio fallado en una lección: lo que dijo y lo que era. */
-    data class Fallo(val fecha: String, val leccion: String, val tipo: String, val tuya: String, val correcta: String)
+    data class Fallo(val fecha: String, val leccion: String, val tipo: String, val tuya: String, val correcta: String, val ejercicio: String = "")
 
     /** Una corrección de la profesora en la conversación (la línea en español). */
     data class Correccion(val fecha: String, val texto: String)
@@ -81,7 +81,7 @@ class Progreso(context: Context) {
                     fallos.add(
                         Fallo(
                             o.optString("f"), o.optString("leccion"), o.optString("tipo"),
-                            o.optString("tuya"), o.optString("correcta")
+                            o.optString("tuya"), o.optString("correcta"), o.optString("ejercicio")
                         )
                     )
                 }
@@ -126,6 +126,7 @@ class Progreso(context: Context) {
                         a.put(
                             JSONObject().put("f", it.fecha).put("leccion", it.leccion)
                                 .put("tipo", it.tipo).put("tuya", it.tuya).put("correcta", it.correcta)
+                                .put("ejercicio", it.ejercicio)
                         )
                     }
                 })
@@ -159,9 +160,9 @@ class Progreso(context: Context) {
     }
 
     @Synchronized
-    fun anotarFallo(leccion: String, tipo: String, tuya: String, correcta: String) {
+    fun anotarFallo(leccion: String, tipo: String, tuya: String, correcta: String, ejercicio: String = "") {
         cargar()
-        fallos.add(Fallo(hoy(), leccion, tipo, tuya.take(120), correcta.take(120)))
+        fallos.add(Fallo(hoy(), leccion, tipo, tuya.take(120), correcta.take(120), ejercicio))
         recortar(fallos, MAX_FALLOS)
         guardar()
     }

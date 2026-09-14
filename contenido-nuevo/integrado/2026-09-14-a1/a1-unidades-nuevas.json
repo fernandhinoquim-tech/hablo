@@ -1,0 +1,1789 @@
+{
+  "_comentario": "Unidades nuevas para cerrar A1 (a1u4 a a1u9). FORMATO NUEVO: 'answer' es el TEXTO de la respuesta, no un indice; cada ejercicio lleva 'id' unico; cada leccion lleva 'theory' con title/body/trap. Se anexan a levels[0].units de curriculum.json despues de a1u3. Verificado: answer siempre entre options, ningun distractor es tambien correcto, los decoys de 'build' no arman otra frase valida, y toda palabra de 'speak' esta en cmudict.dict.",
+  "units": [
+    {
+      "id": "a1u4",
+      "title": "Tu día a día",
+      "lessons": [
+        {
+          "id": "a1u4l1",
+          "title": "Lo que haces todos los días",
+          "theory": {
+            "title": "La -s que se nos olvida",
+            "body": "En inglés el verbo casi no cambia. **I work, you work, we work, they work** — todas iguales.\n\nLa única que cambia es **he, she, it**: se le pega una **-s** al final.\n\n*I work* → *He work**s***\n*I live* → *She live**s***\n*I go* → *It go**es***\n\nEsa -s no significa nada. No es plural, no es posesivo. Es solo una marca que el inglés dejó ahí y hay que ponerla siempre.",
+            "trap": "Un hispanohablante dice *He work on Monday*. Suena natural porque en español «él trabaja» ya lleva su propia terminación y no necesitamos nada más. En inglés, si el sujeto es he, she o it, la -s va sí o sí: **He works on Monday**."
+          },
+          "exercises": [
+            {
+              "id": "a1u4l1e1",
+              "type": "listen",
+              "audio": "She works in a hospital.",
+              "options": [
+                "She work in a hospital.",
+                "She works in a hospital.",
+                "She walks in a hospital."
+              ],
+              "answer": "She works in a hospital.",
+              "tip": "works lleva -s porque el sujeto es she. Ojo: walks (camina) suena parecido pero es otro verbo."
+            },
+            {
+              "id": "a1u4l1e2",
+              "type": "translate",
+              "es": "Él trabaja los lunes.",
+              "options": [
+                "He work on Mondays.",
+                "He works on Mondays.",
+                "He works in Mondays."
+              ],
+              "answer": "He works on Mondays.",
+              "tip": "Dos cosas: la -s de works, y que los días llevan on, no in."
+            },
+            {
+              "id": "a1u4l1e3",
+              "type": "listen",
+              "audio": "My brother studies English.",
+              "options": [
+                "My brother study English.",
+                "My brother studies English.",
+                "My brother studied English."
+              ],
+              "answer": "My brother studies English.",
+              "tip": "Los verbos que terminan en -y cambian a -ies: study → studies."
+            },
+            {
+              "id": "a1u4l1e4",
+              "type": "translate",
+              "es": "Mi hermana vive en Bogotá.",
+              "options": [
+                "My sister live in Bogotá.",
+                "My sister lives in Bogotá.",
+                "My sister is live in Bogotá."
+              ],
+              "answer": "My sister lives in Bogotá.",
+              "tip": "My sister = she, así que el verbo lleva -s."
+            },
+            {
+              "id": "a1u4l1e5",
+              "type": "build",
+              "es": "Ella se levanta a las seis.",
+              "answer": "She gets up at six.",
+              "extra": [
+                "get",
+                "in",
+                "the"
+              ],
+              "tip": "gets con -s. Y las horas llevan at: at six."
+            },
+            {
+              "id": "a1u4l1e6",
+              "type": "type",
+              "audio": "He speaks Spanish and English.",
+              "meaning": "Él habla español e inglés.",
+              "tip": "speaks con -s. Fíjate que speak empieza con s, no con e."
+            },
+            {
+              "id": "a1u4l1e7",
+              "type": "speak",
+              "text": "He speaks Spanish every day.",
+              "sound": "es",
+              "tip": "No digas «espeaks espanish». En inglés la s inicial arranca sola, sin e delante."
+            },
+            {
+              "id": "a1u4l1e8",
+              "type": "speak",
+              "text": "She studies at home.",
+              "sound": "es",
+              "tip": "studies suena «STA-dis». Tampoco lleva e delante."
+            }
+          ]
+        },
+        {
+          "id": "a1u4l2",
+          "title": "Lo que no haces y lo que preguntas",
+          "theory": {
+            "title": "Do y does: el ayudante invisible",
+            "body": "Para negar y para preguntar en presente, el inglés mete un ayudante: **do** (o **does** para he/she/it).\n\n**Negar:** I **don't** work · He **doesn't** work\n**Preguntar:** **Do** you work? · **Does** he work?\n\nLa regla de oro: **cuando aparece do o does, el verbo se queda desnudo**, sin -s.\n\n*He doesn't work**s*** ❌\n*He doesn't work* ✅\n\nLa -s ya se la llevó el does.",
+            "trap": "En español negamos poniendo «no» delante y ya: «él no trabaja». Por eso sale *He no work*. En inglés hace falta el ayudante: **He doesn't work**. Y al preguntar no basta con cambiar la entonación: «¿trabajas?» no es *You work?*, es **Do you work?**"
+          },
+          "exercises": [
+            {
+              "id": "a1u4l2e1",
+              "type": "translate",
+              "es": "Ella no come carne.",
+              "options": [
+                "She no eat meat.",
+                "She doesn't eat meat.",
+                "She doesn't eats meat."
+              ],
+              "answer": "She doesn't eat meat.",
+              "tip": "doesn't ya lleva la -s, así que eat se queda sin ella."
+            },
+            {
+              "id": "a1u4l2e2",
+              "type": "listen",
+              "audio": "I don't have a car.",
+              "options": [
+                "I don't have a car.",
+                "I doesn't have a car.",
+                "I not have a car."
+              ],
+              "answer": "I don't have a car.",
+              "tip": "Con I siempre don't, nunca doesn't."
+            },
+            {
+              "id": "a1u4l2e3",
+              "type": "translate",
+              "es": "¿Hablas inglés?",
+              "options": [
+                "You speak English?",
+                "Do you speak English?",
+                "Does you speak English?"
+              ],
+              "answer": "Do you speak English?",
+              "tip": "Las preguntas empiezan con Do o Does. Con you va Do."
+            },
+            {
+              "id": "a1u4l2e4",
+              "type": "listen",
+              "audio": "Does he work here?",
+              "options": [
+                "Do he work here?",
+                "Does he work here?",
+                "Does he works here?"
+              ],
+              "answer": "Does he work here?",
+              "tip": "Does por el he, y work sin -s porque does ya la tiene."
+            },
+            {
+              "id": "a1u4l2e5",
+              "type": "build",
+              "es": "Nosotros no trabajamos los domingos.",
+              "answer": "We don't work on Sundays.",
+              "extra": [
+                "doesn't",
+                "in",
+                "works"
+              ],
+              "tip": "We lleva don't. Y los días con on."
+            },
+            {
+              "id": "a1u4l2e6",
+              "type": "type",
+              "audio": "She doesn't live here.",
+              "meaning": "Ella no vive aquí.",
+              "tip": "doesn't se escribe con apóstrofo: does + not."
+            },
+            {
+              "id": "a1u4l2e7",
+              "type": "speak",
+              "text": "I don't understand.",
+              "sound": "general",
+              "tip": "Frase de oro: úsala sin miedo cuando no entiendas."
+            },
+            {
+              "id": "a1u4l2e8",
+              "type": "speak",
+              "text": "Do you have a phone?",
+              "sound": "h",
+              "tip": "La h de have se sopla de verdad. En español la h es muda; aquí no."
+            }
+          ]
+        },
+        {
+          "id": "a1u4l3",
+          "title": "Siempre, a veces, nunca",
+          "theory": {
+            "title": "Dónde va «siempre» en inglés",
+            "body": "Las palabras de frecuencia — **always** (siempre), **usually** (normalmente), **often** (a menudo), **sometimes** (a veces), **never** (nunca) — tienen un sitio fijo:\n\n**Antes del verbo normal:**\nI **always** drink coffee.\nShe **never** works on Sunday.\n\n**Después del verbo to be:**\nHe **is** always late.\nThey **are** never tired.\n\nRegla corta: *antes del verbo, pero después de am/is/are*.",
+            "trap": "En español el «siempre» se mueve libre: «siempre tomo café», «tomo café siempre». Por eso sale *I drink always coffee*. En inglés no se mete entre el verbo y lo que recibe la acción: **I always drink coffee**."
+          },
+          "exercises": [
+            {
+              "id": "a1u4l3e1",
+              "type": "translate",
+              "es": "Siempre tomo café por la mañana.",
+              "options": [
+                "I drink always coffee in the morning.",
+                "I always drink coffee in the morning.",
+                "Always I drink coffee in the morning."
+              ],
+              "answer": "I always drink coffee in the morning.",
+              "tip": "always va justo antes del verbo drink."
+            },
+            {
+              "id": "a1u4l3e2",
+              "type": "listen",
+              "audio": "She is always late.",
+              "options": [
+                "She always is late.",
+                "She is always late.",
+                "She is late always."
+              ],
+              "answer": "She is always late.",
+              "tip": "Con is, la palabra de frecuencia va después: is always."
+            },
+            {
+              "id": "a1u4l3e3",
+              "type": "translate",
+              "es": "Nunca como pescado.",
+              "options": [
+                "I never eat fish.",
+                "I don't never eat fish.",
+                "I eat never fish."
+              ],
+              "answer": "I never eat fish.",
+              "tip": "never ya es negativo: no se le suma don't."
+            },
+            {
+              "id": "a1u4l3e4",
+              "type": "listen",
+              "audio": "We sometimes go to the beach.",
+              "options": [
+                "We go sometimes to the beach.",
+                "We sometimes go to the beach.",
+                "Sometimes we goes to the beach."
+              ],
+              "answer": "We sometimes go to the beach.",
+              "tip": "sometimes antes del verbo go."
+            },
+            {
+              "id": "a1u4l3e5",
+              "type": "build",
+              "es": "Él normalmente trabaja en casa.",
+              "answer": "He usually works at home.",
+              "extra": [
+                "work",
+                "in",
+                "always"
+              ],
+              "tip": "usually antes del verbo, y works con -s."
+            },
+            {
+              "id": "a1u4l3e6",
+              "type": "type",
+              "audio": "They never watch TV.",
+              "meaning": "Ellos nunca ven televisión.",
+              "tip": "watch se escribe con t: w-a-t-c-h."
+            },
+            {
+              "id": "a1u4l3e7",
+              "type": "speak",
+              "text": "I never study at night.",
+              "sound": "es",
+              "tip": "study arranca con st-, sin e delante. Ni «estudy» ni «estadi»."
+            },
+            {
+              "id": "a1u4l3e8",
+              "type": "speak",
+              "text": "She is always happy.",
+              "sound": "h",
+              "tip": "happy con la h soplada. «Api» no se entiende."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a1u5",
+      "title": "Tu casa y tu barrio",
+      "lessons": [
+        {
+          "id": "a1u5l1",
+          "title": "Hay una cocina y dos cuartos",
+          "theory": {
+            "title": "«Hay» son dos palabras distintas",
+            "body": "El español tiene una sola palabra para todo: **hay**. El inglés tiene dos, según lo que venga después.\n\n**There is** + una cosa (singular)\n*There is a kitchen.*\n\n**There are** + varias cosas (plural)\n*There are two bedrooms.*\n\nPara preguntar se da la vuelta:\n*Is there a bathroom?* · *Are there any chairs?*\n\nY para negar:\n*There isn't a garage.* · *There aren't any windows.*",
+            "trap": "Como «hay» no cambia nunca en español, sale *There is two bedrooms*. Hay que mirar lo que sigue: si son dos o más, **there are**. Y ojo con el otro error: «hay una mesa» no es *It has a table* — eso sería «ella tiene una mesa»."
+          },
+          "exercises": [
+            {
+              "id": "a1u5l1e1",
+              "type": "translate",
+              "es": "Hay dos cuartos.",
+              "options": [
+                "There is two bedrooms.",
+                "There are two bedrooms.",
+                "It has two bedrooms."
+              ],
+              "answer": "There are two bedrooms.",
+              "tip": "Dos cuartos son plural, así que there are."
+            },
+            {
+              "id": "a1u5l1e2",
+              "type": "listen",
+              "audio": "There is a problem.",
+              "options": [
+                "There is a problem.",
+                "There are a problem.",
+                "There isn't a problem."
+              ],
+              "answer": "There is a problem.",
+              "tip": "a problem es una sola cosa: there is."
+            },
+            {
+              "id": "a1u5l1e3",
+              "type": "translate",
+              "es": "¿Hay un baño aquí?",
+              "options": [
+                "There is a bathroom here?",
+                "Is there a bathroom here?",
+                "Have a bathroom here?"
+              ],
+              "answer": "Is there a bathroom here?",
+              "tip": "Para preguntar, is se va adelante: Is there...?"
+            },
+            {
+              "id": "a1u5l1e4",
+              "type": "listen",
+              "audio": "There aren't any chairs.",
+              "options": [
+                "There isn't any chairs.",
+                "There aren't any chairs.",
+                "There aren't some chairs."
+              ],
+              "answer": "There aren't any chairs.",
+              "tip": "chairs es plural (aren't) y en negativo se usa any, no some."
+            },
+            {
+              "id": "a1u5l1e5",
+              "type": "build",
+              "es": "Hay una tienda cerca de mi casa.",
+              "answer": "There is a store near my house.",
+              "extra": [
+                "are",
+                "in",
+                "houses"
+              ],
+              "tip": "Una tienda, singular: there is."
+            },
+            {
+              "id": "a1u5l1e6",
+              "type": "type",
+              "audio": "There are four people in my family.",
+              "meaning": "Somos cuatro en mi familia.",
+              "tip": "people ya es plural: nunca peoples."
+            },
+            {
+              "id": "a1u5l1e7",
+              "type": "speak",
+              "text": "There is a store near here.",
+              "sound": "es",
+              "tip": "store empieza con st-. Nada de «estore»."
+            },
+            {
+              "id": "a1u5l1e8",
+              "type": "speak",
+              "text": "There are three houses.",
+              "sound": "th",
+              "tip": "La th de three: la lengua asoma entre los dientes. No es «tri» ni «fri»."
+            }
+          ]
+        },
+        {
+          "id": "a1u5l2",
+          "title": "Un, una, el, la... y cuando no va nada",
+          "theory": {
+            "title": "a, an, the, o nada",
+            "body": "**a / an** = uno cualquiera, la primera vez que lo mencionas.\n*I have **a** car.* · *She is **an** engineer.*\n(**an** solo si la palabra empieza con sonido de vocal: an apple, an hour.)\n\n**the** = ese en concreto, el que ya sabemos cuál es.\n***The** car is red.* (el que acabo de mencionar)\n\n**Nada** delante de cosas en general, en plural o incontables:\n*I like coffee.* · *Cars are expensive.* · *Life is short.*",
+            "trap": "Dos errores que delatan al hispanohablante. Uno: *My sister is doctor* — en inglés las profesiones llevan artículo, **is a doctor**. Dos: *The life is hard* — al hablar de algo en general el inglés no pone the, **Life is hard**. Justo al revés que nosotros."
+          },
+          "exercises": [
+            {
+              "id": "a1u5l2e1",
+              "type": "translate",
+              "es": "Mi hermana es doctora.",
+              "options": [
+                "My sister is doctor.",
+                "My sister is a doctor.",
+                "My sister is the doctor."
+              ],
+              "answer": "My sister is a doctor.",
+              "tip": "Las profesiones siempre con a o an. Este es el error número uno del hispanohablante."
+            },
+            {
+              "id": "a1u5l2e2",
+              "type": "translate",
+              "es": "Me gusta el café.",
+              "options": [
+                "I like the coffee.",
+                "I like coffee.",
+                "I like a coffee."
+              ],
+              "answer": "I like coffee.",
+              "tip": "Café en general va sin artículo. The coffee sería un café concreto, ese de ahí."
+            },
+            {
+              "id": "a1u5l2e3",
+              "type": "listen",
+              "audio": "He is an engineer.",
+              "options": [
+                "He is a engineer.",
+                "He is an engineer.",
+                "He is engineer."
+              ],
+              "answer": "He is an engineer.",
+              "tip": "engineer empieza con sonido de vocal, así que an."
+            },
+            {
+              "id": "a1u5l2e4",
+              "type": "listen",
+              "audio": "The car is red.",
+              "options": [
+                "The car is red.",
+                "A car is red.",
+                "Car is red."
+              ],
+              "answer": "The car is red.",
+              "tip": "the porque hablamos de un carro concreto."
+            },
+            {
+              "id": "a1u5l2e5",
+              "type": "build",
+              "es": "Ella es maestra en una escuela.",
+              "answer": "She is a teacher at a school.",
+              "extra": [
+                "the",
+                "teachers",
+                "on"
+              ],
+              "tip": "Profesión con a, y el sitio con at."
+            },
+            {
+              "id": "a1u5l2e6",
+              "type": "type",
+              "audio": "I am a student.",
+              "meaning": "Soy estudiante.",
+              "tip": "student lleva a delante, y se escribe sin e inicial."
+            },
+            {
+              "id": "a1u5l2e7",
+              "type": "speak",
+              "text": "I am a student here.",
+              "sound": "es",
+              "tip": "student, no «estudent». Arranca con la s sola."
+            },
+            {
+              "id": "a1u5l2e8",
+              "type": "speak",
+              "text": "She is a teacher.",
+              "sound": "general",
+              "tip": "No te comas el a: is a teacher."
+            }
+          ]
+        },
+        {
+          "id": "a1u5l3",
+          "title": "Encima, debajo, al lado",
+          "theory": {
+            "title": "in, on, at: el trío que nunca cuadra",
+            "body": "Los tres se traducen «en», y por eso cuesta.\n\n**in** = dentro de algo\n*in the box, in the kitchen, in Colombia*\n\n**on** = tocando una superficie, encima\n*on the table, on the wall, on the floor*\n\n**at** = un punto, un sitio donde estás\n*at home, at work, at the door*\n\nY los demás son más fáciles porque se dibujan: **under** (debajo), **next to** (al lado), **between** (entre dos), **behind** (detrás), **in front of** (delante).",
+            "trap": "«El libro está en la mesa» sale como *The book is in the table* — pero eso significa *dentro* de la mesa. Si está encima es **on the table**. El español usa «en» para las tres; el inglés te obliga a decidir dónde está la cosa exactamente."
+          },
+          "exercises": [
+            {
+              "id": "a1u5l3e1",
+              "type": "translate",
+              "es": "El libro está en la mesa.",
+              "options": [
+                "The book is in the table.",
+                "The book is on the table.",
+                "The book is at the table."
+              ],
+              "answer": "The book is on the table.",
+              "tip": "Encima de una superficie: on."
+            },
+            {
+              "id": "a1u5l3e2",
+              "type": "translate",
+              "es": "Estoy en casa.",
+              "options": [
+                "I am in home.",
+                "I am at home.",
+                "I am on home."
+              ],
+              "answer": "I am at home.",
+              "tip": "at home y at work son fijas: se aprenden de memoria."
+            },
+            {
+              "id": "a1u5l3e3",
+              "type": "listen",
+              "audio": "The keys are in my bag.",
+              "options": [
+                "The keys are on my bag.",
+                "The keys are in my bag.",
+                "The keys are at my bag."
+              ],
+              "answer": "The keys are in my bag.",
+              "tip": "Dentro del bolso: in."
+            },
+            {
+              "id": "a1u5l3e4",
+              "type": "listen",
+              "audio": "The store is next to the bank.",
+              "options": [
+                "The store is next the bank.",
+                "The store is next to the bank.",
+                "The store is near to the bank."
+              ],
+              "answer": "The store is next to the bank.",
+              "tip": "next siempre lleva su to: next to."
+            },
+            {
+              "id": "a1u5l3e5",
+              "type": "build",
+              "es": "El gato está debajo de la cama.",
+              "answer": "The cat is under the bed.",
+              "extra": [
+                "on",
+                "in",
+                "beds"
+              ],
+              "tip": "under ya significa «debajo de»: no lleva of."
+            },
+            {
+              "id": "a1u5l3e6",
+              "type": "type",
+              "audio": "My house is behind the school.",
+              "meaning": "Mi casa está detrás de la escuela.",
+              "tip": "behind lleva la h en medio y sí se oye: bi-HAIND."
+            },
+            {
+              "id": "a1u5l3e7",
+              "type": "speak",
+              "text": "The book is on the shelf.",
+              "sound": "sh",
+              "tip": "shelf empieza con sh, ese sonido de «shhh». No es «chelf»."
+            },
+            {
+              "id": "a1u5l3e8",
+              "type": "speak",
+              "text": "My house is behind the school.",
+              "sound": "h",
+              "tip": "house y behind: las dos h se soplan."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a1u6",
+      "title": "Ahora mismo",
+      "lessons": [
+        {
+          "id": "a1u6l1",
+          "title": "Lo que está pasando ahora",
+          "theory": {
+            "title": "El presente continuo: am/is/are + -ing",
+            "body": "Para lo que está pasando **en este momento**, el inglés usa dos piezas:\n\n**am / is / are** + verbo con **-ing**\n\n*I **am eating**.* (Estoy comiendo)\n*She **is working**.* (Ella está trabajando)\n*They **are playing**.* (Están jugando)\n\nNunca va solo el -ing. Si no está am, is o are, la frase está rota:\n*I eating* ❌ → *I **am** eating* ✅",
+            "trap": "En español decimos «trabajo ahora» tan tranquilos, con el presente de siempre. Por eso sale *I work now*. En inglés eso significa «trabajo habitualmente». Si es ahora mismo: **I am working now**. El inglés separa lo que haces siempre de lo que estás haciendo en este segundo."
+          },
+          "exercises": [
+            {
+              "id": "a1u6l1e1",
+              "type": "translate",
+              "es": "Estoy comiendo.",
+              "options": [
+                "I eating.",
+                "I am eating.",
+                "I eat."
+              ],
+              "answer": "I am eating.",
+              "tip": "El -ing nunca va solo: necesita am, is o are."
+            },
+            {
+              "id": "a1u6l1e2",
+              "type": "listen",
+              "audio": "She is working right now.",
+              "options": [
+                "She working right now.",
+                "She is working right now.",
+                "She works right now."
+              ],
+              "answer": "She is working right now.",
+              "tip": "right now es la pista: algo que pasa en este momento."
+            },
+            {
+              "id": "a1u6l1e3",
+              "type": "translate",
+              "es": "¿Qué estás haciendo?",
+              "options": [
+                "What you doing?",
+                "What are you doing?",
+                "What do you doing?"
+              ],
+              "answer": "What are you doing?",
+              "tip": "Pregunta muy común. Memorízala entera."
+            },
+            {
+              "id": "a1u6l1e4",
+              "type": "listen",
+              "audio": "They are not listening.",
+              "options": [
+                "They not listening.",
+                "They are not listening.",
+                "They don't listening."
+              ],
+              "answer": "They are not listening.",
+              "tip": "Para negar, el not va entre are y el verbo."
+            },
+            {
+              "id": "a1u6l1e5",
+              "type": "build",
+              "es": "El bebé está durmiendo.",
+              "answer": "The baby is sleeping.",
+              "extra": [
+                "are",
+                "sleep",
+                "sleeps"
+              ],
+              "tip": "is porque the baby es uno solo."
+            },
+            {
+              "id": "a1u6l1e6",
+              "type": "type",
+              "audio": "I am learning English.",
+              "meaning": "Estoy aprendiendo inglés.",
+              "tip": "learning con dos partes: learn + ing."
+            },
+            {
+              "id": "a1u6l1e7",
+              "type": "speak",
+              "text": "I am studying English now.",
+              "sound": "es",
+              "tip": "studying arranca con st-. Sin e delante."
+            },
+            {
+              "id": "a1u6l1e8",
+              "type": "speak",
+              "text": "She is shopping with her mother.",
+              "sound": "sh",
+              "tip": "shopping con sh de «shhh». Y la h de her también se sopla."
+            }
+          ]
+        },
+        {
+          "id": "a1u6l2",
+          "title": "Ahora o siempre",
+          "theory": {
+            "title": "Los dos presentes, y cómo elegir",
+            "body": "El inglés tiene dos presentes y cada uno dice algo distinto.\n\n**Presente simple** — lo que haces siempre, tu rutina, lo que es verdad en general:\n*I **work** in a bank.* (ese es mi trabajo)\n*She **drinks** coffee.* (le gusta el café)\n\n**Presente continuo** — lo que pasa ahora mismo, hoy, esta temporada:\n*I **am working** today.* (hoy, en este momento)\n*She **is drinking** coffee.* (la taza está en su mano)\n\nPalabras que te avisan: *always, usually, every day* → simple. *now, right now, today, at the moment* → continuo.",
+            "trap": "Hay verbos que en inglés **nunca** van en continuo aunque en español sí: like, want, need, know, understand. *I am wanting a coffee* ❌ → **I want a coffee** ✅. Son verbos de cabeza y de gusto, no de acción."
+          },
+          "exercises": [
+            {
+              "id": "a1u6l2e1",
+              "type": "translate",
+              "es": "Trabajo en un banco.",
+              "options": [
+                "I am working in a bank.",
+                "I work in a bank.",
+                "I working in a bank."
+              ],
+              "answer": "I work in a bank.",
+              "tip": "Es tu trabajo de siempre, no lo que haces ahorita: presente simple."
+            },
+            {
+              "id": "a1u6l2e2",
+              "type": "translate",
+              "es": "Quiero un café.",
+              "options": [
+                "I am wanting a coffee.",
+                "I want a coffee.",
+                "I wanting a coffee."
+              ],
+              "answer": "I want a coffee.",
+              "tip": "want nunca lleva -ing. Es de los verbos que no se ponen en continuo."
+            },
+            {
+              "id": "a1u6l2e3",
+              "type": "listen",
+              "audio": "He usually takes the bus.",
+              "options": [
+                "He is usually taking the bus.",
+                "He usually takes the bus.",
+                "He usually take the bus."
+              ],
+              "answer": "He usually takes the bus.",
+              "tip": "usually avisa que es rutina: presente simple con -s."
+            },
+            {
+              "id": "a1u6l2e4",
+              "type": "listen",
+              "audio": "I am watching a movie.",
+              "options": [
+                "I watch a movie.",
+                "I am watching a movie.",
+                "I am watch a movie."
+              ],
+              "answer": "I am watching a movie.",
+              "tip": "Ahora mismo, con la película puesta: continuo."
+            },
+            {
+              "id": "a1u6l2e5",
+              "type": "build",
+              "es": "Ella no entiende la pregunta.",
+              "answer": "She doesn't understand the question.",
+              "extra": [
+                "understanding",
+                "is",
+                "not"
+              ],
+              "tip": "understand es de cabeza: nunca en continuo."
+            },
+            {
+              "id": "a1u6l2e6",
+              "type": "type",
+              "audio": "We are waiting for the bus.",
+              "meaning": "Estamos esperando el bus.",
+              "tip": "wait siempre lleva for: wait for something."
+            },
+            {
+              "id": "a1u6l2e7",
+              "type": "speak",
+              "text": "I don't understand the question.",
+              "sound": "general",
+              "tip": "Frase útil de verdad. Dila entera y sin prisa."
+            },
+            {
+              "id": "a1u6l2e8",
+              "type": "speak",
+              "text": "He is speaking Spanish.",
+              "sound": "es",
+              "tip": "speaking y Spanish: las dos empiezan con s pura, sin e."
+            }
+          ]
+        },
+        {
+          "id": "a1u6l3",
+          "title": "Esto, eso, estos, esos",
+          "theory": {
+            "title": "this, that, these, those",
+            "body": "Solo hay dos preguntas: ¿está cerca o lejos? ¿es uno o son varios?\n\n| | cerca | lejos |\n|---|---|---|\n| **uno** | this | that |\n| **varios** | these | those |\n\n***This** is my phone.* (lo tengo en la mano)\n***That** is your car.* (está allá)\n***These** are my keys.* (aquí)\n***Those** are his books.* (allá)\n\nAl teléfono se usa así: *Hi, **this** is Fero.*",
+            "trap": "these y this suenan casi igual y se confunden al escribir. Truco: **these** tiene la e larga de *cheese*, y es la del plural. Además, ojo con la th: no es «dis» ni «zis»."
+          },
+          "exercises": [
+            {
+              "id": "a1u6l3e1",
+              "type": "translate",
+              "es": "Este es mi teléfono.",
+              "options": [
+                "This is my phone.",
+                "These is my phone.",
+                "That is my phone."
+              ],
+              "answer": "This is my phone.",
+              "tip": "Uno solo y cerca: this."
+            },
+            {
+              "id": "a1u6l3e2",
+              "type": "translate",
+              "es": "Esas son sus llaves.",
+              "options": [
+                "That are his keys.",
+                "Those are his keys.",
+                "These are his keys."
+              ],
+              "answer": "Those are his keys.",
+              "tip": "Varias y lejos: those. Y el verbo va en plural, are."
+            },
+            {
+              "id": "a1u6l3e3",
+              "type": "listen",
+              "audio": "These are my books.",
+              "options": [
+                "This are my books.",
+                "These are my books.",
+                "Those is my books."
+              ],
+              "answer": "These are my books.",
+              "tip": "these + are, siempre juntos en plural."
+            },
+            {
+              "id": "a1u6l3e4",
+              "type": "listen",
+              "audio": "That is a good idea.",
+              "options": [
+                "That is a good idea.",
+                "That is good idea.",
+                "Those is a good idea."
+              ],
+              "answer": "That is a good idea.",
+              "tip": "idea lleva a delante: a good idea."
+            },
+            {
+              "id": "a1u6l3e5",
+              "type": "build",
+              "es": "El carro de mi hermano es rojo.",
+              "answer": "My brother's car is red.",
+              "extra": [
+                "of",
+                "brothers",
+                "the"
+              ],
+              "tip": "La pertenencia se marca con 's, no con of."
+            },
+            {
+              "id": "a1u6l3e6",
+              "type": "type",
+              "audio": "This is not my bag.",
+              "meaning": "Este no es mi bolso.",
+              "tip": "this is not, o this isn't."
+            },
+            {
+              "id": "a1u6l3e7",
+              "type": "speak",
+              "text": "This is my brother.",
+              "sound": "th",
+              "tip": "La th de this: lengua entre los dientes y con voz. No es «dis»."
+            },
+            {
+              "id": "a1u6l3e8",
+              "type": "speak",
+              "text": "These are those books.",
+              "sound": "th",
+              "tip": "Dos th: these y those. Lengua entre los dientes en las dos."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a1u7",
+      "title": "En la tienda",
+      "lessons": [
+        {
+          "id": "a1u7l1",
+          "title": "Cuánto y cuántos",
+          "theory": {
+            "title": "Cosas que se cuentan y cosas que no",
+            "body": "El inglés separa las cosas en dos grupos y usa palabras distintas para cada uno.\n\n**Se cuentan** (apples, chairs, people):\n*How **many** apples?* · *a **few** apples* · *some apples*\n\n**No se cuentan** (water, money, time, rice):\n*How **much** water?* · *a **little** water* · *some water*\n\n**a lot of** sirve para los dos: *a lot of apples, a lot of water*.\n\nY en preguntas y negativos, **some** se vuelve **any**:\n*I have **some** money.* → *Do you have **any** money?* → *I don't have **any** money.*",
+            "trap": "*How many money do you have?* es el error clásico: en español «cuánto dinero» y «cuántas manzanas» se parecen demasiado. El dinero no se cuenta en inglés — se cuentan los billetes, no el dinero. Es **How much money**."
+          },
+          "exercises": [
+            {
+              "id": "a1u7l1e1",
+              "type": "translate",
+              "es": "¿Cuánto dinero tienes?",
+              "options": [
+                "How many money do you have?",
+                "How much money do you have?",
+                "How much moneys do you have?"
+              ],
+              "answer": "How much money do you have?",
+              "tip": "money no se cuenta: much. Y nunca lleva -s."
+            },
+            {
+              "id": "a1u7l1e2",
+              "type": "translate",
+              "es": "¿Cuántas personas hay?",
+              "options": [
+                "How much people are there?",
+                "How many people are there?",
+                "How many persons are there?"
+              ],
+              "answer": "How many people are there?",
+              "tip": "people se cuenta, y ya es el plural de person."
+            },
+            {
+              "id": "a1u7l1e3",
+              "type": "listen",
+              "audio": "I don't have any sugar.",
+              "options": [
+                "I don't have some sugar.",
+                "I don't have any sugar.",
+                "I don't have many sugar."
+              ],
+              "answer": "I don't have any sugar.",
+              "tip": "En negativo, some se convierte en any."
+            },
+            {
+              "id": "a1u7l1e4",
+              "type": "listen",
+              "audio": "There is a lot of water.",
+              "options": [
+                "There are a lot of water.",
+                "There is a lot of water.",
+                "There is many water."
+              ],
+              "answer": "There is a lot of water.",
+              "tip": "water no se cuenta: is, y a lot of."
+            },
+            {
+              "id": "a1u7l1e5",
+              "type": "build",
+              "es": "¿Tienes algo de tiempo?",
+              "answer": "Do you have any time?",
+              "extra": [
+                "many",
+                "times",
+                "much"
+              ],
+              "tip": "En pregunta va any. Y time así no lleva -s."
+            },
+            {
+              "id": "a1u7l1e6",
+              "type": "type",
+              "audio": "We need some milk.",
+              "meaning": "Necesitamos leche.",
+              "tip": "En afirmativo va some. milk no lleva -s."
+            },
+            {
+              "id": "a1u7l1e7",
+              "type": "speak",
+              "text": "How much does this cost?",
+              "sound": "h",
+              "tip": "La h de How se sopla. Es la pregunta más útil de una tienda."
+            },
+            {
+              "id": "a1u7l1e8",
+              "type": "speak",
+              "text": "I need some sugar.",
+              "sound": "sh",
+              "tip": "sugar no suena «su-gar»: es «SHU-gar», con sh."
+            }
+          ]
+        },
+        {
+          "id": "a1u7l2",
+          "title": "Quisiera, por favor",
+          "theory": {
+            "title": "would like: pedir sin sonar brusco",
+            "body": "**I want** no está mal, pero suena seco, como un niño exigiendo. Para pedir cosas se usa:\n\n**I would like** = quisiera (casi siempre escrito **I'd like**)\n\n*I'd like a coffee, please.*\n*I'd like to see the menu.*\n\nY para ofrecer:\n**Would you like** a coffee? = ¿quiere un café?\n\nRegla: si va un verbo después, lleva **to**.\n*I'd like **to** go.* · *Would you like **to** sit down?*",
+            "trap": "*I want a coffee* en una cafetería suena a orden. No es gramática, es educación — y en inglés se nota más que en español, donde «quiero un café» pasa sin problema. Di **I'd like a coffee, please**."
+          },
+          "exercises": [
+            {
+              "id": "a1u7l2e1",
+              "type": "translate",
+              "es": "Quisiera un café, por favor.",
+              "options": [
+                "I want a coffee, please.",
+                "I'd like a coffee, please.",
+                "I like a coffee, please."
+              ],
+              "answer": "I'd like a coffee, please.",
+              "tip": "I'd like es la forma normal al hablar. Es la contracción de I would like."
+            },
+            {
+              "id": "a1u7l2e2",
+              "type": "translate",
+              "es": "Me gustaría ver el menú.",
+              "options": [
+                "I'd like see the menu.",
+                "I'd like to see the menu.",
+                "I'd like seeing the menu."
+              ],
+              "answer": "I'd like to see the menu.",
+              "tip": "Si sigue un verbo, hace falta to."
+            },
+            {
+              "id": "a1u7l2e3",
+              "type": "listen",
+              "audio": "Would you like some tea?",
+              "options": [
+                "Do you like some tea?",
+                "Would you like some tea?",
+                "Would you like any tea?"
+              ],
+              "answer": "Would you like some tea?",
+              "tip": "Al ofrecer se usa some, aunque sea pregunta. Es la excepción al any."
+            },
+            {
+              "id": "a1u7l2e4",
+              "type": "listen",
+              "audio": "She would like to go home.",
+              "options": [
+                "She would like go home.",
+                "She would like to go home.",
+                "She likes to go home."
+              ],
+              "answer": "She would like to go home.",
+              "tip": "would like to + verbo."
+            },
+            {
+              "id": "a1u7l2e5",
+              "type": "build",
+              "es": "Quisiéramos una mesa para dos.",
+              "answer": "We'd like a table for two.",
+              "extra": [
+                "want",
+                "to",
+                "of"
+              ],
+              "tip": "We'd like = we would like. Aquí no hay verbo después, así que no lleva to."
+            },
+            {
+              "id": "a1u7l2e6",
+              "type": "type",
+              "audio": "Would you like to sit down?",
+              "meaning": "¿Quiere sentarse?",
+              "tip": "sit down, dos palabras."
+            },
+            {
+              "id": "a1u7l2e7",
+              "type": "speak",
+              "text": "I would like a coffee, please.",
+              "sound": "general",
+              "tip": "Dila completa y con calma. Es tu frase para cualquier mostrador."
+            },
+            {
+              "id": "a1u7l2e8",
+              "type": "speak",
+              "text": "Would you like to sit here?",
+              "sound": "h",
+              "tip": "La h de here se sopla."
+            }
+          ]
+        },
+        {
+          "id": "a1u7l3",
+          "title": "Puedo, no puedo",
+          "theory": {
+            "title": "can: una sola forma para todo",
+            "body": "**can** es de los más fáciles del inglés porque **no cambia nunca**.\n\n*I can · you can · he can · she can · we can · they can*\n\nSin -s, sin do, sin nada.\n\n**Negativo:** can't (*I can't swim.*)\n**Pregunta:** Can you...? (*Can you help me?*)\n\nY lo que va después siempre es el verbo pelado, **sin to**:\n*I can **swim**.* · *Can you **help** me?*",
+            "trap": "*He cans* ❌ y *Can you to help me?* ❌ son los dos errores. En español «poder» se conjuga («puedo, puedes, puede») y lleva infinitivo detrás, así que la mano quiere escribir to. En inglés can se queda quieto y lo que sigue va desnudo: **Can you help me?**"
+          },
+          "exercises": [
+            {
+              "id": "a1u7l3e1",
+              "type": "translate",
+              "es": "¿Puedes ayudarme?",
+              "options": [
+                "Can you to help me?",
+                "Can you help me?",
+                "Do you can help me?"
+              ],
+              "answer": "Can you help me?",
+              "tip": "Después de can, el verbo va sin to."
+            },
+            {
+              "id": "a1u7l3e2",
+              "type": "translate",
+              "es": "Ella puede hablar tres idiomas.",
+              "options": [
+                "She cans speak three languages.",
+                "She can speak three languages.",
+                "She can speaks three languages."
+              ],
+              "answer": "She can speak three languages.",
+              "tip": "can no lleva -s, y el verbo detrás tampoco."
+            },
+            {
+              "id": "a1u7l3e3",
+              "type": "listen",
+              "audio": "I can't hear you.",
+              "options": [
+                "I can't hear you.",
+                "I don't can hear you.",
+                "I can't to hear you."
+              ],
+              "answer": "I can't hear you.",
+              "tip": "can't es la negación. Frase de oro en una llamada."
+            },
+            {
+              "id": "a1u7l3e4",
+              "type": "listen",
+              "audio": "Can I pay with a card?",
+              "options": [
+                "Can I to pay with a card?",
+                "Can I pay with a card?",
+                "Do I can pay with a card?"
+              ],
+              "answer": "Can I pay with a card?",
+              "tip": "Con tarjeta: with a card o by card, las dos sirven."
+            },
+            {
+              "id": "a1u7l3e5",
+              "type": "build",
+              "es": "No puedo ir hoy.",
+              "answer": "I can't go today.",
+              "extra": [
+                "to",
+                "don't",
+                "goes"
+              ],
+              "tip": "can't + verbo pelado."
+            },
+            {
+              "id": "a1u7l3e6",
+              "type": "type",
+              "audio": "Can you speak more slowly?",
+              "meaning": "¿Puede hablar más despacio?",
+              "tip": "Guárdala: te va a salvar en cualquier conversación."
+            },
+            {
+              "id": "a1u7l3e7",
+              "type": "speak",
+              "text": "Can you help me, please?",
+              "sound": "h",
+              "tip": "help con la h soplada. «Elp» no se entiende."
+            },
+            {
+              "id": "a1u7l3e8",
+              "type": "speak",
+              "text": "Can you speak more slowly?",
+              "sound": "es",
+              "tip": "speak sin e delante, y slowly con la l bien marcada."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a1u8",
+      "title": "Lo que pasó",
+      "lessons": [
+        {
+          "id": "a1u8l1",
+          "title": "Dónde estuviste",
+          "theory": {
+            "title": "was y were: el pasado de to be",
+            "body": "El pasado de **am/is/are** son solo dos palabras:\n\n**was** → I, he, she, it\n*I **was** tired.* · *She **was** at home.*\n\n**were** → you, we, they\n*You **were** right.* · *They **were** happy.*\n\n**Negativo:** wasn't / weren't\n**Pregunta:** *Were you at the party?* · *Was he there?*",
+            "trap": "«Estuve en la fiesta» sale como *I was in the party* — y eso significa que estabas *dentro* del concepto fiesta. Para eventos el inglés usa **at**: **I was at the party**. Lo mismo con at school, at work, at the concert."
+          },
+          "exercises": [
+            {
+              "id": "a1u8l1e1",
+              "type": "translate",
+              "es": "Estuve en la fiesta.",
+              "options": [
+                "I was in the party.",
+                "I was at the party.",
+                "I were at the party."
+              ],
+              "answer": "I was at the party.",
+              "tip": "Eventos y sitios con at: at the party, at work, at school."
+            },
+            {
+              "id": "a1u8l1e2",
+              "type": "translate",
+              "es": "Ellos estaban cansados.",
+              "options": [
+                "They was tired.",
+                "They were tired.",
+                "They are tired."
+              ],
+              "answer": "They were tired.",
+              "tip": "they siempre con were."
+            },
+            {
+              "id": "a1u8l1e3",
+              "type": "listen",
+              "audio": "She was at home yesterday.",
+              "options": [
+                "She were at home yesterday.",
+                "She was at home yesterday.",
+                "She was in home yesterday."
+              ],
+              "answer": "She was at home yesterday.",
+              "tip": "she → was, y at home siempre."
+            },
+            {
+              "id": "a1u8l1e4",
+              "type": "listen",
+              "audio": "We weren't ready.",
+              "options": [
+                "We wasn't ready.",
+                "We weren't ready.",
+                "We not were ready."
+              ],
+              "answer": "We weren't ready.",
+              "tip": "we → were → weren't."
+            },
+            {
+              "id": "a1u8l1e5",
+              "type": "build",
+              "es": "¿Estabas en el trabajo ayer?",
+              "answer": "Were you at work yesterday?",
+              "extra": [
+                "was",
+                "in",
+                "the"
+              ],
+              "tip": "you → were, y at work sin the."
+            },
+            {
+              "id": "a1u8l1e6",
+              "type": "type",
+              "audio": "It was a good day.",
+              "meaning": "Fue un buen día.",
+              "tip": "it → was, y a good day con artículo."
+            },
+            {
+              "id": "a1u8l1e7",
+              "type": "speak",
+              "text": "I was at home last night.",
+              "sound": "h",
+              "tip": "home con h soplada."
+            },
+            {
+              "id": "a1u8l1e8",
+              "type": "speak",
+              "text": "They were at the shop.",
+              "sound": "sh",
+              "tip": "shop con sh de «shhh», no «chop»."
+            }
+          ]
+        },
+        {
+          "id": "a1u8l2",
+          "title": "Ayer trabajé",
+          "theory": {
+            "title": "La -ed, y cómo suena de verdad",
+            "body": "Para el pasado de la mayoría de verbos se pega **-ed** al final:\n\n*work → work**ed*** · *play → play**ed*** · *live → live**d***\n\nY no cambia con la persona: **I worked, he worked, they worked**. Una sola forma para todos.\n\nLo difícil no es escribirla: es **sonarla**. La -ed suena de tres maneras y casi nunca es una sílaba nueva:\n\n- **/t/** tras sonido sordo: *walked* suena «wokt», *asked* suena «askt»\n- **/d/** tras sonido sonoro: *played* suena «pleid», *lived* suena «livd»\n- **/id/** — sílaba de verdad — **solo** tras t o d: *wanted* «wonted», *needed* «nidid»",
+            "trap": "El error insignia: decir *walk-ed* como dos sílabas, «wok-ed». En español todas las letras suenan, así que la mano y la boca quieren pronunciar esa e. En inglés la e es muda salvo tras t o d. Son **walked** «wokt», **talked** «tokt», **asked** «askt» — una sola sílaba."
+          },
+          "exercises": [
+            {
+              "id": "a1u8l2e1",
+              "type": "translate",
+              "es": "Trabajé ayer.",
+              "options": [
+                "I work yesterday.",
+                "I worked yesterday.",
+                "I was work yesterday."
+              ],
+              "answer": "I worked yesterday.",
+              "tip": "yesterday pide pasado: worked."
+            },
+            {
+              "id": "a1u8l2e2",
+              "type": "translate",
+              "es": "Ella vivió en México.",
+              "options": [
+                "She lived in Mexico.",
+                "She livd in Mexico.",
+                "She was live in Mexico."
+              ],
+              "answer": "She lived in Mexico.",
+              "tip": "live ya termina en e, así que solo se le suma d."
+            },
+            {
+              "id": "a1u8l2e3",
+              "type": "listen",
+              "audio": "They played football.",
+              "options": [
+                "They play football.",
+                "They played football.",
+                "They playing football."
+              ],
+              "answer": "They played football.",
+              "tip": "played suena «pleid», en una sola sílaba."
+            },
+            {
+              "id": "a1u8l2e4",
+              "type": "listen",
+              "audio": "I wanted to call you.",
+              "options": [
+                "I want to call you.",
+                "I wanted to call you.",
+                "I wantd to call you."
+              ],
+              "answer": "I wanted to call you.",
+              "tip": "Aquí sí es sílaba aparte: want termina en t, así que wanted suena «WON-ted»."
+            },
+            {
+              "id": "a1u8l2e5",
+              "type": "build",
+              "es": "Estudiamos inglés el año pasado.",
+              "answer": "We studied English last year.",
+              "extra": [
+                "study",
+                "studyed",
+                "in"
+              ],
+              "tip": "study cambia la y: studied. Y «el año pasado» es last year, sin the."
+            },
+            {
+              "id": "a1u8l2e6",
+              "type": "type",
+              "audio": "She asked me a question.",
+              "meaning": "Ella me hizo una pregunta.",
+              "tip": "asked se escribe con -ed aunque suene «askt»."
+            },
+            {
+              "id": "a1u8l2e7",
+              "type": "speak",
+              "text": "I walked to work yesterday.",
+              "sound": "ed",
+              "tip": "walked es UNA sílaba: «wokt». Si dices «wok-ed» te lo va a marcar."
+            },
+            {
+              "id": "a1u8l2e8",
+              "type": "speak",
+              "text": "She asked and I answered.",
+              "sound": "ed",
+              "tip": "asked «askt», answered «AN-serd». Ninguna de las dos gana una sílaba."
+            }
+          ]
+        },
+        {
+          "id": "a1u8l3",
+          "title": "Verbos que cambian",
+          "theory": {
+            "title": "Los irregulares: hay que aprendérselos",
+            "body": "Unos 100 verbos no siguen la regla de -ed. Y son justo los que más se usan. No hay truco: se memorizan.\n\nLos diez que más vas a necesitar:\n\n| ahora | pasado | |\n|---|---|---|\n| go | **went** | ir |\n| have | **had** | tener |\n| do | **did** | hacer |\n| say | **said** | decir |\n| see | **saw** | ver |\n| get | **got** | conseguir |\n| make | **made** | hacer |\n| come | **came** | venir |\n| take | **took** | tomar |\n| eat | **ate** | comer |\n\nY como los regulares: **no cambian con la persona**. I went, he went, they went.",
+            "trap": "El error no suele ser el verbo suelto, sino mezclarlo: *I didn't went* ❌. Cuando aparece **did** o **didn't**, el verbo vuelve a su forma normal: **I didn't go**. El did ya carga el pasado, igual que el does cargaba la -s."
+          },
+          "exercises": [
+            {
+              "id": "a1u8l3e1",
+              "type": "translate",
+              "es": "Fui al médico ayer.",
+              "options": [
+                "I goed to the doctor yesterday.",
+                "I went to the doctor yesterday.",
+                "I was go to the doctor yesterday."
+              ],
+              "answer": "I went to the doctor yesterday.",
+              "tip": "go → went. No existe goed."
+            },
+            {
+              "id": "a1u8l3e2",
+              "type": "translate",
+              "es": "Ella tuvo un problema.",
+              "options": [
+                "She haved a problem.",
+                "She had a problem.",
+                "She has a problem."
+              ],
+              "answer": "She had a problem.",
+              "tip": "have → had, para todas las personas."
+            },
+            {
+              "id": "a1u8l3e3",
+              "type": "listen",
+              "audio": "We saw a good movie.",
+              "options": [
+                "We see a good movie.",
+                "We saw a good movie.",
+                "We seen a good movie."
+              ],
+              "answer": "We saw a good movie.",
+              "tip": "see → saw. seen es otra forma, todavía no la necesitas."
+            },
+            {
+              "id": "a1u8l3e4",
+              "type": "listen",
+              "audio": "He made dinner last night.",
+              "options": [
+                "He maked dinner last night.",
+                "He made dinner last night.",
+                "He did dinner last night."
+              ],
+              "answer": "He made dinner last night.",
+              "tip": "make → made. Y la comida se make, no se do."
+            },
+            {
+              "id": "a1u8l3e5",
+              "type": "build",
+              "es": "Ellos vinieron a mi casa.",
+              "answer": "They came to my house.",
+              "extra": [
+                "comed",
+                "come",
+                "in"
+              ],
+              "tip": "come → came."
+            },
+            {
+              "id": "a1u8l3e6",
+              "type": "type",
+              "audio": "I took the bus to work.",
+              "meaning": "Tomé el bus al trabajo.",
+              "tip": "take → took."
+            },
+            {
+              "id": "a1u8l3e7",
+              "type": "speak",
+              "text": "I went home early.",
+              "sound": "h",
+              "tip": "home con la h soplada."
+            },
+            {
+              "id": "a1u8l3e8",
+              "type": "speak",
+              "text": "She said three things.",
+              "sound": "th",
+              "tip": "three y things: las dos con la lengua entre los dientes."
+            }
+          ]
+        },
+        {
+          "id": "a1u8l4",
+          "title": "No fui, ¿fuiste?",
+          "theory": {
+            "title": "did y didn't",
+            "body": "Para negar y preguntar en pasado hay un solo ayudante, y sirve para todos: **did**.\n\n**Negar:** didn't + verbo normal\n*I **didn't go**.* · *She **didn't work**.*\n\n**Preguntar:** Did + sujeto + verbo normal\n***Did** you **go**?* · ***Did** he **call**?*\n\nLa regla es la misma de siempre, con otra cara: **cuando aparece did, el verbo vuelve a su forma base**. El pasado ya está en el did.\n\n*I didn't went* ❌ → *I didn't **go*** ✅\n*Did you went?* ❌ → *Did you **go**?* ✅",
+            "trap": "Poner el pasado dos veces es el error más común de todos, y no es tontería: en español «no fui» lleva el pasado en el verbo, porque no hay ayudante. En inglés el pasado lo carga el did y el verbo se queda desnudo. Si ves did o didn't en tu frase, revisa que el verbo esté en presente."
+          },
+          "exercises": [
+            {
+              "id": "a1u8l4e1",
+              "type": "translate",
+              "es": "No fui a la fiesta.",
+              "options": [
+                "I didn't went to the party.",
+                "I didn't go to the party.",
+                "I not went to the party."
+              ],
+              "answer": "I didn't go to the party.",
+              "tip": "didn't ya es el pasado: go se queda en presente."
+            },
+            {
+              "id": "a1u8l4e2",
+              "type": "translate",
+              "es": "¿Hablaste con ella?",
+              "options": [
+                "Did you spoke with her?",
+                "Did you speak with her?",
+                "You spoke with her?"
+              ],
+              "answer": "Did you speak with her?",
+              "tip": "Did + speak, no spoke."
+            },
+            {
+              "id": "a1u8l4e3",
+              "type": "listen",
+              "audio": "She didn't call me.",
+              "options": [
+                "She didn't called me.",
+                "She didn't call me.",
+                "She don't call me."
+              ],
+              "answer": "She didn't call me.",
+              "tip": "didn't + call, sin -ed."
+            },
+            {
+              "id": "a1u8l4e4",
+              "type": "listen",
+              "audio": "Did they like the food?",
+              "options": [
+                "Did they liked the food?",
+                "Did they like the food?",
+                "Did they likes the food?"
+              ],
+              "answer": "Did they like the food?",
+              "tip": "Después de did, siempre la forma base."
+            },
+            {
+              "id": "a1u8l4e5",
+              "type": "build",
+              "es": "No vi la película.",
+              "answer": "I didn't see the movie.",
+              "extra": [
+                "saw",
+                "seen",
+                "not"
+              ],
+              "tip": "didn't + see. El saw no va porque el did ya carga el pasado."
+            },
+            {
+              "id": "a1u8l4e6",
+              "type": "type",
+              "audio": "Did you have a good weekend?",
+              "meaning": "¿Tuviste un buen fin de semana?",
+              "tip": "Did + have, no had. Pregunta de lunes por la mañana."
+            },
+            {
+              "id": "a1u8l4e7",
+              "type": "speak",
+              "text": "I didn't have time.",
+              "sound": "h",
+              "tip": "have con la h soplada."
+            },
+            {
+              "id": "a1u8l4e8",
+              "type": "speak",
+              "text": "Did you watch the show?",
+              "sound": "sh",
+              "tip": "show con sh. Y watch termina en ch, que es distinto."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a1u9",
+      "title": "Lo que viene",
+      "lessons": [
+        {
+          "id": "a1u9l1",
+          "title": "Voy a...",
+          "theory": {
+            "title": "be going to: planes que ya están decididos",
+            "body": "Para lo que ya tienes planeado:\n\n**am / is / are + going to + verbo**\n\n*I **am going to** travel next week.*\n*She **is going to** study medicine.*\n*They **are going to** move to Cali.*\n\nSe parece mucho al español «voy a viajar», y por una vez la traducción funciona pieza por pieza. Lo único que no se puede olvidar es el **am/is/are** del principio.\n\nAl hablar rápido, *going to* suena «gonna». Lo vas a oír muchísimo.",
+            "trap": "El calco directo es *I go to travel* — porque en español «voy» ya es el verbo ir. En inglés hacen falta las tres piezas: **I am going to travel**. Si te falta el am/is/are, la frase se rompe."
+          },
+          "exercises": [
+            {
+              "id": "a1u9l1e1",
+              "type": "translate",
+              "es": "Voy a viajar la próxima semana.",
+              "options": [
+                "I go to travel next week.",
+                "I am going to travel next week.",
+                "I going to travel next week."
+              ],
+              "answer": "I am going to travel next week.",
+              "tip": "Las tres piezas: am + going to + verbo."
+            },
+            {
+              "id": "a1u9l1e2",
+              "type": "translate",
+              "es": "Ella va a estudiar medicina.",
+              "options": [
+                "She is going to study medicine.",
+                "She goes to study medicine.",
+                "She is going study medicine."
+              ],
+              "answer": "She is going to study medicine.",
+              "tip": "going to nunca pierde su to."
+            },
+            {
+              "id": "a1u9l1e3",
+              "type": "listen",
+              "audio": "We are going to buy a house.",
+              "options": [
+                "We going to buy a house.",
+                "We are going to buy a house.",
+                "We are going to buying a house."
+              ],
+              "answer": "We are going to buy a house.",
+              "tip": "Después de to, el verbo va desnudo: buy."
+            },
+            {
+              "id": "a1u9l1e4",
+              "type": "listen",
+              "audio": "He isn't going to come.",
+              "options": [
+                "He isn't going to come.",
+                "He doesn't going to come.",
+                "He isn't go to come."
+              ],
+              "answer": "He isn't going to come.",
+              "tip": "Se niega el is: isn't going to."
+            },
+            {
+              "id": "a1u9l1e5",
+              "type": "build",
+              "es": "¿Qué vas a hacer mañana?",
+              "answer": "What are you going to do tomorrow?",
+              "extra": [
+                "goes",
+                "did",
+                "does"
+              ],
+              "tip": "What + are you + going to + do."
+            },
+            {
+              "id": "a1u9l1e6",
+              "type": "type",
+              "audio": "I am going to call you later.",
+              "meaning": "Te voy a llamar más tarde.",
+              "tip": "call you, sin to en medio."
+            },
+            {
+              "id": "a1u9l1e7",
+              "type": "speak",
+              "text": "I am going to study tonight.",
+              "sound": "es",
+              "tip": "study sin e delante."
+            },
+            {
+              "id": "a1u9l1e8",
+              "type": "speak",
+              "text": "She is going to help me.",
+              "sound": "h",
+              "tip": "help con la h soplada."
+            }
+          ]
+        },
+        {
+          "id": "a1u9l2",
+          "title": "Creo que...",
+          "theory": {
+            "title": "will: lo que decides en el momento",
+            "body": "**will** es para lo que **no** tenías planeado: una decisión que tomas ahora mismo, una promesa, una predicción.\n\n*The phone is ringing. I'**ll** get it.* (lo decides en ese segundo)\n*I think it **will** rain.* (predicción)\n*I **won't** forget.* (promesa)\n\nComo **can**, no cambia nunca: I will, he will, they will. Y lo que sigue va desnudo, sin to.\n\n**will not = won't**\n\nLa diferencia con *going to*: **going to** ya estaba decidido, **will** se decide al hablar.",
+            "trap": "En español el futuro va pegado al verbo («lloverá», «iré»), así que no hay una palabra suelta que recordar y se olvida el will. Y ojo: *I will to go* ❌ — igual que can, will no lleva to: **I will go**."
+          },
+          "exercises": [
+            {
+              "id": "a1u9l2e1",
+              "type": "translate",
+              "es": "Creo que lloverá.",
+              "options": [
+                "I think it will rain.",
+                "I think it will to rain.",
+                "I think it wills rain."
+              ],
+              "answer": "I think it will rain.",
+              "tip": "will + verbo desnudo, sin to y sin -s."
+            },
+            {
+              "id": "a1u9l2e2",
+              "type": "translate",
+              "es": "No lo olvidaré.",
+              "options": [
+                "I don't will forget.",
+                "I won't forget.",
+                "I will not to forget."
+              ],
+              "answer": "I won't forget.",
+              "tip": "won't es will not. Se escribe raro pero es de las más usadas."
+            },
+            {
+              "id": "a1u9l2e3",
+              "type": "listen",
+              "audio": "I'll help you.",
+              "options": [
+                "I help you.",
+                "I'll help you.",
+                "I will to help you."
+              ],
+              "answer": "I'll help you.",
+              "tip": "I'll es I will. Al hablar casi siempre se contrae."
+            },
+            {
+              "id": "a1u9l2e4",
+              "type": "listen",
+              "audio": "She will be here soon.",
+              "options": [
+                "She will be here soon.",
+                "She will is here soon.",
+                "She wills be here soon."
+              ],
+              "answer": "She will be here soon.",
+              "tip": "Después de will va be, no is."
+            },
+            {
+              "id": "a1u9l2e5",
+              "type": "build",
+              "es": "Te llamaré mañana.",
+              "answer": "I will call you tomorrow.",
+              "extra": [
+                "to",
+                "calling",
+                "called"
+              ],
+              "tip": "will + call, sin to."
+            },
+            {
+              "id": "a1u9l2e6",
+              "type": "type",
+              "audio": "It won't be easy.",
+              "meaning": "No será fácil.",
+              "tip": "won't se escribe w-o-n-apóstrofo-t."
+            },
+            {
+              "id": "a1u9l2e7",
+              "type": "speak",
+              "text": "I think it will be hot.",
+              "sound": "th",
+              "tip": "think con la lengua entre los dientes. No es «tink»."
+            },
+            {
+              "id": "a1u9l2e8",
+              "type": "speak",
+              "text": "I will help you with this.",
+              "sound": "h",
+              "tip": "help con h soplada, y this con th."
+            }
+          ]
+        },
+        {
+          "id": "a1u9l3",
+          "title": "Más grande que...",
+          "theory": {
+            "title": "Comparar: -er o more, nunca los dos",
+            "body": "La regla depende del **largo** del adjetivo.\n\n**Cortos (una sílaba)** → **-er ... than**\n*bigger than* · *older than* · *cheaper than*\n(si termina en -y: *easy → easier*)\n\n**Largos (dos sílabas o más, salvo los que terminan en -y)** → **more ... than**\n*more expensive than* · *more interesting than*\n\nY para el máximo, lo mismo con **the**:\n*the big**gest*** · *the **most** expensive*\n\nTres que se salen de todo y hay que memorizar:\n*good → **better** → the **best***\n*bad → **worse** → the **worst***\n*far → **further** → the **furthest***",
+            "trap": "*more big* ❌ es calco de «más grande», y suena mal de inmediato a un oído inglés. Los cortos llevan **-er**: **bigger**. Y nunca los dos juntos: *more bigger* ❌. El otro: comparar es con **than**, no con *that* — se parecen demasiado al escribir."
+          },
+          "exercises": [
+            {
+              "id": "a1u9l3e1",
+              "type": "translate",
+              "es": "Mi carro es más grande que el tuyo.",
+              "options": [
+                "My car is more big than yours.",
+                "My car is bigger than yours.",
+                "My car is bigger that yours."
+              ],
+              "answer": "My car is bigger than yours.",
+              "tip": "big es corto: bigger. Y se compara con than."
+            },
+            {
+              "id": "a1u9l3e2",
+              "type": "translate",
+              "es": "Este hotel es más caro.",
+              "options": [
+                "This hotel is expensiver.",
+                "This hotel is more expensive.",
+                "This hotel is more expensiver."
+              ],
+              "answer": "This hotel is more expensive.",
+              "tip": "expensive es largo: lleva more."
+            },
+            {
+              "id": "a1u9l3e3",
+              "type": "listen",
+              "audio": "She is older than me.",
+              "options": [
+                "She is more old than me.",
+                "She is older than me.",
+                "She is older that me."
+              ],
+              "answer": "She is older than me.",
+              "tip": "old → older."
+            },
+            {
+              "id": "a1u9l3e4",
+              "type": "listen",
+              "audio": "This is the best restaurant here.",
+              "options": [
+                "This is the most good restaurant here.",
+                "This is the best restaurant here.",
+                "This is the better restaurant here."
+              ],
+              "answer": "This is the best restaurant here.",
+              "tip": "good → better → the best. Irregular, de memoria."
+            },
+            {
+              "id": "a1u9l3e5",
+              "type": "build",
+              "es": "Hoy está más frío que ayer.",
+              "answer": "Today is colder than yesterday.",
+              "extra": [
+                "more",
+                "that",
+                "cold"
+              ],
+              "tip": "cold es corto: colder than."
+            },
+            {
+              "id": "a1u9l3e6",
+              "type": "type",
+              "audio": "My English is better now.",
+              "meaning": "Mi inglés está mejor ahora.",
+              "tip": "better, no more good."
+            },
+            {
+              "id": "a1u9l3e7",
+              "type": "speak",
+              "text": "This is better than that.",
+              "sound": "th",
+              "tip": "Tres th: this, than, that. Lengua entre los dientes en las tres."
+            },
+            {
+              "id": "a1u9l3e8",
+              "type": "speak",
+              "text": "This shop is cheaper.",
+              "sound": "sh",
+              "tip": "shop con sh. cheaper empieza con ch, que es otro sonido."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -122,7 +122,6 @@ B2 leyendo, escribiendo, escuchando y hablando.
 | Voz → texto | **Moonshine base v2** (`moonshine-base-en-quantized-2026-02-27`, 2 archivos `.ort`, 140 MB) vía sherpa-onnx **1.13.4** | Elegido el 2026-09-12 con `tools/asr-bench` sobre 26 grabaciones reales de Fero. Tiny devolvía texto vacío en 4 de 26 con audio bueno y confundía palabras fáciles ("seatsbooks", "Can't you"); base no, y mantiene la honestidad (delata "chip", "espeak", "wok-ed"). Whisper base.en quedó descartado: **corrige** "espeak Espanish" a "speak Spanish" al 100 %. Parakeet 110m es el más honesto pero castiga también lo bien dicho. También se probaron los grandes (Fero dijo que el peso no importa): **Whisper small.en** (74 % promedio, el mejor adivinando) y **Parakeet 0.6B v2** (70 %) corrigen los dos "espeak Espanish" → "speak Spanish" al 100 %; Parakeet 0.6B es el único que delata "tink/tird", pero pierde "six books" dos veces. Se quedó Moonshine base: el único que delata "espeak" (el error insignia). **Sobrecorrección medida** (errores plantados a propósito que el modelo "arregla" y puntúa BIEN, `tools/asr-bench/planted.txt`, 11 casos): Moonshine base **5/11 = 45 %** (think ×2, third, asked, spanish) · Whisper base/small 4/11 · Parakeet 0.6B 3/11 · Parakeet 110m 2/11. Con 11 casos esas cifras no se distinguen estadísticamente; lo que sí se ve es que cada modelo es ciego a sonidos distintos: Moonshine al `th` (3 de 4), Parakeet y Whisper a la `e` delante de `s` (espeak/Espanish, 2 de 2). Antes de reconocer, `Audio.kt` (`AudioPrep`) quita el DC, recorta el silencio, normaliza el pico y rechaza audio mudo/corto/ruidoso con "No te entendí, repite" en vez de dar 0 %. **Regla que no se negocia:** el reconocedor nunca ve la frase esperada (nada de hotwords ni sesgos); el objetivo solo se usa para puntuar después. |
 | Pronunciación por fonema (GOP) | **wav2vec2-large-xlsr-53-l2-arctic-phoneme** int8 (317 MB) vía **onnxruntime-android 1.27.0**; `Gop.kt` + `PhonemeScorer.kt`; fonemas esperados de **CMUdict** (`assets/gop/cmudict.dict`); umbrales en `assets/gop/thresholds.json` | Es lo que hacen las apps comerciales (Azure, Speechace, ELSA): se conoce la frase, se alinean sus fonemas y se puntúa la confianza de cada uno; el reconocedor de palabras se queda solo para "¿se entendió?". Entrenado con habla no nativa anotada tal como se pronunció (incluye hispanohablantes). En el S25: carga 0,6 s, evalúa en 200–300 ms. Se carga al entrar a la pantalla y se suelta al salir. **Solo sonidos con umbral calibrado muestran veredicto**: `sh` y `h` en rojo/amarillo (precisión del rojo ≥ 66 %); `th`, `ed`, `es` **solo en amarillo** (`calibrate.py --yellow-only`: precisión entre 33 y 66 %, el rojo nunca dispara); `v`, `final` y `rl` sin veredicto (por debajo del 33 %) y la pantalla lo dice. Para mover un sonido de categoría: más corpus etiquetado → `phoneme_eval.py` → `calibrate.py --sounds sh h --yellow-only th ed es` → `thresholds.json`. **Etiqueta del alumno:** después de cada intento la app pregunta "¿Te sonó igual?" (Igual / Distinto / No sé) y lo anexa como `etiqueta:` al `.txt` de la grabación (`Listener.labelLastRecording`); solo se usa al recalibrar, nunca en tiempo real. Vale sobre todo para lo audible (h caída, sílaba de más, e+s); para ship/sheep y v/b el oído del alumno es el problema. El modelo lo exporta `phoneme_export.py`; `fetchGop` lo copia a assets (si falta, la app compila sin él y lo dice). |
 | IA por internet (Fase 3, la que se usa) | **Claude API** (`ClaudeLlm.kt`, Messages API por REST con streaming SSE, `HttpURLConnection` + `org.json`, sin SDK) | Elegido y pagado por Fero el 2026-09-13. Selector en Ajustes: `claude-sonnet-5` (por defecto) y `claude-haiku-4-5`. Sin SDK de Java a propósito: no tocar las versiones fijadas (regla dura 2) ni sumar MB a un APK que ya lleva tres motores nativos. `thinking: {"type":"disabled"}` en Sonnet (en una charla corta pesa más el segundo de espera); el prompt de sistema va como bloque con `cache_control` (todavía no muerde: hace falta pasar de 1.024 tokens en Sonnet y 4.096 en Haiku). **Medido el 2026-09-13 con las frases reales del dictado de Fero:** Sonnet 5 acierta 5/5 (no corrige lo mal oído, sí la gramática), primera palabra en 0,8-1,0 s, $0,0023/turno ≈ **$2,06 al mes** a 30 turnos diarios; Haiku 4.5 igual de acertado, primera palabra 0,7-1,6 s, $0,0008/turno ≈ **$0,75 al mes**. Precios oficiales verificados: Haiku 4.5 $1/$5 por millón, Sonnet 5 $2/$10, Opus 5 $5/$25. Anthropic no entrena con lo enviado por API. |
-| Voz en español | **Piper `es_MX-claude-high-int8`** (17 MB, voz "es" en `assets/tts/`) | Fero: "el español es importante, en ocasiones hay cosas que no entiendo". `Speaker` carga un SEGUNDO modelo a la vez (`piperEs`) en vez de intercambiarlo: en una charla se alterna inglés y español frase a frase y recargar costaría casi un segundo por cambio. `speakSpanishQueued()` lee la línea `CORRECCIÓN:` detrás de la respuesta en inglés. Se le ofrecieron mexicana, española, argentina y Kokoro "Dora"; eligió la mexicana. |
 | IA por internet (respaldo gratis) | **Gemini API** (`CloudLlm.kt`, REST `streamGenerateContent?alt=sse` con `HttpURLConnection` + `org.json`, sin SDK) | Elegido por Fero el 2026-09-12 tras rechazar la calidad del 8B local. Escalera de modelos por cuota (ver "Estado y plan"). Solo texto; el interruptor de Ajustes lo enciende; la clave va por USB. Regla dura 1. |
 | IA en el teléfono (Fase 3) | **llama.cpp 0.4.0 compilado dentro de la app** (`app/src/main/cpp/`: `CMakeLists.txt` + `llm_jni.cpp`, puente JNI propio con solo la API C; `Llm.kt`) + **Qwen3 8B Q4_K_M** (`Qwen3-8B-Q4_K_M.gguf`, 5,03 GB) | Qwen es Apache 2.0 sin letra chica. Se descartó Gemma 2/3 porque sus "Gemma Terms of Use" permiten a Google cambiar las condiciones después. El código de llama.cpp lo baja `fetchLlamaCpp` (fijado a una versión) y lo compila el NDK 27.2 con CMake 3.22.1, que AGP descarga por versión (no es el asistente). Solo arm64 (`abiFilters`): el APK bajó ~90 MB al soltar x86/armv7. El modelo vive en `Android/data/com.ferolabs.hablo/files/modelos/` (sin permisos; se llena con `adb push`; **desinstalar la app lo borra**). **Medido en el S25 (2026-09-12): carga en 9 s, prompt a 27 t/s, respuesta a 11,0 t/s** con 6 hilos, contexto 2048, mmap. Se queda el 8B. Laboratorio en Ajustes: cargar, probar (la respuesta la lee la profesora con Piper), liberar. Sampler: min_p 0.05, top_p 0.9, temp 0.6; Qwen3 con `/no_think` en el system prompt. |
 | Interfaz | Kotlin + Jetpack Compose | Menos capas intermedias con tres motores nativos encima. |
@@ -135,11 +134,35 @@ vez y los meten en `assets/`. No están en el repositorio.
 El modelo de 8B (~5 GB) **no cabe dentro de un APK**: tiene que vivir como
 archivo aparte en el teléfono, copiado una vez por USB.
 
-**Esquema del contenido.** `curriculum.json`: niveles → unidades → lecciones
-→ ejercicios (`listen`, `translate`, `build`, `type`, `speak`). `drills.json`:
-lista de `drills` con `text`, `sound`, `focus`, `tip`. Los `speak` y los
-drills llevan `sound` obligatorio (regla dura 5). `bench.py` lee el sonido de
-cada frase de esos mismos JSON: no hay lista duplicada en ningún lado.
+**Esquema del contenido (v2, 2026-09-14).** `curriculum.json`: `levels` →
+`units` (`id`, `emoji`, `title`, `subtitle`) → `lessons` (`id`, `title`,
+**`theory`**, `exercises`) → ejercicios. Reglas que hacen caer la compilación
+(`checkContent`) y la carga (`Content.kt`, con tests en `ContentTest.kt`):
+- **`id` en cada ejercicio, único en todo el curso**, formato `<lección>e<n>`
+  (`a1u4l2e5`). Es la clave del mazo de repaso, del cuaderno y del informe.
+- **`theory` obligatoria en cada lección**: `{"title", "body", "trap"}`, los
+  tres no vacíos. `body` admite `**negrita**`; `trap` es el sello de la casa
+  (el error concreto de quien piensa en español y por qué).
+- `listen`: `audio`, `options` (≥ 2, sin repetidas), **`answer` = el TEXTO de
+  la opción correcta** (nunca un índice) y `audio == answer`.
+- `translate`: `es`, `options` (≥ 2, sin repetidas), `answer` = texto de la
+  opción correcta.
+- `build`: `es`, `answer` (la frase), `extra` (señuelos: sin repetidos y sin
+  palabras que ya estén en `answer`).
+- `type`: `audio`, `meaning` (no vacío).
+- `speak`: `text`, `sound` (regla dura 5); toda palabra de `text` tiene que
+  estar en `cmudict.dict`.
+- `tip` es opcional en todos (32 de los 55 originales no lo traen; el
+  contenido nuevo lo trae siempre).
+El orden de claves es `id, type, audio, es, text, sound, options, answer,
+extra, meaning, tip`, un ejercicio por línea: lo escribe
+`tools/content/migrar_a1.py` (idempotente; también convierte `answer` de
+índice a texto e inserta fichas). **Bandeja de entrada:** lo que Claude Cowork
+entrega va a `contenido-nuevo/`; se valida con `tools/content/validar.py
+<curriculum.json>`, se integra con el script, y el lote integrado se mueve a
+`contenido-nuevo/integrado/<fecha>/` para que no queden dos copias vivas.
+`drills.json`: lista de `drills` con `text`, `sound`, `focus`, `tip`.
+`bench.py` lee el sonido de cada frase de esos mismos JSON.
 
 **Corpus de voz y banco de pruebas.** La app guarda cada grabación cruda como
 WAV + un `.txt` (frase, resultado, medidas) en
@@ -188,7 +211,10 @@ cambiar `prep()` en `bench.py` igual.
 ## Estado y plan
 
 **Versión actual: 0.9** (conversación por internet; el motor por defecto pasó a
-Claude API el 2026-09-13, ver "Sesión del 2026-09-13" más abajo).
+Claude API el 2026-09-13, ver "Sesión del 2026-09-13" más abajo). **A1 completo
+el 2026-09-14: 27 lecciones, 207 ejercicios, 27 fichas de teoría** (19
+lecciones nuevas escritas por Claude Cowork siguiendo un sílabo A1 real, más
+las 8 fichas de las lecciones viejas), en el esquema v2 (abajo).
 **0.8** funcionando en el teléfono de Fero (2026-09-12):
 evaluación por fonema (GOP) — `sh` y `h` en rojo/amarillo, `th`/`ed`/`es`
 solo amarillo — mapa personal de sonidos, etiqueta del alumno tras cada
@@ -356,24 +382,30 @@ una; las que no aguantaron la verificación se descartaron):
   dirección de traducción que más rinde en principiantes es **inglés→español**,
   no al revés (Terai, Yamashita & Pasich 2021, *SSLA* 43(5)).
 
-**Plan acordado (etapas, en orden de valor por trabajo).** 1) *Que deje de ser
-previsible* — hecho el 13-09. 2) *La profesora que se acuerda*: contextos
-separados con hilo propio, "Hablar de todo", ficha de memoria en
-`files/memoria/perfil.json` (datos del alumno, errores con contador, resumen
-por escenario; topes duros de 12 datos / 15 errores / 60 palabras / 400 tokens;
-los errores se registran gratis desde la línea `CORRECCIÓN:` y el resumen con
-UNA llamada a Haiku al cerrar la charla, ~$0,50/mes; si el JSON no parsea se
-conserva la ficha vieja). 3) *Teoría*: empezar con 6 fichas, no 20, y medir
-cuáles abre. 4) *Repaso de hoy* (Leitner 1/3/7/16/35 + dificultad graduada del
-mismo ítem: elegir → armar → escribir → oír y escribir → decir). 5) *Oído*.
-6) *Más tipos de ejercicio* (+ ids por ejercicio y `answer` como texto; hacerlo
-con 55 ejercicios cuesta medio día, con 200 lecciones es una migración: va
-antes que el mazo). 7) *Contenido A1→B2*. En paralelo, trabajo de PC: recalibrar
-umbrales **a nivel de frase** con el corpus nuevo y afinar las puertas de audio.
+**Plan acordado (etapas, en orden de valor por trabajo).** 0) *Esquema de
+contenido v2* (ids por ejercicio, `answer` como texto, `theory` obligatoria,
+`checkContent` estricto y los primeros tests) — **hecho el 14-09**, antes que
+todo lo demás porque el mazo, el cuaderno y el informe dependen del id, y
+migrar 55 ejercicios cuesta medio día pero migrar 1.400 sería una obra.
+1) *Que deje de ser previsible* — hecho el 13-09. 2) *La profesora que se
+acuerda*: "Hablar de todo" con hilo propio y ficha de memoria en
+`files/memoria/perfil.json` (datos del alumno, errores con contador, resumen;
+topes duros de 12 datos / 15 errores / 60 palabras / 400 tokens; los errores
+se registran gratis desde la línea `CORRECCIÓN:` y el resumen con UNA llamada
+a Haiku al cerrar la charla, ~$0,50/mes; si el JSON no parsea se conserva la
+ficha vieja). Los escenarios de práctica NO llevan memoria (decisión de Fero).
+3) *Teoría en pantalla*: las fichas ya existen en el JSON (27); falta la
+sección "Gramática" y el botón "¿Por qué?" al fallar. 4) *Repaso de hoy*
+(Leitner 1/3/7/16/35 + dificultad graduada del mismo ítem: elegir → armar →
+escribir → oír y escribir → decir). 5) *Oído*. 6) *Más tipos de ejercicio*.
+7) *Contenido A2→B2* (A1 ya está completo: 27 lecciones). En paralelo, trabajo
+de PC: recalibrar umbrales **a nivel de frase** con el corpus nuevo y afinar
+las puertas de audio.
 
-**Deudas conocidas que van a morder si se ignoran:** no hay un solo test (todo
-lo frágil es Kotlin puro: parseo de contenido, Leitner, truncado de la ficha,
-`splitReply`; un source set `testImplementation` no toca AGP); `Course.load` corre
+**Deudas conocidas que van a morder si se ignoran:** los tests cubren solo el
+parser del contenido (`app/src/test/.../ContentTest.kt`, 13 casos, `./gradlew
+test`); Leitner, el truncado de la ficha y `splitReply` siguen sin test cuando
+se escriban; `Course.load` corre
 en el hilo principal antes de pintar; `Speaker` mantiene **una sola voz inglesa
 cargada** (`ensureVoiceLoaded` libera y recarga), así que "una profesora al azar
 por ítem" en la pantalla de Oído serían 12 recargas por bloque: hay que

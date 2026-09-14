@@ -27,8 +27,9 @@ la `th`, la `h` aspirada, *speak* sin la `e` delante).
       frase esperada
 - [x] Práctica de pronunciación con los sonidos difíciles para
       hispanohablantes, con explicación en español
-- [x] 8 lecciones de nivel A1 en 3 unidades con desbloqueo progresivo y
-      5 tipos de ejercicio (escuchar, traducir, armar, escribir, hablar)
+- [x] A1 completo: 27 lecciones en 9 unidades con desbloqueo progresivo,
+      5 tipos de ejercicio (escuchar, traducir, armar, escribir, hablar) y una
+      ficha de teoría en español por lección
 - [x] Racha, puntos y progreso guardados en el celular
 - [x] Fase 3 — conversación con IA en escenarios: por internet con Gemini
       (si se enciende en Ajustes) o dentro del celular (llama.cpp + Qwen 3)

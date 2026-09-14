@@ -177,8 +177,8 @@ fun LessonScreen(
     }
 
     fun evaluate(): Boolean = when (ex) {
-        is Exercise.ListenChoose -> chosen == ex.answer
-        is Exercise.TranslateChoose -> chosen == ex.answer
+        is Exercise.ListenChoose -> chosen == ex.answerIndex
+        is Exercise.TranslateChoose -> chosen == ex.answerIndex
         is Exercise.BuildSentence ->
             normalizeAnswer(built.joinToString(" ") { bank[it] }) == normalizeAnswer(ex.answer)
         is Exercise.TypeWhatYouHear ->
@@ -196,8 +196,8 @@ fun LessonScreen(
     }
 
     fun correctText(): String = when (ex) {
-        is Exercise.ListenChoose -> ex.options[ex.answer]
-        is Exercise.TranslateChoose -> ex.options[ex.answer]
+        is Exercise.ListenChoose -> ex.answer
+        is Exercise.TranslateChoose -> ex.answer
         is Exercise.BuildSentence -> ex.answer
         is Exercise.TypeWhatYouHear -> ex.audio
         is Exercise.SpeakIt -> ex.text
@@ -248,7 +248,7 @@ fun LessonScreen(
                         )
                     }
                     order.forEach { i ->
-                        OptionRow(ex.options[i], i, chosen, checked, ex.answer, accent) { if (!checked) chosen = i }
+                        OptionRow(ex.options[i], i, chosen, checked, ex.answerIndex, accent) { if (!checked) chosen = i }
                     }
                 }
 
@@ -261,7 +261,7 @@ fun LessonScreen(
                         color = accent
                     )
                     order.forEach { i ->
-                        OptionRow(ex.options[i], i, chosen, checked, ex.answer, accent) { if (!checked) chosen = i }
+                        OptionRow(ex.options[i], i, chosen, checked, ex.answerIndex, accent) { if (!checked) chosen = i }
                     }
                 }
 
@@ -482,7 +482,7 @@ fun LessonScreen(
                     } else {
                         // Vuelve una sola vez, al final de la lección.
                         if (repeated.add(index)) queue.add(index)
-                        progreso.anotarFallo(lesson.id, tipoDe(ex), givenText(), correctText())
+                        progreso.anotarFallo(lesson.id, tipoDe(ex), givenText(), correctText(), ex.id)
                         say(correctText(), 0.85f)
                     }
                     checked = true

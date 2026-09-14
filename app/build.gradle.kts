@@ -273,19 +273,58 @@ val checkContent = tasks.register("checkContent") {
 
         val slurper = groovy.json.JsonSlurper()
 
+        // Mismas reglas que Content.kt al cargar, pero aqui se cae la COMPILACION:
+        // con ~1.400 ejercicios en la Fase 5 nadie los revisa a ojo. Un "answer"
+        // fuera de las opciones ensenaria ingles incorrecto sin que nada avise.
         val curriculum = slurper.parse(File(contentDir, "curriculum.json")) as Map<*, *>
         val lessonIds = HashSet<String>()
+        val exerciseIds = HashSet<String>()
+        fun textOf(v: Any?): String = v?.toString().orEmpty().trim()
         for (level in curriculum["levels"] as List<*>) {
             for (unit in (level as Map<*, *>)["units"] as List<*>) {
                 for (lesson in (unit as Map<*, *>)["lessons"] as List<*>) {
                     val l = lesson as Map<*, *>
                     val id = l["id"].toString()
                     if (!lessonIds.add(id)) problems.add("leccion $id: id repetido")
+
+                    // La ficha de teoria es obligatoria y completa.
+                    val theory = l["theory"] as? Map<*, *>
+                    if (theory == null) {
+                        problems.add("leccion $id: falta \"theory\" (title, body y trap)")
+                    } else {
+                        for (key in listOf("title", "body", "trap")) {
+                            if (textOf(theory[key]).isBlank()) problems.add("leccion $id: \"theory\" sin \"$key\"")
+                        }
+                    }
+
                     (l["exercises"] as List<*>).forEachIndexed { i, ex ->
                         val e = ex as Map<*, *>
                         val where = "leccion $id, ejercicio ${i + 1}"
                         val type = e["type"]
                         if (type !in validTypes) problems.add("$where: tipo \"$type\" desconocido")
+
+                        val exId = textOf(e["id"])
+                        if (exId.isBlank()) problems.add("$where: falta \"id\" (formato ${id}e${i + 1})")
+                        else if (!exerciseIds.add(exId)) problems.add("$where: id \"$exId\" repetido en el curso")
+
+                        if (type == "listen" || type == "translate") {
+                            val options = (e["options"] as? List<*>)?.map { textOf(it) } ?: emptyList()
+                            val answer = textOf(e["answer"])
+                            if (options.size < 2) problems.add("$where: \"options\" necesita al menos 2 opciones")
+                            val repetidas = options.groupBy { it }.filter { it.value.size > 1 }.keys
+                            if (repetidas.isNotEmpty()) problems.add("$where: opciones repetidas: ${repetidas.joinToString(" | ")}")
+                            if (answer.isBlank()) problems.add("$where: falta \"answer\" (el texto de la opcion correcta)")
+                            else if (answer !in options) problems.add("$where: \"answer\" no esta entre las opciones: \"$answer\"")
+                            if (type == "listen" && textOf(e["audio"]) != answer) problems.add("$where: en listen, \"audio\" y \"answer\" deben ser iguales")
+                        }
+                        if (type == "type" && textOf(e["meaning"]).isBlank()) problems.add("$where: falta \"meaning\"")
+                        if (type == "build") {
+                            val propias = textOf(e["answer"]).split(" ").map { it.lowercase() }.filter { it.isNotEmpty() }.toSet()
+                            val extra = (e["extra"] as? List<*>)?.map { textOf(it) } ?: emptyList()
+                            val choque = extra.filter { it.lowercase() in propias }
+                            if (choque.isNotEmpty()) problems.add("$where: \"extra\" repite palabras de la respuesta: ${choque.joinToString(", ")}")
+                            if (extra.map { it.lowercase() }.toSet().size != extra.size) problems.add("$where: \"extra\" tiene palabras repetidas")
+                        }
                         if (type == "speak") checkSound(e, where)
                     }
                 }
@@ -372,6 +411,11 @@ android {
 
     // NDK y CMake por version: AGP los descarga al SDK si faltan. No es el
     // asistente de AGP; AGP/Gradle/Kotlin siguen fijados (regla dura 2).
+    // Para los tests de JVM: android.util.Log devuelve 0 en vez de reventar con "Stub!".
+    testOptions {
+        unitTests.isReturnDefaultValues = true
+    }
+
     ndkVersion = "27.2.12479018"
 
     defaultConfig {
@@ -472,4 +516,9 @@ dependencies {
     implementation("androidx.compose.material3:material3")
 
     debugImplementation("androidx.compose.ui:ui-tooling")
+
+    // Tests de JVM (./gradlew test): Kotlin puro, no tocan AGP ni las versiones
+    // fijadas. org.json real porque el android.jar de los tests trae stubs.
+    testImplementation("junit:junit:4.13.2")
+    testImplementation("org.json:json:20240303")
 }
