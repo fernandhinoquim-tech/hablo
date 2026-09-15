@@ -676,6 +676,677 @@
           ]
         }
       ]
+    },
+    {
+      "id": "A2",
+      "title": "Defenderte de verdad",
+      "goal": "Contar lo que pasó, hablar de planes, dar consejo y opinar sin quedarte trabado.",
+      "units": [
+        {
+          "id": "a2u1",
+          "emoji": "🌧️",
+          "title": "Lo que estabas haciendo",
+          "subtitle": "El pasado que seguía pasando: was doing y used to",
+          "lessons": [
+            {
+              "id": "a2u1l1",
+              "title": "Estaba lloviendo cuando salí",
+              "theory": {
+                "title": "Dos pasados en la misma frase",
+                "body": "El inglés usa dos pasados a la vez para contar qué pasó mientras pasaba otra cosa.\n\n**Pasado continuo** (was/were + -ing) = el fondo, lo que ya venía pasando.\n**Pasado simple** = lo que ocurrió de golpe y lo interrumpió.\n\n*It **was raining** when I **went** out.*\n*I **was sleeping** when she **called**.*\n\nDos palabras que los amarran:\n**when** + pasado simple (el golpe): *when she called*\n**while** + pasado continuo (el fondo): *while I was sleeping*",
+                "trap": "En español decimos «llovía» y «estaba lloviendo» casi igual, así que sale *It rained when I went out* — que significa otra cosa: que llovió después de salir. Si algo ya venía pasando, va **was/were + -ing**."
+              },
+              "exercises": [
+                {"id": "a2u1l1e1", "type": "listen", "audio": "I was sleeping when she called.", "options": ["I slept when she called.", "I was sleeping when she called.", "I was sleep when she called."], "answer": "I was sleeping when she called.", "tip": "was + sleeping: era el fondo. La llamada lo interrumpió."},
+                {"id": "a2u1l1e2", "type": "translate", "es": "Estaba lloviendo cuando salí.", "options": ["It rained when I went out.", "It was raining when I went out.", "It was rain when I went out."], "answer": "It was raining when I went out.", "tip": "La lluvia ya venía: pasado continuo."},
+                {"id": "a2u1l1e3", "type": "cloze", "es": "Ellos estaban trabajando cuando llegué.", "text": "They ___ working when I arrived.", "answer": "were", "accept": [], "tip": "they lleva were, nunca was."},
+                {"id": "a2u1l1e4", "type": "write", "es": "¿Qué estabas haciendo a las ocho?", "answer": "What were you doing at eight?", "accept": ["What were you doing at eight o'clock?"], "tip": "were + you + doing. Y las horas con at."},
+                {"id": "a2u1l1e5", "type": "write", "es": "Mientras yo cocinaba, él leía el periódico.", "answer": "While I was cooking, he was reading the newspaper.", "accept": ["While I was cooking, he read the newspaper.", "He was reading the newspaper while I was cooking."], "tip": "while va con el continuo. Los dos en continuo si los dos son fondo; el segundo también vale en pasado simple."},
+                {"id": "a2u1l1e6", "type": "build", "es": "Ella no estaba escuchando.", "answer": "She was not listening.", "extra": ["were", "didn't", "listen"], "tip": "Se niega el was: was not, o wasn't."},
+                {"id": "a2u1l1e7", "type": "type", "audio": "We were waiting for the bus.", "meaning": "Estábamos esperando el bus.", "tip": "wait siempre lleva for."},
+                {"id": "a2u1l1e8", "type": "speak", "text": "I was working when you called.", "sound": "ed", "tip": "called suena «kold», una sola sílaba. Nada de «kol-ed»."},
+                {"id": "a2u1l1e9", "type": "shadow", "text": "It was raining when I went out.", "tip": "Dos bloques: «it was RAINing» / «when I went OUT». Respira solo en el medio."}
+              ]
+            },
+            {
+              "id": "a2u1l2",
+              "title": "Antes yo...",
+              "theory": {
+                "title": "used to: lo que hacías y ya no",
+                "body": "Para hábitos y estados del pasado que **ya no son**:\n\n**used to** + verbo\n*I **used to** smoke.* (fumaba, ya no)\n*She **used to** live in Cali.* (vivía, ya no)\n\nNegativo y pregunta pierden la **d**, porque aparece el did:\n*I **didn't use to** like coffee.*\n***Did** you **use to** play football?*\n\nY no sirve para algo que pasó una sola vez: *I used to go to Spain in 2019* ❌ → *I went to Spain in 2019* ✅",
+                "trap": "El español lo dice con el imperfecto —«fumaba», «vivía»—, la misma forma que usamos para el fondo de una escena. Por eso sale *I was smoking* cuando quieres decir «antes fumaba». Si es un hábito que se acabó, es **used to**."
+              },
+              "exercises": [
+                {"id": "a2u1l2e1", "type": "translate", "es": "Antes yo fumaba.", "options": ["I was smoking.", "I used to smoke.", "I used to smoking."], "answer": "I used to smoke.", "tip": "Hábito que se acabó: used to + verbo pelado."},
+                {"id": "a2u1l2e2", "type": "listen", "audio": "She used to live in Cali.", "options": ["She used to live in Cali.", "She used to lived in Cali.", "She was living in Cali."], "answer": "She used to live in Cali.", "tip": "Después de used to, el verbo va sin cambios."},
+                {"id": "a2u1l2e3", "type": "cloze", "es": "Antes no me gustaba el café.", "text": "I didn't ___ to like coffee.", "answer": "use", "accept": [], "tip": "Con did, se cae la d: use to, no used to."},
+                {"id": "a2u1l2e4", "type": "write", "es": "¿Antes jugabas fútbol?", "answer": "Did you use to play football?", "accept": ["Did you use to play soccer?"], "tip": "Did + use to + verbo. La d se pierde por el did."},
+                {"id": "a2u1l2e5", "type": "write", "es": "Mi papá trabajaba en un banco.", "answer": "My father used to work in a bank.", "accept": ["My dad used to work in a bank.", "My father used to work at a bank.", "My dad used to work at a bank."], "tip": "Un trabajo de antes que ya no tiene: used to."},
+                {"id": "a2u1l2e6", "type": "build", "es": "Ellos no vivían aquí.", "answer": "They didn't use to live here.", "extra": ["used", "was", "living"], "tip": "didn't + use to + live."},
+                {"id": "a2u1l2e7", "type": "type", "audio": "I used to walk to school.", "meaning": "Antes caminaba a la escuela.", "tip": "used to se escribe con d cuando no hay did."},
+                {"id": "a2u1l2e8", "type": "speak", "text": "I used to live in a small house.", "sound": "h", "tip": "house con la h soplada. Y used to suena «YUST-tu», pegado."},
+                {"id": "a2u1l2e9", "type": "shadow", "text": "She used to work here.", "tip": "«used to» va pegado, casi una palabra: «YUS-tu». El peso en WORK."}
+              ]
+            },
+            {
+              "id": "a2u1l3",
+              "title": "Contar lo que pasó",
+              "theory": {
+                "title": "Amarrar una historia: when, while, so, because",
+                "body": "Para contar algo no basta con los verbos: hacen falta las palabras que unen.\n\n**when** = cuando (el golpe) · **while** = mientras (el fondo)\n**so** = así que (consecuencia) · **because** = porque (causa)\n**then** = entonces, después · **suddenly** = de repente\n\n*I was walking home **when** it started to rain, **so** I took a taxi.*\n\nFíjate en el orden: **so** va delante de lo que pasó *después*; **because** delante de la *razón*. En español «así que» y «porque» funcionan igual, pero se confunden al traducir rápido.",
+                "trap": "«Llovía, por eso tomé un taxi» no lleva las dos piezas: en inglés **nunca se ponen because y so juntos**. O *Because it was raining, I took a taxi*, o *It was raining, so I took a taxi* — una de las dos, no las dos."
+              },
+              "exercises": [
+                {"id": "a2u1l3e1", "type": "translate", "es": "Estaba caminando a casa cuando empezó a llover.", "options": ["I walked home when it started to rain.", "I was walking home when it started to rain.", "I was walking home while it started to rain."], "answer": "I was walking home when it started to rain.", "tip": "El fondo en continuo; el golpe con when + pasado simple."},
+                {"id": "a2u1l3e2", "type": "listen", "audio": "It was late, so we went home.", "options": ["It was late, because we went home.", "It was late, so we went home.", "It was late, so we go home."], "answer": "It was late, so we went home.", "tip": "so introduce la consecuencia."},
+                {"id": "a2u1l3e3", "type": "cloze", "es": "No salí porque estaba lloviendo.", "text": "I didn't go out ___ it was raining.", "answer": "because", "accept": ["since", "as"], "tip": "because introduce la razón."},
+                {"id": "a2u1l3e4", "type": "write", "es": "Mientras esperaba, leí el periódico.", "answer": "While I was waiting, I read the newspaper.", "accept": ["I read the newspaper while I was waiting."], "tip": "while con el continuo. Y el pasado de read se escribe igual pero suena «red»."},
+                {"id": "a2u1l3e5", "type": "write", "es": "De repente alguien tocó la puerta.", "answer": "Suddenly someone knocked on the door.", "accept": ["Someone suddenly knocked on the door.", "Suddenly somebody knocked on the door."], "tip": "knock lleva on: knock on the door. La k inicial no suena."},
+                {"id": "a2u1l3e6", "type": "build", "es": "Perdí el bus, así que llegué tarde.", "answer": "I missed the bus, so I was late.", "extra": ["because", "lost", "arrive"], "tip": "«Perder el bus» es miss, no lose. Y llegar tarde es be late."},
+                {"id": "a2u1l3e7", "type": "type", "audio": "Then she opened the window.", "meaning": "Entonces ella abrió la ventana.", "tip": "opened suena «OU-pend», dos sílabas, no tres."},
+                {"id": "a2u1l3e8", "type": "speak", "text": "I missed the bus, so I walked.", "sound": "ed", "tip": "missed «mist» y walked «wokt». Las dos de una sílaba."},
+                {"id": "a2u1l3e9", "type": "shadow", "text": "Suddenly someone knocked on the door.", "tip": "La k de knock no suena: «NOKT». El peso en SUD-denly y en DOOR."}
+              ]
+            }
+          ]
+        },
+        {
+          "id": "a2u2",
+          "emoji": "✅",
+          "title": "Lo que ya hiciste",
+          "subtitle": "El present perfect, y cuándo NO usarlo",
+          "lessons": [
+            {
+              "id": "a2u2l1",
+              "title": "Ya lo hice",
+              "theory": {
+                "title": "have + participio",
+                "body": "El present perfect se arma con dos piezas:\n\n**have / has** + **participio** (la tercera forma del verbo)\n\n*I **have finished**.* · *She **has gone**.*\n\nEl participio de los regulares es igual al pasado (worked, lived). Los irregulares hay que aprenderlos:\n*go → went → **gone*** · *see → saw → **seen*** · *do → did → **done***\n*eat → ate → **eaten*** · *write → wrote → **written***\n\nSe usa para algo del pasado **que todavía importa ahora**: no dices cuándo pasó, dices que ya está.",
+                "trap": "Cuidado con **has**, no **have**, para he/she/it — es la misma -s de siempre, escondida. *She have finished* ❌ → *She **has** finished* ✅"
+              },
+              "exercises": [
+                {"id": "a2u2l1e1", "type": "translate", "es": "Ya terminé.", "options": ["I have finish.", "I have finished.", "I has finished."], "answer": "I have finished.", "tip": "have + participio. finished es regular."},
+                {"id": "a2u2l1e2", "type": "listen", "audio": "She has gone home.", "options": ["She have gone home.", "She has gone home.", "She has went home."], "answer": "She has gone home.", "tip": "she lleva has. Y el participio de go es gone, no went."},
+                {"id": "a2u2l1e3", "type": "cloze", "es": "Él ha visto esa película.", "text": "He ___ seen that movie.", "answer": "has", "accept": [], "tip": "he lleva has."},
+                {"id": "a2u2l1e4", "type": "write", "es": "No he comido todavía.", "answer": "I haven't eaten yet.", "accept": ["I have not eaten yet."], "tip": "El participio de eat es eaten. Y «todavía» en negativo es yet, al final."},
+                {"id": "a2u2l1e5", "type": "write", "es": "Ellos han hecho el trabajo.", "answer": "They have done the work.", "accept": ["They have finished the work.", "They have done the job."], "tip": "El participio de do es done."},
+                {"id": "a2u2l1e6", "type": "build", "es": "Hemos escrito tres cartas.", "answer": "We have written three letters.", "extra": ["wrote", "has", "write"], "tip": "El participio de write es written."},
+                {"id": "a2u2l1e7", "type": "type", "audio": "I have lost my keys.", "meaning": "Perdí las llaves.", "tip": "lose → lost → lost. Aquí importa que siguen perdidas."},
+                {"id": "a2u2l1e8", "type": "speak", "text": "I have finished the homework.", "sound": "h", "tip": "have y homework: las dos h se soplan."},
+                {"id": "a2u2l1e9", "type": "shadow", "text": "She has gone to the store.", "tip": "«has gone» se pega: «shis-GON». El peso en GONE y en STORE."}
+              ]
+            },
+            {
+              "id": "a2u2l2",
+              "title": "¿Alguna vez has...?",
+              "theory": {
+                "title": "Experiencias: ever, never, been y gone",
+                "body": "El present perfect es el tiempo de las **experiencias de vida**, sin decir cuándo.\n\n***Have you ever** been to Mexico?* (¿alguna vez?)\n*I'**ve never** eaten sushi.* (nunca, hasta hoy)\n\nY hay una pareja que confunde a todo el mundo:\n\n**been** = fue y **ya volvió**\n*She has **been** to Paris.* (la conoce, está aquí)\n\n**gone** = fue y **sigue allá**\n*She has **gone** to Paris.* (no está, se fue)",
+                "trap": "*Have you ever went...?* ❌ es el error más común: se mete el pasado simple donde va el participio. Con have siempre va la tercera forma: **Have you ever been...?**"
+              },
+              "exercises": [
+                {"id": "a2u2l2e1", "type": "translate", "es": "¿Alguna vez has estado en México?", "options": ["Have you ever went to Mexico?", "Have you ever been to Mexico?", "Did you ever been to Mexico?"], "answer": "Have you ever been to Mexico?", "tip": "Con have va been, no went."},
+                {"id": "a2u2l2e2", "type": "listen", "audio": "I have never eaten sushi.", "options": ["I have never ate sushi.", "I have never eaten sushi.", "I never have eat sushi."], "answer": "I have never eaten sushi.", "tip": "never va entre have y el participio."},
+                {"id": "a2u2l2e3", "type": "cloze", "es": "Ella está en París ahora mismo, se fue ayer.", "text": "She has ___ to Paris.", "answer": "gone", "accept": [], "tip": "Sigue allá: gone. Si ya hubiera vuelto sería been."},
+                {"id": "a2u2l2e4", "type": "write", "es": "Nunca he visto la nieve.", "answer": "I have never seen snow.", "accept": ["I have never seen the snow."], "tip": "El participio de see es seen."},
+                {"id": "a2u2l2e5", "type": "write", "es": "¿Alguna vez has trabajado de noche?", "answer": "Have you ever worked at night?", "accept": ["Have you ever worked nights?"], "tip": "worked es regular. «De noche» es at night."},
+                {"id": "a2u2l2e6", "type": "build", "es": "Él ha estado en Londres dos veces.", "answer": "He has been to London twice.", "extra": ["gone", "went", "two"], "tip": "Ya volvió: been. Y «dos veces» es twice."},
+                {"id": "a2u2l2e7", "type": "type", "audio": "Have you ever tried Colombian coffee?", "meaning": "¿Alguna vez has probado café colombiano?", "tip": "try → tried, con i."},
+                {"id": "a2u2l2e8", "type": "speak", "text": "I have never been there.", "sound": "th", "tip": "there con la th sonora. No es «der»."},
+                {"id": "a2u2l2e9", "type": "shadow", "text": "Have you ever been to London?", "tip": "Suena casi «hav-yu-EV-er bin tu LON-don». been aquí se dice corto, «bin»."}
+              ]
+            },
+            {
+              "id": "a2u2l3",
+              "title": "Todavía no, ya, acabo de",
+              "theory": {
+                "title": "yet, already, just, still",
+                "body": "Cuatro palabras que cambian de sitio según la frase.\n\n**already** = ya (antes de lo esperado) — va **en el medio**\n*I've **already** finished.*\n\n**yet** = todavía / ya — solo en negativo y pregunta, **al final**\n*I haven't finished **yet**.* · *Have you finished **yet**?*\n\n**just** = acabo de — **en el medio**\n*She has **just** left.*\n\n**still** = todavía (sigue igual) — antes del verbo\n*I'm **still** waiting.*",
+                "trap": "«Acabo de llegar» se traduce solo con *just*: *I have **just** arrived*. No existe un verbo «acabar de» en inglés — *I finish to arrive* ❌ no significa nada."
+              },
+              "exercises": [
+                {"id": "a2u2l3e1", "type": "translate", "es": "Acabo de llegar.", "options": ["I finish to arrive.", "I have just arrived.", "I just arrive."], "answer": "I have just arrived.", "tip": "«Acabar de» es just, metido entre have y el participio."},
+                {"id": "a2u2l3e2", "type": "listen", "audio": "I haven't finished yet.", "options": ["I haven't finish yet.", "I haven't finished yet.", "I haven't already finished."], "answer": "I haven't finished yet.", "tip": "yet va al final, y solo en negativo o pregunta."},
+                {"id": "a2u2l3e3", "type": "cloze", "es": "Ya he comido, gracias.", "text": "I have ___ eaten, thank you.", "answer": "already", "accept": [], "tip": "already va entre have y el participio."},
+                {"id": "a2u2l3e4", "type": "write", "es": "Ella acaba de salir.", "answer": "She has just left.", "accept": ["She's just left.", "She just left."], "tip": "El participio de leave es left."},
+                {"id": "a2u2l3e5", "type": "write", "es": "Todavía estoy esperando el bus.", "answer": "I am still waiting for the bus.", "accept": ["I am still waiting for the bus to come."], "tip": "still va antes del verbo. Y wait siempre con for."},
+                {"id": "a2u2l3e6", "type": "build", "es": "¿Ya has hablado con él?", "answer": "Have you spoken to him yet?", "extra": ["spoke", "speaking", "did"], "tip": "El participio de speak es spoken. En pregunta va yet, al final."},
+                {"id": "a2u2l3e7", "type": "type", "audio": "They have already left.", "meaning": "Ellos ya se fueron.", "tip": "already, todo junto."},
+                {"id": "a2u2l3e8", "type": "speak", "text": "I have just arrived home.", "sound": "h", "tip": "have y home con la h soplada."},
+                {"id": "a2u2l3e9", "type": "shadow", "text": "I haven't finished yet.", "tip": "«haven't» se pega: «HAV-nt». El peso en FIN-ished."}
+              ]
+            },
+            {
+              "id": "a2u2l4",
+              "title": "¿Pasado simple o present perfect?",
+              "theory": {
+                "title": "La pregunta que decide: ¿dices CUÁNDO?",
+                "body": "Es la duda más grande del nivel, y hay una regla que casi nunca falla:\n\n**Si la frase dice cuándo pasó → pasado simple.**\n*I **ate** sushi **yesterday**.* · *She **went** to Paris **in 2020**.*\n\n**Si no dice cuándo, y lo que importa es el resultado → present perfect.**\n*I'**ve eaten** sushi.* (alguna vez) · *She'**s gone** to Paris.* (no está)\n\nPalabras que **obligan** al pasado simple: *yesterday, last week, in 2020, ago, when I was young*.\nPalabras que piden present perfect: *ever, never, already, yet, just, so far*.",
+                "trap": "*I have eaten sushi yesterday* ❌ es el error insignia. En español «he comido sushi ayer» se oye normal; en inglés es imposible: si dices **yesterday**, el verbo tiene que ser **ate**."
+              },
+              "exercises": [
+                {"id": "a2u2l4e1", "type": "translate", "es": "Comí sushi ayer.", "options": ["I have eaten sushi yesterday.", "I ate sushi yesterday.", "I have ate sushi yesterday."], "answer": "I ate sushi yesterday.", "tip": "yesterday dice cuándo, así que va pasado simple."},
+                {"id": "a2u2l4e2", "type": "listen", "audio": "She went to Paris in 2020.", "options": ["She has gone to Paris in 2020.", "She went to Paris in 2020.", "She has been to Paris in 2020."], "answer": "She went to Paris in 2020.", "tip": "Con una fecha, siempre pasado simple."},
+                {"id": "a2u2l4e3", "type": "cloze", "es": "¿Alguna vez has perdido el pasaporte?", "text": "Have you ever ___ your passport?", "answer": "lost", "accept": [], "tip": "El participio de lose es lost, igual que el pasado."},
+                {"id": "a2u2l4e4", "type": "write", "es": "Vi esa película la semana pasada.", "answer": "I saw that movie last week.", "accept": ["I watched that movie last week.", "I saw that film last week.", "I watched that film last week."], "tip": "last week dice cuándo: pasado simple, saw."},
+                {"id": "a2u2l4e5", "type": "write", "es": "He vivido aquí tres años.", "answer": "I have lived here for three years.", "accept": ["I have been living here for three years.", "I have lived here three years."], "tip": "Sigue siendo verdad hoy: present perfect. Y una duración lleva for."},
+                {"id": "a2u2l4e6", "type": "build", "es": "Él trabajó aquí en 2019.", "answer": "He worked here in 2019.", "extra": ["has", "have", "for"], "tip": "Con el año, pasado simple."},
+                {"id": "a2u2l4e7", "type": "type", "audio": "I have known her since 2020.", "meaning": "La conozco desde 2020.", "tip": "since para un punto de inicio; for para una duración."},
+                {"id": "a2u2l4e8", "type": "speak", "text": "I have lived here for three years.", "sound": "th", "tip": "three con la lengua entre los dientes."},
+                {"id": "a2u2l4e9", "type": "shadow", "text": "I ate sushi yesterday.", "tip": "Frase corta y seca. El peso en SU-shi y en YES-terday."},
+                {"id": "a2u2l4e10", "type": "minimalPair", "options": ["since", "sense"], "answer": "since", "sentence": "I have known her since 2020.", "tip": "La diferencia está en la vocal: since lleva la i corta; sense lleva una e clara. El final suena igual en las dos."}
+              ]
+            }
+          ]
+        },
+        {
+          "id": "a2u3",
+          "emoji": "📋",
+          "title": "Obligación y consejo",
+          "subtitle": "have to, must y should — y la trampa de mustn't",
+          "lessons": [
+            {
+              "id": "a2u3l1",
+              "title": "Tengo que hacerlo",
+              "theory": {
+                "title": "have to: la obligación de afuera",
+                "body": "**have to** = tener que. La obligación viene de fuera: el trabajo, la ley, el horario.\n\n*I **have to** work on Saturday.*\n*She **has to** wear a uniform.*\n\nSe comporta como un verbo normal, así que usa **do/does** y **did**:\n*I **don't have to** go.* · ***Do** you **have to** work?*\n*I **had to** wait two hours.* (pasado)\n\nY lo que sigue lleva **to**: *have **to** work*.",
+                "trap": "**don't have to** no significa «no debes»: significa **no es necesario**. *You don't have to come* es «no es necesario que vengas», no «no vengas». El «no debes» es otra palabra, y va en la lección siguiente."
+              },
+              "exercises": [
+                {"id": "a2u3l1e1", "type": "translate", "es": "Tengo que trabajar el sábado.", "options": ["I must to work on Saturday.", "I have to work on Saturday.", "I have work on Saturday."], "answer": "I have to work on Saturday.", "tip": "have to + verbo. Y los días con on."},
+                {"id": "a2u3l1e2", "type": "listen", "audio": "She has to wear a uniform.", "options": ["She have to wear a uniform.", "She has to wear a uniform.", "She has to wears a uniform."], "answer": "She has to wear a uniform.", "tip": "she lleva has to. Y wear se queda desnudo."},
+                {"id": "a2u3l1e3", "type": "cloze", "es": "No es necesario que vengas.", "text": "You don't ___ to come.", "answer": "have", "accept": ["need"], "tip": "don't have to = no es necesario. No es una prohibición."},
+                {"id": "a2u3l1e4", "type": "write", "es": "¿Tienes que trabajar mañana?", "answer": "Do you have to work tomorrow?", "accept": ["Have you got to work tomorrow?"], "tip": "have to usa el ayudante do, como cualquier verbo normal."},
+                {"id": "a2u3l1e5", "type": "write", "es": "Tuve que esperar dos horas.", "answer": "I had to wait two hours.", "accept": ["I had to wait for two hours."], "tip": "El pasado es had to, sin cambios raros."},
+                {"id": "a2u3l1e6", "type": "build", "es": "Él no tiene que pagar.", "answer": "He doesn't have to pay.", "extra": ["don't", "has", "mustn't"], "tip": "he lleva doesn't. Y have vuelve a su forma base."},
+                {"id": "a2u3l1e7", "type": "type", "audio": "We have to leave early.", "meaning": "Tenemos que salir temprano.", "tip": "leave, no live: son verbos distintos."},
+                {"id": "a2u3l1e8", "type": "speak", "text": "I have to work on Saturday.", "sound": "h", "tip": "have con h soplada. Y «have to» suena «HAF-tu», con f."},
+                {"id": "a2u3l1e9", "type": "shadow", "text": "I have to leave early.", "tip": "«have to» se dice «HAF-tu». El peso en LEAVE y en EAR-ly."}
+              ]
+            },
+            {
+              "id": "a2u3l2",
+              "title": "No debes",
+              "theory": {
+                "title": "must y mustn't: la trampa que cuesta caro",
+                "body": "**must** = deber, obligación fuerte o regla que tú mismo te pones. No cambia nunca y no lleva to:\n*You **must** be careful.* · *I **must** call my mother.*\n\nAhora la parte que hay que memorizar, porque cambia el significado por completo:\n\n| | qué significa |\n|---|---|\n| **mustn't** | está **prohibido** |\n| **don't have to** | **no hace falta** |\n\n*You **mustn't** smoke here.* = prohibido fumar.\n*You **don't have to** smoke.* = nadie te obliga a fumar.\n\nSon casi opuestos.",
+                "trap": "El español no separa las dos ideas con palabras distintas: «no tienes que fumar» puede querer decir las dos cosas y lo aclara el tono. En inglés no: **mustn't** prohíbe, **don't have to** libera. Confundirlas en el trabajo o con una regla puede salir caro."
+              },
+              "exercises": [
+                {"id": "a2u3l2e1", "type": "translate", "es": "No puedes fumar aquí, está prohibido.", "options": ["You don't have to smoke here.", "You mustn't smoke here.", "You haven't to smoke here."], "answer": "You mustn't smoke here.", "tip": "Prohibición: mustn't."},
+                {"id": "a2u3l2e2", "type": "translate", "es": "No es necesario que pagues, es gratis.", "options": ["You mustn't pay, it's free.", "You don't have to pay, it's free.", "You don't must pay, it's free."], "answer": "You don't have to pay, it's free.", "tip": "No es obligatorio: don't have to."},
+                {"id": "a2u3l2e3", "type": "cloze", "es": "Debes tener cuidado.", "text": "You ___ be careful.", "answer": "must", "accept": ["should"], "tip": "must + verbo desnudo, sin to."},
+                {"id": "a2u3l2e4", "type": "listen", "audio": "You mustn't touch that.", "options": ["You don't have to touch that.", "You mustn't touch that.", "You mustn't to touch that."], "answer": "You mustn't touch that.", "tip": "Después de mustn't, el verbo va sin to."},
+                {"id": "a2u3l2e5", "type": "write", "es": "Tenemos que irnos ahora.", "answer": "We must go now.", "accept": ["We have to go now.", "We need to go now.", "We must leave now.", "We have to leave now."], "tip": "must o have to, las dos valen aquí."},
+                {"id": "a2u3l2e6", "type": "build", "es": "No debes llegar tarde.", "answer": "You mustn't be late.", "extra": ["don't", "have", "to"], "tip": "Prohibición con mustn't. Y «llegar tarde» es be late."},
+                {"id": "a2u3l2e7", "type": "type", "audio": "You don't have to come.", "meaning": "No es necesario que vengas.", "tip": "No es «no vengas»: es «no es necesario»."},
+                {"id": "a2u3l2e8", "type": "speak", "text": "You mustn't touch this.", "sound": "th", "tip": "this con la th sonora. Y en mustn't la t del medio casi no suena: «MUS-nt»."},
+                {"id": "a2u3l2e9", "type": "shadow", "text": "You don't have to come.", "tip": "El peso en HAVE. Si lo pones en DON'T suena a regaño."}
+              ]
+            },
+            {
+              "id": "a2u3l3",
+              "title": "Yo que tú...",
+              "theory": {
+                "title": "should: el consejo",
+                "body": "**should** = deberías. Es consejo, no obligación. Como can y must: **no cambia y no lleva to**.\n\n*You **should** see a doctor.*\n*He **shouldn't** work so much.*\n*Do you think I **should** call her?*\n\nY una fórmula muy útil para dar consejo suave:\n***Why don't you** call her?* = ¿por qué no la llamas?\n***You could** try again.* = podrías intentar otra vez.",
+                "trap": "*You should to see a doctor* ❌. En español «deberías **ver**» lleva infinitivo, y la mano quiere poner el to. Con should, can, must y will el verbo va **desnudo**: **You should see a doctor**."
+              },
+              "exercises": [
+                {"id": "a2u3l3e1", "type": "translate", "es": "Deberías ver a un médico.", "options": ["You should to see a doctor.", "You should see a doctor.", "You should seeing a doctor."], "answer": "You should see a doctor.", "tip": "should + verbo desnudo."},
+                {"id": "a2u3l3e2", "type": "listen", "audio": "He shouldn't work so much.", "options": ["He shouldn't work so much.", "He shouldn't works so much.", "He doesn't should work so much."], "answer": "He shouldn't work so much.", "tip": "should no lleva -s ni usa do."},
+                {"id": "a2u3l3e3", "type": "cloze", "es": "¿Crees que debería llamarla?", "text": "Do you think I ___ call her?", "answer": "should", "accept": [], "tip": "should para pedir consejo."},
+                {"id": "a2u3l3e4", "type": "write", "es": "No deberías comer tan rápido.", "answer": "You shouldn't eat so fast.", "accept": ["You shouldn't eat so quickly."], "tip": "«tan» delante de un adjetivo o adverbio es so."},
+                {"id": "a2u3l3e5", "type": "write", "es": "¿Por qué no descansas un poco?", "answer": "Why don't you rest a little?", "accept": ["Why don't you take a break?", "Why don't you rest a bit?"], "tip": "Why don't you...? es la forma más natural de sugerir algo."},
+                {"id": "a2u3l3e6", "type": "build", "es": "Deberíamos salir más temprano.", "answer": "We should leave earlier.", "extra": ["to", "early", "must"], "tip": "El comparativo de early es earlier."},
+                {"id": "a2u3l3e7", "type": "type", "audio": "You should try again.", "meaning": "Deberías intentarlo otra vez.", "tip": "Aquí no lleva it: try again. (Try it again también existe y es correcta.)"},
+                {"id": "a2u3l3e8", "type": "speak", "text": "You should see a doctor.", "sound": "sh", "tip": "should empieza con sh de «shhh». No es «chud»."},
+                {"id": "a2u3l3e9", "type": "shadow", "text": "Why don't you try again?", "tip": "Baja el tono al final; si lo subes suena a reproche. «why don't you» se pega: «why-DONCHU»."}
+              ]
+            }
+          ]
+        },
+        {
+          "id": "a2u4",
+          "emoji": "📆",
+          "title": "Planes y posibilidad",
+          "subtitle": "Tres futuros distintos, y el «cuando llegue» que no lleva futuro",
+          "lessons": [
+            {
+              "id": "a2u4l1",
+              "title": "Ya tengo plan",
+              "theory": {
+                "title": "Tres futuros, y cuál usar",
+                "body": "El inglés tiene tres maneras de hablar del futuro y cada una dice algo distinto.\n\n**will** — lo decides ahora mismo, o es una predicción\n*The phone's ringing. I'**ll** get it.*\n\n**be going to** — ya lo tenías decidido\n*I'**m going to** look for a new job.*\n\n**presente continuo** — ya está **agendado**, con hora y sitio\n*I'**m meeting** Ana at seven.* (ya quedamos)\n\nDe los tres, el tercero es el que más sorprende: se usa el mismo am/is/are + -ing del «ahora mismo», pero con una hora futura la frase se entiende como cita.",
+                "trap": "«Mañana voy al médico» sale como *Tomorrow I go to the doctor* — presente simple, como en español. En inglés el presente simple solo vale para horarios fijos de trenes y cines. Para tu cita: **I'm going to the doctor tomorrow**."
+              },
+              "exercises": [
+                {"id": "a2u4l1e1", "type": "translate", "es": "Mañana voy al médico, ya tengo cita.", "options": ["Tomorrow I go to the doctor.", "I'm going to the doctor tomorrow.", "Tomorrow I will go to the doctor."], "answer": "I'm going to the doctor tomorrow.", "tip": "Cita ya agendada: presente continuo."},
+                {"id": "a2u4l1e2", "type": "listen", "audio": "I'm meeting Ana at seven.", "options": ["I meet Ana at seven.", "I'm meeting Ana at seven.", "I will meet Ana at seven."], "answer": "I'm meeting Ana at seven.", "tip": "Ya quedaron: continuo."},
+                {"id": "a2u4l1e3", "type": "cloze", "es": "Voy a buscar un trabajo nuevo.", "text": "I'm ___ to look for a new job.", "answer": "going", "accept": [], "tip": "Decisión ya tomada: going to."},
+                {"id": "a2u4l1e4", "type": "write", "es": "Está sonando el teléfono. Yo contesto.", "answer": "The phone is ringing. I will get it.", "accept": ["The phone's ringing. I'll get it.", "The phone is ringing. I'll answer it."], "tip": "Decisión del momento: will."},
+                {"id": "a2u4l1e5", "type": "write", "es": "¿Qué haces este fin de semana?", "answer": "What are you doing this weekend?", "accept": ["What are you doing on the weekend?", "What are your plans for this weekend?"], "tip": "Preguntando por planes ya hechos: continuo."},
+                {"id": "a2u4l1e6", "type": "build", "es": "Ella va a estudiar medicina.", "answer": "She is going to study medicine.", "extra": ["will", "studying", "goes"], "tip": "Plan decidido: is going to + verbo."},
+                {"id": "a2u4l1e7", "type": "type", "audio": "We are flying to Madrid on Friday.", "meaning": "Volamos a Madrid el viernes.", "tip": "Vuelo ya reservado: continuo. Y los días con on."},
+                {"id": "a2u4l1e8", "type": "speak", "text": "I am going to study tonight.", "sound": "es", "tip": "study arranca con st-, sin e delante."},
+                {"id": "a2u4l1e9", "type": "shadow", "text": "What are you doing this weekend?", "tip": "Suena casi «what-are-ya-DOO-ing this WEEK-end». Un solo golpe hasta doing."}
+              ]
+            },
+            {
+              "id": "a2u4l2",
+              "title": "Puede que sí, puede que no",
+              "theory": {
+                "title": "might: la posibilidad",
+                "body": "**might** = puede que, a lo mejor. Es la palabra para cuando no estás seguro.\n\n*I **might** go to the party.* (puede que vaya)\n*It **might** rain later.*\n*She **might not** come.*\n\nComo can, will y should: **no cambia y no lleva to**. Y no usa do para negar: solo se le pega **not**.\n\n**may** significa casi lo mismo y es un poco más formal. Para hablar, **might** es la normal.",
+                "trap": "«Puede que vaya» tienta a traducir con *can*: *I can go to the party* ❌ — pero eso significa «soy capaz de ir», no «a lo mejor voy». **can** es poder-capacidad; **might** es poder-posibilidad. En español las dos son «poder» y por eso se mezclan."
+              },
+              "exercises": [
+                {"id": "a2u4l2e1", "type": "translate", "es": "Puede que vaya a la fiesta.", "options": ["I can go to the party.", "I might go to the party.", "I might to go to the party."], "answer": "I might go to the party.", "tip": "Posibilidad: might. can sería capacidad."},
+                {"id": "a2u4l2e2", "type": "listen", "audio": "It might rain later.", "options": ["It might rains later.", "It might rain later.", "It can rain later."], "answer": "It might rain later.", "tip": "might + verbo desnudo, sin -s."},
+                {"id": "a2u4l2e3", "type": "cloze", "es": "Puede que ella no venga.", "text": "She might ___ come.", "answer": "not", "accept": [], "tip": "Se niega pegándole not. No se usa don't."},
+                {"id": "a2u4l2e4", "type": "write", "es": "A lo mejor llego tarde.", "answer": "I might be late.", "accept": ["I may be late.", "I might arrive late.", "Maybe I will be late."], "tip": "«Llegar tarde» es be late."},
+                {"id": "a2u4l2e5", "type": "write", "es": "Puede que tengamos que esperar.", "answer": "We might have to wait.", "accept": ["We may have to wait."], "tip": "might + have to: dos piezas seguidas, es normal."},
+                {"id": "a2u4l2e6", "type": "build", "es": "Puede que él sepa la respuesta.", "answer": "He might know the answer.", "extra": ["can", "knows", "to"], "tip": "might + know, sin -s."},
+                {"id": "a2u4l2e7", "type": "type", "audio": "They might not be at home.", "meaning": "Puede que no estén en casa.", "tip": "might not, separado."},
+                {"id": "a2u4l2e8", "type": "speak", "text": "I might be late tonight.", "sound": "general", "tip": "En might la gh no suena: «MAIT»."},
+                {"id": "a2u4l2e9", "type": "shadow", "text": "It might rain this afternoon.", "tip": "might suena «mait», sin la gh. El peso en RAIN y en af-ter-NOON."}
+              ]
+            },
+            {
+              "id": "a2u4l3",
+              "title": "Cuando llegue, te llamo",
+              "theory": {
+                "title": "Después de when e if, NO va futuro",
+                "body": "Esta es la regla que más le cuesta al hispanohablante, y es sencilla de enunciar:\n\n**Después de when, if, before, after, as soon as y until, el inglés usa PRESENTE aunque hable del futuro.**\n\n*I'll call you **when I arrive**.* (cuando llegue)\n***If it rains**, we'll stay home.* (si llueve)\n***As soon as I finish**, I'll go.* (en cuanto termine)\n\nEl futuro va en la **otra** mitad de la frase, la del will.\n\nEsto es el **primer condicional**: *If + presente, ... will + verbo*.",
+                "trap": "El español usa el subjuntivo ahí: «cuando **llegue**», «si **llueve**», «en cuanto **termine**». Como en inglés no hay subjuntivo, la mano quiere poner futuro: *when I **will** arrive* ❌. Nunca. Después de when o if va **presente simple**."
+              },
+              "exercises": [
+                {"id": "a2u4l3e1", "type": "translate", "es": "Te llamo cuando llegue.", "options": ["I'll call you when I will arrive.", "I'll call you when I arrive.", "I call you when I arrive."], "answer": "I'll call you when I arrive.", "tip": "Después de when, presente. El futuro va en la otra mitad."},
+                {"id": "a2u4l3e2", "type": "translate", "es": "Si llueve mañana, nos quedamos en casa.", "options": ["If it will rain tomorrow, we'll stay home.", "If it rains tomorrow, we'll stay home.", "If it rains tomorrow, we stayed home."], "answer": "If it rains tomorrow, we'll stay home.", "tip": "If + presente, y will en la otra mitad."},
+                {"id": "a2u4l3e3", "type": "cloze", "es": "En cuanto termine, te aviso.", "text": "As soon as I ___, I'll tell you.", "answer": "finish", "accept": [], "tip": "Después de as soon as, presente simple."},
+                {"id": "a2u4l3e4", "type": "listen", "audio": "If you study, you will pass.", "options": ["If you will study, you will pass.", "If you study, you will pass.", "If you study, you pass."], "answer": "If you study, you will pass.", "tip": "Presente en el if, will en el resultado."},
+                {"id": "a2u4l3e5", "type": "write", "es": "Si no te apuras, vas a perder el bus.", "answer": "If you don't hurry, you will miss the bus.", "accept": ["If you don't hurry up, you'll miss the bus.", "If you don't hurry, you are going to miss the bus."], "tip": "«Perder el bus» es miss, no lose."},
+                {"id": "a2u4l3e6", "type": "write", "es": "Voy a esperar hasta que ella llegue.", "answer": "I will wait until she arrives.", "accept": ["I am going to wait until she arrives."], "tip": "Después de until, presente: arrives, no will arrive."},
+                {"id": "a2u4l3e7", "type": "build", "es": "Hablaremos cuando vuelvas.", "answer": "We will talk when you come back.", "extra": ["comes", "to", "would"], "tip": "El segundo will no va: después de when se usa presente."},
+                {"id": "a2u4l3e8", "type": "type", "audio": "Call me before you leave.", "meaning": "Llámame antes de salir.", "tip": "Después de before, presente: you leave."},
+                {"id": "a2u4l3e9", "type": "speak", "text": "I will call you when I arrive.", "sound": "rl", "tip": "call y will: la l al final se marca, la lengua toca arriba."},
+                {"id": "a2u4l3e10", "type": "shadow", "text": "If it rains, we'll stay home.", "tip": "Dos bloques con pausa en la coma: «if it RAINS» / «we'll stay HOME»."}
+              ]
+            }
+          ]
+        },
+        {
+          "id": "a2u5",
+          "emoji": "💭",
+          "title": "Si pudiera",
+          "subtitle": "Hablar de lo que no es real: el segundo condicional",
+          "lessons": [
+            {
+              "id": "a2u5l1",
+              "title": "Si tuviera dinero",
+              "theory": {
+                "title": "El segundo condicional: imaginar",
+                "body": "Para hablar de algo **imaginario o improbable**:\n\n**If + pasado simple, ... would + verbo**\n\n*If I **had** money, I **would** travel.* (pero no tengo)\n*If I **were** you, I **would** call her.* (pero no soy tú)\n*What **would** you **do** if you **won** the lottery?*\n\nDos detalles:\n- El pasado ahí **no es pasado**: es la marca de «esto no es real».\n- Con *I, he, she, it*, lo correcto en este condicional es **were**, no was: *If I **were** you*.",
+                "trap": "El español pone el subjuntivo en el si («si tuviera») y el condicional en la otra mitad («viajaría»), igual que el inglés. El error es otro: meter **would en las dos mitades**. *If I would have money, I would travel* ❌. El would va **solo** en la mitad del resultado."
+              },
+              "exercises": [
+                {"id": "a2u5l1e1", "type": "translate", "es": "Si tuviera dinero, viajaría.", "options": ["If I would have money, I would travel.", "If I had money, I would travel.", "If I have money, I would travel."], "answer": "If I had money, I would travel.", "tip": "Pasado en el if, would en el resultado. Nunca los dos."},
+                {"id": "a2u5l1e2", "type": "listen", "audio": "If I were you, I would call her.", "options": ["If I was you, I would call her.", "If I were you, I would call her.", "If I were you, I will call her."], "answer": "If I were you, I would call her.", "tip": "If I were you es fija: se dice así siempre."},
+                {"id": "a2u5l1e3", "type": "cloze", "es": "¿Qué harías si ganaras la lotería?", "text": "What would you do if you ___ the lottery?", "answer": "won", "accept": [], "tip": "Pasado simple de win: won. Marca que es imaginario."},
+                {"id": "a2u5l1e4", "type": "write", "es": "Si viviera en la playa, nadaría todos los días.", "answer": "If I lived at the beach, I would swim every day.", "accept": ["If I lived on the beach, I would swim every day.", "If I lived by the beach, I would swim every day.", "If I lived at the beach, I'd swim every day.", "If I lived on the beach, I'd swim every day."], "tip": "lived en pasado, would swim en el resultado."},
+                {"id": "a2u5l1e5", "type": "write", "es": "Yo que tú, no lo haría.", "answer": "If I were you, I wouldn't do it.", "accept": ["If I were you, I would leave it.", "I wouldn't do it if I were you."], "tip": "«Yo que tú» es If I were you, entera."},
+                {"id": "a2u5l1e6", "type": "build", "es": "Si ella estudiara más, aprobaría.", "answer": "If she studied more, she would pass.", "extra": ["studies", "will", "passes"], "tip": "studied en el if, would pass en el resultado. Un solo would."},
+                {"id": "a2u5l1e7", "type": "type", "audio": "I would buy a house if I could.", "meaning": "Compraría una casa si pudiera.", "tip": "El pasado de can es could."},
+                {"id": "a2u5l1e8", "type": "speak", "text": "If I were you, I would wait.", "sound": "v", "tip": "En would la l no suena: «WUD». Y were suena «wer»."},
+                {"id": "a2u5l1e9", "type": "shadow", "text": "What would you do if you won?", "tip": "«what would you» se pega: «what-WUD-ju». El peso en DO y en WON."}
+              ]
+            },
+            {
+              "id": "a2u5l2",
+              "title": "Me encantaría",
+              "theory": {
+                "title": "would para pedir y desear con cortesía",
+                "body": "**would** no es solo para condicionales. Es la palabra de la cortesía.\n\n*I'**d love** to come.* (me encantaría)\n*I'**d rather** stay home.* (prefiero, preferiría)\n***Would** you **mind** closing the window?* (¿te importaría?)\n*It **would** be great.*\n\nDos formas que hay que memorizar enteras:\n- **would rather** + verbo desnudo: *I'd rather **go** tomorrow.*\n- **would mind** + verbo con -ing: *Would you mind **waiting**?*",
+                "trap": "*Would you mind to wait?* ❌ — después de mind va **-ing**, siempre. Y ojo con la respuesta: si alguien pregunta *Would you mind waiting?* y tú quieres decir que sí puedes esperar, se contesta **No, not at all** — porque literalmente te preguntan si te molesta."
+              },
+              "exercises": [
+                {"id": "a2u5l2e1", "type": "translate", "es": "Me encantaría ir.", "options": ["I would love to go.", "I would love go.", "I will love to go."], "answer": "I would love to go.", "tip": "would love siempre lleva to delante del verbo."},
+                {"id": "a2u5l2e2", "type": "listen", "audio": "Would you mind closing the window?", "options": ["Would you mind to close the window?", "Would you mind closing the window?", "Would you mind close the window?"], "answer": "Would you mind closing the window?", "tip": "Después de mind, el verbo con -ing."},
+                {"id": "a2u5l2e3", "type": "cloze", "es": "Preferiría quedarme en casa.", "text": "I'd ___ stay at home.", "answer": "rather", "accept": [], "tip": "would rather + verbo desnudo."},
+                {"id": "a2u5l2e4", "type": "write", "es": "¿Te importaría esperar cinco minutos?", "answer": "Would you mind waiting five minutes?", "accept": ["Would you mind waiting for five minutes?"], "tip": "mind + -ing. Es de las peticiones más educadas que hay."},
+                {"id": "a2u5l2e5", "type": "write", "es": "Sería genial verte.", "answer": "It would be great to see you.", "accept": ["It'd be great to see you.", "It would be nice to see you."], "tip": "would + be, y luego to + verbo."},
+                {"id": "a2u5l2e6", "type": "build", "es": "Preferiría ir mañana.", "answer": "I would rather go tomorrow.", "extra": ["to", "going", "will"], "tip": "would rather + go, sin to."},
+                {"id": "a2u5l2e7", "type": "type", "audio": "I would like to ask you something.", "meaning": "Quisiera preguntarte algo.", "tip": "would like to + verbo."},
+                {"id": "a2u5l2e8", "type": "speak", "text": "I would love to see you.", "sound": "v", "tip": "love con la v: el labio de abajo toca los dientes de arriba. No es «lob»."},
+                {"id": "a2u5l2e9", "type": "shadow", "text": "Would you mind waiting a moment?", "tip": "«would you» se pega: «WUD-ju». El peso en WAIT-ing."},
+                {"id": "a2u5l2e10", "type": "minimalPair", "options": ["ban", "van"], "answer": "van", "sentence": "The van is outside.", "tip": "van se hace con los dientes sobre el labio; ban con los dos labios. En español esa diferencia no existe."}
+              ]
+            }
+          ]
+        },
+        {
+          "id": "a2u6",
+          "emoji": "⚖️",
+          "title": "Cuánto y qué tanto",
+          "subtitle": "too, enough, algo/nada/alguien y la mayoría",
+          "lessons": [
+            {
+              "id": "a2u6l1",
+              "title": "Demasiado y suficiente",
+              "theory": {
+                "title": "too y enough: dos que se ponen al revés",
+                "body": "**too** = demasiado. Siempre **antes** del adjetivo.\n*It's **too** expensive.* · *You're driving **too** fast.*\n\nY si va con un sustantivo cambia de forma:\n**too much** + incontable: *too much noise*\n**too many** + contable: *too many people*\n\n**enough** = suficiente. Aquí está la vuelta: va **después** del adjetivo pero **antes** del sustantivo.\n*It's not big **enough**.* (después del adjetivo)\n*We don't have **enough** time.* (antes del sustantivo)",
+                "trap": "**too** no es **very**. *It's very expensive* = está caro. *It's too expensive* = tan caro que **no lo compro**. En español «muy» y «demasiado» también se distinguen, pero al traducir rápido sale *very* para todo y se pierde la queja."
+              },
+              "exercises": [
+                {"id": "a2u6l1e1", "type": "translate", "es": "Es demasiado caro, no lo compro.", "options": ["It's very expensive, I won't buy it.", "It's too expensive, I won't buy it.", "It's expensive too, I won't buy it."], "answer": "It's too expensive, I won't buy it.", "tip": "too lleva la queja dentro: demasiado para comprarlo."},
+                {"id": "a2u6l1e2", "type": "listen", "audio": "There are too many people here.", "options": ["There are too much people here.", "There are too many people here.", "There are too people here."], "answer": "There are too many people here.", "tip": "people se cuenta: too many."},
+                {"id": "a2u6l1e3", "type": "cloze", "es": "No es lo suficientemente grande.", "text": "It isn't big ___.", "answer": "enough", "accept": [], "tip": "Después del adjetivo: big enough."},
+                {"id": "a2u6l1e4", "type": "write", "es": "No tenemos suficiente tiempo.", "answer": "We don't have enough time.", "accept": ["We haven't got enough time."], "tip": "Antes del sustantivo: enough time."},
+                {"id": "a2u6l1e5", "type": "write", "es": "Hay demasiado ruido aquí.", "answer": "There is too much noise here.", "accept": ["There's too much noise here.", "It is too noisy here.", "It's too noisy here."], "tip": "noise no se cuenta: too much."},
+                {"id": "a2u6l1e6", "type": "build", "es": "Estás manejando demasiado rápido.", "answer": "You are driving too fast.", "extra": ["much", "very", "fastly"], "tip": "too antes del adverbio. Y «rápido» como adverbio es fast, no fastly."},
+                {"id": "a2u6l1e7", "type": "type", "audio": "This coffee is too hot to drink.", "meaning": "Este café está demasiado caliente para tomarlo.", "tip": "too + adjetivo + to + verbo: una fórmula muy útil."},
+                {"id": "a2u6l1e8", "type": "speak", "text": "There is too much noise here.", "sound": "th", "tip": "There con th sonora. Y here con la h soplada."},
+                {"id": "a2u6l1e9", "type": "shadow", "text": "It's too expensive for me.", "tip": "El peso en ex-PEN-sive. too se dice largo: «tuu»."}
+              ]
+            },
+            {
+              "id": "a2u6l2",
+              "title": "Algo, nada, alguien",
+              "theory": {
+                "title": "La tabla de some, any y no",
+                "body": "Se arman como piezas de Lego: **some / any / no / every** + **thing / body / where**.\n\n| | cosa | persona | lugar |\n|---|---|---|---|\n| afirmativo | something | somebody | somewhere |\n| pregunta y negativo | anything | anybody | anywhere |\n| negativo (el verbo va en afirmativo) | nothing | nobody | nowhere |\n| todo | everything | everybody | everywhere |\n\n*I need **something** to eat.*\n*Is there **anybody** here?*\n*There's **nothing** in the fridge.*\n\nY todas van con verbo en **singular**: *Everybody **is** here.*",
+                "trap": "«No hay nadie» lleva dos negaciones en español y solo una en inglés. *There isn't nobody* ❌ → **There isn't anybody** o **There is nobody**. Una u otra, nunca las dos."
+              },
+              "exercises": [
+                {"id": "a2u6l2e1", "type": "translate", "es": "No hay nadie en la oficina.", "options": ["There isn't nobody in the office.", "There isn't anybody in the office.", "There is not nobody in the office."], "answer": "There isn't anybody in the office.", "tip": "Una sola negación. Con isn't va anybody."},
+                {"id": "a2u6l2e2", "type": "listen", "audio": "I need something to eat.", "options": ["I need anything to eat.", "I need something to eat.", "I need nothing to eat."], "answer": "I need something to eat.", "tip": "Afirmativo: something."},
+                {"id": "a2u6l2e3", "type": "cloze", "es": "No hay nada en la nevera.", "text": "There's ___ in the fridge.", "answer": "nothing", "accept": [], "tip": "nothing ya es negativo, así que el verbo va en afirmativo."},
+                {"id": "a2u6l2e4", "type": "write", "es": "¿Hay alguien aquí?", "answer": "Is there anybody here?", "accept": ["Is there anyone here?", "Is anybody here?", "Is anyone here?"], "tip": "En pregunta: anybody o anyone."},
+                {"id": "a2u6l2e5", "type": "write", "es": "Todo el mundo está aquí.", "answer": "Everybody is here.", "accept": ["Everyone is here.", "Everybody's here.", "Everyone's here."], "tip": "everybody va con verbo en singular: is, no are."},
+                {"id": "a2u6l2e6", "type": "build", "es": "No encuentro mis llaves en ninguna parte.", "answer": "I can't find my keys anywhere.", "extra": ["nowhere", "no", "somewhere"], "tip": "Con can't va anywhere. Con nowhere el verbo iría en afirmativo."},
+                {"id": "a2u6l2e7", "type": "type", "audio": "Somebody left a message for you.", "meaning": "Alguien te dejó un mensaje.", "tip": "somebody va con verbo en singular."},
+                {"id": "a2u6l2e8", "type": "speak", "text": "There is nothing here.", "sound": "th", "tip": "There y nothing: las dos con th, pero nothing es sorda y there sonora."},
+                {"id": "a2u6l2e9", "type": "shadow", "text": "Is there anybody here?", "tip": "Sube el tono al final. «anybody» suena «EN-i-bod-i»."}
+              ]
+            },
+            {
+              "id": "a2u6l3",
+              "title": "La mayoría",
+              "theory": {
+                "title": "most, most of, the most",
+                "body": "Tres formas que se parecen y dicen cosas distintas.\n\n**most** + sustantivo en general (sin the)\n***Most** people like music.* (la gente en general)\n\n**most of** + un grupo concreto (con the, my, these...)\n***Most of the** students passed.* (esos estudiantes)\n***Most of my** friends live here.*\n\n**the most** = el superlativo\n*This is **the most** expensive one.*",
+                "trap": "*The most of people* ❌ mezcla las tres. Si hablas de la gente en general va **most people**, pelado. El **of** solo aparece cuando después viene *the, my, these* o un pronombre."
+              },
+              "exercises": [
+                {"id": "a2u6l3e1", "type": "translate", "es": "A la mayoría de la gente le gusta la música.", "options": ["The most of people like music.", "Most people like music.", "Most of people like music."], "answer": "Most people like music.", "tip": "En general: most pelado, sin of y sin the."},
+                {"id": "a2u6l3e2", "type": "listen", "audio": "Most of the students passed.", "options": ["Most the students passed.", "Most of the students passed.", "The most students passed."], "answer": "Most of the students passed.", "tip": "Grupo concreto con the: most of the."},
+                {"id": "a2u6l3e3", "type": "cloze", "es": "La mayoría de mis amigos viven aquí.", "text": "Most ___ my friends live here.", "answer": "of", "accept": [], "tip": "Delante de my siempre va of."},
+                {"id": "a2u6l3e4", "type": "write", "es": "Este es el más caro.", "answer": "This is the most expensive one.", "accept": ["This is the most expensive."], "tip": "Superlativo largo: the most + adjetivo."},
+                {"id": "a2u6l3e5", "type": "write", "es": "La mayoría de los colombianos, en general, habla español.", "answer": "Most Colombians speak Spanish.", "accept": ["Most Colombian people speak Spanish."], "tip": "En general: most pelado. Y Colombians con mayúscula."},
+                {"id": "a2u6l3e6", "type": "build", "es": "La mayoría de ellos llegaron tarde.", "answer": "Most of them were late.", "extra": ["the", "was", "arrive"], "tip": "Delante de un pronombre va of. Y them es plural: were."},
+                {"id": "a2u6l3e7", "type": "type", "audio": "Most of my time goes into work.", "meaning": "La mayor parte de mi tiempo se va en el trabajo.", "tip": "Delante de my, siempre of."},
+                {"id": "a2u6l3e8", "type": "speak", "text": "Most people speak Spanish here.", "sound": "es", "tip": "speak y Spanish arrancan con s pura, sin e delante."},
+                {"id": "a2u6l3e9", "type": "shadow", "text": "Most of my friends live here.", "tip": "«most of» se pega: «MOS-tov». El peso en FRIENDS."}
+              ]
+            }
+          ]
+        },
+        {
+          "id": "a2u7",
+          "emoji": "🔍",
+          "title": "Describir y comparar",
+          "subtitle": "Adverbios, el más de todos, y la persona que...",
+          "lessons": [
+            {
+              "id": "a2u7l1",
+              "title": "Habla despacio",
+              "theory": {
+                "title": "Adjetivo o adverbio: qué estás describiendo",
+                "body": "La pregunta es simple: **¿describes una cosa o describes una acción?**\n\n**Adjetivo** → describe un sustantivo\n*He is a **slow** driver.* (cómo es él)\n\n**Adverbio** → describe el verbo\n*He drives **slowly**.* (cómo maneja)\n\nEl adverbio casi siempre es el adjetivo + **-ly**: quick→quickly, careful→carefully, easy→easily.\n\nTres irregulares que hay que saberse:\n*good → **well*** · *fast → **fast*** · *hard → **hard***",
+                "trap": "«Habla lento» se traduce palabra por palabra como *He speaks slow* ❌ — en español el adjetivo hace de adverbio sin cambiar. En inglés hay que ponerle la -ly: **He speaks slowly**. Y ojo con *good*: *He speaks English good* ❌ → **He speaks English well**."
+              },
+              "exercises": [
+                {"id": "a2u7l1e1", "type": "translate", "es": "Él habla inglés muy bien.", "options": ["He speaks English very good.", "He speaks English very well.", "He speaks very good English too."], "answer": "He speaks English very well.", "tip": "El adverbio de good es well, irregular."},
+                {"id": "a2u7l1e2", "type": "listen", "audio": "She drives very slowly.", "options": ["She drives very slow.", "She drives very slowly.", "She is very slowly driver."], "answer": "She drives very slowly.", "tip": "Describe cómo maneja: adverbio con -ly."},
+                {"id": "a2u7l1e3", "type": "cloze", "es": "Por favor, habla más despacio.", "text": "Please speak more ___.", "answer": "slowly", "accept": [], "tip": "Describe el verbo speak: adverbio."},
+                {"id": "a2u7l1e4", "type": "write", "es": "Ella trabaja muy duro.", "answer": "She works very hard.", "accept": ["She works really hard."], "tip": "hard es adverbio tal cual. hardly existe pero significa «apenas»."},
+                {"id": "a2u7l1e5", "type": "write", "es": "Terminé el trabajo fácilmente.", "answer": "I finished the work easily.", "accept": ["I finished the job easily."], "tip": "easy termina en -y, así que el adverbio es easily."},
+                {"id": "a2u7l1e6", "type": "build", "es": "Es un conductor cuidadoso.", "answer": "He is a careful driver.", "extra": ["carefully", "drives", "very"], "tip": "Describe al conductor, no la acción: adjetivo."},
+                {"id": "a2u7l1e7", "type": "type", "audio": "Please listen carefully.", "meaning": "Por favor escucha con atención.", "tip": "careful + ly = carefully."},
+                {"id": "a2u7l1e8", "type": "speak", "text": "Please speak slowly and clearly.", "sound": "rl", "tip": "slowly y clearly: dos l al final. La lengua toca arriba en las dos."},
+                {"id": "a2u7l1e9", "type": "shadow", "text": "He speaks English very well.", "tip": "El peso en ENG-lish y en WELL. speaks sin e delante."}
+              ]
+            },
+            {
+              "id": "a2u7l2",
+              "title": "El más de todos",
+              "theory": {
+                "title": "Superlativos y as...as",
+                "body": "Ya sabes comparar dos cosas. Para el máximo, el patrón es el mismo con **the**:\n\n**cortos** → the + adjetivo + **-est**: *the bigg**est**, the old**est***\n**largos** → **the most** + adjetivo: *the most expensive*\n\nIrregulares: *good → the **best***, *bad → the **worst***.\n\nY para decir que dos cosas son **iguales**:\n**as + adjetivo + as**\n*She is **as tall as** her brother.*\n*It's not **as expensive as** I thought.*",
+                "trap": "El superlativo casi siempre lleva **the**: *This is biggest* ❌ → **the biggest**. Y con el grupo del que eliges se usa **in** para lugares y **of** para grupos: *the best restaurant **in** the city*, *the tallest **of** the three*."
+              },
+              "exercises": [
+                {"id": "a2u7l2e1", "type": "translate", "es": "Es el mejor restaurante de la ciudad.", "options": ["It's the most good restaurant of the city.", "It's the best restaurant in the city.", "It's the best restaurant of the city."], "answer": "It's the best restaurant in the city.", "tip": "good → the best. Y con lugares va in, no of."},
+                {"id": "a2u7l2e2", "type": "listen", "audio": "She is as tall as her brother.", "options": ["She is as tall than her brother.", "She is as tall as her brother.", "She is so tall as her brother."], "answer": "She is as tall as her brother.", "tip": "as + adjetivo + as, las dos veces as."},
+                {"id": "a2u7l2e3", "type": "cloze", "es": "Es el día más largo del año.", "text": "It's the ___ day of the year.", "answer": "longest", "accept": [], "tip": "long es corto: longest."},
+                {"id": "a2u7l2e4", "type": "write", "es": "Este es el problema más difícil.", "answer": "This is the most difficult problem.", "accept": ["This is the hardest problem."], "tip": "difficult es largo: the most difficult."},
+                {"id": "a2u7l2e5", "type": "write", "es": "No es tan caro como pensaba.", "answer": "It isn't as expensive as I thought.", "accept": ["It's not as expensive as I thought."], "tip": "as...as también sirve en negativo."},
+                {"id": "a2u7l2e6", "type": "build", "es": "Fue el peor día de mi vida.", "answer": "It was the worst day of my life.", "extra": ["baddest", "on", "most"], "tip": "bad → the worst. Con un grupo va of."},
+                {"id": "a2u7l2e7", "type": "type", "audio": "He is the tallest in the class.", "meaning": "Él es el más alto de la clase.", "tip": "tall es corto: tallest."},
+                {"id": "a2u7l2e8", "type": "speak", "text": "This is the best restaurant here.", "sound": "th", "tip": "This con th sonora. Y best termina en st, con la t marcada."},
+                {"id": "a2u7l2e9", "type": "shadow", "text": "She is as tall as her brother.", "tip": "Los dos as se dicen cortos y flojos: «az». El peso en TALL y en BROTH-er."}
+              ]
+            },
+            {
+              "id": "a2u7l3",
+              "title": "La persona que...",
+              "theory": {
+                "title": "who, which, that: una sola palabra en español, tres en inglés",
+                "body": "En español todo es **que**. En inglés se elige según de qué hablas.\n\n**who** → personas: *the man **who** called*\n**which** → cosas: *the book **which** I bought*\n**that** → sirve para las dos y es la más usada al hablar\n**where** → lugares: *the city **where** I was born*\n\n*She's the woman **who** works with me.*\n*This is the house **that** we bought.*\n\nY una cosa que sorprende: si el que es el **objeto**, se puede quitar.\n*The book (**that**) I bought* — las dos son correctas.",
+                "trap": "No se repite el objeto después del relativo. «El libro que compré» es *The book that I bought* — no *The book that I bought **it*** ❌. En español tampoco se dice, pero al armar la frase en inglés se cuela."
+              },
+              "exercises": [
+                {"id": "a2u7l3e1", "type": "translate", "es": "Ella es la mujer que trabaja conmigo.", "options": ["She is the woman which works with me.", "She is the woman who works with me.", "She is the woman who she works with me."], "answer": "She is the woman who works with me.", "tip": "Personas: who."},
+                {"id": "a2u7l3e2", "type": "listen", "audio": "This is the house that we bought.", "options": ["This is the house who we bought.", "This is the house that we bought.", "This is the house that we bought it."], "answer": "This is the house that we bought.", "tip": "Cosas: that o which. Y no se repite el objeto."},
+                {"id": "a2u7l3e3", "type": "cloze", "es": "Esta es la ciudad donde nací.", "text": "This is the city ___ I was born.", "answer": "where", "accept": [], "tip": "Lugares: where."},
+                {"id": "a2u7l3e4", "type": "write", "es": "El hombre que llamó era mi jefe.", "answer": "The man who called was my boss.", "accept": ["The man that called was my boss."], "tip": "Personas: who, o that."},
+                {"id": "a2u7l3e5", "type": "write", "es": "¿Conoces a la chica que vive al lado?", "answer": "Do you know the girl who lives next door?", "accept": ["Do you know the girl that lives next door?"], "tip": "lives con -s porque la chica es she."},
+                {"id": "a2u7l3e6", "type": "build", "es": "El carro que compré es rojo.", "answer": "The car that I bought is red.", "accept": [], "extra": ["who", "it", "buy"], "tip": "No se repite el it al final."},
+                {"id": "a2u7l3e7", "type": "type", "audio": "That's the restaurant where we met.", "meaning": "Ese es el restaurante donde nos conocimos.", "tip": "Lugares con where."},
+                {"id": "a2u7l3e8", "type": "speak", "text": "She is the woman who helped me.", "sound": "h", "tip": "helped y who llevan las dos la h soplada. En who lo que no suena es la w: se dice «ju»."},
+                {"id": "a2u7l3e9", "type": "shadow", "text": "This is the house that we bought.", "tip": "«that we» se pega y baja de volumen. El peso en HOUSE y en BOUGHT."}
+              ]
+            }
+          ]
+        },
+        {
+          "id": "a2u8",
+          "emoji": "🏗️",
+          "title": "En el trabajo y en la calle",
+          "subtitle": "La pasiva, los verbos con partícula y por dónde se va",
+          "lessons": [
+            {
+              "id": "a2u8l1",
+              "title": "Fue construido en 1920",
+              "theory": {
+                "title": "La pasiva: cuando no importa quién",
+                "body": "Se usa cuando lo importante es **qué pasó**, no quién lo hizo.\n\n**be + participio**\n\n*This house **was built** in 1920.*\n*English **is spoken** here.*\n*The letters **are sent** every Monday.*\n\nEl tiempo lo marca el **be**: *is/are* para presente, *was/were* para pasado.\n\nY si quieres decir quién, va con **by**:\n*The book **was written by** García Márquez.*",
+                "trap": "El español resuelve esto con «se»: «se habla inglés», «se construyó en 1920». Esa forma no existe en inglés y sale *It speaks English here* ❌, que significa otra cosa. La pasiva inglesa necesita **be + participio**: **English is spoken here**."
+              },
+              "exercises": [
+                {"id": "a2u8l1e1", "type": "translate", "es": "Aquí se habla inglés.", "options": ["Here speaks English.", "English is spoken here.", "English is speak here."], "answer": "English is spoken here.", "tip": "El «se» español se vuelve be + participio."},
+                {"id": "a2u8l1e2", "type": "listen", "audio": "This house was built in 1920.", "options": ["This house was build in 1920.", "This house was built in 1920.", "This house built in 1920."], "answer": "This house was built in 1920.", "tip": "was + built, el participio de build."},
+                {"id": "a2u8l1e3", "type": "cloze", "es": "El libro fue escrito por García Márquez.", "text": "The book was written ___ García Márquez.", "answer": "by", "accept": [], "tip": "Quién lo hizo va con by."},
+                {"id": "a2u8l1e4", "type": "write", "es": "Las cartas se envían todos los lunes.", "answer": "The letters are sent every Monday.", "accept": ["Letters are sent every Monday."], "tip": "Plural: are + sent."},
+                {"id": "a2u8l1e5", "type": "write", "es": "Mi carro fue robado anoche.", "answer": "My car was stolen last night.", "accept": ["My car got stolen last night."], "tip": "El participio de steal es stolen."},
+                {"id": "a2u8l1e6", "type": "build", "es": "La reunión fue cancelada.", "answer": "The meeting was canceled.", "extra": ["is", "cancel", "by"], "tip": "Pasado: was + participio."},
+                {"id": "a2u8l1e7", "type": "type", "audio": "Breakfast is served at seven.", "meaning": "El desayuno se sirve a las siete.", "tip": "is + served, y la hora con at."},
+                {"id": "a2u8l1e8", "type": "speak", "text": "English is spoken here.", "sound": "es", "tip": "spoken arranca con sp-, sin e delante."},
+                {"id": "a2u8l1e9", "type": "shadow", "text": "This house was built by my grandfather.", "tip": "built suena «bilt», corto. El peso en HOUSE y en GRAND-father."}
+              ]
+            },
+            {
+              "id": "a2u8l2",
+              "title": "Verbos con partícula",
+              "theory": {
+                "title": "Phrasal verbs: el verbo cambia con la partícula",
+                "body": "En inglés un verbo corriente cambia de significado según la palabrita que lleve detrás. No hay lógica: se aprenden como vocabulario.\n\n*get **up*** = levantarse · *get **on*** = subirse\n*turn **on / off*** = encender / apagar\n*look **for*** = buscar · *look **after*** = cuidar\n*give **up*** = rendirse · *put **on*** = ponerse (ropa)\n*take **off*** = quitarse, y también despegar\n\n**Unos se pueden partir** (turn on/off, put on, take off, give up):\n*Turn **the light** off.* = *Turn off **the light**.*\nY en esos, si el objeto es un pronombre **va obligatoriamente en el medio**:\n*Turn **it** off.* ✅ · *Turn off it.* ❌\n\n**Otros no se parten nunca** (look for, look after, get on):\n*look after **her*** ✅ · *look **her** after* ❌",
+                "trap": "No se traducen pieza por pieza. *look for* no es «mirar para»: es **buscar**. Y por eso *I'm searching my keys* ❌ suena raro — lo natural es **I'm looking for my keys**."
+              },
+              "exercises": [
+                {"id": "a2u8l2e1", "type": "translate", "es": "Estoy buscando mis llaves.", "options": ["I'm searching my keys.", "I'm looking for my keys.", "I'm looking my keys."], "answer": "I'm looking for my keys.", "tip": "Buscar es look for, con for pegado."},
+                {"id": "a2u8l2e2", "type": "listen", "audio": "Please turn off the light.", "options": ["Please turn the light.", "Please turn off the light.", "Please turn off it."], "answer": "Please turn off the light.", "tip": "Con un sustantivo puede ir junto o partido; con it va partido obligatoriamente."},
+                {"id": "a2u8l2e3", "type": "cloze", "es": "Me levanto a las seis.", "text": "I get ___ at six.", "answer": "up", "accept": [], "tip": "get up = levantarse."},
+                {"id": "a2u8l2e4", "type": "write", "es": "Apágalo, por favor.", "answer": "Turn it off, please.", "accept": ["Please turn it off."], "tip": "Con it, la partícula va después: turn it off. Nunca turn off it."},
+                {"id": "a2u8l2e5", "type": "write", "es": "No te rindas.", "answer": "Don't give up.", "accept": ["Never give up."], "tip": "give up = rendirse."},
+                {"id": "a2u8l2e6", "type": "build", "es": "Ella cuida a su abuela.", "answer": "She looks after her grandmother.", "extra": ["for", "care", "look"], "tip": "Cuidar es look after. look for sería buscarla."},
+                {"id": "a2u8l2e7", "type": "type", "audio": "Put on your jacket, it's cold.", "meaning": "Ponte la chaqueta, hace frío.", "tip": "put on = ponerse ropa."},
+                {"id": "a2u8l2e8", "type": "speak", "text": "I'm looking for my phone.", "sound": "rl", "tip": "looking: la doble o es corta y relajada, «LUK-ing», no «luuk»."},
+                {"id": "a2u8l2e9", "type": "shadow", "text": "Please turn off the light.", "tip": "«turn off» se pega: «ter-NOF». El peso en LIGHT."}
+              ]
+            },
+            {
+              "id": "a2u8l3",
+              "title": "Por dónde se va",
+              "theory": {
+                "title": "Preposiciones de movimiento",
+                "body": "Ya viste las de lugar (in, on, at). Estas son las de **movimiento**, y casi todas se dibujan:\n\n**to** = hacia (destino): *go **to** the park*\n**into** = hacia dentro: *walk **into** the room*\n**out of** = hacia fuera: *get **out of** the car*\n**across** = de un lado al otro: *walk **across** the street*\n**along** = a lo largo: *walk **along** the river*\n**through** = atravesando algo: *walk **through** the park*\n**over** = por encima: *jump **over** the wall*\n**up / down** = subiendo / bajando",
+                "trap": "**go to home** ❌ es el error más repetido de todos. *home* no lleva **to**: es **go home**, **come home**, **get home**. Lo mismo con *here* y *there*: *come here*, no *come to here*."
+              },
+              "exercises": [
+                {"id": "a2u8l3e1", "type": "translate", "es": "Me voy a casa.", "options": ["I'm going to home.", "I'm going home.", "I'm going at home."], "answer": "I'm going home.", "tip": "home nunca lleva to detrás de go."},
+                {"id": "a2u8l3e2", "type": "listen", "audio": "We walked across the street.", "options": ["We walked across the street.", "We walked through the street.", "We walked along the street."], "answer": "We walked across the street.", "tip": "across es de un lado al otro."},
+                {"id": "a2u8l3e3", "type": "cloze", "es": "Salió del carro.", "text": "He got out ___ the car.", "answer": "of", "accept": [], "tip": "out of, siempre las dos palabras."},
+                {"id": "a2u8l3e4", "type": "write", "es": "Ayer caminamos por el parque.", "answer": "We walked through the park.", "accept": ["We walked across the park."], "tip": "through es atravesar algo por dentro."},
+                {"id": "a2u8l3e5", "type": "write", "es": "Voy al trabajo en bus.", "answer": "I go to work by bus.", "accept": ["I go to work on the bus.", "I take the bus to work."], "tip": "to work sí lleva to; el medio de transporte va con by."},
+                {"id": "a2u8l3e6", "type": "build", "es": "Ella entró a la habitación.", "answer": "She walked into the room.", "extra": ["in", "to", "walk"], "tip": "into = hacia dentro, una sola palabra."},
+                {"id": "a2u8l3e7", "type": "type", "audio": "They ran up the stairs.", "meaning": "Subieron las escaleras corriendo.", "tip": "El pasado de run es ran."},
+                {"id": "a2u8l3e8", "type": "speak", "text": "We walked through the park.", "sound": "th", "tip": "through: lengua entre los dientes, y la gh no suena. Nunca «truu» ni «sruu». El peso en PARK."},
+                {"id": "a2u8l3e9", "type": "shadow", "text": "I'm going home now.", "tip": "Sin to. «going home» se pega: «GO-ing-HOME»."},
+                {"id": "a2u8l3e10", "type": "minimalPair", "options": ["walk", "work"], "answer": "work", "sentence": "I go to work by bus.", "tip": "work lleva la r y suena «werk»; walk no tiene r y suena «wok». Nos salen iguales."}
+              ]
+            }
+          ]
+        },
+        {
+          "id": "a2u9",
+          "emoji": "💬",
+          "title": "Contar lo que otros dicen",
+          "subtitle": "Me dijo que..., y el yo también",
+          "lessons": [
+            {
+              "id": "a2u9l1",
+              "title": "Me dijo que...",
+              "theory": {
+                "title": "say y tell, y el verbo que retrocede",
+                "body": "Para repetir lo que alguien dijo, el verbo **da un paso atrás** en el tiempo.\n\n*\"I **am** tired\"* → *He said he **was** tired.*\n*\"I **work** here\"* → *She said she **worked** there.*\n*\"I **will** call\"* → *He said he **would** call.*\n\nY hay dos verbos para «decir», con reglas distintas:\n\n**say** — no lleva a quién: *He **said** that he was tired.*\n**tell** — sí lleva a quién, pegado: *He **told me** that he was tired.*",
+                "trap": "*He said me* ❌ y *He told that* ❌ son las dos caras del mismo error, porque el español usa «decir» para todo. Regla corta: **tell** siempre con persona (tell me, tell him), **say** sin persona. Y otro: *explain me* ❌ → **explain to me**."
+              },
+              "exercises": [
+                {"id": "a2u9l1e1", "type": "translate", "es": "Él me dijo que estaba cansado.", "options": ["He said me that he was tired.", "He told me that he was tired.", "He told that he was tired."], "answer": "He told me that he was tired.", "tip": "Con persona detrás va tell, no say."},
+                {"id": "a2u9l1e2", "type": "listen", "audio": "She said she would call.", "options": ["She said she will call.", "She said she would call.", "She told she would call."], "answer": "She said she would call.", "tip": "will retrocede a would. Y say sin persona."},
+                {"id": "a2u9l1e3", "type": "cloze", "es": "Ella dijo que trabajaba allí.", "text": "She said she ___ there.", "answer": "worked", "accept": ["was working"], "tip": "El presente retrocede a pasado."},
+                {"id": "a2u9l1e4", "type": "write", "es": "¿Puedes explicarme esto?", "answer": "Can you explain this to me?", "accept": ["Could you explain this to me?"], "tip": "explain siempre lleva to delante de la persona."},
+                {"id": "a2u9l1e5", "type": "write", "es": "Me dijo que llegaría tarde.", "answer": "He told me that he would be late.", "accept": ["He told me he would be late.", "She told me that she would be late.", "She told me she would be late.", "He told me he'd be late."], "tip": "tell + persona, y will retrocede a would."},
+                {"id": "a2u9l1e6", "type": "build", "es": "Dijeron que el tren venía retrasado.", "answer": "They said the train was late.", "extra": ["told", "is", "me"], "tip": "Sin persona: said. Y is retrocede a was."},
+                {"id": "a2u9l1e7", "type": "type", "audio": "He told me the truth.", "meaning": "Me dijo la verdad.", "tip": "tell the truth es fija: se dice así."},
+                {"id": "a2u9l1e8", "type": "speak", "text": "He told me the truth.", "sound": "th", "tip": "the y truth: la primera th es sonora, la de truth es sorda."},
+                {"id": "a2u9l1e9", "type": "shadow", "text": "She said she would call me later.", "tip": "«she said she» pasa rápido y flojo. El peso en CALL y en LA-ter."}
+              ]
+            },
+            {
+              "id": "a2u9l2",
+              "title": "Yo también, yo tampoco",
+              "theory": {
+                "title": "so am I / neither do I",
+                "body": "Para decir «yo también» hay que repetir el **ayudante** de la otra frase, no el verbo entero.\n\n**Estar de acuerdo con algo positivo → So + ayudante + yo**\n*\"I'm tired.\"* → ***So am I**.*\n*\"I like coffee.\"* → ***So do I**.*\n*\"I've been there.\"* → ***So have I**.*\n\n**Con algo negativo → Neither + ayudante + yo**\n*\"I don't like it.\"* → ***Neither do I**.*\n*\"I can't swim.\"* → ***Neither can I**.*\n\nFíjate que el orden se invierte: **so am I**, no *so I am*.",
+                "trap": "«Yo también» no es *Me too* en todos los casos — *Me too* funciona suelto, pero suena informal y no sirve para lo negativo. Y el error de verdad es contestar *So I am* ❌ o *Also me* ❌. El orden es **So + ayudante + sujeto**."
+              },
+              "exercises": [
+                {"id": "a2u9l2e1", "type": "translate", "es": "—Estoy cansado. —Yo también.", "options": ["So I am.", "So am I.", "Also me."], "answer": "So am I.", "tip": "Se invierte: So + am + I."},
+                {"id": "a2u9l2e2", "type": "listen", "audio": "Neither do I.", "options": ["Neither I do.", "Neither do I.", "Neither am I."], "answer": "Neither do I.", "tip": "Para responder a un don't: Neither do I."},
+                {"id": "a2u9l2e3", "type": "cloze", "es": "—Me gusta el café. —A mí también.", "text": "So ___ I.", "answer": "do", "accept": [], "tip": "like usa do como ayudante, así que se repite do."},
+                {"id": "a2u9l2e4", "type": "write", "es": "—No puedo nadar. —Yo tampoco.", "answer": "Neither can I.", "accept": ["I can't either.", "Me neither."], "tip": "Se repite el can de la frase original."},
+                {"id": "a2u9l2e5", "type": "write", "es": "—He estado allí. —Yo también.", "answer": "So have I.", "accept": ["Me too.", "I have too."], "tip": "Con present perfect el ayudante es have."},
+                {"id": "a2u9l2e6", "type": "build", "es": "—Ella no vino. —Él tampoco.", "answer": "Neither did he.", "extra": ["so", "does", "didn't"], "tip": "El pasado usa did como ayudante."},
+                {"id": "a2u9l2e7", "type": "type", "audio": "So do I.", "meaning": "Yo también.", "tip": "Tres palabras, respuesta completa."},
+                {"id": "a2u9l2e8", "type": "speak", "text": "Neither can I.", "sound": "th", "tip": "Neither lleva th sonora. Se acepta «NAI-ther» y «NII-ther»."},
+                {"id": "a2u9l2e9", "type": "shadow", "text": "So am I, and so is she.", "tip": "Dos bloques iguales. El peso cae en I y en SHE."}
+              ]
+            }
+          ]
+        },
+        {
+          "id": "a2u10",
+          "emoji": "🔗",
+          "title": "Verbos que se juntan",
+          "subtitle": "-ing o to, do o make, y para qué",
+          "lessons": [
+            {
+              "id": "a2u10l1",
+              "title": "¿-ing o to?",
+              "theory": {
+                "title": "Qué pide cada verbo",
+                "body": "Cuando un verbo lleva otro detrás, el primero decide la forma del segundo. Hay que aprenderlo por listas.\n\n**Piden to:** want, need, decide, hope, learn, try, would like, promise\n*I **want to go**.* · *She **decided to stay**.*\n\n**Piden -ing:** enjoy, finish, stop, avoid, mind, suggest, keep\n*I **enjoy reading**.* · *He **finished working**.*\n\n**Después de una preposición, SIEMPRE -ing:**\n*before **going***, *after **eating***, *good at **cooking***, *interested in **learning***",
+                "trap": "Lo de la preposición es lo que más se falla, porque el español pone infinitivo ahí: «antes de **salir**» → *before **to go*** ❌. En inglés, si hay una preposición delante, el verbo lleva **-ing**: **before going**."
+              },
+              "exercises": [
+                {"id": "a2u10l1e1", "type": "translate", "es": "Llámame antes de salir.", "options": ["Call me before to go out.", "Call me before going out.", "Call me before go out."], "answer": "Call me before going out.", "tip": "Después de una preposición, siempre -ing."},
+                {"id": "a2u10l1e2", "type": "listen", "audio": "I enjoy reading at night.", "options": ["I enjoy to read at night.", "I enjoy reading at night.", "I enjoy read at night."], "answer": "I enjoy reading at night.", "tip": "enjoy siempre pide -ing."},
+                {"id": "a2u10l1e3", "type": "cloze", "es": "Decidió quedarse en casa.", "text": "He decided ___ stay at home.", "answer": "to", "accept": [], "tip": "decide pide to."},
+                {"id": "a2u10l1e4", "type": "write", "es": "Terminé de trabajar a las seis.", "answer": "I finished working at six.", "accept": ["I finished work at six."], "tip": "finish pide -ing."},
+                {"id": "a2u10l1e5", "type": "write", "es": "Ella es buena cocinando.", "answer": "She is good at cooking.", "accept": ["She's good at cooking."], "tip": "Después de at, el verbo con -ing."},
+                {"id": "a2u10l1e6", "type": "build", "es": "Quiero aprender a tocar la guitarra.", "answer": "I want to learn to play the guitar.", "extra": ["learning", "playing", "for"], "tip": "want y learn piden los dos to."},
+                {"id": "a2u10l1e7", "type": "type", "audio": "I am interested in learning English.", "meaning": "Me interesa aprender inglés.", "tip": "interested in + verbo con -ing."},
+                {"id": "a2u10l1e8", "type": "speak", "text": "I enjoy cooking at home.", "sound": "h", "tip": "home con la h soplada. Y enjoy suena «en-YOY»."},
+                {"id": "a2u10l1e9", "type": "shadow", "text": "Call me before going out.", "tip": "«before going» se pega. El peso en CALL y en OUT."}
+              ]
+            },
+            {
+              "id": "a2u10l2",
+              "title": "Do o make",
+              "theory": {
+                "title": "Un «hacer» español, dos verbos ingleses",
+                "body": "No hay regla perfecta, pero sí una guía que funciona casi siempre:\n\n**do** = tareas, trabajo, cosas sin resultado físico\n*do the homework · do the dishes · do business · do exercise · do your best*\n\n**make** = crear algo, producir algo nuevo\n*make dinner · make a mistake · make a decision · make money · make noise · make friends*\n\nTruco: si al final **existe algo que antes no existía**, casi siempre es **make**.",
+                "trap": "El español usa «hacer» para todo, así que sale *do a mistake* ❌ y *make the homework* ❌. Las dos son de las que más delatan. Memoriza las parejas más comunes como si fueran una sola palabra: **make a mistake**, **do the homework**."
+              },
+              "exercises": [
+                {"id": "a2u10l2e1", "type": "translate", "es": "Cometí un error.", "options": ["I did a mistake.", "I made a mistake.", "I make a mistake."], "answer": "I made a mistake.", "tip": "El error se make. Y el pasado de make es made."},
+                {"id": "a2u10l2e2", "type": "listen", "audio": "She is doing her homework.", "options": ["She is making her homework.", "She is doing her homework.", "She is doing her homeworks."], "answer": "She is doing her homework.", "tip": "La tarea se does. Y homework nunca lleva -s."},
+                {"id": "a2u10l2e3", "type": "cloze", "es": "Tengo que tomar una decisión.", "text": "I have to ___ a decision.", "answer": "make", "accept": [], "tip": "La decisión se make: aparece algo que no estaba."},
+                {"id": "a2u10l2e4", "type": "write", "es": "¿Puedes hacer la cena esta noche?", "answer": "Can you make dinner tonight?", "accept": ["Could you make dinner tonight?", "Can you cook dinner tonight?"], "tip": "La cena se make, o se cook."},
+                {"id": "a2u10l2e5", "type": "write", "es": "Hago ejercicio todas las mañanas.", "answer": "I do exercise every morning.", "accept": ["I exercise every morning.", "I work out every morning."], "tip": "El ejercicio se does."},
+                {"id": "a2u10l2e6", "type": "build", "es": "No hagas ruido, por favor.", "answer": "Don't make noise, please.", "extra": ["do", "noises", "to"], "tip": "El ruido se make. Y noise no lleva -s."},
+                {"id": "a2u10l2e7", "type": "type", "audio": "He made a lot of friends there.", "meaning": "Hizo muchos amigos allí.", "tip": "Los amigos se make."},
+                {"id": "a2u10l2e8", "type": "speak", "text": "I made a mistake.", "sound": "general", "tip": "made suena «meid». El peso en mis-TAKE."},
+                {"id": "a2u10l2e9", "type": "shadow", "text": "She is doing her homework now.", "tip": "El peso en HOME-work. «doing her» se pega: «DOO-ing-er»."}
+              ]
+            },
+            {
+              "id": "a2u10l3",
+              "title": "¿Para qué?",
+              "theory": {
+                "title": "to y for: el propósito",
+                "body": "Las dos traducen «para», y se eligen por lo que viene detrás.\n\n**to + verbo** = para hacer algo\n*I came here **to study**.*\n*She called **to ask** about the job.*\n\n**for + sustantivo** = para una cosa\n*This is **for you**.*\n*I came here **for the meeting**.*\n\n**Excepción útil:** para decir para qué **sirve** una cosa va **for + -ing**:\n*This knife is **for cutting** bread.*\n\nRegla corta: si detrás va un **verbo de propósito**, es **to**. Si va un **sustantivo**, es **for**.",
+                "trap": "*I came here for study* ❌ es calco directo de «vine para estudiar». Como *study* es un verbo de propósito, va **to study**. El *for* aparece delante de sustantivos (*for the meeting*, *for you*) o delante de un verbo en -ing cuando dices para qué sirve algo."
+              },
+              "exercises": [
+                {"id": "a2u10l3e1", "type": "translate", "es": "Vine aquí para estudiar.", "options": ["I came here for study.", "I came here to study.", "I came here for studying."], "answer": "I came here to study.", "tip": "Detrás va un verbo, así que to."},
+                {"id": "a2u10l3e2", "type": "listen", "audio": "This is for you.", "options": ["This is to you.", "This is for you.", "This is for to you."], "answer": "This is for you.", "tip": "Detrás va un pronombre, no un verbo: for."},
+                {"id": "a2u10l3e3", "type": "cloze", "es": "Llamó para preguntar por el trabajo.", "text": "She called ___ ask about the job.", "answer": "to", "accept": [], "tip": "Delante de un verbo: to."},
+                {"id": "a2u10l3e4", "type": "write", "es": "Fui a la tienda a comprar leche.", "answer": "I went to the store to buy milk.", "accept": ["I went to the shop to buy milk."], "tip": "El propósito con to + verbo."},
+                {"id": "a2u10l3e5", "type": "write", "es": "Estudio inglés para conseguir un trabajo mejor.", "answer": "I study English to get a better job.", "accept": ["I am studying English to get a better job."], "tip": "to get, no for get. Y «mejor» es better."},
+                {"id": "a2u10l3e6", "type": "build", "es": "Este cuchillo es para cortar pan.", "answer": "This knife is for cutting bread.", "accept": [], "extra": ["to", "cut", "the"], "tip": "Para qué SIRVE una cosa: for + -ing. Es la excepción útil."},
+                {"id": "a2u10l3e7", "type": "type", "audio": "I need money for the trip.", "meaning": "Necesito dinero para el viaje.", "tip": "Delante de un sustantivo: for."},
+                {"id": "a2u10l3e8", "type": "speak", "text": "I came here to study English.", "sound": "es", "tip": "study arranca con st-. Y here con la h soplada."},
+                {"id": "a2u10l3e9", "type": "shadow", "text": "I went to the store to buy milk.", "tip": "Dos to seguidos que casi no suenan: «ta». El peso en STORE y en MILK."}
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }

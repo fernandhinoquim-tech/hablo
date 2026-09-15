@@ -72,7 +72,8 @@ fun HomeScreen(
             .filter { it.second.tries > 0 }
             .sortedByDescending { (_, st) -> st.mal.toFloat() / st.tries }
     }
-    val level = remember(refreshKey) { Course.levels.firstOrNull() }
+    // Los niveles, cada uno con sus unidades: A1 y A2 se ven separados.
+    val levels = remember(refreshKey) { Course.levels }
 
     // Una unidad se abre cuando la anterior está terminada.
     val unlocked = remember(refreshKey) {
@@ -240,30 +241,46 @@ fun HomeScreen(
             }
         }
 
-        if (level != null) {
-            item {
-                Spacer(Modifier.height(6.dp))
+        // Un encabezado por nivel y debajo sus unidades. La cadena de desbloqueo
+        // sigue de un nivel al siguiente: la primera unidad de A2 se abre al
+        // terminar la última de A1.
+        for (level in levels) {
+            val lessonsOfLevel = level.units.flatMap { it.lessons }
+            val done = lessonsOfLevel.count { (scores[it.id] ?: 0) >= 60 }
+            item(key = "nivel-${level.id}") {
+                Spacer(Modifier.height(10.dp))
                 Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     Pill(level.id, accent, Color(teacher.softColor))
-                    Text(level.title, style = MaterialTheme.typography.titleLarge)
+                    Text(level.title, style = MaterialTheme.typography.titleLarge, modifier = Modifier.weight(1f))
+                    Text(
+                        "$done de ${lessonsOfLevel.size}",
+                        style = MaterialTheme.typography.labelLarge,
+                        color = if (done == lessonsOfLevel.size) GoodGreen else InkSoft
+                    )
                 }
                 if (level.goal.isNotBlank()) {
                     Spacer(Modifier.height(4.dp))
                     Text(level.goal, style = MaterialTheme.typography.bodyMedium, color = InkSoft)
                 }
+                Spacer(Modifier.height(4.dp))
+                LinearProgressIndicator(
+                    progress = { if (lessonsOfLevel.isEmpty()) 0f else done.toFloat() / lessonsOfLevel.size },
+                    color = accent,
+                    trackColor = Line,
+                    modifier = Modifier.fillMaxWidth().height(5.dp)
+                )
             }
-        }
-
-        items(units, key = { it.id }) { unit ->
-            UnitCard(
-                unit = unit,
-                scores = scores,
-                accent = accent,
-                locked = unit.id !in unlocked,
-                isOpen = expanded == unit.id,
-                onToggle = { expanded = if (expanded == unit.id) null else unit.id },
-                onOpenLesson = onOpenLesson
-            )
+            items(level.units, key = { it.id }) { unit ->
+                UnitCard(
+                    unit = unit,
+                    scores = scores,
+                    accent = accent,
+                    locked = unit.id !in unlocked,
+                    isOpen = expanded == unit.id,
+                    onToggle = { expanded = if (expanded == unit.id) null else unit.id },
+                    onOpenLesson = onOpenLesson
+                )
+            }
         }
 
         item {

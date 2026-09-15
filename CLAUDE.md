@@ -199,6 +199,16 @@ siempre así, y el script mide igual. Dos hallazgos para el contenido:
 con estas voces), y `three`, `think`, `match` y `want/won't` salen con su
 fonema en solo 2 de 4 voces: mejor otros pares o aceptar que dependen de la
 profesora. `can/can't` sí conserva la /t/ (3–4 de 4).
+**A2 entró el 2026-09-14 (noche): 10 unidades, 29 lecciones, 265 ejercicios
+(producción 65 %)** con `tools/content/anexar_nivel.py`. Total: **2 niveles,
+56 lecciones, 565 ejercicios.** La pantalla de inicio agrupa por nivel (un
+encabezado con barra "x de y lecciones" por nivel) y la cadena de desbloqueo
+sigue de A1 a A2. Pares mínimos de A2 medidos: `ban`/`walk`/`work`/`sense`
+bien; `since` (ɪ) sale 1 de 4 y `van` (v) 2 de 4 — marginales.
+**Juego "Parejas"** (`Parejas.kt`): a mitad de cada lección, sus propias
+frases español↔inglés barajadas para unir contra el reloj; no cuenta para la
+nota (es reconocimiento); solo si la lección da ≥ 3 parejas. Pedido de Fero:
+"agrega algún juego en las lecciones para que no sea repetitivo".
 `drills.json`: lista de `drills` con `text`, `sound`, `focus`, `tip`.
 `bench.py` lee el sonido de cada frase de esos mismos JSON.
 

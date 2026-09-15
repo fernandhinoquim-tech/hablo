@@ -58,6 +58,10 @@ DISTINTIVO = {
     "can": "n", "can't": "nt",
     "walked": "wɔ|wɑ", "worked": "wɚ|wɝ",
     "want": "ɑ", "won't": "oʊ",
+    # A2
+    "since": "sɪn", "sense": "sɛn",
+    "ban": "b", "van": "v",
+    "walk": "wɔ|wɑ", "work": "wɚ|wɝ",
 }
 
 

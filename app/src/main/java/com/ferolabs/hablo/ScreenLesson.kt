@@ -74,6 +74,14 @@ fun LessonScreen(
     var pos by remember { mutableStateOf(0) }
     val index = queue[pos.coerceIn(0, queue.size - 1)]
     var correctCount by remember { mutableStateOf(0) }
+
+    // El juego de Parejas a mitad de la lección, con las frases de la misma
+    // lección. No cuenta para la nota; rompe la rutina. Solo si hay parejas.
+    val parejas = remember { parejasDe(lesson) }
+    val gameAt = remember { if (parejas.size >= 3) lesson.exercises.size / 2 else -1 }
+    var gamePlayed by remember { mutableStateOf(false) }
+    var gameDone by remember { mutableStateOf(false) }
+    val showingGame = pos == gameAt && !gamePlayed
     var checked by remember { mutableStateOf(false) }
     var wasCorrect by remember { mutableStateOf(false) }
     var finished by remember { mutableStateOf(false) }
@@ -154,7 +162,8 @@ fun LessonScreen(
     }
 
     // Al entrar a un ejercicio de escucha, la profesora dice la frase sola.
-    LaunchedEffect(pos) {
+    LaunchedEffect(pos, gamePlayed) {
+        if (showingGame) return@LaunchedEffect
         when (ex) {
             is Exercise.ListenChoose -> say(ex.audio, 1f)
             is Exercise.TypeWhatYouHear -> say(ex.audio, 1f)
@@ -267,7 +276,9 @@ fun LessonScreen(
                 .verticalScroll(rememberScrollState())
                 .padding(20.dp)
         ) {
-            when (ex) {
+            if (showingGame) {
+                ParejasGame(parejas, accent) { _, _ -> gameDone = true }
+            } else when (ex) {
 
                 is Exercise.ListenChoose -> {
                     // Orden nuevo en cada ejercicio: si no, se aprueba tocando
@@ -659,7 +670,7 @@ fun LessonScreen(
                 }
             }
 
-            if (checked) {
+            if (checked && !showingGame) {
                 Spacer(Modifier.height(2.dp))
                 FeedbackBox(
                     ok = wasCorrect,
@@ -680,7 +691,15 @@ fun LessonScreen(
                 .background(Cream)
                 .padding(20.dp)
         ) {
-            if (!checked) {
+            if (showingGame) {
+                BigButton(
+                    text = if (gameDone) "Seguir con la lección" else "Une todas las parejas",
+                    enabled = gameDone,
+                    container = GoodGreen
+                ) {
+                    gamePlayed = true
+                }
+            } else if (!checked) {
                 BigButton("Comprobar", enabled = canCheck(), container = accent) {
                     progreso.anotarActividad(Progreso.Actividad.EJERCICIO)
                     wasCorrect = evaluate()
