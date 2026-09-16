@@ -141,6 +141,7 @@ fun AptisScreen(
                 val nivel = niveles[s.id]
                 val estado = when {
                     r == null -> "Pendiente · ${s.cuantas} tareas · ${s.minutos} min"
+                    !r.vigente(s) -> "Hecha el ${r.fecha} con una versión anterior del diagnóstico · toca para repetirla"
                     nivel != null -> "Hecha el ${r.fecha} · ${nivel.etiqueta} · toca para repetirla"
                     r.juicios.any { it.error != null } -> "Falta estimar: " + (r.juicios.firstOrNull { it.error != null }?.error ?: "") + " · toca para reintentar"
                     else -> "Falta estimar · toca para reintentar"
@@ -266,8 +267,8 @@ fun AptisParteScreen(
     val items = remember { mutableStateListOf<AciertoItem>() }
     val juicios = remember { mutableStateListOf<JuicioIa>() }
     var juzgando by remember { mutableStateOf(false) }
-    // Lo que ya estaba guardado de esta parte (para reintentar la estimación sin repetirla).
-    val previo = remember { aptis.resultado(seccion.id) }
+    // Lo que ya estaba guardado de esta parte (para reintentar la estimación sin repetirla); si el contenido cambió, no cuenta.
+    val previo = remember { aptis.resultado(seccion.id)?.takeIf { it.vigente(seccion) } }
     val esHabla = seccion.habla.isNotEmpty()
 
     fun guardarIa() = aptis.guardar(ResultadoSeccion(seccion.id, aptis.hoy(), juicios = juicios.toList()))
@@ -750,9 +751,11 @@ private fun TareaHablaUi(
         SubHabla.OIDO -> {
             when (val r = oido) {
                 is ListenResult.Heard -> {
+                    // Sin las muletillas que Parakeet inventa al final del silencio: lo que se ve es lo que se juzga.
+                    val limpio = remember(r.text) { JuezAptis.sinMuletillas(r.text) }
                     Text("Lo que oyó el dictado (%.0f s de voz en %.0f s):".format(Locale.US, r.speechSeconds, r.totalSeconds), style = MaterialTheme.typography.labelMedium, color = InkSoft)
                     Text(
-                        r.text, style = MaterialTheme.typography.bodyLarge, color = Ink,
+                        limpio, style = MaterialTheme.typography.bodyLarge, color = Ink,
                         modifier = Modifier
                             .fillMaxWidth()
                             .background(Color.White, RoundedCornerShape(14.dp))
@@ -761,7 +764,7 @@ private fun TareaHablaUi(
                     )
                     Text("Si el dictado oyó mal alguna palabra, la IA ya sabe que puede pasar: no cuenta como error tuyo.", style = MaterialTheme.typography.labelMedium, color = InkSoft)
                     BigButton("Siguiente", container = accent) {
-                        if (!entregado) { entregado = true; onEntrega(JuicioIa(t.id, t.level, r.text, r.speechSeconds.roundToInt(), duracion = r.totalSeconds.roundToInt())) }
+                        if (!entregado) { entregado = true; onEntrega(JuicioIa(t.id, t.level, limpio, r.speechSeconds.roundToInt(), duracion = r.totalSeconds.roundToInt())) }
                     }
                 }
                 is ListenResult.NotHeard -> {

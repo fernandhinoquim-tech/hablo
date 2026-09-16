@@ -24,22 +24,27 @@ class AptisTest {
     private fun mal(level: String) = level to false
 
     @Test
-    fun `el diagnostico real carga con sus 5 partes y 23 tareas`() {
+    fun `el diagnostico real carga con sus 5 partes y 30 tareas`() {
         val d = real()
-        assertEquals(30, d.duracionMin)
+        assertEquals(36, d.duracionMin)
         assertEquals(listOf("core", "reading", "listening", "writing", "speaking"), d.secciones.map { it.id })
-        assertEquals(23, d.tareas)
+        assertEquals(30, d.tareas)
         val core = d.seccion("core")!!
-        assertEquals(12, core.core.size)
+        assertEquals(15, core.core.size)
         assertEquals(30, core.segundosPorItem)
-        assertEquals(listOf(3, 4, 5), listOf("A2", "B1", "B2").map { l -> core.core.count { it.level == l } })
+        assertEquals(listOf(5, 5, 5), listOf("A2", "B1", "B2").map { l -> core.core.count { it.level == l } })
+        // los umbrales salen del JSON ("4 de 5 en A2 y 4 de 5 en B1"), no del código
+        assertEquals(listOf(Condicion(4, 5, "A2")), core.umbrales["A2"])
+        assertEquals(listOf(Condicion(4, 5, "A2"), Condicion(4, 5, "B1")), core.umbrales["B1"])
+        assertEquals(listOf(Condicion(4, 5, "B1"), Condicion(4, 5, "B2")), core.umbrales["B2"])
         val reading = d.seccion("reading")!!
-        assertEquals(listOf("completar", "ordenar", "titulos"), reading.lectura.map { it.tipo })
-        val ordenar = reading.lectura[1] as TareaLectura.Ordenar
+        assertEquals(listOf("completar", "completar", "ordenar", "titulos"), reading.lectura.map { it.tipo })
+        val ordenar = reading.lectura[2] as TareaLectura.Ordenar
         assertEquals("I sent my CV to about twenty places.", ordenar.orden[0])
-        val titulos = reading.lectura[2] as TareaLectura.Titulos
+        val titulos = reading.lectura[3] as TareaLectura.Titulos
         assertEquals(3, titulos.parrafos.size); assertEquals(4, titulos.titulos.size); assertEquals(3, titulos.answer.size)
-        assertEquals(3, d.seccion("listening")!!.escucha.size)
+        assertEquals(6, d.seccion("listening")!!.escucha.size)
+        assertEquals(listOf(2, 2, 2), listOf("A2", "B1", "B2").map { l -> d.seccion("listening")!!.escucha.count { it.level == l } })
         assertEquals(2, d.seccion("writing")!!.escritura.size)
         assertEquals(listOf(0, 30, 60), d.seccion("speaking")!!.habla.map { it.prepSeg })
         assertEquals(listOf(30, 60, 90), d.seccion("speaking")!!.habla.map { it.hablarSeg })
@@ -50,45 +55,54 @@ class AptisTest {
     fun `un orden que no es permutacion o unos titulos de menos revientan`() {
         val base = JSONObject(File("src/main/assets/content/aptis-diagnostico.json").readText())
         val roto = JSONObject(base.toString())
-        roto.getJSONArray("secciones").getJSONObject(1).getJSONArray("tareas").getJSONObject(1).getJSONArray("orden").put(0, "Otra frase.")
+        roto.getJSONArray("secciones").getJSONObject(1).getJSONArray("tareas").getJSONObject(2).getJSONArray("orden").put(0, "Otra frase.")
         try { parseDiagnostico(roto); fail("debía reventar") } catch (e: IllegalArgumentException) { assertTrue(e.message, e.message!!.contains("permutación")) }
         val roto2 = JSONObject(base.toString())
-        roto2.getJSONArray("secciones").getJSONObject(1).getJSONArray("tareas").getJSONObject(2).getJSONArray("answer").remove(2)
+        roto2.getJSONArray("secciones").getJSONObject(1).getJSONArray("tareas").getJSONObject(3).getJSONArray("answer").remove(2)
         try { parseDiagnostico(roto2); fail("debía reventar") } catch (e: IllegalArgumentException) { assertTrue(e.message, e.message!!.contains("título por párrafo")) }
         val roto3 = JSONObject(base.toString())
         roto3.getJSONArray("secciones").getJSONObject(0).getJSONArray("items").getJSONObject(1).put("id", "d-c-01")
         try { parseDiagnostico(roto3); fail("debía reventar") } catch (e: IllegalArgumentException) { assertTrue(e.message, e.message!!.contains("repetido")) }
+        val roto4 = JSONObject(base.toString())
+        roto4.getJSONObject("estimacion").getJSONObject("core").put("B1", "la mitad")
+        try { parseDiagnostico(roto4); fail("debía reventar") } catch (e: IllegalArgumentException) { assertTrue(e.message, e.message!!.contains("estimacion.core.B1")) }
     }
 
     @Test
-    fun `core sigue la tabla del JSON`() {
-        val a2 = listOf(ok("A2"), ok("A2"), ok("A2"))
-        val a2flojo = listOf(ok("A2"), mal("A2"), mal("A2"))
-        val b1 = List(4) { ok("B1") }
-        val b1mitad = listOf(ok("B1"), ok("B1"), mal("B1"), mal("B1"))
-        val b1tres = listOf(ok("B1"), ok("B1"), ok("B1"), mal("B1"))
-        val b1uno = listOf(ok("B1"), mal("B1"), mal("B1"), mal("B1"))
-        val b2 = List(5) { ok("B2") }
-        val b2tres = listOf(ok("B2"), ok("B2"), ok("B2"), mal("B2"), mal("B2"))
-        val b2dos = listOf(ok("B2"), ok("B2"), mal("B2"), mal("B2"), mal("B2"))
-        val b2nada = List(5) { mal("B2") }
-        assertEquals(NivelAptis.B2, EstimacionAptis.core(a2 + b1 + b2))
-        assertEquals(NivelAptis.B2, EstimacionAptis.core(a2 + b1tres + b2tres))
-        assertEquals(NivelAptis.B1, EstimacionAptis.core(a2 + b1tres + b2dos))       // 3 de 4 en B1 pero solo 2 de 5 en B2
-        assertEquals(NivelAptis.B1, EstimacionAptis.core(a2 + b1mitad + b2))         // 2 de 4 en B1: B1 aunque B2 vaya bien
-        assertEquals(NivelAptis.A2, EstimacionAptis.core(a2 + b1uno + b2nada))
-        assertEquals(NivelAptis.BAJO_A2, EstimacionAptis.core(a2flojo + b1 + b2))    // 1 de 3 en A2: por debajo, sin adornos
+    fun `core sigue la tabla del JSON, 4 de 5 por nivel y encadenada`() {
+        val u = real().seccion("core")!!.umbrales
+        fun de(level: String, bien: Int) = List(5) { i -> level to (i < bien) }
+        assertEquals(NivelAptis.B2, EstimacionAptis.core(de("A2", 5) + de("B1", 5) + de("B2", 5), u))
+        assertEquals(NivelAptis.B2, EstimacionAptis.core(de("A2", 4) + de("B1", 4) + de("B2", 4), u))
+        assertEquals(NivelAptis.B1, EstimacionAptis.core(de("A2", 5) + de("B1", 4) + de("B2", 3), u))     // 3 de 5 en B2 no alcanza
+        assertEquals(NivelAptis.A2, EstimacionAptis.core(de("A2", 5) + de("B1", 3) + de("B2", 5), u))     // B2 exige 4 de 5 en B1
+        assertEquals(NivelAptis.A2, EstimacionAptis.core(de("A2", 4) + de("B1", 3) + de("B2", 0), u))
+        assertEquals(NivelAptis.BAJO_A2, EstimacionAptis.core(de("A2", 3) + de("B1", 0) + de("B2", 0), u))   // 3 de 5 en A2: por debajo, sin adornos
+        // en proporción: si Cowork pone 10 ítems por nivel, "4 de 5" sigue siendo el 80 %
+        assertEquals(NivelAptis.A2, EstimacionAptis.core(List(10) { i -> "A2" to (i < 8) } + List(10) { i -> "B1" to (i < 7) }, u))
+        assertEquals(NivelAptis.BAJO_A2, EstimacionAptis.core(List(10) { i -> "A2" to (i < 7) }, u))
+        assertEquals(NivelAptis.BAJO_A2, EstimacionAptis.core(emptyList(), u))
     }
 
     @Test
-    fun `reading y listening dan la tarea mas alta resuelta, dos tercios por nivel`() {
-        assertEquals(NivelAptis.B1, EstimacionAptis.porDosTercios(listOf(ok("A2"), ok("B1"), mal("B2"))))
-        assertEquals(NivelAptis.B2, EstimacionAptis.porDosTercios(listOf(ok("A2"), ok("B1"), ok("B2"))))
-        assertEquals(NivelAptis.BAJO_A2, EstimacionAptis.porDosTercios(listOf(mal("A2"), mal("B1"), mal("B2"))))
-        assertEquals(NivelAptis.A2, EstimacionAptis.porDosTercios(listOf(ok("A2"), mal("B1"), mal("B2"))))
-        // con varios ítems por nivel: 2 de 3 alcanza, 1 de 3 no
-        assertEquals(NivelAptis.B1, EstimacionAptis.porDosTercios(listOf(ok("B1"), ok("B1"), mal("B1"))))
-        assertEquals(NivelAptis.BAJO_A2, EstimacionAptis.porDosTercios(listOf(ok("B1"), mal("B1"), mal("B1"))))
+    fun `reading y listening exigen todos los items del nivel y dan el mas alto alcanzado`() {
+        // Listening: dos por nivel, hacen falta los dos
+        assertEquals(NivelAptis.B1, EstimacionAptis.porTodos(listOf(ok("A2"), ok("A2"), ok("B1"), ok("B1"), ok("B2"), mal("B2"))))
+        assertEquals(NivelAptis.B2, EstimacionAptis.porTodos(listOf(ok("A2"), ok("A2"), ok("B1"), ok("B1"), ok("B2"), ok("B2"))))
+        assertEquals(NivelAptis.BAJO_A2, EstimacionAptis.porTodos(listOf(ok("A2"), mal("A2"), ok("B1"), mal("B1"), mal("B2"), mal("B2"))))
+        // Reading: A2 necesita los dos; B1 y B2 son una tarea; el nivel es el más alto alcanzado
+        assertEquals(NivelAptis.A2, EstimacionAptis.porTodos(listOf(ok("A2"), ok("A2"), mal("B1"), mal("B2"))))
+        assertEquals(NivelAptis.B2, EstimacionAptis.porTodos(listOf(ok("A2"), mal("A2"), mal("B1"), ok("B2"))))
+        assertEquals(NivelAptis.BAJO_A2, EstimacionAptis.porTodos(emptyList()))
+    }
+
+    @Test
+    fun `las muletillas que Parakeet inventa al final se cortan antes de juzgar`() {
+        assertEquals("She cook very good food. In the night I see the TV with my wife.", JuezAptis.sinMuletillas("She cook very good food. In the night I see the TV with my wife. Mm-hmm."))
+        assertEquals("it depends on the person.", JuezAptis.sinMuletillas("it depends on the person. Okay. Mm-hmm. Okay."))
+        assertEquals("I think it is", JuezAptis.sinMuletillas("I think it is okay"))     // un "okay" final se pierde aunque fuera suyo: no hay cómo saberlo y no cambia el nivel
+        assertEquals("okay is the word I like", JuezAptis.sinMuletillas("okay is the word I like"))   // en medio, no se toca
+        assertEquals("", JuezAptis.sinMuletillas("Mm-hmm."))
     }
 
     @Test
@@ -158,8 +172,8 @@ class AptisTest {
         assertFalse(a.completo(d))
         val core = d.seccion("core")!!
         a.guardar(ResultadoSeccion("core", "2026-09-16", items = core.core.map { AciertoItem(it.id, it.level, it.answer, it.level != "B2") }))
-        a.guardar(ResultadoSeccion("reading", "2026-09-16", items = listOf(AciertoItem("d-r-01", "A2", "closed", true), AciertoItem("d-r-02", "B1", "", false), AciertoItem("d-r-03", "B2", "", false))))
-        a.guardar(ResultadoSeccion("listening", "2026-09-16", items = listOf(AciertoItem("d-l-01", "A2", "Half past two", true), AciertoItem("d-l-02", "B1", "x", true), AciertoItem("d-l-03", "B2", "x", true))))
+        a.guardar(ResultadoSeccion("reading", "2026-09-16", items = listOf(AciertoItem("d-r-01", "A2", "closed", true), AciertoItem("d-r-04", "A2", "but", true), AciertoItem("d-r-02", "B1", "", false), AciertoItem("d-r-03", "B2", "", false))))
+        a.guardar(ResultadoSeccion("listening", "2026-09-16", items = d.seccion("listening")!!.escucha.map { AciertoItem(it.id, it.level, it.answer, true) }))
         a.guardar(ResultadoSeccion("writing", "2026-09-16", juicios = listOf(
             JuicioIa("d-w-01", "B1", "I prefer Saturday because I don't work.", 90, NivelAptis.B1, "I prefer Saturday because I don't work", "r", "p"),
             JuicioIa("d-w-02", "B2", "Dear Sir", 30, null, "", "", "", error = "La IA no citó una frase tuya")
@@ -189,6 +203,12 @@ class AptisTest {
         assertEquals(NivelAptis.A2, b.niveles(d)["speaking"])
         assertEquals(listOf("reading", "speaking"), b.piso(d).map { it.id })   // empate en A2: los dos son el piso
 
+        // si Cowork cambia el contenido, lo guardado con otros ids deja de valer
+        val viejo = ResultadoSeccion("core", "2026-09-16", items = listOf(AciertoItem("d-c-99", "A2", "x", true)))
+        assertFalse(viejo.vigente(core))
+        assertNull(viejo.nivel(core))
+        assertTrue(b.resultado("core")!!.vigente(core))
+
         b.borrarTodo()
         assertEquals(0, Aptis(f).hechas(d))
     }
@@ -198,12 +218,12 @@ class AptisTest {
         val d = real()
         val core = d.seccion("core")!!
         val items = core.core.map { AciertoItem(it.id, it.level, it.answer, it.id != "d-c-05" && it.level != "B2") }
-        assertEquals("Acertaste 3 de 3 en A2, 3 de 4 en B1 y 0 de 5 en B2.", TarjetaAptis.justificacion(items))
+        assertEquals("Acertaste 5 de 5 en A2, 4 de 5 en B1 y 0 de 5 en B2.", TarjetaAptis.justificacion(items))
         assertEquals("La frase que fallaste más abajo (B1): «She has worked here since 2019.»", TarjetaAptis.practica(core, items))
         val p = JuezAptis.promptHablada(d.seccion("speaking")!!.habla[0], "i go to the gym", 12, duracion = 30)
         assertTrue(p, p.contains("la grabación duró 30 segundos, con 12 segundos de voz"))
         val reading = d.seccion("reading")!!
-        val lect = listOf(AciertoItem("d-r-01", "A2", "closed", true), AciertoItem("d-r-02", "B1", "", false), AciertoItem("d-r-03", "B2", "", false))
+        val lect = listOf(AciertoItem("d-r-01", "A2", "closed", true), AciertoItem("d-r-04", "A2", "but", true), AciertoItem("d-r-02", "B1", "", false), AciertoItem("d-r-03", "B2", "", false))
         assertTrue(TarjetaAptis.practica(reading, lect).contains("Ordenar"))
         assertTrue(TarjetaAptis.practica(reading, lect.map { it.copy(ok = true) }).contains("Nada que corregir"))
     }

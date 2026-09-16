@@ -12,6 +12,7 @@ copias vivas.
 import io
 import json
 import os
+import re
 import shutil
 import sys
 from datetime import date
@@ -47,9 +48,16 @@ def validar(d):
         if len(str(text).split("___")) != 2:
             p.append(f"{where}: el texto necesita exactamente un hueco ___")
 
+    core_umbral = (d.get("estimacion") or {}).get("core")
+    if not isinstance(core_umbral, dict):
+        p.append("falta 'estimacion.core'")
+    else:
+        for lvl in sorted(NIVELES):
+            if not re.search(r"\d+ de \d+ en (A2|B1|B2)", str(core_umbral.get(lvl, ""))):
+                p.append(f"estimacion.core.{lvl} tiene que decir 'N de M en <nivel>' (dice {core_umbral.get(lvl)!r})")
     secciones = d.get("secciones")
     if not isinstance(secciones, list) or not secciones:
-        return ["falta 'secciones'"]
+        return p + ["falta 'secciones'"]
     for si, s in enumerate(secciones):
         where_s = f"sección {si + 1}"
         sid = s.get("id", "")

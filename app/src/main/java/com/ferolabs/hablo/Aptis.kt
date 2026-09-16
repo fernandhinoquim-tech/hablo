@@ -79,7 +79,9 @@ class SeccionAptis(
     val lectura: List<TareaLectura> = emptyList(),
     val escucha: List<TareaEscucha> = emptyList(),
     val escritura: List<TareaEscrita> = emptyList(),
-    val habla: List<TareaHablada> = emptyList()
+    val habla: List<TareaHablada> = emptyList(),
+    /** Solo Core: `estimacion.core` del JSON ("4 de 5 en A2 y 4 de 5 en B1"), ya leído. */
+    val umbrales: Map<String, List<Condicion>> = emptyMap()
 ) {
     /** Writing y Speaking: los juzga la IA contra la rúbrica. */
     val porIa: Boolean get() = escritura.isNotEmpty() || habla.isNotEmpty()
@@ -97,8 +99,37 @@ class Diagnostico(val duracionMin: Int, val secciones: List<SeccionAptis>) {
 
 private val NIVELES_ITEM = setOf("A2", "B1", "B2")
 
+/** "4 de 5 en B1": para dar por alcanzado un nivel hace falta acertar [bien] de [de] ítems de [level] (en proporción). */
+data class Condicion(val bien: Int, val de: Int, val level: String) {
+    fun cumple(aciertos: Int, total: Int): Boolean = total > 0 && aciertos * de >= total * bien
+}
+
+private val CONDICION = Regex("(\\d+) de (\\d+) en (A2|B1|B2)")
+
+/**
+ * `estimacion.core` del JSON: por nivel, la lista de condiciones ("4 de 5 en A2 y
+ * 4 de 5 en B1"). Los umbrales viven en el contenido (regla dura 4), no aquí;
+ * si el bloque falta o no se puede leer, revienta como cualquier otro defecto.
+ */
+fun parseUmbralesCore(estimacion: JSONObject?): Map<String, List<Condicion>> {
+    val core = estimacion?.optJSONObject("core") ?: throw IllegalArgumentException("aptis-diagnostico.json: falta \"estimacion.core\"")
+    val out = LinkedHashMap<String, List<Condicion>>()
+    for (nivel in NIVELES_ITEM) {
+        val texto = core.optString(nivel)
+        val conds = CONDICION.findAll(texto).map { m ->
+            val bien = m.groupValues[1].toInt(); val de = m.groupValues[2].toInt()
+            if (de <= 0 || bien > de) throw IllegalArgumentException("aptis-diagnostico.json: estimacion.core.$nivel: \"${m.value}\" no tiene sentido")
+            Condicion(bien, de, m.groupValues[3])
+        }.toList()
+        if (conds.isEmpty()) throw IllegalArgumentException("aptis-diagnostico.json: estimacion.core.$nivel tiene que decir \"N de M en <nivel>\" (dice \"$texto\")")
+        out[nivel] = conds
+    }
+    return out
+}
+
 /** Lee y valida el JSON. Cualquier defecto revienta con la ruta exacta, como el resto del contenido. */
 fun parseDiagnostico(json: JSONObject): Diagnostico {
+    val umbrales = parseUmbralesCore(json.optJSONObject("estimacion"))
     val secciones = ArrayList<SeccionAptis>()
     val ids = HashSet<String>()
     val idsTarea = HashSet<String>()
@@ -154,7 +185,7 @@ fun parseDiagnostico(json: JSONObject): Diagnostico {
                     core.add(ItemCore(it.getString("id"), nivel(where, it), text, opts, respuesta(where, it, opts)))
                 }
                 for (l in NIVELES_ITEM) if (core.none { it.level == l }) throw IllegalArgumentException("$whereS: no hay ítems de $l (la estimación los necesita)")
-                secciones.add(SeccionAptis(id, skill, title, minutos, instruccion, segundosPorItem = seg, core = core))
+                secciones.add(SeccionAptis(id, skill, title, minutos, instruccion, segundosPorItem = seg, core = core, umbrales = umbrales))
             }
             "reading" -> {
                 val tareas = o.optJSONArray("tareas") ?: JSONArray()
@@ -286,38 +317,35 @@ object EstimacionAptis {
     }
 
     /**
-     * Regla general (`_regla`): el nivel MÁS ALTO en el que acierta al menos dos
-     * tercios de sus ítems; si ninguno, "por debajo de A2". Reading y Listening
-     * traen una tarea por nivel, así que es "la tarea más alta que resolvió".
+     * Reading y Listening (`_regla` v2, 2026-09-16): un nivel se da por alcanzado
+     * solo si acierta TODOS sus ítems (Listening: "hacen falta LOS DOS"; Reading:
+     * "A2 necesita los dos", B1 y B2 son una tarea casi imposible de adivinar),
+     * y el estimado es el nivel más alto alcanzado; si ninguno, "por debajo de
+     * A2". Estricto a propósito (`_por_que_estricto`): con 3 opciones se acierta
+     * el 33 % por azar, y a Fero le exigen B1 en las cuatro destrezas, así que
+     * conviene errar por lo bajo.
      */
-    fun porDosTercios(aciertos: List<Pair<String, Boolean>>): NivelAptis {
+    fun porTodos(aciertos: List<Pair<String, Boolean>>): NivelAptis {
         for (n in listOf(NivelAptis.B2, NivelAptis.B1, NivelAptis.A2)) {
             val c = cuenta(aciertos, n.name)
-            if (c.total > 0 && c.bien * 3 >= c.total * 2) return n
+            if (c.total > 0 && c.bien == c.total) return n
         }
         return NivelAptis.BAJO_A2
     }
 
     /**
-     * Core (`estimacion.core`): "A2: 1 de 3 o menos" = por debajo de A2 con un
-     * tercio o menos de los de A2; "B1: 3 de 4 en A2 y 2 de 4 en B1" = A2 sólido
-     * (el archivo trae 3 ítems de A2, no 4: se toma como ≥ 2/3) y la mitad de B1;
-     * "B2: 3 de 4 en B1 y 3 de 5 en B2". Escrito en proporciones para que siga
-     * valiendo si Cowork cambia el número de ítems.
+     * Core: la tabla `estimacion.core` del JSON tal cual ("A2": "4 de 5 en A2",
+     * "B1": "4 de 5 en A2 y 4 de 5 en B1", "B2": "4 de 5 en B1 y 4 de 5 en B2"),
+     * en proporciones para que siga valiendo si cambia el número de ítems: el
+     * nivel es el más alto cuyas condiciones se cumplen todas; si ni A2, "por
+     * debajo de A2". Con 5 ítems y 4 exigidos, pasar adivinando cae al 5 %.
      */
-    fun core(aciertos: List<Pair<String, Boolean>>): NivelAptis {
-        val a2 = cuenta(aciertos, "A2")
-        val b1 = cuenta(aciertos, "B1")
-        val b2 = cuenta(aciertos, "B2")
-        if (a2.total == 0 || a2.bien * 3 < a2.total * 2) return NivelAptis.BAJO_A2
-        val b1Mitad = b1.total > 0 && b1.bien * 2 >= b1.total
-        val b1Solido = b1.total > 0 && b1.bien * 4 >= b1.total * 3
-        val b2Mayoria = b2.total > 0 && b2.bien * 5 >= b2.total * 3
-        return when {
-            b1Solido && b2Mayoria -> NivelAptis.B2
-            b1Mitad -> NivelAptis.B1
-            else -> NivelAptis.A2
+    fun core(aciertos: List<Pair<String, Boolean>>, umbrales: Map<String, List<Condicion>>): NivelAptis {
+        for (n in listOf(NivelAptis.B2, NivelAptis.B1, NivelAptis.A2)) {
+            val conds = umbrales[n.name] ?: continue
+            if (conds.all { c -> cuenta(aciertos, c.level).let { c.cumple(it.bien, it.total) } }) return n
         }
+        return NivelAptis.BAJO_A2
     }
 
     /**
@@ -365,11 +393,24 @@ data class ResultadoSeccion(
     val items: List<AciertoItem> = emptyList(),
     val juicios: List<JuicioIa> = emptyList()
 ) {
-    /** El nivel que sale de lo guardado; null si a la IA le faltan juicios válidos. */
+    /**
+     * Si Cowork cambia el contenido (otros ids de tarea), lo guardado ya no
+     * describe esta parte: no vale y hay que repetirla (pasó el 16-09 con la v2
+     * del diagnóstico, que subió el Core de 12 a 15 ítems).
+     */
+    fun vigente(seccion: SeccionAptis): Boolean {
+        val guardados = (if (seccion.porIa) juicios.map { it.id } else items.map { it.id }).toSet()
+        val esperados = (seccion.core.map { it.id } + seccion.lectura.map { it.id } + seccion.escucha.map { it.id } +
+            seccion.escritura.map { it.id } + seccion.habla.map { it.id }).toSet()
+        return guardados == esperados
+    }
+
+    /** El nivel que sale de lo guardado; null si a la IA le faltan juicios válidos o si el contenido cambió. */
     fun nivel(seccion: SeccionAptis): NivelAptis? = when {
+        !vigente(seccion) -> null
         seccion.porIa -> EstimacionAptis.porIa(juicios.mapNotNull { if (it.valido) it.nivel else null })
-        seccion.id == "core" -> EstimacionAptis.core(items.map { it.level to it.ok })
-        else -> EstimacionAptis.porDosTercios(items.map { it.level to it.ok })
+        seccion.id == "core" -> EstimacionAptis.core(items.map { it.level to it.ok }, seccion.umbrales)
+        else -> EstimacionAptis.porTodos(items.map { it.level to it.ok })
     }
 
     val pendientesIa: List<JuicioIa> get() = juicios.filter { !it.valido }
@@ -582,6 +623,25 @@ Responde SOLO con un JSON así, sin nada antes ni después:
     }
 
     fun palabras(texto: String): Int = texto.trim().split(Regex("\\s+")).count { it.isNotBlank() }
+
+    /** Lo que Parakeet inventa cuando una ventana queda en silencio (medido el 16-09: "Mm-hmm.", "Okay."). */
+    private val MULETILLAS = setOf("mm-hmm", "mmhmm", "mhm", "hmm", "hm", "mm", "uh-huh", "uh", "um", "okay", "ok", "yeah", "yep")
+
+    /**
+     * Corta las muletillas que el reconocedor inventa AL FINAL de la transcripción
+     * (una por ventana de silencio, así que pueden venir varias seguidas). Regla
+     * de Cowork: un juicio de nivel no puede apoyarse en algo que el alumno no
+     * dijo. Solo al final: un "okay" en medio sí puede ser suyo.
+     */
+    fun sinMuletillas(texto: String): String {
+        var t = texto.trim()
+        while (true) {
+            val m = Regex("(?i)(?:^|\\s)([a-z-]+)[.!?,]*$").find(t) ?: break
+            if (m.groupValues[1].lowercase(Locale.US) !in MULETILLAS) break
+            t = t.substring(0, m.range.first).trim()
+        }
+        return t
+    }
 
     /** Lo que devolvió la IA, ya leído; [cita] puede no valer: ver [citaAparece]. */
     class Veredicto(val nivel: NivelAptis, val cita: String, val razon: String, val practica: String)

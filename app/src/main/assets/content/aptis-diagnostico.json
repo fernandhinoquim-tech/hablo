@@ -1,96 +1,442 @@
 {
  "_comentario": "Diagnostico corto del Modo Aptis. NO es un simulacro: son ~30 minutos para estimar en que nivel esta CADA destreza por separado. Existe porque Aptis le exige a Fero B1 o superior en las CUATRO: lo que manda es su destreza mas floja, no el promedio. El resultado decide donde gastar las horas.",
  "_aviso_obligatorio": "La app tiene que decir en pantalla: 'Esto es una estimacion, no tu nota de Aptis. Sirve para saber por donde empezar.' Writing y Speaking los estima la IA contra una rubrica derivada de los descriptores del MCER; prometer una nota exacta seria mentir.",
- "duracion_min": 30,
-
+ "duracion_min": 36,
  "secciones": [
-  {"id":"core","skill":"Core","title":"Gramática y vocabulario","minutos":5,
-   "instruccion":"30 segundos por pregunta, como en el examen. No se vuelve atrás.",
-   "segundos_por_item":30,
-   "items":[
-    {"id":"d-c-01","level":"A2","text":"My sister ___ in a hospital.","options":["works","work","working"],"answer":"works"},
-    {"id":"d-c-02","level":"A2","text":"There ___ two bedrooms upstairs.","options":["is","are","has"],"answer":"are"},
-    {"id":"d-c-03","level":"A2","text":"I ___ to the beach last summer.","options":["go","went","gone"],"answer":"went"},
-    {"id":"d-c-04","level":"B1","text":"If it ___ tomorrow, we'll stay at home.","options":["rains","will rain","would rain"],"answer":"rains"},
-    {"id":"d-c-05","level":"B1","text":"She ___ here since 2019.","options":["works","has worked","worked"],"answer":"has worked"},
-    {"id":"d-c-06","level":"B1","text":"He told me he ___ tired and went to bed.","options":["is","was","has been"],"answer":"was"},
-    {"id":"d-c-07","level":"B1","text":"You need to ___ a decision before Friday.","options":["make","do","take"],"answer":"make"},
-    {"id":"d-c-08","level":"B2","text":"If I had known, I ___ you.","options":["would tell","would have told","had told"],"answer":"would have told"},
-    {"id":"d-c-09","level":"B2","text":"We're going to ___ the kitchen painted next week.","options":["have","make","do"],"answer":"have"},
-    {"id":"d-c-10","level":"B2","text":"She was ___ to accept the offer.","options":["reluctant","reliable","thorough"],"answer":"reluctant"},
-    {"id":"d-c-11","level":"B2","text":"The company ___ out a survey last month.","options":["carried","took","brought"],"answer":"carried"},
-    {"id":"d-c-12","level":"B2","text":"By the time we arrived, everyone ___.","options":["left","had left","was leaving"],"answer":"had left"}
-   ]},
-
-  {"id":"reading","skill":"Reading","title":"Lectura","minutos":7,
-   "instruccion":"Tres tareas del examen real, en versión corta.",
-   "tareas":[
-    {"id":"d-r-01","tipo":"completar","level":"A2",
-     "text":"The museum is ___ on Mondays, so we went on Tuesday.","options":["closed","close","closing"],"answer":"closed"},
-    {"id":"d-r-02","tipo":"ordenar","level":"B1",
-     "instruccion":"Pon las frases en orden. La primera ya está puesta.",
-     "primera":"Last year I decided to look for a new job.",
-     "desordenadas":["After two months, a small company called me.","I sent my CV to about twenty places.","I started there in March and I'm still there.","The interview went better than I expected."],
-     "orden":["I sent my CV to about twenty places.","After two months, a small company called me.","The interview went better than I expected.","I started there in March and I'm still there."]},
-    {"id":"d-r-03","tipo":"titulos","level":"B2",
-     "instruccion":"Cada párrafo lleva un título. Sobra uno.",
-     "parrafos":[
+  {
+   "id": "core",
+   "skill": "Core",
+   "title": "Gramática y vocabulario",
+   "minutos": 7,
+   "instruccion": "30 segundos por pregunta, como en el examen. No se vuelve atrás.",
+   "segundos_por_item": 30,
+   "items": [
+    {
+     "id": "d-c-01",
+     "level": "A2",
+     "text": "My sister ___ in a hospital.",
+     "options": [
+      "works",
+      "work",
+      "working"
+     ],
+     "answer": "works"
+    },
+    {
+     "id": "d-c-02",
+     "level": "A2",
+     "text": "There ___ two bedrooms upstairs.",
+     "options": [
+      "is",
+      "are",
+      "has"
+     ],
+     "answer": "are"
+    },
+    {
+     "id": "d-c-03",
+     "level": "A2",
+     "text": "I ___ to the beach last summer.",
+     "options": [
+      "go",
+      "went",
+      "gone"
+     ],
+     "answer": "went"
+    },
+    {
+     "id": "d-c-04",
+     "level": "B1",
+     "text": "If it ___ tomorrow, we'll stay at home.",
+     "options": [
+      "rains",
+      "will rain",
+      "would rain"
+     ],
+     "answer": "rains"
+    },
+    {
+     "id": "d-c-05",
+     "level": "B1",
+     "text": "She ___ here since 2019.",
+     "options": [
+      "works",
+      "has worked",
+      "worked"
+     ],
+     "answer": "has worked"
+    },
+    {
+     "id": "d-c-06",
+     "level": "B1",
+     "text": "He told me he ___ tired and went to bed.",
+     "options": [
+      "is",
+      "was",
+      "has been"
+     ],
+     "answer": "was"
+    },
+    {
+     "id": "d-c-07",
+     "level": "B1",
+     "text": "You need to ___ a decision before Friday.",
+     "options": [
+      "make",
+      "do",
+      "take"
+     ],
+     "answer": "make"
+    },
+    {
+     "id": "d-c-08",
+     "level": "B2",
+     "text": "If I had known, I ___ you.",
+     "options": [
+      "would tell",
+      "would have told",
+      "had told"
+     ],
+     "answer": "would have told"
+    },
+    {
+     "id": "d-c-09",
+     "level": "B2",
+     "text": "We're going to ___ the kitchen painted next week.",
+     "options": [
+      "have",
+      "make",
+      "do"
+     ],
+     "answer": "have"
+    },
+    {
+     "id": "d-c-10",
+     "level": "B2",
+     "text": "She was ___ to accept the offer.",
+     "options": [
+      "reluctant",
+      "reliable",
+      "thorough"
+     ],
+     "answer": "reluctant"
+    },
+    {
+     "id": "d-c-11",
+     "level": "B2",
+     "text": "The company ___ out a survey last month.",
+     "options": [
+      "carried",
+      "took",
+      "brought"
+     ],
+     "answer": "carried"
+    },
+    {
+     "id": "d-c-13",
+     "level": "A2",
+     "text": "How ___ money do you need?",
+     "options": [
+      "much",
+      "many",
+      "lot"
+     ],
+     "answer": "much"
+    },
+    {
+     "id": "d-c-14",
+     "level": "A2",
+     "text": "The meeting is ___ Monday morning.",
+     "options": [
+      "on",
+      "in",
+      "at"
+     ],
+     "answer": "on"
+    },
+    {
+     "id": "d-c-15",
+     "level": "B1",
+     "text": "She's very good at ___ problems.",
+     "options": [
+      "solving",
+      "solve",
+      "to solve"
+     ],
+     "answer": "solving"
+    },
+    {
+     "id": "d-c-16",
+     "level": "B2",
+     "text": "By the time we arrived, everyone ___.",
+     "options": [
+      "had left",
+      "left",
+      "was leaving"
+     ],
+     "answer": "had left"
+    }
+   ]
+  },
+  {
+   "id": "reading",
+   "skill": "Reading",
+   "title": "Lectura",
+   "minutos": 8,
+   "instruccion": "Tres tareas del examen real, en versión corta.",
+   "tareas": [
+    {
+     "id": "d-r-01",
+     "tipo": "completar",
+     "level": "A2",
+     "text": "The museum is ___ on Mondays, so we went on Tuesday.",
+     "options": [
+      "closed",
+      "close",
+      "closing"
+     ],
+     "answer": "closed"
+    },
+    {
+     "id": "d-r-04",
+     "tipo": "completar",
+     "level": "A2",
+     "text": "We waited for an hour, ___ nobody came.",
+     "options": [
+      "but",
+      "because",
+      "so"
+     ],
+     "answer": "but"
+    },
+    {
+     "id": "d-r-02",
+     "tipo": "ordenar",
+     "level": "B1",
+     "instruccion": "Pon las frases en orden. La primera ya está puesta.",
+     "primera": "Last year I decided to look for a new job.",
+     "desordenadas": [
+      "After two months, a small company called me.",
+      "I sent my CV to about twenty places.",
+      "I started there in March and I'm still there.",
+      "The interview went better than I expected."
+     ],
+     "orden": [
+      "I sent my CV to about twenty places.",
+      "After two months, a small company called me.",
+      "The interview went better than I expected.",
+      "I started there in March and I'm still there."
+     ]
+    },
+    {
+     "id": "d-r-03",
+     "tipo": "titulos",
+     "level": "B2",
+     "instruccion": "Cada párrafo lleva un título. Sobra uno.",
+     "parrafos": [
       "Many people believe that working from home saves time. In practice, the hours saved on the commute are often filled with extra meetings, and the working day quietly gets longer.",
       "Employers have noticed something else. Teams that never meet in person take longer to trust each other, and new staff in particular find it harder to learn how things really work.",
-      "None of this means the office should return exactly as it was. What most companies are trying now is a mixture, with fixed days together and the rest at home."],
-     "titulos":["The hidden cost of saving the commute","A problem that only appears with time","Why offices will disappear","Looking for a middle way"],
-     "answer":["The hidden cost of saving the commute","A problem that only appears with time","Looking for a middle way"]}
-   ]},
-
-  {"id":"listening","skill":"Listening","title":"Escucha","minutos":6,
-   "instruccion":"Cada audio se puede oír DOS veces, como en el examen. La profesora lo lee.",
-   "tareas":[
-    {"id":"d-l-01","tipo":"dato","level":"A2",
-     "audio":"Hi, this is Karen from the dentist. I'm calling to move your appointment from Thursday at four to Friday at half past two. Please call me back on nine four one, double six, three two.",
-     "pregunta":"¿A qué hora es la cita nueva?","options":["Four o'clock","Half past two","Half past four"],"answer":"Half past two"},
-    {"id":"d-l-02","tipo":"dato","level":"B1",
-     "audio":"The train to Manchester will now depart from platform seven, not platform three as shown on the board. It is running about twelve minutes late. Passengers for Liverpool should stay on platform three.",
-     "pregunta":"¿Qué le pasó al tren a Manchester?","options":["Cambió de andén y va con retraso","Se canceló","Salió antes de tiempo"],"answer":"Cambió de andén y va con retraso"},
-    {"id":"d-l-03","tipo":"quien","level":"B2",
-     "audio":"MAN: I still think we should have booked the earlier flight. WOMAN: Maybe, but it was almost double the price. MAN: True, and honestly, getting up at four would have been awful. WOMAN: Exactly. I'd rather lose the morning than lose the sleep.",
-     "pregunta":"¿Quién piensa que madrugar habría sido horrible?","options":["El hombre","La mujer","Los dos"],"answer":"Los dos"}
-   ]},
-
-  {"id":"writing","skill":"Writing","title":"Escritura","minutos":7,
-   "instruccion":"Se corrige con IA contra una rúbrica. Es una estimación.",
-   "tareas":[
-    {"id":"d-w-01","level":"B1","palabras":"30-40","segundos":180,
-     "prompt_en":"Your English class is choosing a day for a group trip. Write a short message saying which day suits you and why.",
-     "prompt_es":"Tu clase de inglés elige día para una salida. Escribe un mensaje corto diciendo qué día te conviene y por qué.",
-     "rubrica":["¿Contesta las dos partes: qué día y por qué?","¿Frases completas y unidas, no palabras sueltas?","¿Se entiende sin releer?","¿Verbos en el tiempo correcto?"]},
-    {"id":"d-w-02","level":"B2","palabras":"80-100","segundos":420,
-     "prompt_en":"You booked a hotel room for two nights but the hotel cancelled your booking the day before your trip. Write a formal email asking for an explanation and a solution.",
-     "prompt_es":"Reservaste un hotel dos noches y te cancelaron la reserva el día antes del viaje. Escribe un correo formal pidiendo una explicación y una solución.",
-     "rubrica":["¿Registro formal, sin abreviaturas ni jerga?","¿Abre y cierra como un correo de verdad?","¿Explica el problema con datos concretos?","¿Pide algo específico, no solo se queja?","¿Usa conectores (however, therefore, as a result)?","¿Pasado y condicional bien usados?"]}
-   ]},
-
-  {"id":"speaking","skill":"Speaking","title":"Habla","minutos":5,
-   "instruccion":"Se graba y se corrige con IA. Es una estimación, y NO se puntúa por fonemas.",
-   "tareas":[
-    {"id":"d-s-01","level":"A2","prep_seg":0,"hablar_seg":30,
-     "prompt_en":"Tell me about your typical weekend. What do you usually do?",
-     "prompt_es":"Cuenta cómo es un fin de semana normal para ti.",
-     "rubrica":["¿Habla los 30 segundos sin quedarse callado?","¿Da al menos dos actividades distintas?","¿Presente simple bien formado, con la -s de he/she?"]},
-    {"id":"d-s-02","level":"B1","prep_seg":30,"hablar_seg":60,
-     "prompt_en":"Describe a place you know well. Say what it looks like and why you like it.",
-     "prompt_es":"Describe un sitio que conozcas bien: cómo es y por qué te gusta. (Sustituye a la foto del examen real.)",
-     "rubrica":["¿Describe y además da razones, no solo lista cosas?","¿Usa adjetivos variados?","¿Las frases se enlazan o son sueltas?"]},
-    {"id":"d-s-03","level":"B2","prep_seg":60,"hablar_seg":90,
-     "prompt_en":"Some people say technology has made us less patient. What do you think? Give reasons and examples.",
-     "prompt_es":"Hay quien dice que la tecnología nos volvió menos pacientes. ¿Tú qué opinas? Da razones y ejemplos.",
-     "rubrica":["¿Toma una postura clara?","¿Da al menos dos razones con un ejemplo?","¿Reconoce el otro lado (on the other hand, that said)?","¿Mantiene los 90 segundos sin quedarse en blanco?"]}
-   ]}
+      "None of this means the office should return exactly as it was. What most companies are trying now is a mixture, with fixed days together and the rest at home."
+     ],
+     "titulos": [
+      "The hidden cost of saving the commute",
+      "A problem that only appears with time",
+      "Why offices will disappear",
+      "Looking for a middle way"
+     ],
+     "answer": [
+      "The hidden cost of saving the commute",
+      "A problem that only appears with time",
+      "Looking for a middle way"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "listening",
+   "skill": "Listening",
+   "title": "Escucha",
+   "minutos": 9,
+   "instruccion": "Cada audio se puede oír DOS veces, como en el examen. La profesora lo lee.",
+   "tareas": [
+    {
+     "id": "d-l-01",
+     "tipo": "dato",
+     "level": "A2",
+     "audio": "Hi, this is Karen from the dentist. I'm calling to move your appointment from Thursday at four to Friday at half past two. Please call me back on nine four one, double six, three two.",
+     "pregunta": "¿A qué hora es la cita nueva?",
+     "options": [
+      "Four o'clock",
+      "Half past two",
+      "Half past four"
+     ],
+     "answer": "Half past two"
+    },
+    {
+     "id": "d-l-02",
+     "tipo": "dato",
+     "level": "B1",
+     "audio": "The train to Manchester will now depart from platform seven, not platform three as shown on the board. It is running about twelve minutes late. Passengers for Liverpool should stay on platform three.",
+     "pregunta": "¿Qué le pasó al tren a Manchester?",
+     "options": [
+      "Cambió de andén y va con retraso",
+      "Se canceló",
+      "Salió antes de tiempo"
+     ],
+     "answer": "Cambió de andén y va con retraso"
+    },
+    {
+     "id": "d-l-03",
+     "tipo": "quien",
+     "level": "B2",
+     "audio": "MAN: I still think we should have booked the earlier flight. WOMAN: Maybe, but it was almost double the price. MAN: True, and honestly, getting up at four would have been awful. WOMAN: Exactly. I'd rather lose the morning than lose the sleep.",
+     "pregunta": "¿Quién piensa que madrugar habría sido horrible?",
+     "options": [
+      "El hombre",
+      "La mujer",
+      "Los dos"
+     ],
+     "answer": "Los dos"
+    },
+    {
+     "id": "d-l-04",
+     "tipo": "dato",
+     "level": "A2",
+     "audio": "Good morning. The shop opens at nine thirty, not nine as it says on the door. We close at six, and on Sundays we are closed all day.",
+     "pregunta": "¿A qué hora abre la tienda?",
+     "options": [
+      "Nine o'clock",
+      "Half past nine",
+      "Six o'clock"
+     ],
+     "answer": "Half past nine"
+    },
+    {
+     "id": "d-l-05",
+     "tipo": "dato",
+     "level": "B1",
+     "audio": "I ordered the blue one online three weeks ago. They sent the grey one instead, and when I called, they told me the blue is out of stock until January. So I kept the grey.",
+     "pregunta": "¿Qué hizo al final?",
+     "options": [
+      "Se quedó con el gris",
+      "Devolvió el pedido",
+      "Esperó hasta enero"
+     ],
+     "answer": "Se quedó con el gris"
+    },
+    {
+     "id": "d-l-06",
+     "tipo": "quien",
+     "level": "B2",
+     "audio": "WOMAN: Honestly, I think we should tell them today. MAN: Today? They've only just arrived. WOMAN: Exactly, better now than after they've unpacked. MAN: I'd still wait until dinner, but I won't argue about it.",
+     "pregunta": "¿Quién prefiere esperar?",
+     "options": [
+      "El hombre",
+      "La mujer",
+      "Los dos"
+     ],
+     "answer": "El hombre"
+    }
+   ]
+  },
+  {
+   "id": "writing",
+   "skill": "Writing",
+   "title": "Escritura",
+   "minutos": 7,
+   "instruccion": "Se corrige con IA contra una rúbrica. Es una estimación.",
+   "tareas": [
+    {
+     "id": "d-w-01",
+     "level": "B1",
+     "palabras": "30-40",
+     "segundos": 180,
+     "prompt_en": "Your English class is choosing a day for a group trip. Write a short message saying which day suits you and why.",
+     "prompt_es": "Tu clase de inglés elige día para una salida. Escribe un mensaje corto diciendo qué día te conviene y por qué.",
+     "rubrica": [
+      "¿Contesta las dos partes: qué día y por qué?",
+      "¿Frases completas y unidas, no palabras sueltas?",
+      "¿Se entiende sin releer?",
+      "¿Verbos en el tiempo correcto?"
+     ]
+    },
+    {
+     "id": "d-w-02",
+     "level": "B2",
+     "palabras": "80-100",
+     "segundos": 420,
+     "prompt_en": "You booked a hotel room for two nights but the hotel cancelled your booking the day before your trip. Write a formal email asking for an explanation and a solution.",
+     "prompt_es": "Reservaste un hotel dos noches y te cancelaron la reserva el día antes del viaje. Escribe un correo formal pidiendo una explicación y una solución.",
+     "rubrica": [
+      "¿Registro formal, sin abreviaturas ni jerga?",
+      "¿Abre y cierra como un correo de verdad?",
+      "¿Explica el problema con datos concretos?",
+      "¿Pide algo específico, no solo se queja?",
+      "¿Usa conectores (however, therefore, as a result)?",
+      "¿Pasado y condicional bien usados?"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "speaking",
+   "skill": "Speaking",
+   "title": "Habla",
+   "minutos": 5,
+   "instruccion": "Se graba y se corrige con IA. Es una estimación, y NO se puntúa por fonemas.",
+   "tareas": [
+    {
+     "id": "d-s-01",
+     "level": "A2",
+     "prep_seg": 0,
+     "hablar_seg": 30,
+     "prompt_en": "Tell me about your typical weekend. What do you usually do?",
+     "prompt_es": "Cuenta cómo es un fin de semana normal para ti.",
+     "rubrica": [
+      "¿Habla los 30 segundos sin quedarse callado?",
+      "¿Da al menos dos actividades distintas?",
+      "¿Presente simple bien formado, con la -s de he/she?"
+     ]
+    },
+    {
+     "id": "d-s-02",
+     "level": "B1",
+     "prep_seg": 30,
+     "hablar_seg": 60,
+     "prompt_en": "Describe a place you know well. Say what it looks like and why you like it.",
+     "prompt_es": "Describe un sitio que conozcas bien: cómo es y por qué te gusta. (Sustituye a la foto del examen real.)",
+     "rubrica": [
+      "¿Describe y además da razones, no solo lista cosas?",
+      "¿Usa adjetivos variados?",
+      "¿Las frases se enlazan o son sueltas?"
+     ]
+    },
+    {
+     "id": "d-s-03",
+     "level": "B2",
+     "prep_seg": 60,
+     "hablar_seg": 90,
+     "prompt_en": "Some people say technology has made us less patient. What do you think? Give reasons and examples.",
+     "prompt_es": "Hay quien dice que la tecnología nos volvió menos pacientes. ¿Tú qué opinas? Da razones y ejemplos.",
+     "rubrica": [
+      "¿Toma una postura clara?",
+      "¿Da al menos dos razones con un ejemplo?",
+      "¿Reconoce el otro lado (on the other hand, that said)?",
+      "¿Mantiene los 90 segundos sin quedarse en blanco?"
+     ]
+    }
+   ]
+  }
  ],
-
  "estimacion": {
-  "_regla": "Por destreza, el nivel estimado es el MAS ALTO en el que acierta al menos dos tercios de sus items. Si falla los de A2, la estimacion es 'por debajo de A2' y hay que decirlo sin adornos.",
-  "core":      {"A2":"1 de 3 o menos","B1":"3 de 4 en A2 y 2 de 4 en B1","B2":"3 de 4 en B1 y 3 de 5 en B2"},
+  "_regla": "Por destreza, el nivel estimado es el MAS ALTO que supera su umbral. CORE: 5 items por nivel, hacen falta 4 (asi, pasar adivinando cae al 5%). LISTENING: 2 por nivel, hacen falta LOS DOS (11% por azar). READING: A2 necesita los dos; B1 (ordenar) y B2 (titulos) son uno solo pero casi imposibles de adivinar. WRITING y SPEAKING: los juzga la IA, no se adivinan.",
+  "core": {
+   "A2": "4 de 5 en A2",
+   "B1": "4 de 5 en A2 y 4 de 5 en B1",
+   "B2": "4 de 5 en B1 y 4 de 5 en B2"
+  },
   "reglas_ia": "Para Writing y Speaking, la IA da un nivel (A2/B1/B2) POR TAREA y el estimado es el mas alto alcanzado en dos tareas. Tiene que citar una frase concreta del alumno como prueba de cada juicio: sin evidencia, el juicio no vale.",
-  "salida": "Una tarjeta por destreza con: nivel estimado, la frase que lo justifica, y UNA cosa concreta que practicar. Y arriba, en grande: cual es su piso — la destreza mas floja. Esa es la respuesta que importa, porque Aptis le exige B1 en las cuatro."
+  "salida": "Una tarjeta por destreza con: nivel estimado, la frase que lo justifica, y UNA cosa concreta que practicar. Y arriba, en grande: cual es su piso — la destreza mas floja. Esa es la respuesta que importa, porque Aptis le exige B1 en las cuatro.",
+  "_por_que_estricto": "Con 3 opciones se acierta el 33% por azar, asi que con pocos items el nivel se 'aprueba' adivinando. Se prefiere errar por lo BAJO: a Fero le exigen B1 en las cuatro destrezas, y subestimar su nivel solo le hace estudiar de mas; sobrestimarlo lo manda al examen sin preparar."
  }
 }

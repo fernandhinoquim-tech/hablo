@@ -533,6 +533,13 @@ val checkContent = tasks.register("checkContent") {
             fun hueco(where: String, text: Any?) {
                 if (text.toString().split("___").size != 2) problems.add("$where: el texto necesita exactamente un hueco ___")
             }
+            // Los umbrales del Core viven en el JSON ("4 de 5 en A2 y 4 de 5 en B1"): tienen que poder leerse.
+            val estimacionCore = ((diag["estimacion"] as? Map<*, *>)?.get("core") as? Map<*, *>)
+            if (estimacionCore == null) problems.add("aptis-diagnostico.json: falta \"estimacion.core\"")
+            else for (nivel in nivelesItem) {
+                val texto = estimacionCore[nivel]?.toString().orEmpty()
+                if (!Regex("\\d+ de \\d+ en (A2|B1|B2)").containsMatchIn(texto)) problems.add("aptis-diagnostico.json: estimacion.core.$nivel tiene que decir \"N de M en <nivel>\" (dice \"$texto\")")
+            }
             val secciones = (diag["secciones"] as? List<*>) ?: run { problems.add("aptis-diagnostico.json: falta \"secciones\""); emptyList<Any>() }
             secciones.forEachIndexed { si, sec ->
                 val o = sec as Map<*, *>
