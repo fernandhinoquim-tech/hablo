@@ -381,10 +381,16 @@ pantalla de lección con un `ModoLeccion` (LECCION / REPASO / AGUANTA) y una
   puntos: "Llegaste a N · tu marca es M" (`Mazo.registrarAguanta`).
 
 **Formato de `vocabulario.json` (lo escribe Cowork, se anexa con
-`tools/content/anexar_vocabulario.py`):** `{"bancos": [{"id": "a1-casa",
-"title": "La casa", "level": "A1", "pares": [{"en": "kitchen", "es":
+`tools/content/anexar_vocabulario.py`):** `{"bancos": [{"id": "casa-a1",
+"title": "🏠 La casa · A1", "level": "A1", "pares": [{"en": "kitchen", "es":
 "cocina"}, …]}]}`; mínimo 3 parejas por banco, sin inglés ni español
 repetido dentro del banco; `checkContent` lo valida si el archivo existe.
+**Entró el 2026-09-16: 41 bancos (tema × nivel, 14 A1 / 14 A2 / 13 B1), 368
+parejas.** Regla de Cowork: dentro de un banco no hay dos ingleses casi
+sinónimos ni dos españoles equivalentes, así que nunca hay dos respuestas
+válidas a la vez; **una ronda nunca mezcla bancos** (al mezclar, la garantía
+desaparece). Los bancos van de 3 a 25 parejas: los grandes se parten en
+rondas de hasta 8 del mismo banco (un subconjunto conserva la garantía).
 
 **Modo Aptis (decisión de Fero, 2026-09-15).** Fero va a presentar **Aptis
 ESOL General** (sin fecha aún, sin saber qué nivel le exigen). **El curso por
@@ -396,6 +402,10 @@ min; Writing 50 min incl. dos correos informal/formal de 120-150 palabras;
 Speaking 12 min: preguntas personales, describir una foto, comparar dos,
 tema abstracto). El Core es el desempate entre niveles: lo más rentable.
 **Aptis no puntúa fonemas**: GOP sirve para hablar mejor, no para la nota.
+**Aptis exige B1 o superior EN TODAS las habilidades: es un piso, no un
+promedio** (dato de Cowork, 2026-09-16). Por eso la meta del Modo Aptis es
+**subir la habilidad más débil**, no la media: el diagnóstico corto tiene que
+decir cuál es la más floja y ahí va el trabajo.
 Tres actividades suben de prioridad por ser tareas literales del examen:
 ordenar frases (Reading 2), dictado de números y horas (Listening 1) y
 combinaciones de palabras (Core). Lo primero del modo es un **diagnóstico

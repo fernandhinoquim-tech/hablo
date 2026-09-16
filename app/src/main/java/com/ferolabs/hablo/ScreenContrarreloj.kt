@@ -32,13 +32,18 @@ import java.util.Locale
 
 /**
  * **Contrarreloj** (etapa 3): Parejas con reloj y banco de vocabulario, en
- * rondas de [RONDA] parejas. La regla que importa: **lo fallado vuelve** hasta
- * que salga limpio (una pareja con algún fallo en una ronda entra otra vez en
- * una ronda posterior). El reloj es velocímetro, no juez: guarda la curva de
- * su marca (segundos por pareja, por banco) y nunca reprueba por lento.
+ * rondas de hasta [RONDA] parejas. La regla que importa: **lo fallado vuelve**
+ * hasta que salga limpio (una pareja con algún fallo en una ronda entra otra
+ * vez en una ronda posterior). El reloj es velocímetro, no juez: guarda la
+ * curva de su marca (segundos por pareja, por banco) y nunca reprueba por lento.
  *
- * Bancos: los de `vocabulario.json` (los escribe Cowork) y, siempre, "Frases
- * de tus lecciones" con lo que ya vio en las lecciones aprobadas.
+ * Bancos: los de `vocabulario.json` (los escribe Cowork: dentro de un banco
+ * garantiza que no hay dos ingleses casi sinónimos ni dos españoles
+ * equivalentes, así que nunca hay dos respuestas válidas a la vez) y, siempre,
+ * "Frases de tus lecciones" con lo que ya vio en las lecciones aprobadas.
+ * **Una ronda nunca mezcla bancos**: al mezclar, esa garantía desaparece. Un
+ * banco grande se parte en rondas de hasta [RONDA] parejas del mismo banco
+ * (un subconjunto conserva la garantía).
  */
 @Composable
 fun ContrarrelojScreen(
@@ -68,7 +73,7 @@ fun ContrarrelojScreen(
             ) {
                 item {
                     Text(
-                        "Une parejas contra el reloj, en rondas de $RONDA. Lo que falles vuelve hasta que te salga. " +
+                        "Une parejas contra el reloj, en rondas de hasta $RONDA. Lo que falles vuelve hasta que te salga. " +
                             "El reloj no califica: solo te muestra si vas más rápido que tu marca.",
                         style = MaterialTheme.typography.bodyMedium,
                         color = InkSoft
@@ -220,5 +225,5 @@ private fun Sesion(banco: Banco, accent: Color, mazo: Mazo, onBack: () -> Unit) 
     }
 }
 
-private const val RONDA = 6
+private const val RONDA = 8
 const val BANCO_LECCIONES = "lecciones"

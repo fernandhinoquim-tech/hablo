@@ -1,0 +1,1943 @@
+{
+ "_comentario": "Banco de vocabulario para el contrarreloj (etapa 3). Pares espanol-ingles por tema y nivel. REGLA DEL JUEGO: una ronda se arma con pares de UN SOLO tema. Dentro de cada tema se garantizo que no hay dos ingleses casi sinonimos ni dos espanoles equivalentes, para que nunca haya dos respuestas validas a la vez. Si se mezclan temas en una ronda, esa garantia se pierde. Todas las palabras inglesas estan en cmudict, asi que se pueden decir en voz alta.",
+ "temas": [
+  {
+   "id": "casa",
+   "title": "La casa",
+   "emoji": "🏠",
+   "pairs": [
+    {
+     "es": "cocina",
+     "en": "kitchen",
+     "level": "A1"
+    },
+    {
+     "es": "cuarto",
+     "en": "bedroom",
+     "level": "A1"
+    },
+    {
+     "es": "baño",
+     "en": "bathroom",
+     "level": "A1"
+    },
+    {
+     "es": "sala",
+     "en": "living room",
+     "level": "A1"
+    },
+    {
+     "es": "puerta",
+     "en": "door",
+     "level": "A1"
+    },
+    {
+     "es": "ventana",
+     "en": "window",
+     "level": "A1"
+    },
+    {
+     "es": "mesa",
+     "en": "table",
+     "level": "A1"
+    },
+    {
+     "es": "silla",
+     "en": "chair",
+     "level": "A1"
+    },
+    {
+     "es": "cama",
+     "en": "bed",
+     "level": "A1"
+    },
+    {
+     "es": "llave",
+     "en": "key",
+     "level": "A1"
+    },
+    {
+     "es": "piso",
+     "en": "floor",
+     "level": "A1"
+    },
+    {
+     "es": "pared",
+     "en": "wall",
+     "level": "A1"
+    },
+    {
+     "es": "techo",
+     "en": "ceiling",
+     "level": "A2"
+    },
+    {
+     "es": "escalera",
+     "en": "stairs",
+     "level": "A2"
+    },
+    {
+     "es": "nevera",
+     "en": "fridge",
+     "level": "A2"
+    },
+    {
+     "es": "lavadora",
+     "en": "washing machine",
+     "level": "A2"
+    },
+    {
+     "es": "cajón",
+     "en": "drawer",
+     "level": "A2"
+    },
+    {
+     "es": "estante",
+     "en": "shelf",
+     "level": "A2"
+    },
+    {
+     "es": "almohada",
+     "en": "pillow",
+     "level": "A2"
+    },
+    {
+     "es": "cobija",
+     "en": "blanket",
+     "level": "A2"
+    },
+    {
+     "es": "espejo",
+     "en": "mirror",
+     "level": "A2"
+    },
+    {
+     "es": "bombillo",
+     "en": "light bulb",
+     "level": "B1"
+    },
+    {
+     "es": "enchufe",
+     "en": "plug",
+     "level": "B1"
+    },
+    {
+     "es": "grifo",
+     "en": "tap",
+     "level": "B1"
+    },
+    {
+     "es": "alquiler",
+     "en": "rent",
+     "level": "B1"
+    },
+    {
+     "es": "mudanza",
+     "en": "move",
+     "level": "B1"
+    },
+    {
+     "es": "vecino",
+     "en": "neighbour",
+     "level": "A2"
+    },
+    {
+     "es": "patio",
+     "en": "yard",
+     "level": "A2"
+    },
+    {
+     "es": "garaje",
+     "en": "garage",
+     "level": "A2"
+    },
+    {
+     "es": "sótano",
+     "en": "basement",
+     "level": "B1"
+    }
+   ]
+  },
+  {
+   "id": "comida",
+   "title": "Comida y bebida",
+   "emoji": "🍞",
+   "pairs": [
+    {
+     "es": "pan",
+     "en": "bread",
+     "level": "A1"
+    },
+    {
+     "es": "agua",
+     "en": "water",
+     "level": "A1"
+    },
+    {
+     "es": "leche",
+     "en": "milk",
+     "level": "A1"
+    },
+    {
+     "es": "huevo",
+     "en": "egg",
+     "level": "A1"
+    },
+    {
+     "es": "queso",
+     "en": "cheese",
+     "level": "A1"
+    },
+    {
+     "es": "carne",
+     "en": "meat",
+     "level": "A1"
+    },
+    {
+     "es": "pollo",
+     "en": "chicken",
+     "level": "A1"
+    },
+    {
+     "es": "pescado",
+     "en": "fish",
+     "level": "A1"
+    },
+    {
+     "es": "arroz",
+     "en": "rice",
+     "level": "A1"
+    },
+    {
+     "es": "manzana",
+     "en": "apple",
+     "level": "A1"
+    },
+    {
+     "es": "naranja",
+     "en": "orange",
+     "level": "A1"
+    },
+    {
+     "es": "azúcar",
+     "en": "sugar",
+     "level": "A1"
+    },
+    {
+     "es": "sal",
+     "en": "salt",
+     "level": "A1"
+    },
+    {
+     "es": "café",
+     "en": "coffee",
+     "level": "A1"
+    },
+    {
+     "es": "té",
+     "en": "tea",
+     "level": "A1"
+    },
+    {
+     "es": "desayuno",
+     "en": "breakfast",
+     "level": "A1"
+    },
+    {
+     "es": "almuerzo",
+     "en": "lunch",
+     "level": "A1"
+    },
+    {
+     "es": "cena",
+     "en": "dinner",
+     "level": "A1"
+    },
+    {
+     "es": "cuchara",
+     "en": "spoon",
+     "level": "A2"
+    },
+    {
+     "es": "tenedor",
+     "en": "fork",
+     "level": "A2"
+    },
+    {
+     "es": "cuchillo",
+     "en": "knife",
+     "level": "A2"
+    },
+    {
+     "es": "plato",
+     "en": "plate",
+     "level": "A2"
+    },
+    {
+     "es": "vaso",
+     "en": "glass",
+     "level": "A2"
+    },
+    {
+     "es": "taza",
+     "en": "cup",
+     "level": "A2"
+    },
+    {
+     "es": "harina",
+     "en": "flour",
+     "level": "B1"
+    },
+    {
+     "es": "aceite",
+     "en": "oil",
+     "level": "A2"
+    },
+    {
+     "es": "cebolla",
+     "en": "onion",
+     "level": "A2"
+    },
+    {
+     "es": "ajo",
+     "en": "garlic",
+     "level": "B1"
+    },
+    {
+     "es": "fresa",
+     "en": "strawberry",
+     "level": "A2"
+    },
+    {
+     "es": "sabor",
+     "en": "taste",
+     "level": "B1"
+    },
+    {
+     "es": "receta",
+     "en": "recipe",
+     "level": "B1"
+    },
+    {
+     "es": "cuenta",
+     "en": "bill",
+     "level": "A2"
+    }
+   ]
+  },
+  {
+   "id": "cuerpo",
+   "title": "El cuerpo y la salud",
+   "emoji": "🩺",
+   "pairs": [
+    {
+     "es": "cabeza",
+     "en": "head",
+     "level": "A1"
+    },
+    {
+     "es": "mano",
+     "en": "hand",
+     "level": "A1"
+    },
+    {
+     "es": "pie",
+     "en": "foot",
+     "level": "A1"
+    },
+    {
+     "es": "ojo",
+     "en": "eye",
+     "level": "A1"
+    },
+    {
+     "es": "boca",
+     "en": "mouth",
+     "level": "A1"
+    },
+    {
+     "es": "nariz",
+     "en": "nose",
+     "level": "A1"
+    },
+    {
+     "es": "oreja",
+     "en": "ear",
+     "level": "A1"
+    },
+    {
+     "es": "brazo",
+     "en": "arm",
+     "level": "A1"
+    },
+    {
+     "es": "pierna",
+     "en": "leg",
+     "level": "A1"
+    },
+    {
+     "es": "espalda",
+     "en": "back",
+     "level": "A2"
+    },
+    {
+     "es": "garganta",
+     "en": "throat",
+     "level": "A2"
+    },
+    {
+     "es": "estómago",
+     "en": "stomach",
+     "level": "A2"
+    },
+    {
+     "es": "hombro",
+     "en": "shoulder",
+     "level": "A2"
+    },
+    {
+     "es": "rodilla",
+     "en": "knee",
+     "level": "A2"
+    },
+    {
+     "es": "diente",
+     "en": "tooth",
+     "level": "A1"
+    },
+    {
+     "es": "dolor",
+     "en": "pain",
+     "level": "A2"
+    },
+    {
+     "es": "fiebre",
+     "en": "fever",
+     "level": "A2"
+    },
+    {
+     "es": "tos",
+     "en": "cough",
+     "level": "A2"
+    },
+    {
+     "es": "gripe",
+     "en": "flu",
+     "level": "A2"
+    },
+    {
+     "es": "herida",
+     "en": "wound",
+     "level": "B1"
+    },
+    {
+     "es": "pastilla",
+     "en": "pill",
+     "level": "A2"
+    },
+    {
+     "es": "receta médica",
+     "en": "prescription",
+     "level": "B1"
+    },
+    {
+     "es": "cita",
+     "en": "appointment",
+     "level": "A2"
+    },
+    {
+     "es": "enfermedad",
+     "en": "illness",
+     "level": "B1"
+    },
+    {
+     "es": "tratamiento",
+     "en": "treatment",
+     "level": "B1"
+    },
+    {
+     "es": "cansancio",
+     "en": "tiredness",
+     "level": "B1"
+    },
+    {
+     "es": "respirar",
+     "en": "breathe",
+     "level": "A2"
+    },
+    {
+     "es": "sanar",
+     "en": "heal",
+     "level": "B1"
+    }
+   ]
+  },
+  {
+   "id": "trabajo",
+   "title": "Trabajo y oficina",
+   "emoji": "💼",
+   "pairs": [
+    {
+     "es": "empleo",
+     "en": "job",
+     "level": "A1"
+    },
+    {
+     "es": "jefe",
+     "en": "boss",
+     "level": "A1"
+    },
+    {
+     "es": "compañero",
+     "en": "colleague",
+     "level": "A2"
+    },
+    {
+     "es": "oficina",
+     "en": "office",
+     "level": "A1"
+    },
+    {
+     "es": "reunión",
+     "en": "meeting",
+     "level": "A2"
+    },
+    {
+     "es": "sueldo",
+     "en": "salary",
+     "level": "A2"
+    },
+    {
+     "es": "horario",
+     "en": "schedule",
+     "level": "A2"
+    },
+    {
+     "es": "correo",
+     "en": "email",
+     "level": "A1"
+    },
+    {
+     "es": "informe",
+     "en": "report",
+     "level": "B1"
+    },
+    {
+     "es": "empresa",
+     "en": "company",
+     "level": "A2"
+    },
+    {
+     "es": "cliente",
+     "en": "customer",
+     "level": "A2"
+    },
+    {
+     "es": "equipo",
+     "en": "team",
+     "level": "A2"
+    },
+    {
+     "es": "entrevista",
+     "en": "interview",
+     "level": "A2"
+    },
+    {
+     "es": "contrato",
+     "en": "contract",
+     "level": "B1"
+    },
+    {
+     "es": "fecha límite",
+     "en": "deadline",
+     "level": "B1"
+    },
+    {
+     "es": "tarea",
+     "en": "task",
+     "level": "A2"
+    },
+    {
+     "es": "cargo",
+     "en": "position",
+     "level": "B1"
+    },
+    {
+     "es": "ascenso",
+     "en": "promotion",
+     "level": "B1"
+    },
+    {
+     "es": "renuncia",
+     "en": "resignation",
+     "level": "B1"
+    },
+    {
+     "es": "despido",
+     "en": "dismissal",
+     "level": "B1"
+    },
+    {
+     "es": "experiencia",
+     "en": "experience",
+     "level": "A2"
+    },
+    {
+     "es": "capacitación",
+     "en": "training",
+     "level": "B1"
+    },
+    {
+     "es": "proveedor",
+     "en": "supplier",
+     "level": "B1"
+    },
+    {
+     "es": "presupuesto",
+     "en": "budget",
+     "level": "B1"
+    },
+    {
+     "es": "factura",
+     "en": "invoice",
+     "level": "B1"
+    },
+    {
+     "es": "sucursal",
+     "en": "branch",
+     "level": "B1"
+    }
+   ]
+  },
+  {
+   "id": "ciudad",
+   "title": "La ciudad y los lugares",
+   "emoji": "🏙️",
+   "pairs": [
+    {
+     "es": "calle",
+     "en": "street",
+     "level": "A1"
+    },
+    {
+     "es": "tienda",
+     "en": "store",
+     "level": "A1"
+    },
+    {
+     "es": "banco",
+     "en": "bank",
+     "level": "A1"
+    },
+    {
+     "es": "escuela",
+     "en": "school",
+     "level": "A1"
+    },
+    {
+     "es": "hospital",
+     "en": "hospital",
+     "level": "A1"
+    },
+    {
+     "es": "parque",
+     "en": "park",
+     "level": "A1"
+    },
+    {
+     "es": "iglesia",
+     "en": "church",
+     "level": "A1"
+    },
+    {
+     "es": "mercado",
+     "en": "market",
+     "level": "A1"
+    },
+    {
+     "es": "biblioteca",
+     "en": "library",
+     "level": "A1"
+    },
+    {
+     "es": "farmacia",
+     "en": "pharmacy",
+     "level": "A2"
+    },
+    {
+     "es": "panadería",
+     "en": "bakery",
+     "level": "A2"
+    },
+    {
+     "es": "peluquería",
+     "en": "hairdresser",
+     "level": "A2"
+    },
+    {
+     "es": "esquina",
+     "en": "corner",
+     "level": "A2"
+    },
+    {
+     "es": "semáforo",
+     "en": "traffic light",
+     "level": "A2"
+    },
+    {
+     "es": "acera",
+     "en": "pavement",
+     "level": "B1"
+    },
+    {
+     "es": "puente",
+     "en": "bridge",
+     "level": "A2"
+    },
+    {
+     "es": "plaza",
+     "en": "square",
+     "level": "A2"
+    },
+    {
+     "es": "barrio",
+     "en": "neighbourhood",
+     "level": "A2"
+    },
+    {
+     "es": "edificio",
+     "en": "building",
+     "level": "A1"
+    },
+    {
+     "es": "ascensor",
+     "en": "elevator",
+     "level": "A2"
+    },
+    {
+     "es": "estacionamiento",
+     "en": "car park",
+     "level": "B1"
+    },
+    {
+     "es": "comisaría",
+     "en": "police station",
+     "level": "B1"
+    },
+    {
+     "es": "ayuntamiento",
+     "en": "town hall",
+     "level": "B1"
+    }
+   ]
+  },
+  {
+   "id": "viajes",
+   "title": "Viajes y transporte",
+   "emoji": "✈️",
+   "pairs": [
+    {
+     "es": "avión",
+     "en": "plane",
+     "level": "A1"
+    },
+    {
+     "es": "tren",
+     "en": "train",
+     "level": "A1"
+    },
+    {
+     "es": "autobús",
+     "en": "bus",
+     "level": "A1"
+    },
+    {
+     "es": "carro",
+     "en": "car",
+     "level": "A1"
+    },
+    {
+     "es": "bicicleta",
+     "en": "bicycle",
+     "level": "A1"
+    },
+    {
+     "es": "barco",
+     "en": "boat",
+     "level": "A1"
+    },
+    {
+     "es": "aeropuerto",
+     "en": "airport",
+     "level": "A1"
+    },
+    {
+     "es": "estación",
+     "en": "station",
+     "level": "A1"
+    },
+    {
+     "es": "boleto",
+     "en": "ticket",
+     "level": "A1"
+    },
+    {
+     "es": "maleta",
+     "en": "suitcase",
+     "level": "A2"
+    },
+    {
+     "es": "equipaje",
+     "en": "luggage",
+     "level": "A2"
+    },
+    {
+     "es": "pasaporte",
+     "en": "passport",
+     "level": "A1"
+    },
+    {
+     "es": "vuelo",
+     "en": "flight",
+     "level": "A2"
+    },
+    {
+     "es": "escala",
+     "en": "stopover",
+     "level": "B1"
+    },
+    {
+     "es": "retraso",
+     "en": "delay",
+     "level": "A2"
+    },
+    {
+     "es": "llegada",
+     "en": "arrival",
+     "level": "A2"
+    },
+    {
+     "es": "salida",
+     "en": "departure",
+     "level": "A2"
+    },
+    {
+     "es": "asiento",
+     "en": "seat",
+     "level": "A2"
+    },
+    {
+     "es": "frontera",
+     "en": "border",
+     "level": "B1"
+    },
+    {
+     "es": "aduana",
+     "en": "customs",
+     "level": "B1"
+    },
+    {
+     "es": "seguro de viaje",
+     "en": "insurance",
+     "level": "B1"
+    },
+    {
+     "es": "alojamiento",
+     "en": "accommodation",
+     "level": "B1"
+    },
+    {
+     "es": "reserva",
+     "en": "booking",
+     "level": "A2"
+    },
+    {
+     "es": "viaje",
+     "en": "trip",
+     "level": "A1"
+    }
+   ]
+  },
+  {
+   "id": "tiempo",
+   "title": "Tiempo y clima",
+   "emoji": "🌦️",
+   "pairs": [
+    {
+     "es": "lunes",
+     "en": "Monday",
+     "level": "A1"
+    },
+    {
+     "es": "martes",
+     "en": "Tuesday",
+     "level": "A1"
+    },
+    {
+     "es": "miércoles",
+     "en": "Wednesday",
+     "level": "A1"
+    },
+    {
+     "es": "jueves",
+     "en": "Thursday",
+     "level": "A1"
+    },
+    {
+     "es": "viernes",
+     "en": "Friday",
+     "level": "A1"
+    },
+    {
+     "es": "sábado",
+     "en": "Saturday",
+     "level": "A1"
+    },
+    {
+     "es": "domingo",
+     "en": "Sunday",
+     "level": "A1"
+    },
+    {
+     "es": "hoy",
+     "en": "today",
+     "level": "A1"
+    },
+    {
+     "es": "mañana",
+     "en": "tomorrow",
+     "level": "A1"
+    },
+    {
+     "es": "ayer",
+     "en": "yesterday",
+     "level": "A1"
+    },
+    {
+     "es": "semana",
+     "en": "week",
+     "level": "A1"
+    },
+    {
+     "es": "mes",
+     "en": "month",
+     "level": "A1"
+    },
+    {
+     "es": "año",
+     "en": "year",
+     "level": "A1"
+    },
+    {
+     "es": "hora",
+     "en": "hour",
+     "level": "A1"
+    },
+    {
+     "es": "minuto",
+     "en": "minute",
+     "level": "A1"
+    },
+    {
+     "es": "lluvia",
+     "en": "rain",
+     "level": "A1"
+    },
+    {
+     "es": "nieve",
+     "en": "snow",
+     "level": "A1"
+    },
+    {
+     "es": "viento",
+     "en": "wind",
+     "level": "A2"
+    },
+    {
+     "es": "nube",
+     "en": "cloud",
+     "level": "A2"
+    },
+    {
+     "es": "sol",
+     "en": "sun",
+     "level": "A1"
+    },
+    {
+     "es": "tormenta",
+     "en": "storm",
+     "level": "A2"
+    },
+    {
+     "es": "niebla",
+     "en": "fog",
+     "level": "B1"
+    },
+    {
+     "es": "temporada",
+     "en": "season",
+     "level": "A2"
+    },
+    {
+     "es": "amanecer",
+     "en": "sunrise",
+     "level": "B1"
+    },
+    {
+     "es": "atardecer",
+     "en": "sunset",
+     "level": "B1"
+    }
+   ]
+  },
+  {
+   "id": "gente",
+   "title": "Familia y personas",
+   "emoji": "👨‍👩‍👧",
+   "pairs": [
+    {
+     "es": "madre",
+     "en": "mother",
+     "level": "A1"
+    },
+    {
+     "es": "padre",
+     "en": "father",
+     "level": "A1"
+    },
+    {
+     "es": "hermana",
+     "en": "sister",
+     "level": "A1"
+    },
+    {
+     "es": "hermano",
+     "en": "brother",
+     "level": "A1"
+    },
+    {
+     "es": "hija",
+     "en": "daughter",
+     "level": "A1"
+    },
+    {
+     "es": "hijo",
+     "en": "son",
+     "level": "A1"
+    },
+    {
+     "es": "abuela",
+     "en": "grandmother",
+     "level": "A1"
+    },
+    {
+     "es": "abuelo",
+     "en": "grandfather",
+     "level": "A1"
+    },
+    {
+     "es": "esposa",
+     "en": "wife",
+     "level": "A1"
+    },
+    {
+     "es": "esposo",
+     "en": "husband",
+     "level": "A1"
+    },
+    {
+     "es": "tía",
+     "en": "aunt",
+     "level": "A2"
+    },
+    {
+     "es": "tío",
+     "en": "uncle",
+     "level": "A2"
+    },
+    {
+     "es": "prima",
+     "en": "cousin",
+     "level": "A2"
+    },
+    {
+     "es": "sobrino",
+     "en": "nephew",
+     "level": "B1"
+    },
+    {
+     "es": "suegra",
+     "en": "mother-in-law",
+     "level": "B1"
+    },
+    {
+     "es": "amigo",
+     "en": "friend",
+     "level": "A1"
+    },
+    {
+     "es": "novia",
+     "en": "girlfriend",
+     "level": "A1"
+    },
+    {
+     "es": "pareja",
+     "en": "partner",
+     "level": "A2"
+    },
+    {
+     "es": "niño",
+     "en": "child",
+     "level": "A1"
+    },
+    {
+     "es": "adulto",
+     "en": "adult",
+     "level": "A2"
+    },
+    {
+     "es": "desconocido",
+     "en": "stranger",
+     "level": "B1"
+    },
+    {
+     "es": "invitado",
+     "en": "guest",
+     "level": "A2"
+    },
+    {
+     "es": "dueño",
+     "en": "owner",
+     "level": "B1"
+    }
+   ]
+  },
+  {
+   "id": "ropa",
+   "title": "Ropa",
+   "emoji": "👕",
+   "pairs": [
+    {
+     "es": "camisa",
+     "en": "shirt",
+     "level": "A1"
+    },
+    {
+     "es": "pantalón",
+     "en": "trousers",
+     "level": "A1"
+    },
+    {
+     "es": "zapato",
+     "en": "shoe",
+     "level": "A1"
+    },
+    {
+     "es": "vestido",
+     "en": "dress",
+     "level": "A1"
+    },
+    {
+     "es": "falda",
+     "en": "skirt",
+     "level": "A1"
+    },
+    {
+     "es": "chaqueta",
+     "en": "jacket",
+     "level": "A1"
+    },
+    {
+     "es": "abrigo",
+     "en": "coat",
+     "level": "A2"
+    },
+    {
+     "es": "sombrero",
+     "en": "hat",
+     "level": "A1"
+    },
+    {
+     "es": "bufanda",
+     "en": "scarf",
+     "level": "A2"
+    },
+    {
+     "es": "guante",
+     "en": "glove",
+     "level": "A2"
+    },
+    {
+     "es": "calcetín",
+     "en": "sock",
+     "level": "A1"
+    },
+    {
+     "es": "cinturón",
+     "en": "belt",
+     "level": "A2"
+    },
+    {
+     "es": "bolso",
+     "en": "bag",
+     "level": "A1"
+    },
+    {
+     "es": "reloj",
+     "en": "watch",
+     "level": "A1"
+    },
+    {
+     "es": "anillo",
+     "en": "ring",
+     "level": "A2"
+    },
+    {
+     "es": "talla",
+     "en": "size",
+     "level": "A2"
+    },
+    {
+     "es": "bolsillo",
+     "en": "pocket",
+     "level": "A2"
+    },
+    {
+     "es": "botón",
+     "en": "button",
+     "level": "A2"
+    },
+    {
+     "es": "cremallera",
+     "en": "zip",
+     "level": "B1"
+    },
+    {
+     "es": "manga",
+     "en": "sleeve",
+     "level": "B1"
+    },
+    {
+     "es": "tela",
+     "en": "fabric",
+     "level": "B1"
+    },
+    {
+     "es": "probador",
+     "en": "fitting room",
+     "level": "B1"
+    }
+   ]
+  },
+  {
+   "id": "verbos1",
+   "title": "Verbos del día a día",
+   "emoji": "🏃",
+   "pairs": [
+    {
+     "es": "ser",
+     "en": "be",
+     "level": "A1"
+    },
+    {
+     "es": "tener",
+     "en": "have",
+     "level": "A1"
+    },
+    {
+     "es": "hacer",
+     "en": "do",
+     "level": "A1"
+    },
+    {
+     "es": "ir",
+     "en": "go",
+     "level": "A1"
+    },
+    {
+     "es": "venir",
+     "en": "come",
+     "level": "A1"
+    },
+    {
+     "es": "comer",
+     "en": "eat",
+     "level": "A1"
+    },
+    {
+     "es": "beber",
+     "en": "drink",
+     "level": "A1"
+    },
+    {
+     "es": "dormir",
+     "en": "sleep",
+     "level": "A1"
+    },
+    {
+     "es": "hablar",
+     "en": "speak",
+     "level": "A1"
+    },
+    {
+     "es": "escuchar",
+     "en": "listen",
+     "level": "A1"
+    },
+    {
+     "es": "leer",
+     "en": "read",
+     "level": "A1"
+    },
+    {
+     "es": "escribir",
+     "en": "write",
+     "level": "A1"
+    },
+    {
+     "es": "caminar",
+     "en": "walk",
+     "level": "A1"
+    },
+    {
+     "es": "correr",
+     "en": "run",
+     "level": "A1"
+    },
+    {
+     "es": "comprar",
+     "en": "buy",
+     "level": "A1"
+    },
+    {
+     "es": "vender",
+     "en": "sell",
+     "level": "A2"
+    },
+    {
+     "es": "abrir",
+     "en": "open",
+     "level": "A1"
+    },
+    {
+     "es": "cerrar",
+     "en": "close",
+     "level": "A1"
+    },
+    {
+     "es": "empezar",
+     "en": "start",
+     "level": "A1"
+    },
+    {
+     "es": "terminar",
+     "en": "finish",
+     "level": "A1"
+    },
+    {
+     "es": "esperar",
+     "en": "wait",
+     "level": "A1"
+    },
+    {
+     "es": "ayudar",
+     "en": "help",
+     "level": "A1"
+    },
+    {
+     "es": "trabajar",
+     "en": "work",
+     "level": "A1"
+    },
+    {
+     "es": "estudiar",
+     "en": "study",
+     "level": "A1"
+    },
+    {
+     "es": "aprender",
+     "en": "learn",
+     "level": "A1"
+    },
+    {
+     "es": "enseñar",
+     "en": "teach",
+     "level": "A2"
+    },
+    {
+     "es": "pagar",
+     "en": "pay",
+     "level": "A1"
+    },
+    {
+     "es": "llevar",
+     "en": "carry",
+     "level": "A2"
+    },
+    {
+     "es": "traer",
+     "en": "bring",
+     "level": "A2"
+    },
+    {
+     "es": "perder",
+     "en": "lose",
+     "level": "A2"
+    }
+   ]
+  },
+  {
+   "id": "verbos2",
+   "title": "Verbos más útiles",
+   "emoji": "⚙️",
+   "pairs": [
+    {
+     "es": "lograr",
+     "en": "achieve",
+     "level": "B1"
+    },
+    {
+     "es": "intentar",
+     "en": "try",
+     "level": "A2"
+    },
+    {
+     "es": "evitar",
+     "en": "avoid",
+     "level": "B1"
+    },
+    {
+     "es": "mejorar",
+     "en": "improve",
+     "level": "A2"
+    },
+    {
+     "es": "elegir",
+     "en": "choose",
+     "level": "A2"
+    },
+    {
+     "es": "decidir",
+     "en": "decide",
+     "level": "A2"
+    },
+    {
+     "es": "recordar",
+     "en": "remember",
+     "level": "A2"
+    },
+    {
+     "es": "olvidar",
+     "en": "forget",
+     "level": "A2"
+    },
+    {
+     "es": "explicar",
+     "en": "explain",
+     "level": "A2"
+    },
+    {
+     "es": "preguntar",
+     "en": "ask",
+     "level": "A1"
+    },
+    {
+     "es": "responder",
+     "en": "reply",
+     "level": "A1"
+    },
+    {
+     "es": "sugerir",
+     "en": "suggest",
+     "level": "B1"
+    },
+    {
+     "es": "aceptar",
+     "en": "accept",
+     "level": "A2"
+    },
+    {
+     "es": "rechazar",
+     "en": "refuse",
+     "level": "B1"
+    },
+    {
+     "es": "permitir",
+     "en": "allow",
+     "level": "B1"
+    },
+    {
+     "es": "prohibir",
+     "en": "forbid",
+     "level": "B1"
+    },
+    {
+     "es": "aumentar",
+     "en": "increase",
+     "level": "B1"
+    },
+    {
+     "es": "reducir",
+     "en": "reduce",
+     "level": "B1"
+    },
+    {
+     "es": "cambiar",
+     "en": "change",
+     "level": "A1"
+    },
+    {
+     "es": "arreglar",
+     "en": "fix",
+     "level": "A2"
+    },
+    {
+     "es": "romper",
+     "en": "break",
+     "level": "A2"
+    },
+    {
+     "es": "construir",
+     "en": "build",
+     "level": "A2"
+    },
+    {
+     "es": "crecer",
+     "en": "grow",
+     "level": "A2"
+    },
+    {
+     "es": "suceder",
+     "en": "happen",
+     "level": "A2"
+    },
+    {
+     "es": "darse cuenta",
+     "en": "realize",
+     "level": "B1"
+    },
+    {
+     "es": "soportar",
+     "en": "stand",
+     "level": "B1"
+    },
+    {
+     "es": "quejarse",
+     "en": "complain",
+     "level": "B1"
+    },
+    {
+     "es": "conseguir",
+     "en": "get",
+     "level": "A2"
+    },
+    {
+     "es": "añadir",
+     "en": "add",
+     "level": "A2"
+    },
+    {
+     "es": "compartir",
+     "en": "share",
+     "level": "A2"
+    }
+   ]
+  },
+  {
+   "id": "adjetivos",
+   "title": "Adjetivos para describir",
+   "emoji": "🎨",
+   "pairs": [
+    {
+     "es": "grande",
+     "en": "big",
+     "level": "A1"
+    },
+    {
+     "es": "pequeño",
+     "en": "small",
+     "level": "A1"
+    },
+    {
+     "es": "nuevo",
+     "en": "new",
+     "level": "A1"
+    },
+    {
+     "es": "viejo",
+     "en": "old",
+     "level": "A1"
+    },
+    {
+     "es": "bueno",
+     "en": "good",
+     "level": "A1"
+    },
+    {
+     "es": "malo",
+     "en": "bad",
+     "level": "A1"
+    },
+    {
+     "es": "caro",
+     "en": "expensive",
+     "level": "A1"
+    },
+    {
+     "es": "barato",
+     "en": "cheap",
+     "level": "A1"
+    },
+    {
+     "es": "fácil",
+     "en": "easy",
+     "level": "A1"
+    },
+    {
+     "es": "difícil",
+     "en": "difficult",
+     "level": "A1"
+    },
+    {
+     "es": "rápido",
+     "en": "fast",
+     "level": "A1"
+    },
+    {
+     "es": "lento",
+     "en": "slow",
+     "level": "A1"
+    },
+    {
+     "es": "limpio",
+     "en": "clean",
+     "level": "A1"
+    },
+    {
+     "es": "sucio",
+     "en": "dirty",
+     "level": "A1"
+    },
+    {
+     "es": "caliente",
+     "en": "hot",
+     "level": "A1"
+    },
+    {
+     "es": "frío",
+     "en": "cold",
+     "level": "A1"
+    },
+    {
+     "es": "lleno",
+     "en": "full",
+     "level": "A2"
+    },
+    {
+     "es": "vacío",
+     "en": "empty",
+     "level": "A2"
+    },
+    {
+     "es": "fuerte",
+     "en": "strong",
+     "level": "A2"
+    },
+    {
+     "es": "débil",
+     "en": "weak",
+     "level": "A2"
+    },
+    {
+     "es": "seguro",
+     "en": "safe",
+     "level": "A2"
+    },
+    {
+     "es": "peligroso",
+     "en": "dangerous",
+     "level": "A2"
+    },
+    {
+     "es": "ruidoso",
+     "en": "noisy",
+     "level": "A2"
+    },
+    {
+     "es": "tranquilo",
+     "en": "quiet",
+     "level": "A2"
+    },
+    {
+     "es": "útil",
+     "en": "useful",
+     "level": "A2"
+    },
+    {
+     "es": "inútil",
+     "en": "useless",
+     "level": "B1"
+    },
+    {
+     "es": "fiable",
+     "en": "reliable",
+     "level": "B1"
+    },
+    {
+     "es": "imprescindible",
+     "en": "essential",
+     "level": "B1"
+    },
+    {
+     "es": "sorprendente",
+     "en": "surprising",
+     "level": "B1"
+    },
+    {
+     "es": "aburrido",
+     "en": "boring",
+     "level": "A2"
+    }
+   ]
+  },
+  {
+   "id": "sentimientos",
+   "title": "Sentimientos",
+   "emoji": "💭",
+   "pairs": [
+    {
+     "es": "feliz",
+     "en": "happy",
+     "level": "A1"
+    },
+    {
+     "es": "triste",
+     "en": "sad",
+     "level": "A1"
+    },
+    {
+     "es": "enojado",
+     "en": "angry",
+     "level": "A1"
+    },
+    {
+     "es": "cansado",
+     "en": "tired",
+     "level": "A1"
+    },
+    {
+     "es": "asustado",
+     "en": "scared",
+     "level": "A2"
+    },
+    {
+     "es": "nervioso",
+     "en": "nervous",
+     "level": "A2"
+    },
+    {
+     "es": "aburrimiento",
+     "en": "boredom",
+     "level": "B1"
+    },
+    {
+     "es": "orgulloso",
+     "en": "proud",
+     "level": "A2"
+    },
+    {
+     "es": "celoso",
+     "en": "jealous",
+     "level": "B1"
+    },
+    {
+     "es": "avergonzado",
+     "en": "embarrassed",
+     "level": "B1"
+    },
+    {
+     "es": "preocupado",
+     "en": "worried",
+     "level": "A2"
+    },
+    {
+     "es": "sorprendido",
+     "en": "surprised",
+     "level": "A2"
+    },
+    {
+     "es": "aliviado",
+     "en": "relieved",
+     "level": "B1"
+    },
+    {
+     "es": "decepcionado",
+     "en": "disappointed",
+     "level": "B1"
+    },
+    {
+     "es": "emocionado",
+     "en": "excited",
+     "level": "A2"
+    },
+    {
+     "es": "molesto",
+     "en": "annoyed",
+     "level": "B1"
+    },
+    {
+     "es": "confundido",
+     "en": "confused",
+     "level": "A2"
+    },
+    {
+     "es": "agradecido",
+     "en": "grateful",
+     "level": "B1"
+    },
+    {
+     "es": "solo",
+     "en": "lonely",
+     "level": "A2"
+    },
+    {
+     "es": "seguro de sí",
+     "en": "confident",
+     "level": "B1"
+    }
+   ]
+  },
+  {
+   "id": "estudio",
+   "title": "Estudio y tecnología",
+   "emoji": "💻",
+   "pairs": [
+    {
+     "es": "libro",
+     "en": "book",
+     "level": "A1"
+    },
+    {
+     "es": "cuaderno",
+     "en": "notebook",
+     "level": "A1"
+    },
+    {
+     "es": "lápiz",
+     "en": "pencil",
+     "level": "A1"
+    },
+    {
+     "es": "examen",
+     "en": "exam",
+     "level": "A1"
+    },
+    {
+     "es": "nota",
+     "en": "mark",
+     "level": "A2"
+    },
+    {
+     "es": "clase",
+     "en": "lesson",
+     "level": "A1"
+    },
+    {
+     "es": "deber",
+     "en": "homework",
+     "level": "A1"
+    },
+    {
+     "es": "pregunta",
+     "en": "question",
+     "level": "A1"
+    },
+    {
+     "es": "respuesta",
+     "en": "answer",
+     "level": "A1"
+    },
+    {
+     "es": "palabra",
+     "en": "word",
+     "level": "A1"
+    },
+    {
+     "es": "frase",
+     "en": "sentence",
+     "level": "A2"
+    },
+    {
+     "es": "idioma",
+     "en": "language",
+     "level": "A1"
+    },
+    {
+     "es": "pantalla",
+     "en": "screen",
+     "level": "A2"
+    },
+    {
+     "es": "teclado",
+     "en": "keyboard",
+     "level": "A2"
+    },
+    {
+     "es": "archivo",
+     "en": "file",
+     "level": "A2"
+    },
+    {
+     "es": "carpeta",
+     "en": "folder",
+     "level": "A2"
+    },
+    {
+     "es": "contraseña",
+     "en": "password",
+     "level": "A2"
+    },
+    {
+     "es": "red",
+     "en": "network",
+     "level": "B1"
+    },
+    {
+     "es": "aplicación",
+     "en": "app",
+     "level": "A1"
+    },
+    {
+     "es": "actualizar",
+     "en": "update",
+     "level": "A2"
+    },
+    {
+     "es": "descargar",
+     "en": "download",
+     "level": "A2"
+    },
+    {
+     "es": "investigación",
+     "en": "research",
+     "level": "B1"
+    },
+    {
+     "es": "beca",
+     "en": "scholarship",
+     "level": "B1"
+    },
+    {
+     "es": "carrera",
+     "en": "degree",
+     "level": "B1"
+    },
+    {
+     "es": "conocimiento",
+     "en": "knowledge",
+     "level": "B1"
+    }
+   ]
+  }
+ ]
+}
