@@ -297,10 +297,10 @@ fun HomeScreen(
                 Text("Lo que viene", style = MaterialTheme.typography.titleMedium)
                 Spacer(Modifier.height(6.dp))
                 Text(
-                    "💬  Hablar de todo con ${teacher.name}, y que se acuerde de ti\n" +
-                        "🎭  Escenarios de conversación de A2\n" +
-                        "🔁  Repaso espaciado de lo que ya viste\n" +
-                        "📖  La gramática de cada lección en pantalla",
+                    "🔁  Repaso espaciado de lo que ya viste\n" +
+                        "🏁  Retos: adivina antes de ver, corrige tu propio error, contrarreloj\n" +
+                        "📖  La gramática de cada lección en pantalla\n" +
+                        "📚  Historias cortas para leer y contar",
                     style = MaterialTheme.typography.bodyMedium,
                     color = InkSoft
                 )
