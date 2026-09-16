@@ -174,6 +174,7 @@ fun HabloApp(
                                 teacher = teacher,
                                 listener = listener,
                                 progreso = progreso,
+                                store = store,
                                 speaking = speaker.busy,
                                 lastSpokenSeconds = { speaker.lastSpokenSeconds },
                                 showFace = store.showFaces,

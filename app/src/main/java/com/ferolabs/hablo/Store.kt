@@ -11,6 +11,20 @@ class Store(context: Context) {
     private val prefs = this.context
         .getSharedPreferences("hablo_progress", Context.MODE_PRIVATE)
 
+    init {
+        // Contadores del mapa de sonidos anteriores a la calibracion vigente:
+        // se contaron con umbrales que el proyecto ya descarto (2 de cada 3
+        // avisos eran falsa alarma) y nada los reiniciaba; el inicio mostraba
+        // "sh 24 casi de 35" y "th 9 casi de 10" para siempre. Se borran una
+        // sola vez por epoca; SUBIR SOUND_STATS_EPOCH cada vez que cambie
+        // thresholds.json o PhonemeScorer.MIN_PRECISION.
+        if (prefs.getInt("sound_stats_epoch", 1) < SOUND_STATS_EPOCH) {
+            val e = prefs.edit()
+            prefs.all.keys.filter { it.startsWith("sound_") }.forEach { e.remove(it) }
+            e.putInt("sound_stats_epoch", SOUND_STATS_EPOCH).apply()
+        }
+    }
+
     var teacherId: String?
         get() = prefs.getString("teacher_id", null)
         set(value) = prefs.edit().putString("teacher_id", value).apply()
@@ -109,6 +123,8 @@ class Store(context: Context) {
     companion object {
         const val ENGINE_LOCAL = "local"
         const val ENGINE_GEMINI = "gemini"
+        /** Epoca de los contadores de sonidos: 2 = MIN_PRECISION 0,50 del 2026-09-13 (commit c4ee744). */
+        const val SOUND_STATS_EPOCH = 2
     }
 
     // --- Intentos de hoy por frase de pronunciación ---------------------------

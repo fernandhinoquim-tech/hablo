@@ -218,12 +218,18 @@ class Progreso(context: Context) {
         val fecha = SimpleDateFormat("d 'de' MMMM 'de' yyyy", Locale("es", "CO")).format(Date())
         val desde = intentos.firstOrNull()?.fecha ?: fallos.firstOrNull()?.fecha ?: hoy()
 
+        // El nivel se calcula: el más alto con alguna lección aprobada (antes decía "A1" fijo).
+        val nivelActual = Course.levels.lastOrNull { lv ->
+            lv.units.any { u -> u.lessons.any { store.bestScore(it.id) > 0 } }
+        } ?: Course.levels.firstOrNull()
+
         b.appendLine("# Mi práctica de inglés — informe de Hablo")
         b.appendLine()
         b.appendLine("- Generado el $fecha, con lo registrado desde el $desde.")
-        b.appendLine("- Mi lengua materna es español (Colombia). Nivel del contenido que estoy haciendo: A1.")
+        b.appendLine("- Mi lengua materna es español (Colombia). Nivel del contenido que estoy haciendo: " +
+            "${nivelActual?.id ?: "A1"}" + (nivelActual?.let { " (${it.title})" } ?: "") + ".")
         b.appendLine("- Profesora en la app: ${teacher.name} (${teacher.accent.label}).")
-        b.appendLine("- Progreso: ${store.xp} puntos, racha de ${store.streak} días.")
+        b.appendLine("- Progreso: ${store.xp} puntos, ${racha(store.streak)}.")
         b.appendLine()
 
         // --- 0. Lo hecho -------------------------------------------------------
@@ -235,21 +241,31 @@ class Progreso(context: Context) {
         val pendientes = Course.allLessons().filter { store.bestScore(it.id) == 0 }
         b.appendLine("- Días que he practicado: **${diario.size}**" +
             (if (diario.isNotEmpty()) " (del ${diario.keys.first()} al ${diario.keys.last()})" else ""))
-        b.appendLine("- Racha actual: ${store.streak} días · ${store.xp} puntos")
-        b.appendLine("- Lecciones hechas: **${hechas.size} de ${Course.allLessons().size}**")
+        b.appendLine("- Racha actual: ${racha(store.streak)} · ${store.xp} puntos")
+        b.appendLine("- Lecciones hechas: **${hechas.size} de ${Course.allLessons().size}** (" +
+            Course.levels.joinToString(" · ") { lv ->
+                val todas = lv.units.flatMap { it.lessons }
+                "${lv.id}: ${todas.count { store.bestScore(it.id) > 0 }} de ${todas.size}"
+            } + ")")
         b.appendLine("- Ejercicios respondidos: ${totales[Actividad.EJERCICIO.ordinal]} · " +
             "frases dichas en voz alta: ${totales[Actividad.INTENTO.ordinal]} · " +
             "turnos de conversación: ${totales[Actividad.TURNO.ordinal]}")
         b.appendLine()
 
         if (hechas.isNotEmpty()) {
-            b.appendLine("| Lección | Mi mejor puntaje |")
-            b.appendLine("|---|---:|")
-            for (l in hechas) b.appendLine("| ${l.title} | ${store.bestScore(l.id)} |")
+            b.appendLine("| Nivel | Lección | Mi mejor puntaje |")
+            b.appendLine("|---|---|---:|")
+            for (lv in Course.levels) for (u in lv.units) for (l in u.lessons) {
+                if (store.bestScore(l.id) > 0) b.appendLine("| ${lv.id} | ${l.title} | ${store.bestScore(l.id)} |")
+            }
             b.appendLine()
         }
-        if (pendientes.isNotEmpty()) {
-            b.appendLine("Todavía no he hecho: " + pendientes.joinToString(", ") { it.title } + ".")
+        // Solo lo que sigue en el nivel en curso: 45 títulos seguidos no los lee nadie.
+        val siguientes = (nivelActual?.units?.flatMap { it.lessons } ?: pendientes)
+            .filter { store.bestScore(it.id) == 0 }
+        if (siguientes.isNotEmpty()) {
+            b.appendLine("Lo que me falta de ${nivelActual?.id ?: "este nivel"} (${siguientes.size} lecciones); " +
+                "las próximas: " + siguientes.take(5).joinToString(", ") { it.title } + ".")
             b.appendLine()
         }
 
@@ -293,6 +309,8 @@ class Progreso(context: Context) {
         val malas = intentos.filter { it.veredicto != "bien" }
         b.appendLine("## 2. Frases que dije mal al practicar en voz alta")
         b.appendLine()
+        b.appendLine("Medido por el modelo de fonemas de la app sobre el sonido que entrena cada frase.")
+        b.appendLine()
         if (malas.isEmpty()) {
             b.appendLine("Ninguna marcada en este periodo.")
         } else {
@@ -307,17 +325,32 @@ class Progreso(context: Context) {
             }
         }
         b.appendLine()
+        // Lo que el dictado no entendió NO es un error de escritura: va aparte y con su
+        // advertencia. Antes salía bajo "ejercicios escritos" como "Yo puse: 925 years old".
+        val noEntendidas = fallos.filter { it.tipo in TIPOS_HABLADOS }
+        if (noEntendidas.isNotEmpty()) {
+            b.appendLine("Frases de las lecciones que el dictado automático no me entendió (puede ser mi " +
+                "pronunciación o un error del dictado; no lo escribí yo):")
+            b.appendLine()
+            b.appendLine("| Frase | El dictado oyó |")
+            b.appendLine("|---|---|")
+            for (f in noEntendidas.takeLast(15).reversed()) {
+                b.appendLine("| ${f.correcta} | ${f.tuya.ifBlank { "(nada)" }} |")
+            }
+            b.appendLine()
+        }
 
         // --- 3. Errores de lección -------------------------------------------
-        b.appendLine("## 3. Errores en los ejercicios escritos")
+        b.appendLine("## 3. Errores en los ejercicios escritos y de oído")
         b.appendLine()
-        if (fallos.isEmpty()) {
+        val escritos = fallos.filter { it.tipo !in TIPOS_HABLADOS }
+        if (escritos.isEmpty()) {
             b.appendLine("Ninguno registrado en este periodo.")
         } else {
-            b.appendLine("| Yo puse | Era | Ejercicio |")
+            b.appendLine("| Yo puse | Era | Tipo de ejercicio |")
             b.appendLine("|---|---|---|")
-            for (f in fallos.takeLast(25).reversed()) {
-                b.appendLine("| ${f.tuya.ifBlank { "(nada)" }} | ${f.correcta} | ${f.tipo} |")
+            for (f in escritos.takeLast(25).reversed()) {
+                b.appendLine("| ${f.tuya.ifBlank { "(nada)" }} | ${f.correcta} | ${nombreTipo(f.tipo)} |")
             }
         }
         b.appendLine()
@@ -344,7 +377,9 @@ class Progreso(context: Context) {
         b.appendLine("## Instrucciones para mi tutor de IA")
         b.appendLine()
         b.appendLine("Eres mi profesor particular de inglés. Yo hablo español (Colombia) y estoy en " +
-            "nivel A1-A2. Este archivo trae mis errores REALES, medidos por mi app de práctica.")
+            "nivel ${nivelActual?.id ?: "A1"}. Este archivo trae mis errores medidos por mi app de práctica: " +
+            "los de las secciones 3 y 4 los escribí o dije yo; en la sección 2, lo que \"el dictado oyó\" " +
+            "es de un reconocedor automático y a veces se equivoca él, no yo.")
         b.appendLine()
         b.appendLine("Cuando practiquemos:")
         b.appendLine()
@@ -403,6 +438,21 @@ class Progreso(context: Context) {
         return out
     }
 
+    /** "racha de 1 día" / "racha de 3 días". */
+    private fun racha(n: Int): String = if (n == 1) "racha de 1 día" else "racha de $n días"
+
+    /** El tipo del cuaderno, en palabras que entienda un tutor externo. */
+    private fun nombreTipo(tipo: String): String = when (tipo) {
+        "escuchar" -> "escuchar y elegir"
+        "traducir" -> "traducir (elegir)"
+        "armar" -> "armar la frase"
+        "dictado" -> "dictado (oír y escribir)"
+        "escribir" -> "escribir en inglés"
+        "completar" -> "completar el hueco"
+        "oído" -> "par mínimo (oído)"
+        else -> tipo
+    }
+
     /** Clave tosca para agrupar correcciones parecidas (las primeras palabras en español). */
     private fun claveError(texto: String): String =
         texto.lowercase(Locale("es")).filter { it.isLetter() || it == ' ' }
@@ -456,6 +506,8 @@ class Progreso(context: Context) {
 
     companion object {
         private const val TAG = "HabloProgreso"
+        /** Tipos del cuaderno que vienen del dictado, no de lo que Fero escribió. */
+        private val TIPOS_HABLADOS = setOf("hablar", "repetir")
         private const val MAX_INTENTOS = 300
         private const val MAX_FALLOS = 200
         private const val MAX_CORRECCIONES = 100

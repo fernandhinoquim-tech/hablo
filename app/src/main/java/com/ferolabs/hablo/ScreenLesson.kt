@@ -48,6 +48,7 @@ fun LessonScreen(
     teacher: Teacher,
     listener: Listener,
     progreso: Progreso,
+    store: Store,
     speaking: Boolean,
     /** Cuánto duró lo último que dijo la profesora (para el shadowing). */
     lastSpokenSeconds: () -> Float,
@@ -740,6 +741,16 @@ fun LessonScreen(
             } else if (!checked) {
                 BigButton("Comprobar", enabled = canCheck(), container = accent) {
                     progreso.anotarActividad(Progreso.Actividad.EJERCICIO)
+                    // Lo hablado en la lección cuenta igual que en Pronunciación: diario,
+                    // informe y mapa de sonidos (antes solo contaban los drills).
+                    if (ex is Exercise.SpeakIt || ex is Exercise.Shadow) {
+                        progreso.anotarActividad(Progreso.Actividad.INTENTO)
+                    }
+                    if (ex is Exercise.SpeakIt) {
+                        val rep = speakReport?.fiable(speakResult)
+                        progreso.anotarIntento(ex.text, ex.sound, rep)
+                        rep?.let { store.recordSound(it.sound, it.worst) }
+                    }
                     wasCorrect = evaluate()
                     if (wasCorrect) {
                         // Solo puntúa el primer intento: lo repetido no infla la nota.
