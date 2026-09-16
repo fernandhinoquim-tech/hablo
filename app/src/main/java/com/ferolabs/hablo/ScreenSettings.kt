@@ -330,7 +330,8 @@ fun SettingsScreen(
                     val d = memoria.datos
                     val e = memoria.errores
                     Text(
-                        "${d.size} datos · ${e.size} errores que vigila" +
+                        (if (d.size == 1) "1 dato" else "${d.size} datos") + " · " +
+                            (if (e.size == 1) "1 error que vigila" else "${e.size} errores que vigila") +
                             (if (memoria.actualizado.isNotBlank()) " · al día ${memoria.actualizado}" else ""),
                         style = MaterialTheme.typography.bodyMedium,
                         color = Ink
