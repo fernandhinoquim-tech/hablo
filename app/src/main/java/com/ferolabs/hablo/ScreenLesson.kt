@@ -93,6 +93,7 @@ fun LessonScreen(
     var built by remember { mutableStateOf(listOf<Int>()) }
     var speakResult by remember { mutableStateOf<PronunciationResult?>(null) }
     var speakReport by remember { mutableStateOf<SoundReport?>(null) }
+    var showHeard by remember { mutableStateOf(false) }
     var speakNotHeard by remember { mutableStateOf<NotHeardReason?>(null) }
     // Shadowing: cuánto tardó él y cuánto ella, como dato, no como nota.
     var studentSeconds by remember { mutableStateOf(0f) }
@@ -186,6 +187,7 @@ fun LessonScreen(
         built = listOf<Int>()
         speakResult = null
         speakReport = null
+        showHeard = false
         speakNotHeard = null
         studentSeconds = 0f
         teacherSeconds = 0f
@@ -212,12 +214,12 @@ fun LessonScreen(
             normalizeAnswer(built.joinToString(" ") { bank[it] }) == normalizeAnswer(ex.answer)
         // Dictado: contracciones y números valen igual ("doesn't" = "does not", "4" = "four").
         is Exercise.TypeWhatYouHear -> Correccion.acepta(typed, ex.audio, emptyList())
-        is Exercise.SpeakIt -> (speakResult?.percent ?: 0) >= 60
+        is Exercise.SpeakIt -> speakResult?.entendida == true
         is Exercise.WriteIt -> Correccion.acepta(typed, ex.answer, ex.accept)
         // Vale la palabra del hueco sola o la frase completa (la pantalla la muestra como "la correcta").
         is Exercise.Cloze -> Correccion.aceptaHueco(typed, ex.before, ex.after, ex.answer, ex.accept)
         // Shadowing: que salgan las palabras. El ritmo se muestra, no se califica.
-        is Exercise.Shadow -> (speakResult?.percent ?: 0) >= 60
+        is Exercise.Shadow -> speakResult?.entendida == true
         is Exercise.MinimalPair -> chosen == ex.answerIndex
     }
 
@@ -478,9 +480,16 @@ fun LessonScreen(
 
                     speakNotHeard?.let { NotHeardBox(it) }
 
-                    speakReport?.let { SoundVerdictCard(it) }
+                    // El "bien" del sonido solo vale sobre palabras que el dictado entendió.
+                    speakReport?.fiable(speakResult)?.let { SoundVerdictCard(it) }
 
                     speakResult?.let { r ->
+                        Text(
+                            if (r.entendida) "Se te entendió: ${r.percent} % de las palabras"
+                            else "No se te entendió del todo: ${r.percent} % de las palabras",
+                            style = MaterialTheme.typography.titleSmall,
+                            color = if (r.entendida) GoodGreen else Color(0xFF8A5A00)
+                        )
                         FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                             r.words.forEach { sw ->
                                 val bg = when (sw.score) {
@@ -504,11 +513,22 @@ fun LessonScreen(
                                 )
                             }
                         }
-                        Text(
-                            "${r.percent}%  ·  entendí: \"${r.heard}\"",
-                            style = MaterialTheme.typography.labelMedium,
-                            color = InkSoft
-                        )
+                        // La transcripción cruda va plegada (decisión de 0.8): verla junto
+                        // a una palabra en rojo es lo que hacía visible la contradicción.
+                        if (!showHeard) {
+                            Text(
+                                "Ver lo que oyó el dictado →",
+                                style = MaterialTheme.typography.labelMedium,
+                                color = accent,
+                                modifier = Modifier.clickable { showHeard = true }
+                            )
+                        } else {
+                            Text(
+                                "El dictado oyó: \"${r.heard}\"",
+                                style = MaterialTheme.typography.labelMedium,
+                                color = InkSoft
+                            )
+                        }
                     }
                 }
 
@@ -611,6 +631,12 @@ fun LessonScreen(
                     speakNotHeard?.let { NotHeardBox(it) }
 
                     speakResult?.let { r ->
+                        Text(
+                            if (r.entendida) "Se te entendió: ${r.percent} % de las palabras"
+                            else "No se te entendió del todo: ${r.percent} % de las palabras",
+                            style = MaterialTheme.typography.titleSmall,
+                            color = if (r.entendida) GoodGreen else Color(0xFF8A5A00)
+                        )
                         FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                             r.words.forEach { sw ->
                                 val ok = sw.score == WordScore.BIEN
@@ -689,6 +715,7 @@ fun LessonScreen(
                     detail = if (wasCorrect) note() else diagnosis(),
                     teacher = teacher,
                     tip = ex.tip,
+                    speaking = ex is Exercise.SpeakIt || ex is Exercise.Shadow,
                     onReplay = { say(correctText(), 1f) }
                 )
             }
@@ -823,6 +850,8 @@ private fun FeedbackBox(
     detail: String? = null,
     teacher: Teacher,
     tip: String?,
+    /** Ejercicio de hablar: no hay "respuesta correcta" que enseñar, la frase ya está en pantalla. */
+    speaking: Boolean = false,
     onReplay: () -> Unit
 ) {
     Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
@@ -835,7 +864,7 @@ private fun FeedbackBox(
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
-                    if (ok) "¡Correcto!" else "Casi",
+                    if (ok) "¡Correcto!" else if (speaking) "No se te entendió del todo" else "Casi",
                     style = MaterialTheme.typography.titleMedium,
                     color = if (ok) GoodGreen else BadRed,
                     modifier = Modifier.weight(1f)
@@ -844,7 +873,11 @@ private fun FeedbackBox(
             }
             Spacer(Modifier.height(6.dp))
             Text(
-                if (ok) correctText else "La respuesta correcta es: $correctText",
+                when {
+                    ok -> correctText
+                    speaking -> "Óyela otra vez y vuelve a intentarlo: $correctText"
+                    else -> "La respuesta correcta es: $correctText"
+                },
                 style = MaterialTheme.typography.bodyLarge,
                 color = Ink
             )

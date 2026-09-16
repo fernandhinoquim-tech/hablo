@@ -10,7 +10,19 @@ data class PronunciationResult(
     val words: List<ScoredWord>,
     val percent: Int,
     val heard: String
-)
+) {
+    /**
+     * ¿Se entendió lo suficiente para dar el ejercicio por dicho? 60 % o más,
+     * o bien una sola palabra fallada con el resto al menos dudoso (50 %).
+     * Medido el 2026-09-15 sobre 200 grabaciones: el dictado cambia UNA
+     * palabra bien dicha ("I don't understand." → "I then understood") y en una
+     * frase de tres palabras eso bastaba para reprobar; de 26 reprobadas, 14
+     * las oía perfectas otro reconocedor. Dos palabras falladas sí reprueban.
+     * El sonido lo juzga aparte el modelo de fonemas; esto es solo "¿se entendió?".
+     */
+    val entendida: Boolean
+        get() = percent >= 60 || (percent >= 50 && words.count { it.score == WordScore.MAL } <= 1)
+}
 
 // Los ejercicios de pronunciación (Drill) viven en assets/content/drills.json
 // y los carga Course, igual que las lecciones: el contenido va en JSON, no en
@@ -18,8 +30,19 @@ data class PronunciationResult(
 
 // ---------------------------------------------------------------------------
 
+/**
+ * Fichas para comparar: números en letras y guion como parte de la palabra
+ * ("twenty-five"). Sin esto, "25" del dictado contra "twentyfive" salía en
+ * rojo 17 de 17 veces (diagnóstico del 2026-09-15).
+ */
 private fun words(text: String): List<String> =
-    normalizeAnswer(text).split(" ").filter { it.isNotBlank() }
+    Correccion.fichas(text).split(" ").filter { it.isNotBlank() }
+
+/** Las palabras tal como están escritas en el ejercicio, para mostrarlas en el chip. */
+private fun originales(text: String): List<String> =
+    text.split(Regex("\\s+"))
+        .map { it.trim { c -> !c.isLetterOrDigit() && c != '\'' && c != '-' } }
+        .filter { it.isNotBlank() }
 
 private fun levenshtein(a: String, b: String): Int {
     if (a == b) return 0
@@ -54,7 +77,8 @@ private fun similar(a: String, b: String): Boolean {
  */
 fun scorePronunciation(target: String, heard: String): PronunciationResult {
     val t = words(target)
-    val h = words(heard)
+    // "I am" cuenta como "I'm" si la frase dice "I'm" (y al revés).
+    val h = words(Correccion.igualaContracciones(target, heard))
 
     if (t.isEmpty()) return PronunciationResult(emptyList(), 0, heard)
     if (h.isEmpty()) {
@@ -81,13 +105,16 @@ fun scorePronunciation(target: String, heard: String): PronunciationResult {
         }
     }
 
+    // El chip muestra la palabra del ejercicio ("twenty-five"), no la ficha
+    // normalizada ("twentyfive"), cuando cuadran una a una.
+    val orig = originales(target).let { if (it.size == t.size) it else t }
     val scored = t.mapIndexed { idx, w ->
         val s = when {
             matched[idx] -> WordScore.BIEN
             h.any { similar(it, w) } -> WordScore.DUDOSO
             else -> WordScore.MAL
         }
-        ScoredWord(w, s)
+        ScoredWord(orig[idx], s)
     }
 
     // Sin sumOf: con literales sueltos Kotlin no distingue la version Int de la Long.

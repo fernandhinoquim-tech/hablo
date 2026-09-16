@@ -17,6 +17,24 @@ data class SoundItem(val word: String, val phone: String, val score: Double, val
 data class SoundReport(val sound: Sound, val items: List<SoundItem>, val millis: Long) {
     val worst: WordScore
         get() = items.maxByOrNull { it.verdict.ordinal }?.verdict ?: WordScore.BIEN
+
+    /**
+     * Quita el "bien" de las palabras que el dictado NO entendió. La alineación
+     * forzada siempre encuentra el fonema, así que sobre "Okay" oído por "She
+     * studies at home." la tarjeta decía "¡Ese sonido salió bien!" en verde
+     * (20260915-154250): un falso "bien", lo peor según el criterio de Fero.
+     * Un "mal" o "dudoso" se conserva aunque la palabra no se haya entendido
+     * (castigar de más, nunca aprobar de más). Null si no queda nada que decir.
+     */
+    fun fiable(result: PronunciationResult?): SoundReport? {
+        if (result == null) return null
+        val entendidas = result.words
+            .filter { it.score != WordScore.MAL }
+            .flatMap { normalizeAnswer(it.word.replace('-', ' ')).split(' ') }
+            .toSet()
+        val quedan = items.filter { it.verdict != WordScore.BIEN || it.word in entendidas }
+        return if (quedan.isEmpty()) null else copy(items = quedan)
+    }
 }
 
 /**

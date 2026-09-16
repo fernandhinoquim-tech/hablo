@@ -77,6 +77,8 @@ fun PronunciationScreen(
     var index by remember { mutableStateOf(0) }
     var result by remember { mutableStateOf<PronunciationResult?>(null) }
     var report by remember { mutableStateOf<SoundReport?>(null) }
+    /** Hubo veredicto por fonema pero se descarto entero: el dictado no entendio esas palabras. */
+    var reportDescartado by remember { mutableStateOf(false) }
     var notHeard by remember { mutableStateOf<NotHeardReason?>(null) }
     var showTip by remember { mutableStateOf(false) }
     var showDetail by remember { mutableStateOf(false) }
@@ -122,12 +124,15 @@ fun PronunciationScreen(
             when (r) {
                 is ListenResult.Heard -> {
                     store.recordDrillTry(target)
-                    result = scorePronunciation(target, r.text)
-                    report = r.report
+                    val res = scorePronunciation(target, r.text)
+                    result = res
+                    // Sin el "bien" de palabras que el dictado no entendio (falso "bien").
+                    report = r.report?.fiable(res)
+                    reportDescartado = r.report != null && report == null
                     notHeard = null
-                    progreso.anotarIntento(target, sound, r.report)
+                    progreso.anotarIntento(target, sound, report)
                     progreso.anotarActividad(Progreso.Actividad.INTENTO)
-                    r.report?.let { rep ->
+                    report?.let { rep ->
                         store.recordSound(rep.sound, rep.worst)
                         sessionTries[rep.sound] = (sessionTries[rep.sound] ?: 0) + 1
                         if (rep.worst == WordScore.MAL) sessionFails[rep.sound] = (sessionFails[rep.sound] ?: 0) + 1
@@ -382,7 +387,8 @@ fun PronunciationScreen(
             // Sonido sin umbral todavía, o modelo ausente: se dice, no se calla.
             if (result != null && report == null && drill.sound != Sound.GENERAL) {
                 Text(
-                    listener.sounds.unavailableReason
+                    if (reportDescartado) "El sonido no se pudo juzgar: el dictado no entendió la palabra que lo lleva."
+                    else listener.sounds.unavailableReason
                         ?: "El sonido \"${drill.sound.labelEs}\" todavía no tiene evaluación por fonema calibrada.",
                     style = MaterialTheme.typography.labelMedium,
                     color = InkSoft

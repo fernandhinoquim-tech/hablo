@@ -68,13 +68,37 @@ object Correccion {
     }
 
     /**
-     * Como [normalizeAnswer], y además: el guion cuenta como espacio, expande
-     * contracciones ("I'm" = "I am") e iguala números ("8" = "eight").
+     * Como [normalizeAnswer], y además el guion cuenta como espacio y los
+     * números van en letras ("8" = "eight", "25" = "twenty-five"). Las
+     * contracciones se dejan como están.
      */
+    fun fichas(text: String): String =
+        numeros(normalizeAnswer(text.replace('-', ' ').replace('\u2013', ' ')).split(" ").filter { it.isNotEmpty() })
+            .joinToString(" ")
+
+    /** Como [fichas], y además expande contracciones ("I'm" = "I am"). */
     fun suelta(text: String): String {
-        var t = " " + normalizeAnswer(text.replace('-', ' ').replace('–', ' ')) + " "
+        var t = " " + fichas(text) + " "
         for ((corta, larga) in CONTRACCIONES) t = t.replace(" $corta ", " $larga ")
-        return numeros(t.trim().split(" ").filter { it.isNotEmpty() }).joinToString(" ")
+        return t.trim()
+    }
+
+    /**
+     * Deja las contracciones de [text] como están en [modelo]: si el modelo
+     * dice "I'm", "i am" pasa a "i'm"; si dice "I am", "i'm" pasa a "i am".
+     * Para puntuar el habla palabra por palabra, donde "I am" y "I'm" tienen
+     * que ser las mismas fichas o la frase de tres palabras pierde un tercio
+     * por decirla en forma larga (20260913-011257: "I am 25 years old." → 50 %).
+     * No se cierran contracciones a ciegas: "I have the check" no es "I've".
+     */
+    fun igualaContracciones(modelo: String, text: String): String {
+        val m = " " + fichas(modelo) + " "
+        var t = " " + fichas(text) + " "
+        for ((corta, larga) in CONTRACCIONES) {
+            if (m.contains(" $corta ")) t = t.replace(" $larga ", " $corta ")
+            else if (m.contains(" $larga ")) t = t.replace(" $corta ", " $larga ")
+        }
+        return t.trim()
     }
 
     /** ¿La respuesta dada vale? Contra la esperada o cualquiera de las alternativas. */
