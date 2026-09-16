@@ -255,6 +255,88 @@ cambiar `prep()` en `bench.py` igual.
   modelo cargado la librería nativa no existe y es `UnsatisfiedLinkError`
   (pasaba al salir de una conversación por internet). Cualquier `external
   fun` de `Llm` va detrás de `if (loaded)`.
+- **"Spanish" DUDOSO con dictado perfecto NO es un bug (verificado
+  2026-09-15).** En "He speaks Spanish every day." el amarillo de `es` saltó
+  3 de 3 veces con Moonshine al 100 %. Se corrió el mismo modelo de fonemas
+  int8 en el PC sobre esas tomas: la decodificación muestra una **ɛ entre las
+  dos s** ("hispiks**ɛ**spænɪʃ") en las tres, y no en las dos tomas de la
+  misma frase donde el veredicto fue BIEN; quitar la s de "speaks" de la
+  secuencia esperada EMPEORA el puntaje. Es el error insignia ("espanish"),
+  que Moonshine y Parakeet son ciegos a oír; ese mismo día Fero escribió "he
+  speaks espanish" en el dictado. **Nunca subir ni aflojar el umbral de `es`
+  por "falsa alarma": es el único detector de ese error.** Lo que sí se puede
+  mejorar es el texto de la tarjeta amarilla.
+- **live/leave (a1u4l1e12) NO está roto en la app.** El par solo reproduce
+  la respuesta ("The word is leave."), que Piper dice bien con las 4 voces;
+  "live" (heterónimo, Piper lo lee /laɪv/) nunca suena. El fallo de Fero
+  ("live" tocado cuando sonó "leave") fue error de oído real. No "arreglar"
+  el par por eso. Los pares que sí muerden son aquellos cuya RESPUESTA sale
+  sin su fonema (three/think/won't/since/van, ver "Pares mínimos y Piper").
+
+---
+
+## Inventario de lo pedido (de `contenido-nuevo/plan-por-etapas.md`, 2026-09-15)
+
+Esta tabla vive aquí y no en un chat: cada etapa terminada tacha su línea con
+fecha y commit. Es lo que evita que "la charla libre" vuelva a olvidarse (ya
+pasó una vez, acordada el 13-09).
+
+**Ya está:** cuatro profesoras con voz · lecciones y pronunciación sin
+internet · reconocimiento honesto · GOP calibrado · conversación con IA en 5
+escenarios · corrección en español · informe descargable · cuaderno de errores
+· racha y puntos · A1 y A2 (56 lecciones, 565 ejercicios) · tests · Parejas.
+
+| # | Pedido | Estado real (15-09) |
+|---|---|---|
+| 1 | Marca mal respuestas que están bien | **bug abierto**, diagnóstico hecho (scratchpad `eval/EVALUACION-HABLO-2026-09-15.md`) |
+| 2 | Leyendas viejas y textos sin actualizar | en diagnóstico |
+| 3 | Charla libre sin escenario ni nivel, **con memoria** | **no existe** (no hay `perfil.json`) |
+| 4 | Escenarios divididos **por nivel**, sin memoria | hay 5, **todos A1** |
+| 5 | Actividades más diversas | diseñadas, sin construir |
+| 6 | Retos con presión | diseñados, sin construir |
+| 7 | Vocabulario con cronómetro | Parejas existe, sin reloj visible ni banco |
+| 8 | Historias cortas con preguntas | no existe |
+| 9 | Crucigramas | no existe |
+| 10 | Repaso espaciado (mazo) | no existe — era el punto 4 del plan del 13-09 |
+| 11 | Pantalla de Oído (pares mínimos) | el tipo existe, la pantalla no |
+| 12 | Contenido B1 y B2 | no existe |
+| 13 | Escritura con motor de reglas (Fase 4) | no existe |
+| 14 | Respaldo del progreso y modo oscuro (Fase 6) | no existe |
+| 15 | Recalibrar audio al llegar a ~100 grabaciones | pendiente con condición |
+
+**Etapas, una a la vez (no se abre la siguiente hasta que la anterior esté en
+el teléfono y Fero la haya usado; si aparece un bug, se vuelve a la 1):**
+0) Diagnóstico — hecho el 15-09. 1) Que no enseñe nada incorrecto (bugs del
+diagnóstico + leyendas viejas) — en curso. 2) La profesora que se acuerda:
+charla libre con `files/memoria/perfil.json` (12 datos / 15 errores / 60
+palabras / 400 tokens; errores desde `CORRECCIÓN:`, resumen con UNA llamada a
+Haiku al cerrar) + escenarios por nivel sin memoria (Cowork escribe A2 y B1).
+3) Retos y repaso: adivina antes de ver → corrige tu propio error →
+contrarreloj (Parejas con reloj y banco; lo fallado vuelve) → "aguanta" (tres
+errores) → mazo Leitner 1/3/7/16/35 con escalera elegir→armar→escribir→oír y
+escribir→decir. 4) Historias (`story`: leer → 3 preguntas → contarla de vuelta
+en voz alta → palabras al mazo; Cowork las escribe por tandas de 3-12).
+5) **Modo Aptis** (abajo). 6) B1 y B2 (Cowork), respaldo del progreso, modo
+oscuro, recalibración del audio.
+
+**Modo Aptis (decisión de Fero, 2026-09-15).** Fero va a presentar **Aptis
+ESOL General** (sin fecha aún, sin saber qué nivel le exigen). **El curso por
+niveles se queda como está; Aptis va como SECCIÓN APARTE en la etapa 5**, no
+se mezcla con las 56 lecciones. Datos del examen: 18 tipos de tarea en 5
+componentes (Core 25 min: 25 gramática + 25 vocabulario en sinónimos,
+definiciones, uso y combinaciones de palabras; Reading 35 min; Listening 40
+min; Writing 50 min incl. dos correos informal/formal de 120-150 palabras;
+Speaking 12 min: preguntas personales, describir una foto, comparar dos,
+tema abstracto). El Core es el desempate entre niveles: lo más rentable.
+**Aptis no puntúa fonemas**: GOP sirve para hablar mejor, no para la nota.
+Tres actividades suben de prioridad por ser tareas literales del examen:
+ordenar frases (Reading 2), dictado de números y horas (Listening 1) y
+combinaciones de palabras (Core). Lo primero del modo es un **diagnóstico
+corto** (una tarea de cada componente, cronometrada) para saber en qué nivel
+anda por destreza. Hace falta lo que hoy no hay: imágenes para Speaking 2-3,
+corrección de writing/speaking con Claude API contra rúbrica MCER (**en
+pantalla: es una estimación, no la nota real**) y bancos grandes de ítems
+(los escribe Cowork). Tarea de Fero: averiguar qué nivel le piden.
 
 ---
 
