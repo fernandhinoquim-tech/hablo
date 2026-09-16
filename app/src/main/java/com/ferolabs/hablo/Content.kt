@@ -157,9 +157,18 @@ sealed class Exercise {
         val options: List<String>,
         val answer: String,
         val sentence: String? = null,
+        /**
+         * `"play": "sentence"`: suena la frase entera en vez de "The word is X.".
+         * Medido el 2026-09-15 (tools/content/oir_pares.py, 4 voces x 3 corridas):
+         * en la portadora Piper no saca el fonema de three (7/12), think (2/12),
+         * since (3/12) ni van (5/12); dentro de su frase sí (10, 10, 11 y 9 de 12).
+         */
+        val playSentence: Boolean = false,
         override val tip: String? = null
     ) : Exercise() {
         val answerIndex: Int get() = options.indexOf(answer)
+        /** Lo que de verdad suena al tocar el altavoz. */
+        val spoken: String get() = if (playSentence && sentence != null) sentence else "The word is $answer."
     }
 }
 
@@ -518,7 +527,11 @@ object Course {
                     if (sentence != null && !sentence.lowercase().contains(answer.lowercase())) {
                         throw IllegalArgumentException("$where: \"sentence\" no contiene la palabra \"$answer\"")
                     }
-                    Exercise.MinimalPair(id = id, options = options, answer = answer, sentence = sentence, tip = tip)
+                    val play = o.optString("play", "").ifBlank { null }
+                    if (play != null && play != "sentence") throw IllegalArgumentException("$where: \"play\" solo admite \"sentence\"")
+                    if (play == "sentence" && sentence == null) throw IllegalArgumentException("$where: \"play\": \"sentence\" sin \"sentence\"")
+                    Exercise.MinimalPair(id = id, options = options, answer = answer, sentence = sentence,
+                        playSentence = play == "sentence", tip = tip)
                 }
                 // Antes un tipo desconocido se saltaba en silencio: un error de
                 // dedo en el JSON hacía desaparecer el ejercicio sin aviso.

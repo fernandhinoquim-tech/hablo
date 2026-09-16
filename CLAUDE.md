@@ -199,6 +199,17 @@ siempre así, y el script mide igual. Dos hallazgos para el contenido:
 con estas voces), y `three`, `think`, `match` y `want/won't` salen con su
 fonema en solo 2 de 4 voces: mejor otros pares o aceptar que dependen de la
 profesora. `can/can't` sí conserva la /t/ (3–4 de 4).
+**Pares que la portadora rompe (medido el 2026-09-15, 4 voces × 3 corridas):**
+en "The word is X." Piper no saca el fonema de `three` (7/12), `think`
+(2/12), `won't` (3/12), `since` (3/12) ni `van` (5/12), y tampoco el de casi
+ningún candidato de reemplazo con θ, v, ɪ u oʊ (thin 1/12, very 3/12, sit
+0/12): cambiar la palabra no arregla nada. Dentro de su `sentence` sí sale:
+three 10/12, think 10/12, since 11/12, van 9/12, won't 6/12 (Grace nunca da
+oʊ para este modelo). Por eso `minimalPair` admite `"play": "sentence"` y esos
+cinco ejercicios lo llevan: suena la frase, no la portadora. Es el oído del
+modelo de fonemas, no el de una persona, y con Grace (vocales) es el menos
+fiable. Sonidos que la portadora sí conserva 12/12: ship/sheep, chair/share;
+can't 10/12.
 **A2 entró el 2026-09-14 (noche): 10 unidades, 29 lecciones, 265 ejercicios
 (producción 65 %)** con `tools/content/anexar_nivel.py`. Total: **2 niveles,
 56 lecciones, 565 ejercicios.** La pantalla de inicio agrupa por nivel (un

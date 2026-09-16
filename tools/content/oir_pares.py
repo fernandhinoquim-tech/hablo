@@ -25,6 +25,16 @@ aparecer con al menos tres de las cuatro voces. Hallazgo aparte: "live" es
 heterónimo y Piper lo lee /laɪv/ (vivo, en directo): el par live/leave no
 sirve con estas voces; hay que usar otro (sit/seat, fill/feel…).
 
+Medido el 2026-09-15 (4 voces × 3 corridas, scratchpad eval/candidatos_pares.py
+y pares_frases.py): en la portadora Piper NO saca el fonema de three (7/12),
+think (2/12), won't (3/12), since (3/12) ni van (5/12), y tampoco el de casi
+ningún candidato de reemplazo con θ, v, ɪ u oʊ (thin 1/12, very 3/12, sit
+0/12, hope 9/12 con Grace 0/3). Dentro de su frase sí: three 10/12, think
+10/12, since 11/12, van 9/12, won't 6/12 (Grace nunca da oʊ para este modelo).
+Por eso esos ejercicios llevan `"play": "sentence"` y la app reproduce la
+frase; este script mide lo mismo que suena. Ojo: es el oído del modelo de
+fonemas, no el de una persona; Grace (sus vocales) le cuesta más que las otras.
+
     python tools/content/oir_pares.py
 """
 import io
@@ -117,7 +127,7 @@ class Fonemas:
 
 def main():
     c = json.load(io.open(CURR, encoding="utf-8"))
-    pares = [(l["id"], e["options"], e["answer"], e.get("sentence"))
+    pares = [(l["id"], e["options"], e["answer"], e.get("sentence"), e.get("play") == "sentence")
              for lv in c["levels"] for u in lv["units"] for l in u["lessons"]
              for e in l["exercises"] if e["type"] == "minimalPair"]
     fon = Fonemas()
@@ -130,13 +140,19 @@ def main():
         prefijo[v] = fon.transcribe(resample(np.asarray(a.samples, dtype=np.float32), a.sample_rate))
     print(f"{'lección':8s} {'palabra':7s} {'busca':5s} " + " ".join(f"{v:>12s}" for v in VOCES) + "   veredicto")
     problemas = []
-    for lid, opciones, _, sentence in pares:
+    for lid, opciones, answer, sentence, en_frase in pares:
         for palabra in opciones:
             clave = DISTINTIVO.get(palabra)
             oidos = []
+            # Con "play": "sentence" la app reproduce la frase (solo la respuesta suena):
+            # se mide la frase entera y se busca el fonema en toda ella.
+            frase = sentence if (en_frase and palabra == answer and sentence) else None
             for v in VOCES:
-                a = motores[v].generate(PORTADORA.replace("{w}", palabra), sid=0, speed=1.0)
+                a = motores[v].generate(frase or PORTADORA.replace("{w}", palabra), sid=0, speed=1.0)
                 t = fon.transcribe(resample(np.asarray(a.samples, dtype=np.float32), a.sample_rate))
+                if frase:
+                    oidos.append(t)
+                    continue
                 k = 0
                 while k < min(len(prefijo[v]), len(t)) and prefijo[v][k] == t[k]:
                     k += 1

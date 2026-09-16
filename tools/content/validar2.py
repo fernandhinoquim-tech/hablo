@@ -68,6 +68,9 @@ def main(path):
                                 if miss: p.append(f"{w}: fuera de cmudict: {','.join(miss)}")
                             s=e.get("sentence")
                             if s and a and a.lower() not in s.lower(): p.append(f"{w}: sentence no contiene {a!r}")
+                            pl=e.get("play")
+                            if pl is not None and pl!="sentence": p.append(f"{w}: play solo admite 'sentence'")
+                            if pl=="sentence" and not s: p.append(f"{w}: play=sentence sin sentence")
                     elif t=="build":
                         if not e.get("answer"): p.append(f"{w}: falta answer")
                         if not e.get("es"): p.append(f"{w}: falta es")

@@ -1,0 +1,15 @@
+a1u5l1e12  three  θ    10/12 emma:3/3 sophie:2/3 mia:3/3 grace:2/3  | I have three books.  ej: aɪhævθɹibʊks / aɪhæθθɹibʌts
+a1u6l3e12  think  θ    10/12 emma:3/3 sophie:2/3 mia:2/3 grace:3/3  | I think it is late.  ej: aɪθɪŋkɪtɪzleɪt / aɪθæŋkɪtɪzleɪt
+a1u9l2e12  won't  oʊ    6/12 emma:3/3 sophie:2/3 mia:1/3 grace:0/3  | I won't be late.  ej: aɪwoʊntbileɪt / aɪwʌnbileɪt
+a2u2l4e10  since  sɪn  11/12 emma:2/3 sophie:3/3 mia:3/3 grace:3/3  | I have known her since 2020.  ej: aɪhævnoʊnhʌsɪnstuθaʊzʌndʌntwɛnti / aɪhævnoʊɪnhʌsɪnstufaʊzʌnɛntwɛnteɪn
+a2u5l2e10  van    v     9/12 emma:3/3 sophie:2/3 mia:3/3 grace:1/3  | The van is outside.  ej: dʌvænɪzaʊtsaɪd / ðʌvɑnʌsɑsaɪʌd
+alt        three  θ     7/12 emma:3/3 sophie:0/3 mia:1/3 grace:3/3  | Three, two, one.  ej: θɹituwʌn / θɹitiswʌn
+alt        think  θ     9/12 emma:3/3 sophie:0/3 mia:3/3 grace:3/3  | I think so.  ej: aɪθɪŋksoʊ / aɪθɪŋkseɪ
+alt        won't  oʊ    8/12 emma:3/3 sophie:3/3 mia:2/3 grace:0/3  | No, I won't.  ej: noʊaɪwoʊnt / naɪsaɪweɪnt
+alt        since  sɪn  12/12 emma:3/3 sophie:3/3 mia:3/3 grace:3/3  | Since when?  ej: sɪnswɛn / sɪnswɑnʌ
+alt        van    v     1/12 emma:1/3 sophie:0/3 mia:0/3 grace:0/3  | A big van.  ej: ʌbɪɡvæn / ʌbiɡfɑn
+ctl        ship   ɪ    12/12 emma:3/3 sophie:3/3 mia:3/3 grace:3/3  | The word is ship.  ej: dʌwɚdɪʃɛp / dʌwʌdɪsʃɛp
+ctl        sheep  i    12/12 emma:3/3 sophie:3/3 mia:3/3 grace:3/3  | The word is sheep.  ej: ðʌwʊdɪʃit / ðʌwaɪdʃit
+ctl        chair  t͡ʃ  12/12 emma:3/3 sophie:3/3 mia:3/3 grace:3/3  | The word is chair.  ej: dʌwʌdɪzt͡ʃɛʌ / dʌwaɪtʌst͡ʃæ
+ctl        share  ʃ    12/12 emma:3/3 sophie:3/3 mia:3/3 grace:3/3  | The word is share.  ej: dʌwʌdɪʃɛʌ / ðʌwaɪʌtɛsʃæ
+ctl        can't  nt   10/12 emma:3/3 sophie:3/3 mia:2/3 grace:2/3  | The word is can't.  ej: dʌwɚdɛskɑnt / ðʌwaɪdɪskɑmt

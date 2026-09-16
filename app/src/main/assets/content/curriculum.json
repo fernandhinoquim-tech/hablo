@@ -301,7 +301,7 @@
                 {"id": "a1u5l1e9", "type": "cloze", "es": "Hay dos cuartos.", "text": "There ___ two bedrooms.", "answer": "are", "accept": [], "tip": "Dos cuartos son plural: there are."},
                 {"id": "a1u5l1e10", "type": "write", "es": "Hay una tienda cerca de aquí.", "answer": "There is a store near here.", "accept": ["There's a store near here.", "There is a shop near here.", "There's a shop near here.", "There is a store nearby.", "There's a store nearby."], "tip": "Una sola tienda: there is. store y shop sirven las dos."},
                 {"id": "a1u5l1e11", "type": "shadow", "text": "There are three houses here.", "tip": "Cuidado con three: lengua entre los dientes, y sin parar antes de houses."},
-                {"id": "a1u5l1e12", "type": "minimalPair", "options": ["three", "tree"], "answer": "three", "sentence": "I have three books.", "tip": "three empieza con th (lengua entre los dientes); tree con t normal."}
+                {"id": "a1u5l1e12", "type": "minimalPair", "options": ["three", "tree"], "answer": "three", "sentence": "I have three books.", "play": "sentence", "tip": "three empieza con th (lengua entre los dientes); tree con t normal."}
               ]
             },
             {
@@ -421,7 +421,7 @@
                 {"id": "a1u6l3e9", "type": "cloze", "es": "Estas son mis llaves.", "text": "___ are my keys.", "answer": "These", "accept": [], "tip": "Varias y cerca: these. Y con are, no is."},
                 {"id": "a1u6l3e10", "type": "write", "es": "Ese es mi teléfono.", "answer": "That is my phone.", "accept": ["That's my phone."], "tip": "Uno solo y lejos: that."},
                 {"id": "a1u6l3e11", "type": "shadow", "text": "This is my brother.", "tip": "Empieza con th sonora. Suena «DHIS-is-my-BRO-ther», sin cortar."},
-                {"id": "a1u6l3e12", "type": "minimalPair", "options": ["think", "sink"], "answer": "think", "sentence": "I think it is late.", "tip": "think saca la lengua; sink no. Si dices «sink» estás diciendo «lavaplatos»."}
+                {"id": "a1u6l3e12", "type": "minimalPair", "options": ["think", "sink"], "answer": "think", "sentence": "I think it is late.", "play": "sentence", "tip": "think saca la lengua; sink no. Si dices «sink» estás diciendo «lavaplatos»."}
               ]
             }
           ]
@@ -647,7 +647,7 @@
                 {"id": "a1u9l2e9", "type": "cloze", "es": "Creo que lloverá.", "text": "I think it ___ rain.", "answer": "will", "accept": [], "tip": "will + verbo desnudo: sin to y sin -s."},
                 {"id": "a1u9l2e10", "type": "write", "es": "No lo olvidaré.", "answer": "I won't forget.", "accept": ["I won't forget it."], "tip": "won't es will not. Se escribe raro pero se usa muchísimo."},
                 {"id": "a1u9l2e11", "type": "shadow", "text": "I think it will be hot.", "tip": "think con la lengua entre los dientes, y sin parar antes de «hot»."},
-                {"id": "a1u9l2e12", "type": "minimalPair", "options": ["want", "won't"], "answer": "won't", "sentence": "I won't be late.", "tip": "won't es larga, como «wount»; want es corta. Cambian la frase entera."}
+                {"id": "a1u9l2e12", "type": "minimalPair", "options": ["want", "won't"], "answer": "won't", "sentence": "I won't be late.", "play": "sentence", "tip": "won't es larga, como «wount»; want es corta. Cambian la frase entera."}
               ]
             },
             {
@@ -834,7 +834,7 @@
                 {"id": "a2u2l4e7", "type": "type", "audio": "I have known her since 2020.", "meaning": "La conozco desde 2020.", "tip": "since para un punto de inicio; for para una duración."},
                 {"id": "a2u2l4e8", "type": "speak", "text": "I have lived here for three years.", "sound": "th", "tip": "three con la lengua entre los dientes."},
                 {"id": "a2u2l4e9", "type": "shadow", "text": "I ate sushi yesterday.", "tip": "Frase corta y seca. El peso en SU-shi y en YES-terday."},
-                {"id": "a2u2l4e10", "type": "minimalPair", "options": ["since", "sense"], "answer": "since", "sentence": "I have known her since 2020.", "tip": "La diferencia está en la vocal: since lleva la i corta; sense lleva una e clara. El final suena igual en las dos."}
+                {"id": "a2u2l4e10", "type": "minimalPair", "options": ["since", "sense"], "answer": "since", "sentence": "I have known her since 2020.", "play": "sentence", "tip": "La diferencia está en la vocal: since lleva la i corta; sense lleva una e clara. El final suena igual en las dos."}
               ]
             }
           ]
@@ -1020,7 +1020,7 @@
                 {"id": "a2u5l2e7", "type": "type", "audio": "I would like to ask you something.", "meaning": "Quisiera preguntarte algo.", "tip": "would like to + verbo."},
                 {"id": "a2u5l2e8", "type": "speak", "text": "I would love to see you.", "sound": "v", "tip": "love con la v: el labio de abajo toca los dientes de arriba. No es «lob»."},
                 {"id": "a2u5l2e9", "type": "shadow", "text": "Would you mind waiting a moment?", "tip": "«would you» se pega: «WUD-ju». El peso en WAIT-ing."},
-                {"id": "a2u5l2e10", "type": "minimalPair", "options": ["ban", "van"], "answer": "van", "sentence": "The van is outside.", "tip": "van se hace con los dientes sobre el labio; ban con los dos labios. En español esa diferencia no existe."}
+                {"id": "a2u5l2e10", "type": "minimalPair", "options": ["ban", "van"], "answer": "van", "sentence": "The van is outside.", "play": "sentence", "tip": "van se hace con los dientes sobre el labio; ban con los dos labios. En español esa diferencia no existe."}
               ]
             }
           ]

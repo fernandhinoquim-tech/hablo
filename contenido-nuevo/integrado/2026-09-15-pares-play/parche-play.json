@@ -1,0 +1,8 @@
+{
+  "_comentario": "Pares minimos cuya respuesta Piper no pronuncia con su fonema en la portadora 'The word is X.' pero si dentro de su frase (medido 2026-09-15, 4 voces x 3 corridas): three 7->10 de 12, think 2->10, won't 3->6, since 3->11, van 5->9. Suena la sentence.",
+  "a1u5l1e12": {"play": "sentence"},
+  "a1u6l3e12": {"play": "sentence"},
+  "a1u9l2e12": {"play": "sentence"},
+  "a2u2l4e10": {"play": "sentence"},
+  "a2u5l2e10": {"play": "sentence"}
+}

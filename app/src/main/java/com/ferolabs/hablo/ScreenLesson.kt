@@ -177,7 +177,7 @@ fun LessonScreen(
             // fonemas (tools/content/oir_pares.py), el fonema distintivo del par
             // aparece en 63 de 96 casos con la palabra sola y en 78 de 96 con
             // "The word is ___.". La portadora no da pistas: es la misma siempre.
-            is Exercise.MinimalPair -> say(carrier(ex.answer), 1f)
+            is Exercise.MinimalPair -> say(ex.spoken, 1f)
             else -> {}
         }
     }
@@ -679,8 +679,8 @@ fun LessonScreen(
                         horizontalArrangement = Arrangement.spacedBy(12.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        SpeakerButton(big = true, tint = accent) { say(carrier(ex.answer), 1f) }
-                        SpeakerButton(slow = true, tint = accent.copy(alpha = 0.75f)) { say(carrier(ex.answer), 0.7f) }
+                        SpeakerButton(big = true, tint = accent) { say(ex.spoken, 1f) }
+                        SpeakerButton(slow = true, tint = accent.copy(alpha = 0.75f)) { say(ex.spoken, 0.7f) }
                         Text(
                             "${teacher.name} dice UNA de estas. Toca la que oíste.",
                             style = MaterialTheme.typography.bodyMedium,
@@ -981,5 +981,3 @@ private fun tipoDe(ex: Exercise): String = when (ex) {
     is Exercise.MinimalPair -> "oído"
 }
 
-/** La frase portadora con la que suena la palabra de un par mínimo. La misma que mide `tools/content/oir_pares.py`. */
-private fun carrier(word: String) = "The word is $word."

@@ -1,0 +1,786 @@
+{
+ "kind": "grammar",
+ "_comentario": "Banco de 60 items de gramatica para el Core de Aptis (el examen presenta 25, de 3 opciones). 'point' dice que se prueba, 'why' es la explicacion en espanol al corregir, 'level' sirve para graduar y para el diagnostico. Posiciones de la respuesta barajadas a proposito.",
+ "items": [
+  {
+   "id": "g001",
+   "level": "A2",
+   "point": "presente simple 3a persona",
+   "text": "My sister ___ in a hospital.",
+   "options": [
+    "works",
+    "work",
+    "working"
+   ],
+   "answer": "works",
+   "why": "He/she/it llevan -s. My sister = she."
+  },
+  {
+   "id": "g002",
+   "level": "A2",
+   "point": "pasado simple irregular",
+   "text": "We ___ to the beach last summer.",
+   "options": [
+    "goed",
+    "went",
+    "gone"
+   ],
+   "answer": "went",
+   "why": "go → went. 'Gone' es el participio, va con have."
+  },
+  {
+   "id": "g003",
+   "level": "A2",
+   "point": "presente continuo",
+   "text": "Be quiet — the baby ___.",
+   "options": [
+    "is sleeping",
+    "sleep",
+    "sleeps"
+   ],
+   "answer": "is sleeping",
+   "why": "Está pasando ahora mismo: am/is/are + -ing."
+  },
+  {
+   "id": "g004",
+   "level": "A2",
+   "point": "there is / there are",
+   "text": "___ three restaurants on this street.",
+   "options": [
+    "It has",
+    "There is",
+    "There are"
+   ],
+   "answer": "There are",
+   "why": "Tres restaurantes es plural: there are."
+  },
+  {
+   "id": "g005",
+   "level": "A2",
+   "point": "comparativo corto",
+   "text": "This bag is ___ than the other one.",
+   "options": [
+    "more cheap",
+    "cheaper",
+    "cheapest"
+   ],
+   "answer": "cheaper",
+   "why": "Cheap es corto: -er. Nada de 'more cheap'."
+  },
+  {
+   "id": "g006",
+   "level": "A2",
+   "point": "have to / obligacion",
+   "text": "I ___ work on Saturday, it's in my contract.",
+   "options": [
+    "am having to",
+    "have to",
+    "have"
+   ],
+   "answer": "have to",
+   "why": "Obligación externa: have to + verbo."
+  },
+  {
+   "id": "g007",
+   "level": "A2",
+   "point": "articulo con profesion",
+   "text": "Her brother is ___ engineer.",
+   "options": [
+    "an",
+    "the",
+    "a"
+   ],
+   "answer": "an",
+   "why": "Con profesiones va el artículo indefinido a/an, y 'engineer' empieza con sonido vocálico → an."
+  },
+  {
+   "id": "g008",
+   "level": "A2",
+   "point": "preposicion de tiempo",
+   "text": "The meeting is ___ Monday morning.",
+   "options": [
+    "in",
+    "on",
+    "at"
+   ],
+   "answer": "on",
+   "why": "Los días llevan on, aunque sea 'morning'."
+  },
+  {
+   "id": "g009",
+   "level": "A2",
+   "point": "contable / incontable",
+   "text": "How ___ money do you need?",
+   "options": [
+    "many",
+    "much",
+    "lot"
+   ],
+   "answer": "much",
+   "why": "Money no se cuenta: much."
+  },
+  {
+   "id": "g010",
+   "level": "A2",
+   "point": "adverbio de frecuencia",
+   "text": "She ___ late for work.",
+   "options": [
+    "is never",
+    "never be",
+    "isn't never"
+   ],
+   "answer": "is never",
+   "why": "Con el verbo be, el adverbio va después."
+  },
+  {
+   "id": "g011",
+   "level": "A2",
+   "point": "futuro going to",
+   "text": "Look at those clouds — it ___ rain.",
+   "options": [
+    "is going to",
+    "goes to",
+    "will be"
+   ],
+   "answer": "is going to",
+   "why": "Predicción con evidencia a la vista: going to."
+  },
+  {
+   "id": "g012",
+   "level": "A2",
+   "point": "pasado continuo",
+   "text": "I ___ dinner when the phone rang.",
+   "options": [
+    "cook",
+    "was cooking",
+    "have cooked"
+   ],
+   "answer": "was cooking",
+   "why": "La acción larga que ya estaba en curso va en pasado continuo; la corta que la interrumpe, en pasado simple."
+  },
+  {
+   "id": "g013",
+   "level": "A2",
+   "point": "can / habilidad",
+   "text": "She ___ speak four languages.",
+   "options": [
+    "can",
+    "can to",
+    "cans"
+   ],
+   "answer": "can",
+   "why": "Can no cambia y no lleva to detrás."
+  },
+  {
+   "id": "g014",
+   "level": "A2",
+   "point": "pronombre objeto",
+   "text": "I saw your brother yesterday and I spoke to ___.",
+   "options": [
+    "he",
+    "his",
+    "him"
+   ],
+   "answer": "him",
+   "why": "Después de una preposición va el pronombre objeto."
+  },
+  {
+   "id": "g015",
+   "level": "A2",
+   "point": "posesivo con 's",
+   "text": "That's my ___ car.",
+   "options": [
+    "brother's",
+    "brothers",
+    "brother"
+   ],
+   "answer": "brother's",
+   "why": "La pertenencia se marca con 's."
+  },
+  {
+   "id": "g016",
+   "level": "B1",
+   "point": "present perfect vs pasado simple",
+   "text": "I ___ to London three times so far this year.",
+   "options": [
+    "went",
+    "was going",
+    "have been"
+   ],
+   "answer": "have been",
+   "why": "'So far this year' es un periodo que sigue abierto: present perfect. 'Been' porque ya volvió."
+  },
+  {
+   "id": "g017",
+   "level": "B1",
+   "point": "present perfect con since",
+   "text": "She ___ here since 2019.",
+   "options": [
+    "has worked",
+    "worked",
+    "works"
+   ],
+   "answer": "has worked",
+   "why": "Empezó antes y sigue: present perfect con since."
+  },
+  {
+   "id": "g018",
+   "level": "B1",
+   "point": "primer condicional",
+   "text": "If it ___ tomorrow, we'll stay at home.",
+   "options": [
+    "would rain",
+    "will rain",
+    "rains"
+   ],
+   "answer": "rains",
+   "why": "Después de if va presente, aunque hable del futuro."
+  },
+  {
+   "id": "g019",
+   "level": "B1",
+   "point": "segundo condicional",
+   "text": "If I ___ more time, I would learn the guitar.",
+   "options": [
+    "have",
+    "would have",
+    "had"
+   ],
+   "answer": "had",
+   "why": "Imaginario: pasado en el if, would en la otra mitad. Nunca los dos."
+  },
+  {
+   "id": "g020",
+   "level": "B1",
+   "point": "gerundio tras preposicion",
+   "text": "She's very good at ___ problems.",
+   "options": [
+    "solve",
+    "to solve",
+    "solving"
+   ],
+   "answer": "solving",
+   "why": "Después de una preposición, el verbo lleva -ing."
+  },
+  {
+   "id": "g021",
+   "level": "B1",
+   "point": "verbo + to + infinitivo",
+   "text": "They decided ___ the meeting.",
+   "options": [
+    "to postpone",
+    "postponing",
+    "postpone"
+   ],
+   "answer": "to postpone",
+   "why": "Decide pide to + infinitivo."
+  },
+  {
+   "id": "g022",
+   "level": "B1",
+   "point": "used to",
+   "text": "I ___ smoke, but I stopped five years ago.",
+   "options": [
+    "used to",
+    "was used to",
+    "use to"
+   ],
+   "answer": "used to",
+   "why": "Hábito pasado que ya no ocurre: used to, con d. Solo pierde la d tras did: 'didn't use to'."
+  },
+  {
+   "id": "g023",
+   "level": "B1",
+   "point": "pasiva presente",
+   "text": "English ___ in over fifty countries.",
+   "options": [
+    "is spoken",
+    "speaks",
+    "is speaking"
+   ],
+   "answer": "is spoken",
+   "why": "El idioma no habla: be + participio."
+  },
+  {
+   "id": "g024",
+   "level": "B1",
+   "point": "relativo de persona",
+   "text": "The woman ___ called you is my boss.",
+   "options": [
+    "who",
+    "which",
+    "whose"
+   ],
+   "answer": "who",
+   "why": "Personas: who. Which es para cosas."
+  },
+  {
+   "id": "g025",
+   "level": "B1",
+   "point": "estilo indirecto",
+   "text": "He told me he ___ tired and went straight to bed.",
+   "options": [
+    "was",
+    "has been",
+    "is"
+   ],
+   "answer": "was",
+   "why": "El estado pertenece al momento pasado del relato, así que el verbo retrocede: is → was."
+  },
+  {
+   "id": "g026",
+   "level": "B1",
+   "point": "say vs tell en indirecto",
+   "text": "She ___ that the office was closed.",
+   "options": [
+    "said",
+    "spoke",
+    "told"
+   ],
+   "answer": "said",
+   "why": "Say va sin persona: 'said that...'. Con persona sería 'told me that...'."
+  },
+  {
+   "id": "g027",
+   "level": "B1",
+   "point": "too / enough",
+   "text": "This coffee is ___ hot to drink.",
+   "options": [
+    "very",
+    "enough",
+    "too"
+   ],
+   "answer": "too",
+   "why": "Too + adjetivo = demasiado, con la idea de que impide algo. Very solo intensifica."
+  },
+  {
+   "id": "g028",
+   "level": "B1",
+   "point": "question tag",
+   "text": "You've finished, ___?",
+   "options": [
+    "didn't you",
+    "haven't you",
+    "don't you"
+   ],
+   "answer": "haven't you",
+   "why": "Afirmativo pide cola negativa, con el mismo auxiliar."
+  },
+  {
+   "id": "g029",
+   "level": "B1",
+   "point": "pregunta indirecta",
+   "text": "Could you tell me where ___?",
+   "options": [
+    "is station",
+    "the station is",
+    "is the station"
+   ],
+   "answer": "the station is",
+   "why": "En la pregunta indirecta se deshace la inversión."
+  },
+  {
+   "id": "g030",
+   "level": "B2",
+   "point": "conector de contraste",
+   "text": "___ the rain, we went for a walk.",
+   "options": [
+    "Despite",
+    "However",
+    "Although"
+   ],
+   "answer": "Despite",
+   "why": "Despite va delante de un sustantivo; although delante de una frase."
+  },
+  {
+   "id": "g031",
+   "level": "B1",
+   "point": "pasado perfecto",
+   "text": "When I arrived, the film ___ already started.",
+   "options": [
+    "had",
+    "has",
+    "was"
+   ],
+   "answer": "had",
+   "why": "Lo anterior a otro pasado: had + participio."
+  },
+  {
+   "id": "g032",
+   "level": "B1",
+   "point": "present perfect continuo",
+   "text": "I ___ for two hours and I'm exhausted.",
+   "options": [
+    "am running",
+    "have been running",
+    "was running"
+   ],
+   "answer": "have been running",
+   "why": "La duración de una acción que acaba de parar: have been + -ing."
+  },
+  {
+   "id": "g033",
+   "level": "A2",
+   "point": "cuantificador",
+   "text": "There were ___ people at the concert.",
+   "options": [
+    "a lot of",
+    "many of",
+    "much"
+   ],
+   "answer": "a lot of",
+   "why": "'A lot of' sirve para contables e incontables en afirmativo."
+  },
+  {
+   "id": "g034",
+   "level": "B1",
+   "point": "both / either / neither",
+   "text": "___ of the two options would work for me.",
+   "options": [
+    "Either",
+    "Any",
+    "Both"
+   ],
+   "answer": "Either",
+   "why": "Either = cualquiera de los dos. Both llevaría verbo en plural."
+  },
+  {
+   "id": "g035",
+   "level": "B1",
+   "point": "verbo + -ing",
+   "text": "Would you mind ___ the window?",
+   "options": [
+    "to open",
+    "open",
+    "opening"
+   ],
+   "answer": "opening",
+   "why": "Después de mind, siempre -ing."
+  },
+  {
+   "id": "g036",
+   "level": "B1",
+   "point": "superlativo largo",
+   "text": "That was ___ film I've ever seen.",
+   "options": [
+    "the most boring",
+    "the boringest",
+    "most boring"
+   ],
+   "answer": "the most boring",
+   "why": "Adjetivo largo: the most. Y lleva the."
+  },
+  {
+   "id": "g037",
+   "level": "B1",
+   "point": "futuro tras when",
+   "text": "I'll call you when I ___ home.",
+   "options": [
+    "am getting",
+    "will get",
+    "get"
+   ],
+   "answer": "get",
+   "why": "Después de when no va futuro, aunque hable del futuro."
+  },
+  {
+   "id": "g038",
+   "level": "B1",
+   "point": "phrasal verb: la partícula",
+   "text": "It's cold — put your coat ___.",
+   "options": [
+    "on",
+    "up",
+    "in"
+   ],
+   "answer": "on",
+   "why": "Ponerse ropa es put on."
+  },
+  {
+   "id": "g039",
+   "level": "B1",
+   "point": "some / any",
+   "text": "I looked in the fridge but there wasn't ___ milk.",
+   "options": [
+    "no any",
+    "any",
+    "some"
+   ],
+   "answer": "any",
+   "why": "En negativo va any. 'No any' nunca existe."
+  },
+  {
+   "id": "g040",
+   "level": "B1",
+   "point": "so / such",
+   "text": "It was ___ a good film that we watched it twice.",
+   "options": [
+    "so",
+    "too",
+    "such"
+   ],
+   "answer": "such",
+   "why": "Such + artículo + sustantivo; so va con adjetivo solo."
+  },
+  {
+   "id": "g041",
+   "level": "B2",
+   "point": "tercer condicional",
+   "text": "If I had known, I ___ you.",
+   "options": [
+    "had told",
+    "would have told",
+    "would tell"
+   ],
+   "answer": "would have told",
+   "why": "Pasado imposible: if + had + participio, would have + participio."
+  },
+  {
+   "id": "g042",
+   "level": "B2",
+   "point": "modal perfecto de deducción",
+   "text": "She's not answering — she ___ left already.",
+   "options": [
+    "must",
+    "can have",
+    "must have"
+   ],
+   "answer": "must have",
+   "why": "Deducción sobre el pasado: must have + participio."
+  },
+  {
+   "id": "g043",
+   "level": "B2",
+   "point": "modal perfecto de reproche",
+   "text": "You ___ told me — I would have helped.",
+   "options": [
+    "should",
+    "should have",
+    "must have"
+   ],
+   "answer": "should have",
+   "why": "Reproche sobre algo que no se hizo: should have + participio."
+  },
+  {
+   "id": "g044",
+   "level": "B2",
+   "point": "causativo",
+   "text": "We're going to ___ the kitchen painted next week.",
+   "options": [
+    "do",
+    "make",
+    "have"
+   ],
+   "answer": "have",
+   "why": "Encargar un trabajo: have something done."
+  },
+  {
+   "id": "g045",
+   "level": "B2",
+   "point": "wish + pasado",
+   "text": "I wish I ___ more free time.",
+   "options": [
+    "would have",
+    "had",
+    "have"
+   ],
+   "answer": "had",
+   "why": "Deseo sobre el presente: wish + pasado simple."
+  },
+  {
+   "id": "g046",
+   "level": "B2",
+   "point": "relativo explicativo",
+   "text": "My car, ___ I bought last year, has broken down.",
+   "options": [
+    "which",
+    "that",
+    "what"
+   ],
+   "answer": "which",
+   "why": "Tras coma nunca va that: la explicativa pide which."
+  },
+  {
+   "id": "g047",
+   "level": "B2",
+   "point": "pasiva con verbo de opinión",
+   "text": "The company ___ to be in financial trouble.",
+   "options": [
+    "has believed",
+    "is believed",
+    "believes"
+   ],
+   "answer": "is believed",
+   "why": "Se cree que... → is believed to be."
+  },
+  {
+   "id": "g048",
+   "level": "B2",
+   "point": "by the time + pasado perfecto",
+   "text": "By the time we arrived, everyone ___.",
+   "options": [
+    "had left",
+    "was leaving",
+    "left"
+   ],
+   "answer": "had left",
+   "why": "'By the time' con pasado pide el pasado perfecto en la otra mitad."
+  },
+  {
+   "id": "g049",
+   "level": "B2",
+   "point": "would rather",
+   "text": "I'd rather ___ at home tonight.",
+   "options": [
+    "staying",
+    "to stay",
+    "stay"
+   ],
+   "answer": "stay",
+   "why": "Would rather + verbo desnudo, sin to."
+  },
+  {
+   "id": "g050",
+   "level": "B2",
+   "point": "conector formal",
+   "text": "The plan was expensive; ___, it worked.",
+   "options": [
+    "despite",
+    "although",
+    "however"
+   ],
+   "answer": "however",
+   "why": "However une dos frases y va con punto y coma o punto."
+  },
+  {
+   "id": "g051",
+   "level": "B2",
+   "point": "futuro perfecto",
+   "text": "By next June I ___ here for ten years.",
+   "options": [
+    "am working",
+    "will have worked",
+    "will work"
+   ],
+   "answer": "will have worked",
+   "why": "Algo completado antes de un punto futuro: will have + participio."
+  },
+  {
+   "id": "g052",
+   "level": "B2",
+   "point": "unless",
+   "text": "We won't finish on time ___ everyone helps.",
+   "options": [
+    "unless",
+    "if",
+    "in case"
+   ],
+   "answer": "unless",
+   "why": "Unless = si no. Y lleva verbo en afirmativo."
+  },
+  {
+   "id": "g053",
+   "level": "B2",
+   "point": "verbo + objeto + infinitivo",
+   "text": "They persuaded me ___ my mind.",
+   "options": [
+    "change",
+    "changing",
+    "to change"
+   ],
+   "answer": "to change",
+   "why": "Persuade + persona + to + infinitivo."
+  },
+  {
+   "id": "g054",
+   "level": "B2",
+   "point": "used to vs be used to",
+   "text": "I'm not used to ___ so early.",
+   "options": [
+    "got up",
+    "getting up",
+    "get up"
+   ],
+   "answer": "getting up",
+   "why": "'Be used to' = estar acostumbrado, y pide -ing. Distinto de 'used to'."
+  },
+  {
+   "id": "g055",
+   "level": "C1",
+   "point": "inversión con negativo",
+   "text": "Never ___ such a beautiful place.",
+   "options": [
+    "I have seen",
+    "I saw",
+    "have I seen"
+   ],
+   "answer": "have I seen",
+   "why": "Con un negativo al principio, el auxiliar se adelanta."
+  },
+  {
+   "id": "g056",
+   "level": "C1",
+   "point": "cláusula de participio",
+   "text": "___ in 1890, the building is now a museum.",
+   "options": [
+    "Built",
+    "Building",
+    "It built"
+   ],
+   "answer": "Built",
+   "why": "Participio pasado para una pasiva reducida."
+  },
+  {
+   "id": "g057",
+   "level": "B2",
+   "point": "reported question",
+   "text": "She asked me ___ I had finished.",
+   "options": [
+    "if",
+    "that",
+    "do"
+   ],
+   "answer": "if",
+   "why": "Pregunta indirecta de sí/no: if o whether, y sin inversión."
+  },
+  {
+   "id": "g058",
+   "level": "B2",
+   "point": "enough + sustantivo",
+   "text": "We don't have ___ to finish today.",
+   "options": [
+    "enough time",
+    "enough of time",
+    "the enough time"
+   ],
+   "answer": "enough time",
+   "why": "Enough va antes del sustantivo y después del adjetivo."
+  },
+  {
+   "id": "g059",
+   "level": "B2",
+   "point": "as / like",
+   "text": "She works ___ a translator for the government.",
+   "options": [
+    "like",
+    "as",
+    "how"
+   ],
+   "answer": "as",
+   "why": "'As' para el papel real; 'like' sería una comparación."
+  },
+  {
+   "id": "g060",
+   "level": "B2",
+   "point": "suggest + -ing",
+   "text": "I suggest ___ a lawyer before signing.",
+   "options": [
+    "to consult",
+    "consulting",
+    "consult"
+   ],
+   "answer": "consulting",
+   "why": "Suggest + -ing. Nunca 'suggest to do'."
+  }
+ ]
+}

@@ -127,6 +127,16 @@ class NuevosTiposTest {
         assertFalse(d, d.contains("«in»"))
     }
 
+    @Test
+    fun `minimalPair con play sentence suena la frase y sin play la portadora`() {
+        val conFrase = uno("""{"id":"t1l1e1","type":"minimalPair","options":["three","tree"],"answer":"three","sentence":"I have three books.","play":"sentence"}""") as Exercise.MinimalPair
+        assertEquals("I have three books.", conFrase.spoken)
+        val portadora = uno("""{"id":"t1l1e1","type":"minimalPair","options":["ship","sheep"],"answer":"ship","sentence":"The ship is big."}""") as Exercise.MinimalPair
+        assertEquals("The word is ship.", portadora.spoken)
+        assertTrue(falla("""{"id":"t1l1e1","type":"minimalPair","options":["three","tree"],"answer":"three","play":"sentence"}""").contains("play"))
+        assertTrue(falla("""{"id":"t1l1e1","type":"minimalPair","options":["three","tree"],"answer":"three","sentence":"I have three books.","play":"word"}""").contains("play"))
+    }
+
     // ------------------------------------------------------------ hueco y números (diagnóstico 2026-09-15)
 
     @Test

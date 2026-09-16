@@ -388,6 +388,9 @@ val checkContent = tasks.register("checkContent") {
                             options.filter { it.contains(' ') }.forEach { problems.add("$where: las opciones de un par minimo son palabras sueltas: \"$it\"") }
                             val sentence = textOf(e["sentence"])
                             if (sentence.isNotBlank() && !sentence.lowercase().contains(answer.lowercase())) problems.add("$where: \"sentence\" no contiene la palabra \"$answer\"")
+                            val play = textOf(e["play"])
+                            if (play.isNotBlank() && play != "sentence") problems.add("$where: \"play\" solo admite \"sentence\"")
+                            if (play == "sentence" && sentence.isBlank()) problems.add("$where: \"play\": \"sentence\" sin \"sentence\"")
                         }
                         if (type == "build") {
                             val propias = textOf(e["answer"]).split(" ").map { it.lowercase() }.filter { it.isNotEmpty() }.toSet()
