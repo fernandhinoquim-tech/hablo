@@ -1,0 +1,4 @@
+{
+  "_comentario": "a1u5l1e10: el parche-accept-2 REEMPLAZABA y dejaba fuera 'There's a store near here.' y 'There is a shop near here.' (la 's no se expande, asi que se rechazarian). Union de las dos listas.",
+  "a1u5l1e10": {"accept": ["There's a store near here.", "There is a shop near here.", "There's a shop near here.", "There is a store nearby.", "There's a store nearby.", "There is a shop nearby.", "There's a shop nearby."]}
+}

@@ -1,0 +1,69 @@
+{
+  "_comentario": "Segundo parche de accept (16-09). Cada entrada REEMPLAZA el accept del ejercicio; a1u4l1e10 reemplaza ademas el tip. Los 5 que senalo Claude Code + 2 que salieron de barrer todo el contenido buscando el mismo patron.",
+  "_patron": "Huecos combinatorios: cuando doy variantes por dos ejes (someone/somebody, store/shop, movie/film, he/she, contraido/sin contraer), olvido alguna casilla. Barri los 141 write y estos son los reales; los he/she del resto NO van porque el espanol dice el genero.",
+  "a2u6l3e5": {
+    "_por_que": "El espanol dice 'en general' y la respuesta inglesa no lo tenia: la traduccion fiel se marcaba mal. Mismo fallo que el de 'Ayer' del parche anterior.",
+    "accept": [
+      "Most Colombian people speak Spanish.",
+      "In general, most Colombians speak Spanish.",
+      "Generally, most Colombians speak Spanish."
+    ]
+  },
+  "a2u9l1e5": {
+    "_por_que": "'Me dijo' no dice si fue el o ella. Estaban las dos con 'would' y la de 'he'd', pero faltaba la de 'she'd' (la 'd no se expande).",
+    "accept": [
+      "He told me he would be late.",
+      "She told me that she would be late.",
+      "She told me she would be late.",
+      "He told me he'd be late.",
+      "She told me she'd be late."
+    ]
+  },
+  "a1u1l3e9": {
+    "_por_que": "Mi propio tip dice que repetir el I es 'lo mas claro', o sea que NO repetirlo tambien es correcto. El corrector lo rechazaba: la app se contradecia a si misma.",
+    "accept": [
+      "I am from Colombia and I speak Spanish.",
+      "I'm Colombian and speak Spanish."
+    ]
+  },
+  "a2u1l3e5": {
+    "_por_que": "Estaban tres de las cuatro casillas de someone/somebody x suddenly-delante/en-medio. Faltaba la cuarta.",
+    "accept": [
+      "Someone suddenly knocked on the door.",
+      "Suddenly somebody knocked on the door.",
+      "Somebody suddenly knocked on the door."
+    ]
+  },
+  "a2u9l2e4": {
+    "_por_que": "'Nor can I' es igual de correcta que 'Neither can I' y es frecuente.",
+    "accept": [
+      "I can't either.",
+      "Me neither.",
+      "Nor can I."
+    ]
+  },
+  "a1u5l1e10": {
+    "_por_que": "Aceptaba 'shop' en una variante y 'nearby' en otra, pero no las dos juntas.",
+    "accept": [
+      "There's a shop near here.",
+      "There is a store nearby.",
+      "There's a store nearby.",
+      "There is a shop nearby.",
+      "There's a shop nearby."
+    ]
+  },
+  "a2u2l4e4": {
+    "_por_que": "Aceptaba 'film' con 'watched' y 'movie' con 'Last week' delante, pero no 'film' con 'Last week' delante.",
+    "accept": [
+      "I watched that movie last week.",
+      "I saw that film last week.",
+      "I watched that film last week.",
+      "Last week I saw that movie.",
+      "Last week I saw that film."
+    ]
+  },
+  "a1u4l1e10": {
+    "_por_que": "El tip prometia algo que el corrector no puede comprobar: normaliza a minusculas, asi que 'english' pasa igual. Mismo arreglo que ya se le hizo a a1u1l3e9.",
+    "tip": "Los verbos de consonante + y cambian a -ies: study → studies. Y al escribir de verdad, English va con mayúscula."
+  }
+}
