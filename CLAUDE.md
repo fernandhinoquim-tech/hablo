@@ -320,7 +320,13 @@ escenarios · corrección en español · informe descargable · cuaderno de erro
 **Etapas, una a la vez (no se abre la siguiente hasta que la anterior esté en
 el teléfono y Fero la haya usado; si aparece un bug, se vuelve a la 1):**
 0) Diagnóstico — hecho el 15-09. 1) Que no enseñe nada incorrecto (bugs del
-diagnóstico + leyendas viejas) — en curso. 2) La profesora que se acuerda:
+diagnóstico + leyendas viejas) — **código hecho el 15-09 (0.9.1, commits
+ffd49bf…7d0c47c: cloze, números, accept, puntaje de hablar, cuaderno e
+informe, pares con frase, textos, prompt); termina cuando Fero la use una
+semana sin que lo corrija mal.** Quedan para Cowork los `accept` que no
+entraron en su parche (a2u6l3e5 "in general", a2u9l1e5 "she'd", a1u1l3e9,
+a2u1l3e5, a2u9l2e4) y para revisar el tip de a1u4l1e10 ("English con
+mayúscula" contradice "no te preocupes por mayúsculas"). 2) La profesora que se acuerda:
 charla libre con `files/memoria/perfil.json` (12 datos / 15 errores / 60
 palabras / 400 tokens; errores desde `CORRECCIÓN:`, resumen con UNA llamada a
 Haiku al cerrar) + escenarios por nivel sin memoria (Cowork escribe A2 y B1).
@@ -355,7 +361,8 @@ pantalla: es una estimación, no la nota real**) y bancos grandes de ítems
 
 ## Estado y plan
 
-**Versión actual: 0.9** (conversación por internet; el motor por defecto pasó a
+**Versión actual: 0.9.1** (2026-09-15: la etapa 1 del diagnóstico; ver
+"Inventario de lo pedido"). **0.9** (conversación por internet; el motor por defecto pasó a
 Claude API el 2026-09-13, ver "Sesión del 2026-09-13" más abajo). **A1 completo
 el 2026-09-14: 27 lecciones, 207 ejercicios, 27 fichas de teoría** (19
 lecciones nuevas escritas por Claude Cowork siguiendo un sílabo A1 real, más
