@@ -35,9 +35,25 @@ object Repaso {
         }
         return when (item.escalon) {
             0 -> {
-                // Elegir: dos señuelos de otros ítems, los de largo más parecido.
-                val senuelos = ajenos.sortedBy { kotlin.math.abs(it.en.length - item.en.length) }
-                    .distinctBy { Correccion.sueltaEstricta(it.en) }.map { it.en }.take(2)
+                // Elegir. Primero los señuelos del ejercicio ORIGINAL (listen/translate): están
+                // hechos y revisados a mano para esa frase ("He work on Mondays" contra "He works
+                // on Mondays"). Sin original, otros ítems que COMPARTAN PALABRAS con la frase:
+                // parecido de contenido, no de largo (largo parecido no es significado parecido;
+                // por eso "las incorrectas se notan mucho", Fero, 2026-09-16).
+                val propios = when (original) {
+                    is Exercise.TranslateChoose -> original.options
+                    is Exercise.ListenChoose -> original.options
+                    else -> emptyList()
+                }.filter { Correccion.sueltaEstricta(it) != enClave }.distinctBy { Correccion.sueltaEstricta(it) }
+                val senuelos = if (propios.size >= 2) propios.take(3) else {
+                    val palabras = palabrasDe(item.en)
+                    // Los que comparten más palabras primero; si nadie comparte nada, los de
+                    // largo parecido para no quedarse sin opciones.
+                    val parecidos = ajenos.map { it to compartidas(palabras, palabrasDe(it.en)) }
+                        .sortedWith(compareByDescending<Pair<Mazo.Item, Int>> { it.second }.thenBy { kotlin.math.abs(it.first.en.length - item.en.length) })
+                        .map { it.first.en }
+                    (propios + parecidos).distinctBy { Correccion.sueltaEstricta(it) }.take(2)
+                }
                 if (senuelos.size < 1) Exercise.WriteIt(item.id, item.es, item.en, accept)
                 else Exercise.TranslateChoose(item.id, item.es, (senuelos + item.en).shuffled(rnd), item.en)
             }
@@ -55,6 +71,14 @@ object Repaso {
             else -> Exercise.SpeakIt(item.id, item.en, Sound.GENERAL)   // decir: sin reloj, sin GOP
         }
     }
+
+    private val VACIAS = setOf("i", "you", "he", "she", "it", "we", "they", "a", "an", "the", "to", "of", "in", "on", "at", "is", "are", "am", "do", "does", "my", "your", "and", "for", "with", "this", "that", "not", "me", "us")
+
+    /** Palabras con contenido de una frase (sin artículos, pronombres ni auxiliares). */
+    private fun palabrasDe(en: String): Set<String> =
+        Correccion.sueltaEstricta(en).split(" ").filter { it.isNotBlank() && it !in VACIAS }.toSet()
+
+    private fun compartidas(a: Set<String>, b: Set<String>): Int = a.count { it in b }
 
     // ------------------------------------------- corrige tu propio error
 

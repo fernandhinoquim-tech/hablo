@@ -179,6 +179,29 @@ class MazoTest {
     }
 
     @Test
+    fun `elegir usa los senuelos del ejercicio original y si no los que comparten palabras`() {
+        val m = nuevo()
+        val l = Lesson(
+            "t3l1", "Tres", Theory("t", "b", "x"),
+            listOf(
+                Exercise.TranslateChoose("t3l1e1", "Él trabaja los lunes.", listOf("He works on Mondays.", "He work on Mondays.", "He works in Mondays."), "He works on Mondays."),
+                Exercise.WriteIt("t3l1e2", "Ella trabaja en un hospital.", "She works in a hospital."),
+                Exercise.WriteIt("t3l1e3", "Buenos días.", "Good morning."),
+                Exercise.WriteIt("t3l1e4", "Hasta mañana.", "See you tomorrow.")
+            )
+        )
+        m.alimentar(l, "2026-09-16")
+        val todos = m.todos()
+        // Con original: sus propias opciones, hechas a mano.
+        val conOriginal = Repaso.ejercicioDe(m.item("t3l1e1")!!, todos, l.exercises[0], Random(1)) as Exercise.TranslateChoose
+        assertTrue(conOriginal.options.containsAll(listOf("He work on Mondays.", "He works in Mondays.", "He works on Mondays.")))
+        // Sin original: el que comparte palabras ("works") antes que el del largo parecido ("See you tomorrow.").
+        val sinOriginal = Repaso.ejercicioDe(m.item("t3l1e2")!!, todos, null, Random(1)) as Exercise.TranslateChoose
+        assertTrue(sinOriginal.options.contains("He works on Mondays."))
+        assertEquals(3, sinOriginal.options.size)
+    }
+
+    @Test
     fun `lo guardado se vuelve a leer igual`() {
         val f = Files.createTempFile("mazo", ".json").toFile().also { it.delete() }
         val m = Mazo(f)

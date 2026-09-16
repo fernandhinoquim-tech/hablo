@@ -98,6 +98,10 @@ fun LessonScreen(
     var adTyped by remember { mutableStateOf("") }
     var adChecked by remember { mutableStateOf(false) }
     val adivinando = modo == ModoLeccion.LECCION && adIdx < adivinanzas.size
+    // La ficha de teoría: al abrir la lección (tras las adivinanzas) y cuando él la pida con el 📖.
+    var fichaVista by remember { mutableStateOf(false) }
+    var fichaAbierta by remember { mutableStateOf(false) }
+    val mostrandoFicha = modo == ModoLeccion.LECCION && lesson.theory.body.isNotBlank() && (!fichaVista || fichaAbierta)
     var gamePlayed by remember { mutableStateOf(false) }
     var gameDone by remember { mutableStateOf(false) }
     val showingGame = pos == gameAt && !gamePlayed
@@ -170,6 +174,17 @@ fun LessonScreen(
             modo = modo,
             marca = marca,
             onDone = { onFinish(score, correctCount) }
+        )
+        return
+    }
+
+    if (!adivinando && mostrandoFicha) {
+        FichaScreen(
+            lesson = lesson,
+            accent = accent,
+            primeraVez = !fichaVista,
+            onDone = { fichaVista = true; fichaAbierta = false },
+            onBack = { if (fichaVista) fichaAbierta = false else onExit() }
         )
         return
     }
@@ -316,7 +331,14 @@ fun LessonScreen(
         TopBar(
             title = if (modo == ModoLeccion.AGUANTA) "${lesson.title}  ·  llevas $correctCount · errores $errores de $maxErrores"
                 else "${lesson.title}  ·  ${pos + 1}/${queue.size}",
-            onBack = onExit
+            onBack = onExit,
+            trailing = if (modo == ModoLeccion.LECCION && lesson.theory.body.isNotBlank()) ({
+                Text(
+                    "📖",
+                    style = MaterialTheme.typography.titleLarge,
+                    modifier = Modifier.clickable { fichaAbierta = true }.padding(horizontal = 10.dp, vertical = 4.dp)
+                )
+            }) else null
         )
 
         LinearProgressIndicator(
