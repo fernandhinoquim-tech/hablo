@@ -62,7 +62,10 @@ fun parejasDe(lesson: Lesson, max: Int = 5): List<Pareja> {
 fun ParejasGame(
     parejas: List<Pareja>,
     accent: Color,
-    onDone: (intentos: Int, segundos: Int) -> Unit
+    /** Contrarreloj: el reloj grande. Es velocímetro, no juez: nunca reprueba por lento. */
+    relojGrande: Boolean = false,
+    /** Al terminar: intentos, segundos y qué parejas tuvieron algún fallo (para que vuelvan). */
+    onDone: (intentos: Int, segundos: Int, fallidas: Set<Int>) -> Unit
 ) {
     val izquierda = remember(parejas) { parejas.indices.shuffled() }
     val derecha = remember(parejas) { parejas.indices.shuffled() }
@@ -71,6 +74,7 @@ fun ParejasGame(
     var hechas by remember(parejas) { mutableStateOf(setOf<Int>()) }
     var intentos by remember(parejas) { mutableStateOf(0) }
     var fallo by remember(parejas) { mutableStateOf<Pair<Int, Int>?>(null) }
+    var fallidas by remember(parejas) { mutableStateOf(setOf<Int>()) }
     var segundos by remember(parejas) { mutableStateOf(0) }
     var terminado by remember(parejas) { mutableStateOf(false) }
 
@@ -100,10 +104,11 @@ fun ParejasGame(
             selEn = -1
             if (hechas.size == parejas.size && !terminado) {
                 terminado = true
-                onDone(intentos, segundos)
+                onDone(intentos, segundos, fallidas)
             }
         } else {
             fallo = selEs to selEn
+            fallidas = fallidas + selEs + selEn
         }
     }
 
@@ -117,7 +122,7 @@ fun ParejasGame(
         Row(modifier = Modifier.fillMaxWidth()) {
             Text(
                 "⏱ ${segundos}s",
-                style = MaterialTheme.typography.labelLarge,
+                style = if (relojGrande) MaterialTheme.typography.headlineMedium else MaterialTheme.typography.labelLarge,
                 color = accent,
                 modifier = Modifier.weight(1f)
             )

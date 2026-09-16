@@ -305,12 +305,12 @@ escenarios · corrección en español · informe descargable · cuaderno de erro
 | 2 | Leyendas viejas y textos sin actualizar | en diagnóstico |
 | 3 | Charla libre sin escenario ni nivel, **con memoria** | **hecha el 16-09** ("Hablar de todo", `Memoria.kt`, `files/memoria/perfil.json`); falta que Fero la use |
 | 4 | Escenarios divididos **por nivel**, sin memoria | **hecho el 16-09**: 5 A1 + 6 A2 + 6 B1, agrupados por nivel; cada uno arranca limpio |
-| 5 | Actividades más diversas | diseñadas, sin construir |
-| 6 | Retos con presión | diseñados, sin construir |
-| 7 | Vocabulario con cronómetro | Parejas existe, sin reloj visible ni banco |
+| 5 | Actividades más diversas | **etapa 3 hecha el 16-09**: adivina antes de ver, repaso, corrige tu propio error, contrarreloj, Aguanta |
+| 6 | Retos con presión | **hecho el 16-09**: Aguanta (tres errores) y contrarreloj (solo ahí hay reloj) |
+| 7 | Vocabulario con cronómetro | **hecho el 16-09**: contrarreloj con reloj grande, "lo fallado vuelve", marcas por banco; falta el banco de Cowork (`vocabulario.json`) |
 | 8 | Historias cortas con preguntas | no existe |
 | 9 | Crucigramas | no existe |
-| 10 | Repaso espaciado (mazo) | no existe — era el punto 4 del plan del 13-09 |
+| 10 | Repaso espaciado (mazo) | **hecho el 16-09**: `Mazo.kt`, Leitner 1/3/7/16/35 + escalera elegir→armar→escribir→oír y escribir→decir |
 | 11 | Pantalla de Oído (pares mínimos) | el tipo existe, la pantalla no |
 | 12 | Contenido B1 y B2 | no existe |
 | 13 | Escritura con motor de reglas (Fase 4) | no existe |
@@ -340,13 +340,49 @@ prompt del escenario y el de la charla libre COMPARTEN `reglasComunes()` y
 `protocoloCorreccion()`: no duplicar. Ajustes muestra lo que recuerda y "Que
 lo olvide todo"; "Borrar todo mi progreso" también la borra. Termina cuando
 Fero pueda hablar de lo que quiera y al día siguiente ella se acuerde.
-3) Retos y repaso: adivina antes de ver → corrige tu propio error →
-contrarreloj (Parejas con reloj y banco; lo fallado vuelve) → "aguanta" (tres
-errores) → mazo Leitner 1/3/7/16/35 con escalera elegir→armar→escribir→oír y
-escribir→decir. 4) Historias (`story`: leer → 3 preguntas → contarla de vuelta
+3) Retos y repaso — **código hecho el 16-09** (ver "Etapa 3" abajo);
+termina cuando Fero pueda abrir la app sin lección pendiente y tener veinte
+minutos de práctica distinta. 4) Historias (`story`: leer → 3 preguntas → contarla de vuelta
 en voz alta → palabras al mazo; Cowork las escribe por tandas de 3-12).
 5) **Modo Aptis** (abajo). 6) B1 y B2 (Cowork), respaldo del progreso, modo
 oscuro, recalibración del audio.
+
+**Etapa 3 (2026-09-16), cómo está construida.** Todo corre en la misma
+pantalla de lección con un `ModoLeccion` (LECCION / REPASO / AGUANTA) y una
+`Lesson` sintética que arma `Repaso.kt`:
+- *Adivina antes de ver*: al abrir una lección por primera vez, hasta 3 frases
+  (`Repaso.adivinanzas`) para intentarlas SIN haberlas visto; "Ver cómo se
+  dice"; no puntúa, no va al cuaderno, se puede saltar. Intentar y errar con
+  la respuesta después deja mejor recuerdo que leerla directa (Kornell, Hays &
+  Bjork 2009, *JEP:LMC* 35; Richland, Kornell & Kao 2009, *JEP:Applied* 15).
+- *Mazo* (`Mazo.kt`, `filesDir/mazo.json`): al aprobar una lección entran
+  sus frases con inglés y español (translate, write, build, cloze, type);
+  Leitner 1/3/7/16/35 por caja; escalera 0..4 (elegir → armar → escribir →
+  oír y escribir → decir) que sube al acertar y baja al fallar; aprendido =
+  escalón 4 y caja 4. Sesión de hasta 20 ítems; solo el primer intento de la
+  sesión mueve el mazo. La primera vez, si el mazo está vacío, entran las
+  lecciones ya aprobadas (para mañana). "Decir" va con `Sound.GENERAL`: sin
+  GOP y **sin reloj** (quitar presión al hablar solo cambia los "eeeh" por
+  silencios).
+- *Corrige tu propio error* (`Exercise.FixIt`): fallos del cuaderno de tipo
+  escribir/completar/dictado, de días anteriores, con el ejercicio original
+  (acepta alternativas; en cloze, el hueco solo o la frase). Hasta 3 por
+  sesión, al final del repaso; se retira al corregirlo bien dos veces
+  (`Mazo.registrarCorreccion`). Solo errores reales: los falsos se borraron.
+- *Contrarreloj* (`ScreenContrarreloj.kt`): rondas de 6 parejas; una pareja
+  con algún fallo vuelve a la cola hasta salir limpia; marca = segundos por
+  pareja por banco (`Mazo.registrarMarca`, últimas 30), nunca reprueba. Bancos:
+  "Frases de tus lecciones" (de las aprobadas) + `assets/content/vocabulario.json`
+  (opcional; formato abajo).
+- *Aguanta*: todo lo visto mezclado (ejercicios de lecciones aprobadas +
+  ítems del mazo con escalón > 0, hasta 60), se corta al tercer error; sin
+  puntos: "Llegaste a N · tu marca es M" (`Mazo.registrarAguanta`).
+
+**Formato de `vocabulario.json` (lo escribe Cowork, se anexa con
+`tools/content/anexar_vocabulario.py`):** `{"bancos": [{"id": "a1-casa",
+"title": "La casa", "level": "A1", "pares": [{"en": "kitchen", "es":
+"cocina"}, …]}]}`; mínimo 3 parejas por banco, sin inglés ni español
+repetido dentro del banco; `checkContent` lo valida si el archivo existe.
 
 **Modo Aptis (decisión de Fero, 2026-09-15).** Fero va a presentar **Aptis
 ESOL General** (sin fecha aún, sin saber qué nivel le exigen). **El curso por

@@ -433,6 +433,31 @@ val checkContent = tasks.register("checkContent") {
             }
         }
 
+        // Bancos de vocabulario del contrarreloj (etapa 3): opcional; si esta, se revisa.
+        val vocabFile = File(contentDir, "vocabulario.json")
+        if (vocabFile.exists()) {
+            val vocab = slurper.parse(vocabFile) as Map<*, *>
+            val bancoIds = HashSet<String>()
+            ((vocab["bancos"] as? List<*>) ?: emptyList<Any>()).forEachIndexed { i, b ->
+                val o = b as Map<*, *>
+                val where = "vocabulario.json, banco ${i + 1}"
+                for (key in listOf("id", "title", "level")) {
+                    if (o[key] == null || o[key].toString().isBlank()) problems.add("$where: falta \"$key\"")
+                }
+                if (o["id"] != null && !bancoIds.add(o["id"].toString())) problems.add("$where: id repetido")
+                val pares = (o["pares"] as? List<*>) ?: emptyList<Any>()
+                if (pares.size < 3) problems.add("$where: un banco necesita al menos 3 parejas")
+                val ens = HashSet<String>(); val ess = HashSet<String>()
+                pares.forEachIndexed { j, p ->
+                    val pm = p as? Map<*, *>
+                    val en = pm?.get("en")?.toString()?.trim().orEmpty()
+                    val es = pm?.get("es")?.toString()?.trim().orEmpty()
+                    if (en.isBlank() || es.isBlank()) problems.add("$where: pareja ${j + 1} sin \"en\" o sin \"es\"")
+                    if (!ens.add(en.lowercase()) || !ess.add(es.lowercase())) problems.add("$where: pareja repetida: \"$en\" / \"$es\"")
+                }
+            }
+        }
+
         // Toda palabra que se pide decir en voz alta tiene que estar en el
         // diccionario de pronunciacion: sin fonemas esperados no hay GOP y el
         // sonido del ejercicio quedaria sin evaluar en silencio.
@@ -502,8 +527,8 @@ android {
         applicationId = "com.ferolabs.hablo"
         minSdk = 26
         targetSdk = 35
-        versionCode = 11
-        versionName = "0.9.2"
+        versionCode = 12
+        versionName = "0.9.3"
 
         // Solo el procesador del S25 Ultra. De paso el APK deja de llevar las
         // copias de sherpa-onnx y ONNX Runtime para x86/armv7 (~100 MB menos).

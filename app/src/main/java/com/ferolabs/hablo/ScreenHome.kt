@@ -43,9 +43,23 @@ fun HomeScreen(
     onSettings: () -> Unit,
     onPronunciation: () -> Unit,
     onConversation: () -> Unit,
-    onGreeting: () -> Unit
+    onGreeting: () -> Unit,
+    /** Etapa 3: el mazo y el cuaderno, para las tarjetas de repaso y retos. */
+    mazo: Mazo? = null,
+    progreso: Progreso? = null,
+    onRepaso: () -> Unit = {},
+    onContrarreloj: () -> Unit = {},
+    onAguanta: () -> Unit = {}
 ) {
     val accent = Color(teacher.color)
+    // Repaso de hoy: qué toca del mazo y cuántos errores propios hay para corregir.
+    val pendientes = remember(refreshKey) { mazo?.cuantosPendientes() ?: 0 }
+    val propios = remember(refreshKey) {
+        if (mazo != null && progreso != null) Repaso.propiosErrores(progreso.fallos(), mazo, mazo.hoy()).size else 0
+    }
+    val enMazo = remember(refreshKey) { mazo?.total() ?: 0 }
+    val aprendidas = remember(refreshKey) { mazo?.aprendidos() ?: 0 }
+    val marcaAguanta = remember(refreshKey) { mazo?.marcaAguanta() ?: 0 }
 
     // La versión sale del paquete instalado, no de un texto fijo que se olvida.
     val context = LocalContext.current
@@ -208,6 +222,75 @@ fun HomeScreen(
                     )
                 }
                 Text("›", style = MaterialTheme.typography.headlineMedium, color = accent)
+            }
+        }
+
+        // --- Etapa 3: repaso y retos ---------------------------------------
+        if (mazo != null) {
+            item {
+                val hay = pendientes + propios > 0
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(if (hay) Color(teacher.softColor) else Color.White, RoundedCornerShape(16.dp))
+                        .border(1.dp, accent.copy(alpha = 0.35f), RoundedCornerShape(16.dp))
+                        .clickable(enabled = hay) { onRepaso() }
+                        .padding(16.dp)
+                ) {
+                    Box(
+                        contentAlignment = Alignment.Center,
+                        modifier = Modifier.size(46.dp).background(Color.White, CircleShape)
+                    ) {
+                        Text("🔁", style = MaterialTheme.typography.titleLarge)
+                    }
+                    Spacer(Modifier.size(14.dp))
+                    Column(modifier = Modifier.weight(1f)) {
+                        Text("Repaso de hoy", style = MaterialTheme.typography.titleMedium)
+                        Text(
+                            when {
+                                hay -> listOfNotNull(
+                                    if (pendientes > 0) "$pendientes frases que te tocan" else null,
+                                    if (propios > 0) "$propios errores tuyos para corregir" else null
+                                ).joinToString(" · ")
+                                enMazo == 0 -> "Termina una lección y mañana vuelven sus frases."
+                                else -> "Nada por hoy. En el mazo: $enMazo frases, $aprendidas aprendidas."
+                            },
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = InkSoft
+                        )
+                    }
+                    if (hay) Text("›", style = MaterialTheme.typography.headlineMedium, color = accent)
+                }
+            }
+            item {
+                Row(horizontalArrangement = Arrangement.spacedBy(12.dp), modifier = Modifier.fillMaxWidth()) {
+                    Column(
+                        modifier = Modifier
+                            .weight(1f)
+                            .background(Color.White, RoundedCornerShape(16.dp))
+                            .border(1.dp, accent.copy(alpha = 0.35f), RoundedCornerShape(16.dp))
+                            .clickable { onContrarreloj() }
+                            .padding(14.dp)
+                    ) {
+                        Text("⏱ Contrarreloj", style = MaterialTheme.typography.titleMedium)
+                        Text("Parejas contra tu propia marca", style = MaterialTheme.typography.bodyMedium, color = InkSoft)
+                    }
+                    Column(
+                        modifier = Modifier
+                            .weight(1f)
+                            .background(Color.White, RoundedCornerShape(16.dp))
+                            .border(1.dp, accent.copy(alpha = 0.35f), RoundedCornerShape(16.dp))
+                            .clickable { onAguanta() }
+                            .padding(14.dp)
+                    ) {
+                        Text("🏁 Aguanta", style = MaterialTheme.typography.titleMedium)
+                        Text(
+                            if (marcaAguanta > 0) "Todo mezclado · tu marca: $marcaAguanta" else "Todo mezclado, hasta tres errores",
+                            style = MaterialTheme.typography.bodyMedium, color = InkSoft
+                        )
+                    }
+                }
             }
         }
 

@@ -41,6 +41,7 @@ fun SettingsScreen(
     claude: ClaudeLlm,
     progreso: Progreso,
     memoria: Memoria,
+    mazo: Mazo,
     engineId: String,
     onEngineChange: (String) -> Unit,
     onChangeTeacher: () -> Unit,
@@ -303,6 +304,7 @@ fun SettingsScreen(
                             BigButton("Sí, borrar", container = BadRed) {
                                 progreso.borrarTodo()
                                 memoria.borrar()
+                                mazo.borrarTodo()
                                 onReset()
                                 confirmReset = false
                             }

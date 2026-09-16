@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -40,10 +41,12 @@ class MainActivity : ComponentActivity() {
         val prog = Progreso(this)
         // La ficha de la charla libre: files/memoria/perfil.json, al lado de la app.
         val mem = Memoria(java.io.File(getExternalFilesDir("memoria"), "perfil.json"))
+        // El mazo de repaso (etapa 3): al lado del cuaderno, dentro de la app.
+        val mazo = Mazo(java.io.File(filesDir, "mazo.json"))
         Course.load(this)
 
         setContent {
-            HabloApp(speaker = sp, listener = li, llm = ai, cloud = cloud, claude = claude, store = store, progreso = prog, memoria = mem)
+            HabloApp(speaker = sp, listener = li, llm = ai, cloud = cloud, claude = claude, store = store, progreso = prog, memoria = mem, mazo = mazo)
         }
     }
 
@@ -71,6 +74,10 @@ private sealed class Route {
     data object Pronunciation : Route()
     data object Scenarios : Route()
     data class Talking(val scenarioId: String) : Route()
+    /** Etapa 3: el repaso del mazo, el contrarreloj y "Aguanta". */
+    data object Repaso : Route()
+    data object Contrarreloj : Route()
+    data object Aguanta : Route()
 }
 
 @Composable
@@ -82,7 +89,8 @@ fun HabloApp(
     claude: ClaudeLlm,
     store: Store,
     progreso: Progreso,
-    memoria: Memoria
+    memoria: Memoria,
+    mazo: Mazo
 ) {
 
     var teacherId by remember { mutableStateOf(store.teacherId) }
@@ -148,6 +156,15 @@ fun HabloApp(
                     }
 
                     is Route.Home -> {
+                        // Mazo vacío con lecciones ya aprobadas (la primera vez tras la
+                        // etapa 3): entran sus frases, para que haya qué repasar mañana.
+                        LaunchedEffect(progressTick) {
+                            if (mazo.total() == 0) {
+                                var n = 0
+                                for (l in Course.allLessons()) if (store.bestScore(l.id) >= 60) n += mazo.alimentar(l)
+                                if (n > 0) progressTick += 1
+                            }
+                        }
                         HomeScreen(
                             teacher = teacher,
                             store = store,
@@ -157,7 +174,89 @@ fun HabloApp(
                             onSettings = { route = Route.Settings },
                             onPronunciation = { llm.release(); route = Route.Pronunciation },
                             onConversation = { route = Route.Scenarios },
-                            onGreeting = { say(teacher.greeting, 1f) }
+                            onGreeting = { say(teacher.greeting, 1f) },
+                            mazo = mazo,
+                            progreso = progreso,
+                            onRepaso = { llm.release(); route = Route.Repaso },
+                            onContrarreloj = { route = Route.Contrarreloj },
+                            onAguanta = { llm.release(); route = Route.Aguanta }
+                        )
+                    }
+
+                    is Route.Repaso -> {
+                        val leccion = remember { Repaso.leccionDeHoy(mazo, progreso.fallos()) }
+                        BackHandler { speaker.stop(); listener.stopRecording(); route = Route.Home }
+                        if (leccion.exercises.isEmpty()) {
+                            route = Route.Home
+                        } else {
+                            LessonScreen(
+                                lesson = leccion,
+                                teacher = teacher,
+                                listener = listener,
+                                progreso = progreso,
+                                store = store,
+                                speaking = speaker.busy,
+                                lastSpokenSeconds = { speaker.lastSpokenSeconds },
+                                showFace = store.showFaces,
+                                say = say,
+                                modo = ModoLeccion.REPASO,
+                                onAnswered = { ex, ok, primero ->
+                                    // Solo el primer intento mueve el mazo; repetirlo hasta acertar no lo infla.
+                                    if (!primero) return@LessonScreen
+                                    if (ex is Exercise.FixIt) mazo.registrarCorreccion(Repaso.claveDe(ex), ok)
+                                    else mazo.registrar(ex.id, ok)
+                                },
+                                onFinish = { _, correct ->
+                                    store.recordLesson(Repaso.ID_REPASO, 0, correct * 5)   // XP, sin nota
+                                    progressTick += 1
+                                    speaker.stop(); listener.stopRecording()
+                                    route = Route.Home
+                                },
+                                onExit = { speaker.stop(); listener.stopRecording(); progressTick += 1; route = Route.Home }
+                            )
+                        }
+                    }
+
+                    is Route.Aguanta -> {
+                        val hechas = remember { Course.allLessons().filter { store.bestScore(it.id) >= 60 } }
+                        val leccion = remember { Repaso.leccionAguanta(hechas, mazo) }
+                        val marca = remember { mazo.marcaAguanta() }
+                        BackHandler { speaker.stop(); listener.stopRecording(); route = Route.Home }
+                        if (leccion.exercises.size < 5) {
+                            route = Route.Home
+                        } else {
+                            LessonScreen(
+                                lesson = leccion,
+                                teacher = teacher,
+                                listener = listener,
+                                progreso = progreso,
+                                store = store,
+                                speaking = speaker.busy,
+                                lastSpokenSeconds = { speaker.lastSpokenSeconds },
+                                showFace = store.showFaces,
+                                say = say,
+                                modo = ModoLeccion.AGUANTA,
+                                maxErrores = 3,
+                                marca = marca,
+                                onFinish = { _, correct ->
+                                    mazo.registrarAguanta(correct)
+                                    store.recordLesson(Repaso.ID_AGUANTA, 0, correct * 5)
+                                    progressTick += 1
+                                    speaker.stop(); listener.stopRecording()
+                                    route = Route.Home
+                                },
+                                onExit = { speaker.stop(); listener.stopRecording(); route = Route.Home }
+                            )
+                        }
+                    }
+
+                    is Route.Contrarreloj -> {
+                        BackHandler { speaker.stop(); route = Route.Home }
+                        ContrarrelojScreen(
+                            teacher = teacher,
+                            store = store,
+                            mazo = mazo,
+                            onBack = { speaker.stop(); progressTick += 1; route = Route.Home }
                         )
                     }
 
@@ -172,6 +271,10 @@ fun HabloApp(
                         if (lesson == null) {
                             route = Route.Home
                         } else {
+                            // Adivina antes de ver: solo la primera vez que se abre la lección.
+                            val adivinanzas = remember(lesson.id) {
+                                if (store.bestScore(lesson.id) == 0) Repaso.adivinanzas(lesson) else emptyList()
+                            }
                             LessonScreen(
                                 lesson = lesson,
                                 teacher = teacher,
@@ -182,8 +285,11 @@ fun HabloApp(
                                 lastSpokenSeconds = { speaker.lastSpokenSeconds },
                                 showFace = store.showFaces,
                                 say = say,
+                                adivinanzas = adivinanzas,
                                 onFinish = { score, correct ->
                                     store.recordLesson(lesson.id, score, correct * 10)
+                                    // Lección aprobada: sus frases entran al mazo y vuelven mañana.
+                                    if (score >= 60) mazo.alimentar(lesson)
                                     progressTick += 1
                                     speaker.stop()
                                     listener.stopRecording()
@@ -280,6 +386,7 @@ fun HabloApp(
                             claude = claude,
                             progreso = progreso,
                             memoria = memoria,
+                            mazo = mazo,
                             engineId = engineId,
                             onEngineChange = { id ->
                                 engineId = id

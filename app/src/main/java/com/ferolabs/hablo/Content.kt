@@ -152,6 +152,24 @@ sealed class Exercise {
      * Uchihara, Karas & Thomson 2025. La corrección es exacta: la app sabe
      * qué palabra sintetizó. [sentence] es opcional, para oírla en contexto.
      */
+    /**
+     * "Corrige tu propio error" (etapa 3): una frase que ÉL escribió mal en el
+     * cuaderno, semanas atrás, devuelta para que la arregle. Nunca viene del
+     * JSON: la arma Repaso.kt desde progreso.json. Solo errores reales.
+     */
+    data class FixIt(
+        override val id: String,
+        /** Lo que él escribió. */
+        val tuya: String,
+        /** Cuándo (yyyy-MM-dd). */
+        val fecha: String,
+        val answer: String,
+        val accept: List<String> = emptyList(),
+        /** Si el ejercicio original era un hueco: la frase con ___, para mostrarla y aceptar solo el hueco. */
+        val hueco: Cloze? = null,
+        override val tip: String? = null
+    ) : Exercise()
+
     data class MinimalPair(
         override val id: String,
         val options: List<String>,
@@ -268,10 +286,20 @@ data class Level(
 )
 
 /**
+ * Un banco de vocabulario para el contrarreloj (assets/content/vocabulario.json,
+ * etapa 3): parejas palabra/frase en inglés ↔ español. Lo escribe Cowork.
+ */
+data class Banco(val id: String, val title: String, val level: String, val pares: List<Pareja>)
+
+/**
  * Carga y guarda el curso. Es un objeto único porque el contenido no cambia
  * durante la sesión: se lee una vez al arrancar la app.
  */
 object Course {
+
+    /** Bancos de vocabulario del contrarreloj (opcional: sin el archivo, la lista queda vacía). */
+    var bancos: List<Banco> = emptyList()
+        private set
 
     var levels: List<Level> = emptyList()
         private set
@@ -298,6 +326,11 @@ object Course {
             val scenariosJson = JSONObject(readAsset(context, "content/scenarios.json"))
             helpCommon = parseAyudas(scenariosJson.optJSONArray("helpCommon"), "scenarios.json, helpCommon")
             scenarios = parseScenarios(scenariosJson.getJSONArray("scenarios"))
+            bancos = try {
+                parseBancos(JSONObject(readAsset(context, "content/vocabulario.json")).getJSONArray("bancos"))
+            } catch (e: java.io.FileNotFoundException) {
+                emptyList()   // todavía no hay banco: el contrarreloj usa las frases de las lecciones
+            }
             loaded = true
             Log.i(TAG, "Curso cargado: ${levels.size} niveles, ${allLessons().size} lecciones, ${drills.size} drills, ${scenarios.size} escenarios")
         } catch (e: Throwable) {
@@ -315,6 +348,29 @@ object Course {
 
     private fun readAsset(context: Context, path: String): String =
         context.assets.open(path).bufferedReader().use { it.readText() }
+
+    /** vocabulario.json: bancos con id, title, level y pares {en, es} sin repetidos. */
+    fun parseBancos(arr: JSONArray): List<Banco> =
+        (0 until arr.length()).map { i ->
+            val o = arr.getJSONObject(i)
+            val where = "vocabulario.json, banco ${i + 1}"
+            val id = req(o, "id", where)
+            val pares = ArrayList<Pareja>()
+            val pa = o.optJSONArray("pares") ?: throw IllegalArgumentException("$where: falta \"pares\"")
+            for (j in 0 until pa.length()) {
+                val p = pa.getJSONObject(j)
+                val en = p.optString("en").trim()
+                val es = p.optString("es").trim()
+                if (en.isBlank() || es.isBlank()) throw IllegalArgumentException("$where: pareja ${j + 1} sin \"en\" o sin \"es\"")
+                if (pares.any { it.en.equals(en, true) || it.es.equals(es, true) }) throw IllegalArgumentException("$where: pareja repetida: \"$en\" / \"$es\"")
+                pares.add(Pareja(es, en))
+            }
+            if (pares.size < 3) throw IllegalArgumentException("$where: un banco necesita al menos 3 parejas")
+            Banco(id, req(o, "title", where), req(o, "level", where), pares)
+        }.also { lista ->
+            val ids = lista.map { it.id }
+            if (ids.size != ids.toSet().size) throw IllegalArgumentException("vocabulario.json: id de banco repetido")
+        }
 
     /**
      * Lee el campo "sound" y revienta con un mensaje que dice exactamente dónde.
@@ -572,6 +628,9 @@ object Course {
     fun allLessons(): List<Lesson> = allUnits().flatMap { it.lessons }
 
     fun lessonById(id: String): Lesson? = allLessons().firstOrNull { it.id == id }
+
+    fun exerciseById(id: String): Exercise? =
+        allLessons().asSequence().flatMap { it.exercises.asSequence() }.firstOrNull { it.id == id }
 
     fun scenarioById(id: String): Scenario? =
         if (id == Scenario.LIBRE.id) Scenario.LIBRE else scenarios.firstOrNull { it.id == id }

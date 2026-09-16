@@ -55,7 +55,17 @@ fun LessonScreen(
     showFace: Boolean,
     say: (String, Float) -> Unit,
     onFinish: (score: Int, correct: Int) -> Unit,
-    onExit: () -> Unit
+    onExit: () -> Unit,
+    /** Lección del curso, repaso del mazo o "Aguanta" (etapa 3). */
+    modo: ModoLeccion = ModoLeccion.LECCION,
+    /** Cada respuesta comprobada: el ejercicio, si acertó y si era el primer intento de la sesión. */
+    onAnswered: (Exercise, Boolean, Boolean) -> Unit = { _, _, _ -> },
+    /** Solo AGUANTA: al llegar a tantos errores se acaba. */
+    maxErrores: Int = 3,
+    /** Solo AGUANTA: la marca anterior, para "tu marca es 11". */
+    marca: Int = 0,
+    /** Solo LECCION, la primera vez: "adivina antes de ver". */
+    adivinanzas: List<Exercise.WriteIt> = emptyList()
 ) {
     val accent = Color(teacher.color)
     val total = lesson.exercises.size
@@ -78,8 +88,16 @@ fun LessonScreen(
 
     // El juego de Parejas a mitad de la lección, con las frases de la misma
     // lección. No cuenta para la nota; rompe la rutina. Solo si hay parejas.
-    val parejas = remember { parejasDe(lesson) }
+    val parejas = remember { if (modo == ModoLeccion.LECCION) parejasDe(lesson) else emptyList() }
     val gameAt = remember { if (parejas.size >= 3) lesson.exercises.size / 2 else -1 }
+    // Aguanta: se corta al tercer error. "Llegaste a N" son los aciertos hasta ahí.
+    var errores by remember { mutableStateOf(0) }
+    val terminaAqui = modo == ModoLeccion.AGUANTA && errores >= maxErrores
+    // Adivina antes de ver (solo la primera vez que se abre una lección).
+    var adIdx by remember { mutableStateOf(0) }
+    var adTyped by remember { mutableStateOf("") }
+    var adChecked by remember { mutableStateOf(false) }
+    val adivinando = modo == ModoLeccion.LECCION && adIdx < adivinanzas.size
     var gamePlayed by remember { mutableStateOf(false) }
     var gameDone by remember { mutableStateOf(false) }
     val showingGame = pos == gameAt && !gamePlayed
@@ -149,7 +167,26 @@ fun LessonScreen(
             correct = correctCount,
             total = total,
             say = say,
+            modo = modo,
+            marca = marca,
             onDone = { onFinish(score, correctCount) }
+        )
+        return
+    }
+
+    if (adivinando) {
+        AdivinaScreen(
+            lesson = lesson,
+            ejercicio = adivinanzas[adIdx],
+            numero = adIdx + 1,
+            total = adivinanzas.size,
+            typed = adTyped,
+            checked = adChecked,
+            accent = accent,
+            onTyped = { adTyped = it },
+            onCheck = { adChecked = true },
+            onNext = { adIdx += 1; adTyped = ""; adChecked = false },
+            onExit = onExit
         )
         return
     }
@@ -207,6 +244,7 @@ fun LessonScreen(
         is Exercise.Cloze -> typed.isNotBlank()
         is Exercise.Shadow -> speakResult != null
         is Exercise.MinimalPair -> chosen >= 0
+        is Exercise.FixIt -> typed.isNotBlank()
     }
 
     fun evaluate(): Boolean = when (ex) {
@@ -223,6 +261,8 @@ fun LessonScreen(
         // Shadowing: que salgan las palabras. El ritmo se muestra, no se califica.
         is Exercise.Shadow -> speakResult?.entendida == true
         is Exercise.MinimalPair -> chosen == ex.answerIndex
+        is Exercise.FixIt -> ex.hueco?.let { Correccion.aceptaHueco(typed, it.before, it.after, ex.answer, ex.accept) }
+            ?: Correccion.acepta(typed, ex.answer, ex.accept)
     }
 
     /** Qué falló, en español, para dictado, write y cloze. Null si no hay nada concreto que decir. */
@@ -230,6 +270,8 @@ fun LessonScreen(
         is Exercise.TypeWhatYouHear -> Correccion.diagnostico(typed, ex.audio)
         is Exercise.WriteIt -> Correccion.diagnostico(typed, ex.answer, ex.accept)
         is Exercise.Cloze -> Correccion.diagnosticoHueco(typed, ex.before, ex.after, ex.answer, ex.accept)
+        is Exercise.FixIt -> ex.hueco?.let { Correccion.diagnosticoHueco(typed, it.before, it.after, ex.answer, ex.accept) }
+            ?: Correccion.diagnostico(typed, ex.answer, ex.accept)
         else -> null
     }
 
@@ -253,6 +295,7 @@ fun LessonScreen(
         is Exercise.Cloze -> typed
         is Exercise.Shadow -> speakResult?.heard ?: ""
         is Exercise.MinimalPair -> ex.options.getOrElse(chosen) { "" }
+        is Exercise.FixIt -> typed
     }
 
     fun correctText(): String = when (ex) {
@@ -265,12 +308,14 @@ fun LessonScreen(
         is Exercise.Cloze -> ex.full
         is Exercise.Shadow -> ex.text
         is Exercise.MinimalPair -> ex.answer
+        is Exercise.FixIt -> ex.hueco?.full ?: ex.answer
     }
 
     Column(modifier = Modifier.fillMaxSize()) {
 
         TopBar(
-            title = "${lesson.title}  ·  ${pos + 1}/${queue.size}",
+            title = if (modo == ModoLeccion.AGUANTA) "${lesson.title}  ·  llevas $correctCount · errores $errores de $maxErrores"
+                else "${lesson.title}  ·  ${pos + 1}/${queue.size}",
             onBack = onExit
         )
 
@@ -292,7 +337,7 @@ fun LessonScreen(
                 .padding(20.dp)
         ) {
             if (showingGame) {
-                ParejasGame(parejas, accent) { _, _ -> gameDone = true }
+                ParejasGame(parejas, accent) { _, _, _ -> gameDone = true }
             } else when (ex) {
 
                 is Exercise.ListenChoose -> {
@@ -553,6 +598,42 @@ fun LessonScreen(
                     )
                 }
 
+                is Exercise.FixIt -> {
+                    Text("Corrige tu propio error", style = MaterialTheme.typography.titleLarge)
+                    Text(
+                        "Esto lo escribiste tú el ${Repaso.fechaLarga(ex.fecha)}:",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = InkSoft
+                    )
+                    if (ex.hueco != null) Text(
+                        ex.hueco.before + "______" + ex.hueco.after,
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = InkSoft
+                    )
+                    Text(
+                        "«${ex.tuya}»",
+                        style = MaterialTheme.typography.headlineSmall,
+                        color = BadRed,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(BadRedSoft, RoundedCornerShape(12.dp))
+                            .padding(12.dp)
+                    )
+                    Text(
+                        if (ex.hueco != null) "¿Qué iba en el hueco? Escríbelo bien." else "¿Qué le falta o qué le sobra? Escríbela bien.",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = Ink
+                    )
+                    OutlinedTextField(
+                        value = typed,
+                        onValueChange = { if (!checked) typed = it },
+                        singleLine = true,
+                        readOnly = checked,
+                        placeholder = { Text(if (ex.hueco != null) "Lo que va en el hueco..." else "La frase, ya corregida...") },
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                }
+
                 is Exercise.Cloze -> {
                     Text("Completa el hueco", style = MaterialTheme.typography.titleLarge)
                     Text(
@@ -753,24 +834,30 @@ fun LessonScreen(
                         rep?.let { store.recordSound(it.sound, it.worst) }
                     }
                     wasCorrect = evaluate()
+                    val primerIntento = index !in repeated
                     if (wasCorrect) {
                         // Solo puntúa el primer intento: lo repetido no infla la nota.
-                        if (index !in repeated) correctCount += 1
+                        if (primerIntento) correctCount += 1
                         say(teacher.encouragement[pos % teacher.encouragement.size], 1f)
                     } else {
-                        // Vuelve una sola vez, al final de la lección.
-                        if (repeated.add(index)) queue.add(index)
+                        if (modo == ModoLeccion.AGUANTA) {
+                            errores += 1
+                        } else {
+                            // Vuelve una sola vez, al final de la lección.
+                            if (repeated.add(index)) queue.add(index)
+                        }
                         progreso.anotarFallo(lesson.id, tipoDe(ex), givenText(), correctText(), ex.id)
                         say(correctText(), 0.85f)
                     }
+                    onAnswered(ex, wasCorrect, primerIntento)
                     checked = true
                 }
             } else {
                 BigButton(
-                    text = if (pos + 1 < queue.size) "Continuar" else "Ver resultado",
+                    text = if (pos + 1 < queue.size && !terminaAqui) "Continuar" else "Ver resultado",
                     container = if (wasCorrect) GoodGreen else accent
                 ) {
-                    if (pos + 1 < queue.size) {
+                    if (pos + 1 < queue.size && !terminaAqui) {
                         pos += 1
                         reset()
                     } else {
@@ -920,10 +1007,14 @@ private fun ResultsScreen(
     correct: Int,
     total: Int,
     say: (String, Float) -> Unit,
+    modo: ModoLeccion = ModoLeccion.LECCION,
+    marca: Int = 0,
     onDone: () -> Unit
 ) {
     val accent = Color(teacher.color)
     val phrase = when {
+        modo == ModoLeccion.AGUANTA && correct > marca && marca > 0 -> "A new record! Well done."
+        modo == ModoLeccion.AGUANTA -> "Good effort. Let's see how far you get next time."
         score >= 90 -> "Excellent work! I'm proud of you."
         score >= 60 -> "Good job. You're making progress."
         else -> "That's okay. Let's try it again together."
@@ -953,18 +1044,42 @@ private fun ResultsScreen(
             textAlign = TextAlign.Center
         )
         Spacer(Modifier.height(6.dp))
-        Text(
-            "$score%",
-            style = MaterialTheme.typography.headlineLarge,
-            color = if (aprobada) GoodGreen else accent
-        )
-        Text(
-            "$correct de $total correctas · " + (if (aprobada) "lección aprobada ✓" else "se aprueba con 60: vuelve a intentarla"),
-            style = MaterialTheme.typography.bodyLarge,
-            color = if (aprobada) GoodGreen else InkSoft,
-            textAlign = TextAlign.Center
-        )
-        if (aprobada && siguiente != null) {
+        when (modo) {
+            // Aguanta: sin puntos. "Llegaste a 14; tu marca es 11."
+            ModoLeccion.AGUANTA -> {
+                Text("Llegaste a $correct", style = MaterialTheme.typography.headlineLarge, color = accent)
+                Text(
+                    when {
+                        marca == 0 -> "Es tu primera marca."
+                        correct > marca -> "Tu marca era $marca: la superaste."
+                        else -> "Tu marca es $marca."
+                    },
+                    style = MaterialTheme.typography.bodyLarge, color = InkSoft, textAlign = TextAlign.Center
+                )
+            }
+            // Repaso: lo fallado vuelve mañana, lo acertado se aleja.
+            ModoLeccion.REPASO -> {
+                Text("$correct de $total", style = MaterialTheme.typography.headlineLarge, color = if (aprobada) GoodGreen else accent)
+                Text(
+                    if (correct == total) "Todo bien: esas frases se alejan unos días." else "Lo que fallaste vuelve mañana; lo demás se aleja unos días.",
+                    style = MaterialTheme.typography.bodyLarge, color = InkSoft, textAlign = TextAlign.Center
+                )
+            }
+            ModoLeccion.LECCION -> {
+                Text(
+                    "$score%",
+                    style = MaterialTheme.typography.headlineLarge,
+                    color = if (aprobada) GoodGreen else accent
+                )
+                Text(
+                    "$correct de $total correctas · " + (if (aprobada) "lección aprobada ✓" else "se aprueba con 60: vuelve a intentarla"),
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = if (aprobada) GoodGreen else InkSoft,
+                    textAlign = TextAlign.Center
+                )
+            }
+        }
+        if (modo == ModoLeccion.LECCION && aprobada && siguiente != null) {
             Spacer(Modifier.height(4.dp))
             Text(
                 "Sigue: ${siguiente.title}",
@@ -992,6 +1107,90 @@ private fun ResultsScreen(
     }
 }
 
+/**
+ * "Adivina antes de ver": antes de la primera vez de una lección, tres frases
+ * para intentar decirlas en inglés SIN haberlas visto. Va a fallar y ese es el
+ * punto: intentar y errar, con la respuesta después, deja mejor recuerdo que
+ * leer la respuesta directa (Kornell, Hays & Bjork 2009; Richland, Kornell &
+ * Kao 2009). No puntúa, no va al cuaderno, no se repite.
+ */
+@Composable
+private fun AdivinaScreen(
+    lesson: Lesson,
+    ejercicio: Exercise.WriteIt,
+    numero: Int,
+    total: Int,
+    typed: String,
+    checked: Boolean,
+    accent: Color,
+    onTyped: (String) -> Unit,
+    onCheck: () -> Unit,
+    onNext: () -> Unit,
+    onExit: () -> Unit
+) {
+    val acierto = checked && Correccion.acepta(typed, ejercicio.answer, ejercicio.accept)
+    Column(modifier = Modifier.fillMaxSize()) {
+        TopBar(title = "${lesson.title}  ·  antes de empezar", onBack = onExit)
+        Column(
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+            modifier = Modifier
+                .weight(1f)
+                .verticalScroll(rememberScrollState())
+                .padding(20.dp)
+        ) {
+            Text("Adivina antes de ver · $numero de $total", style = MaterialTheme.typography.titleLarge)
+            Text(
+                "Todavía no lo has estudiado. Intenta decirlo en inglés como creas: fallar ahora ayuda a que después se quede.",
+                style = MaterialTheme.typography.bodyMedium,
+                color = InkSoft
+            )
+            Text(ejercicio.es, style = MaterialTheme.typography.headlineSmall, color = Ink)
+            OutlinedTextField(
+                value = typed,
+                onValueChange = { if (!checked) onTyped(it) },
+                singleLine = true,
+                readOnly = checked,
+                placeholder = { Text("Tu intento en inglés...") },
+                modifier = Modifier.fillMaxWidth()
+            )
+            if (checked) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(if (acierto) GoodGreenSoft else Color(0xFFFFF6E3), RoundedCornerShape(14.dp))
+                        .padding(16.dp)
+                ) {
+                    Text(
+                        if (acierto) "¡Lo adivinaste!" else "Así se dice:",
+                        style = MaterialTheme.typography.titleMedium,
+                        color = if (acierto) GoodGreen else Color(0xFF8A5A00)
+                    )
+                    Text(ejercicio.answer, style = MaterialTheme.typography.bodyLarge, color = Ink)
+                    if (!acierto) Text(
+                        "No cuenta como error: ahora la lección te lo enseña.",
+                        style = MaterialTheme.typography.labelMedium,
+                        color = InkSoft
+                    )
+                }
+            }
+        }
+        Column(modifier = Modifier.fillMaxWidth().background(Cream).padding(20.dp)) {
+            if (!checked) {
+                BigButton("Ver cómo se dice", enabled = true, container = accent) { onCheck() }
+                Spacer(Modifier.height(8.dp))
+                Text(
+                    "Saltar las adivinanzas",
+                    style = MaterialTheme.typography.labelLarge,
+                    color = InkSoft,
+                    modifier = Modifier.clickable { repeat(total) { onNext() } }.padding(6.dp)
+                )
+            } else {
+                BigButton(if (numero < total) "Siguiente" else "Empezar la lección", container = GoodGreen) { onNext() }
+            }
+        }
+    }
+}
+
 /** Nombre corto del tipo de ejercicio, para el informe. */
 private fun tipoDe(ex: Exercise): String = when (ex) {
     is Exercise.ListenChoose -> "escuchar"
@@ -1003,5 +1202,6 @@ private fun tipoDe(ex: Exercise): String = when (ex) {
     is Exercise.Cloze -> "completar"
     is Exercise.Shadow -> "repetir"
     is Exercise.MinimalPair -> "oído"
+    is Exercise.FixIt -> "corregir"
 }
 

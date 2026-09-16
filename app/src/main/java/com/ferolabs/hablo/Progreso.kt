@@ -197,6 +197,13 @@ class Progreso(context: Context) {
         file.delete()
     }
 
+    /** Los fallos tal cual, del más viejo al más nuevo (para "corrige tu propio error"). */
+    @Synchronized
+    fun fallos(): List<Fallo> {
+        cargar()
+        return fallos.toList()
+    }
+
     @Synchronized
     fun hayAlgo(): Boolean {
         cargar()
