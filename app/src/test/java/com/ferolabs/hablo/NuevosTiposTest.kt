@@ -190,6 +190,34 @@ class NuevosTiposTest {
         assertTrue(d, d!!.contains("espanish"))
     }
 
+    // ------------------------------------------------------------ revision del 16-09
+
+    @Test
+    fun `s y d se igualan a is y would solo tras sujeto`() {
+        assertTrue(Correccion.acepta("What is your name?", "What's your name?", emptyList()))
+        assertTrue(Correccion.acepta("I would like a coffee, please.", "I'd like a coffee, please.", emptyList()))
+        assertTrue(Correccion.acepta("She's a teacher at a school.", "She is a teacher at a school.", emptyList()))
+        assertTrue(Correccion.acepta("It is cold.", "It's cold.", emptyList()))
+        // Tras un nombre no se toca: el posesivo sigue siendo posesivo.
+        assertFalse(Correccion.acepta("My brother is car", "My brother's car", emptyList()))
+        // El diagnostico y el chequeo de duplicados usan la version estricta.
+        assertEquals(Correccion.sueltaEstricta("what's your name"), "what's your name")
+        assertTrue(falla("""{"id":"t1l1e1","type":"write","es":"Hola.","answer":"I am fine.","accept":["I'm fine."]}""").contains("accept"))
+    }
+
+    @Test
+    fun `las tildes no cuentan`() {
+        assertTrue(Correccion.acepta("My sister lives in Bogota.", "My sister lives in Bogotá.", emptyList()))
+        assertEquals("bogota", normalizeAnswer("Bogotá"))
+    }
+
+    @Test
+    fun `hueco con la cola o la cabeza de la frase tambien vale`() {
+        assertTrue(Correccion.aceptaHueco("works in a hospital", "She ", " in a hospital.", "works", emptyList()))
+        assertTrue(Correccion.aceptaHueco("She works", "She ", " in a hospital.", "works", emptyList()))
+        assertFalse(Correccion.aceptaHueco("work in a hospital", "She ", " in a hospital.", "works", emptyList()))
+    }
+
     // ------------------------------------------------------------ utilidades
 
     private fun curso(ejercicio: String) =

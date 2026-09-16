@@ -60,6 +60,7 @@ fun HomeScreen(
     val enMazo = remember(refreshKey) { mazo?.total() ?: 0 }
     val aprendidas = remember(refreshKey) { mazo?.aprendidos() ?: 0 }
     val marcaAguanta = remember(refreshKey) { mazo?.marcaAguanta() ?: 0 }
+    val hayAprobadas = remember(refreshKey) { Course.allLessons().any { store.bestScore(it.id) >= 60 } }
 
     // La versión sale del paquete instalado, no de un texto fijo que se olvida.
     val context = LocalContext.current
@@ -274,19 +275,23 @@ fun HomeScreen(
                             .padding(14.dp)
                     ) {
                         Text("⏱ Contrarreloj", style = MaterialTheme.typography.titleMedium)
-                        Text("Parejas contra tu propia marca", style = MaterialTheme.typography.bodyMedium, color = InkSoft)
+                        Text("Vocabulario por temas, contra tu propia marca", style = MaterialTheme.typography.bodyMedium, color = InkSoft)
                     }
                     Column(
                         modifier = Modifier
                             .weight(1f)
                             .background(Color.White, RoundedCornerShape(16.dp))
                             .border(1.dp, accent.copy(alpha = 0.35f), RoundedCornerShape(16.dp))
-                            .clickable { onAguanta() }
+                            .clickable(enabled = hayAprobadas) { onAguanta() }
                             .padding(14.dp)
                     ) {
                         Text("🏁 Aguanta", style = MaterialTheme.typography.titleMedium)
                         Text(
-                            if (marcaAguanta > 0) "Todo mezclado · tu marca: $marcaAguanta" else "Todo mezclado, hasta tres errores",
+                            when {
+                                !hayAprobadas -> "Termina una lección para jugar"
+                                marcaAguanta > 0 -> "Todo mezclado · tu marca: $marcaAguanta"
+                                else -> "Todo mezclado, hasta tres errores"
+                            },
                             style = MaterialTheme.typography.bodyMedium, color = InkSoft
                         )
                     }
@@ -380,10 +385,10 @@ fun HomeScreen(
                 Text("Lo que viene", style = MaterialTheme.typography.titleMedium)
                 Spacer(Modifier.height(6.dp))
                 Text(
-                    "🔁  Repaso espaciado de lo que ya viste\n" +
-                        "🏁  Retos: adivina antes de ver, corrige tu propio error, contrarreloj\n" +
-                        "📖  La gramática de cada lección en pantalla\n" +
-                        "📚  Historias cortas para leer y contar",
+                    "📖  La gramática de cada lección en pantalla\n" +
+                        "📚  Historias cortas para leer y contar\n" +
+                        "🎯  Modo Aptis: práctica con el formato del examen\n" +
+                        "🧗  Niveles B1 y B2",
                     style = MaterialTheme.typography.bodyMedium,
                     color = InkSoft
                 )

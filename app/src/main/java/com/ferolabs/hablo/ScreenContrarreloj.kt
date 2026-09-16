@@ -131,6 +131,9 @@ private fun Sesion(banco: Banco, accent: Color, mazo: Mazo, onBack: () -> Unit) 
     var ultima by remember(banco.id) { mutableStateOf<Mazo.Marca?>(null) }
     var mejor by remember(banco.id) { mutableStateOf<Mazo.Marca?>(mazo.marcas(banco.id).minByOrNull { it.porPareja }) }
     var rondaHecha by remember(banco.id) { mutableStateOf(false) }
+    // Cambia en cada ronda y en cada "Otra vez": ParejasGame recuerda su estado por
+    // lista, y dos rondas con las mismas parejas nacerían ya "terminadas".
+    var vuelta by remember(banco.id) { mutableStateOf(0) }
 
     Column(modifier = Modifier.fillMaxSize()) {
         TopBar("⏱ ${banco.title}  ·  ronda $ronda", onBack = onBack)
@@ -149,6 +152,7 @@ private fun Sesion(banco: Banco, accent: Color, mazo: Mazo, onBack: () -> Unit) 
                     color = InkSoft
                 )
                 Spacer(Modifier.height(8.dp))
+                androidx.compose.runtime.key(vuelta) {
                 ParejasGame(parejas = actual, accent = accent, relojGrande = true) { _, segundos, fallidas ->
                     segundosTotal += segundos
                     ultima = Mazo.Marca(mazo.hoy(), segundos, actual.size)
@@ -159,11 +163,17 @@ private fun Sesion(banco: Banco, accent: Color, mazo: Mazo, onBack: () -> Unit) 
                     deVuelta.forEach { cola.addLast(it) }
                     rondaHecha = true
                 }
+                }
                 if (rondaHecha) {
                     val u = ultima
                     val m = mejor
                     Spacer(Modifier.height(10.dp))
-                    if (u != null && m != null) {
+                    if (u != null && u.parejas < Mazo.MIN_PAREJAS_MARCA) {
+                        Text(
+                            "Ronda corta (${u.parejas} parejas): no cuenta para la marca.",
+                            style = MaterialTheme.typography.bodyLarge, color = InkSoft
+                        )
+                    } else if (u != null && m != null) {
                         Text(
                             "Esta ronda: ${"%.1f".format(Locale("es"), u.porPareja)} s por pareja" +
                                 (if (u.porPareja <= m.porPareja) " · ¡tu mejor marca!" else " · tu marca: ${"%.1f".format(Locale("es"), m.porPareja)}"),
@@ -178,6 +188,7 @@ private fun Sesion(banco: Banco, accent: Color, mazo: Mazo, onBack: () -> Unit) 
                         } else {
                             actual = cola.take(RONDA).also { repeat(it.size) { cola.pollFirst() } }
                             ronda += 1
+                            vuelta += 1
                             rondaHecha = false
                         }
                     }
@@ -187,7 +198,7 @@ private fun Sesion(banco: Banco, accent: Color, mazo: Mazo, onBack: () -> Unit) 
                 Text("¡Listo!", style = MaterialTheme.typography.headlineMedium, color = GoodGreen)
                 Spacer(Modifier.height(8.dp))
                 Text(
-                    "$ronda rondas · ${banco.pares.size} parejas · $segundosTotal segundos en total" +
+                    (if (ronda == 1) "1 ronda" else "$ronda rondas") + " · ${banco.pares.size} parejas · $segundosTotal segundos en total" +
                         (if (volvieron > 0) " · $volvieron parejas volvieron hasta salir" else " · ninguna volvió"),
                     style = MaterialTheme.typography.bodyLarge,
                     color = Ink
@@ -211,7 +222,7 @@ private fun Sesion(banco: Banco, accent: Color, mazo: Mazo, onBack: () -> Unit) 
                 BigButton("Otra vez", container = accent) {
                     cola.clear(); cola.addAll(banco.pares.shuffled())
                     actual = cola.take(RONDA).also { repeat(it.size) { cola.pollFirst() } }
-                    ronda = 1; terminado = false; segundosTotal = 0; volvieron = 0; rondaHecha = false; ultima = null
+                    ronda = 1; vuelta += 1; terminado = false; segundosTotal = 0; volvieron = 0; rondaHecha = false; ultima = null
                 }
                 Spacer(Modifier.height(8.dp))
                 Text(

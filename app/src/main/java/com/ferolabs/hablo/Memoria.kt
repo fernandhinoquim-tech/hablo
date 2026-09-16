@@ -37,6 +37,9 @@ class Memoria(private val file: File) {
     var actualizado: String = ""
         private set
     private var cargado = false
+    /** Sube en cada [borrar]: un resumen que llegue después de "olvidar todo" no revive la ficha. */
+    var generacion: Int = 0
+        private set
 
     private val dia = SimpleDateFormat("yyyy-MM-dd", Locale.US)
     private fun hoy(): String = dia.format(Date())
@@ -131,8 +134,9 @@ class Memoria(private val file: File) {
      * Devuelve false —y no toca nada— si no parsea o no trae ninguno de los dos.
      */
     @Synchronized
-    fun aplicarRespuesta(texto: String): Boolean {
+    fun aplicarRespuesta(texto: String, generacionAlPedir: Int = generacion): Boolean {
         cargar()
+        if (generacionAlPedir != generacion) return false   // la ficha se borró mientras Haiku pensaba
         val a = texto.indexOf('{')
         val b = texto.lastIndexOf('}')
         if (a < 0 || b <= a) return false
@@ -185,6 +189,7 @@ class Memoria(private val file: File) {
     fun borrar() {
         datos = emptyList(); errores = emptyList(); resumen = ""; actualizado = ""
         cargado = true
+        generacion += 1
         file.delete()
     }
 

@@ -71,6 +71,17 @@ class MemoriaTest {
     }
 
     @Test
+    fun `un resumen que llega despues de olvidar no revive la ficha`() {
+        val (m, _) = nueva()
+        val gen = m.generacion
+        m.borrar()
+        assertFalse(m.aplicarRespuesta("{\"datos\":[{\"k\":\"nombre\",\"v\":\"Fero\"}],\"resumen\":\"x\"}", gen))
+        assertFalse(m.hayAlgo())
+        assertTrue(m.aplicarRespuesta("{\"datos\":[{\"k\":\"nombre\",\"v\":\"Fero\"}]}", m.generacion))
+        assertTrue(m.hayAlgo())
+    }
+
+    @Test
     fun `sin ficha el bloque va vacio y con nombre se sabe el nombre`() {
         val (m, _) = nueva()
         assertEquals("", m.bloquePrompt())

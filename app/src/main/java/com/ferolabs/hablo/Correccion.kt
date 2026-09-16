@@ -24,6 +24,19 @@ object Correccion {
         "let's" to "let us"
     )
 
+    /**
+     * Contracciones AMBIGUAS que solo se igualan con sujeto delante: 's = is y
+     * 'd = would únicamente tras pronombre, wh- o there/here/that, nunca tras
+     * un nombre ("my brother's car" no se toca). Solo valen para ACEPTAR una
+     * respuesta; el diagnóstico y el chequeo de duplicados usan [sueltaEstricta].
+     * Hallazgo de la revisión del 2026-09-16: el mazo pedía "What's your name?"
+     * en "escribir" y marcaba mal "What is your name?" (24 frases del curso).
+     * Trade-off asumido: "he is got" pasaría por "he's got"; lo escribe nadie.
+     */
+    private val SUJETOS = listOf("i", "you", "he", "she", "it", "we", "they", "what", "who", "where", "when", "how", "why", "that", "there", "here")
+    private val AMBIGUAS: List<Pair<String, String>> =
+        SUJETOS.filter { it != "i" }.map { "$it's" to "$it is" } + SUJETOS.map { "$it'd" to "$it would" }
+
     private val UNIDADES = listOf(
         "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
         "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"
@@ -76,10 +89,17 @@ object Correccion {
         numeros(normalizeAnswer(text.replace('-', ' ').replace('\u2013', ' ')).split(" ").filter { it.isNotEmpty() })
             .joinToString(" ")
 
-    /** Como [fichas], y además expande contracciones ("I'm" = "I am"). */
-    fun suelta(text: String): String {
+    /** Como [fichas], y además expande las contracciones seguras ("I'm" = "I am"). Para diagnósticos y duplicados. */
+    fun sueltaEstricta(text: String): String {
         var t = " " + fichas(text) + " "
         for ((corta, larga) in CONTRACCIONES) t = t.replace(" $corta ", " $larga ")
+        return t.trim()
+    }
+
+    /** Como [sueltaEstricta], y además iguala 's = is y 'd = would tras sujeto ([AMBIGUAS]). Para ACEPTAR. */
+    fun suelta(text: String): String {
+        var t = " " + sueltaEstricta(text) + " "
+        for ((corta, larga) in AMBIGUAS) t = t.replace(" $corta ", " $larga ")
         return t.trim()
     }
 
@@ -94,7 +114,7 @@ object Correccion {
     fun igualaContracciones(modelo: String, text: String): String {
         val m = " " + fichas(modelo) + " "
         var t = " " + fichas(text) + " "
-        for ((corta, larga) in CONTRACCIONES) {
+        for ((corta, larga) in CONTRACCIONES + AMBIGUAS) {
             if (m.contains(" $corta ")) t = t.replace(" $larga ", " $corta ")
             else if (m.contains(" $larga ")) t = t.replace(" $corta ", " $larga ")
         }
@@ -116,7 +136,9 @@ object Correccion {
      */
     fun aceptaHueco(given: String, before: String, after: String, answer: String, accept: List<String>): Boolean {
         if (acepta(given, answer, accept)) return true
-        val frases = (listOf(answer) + accept).map { before + it + after }
+        val huecos = listOf(answer) + accept
+        // La frase completa, o el hueco con lo que le sigue, o con lo que le precede.
+        val frases = huecos.map { before + it + after } + huecos.map { it + after } + huecos.map { before + it }
         return acepta(given, frases[0], frases.drop(1))
     }
 
@@ -145,10 +167,10 @@ object Correccion {
      * muestra entonces solo la respuesta correcta).
      */
     fun diagnostico(given: String, answer: String, accept: List<String> = emptyList()): String? {
-        val g = suelta(given).split(" ").filter { it.isNotEmpty() }
+        val g = sueltaEstricta(given).split(" ").filter { it.isNotEmpty() }
         if (g.isEmpty()) return null
         val candidatas = listOf(answer) + accept
-        val e = candidatas.map { suelta(it).split(" ").filter { w -> w.isNotEmpty() } }
+        val e = candidatas.map { sueltaEstricta(it).split(" ").filter { w -> w.isNotEmpty() } }
             .minByOrNull { distancia(g, it) } ?: return null
         if (g == e) return null
 

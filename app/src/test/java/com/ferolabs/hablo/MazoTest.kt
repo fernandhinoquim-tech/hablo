@@ -2,6 +2,7 @@ package com.ferolabs.hablo
 
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
+import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import java.io.File
@@ -109,11 +110,11 @@ class MazoTest {
     @Test
     fun `marcas del contrarreloj y de aguanta`() {
         val m = nuevo()
-        val a = m.registrarMarca("b1", 30, 6)
+        val a = m.registrarMarca("b1", 30, 6)!!
         assertEquals(5.0, a.porPareja, 0.001)
-        val b = m.registrarMarca("b1", 24, 6)
+        val b = m.registrarMarca("b1", 24, 6)!!
         assertEquals(4.0, b.porPareja, 0.001)
-        val c = m.registrarMarca("b1", 40, 6)
+        val c = m.registrarMarca("b1", 40, 6)!!
         assertEquals(4.0, c.porPareja, 0.001)                 // la mejor sigue siendo la de 24 s
         assertEquals(3, m.marcas("b1").size)
         assertTrue(m.registrarAguanta(11))
@@ -127,6 +128,54 @@ class MazoTest {
         assertEquals(3, ad.size)
         assertEquals(3, ad.map { normalizeAnswer(it.answer) }.toSet().size)
         assertTrue(ad.all { it.es.isNotBlank() })
+    }
+
+    @Test
+    fun `la misma frase con otra puntuacion no entra dos veces y el mismo espanol da alternativas`() {
+        val m = nuevo()
+        val l = Lesson(
+            "t2l1", "Dos", Theory("t", "b", "x"),
+            listOf(
+                Exercise.TranslateChoose("t2l1e1", "Me llamo Fernando.", listOf("My name is Fernando", "I am Fernando"), "My name is Fernando"),
+                Exercise.WriteIt("t2l1e2", "Me llamo Fernando.", "My name is Fernando."),          // solo cambia el punto: no entra
+                Exercise.TranslateChoose("t2l1e3", "Trabajo en un banco.", listOf("I work at a bank", "I work a bank"), "I work at a bank"),
+                Exercise.WriteIt("t2l1e4", "Trabajo en un banco.", "I work in a bank."),           // mismo español, otro inglés: entra
+                Exercise.WriteIt("t2l1e5", "Tengo hambre.", "I am hungry.")
+            )
+        )
+        assertEquals(4, m.alimentar(l, "2026-09-16"))
+        val todos = m.todos()
+        val banco = m.item("t2l1e3")!!
+        // Escribir: la otra traducción del mismo español también vale.
+        val escribir = Repaso.ejercicioDe(banco.copy(escalon = 2), todos, null, Random(1)) as Exercise.WriteIt
+        assertTrue(escribir.accept.contains("I work in a bank."))
+        val oir = Repaso.ejercicioDe(banco.copy(escalon = 3), todos, null, Random(1)) as Exercise.TypeWhatYouHear
+        assertTrue(oir.accept.contains("I work in a bank."))
+        // Elegir: el gemelo nunca es señuelo.
+        val elegir = Repaso.ejercicioDe(banco.copy(escalon = 0), todos, null, Random(1)) as Exercise.TranslateChoose
+        assertFalse(elegir.options.contains("I work in a bank."))
+        // Armar: "I am" no sale como señuelo de "I am hungry." (ni "I'm").
+        val hambre = m.item("t2l1e5")!!
+        val armar = Repaso.ejercicioDe(hambre.copy(escalon = 1), todos, null, Random(1)) as Exercise.BuildSentence
+        assertTrue(armar.extraWords.none { normalizeAnswer(it) in setOf("i", "am", "i'm", "hungry") })
+    }
+
+    @Test
+    fun `aprendido exige haberlo dicho y las marcas cortas no cuentan`() {
+        val m = nuevo()
+        m.alimentar(leccion, "2026-09-16")
+        repeat(4) { k -> m.registrar("t1l1e1", true, "2026-09-2$k") }
+        assertEquals(4, m.item("t1l1e1")!!.caja)
+        assertFalse(m.item("t1l1e1")!!.aprendido)            // caja 4 pero todavía no lo dijo
+        m.registrar("t1l1e1", true, "2026-10-30")             // acierto estando en escalón 4: dicho
+        assertTrue(m.item("t1l1e1")!!.aprendido)
+        assertNull(m.registrarMarca("b", 3, 2))               // ronda corta: no es marca
+        assertEquals(0, m.marcas("b").size)
+        assertEquals(5.0, m.registrarMarca("b", 30, 6)!!.porPareja, 0.001)
+        // Un error del cuaderno se retira por ejercicio, no por día.
+        m.registrarCorreccion(m.claveFallo("a1u4l1e10", "2026-09-12", "x"), true)
+        m.registrarCorreccion(m.claveFallo("a1u4l1e10", "2026-09-14", "y"), true)
+        assertTrue(m.corregido(m.claveFallo("a1u4l1e10", "2026-09-15", "z")))
     }
 
     @Test

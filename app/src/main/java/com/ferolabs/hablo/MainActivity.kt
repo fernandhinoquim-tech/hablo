@@ -341,7 +341,9 @@ fun HabloApp(
                                 progreso = progreso,
                                 // Solo la charla libre lleva memoria; los escenarios arrancan limpios.
                                 memoria = if (scenario.id == Scenario.LIBRE.id) memoria else null,
-                                claude = claude,
+                                // El resumen va por Claude solo si Fero eligió Claude: con Gemini o la IA
+                                // del teléfono no se manda nada a Anthropic (regla dura 1).
+                                claude = if (engineId.startsWith("claude")) claude else null,
                                 onBack = {
                                     speaker.stop()
                                     listener.stopRecording()

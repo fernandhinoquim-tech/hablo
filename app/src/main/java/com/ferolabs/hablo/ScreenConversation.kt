@@ -92,6 +92,8 @@ fun ConversationScreen(
 ) {
     val accent = Color(teacher.color)
     val libre = memoria != null
+    // Al salir a mitad de respuesta, lo que llegue después no se lee ni se anota.
+    val cerrada = remember { java.util.concurrent.atomic.AtomicBoolean(false) }
     val bubbles = remember { mutableStateListOf<Bubble>() }
     val history = remember { mutableStateListOf<Pair<String, String>>() }
     var draft by remember { mutableStateOf("") }
@@ -122,6 +124,7 @@ fun ConversationScreen(
     }
     DisposableEffect(Unit) {
         onDispose {
+            cerrada.set(true)
             speaker.stop()
             listener.stopRecording()
             listener.releaseConversation()
@@ -146,8 +149,9 @@ fun ConversationScreen(
         val idx = bubbles.size - 1
         var partial = ""
         var spokenUpTo = 0   // hasta dónde de la parte en inglés ya se mandó a leer
-        val onToken: (String) -> Unit = { piece ->
+        val onToken: (String) -> Unit = tok@{ piece ->
             partial += piece
+            if (cerrada.get()) return@tok
             val english = visibleEnglish(partial)
             bubbles[idx] = Bubble(fromTeacher = true, text = english, streaming = true)
             // Leer frase por frase apenas termina cada una: la profesora
@@ -160,17 +164,20 @@ fun ConversationScreen(
         }
         val finish = {
             val (english, correction) = splitReply(partial)
-            bubbles[idx] = Bubble(fromTeacher = true, text = english, correctionEs = correction)
             // exactamente lo generado (sin recortar): la memoria del modelo
             // local tiene esos tokens y el siguiente turno se apoya en ellos
             history.add("assistant" to partial)
-            val rest = if (spokenUpTo < english.length) english.substring(spokenUpTo).trim() else ""
-            if (rest.isNotBlank()) sayQueued(rest)
-            // La corrección se LEE, no se oye: Fero probó la voz española y la
-            // rechazó ("no me gusta el cambio de voz"). Se anota para el informe.
-            if (!correction.isNullOrBlank()) {
-                progreso.anotarCorreccion(correction)
-                memoria?.anotarError(correction)
+            if (!cerrada.get()) {
+                bubbles[idx] = Bubble(fromTeacher = true, text = english, correctionEs = correction)
+                val rest = if (spokenUpTo < english.length) english.substring(spokenUpTo).trim() else ""
+                if (rest.isNotBlank()) sayQueued(rest)
+                // La corrección se LEE, no se oye: Fero probó la voz española y la
+                // rechazó ("no me gusta el cambio de voz"). Se anota para el informe.
+                // Si la pantalla ya se cerró, la respuesta venía truncada: no se anota.
+                if (!correction.isNullOrBlank()) {
+                    progreso.anotarCorreccion(correction)
+                    memoria?.anotarError(correction)
+                }
             }
         }
         val motor = actual
@@ -234,8 +241,10 @@ fun ConversationScreen(
                 style = MaterialTheme.typography.labelMedium,
                 color = accent
             )
-            if (libre && memoria.hayAlgo()) Text(
-                "${teacher.name} se acuerda de lo básico de tus charlas anteriores.",
+            if (libre) Text(
+                (if (memoria.hayAlgo()) "${teacher.name} se acuerda de lo básico de tus charlas anteriores. " else "") +
+                    (if (claude != null) "Al salir con ← guarda lo básico de esta charla."
+                    else "Con ${actual.label} solo guarda tus errores, no lo que le cuentes."),
                 style = MaterialTheme.typography.labelSmall,
                 color = InkSoft
             )
@@ -580,8 +589,9 @@ private fun cerrarCharlaLibre(memoria: Memoria, claude: ClaudeLlm, history: List
             appendLine("$quien: ${text.take(400)}")
         }
     }
+    val gen = memoria.generacion
     claude.resumir(system, user) { texto ->
-        if (texto == null || !memoria.aplicarRespuesta(texto)) {
+        if (texto == null || !memoria.aplicarRespuesta(texto, gen)) {
             android.util.Log.w("HabloMemoria", "resumen no aplicado; se conserva la ficha anterior")
         }
     }

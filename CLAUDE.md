@@ -380,6 +380,31 @@ pantalla de lección con un `ModoLeccion` (LECCION / REPASO / AGUANTA) y una
   ítems del mazo con escalón > 0, hasta 60), se corta al tercer error; sin
   puntos: "Llegaste a N · tu marca es M" (`Mazo.registrarAguanta`).
 
+**Revisión adversarial del 2026-09-16 (workflow de 4 lentes + verificadores)
+y lo que cambió (0.9.4):** (1) `Correccion.suelta` iguala **'s = is y 'd =
+would solo tras sujeto** (pronombre, wh-, that/there/here; nunca tras un
+nombre): el mazo pedía "What's your name?" en "escribir" y marcaba mal "What
+is your name?" (24 frases del curso). El diagnóstico y el chequeo de
+duplicados usan `sueltaEstricta` (sin esa igualación). Trade-off asumido:
+"he is got" pasaría por "he's got". (2) Sin tildes en `normalizeAnswer`
+("Bogota" = "Bogotá"), también en el `normaliza` de checkContent. (3) El mazo
+no duplica frases que solo cambian en puntuación, y dos ítems con el MISMO
+español (a1u3l1e4 "I work at a bank" / a1u6l2e1 "I work in a bank.") se
+aceptan mutuamente y nunca son señuelo uno del otro; "armar" no usa como
+señuelo la contracción/forma larga de la propia frase y se evalúa con
+`Correccion.acepta`. (4) `TypeWhatYouHear` lleva `accept` (el mazo lo llena).
+(5) Contrarreloj: cada ronda con `key(vuelta)` (dos rondas con las mismas
+parejas nacían "terminadas" y sin botón); rondas de < 4 parejas no fijan
+marca. (6) "Aprendido" exige haberlo DICHO (acierto en el último escalón).
+(7) Un error del cuaderno se retira por ejercicio, no por día. (8) Memoria:
+contador de generación (un resumen que llega después de "olvidar todo" no
+revive la ficha); al salir a mitad de respuesta no se lee ni se anota lo
+truncado; el resumen por Haiku solo si el motor elegido es Claude (con Gemini
+o la IA del teléfono solo se guardan los errores, y la cabecera lo dice).
+(9) Hueco: vale también "works in a hospital" / "She works". Refutados (no
+tocar): las explicaciones en español en la charla libre no son "errores"
+falsos; ver `subagents/workflows/wf_bd4683cb-21f`.
+
 **Formato de `vocabulario.json` (lo escribe Cowork, se anexa con
 `tools/content/anexar_vocabulario.py`):** `{"bancos": [{"id": "casa-a1",
 "title": "🏠 La casa · A1", "level": "A1", "pares": [{"en": "kitchen", "es":

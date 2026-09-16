@@ -250,10 +250,10 @@ fun LessonScreen(
     fun evaluate(): Boolean = when (ex) {
         is Exercise.ListenChoose -> chosen == ex.answerIndex
         is Exercise.TranslateChoose -> chosen == ex.answerIndex
-        is Exercise.BuildSentence ->
-            normalizeAnswer(built.joinToString(" ") { bank[it] }) == normalizeAnswer(ex.answer)
+        // Armar: la variante contraída o larga vale igual (los señuelos pueden traerla).
+        is Exercise.BuildSentence -> Correccion.acepta(built.joinToString(" ") { bank[it] }, ex.answer, emptyList())
         // Dictado: contracciones y números valen igual ("doesn't" = "does not", "4" = "four").
-        is Exercise.TypeWhatYouHear -> Correccion.acepta(typed, ex.audio, emptyList())
+        is Exercise.TypeWhatYouHear -> Correccion.acepta(typed, ex.audio, ex.accept)
         is Exercise.SpeakIt -> speakResult?.entendida == true
         is Exercise.WriteIt -> Correccion.acepta(typed, ex.answer, ex.accept)
         // Vale la palabra del hueco sola o la frase completa (la pantalla la muestra como "la correcta").
@@ -267,7 +267,7 @@ fun LessonScreen(
 
     /** Qué falló, en español, para dictado, write y cloze. Null si no hay nada concreto que decir. */
     fun diagnosis(): String? = when (ex) {
-        is Exercise.TypeWhatYouHear -> Correccion.diagnostico(typed, ex.audio)
+        is Exercise.TypeWhatYouHear -> Correccion.diagnostico(typed, ex.audio, ex.accept)
         is Exercise.WriteIt -> Correccion.diagnostico(typed, ex.answer, ex.accept)
         is Exercise.Cloze -> Correccion.diagnosticoHueco(typed, ex.before, ex.after, ex.answer, ex.accept)
         is Exercise.FixIt -> ex.hueco?.let { Correccion.diagnosticoHueco(typed, it.before, it.after, ex.answer, ex.accept) }

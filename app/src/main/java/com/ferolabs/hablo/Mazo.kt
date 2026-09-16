@@ -38,10 +38,12 @@ class Mazo(private val file: File) {
         val proximo: String,     // yyyy-MM-dd
         val vistas: Int,
         val aciertos: Int,
-        val creado: String
+        val creado: String,
+        /** Ya lo dijo bien en voz alta (acertó estando en el último escalón). */
+        val dicho: Boolean = false
     ) {
-        /** Aprendido = llegó arriba de la escalera (lo produjo, no solo lo reconoció) y a la última caja. */
-        val aprendido: Boolean get() = escalon >= ESCALERA.size - 1 && caja >= INTERVALOS.size - 1
+        /** Aprendido = lo DIJO (no solo lo reconoció) y llegó a la última caja. */
+        val aprendido: Boolean get() = dicho && caja >= INTERVALOS.size - 1
     }
 
     /** Un tiempo del contrarreloj: fecha, segundos y cuántas parejas. */
@@ -78,7 +80,7 @@ class Mazo(private val file: File) {
                         o.optInt("caja", 0).coerceIn(0, INTERVALOS.size - 1),
                         o.optInt("escalon", 0).coerceIn(0, ESCALERA.size - 1),
                         o.optString("proximo", hoy()), o.optInt("vistas", 0), o.optInt("aciertos", 0),
-                        o.optString("creado", hoy())
+                        o.optString("creado", hoy()), o.optBoolean("dicho", false)
                     )
                 }
             }
@@ -112,6 +114,7 @@ class Mazo(private val file: File) {
                             JSONObject().put("id", it.id).put("en", it.en).put("es", it.es)
                                 .put("caja", it.caja).put("escalon", it.escalon).put("proximo", it.proximo)
                                 .put("vistas", it.vistas).put("aciertos", it.aciertos).put("creado", it.creado)
+                                .put("dicho", it.dicho)
                         )
                     }
                 })
@@ -145,7 +148,9 @@ class Mazo(private val file: File) {
         for (ex in lesson.exercises) {
             val (en, es) = parDe(ex) ?: continue
             if (items.containsKey(ex.id)) continue
-            if (items.values.any { it.en.equals(en, ignoreCase = true) }) continue   // la misma frase con otro id
+            // La misma frase con otro id, aunque cambie solo la puntuación ("My name is Fernando" / "…Fernando.").
+            val clave = Correccion.sueltaEstricta(en)
+            if (items.values.any { Correccion.sueltaEstricta(it.en) == clave }) continue
             items[ex.id] = Item(ex.id, en, es, 0, 0, sumarDias(hoy, INTERVALOS[0]), 0, 0, hoy)
             nuevos++
         }
@@ -194,15 +199,20 @@ class Mazo(private val file: File) {
         items[id] = it.copy(
             caja = caja, escalon = escalon,
             proximo = sumarDias(hoy, INTERVALOS[caja]),
-            vistas = it.vistas + 1, aciertos = it.aciertos + if (acierto) 1 else 0
+            vistas = it.vistas + 1, aciertos = it.aciertos + if (acierto) 1 else 0,
+            dicho = it.dicho || (acierto && it.escalon >= ESCALERA.size - 1)
         )
         guardar()
     }
 
     // -------------------------------------------------- corrige tu propio error
 
-    /** Clave de un fallo del cuaderno: ejercicio + fecha + lo que puso. */
-    fun claveFallo(ejercicio: String, fecha: String, tuya: String) = "$ejercicio|$fecha|${tuya.trim().lowercase(Locale.US)}"
+    /**
+     * Clave de un fallo del cuaderno: el ejercicio (si lo hay). Así un ejercicio
+     * fallado varios días es UN error que se retira una vez, no una copia por día.
+     */
+    fun claveFallo(ejercicio: String, fecha: String, tuya: String) =
+        if (ejercicio.isNotBlank()) ejercicio else "$fecha|${tuya.trim().lowercase(Locale.US)}"
 
     /** ¿Ese fallo ya lo corrigió él mismo las veces necesarias? */
     @Synchronized
@@ -217,15 +227,22 @@ class Mazo(private val file: File) {
 
     // ---------------------------------------------------------- contrarreloj
 
-    /** Guarda un tiempo del contrarreloj y devuelve la mejor marca (segundos por pareja) de ese banco. */
+    /**
+     * Guarda un tiempo del contrarreloj y devuelve la mejor marca (segundos por
+     * pareja) de ese banco. Una ronda de menos de [MIN_PAREJAS_MARCA] parejas (el
+     * resto de un banco, o las que vuelven) no cuenta: 1 pareja en 0 s sería una
+     * "marca" que ninguna ronda de 8 podría bajar. Devuelve null si no hay marca.
+     */
     @Synchronized
-    fun registrarMarca(banco: String, segundos: Int, parejas: Int): Marca {
+    fun registrarMarca(banco: String, segundos: Int, parejas: Int): Marca? {
         cargar()
-        val lista = marcas.getOrPut(banco) { ArrayList() }
-        lista.add(Marca(hoy(), segundos, parejas))
-        while (lista.size > MAX_MARCAS) lista.removeAt(0)
-        guardar()
-        return lista.minByOrNull { it.porPareja }!!
+        if (parejas >= MIN_PAREJAS_MARCA) {
+            val lista = marcas.getOrPut(banco) { ArrayList() }
+            lista.add(Marca(hoy(), segundos, parejas))
+            while (lista.size > MAX_MARCAS) lista.removeAt(0)
+            guardar()
+        }
+        return marcas[banco]?.minByOrNull { it.porPareja }
     }
 
     @Synchronized
@@ -260,6 +277,7 @@ class Mazo(private val file: File) {
         val ESCALERA = listOf("elegir", "armar", "escribir", "oír y escribir", "decir")
         const val MAX_SESION = 20
         const val MAX_MARCAS = 30
+        const val MIN_PAREJAS_MARCA = 4
         /** Un error del cuaderno se retira cuando él lo corrige bien dos veces. */
         const val VECES_PARA_RETIRAR = 2
 

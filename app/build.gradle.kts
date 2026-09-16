@@ -1,3 +1,4 @@
+import java.text.Normalizer
 import java.io.File
 import java.net.URI
 import java.util.zip.ZipEntry
@@ -357,7 +358,9 @@ val checkContent = tasks.register("checkContent") {
                             return out
                         }
                         fun normaliza(t: String): String {
-                            var x = " " + t.lowercase().replace('-', ' ').replace('\u2013', ' ').replace("\u2019", "'")
+                            // Sin tildes, como normalizeAnswer en Content.kt ("Bogota" = "Bogota con tilde").
+                            val sinTildes = Normalizer.normalize(t.lowercase(), Normalizer.Form.NFD).replace(Regex("\\p{Mn}+"), "")
+                            var x = " " + sinTildes.replace('-', ' ').replace('\u2013', ' ').replace("\u2019", "'")
                                 .filter { it.isLetterOrDigit() || it == ' ' || it == '\'' }.trim().replace(Regex("\\s+"), " ") + " "
                             for ((corta, larga) in contracciones) x = x.replace(" $corta ", " $larga ")
                             return numeros(x.trim().split(" ").filter { it.isNotEmpty() }).joinToString(" ")
@@ -527,8 +530,8 @@ android {
         applicationId = "com.ferolabs.hablo"
         minSdk = 26
         targetSdk = 35
-        versionCode = 12
-        versionName = "0.9.3"
+        versionCode = 13
+        versionName = "0.9.4"
 
         // Solo el procesador del S25 Ultra. De paso el APK deja de llevar las
         // copias de sherpa-onnx y ONNX Runtime para x86/armv7 (~100 MB menos).

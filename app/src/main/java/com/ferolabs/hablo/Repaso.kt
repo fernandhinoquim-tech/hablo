@@ -20,30 +20,38 @@ object Repaso {
 
     /** El ejercicio de un ítem en su escalón. [otros] dan opciones y señuelos; [original] las alternativas válidas. */
     fun ejercicioDe(item: Mazo.Item, otros: List<Mazo.Item>, original: Exercise?, rnd: Random = Random.Default): Exercise {
-        val accept = when (original) {
+        val enClave = Correccion.sueltaEstricta(item.en)
+        val esClave = normalizeAnswer(item.es)
+        // Otro ítem con el MISMO español ("Trabajo en un banco." → "I work at a bank" / "I work in a bank."):
+        // su inglés también vale, y nunca sirve de señuelo.
+        val gemelos = otros.filter { it.id != item.id && normalizeAnswer(it.es) == esClave && Correccion.sueltaEstricta(it.en) != enClave }
+        val accept = (when (original) {
             is Exercise.WriteIt -> original.accept
             is Exercise.Cloze -> original.accept.map { original.before + it + original.after }
             else -> emptyList()
+        } + gemelos.map { it.en }).distinctBy { Correccion.sueltaEstricta(it) }.filter { Correccion.sueltaEstricta(it) != enClave }
+        val ajenos = otros.filter {
+            it.id != item.id && Correccion.sueltaEstricta(it.en) != enClave && normalizeAnswer(it.es) != esClave
         }
-        val ajenos = otros.filter { it.id != item.id && !it.en.equals(item.en, ignoreCase = true) }
         return when (item.escalon) {
             0 -> {
                 // Elegir: dos señuelos de otros ítems, los de largo más parecido.
                 val senuelos = ajenos.sortedBy { kotlin.math.abs(it.en.length - item.en.length) }
-                    .map { it.en }.distinct().take(2)
+                    .distinctBy { Correccion.sueltaEstricta(it.en) }.map { it.en }.take(2)
                 if (senuelos.size < 1) Exercise.WriteIt(item.id, item.es, item.en, accept)
                 else Exercise.TranslateChoose(item.id, item.es, (senuelos + item.en).shuffled(rnd), item.en)
             }
             1 -> {
-                // Armar: dos o tres palabras de otro ítem que no estén en la frase.
-                val propias = item.en.split(" ").map { normalizeAnswer(it) }.toSet()
+                // Armar: dos o tres palabras de otro ítem que no estén en la frase (ni como
+                // contracción ni como forma larga: "I'm" no es señuelo de "I am").
+                val propias = Correccion.suelta(item.en).split(" ").toSet() + item.en.split(" ").map { normalizeAnswer(it) }
                 val extra = ajenos.shuffled(rnd).flatMap { it.en.split(" ") }
-                    .filter { normalizeAnswer(it) !in propias && it.isNotBlank() }
+                    .filter { w -> w.isNotBlank() && normalizeAnswer(w) !in propias && Correccion.suelta(w).split(" ").none { it in propias } }
                     .distinctBy { normalizeAnswer(it) }.take(3)
                 Exercise.BuildSentence(item.id, item.es, item.en, extra)
             }
             2 -> Exercise.WriteIt(item.id, item.es, item.en, accept)
-            3 -> Exercise.TypeWhatYouHear(item.id, item.en, item.es)
+            3 -> Exercise.TypeWhatYouHear(item.id, item.en, item.es, accept = accept)
             else -> Exercise.SpeakIt(item.id, item.en, Sound.GENERAL)   // decir: sin reloj, sin GOP
         }
     }
@@ -66,7 +74,7 @@ object Repaso {
             if (f.tuya.isBlank() || f.correcta.isBlank()) continue
             if (Correccion.acepta(f.tuya, f.correcta, emptyList())) continue   // no era error
             val clave = mazo.claveFallo(f.ejercicio, f.fecha, f.tuya)
-            if (mazo.corregido(clave) || !vistos.add(f.ejercicio)) continue
+            if (mazo.corregido(clave) || !vistos.add(clave)) continue
             val orig = if (f.ejercicio.isNotBlank()) buscar(f.ejercicio) else null
             val fix = when (orig) {
                 is Exercise.Cloze -> Exercise.FixIt(

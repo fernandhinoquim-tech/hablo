@@ -87,7 +87,9 @@ sealed class Exercise {
         override val id: String,
         val audio: String,
         val meaningEs: String,
-        override val tip: String? = null
+        override val tip: String? = null,
+        /** Otras formas válidas (el mazo las pone: la otra traducción del mismo español). */
+        val accept: List<String> = emptyList()
     ) : Exercise()
 
     /** Lo dices en voz alta y se te puntúa palabra por palabra. */
@@ -506,10 +508,10 @@ object Course {
         if (answer.isBlank()) throw IllegalArgumentException("$where: falta \"answer\"")
         // Con contracciones expandidas: "I'm fine" y "I am fine" son la misma respuesta.
         val vistas = HashSet<String>()
-        vistas.add(Correccion.suelta(answer))
+        vistas.add(Correccion.sueltaEstricta(answer))
         for (a in accept) {
             if (a.isBlank()) throw IllegalArgumentException("$where: \"accept\" tiene una entrada vacía")
-            if (!vistas.add(Correccion.suelta(a))) throw IllegalArgumentException("$where: \"accept\" repite la respuesta o se repite: \"$a\"")
+            if (!vistas.add(Correccion.sueltaEstricta(a))) throw IllegalArgumentException("$where: \"accept\" repite la respuesta o se repite: \"$a\"")
         }
     }
 
@@ -648,9 +650,10 @@ object Course {
     private const val TAG = "HabloCourse"
 }
 
-/** Normaliza texto para comparar respuestas escritas o habladas. */
+/** Normaliza texto para comparar respuestas escritas o habladas. Sin tildes: "Bogota" = "Bogotá". */
 fun normalizeAnswer(text: String): String =
-    text.lowercase()
+    java.text.Normalizer.normalize(text.lowercase(), java.text.Normalizer.Form.NFD)
+        .replace(Regex("\\p{Mn}+"), "")
         .replace("’", "'")
         .filter { it.isLetterOrDigit() || it == ' ' || it == '\'' }
         .trim()
