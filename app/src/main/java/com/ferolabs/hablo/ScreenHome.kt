@@ -142,7 +142,7 @@ fun HomeScreen(
 
         item {
             Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                StatBox("Racha", "$streak", if (streak > 0) "días 🔥" else "empieza hoy", Modifier.weight(1f))
+                StatBox("Racha", "$streak", if (streak == 1) "día 🔥" else if (streak > 1) "días 🔥" else "empieza hoy", Modifier.weight(1f))
                 StatBox("Puntos", "$xp", "XP", Modifier.weight(1f))
                 StatBox(
                     "Hoy",

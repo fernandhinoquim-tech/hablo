@@ -241,7 +241,7 @@ class Progreso(context: Context) {
         val pendientes = Course.allLessons().filter { store.bestScore(it.id) == 0 }
         b.appendLine("- Días que he practicado: **${diario.size}**" +
             (if (diario.isNotEmpty()) " (del ${diario.keys.first()} al ${diario.keys.last()})" else ""))
-        b.appendLine("- Racha actual: ${racha(store.streak)} · ${store.xp} puntos")
+        b.appendLine("- Racha actual: ${racha(store.streak).removePrefix("racha de ")} · ${store.xp} puntos")
         b.appendLine("- Lecciones hechas: **${hechas.size} de ${Course.allLessons().size}** (" +
             Course.levels.joinToString(" · ") { lv ->
                 val todas = lv.units.flatMap { it.lessons }
