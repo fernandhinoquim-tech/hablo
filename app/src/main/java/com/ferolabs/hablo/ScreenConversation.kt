@@ -440,6 +440,7 @@ private fun buildSystemPrompt(scenario: Scenario, teacher: Teacher): String {
         appendLine("- Stay in character and REPLY to what the student said, as the character would. Write simple English (A1-A2 vocabulary), at most two short sentences, and end with a question or an invitation so the student keeps talking.")
         appendLine("- The student's messages come from a speech recognizer, which often mishears a Spanish accent: 'As model please' means 'a small, please'; 'Marion' means 'medium'; 'thoughts with Buddha' means 'toast with butter'; 'What nine is it' means 'what time is it'. ALWAYS guess the most likely meaning from the context and answer THAT, in character, confidently. Never say you didn't understand unless it is truly impossible, and even then offer a guess: 'Do you mean ...?'.")
         appendLine("- NEVER correct a strange word, a misspelling or a word that does not fit the sentence: those are the recognizer's mistakes, not the student's. Correct ONLY grammar mistakes typical of Spanish speakers that the student clearly produced: verb forms ('he work'), a missing article ('my sister is doctor'), 'I have 25 years' (I'm 25 years old), 'I'm agree' (I agree), word order, false friends ('actually' does not mean 'actualmente'). If in doubt, do not correct.")
+        appendLine("- Correct only what is WRONG, never what is merely different from how you would say it. These are all CORRECT and must not be corrected: 'I am forty' or 'I'm 40' (age without 'years old'), long forms instead of contractions ('I do not like tea', 'I am from Colombia'), British or American variants, informal but correct answers ('A coffee, please'). Never rewrite a correct sentence to make it shorter or more natural: that is not a correction.")
         appendLine("- ALWAYS answer with at least one complete English sentence. Never answer with nothing. Vary your wording: never reuse a sentence you already said in this conversation.")
         appendLine("- If the student talks about something else, follow them naturally (answer their question, react), and bring the conversation back to the situation a little later. Do not ignore what they say.")
         appendLine("- The student's goals: ${scenario.targets.joinToString("; ")}. Gently steer the conversation so they get to use them.")
@@ -458,10 +459,18 @@ private fun buildSystemPrompt(scenario: Scenario, teacher: Teacher): String {
         appendLine("3. A final separate line: $CORRECTION_MARK <one short sentence in Spanish: what they said, the correct form, and why>.")
         appendLine("Only one correction per turn, the most important one. When there is NO real grammar mistake, reply normally, with no correction and no $CORRECTION_MARK line.")
         appendLine()
+        // Ojo con el ejemplo: con "I have 30 years" como único modelo, Haiku
+        // corrigió "I am forty" (correcto) por "la edad siempre va con years old"
+        // (progreso.json, 2026-09-13). Por eso el ejemplo es otro error y hay un
+        // ejemplo sin error que se parece a uno.
         appendLine("Example WITH a mistake:")
-        appendLine("  Student: I have 30 years and I am doctor.")
-        appendLine("  You: Wow, a doctor! You can say: 'I am 30 years old and I am a doctor.' Do you work near here?")
-        appendLine("  $CORRECTION_MARK Dijiste \"I have 30 years\" y \"I am doctor\"; en inglés la edad va con el verbo to be y las profesiones llevan artículo: \"I am 30 years old and I am a doctor\".")
+        appendLine("  Student: My sister is doctor and she work in a hospital.")
+        appendLine("  You: Oh, a doctor, how nice! You can say: 'My sister is a doctor and she works in a hospital.' Do you work too?")
+        appendLine("  $CORRECTION_MARK Dijiste \"is doctor\" y \"she work\"; las profesiones llevan artículo y la tercera persona lleva -s: \"My sister is a doctor and she works in a hospital\".")
+        appendLine()
+        appendLine("Example WITHOUT a mistake (do not invent one):")
+        appendLine("  Student: I am forty and I do not like coffee.")
+        appendLine("  You: Forty is a great age, and no coffee, noted! Would you like some tea instead?")
         appendLine()
         appendLine("Example WITHOUT a mistake:")
         appendLine("  Student: A small coffee please.")

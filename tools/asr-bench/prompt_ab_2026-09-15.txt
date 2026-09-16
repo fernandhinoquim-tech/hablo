@@ -1,0 +1,89 @@
+claude-haiku-4-5 viejo MAL [I am forty] -> Wow, forty! You can say: 'I am 40 years old.' That's great! Where are you from? /  / CORRECCIÓN: Dijiste "I am forty" sin decir la edad correctamente; en inglés se dice "
+claude-haiku-4-5 viejo MAL [I am forty] -> Oh, forty! That's a nice age. You can say: "I am 40 years old" — that's how we say it in English. Where are you from? /  / CORRECCIÓN: Dijiste "I am forty" sin el context
+claude-haiku-4-5 viejo MAL [I am forty] -> Oh, you're 40 years old—that's wonderful! You can say: "I am 40 years old" instead of "I have 40 years." /  / CORRECCIÓN: Dijiste "I am forty" sin decir "years old"; en i
+claude-haiku-4-5 viejo MAL [My name is Fero and I am forty years old] -> Nice to meet you, Fero! You can say: 'I'm 40 years old.' Where are you from? /  / CORRECCIÓN: Dijiste "I have forty years"; en inglés la edad se expresa con "to be": "I'm
+claude-haiku-4-5 viejo MAL [My name is Fero and I am forty years old] -> Nice to meet you, Fero! That's wonderful. You can say: "I am 40 years old" — we don't say "I have" for age in English. Where are you from? /  / CORRECCIÓN: Dijiste "I hav
+claude-haiku-4-5 viejo MAL [My name is Fero and I am forty years old] -> Nice to meet you, Fero! You can say: 'I am 40 years old.' Where are you from? /  / CORRECCIÓN: Dijiste "I have forty years"; en inglés la edad se expresa con el verbo to 
+claude-haiku-4-5 viejo MAL [I'm 40 and I am from Colombia] -> That's wonderful! Colombia is beautiful. You can say: 'I'm 40 years old and I'm from Colombia.' What do you do there—do you work or study? /  / CORRECCIÓN: Dijiste "I'm 4
+claude-haiku-4-5 viejo MAL [I'm 40 and I am from Colombia] -> That's wonderful! Colombia is beautiful. You can say: 'I'm 40 years old and I'm from Colombia.' What do you do for work? /  / CORRECCIÓN: Dijiste "I'm 40", pero es más co
+claude-haiku-4-5 viejo MAL [I'm 40 and I am from Colombia] -> Oh, how wonderful! Colombia is beautiful—I'd love to visit someday. You can say: "I'm 40 years old and I'm from Colombia." What do you do for work? /  / CORRECCIÓN: Dijis
+claude-haiku-4-5 viejo OK  [I do not like coffee, I like tea] -> Oh, tea is great! I love tea too. What kind of tea do you like—green tea, black tea, or something else?
+claude-haiku-4-5 viejo OK  [I do not like coffee, I like tea] -> Oh, tea is great! I love tea too—it's so relaxing. Are you from here, or are you visiting the park today?
+claude-haiku-4-5 viejo OK  [I do not like coffee, I like tea] -> Oh, tea is wonderful! I love tea too, especially in the afternoon. Are you drinking tea right now, or do you prefer it at home?
+claude-haiku-4-5 viejo OK  [I have forty years] -> That's great! You can say: "I'm forty years old." So, where are you from? /  / CORRECCIÓN: Dijiste "I have forty years", pero en inglés la edad se expresa con el verbo "t
+claude-haiku-4-5 viejo OK  [I have forty years] -> You can say: "I'm 40 years old." That's great! Where are you from? /  / CORRECCIÓN: Dijiste "I have forty years", pero en inglés la edad se expresa con el verbo "to be": 
+claude-haiku-4-5 viejo OK  [I have forty years] -> You can say: 'I'm 40 years old.' That's wonderful! Where are you from? /  / CORRECCIÓN: Dijiste "I have forty years", pero en inglés la edad se expresa con el verbo "to b
+claude-haiku-4-5 viejo OK  [My sister is doctor and she work in a bank] -> Oh, that's wonderful! You can say: 'My sister is a doctor and she works in a bank.' Does she like her job? /  / CORRECCIÓN: Dijiste "My sister is doctor" y "she work"; la
+claude-haiku-4-5 viejo OK  [My sister is doctor and she work in a bank] -> That's interesting! You can say: 'My sister is a doctor and she works in a bank.' Does she like her job? /  / CORRECCIÓN: Dijiste "My sister is doctor" y "she work"; las 
+claude-haiku-4-5 viejo OK  [My sister is doctor and she work in a bank] -> That's interesting! You can say: 'My sister is a doctor and she works in a bank.' Does she like her job? /  / CORRECCIÓN: Dijiste "My sister is doctor" y "she work"; las 
+claude-haiku-4-5 viejo MAL [I am agree with you] -> That's sweet of you! But tell me, what's your name so we can get to know each other better?
+claude-haiku-4-5 viejo MAL [I am agree with you] -> That's sweet of you! But tell me—what's your name, so I can know you better?
+claude-haiku-4-5 viejo OK  [I am agree with you] -> That's sweet of you! But tell me, what's your name so we can be friends? /  / CORRECCIÓN: Dijiste "I am agree" pero en inglés se dice solo "I agree" sin el verbo "am" — e
+claude-haiku-4-5 nuevo OK  [I am forty] -> Forty is a wonderful age! I'm thirty-five myself. Where are you from?
+claude-haiku-4-5 nuevo OK  [I am forty] -> Forty is a wonderful age! Where are you from?
+claude-haiku-4-5 nuevo OK  [I am forty] -> Forty is a wonderful age! I'm curious—where are you from?
+claude-haiku-4-5 nuevo OK  [My name is Fero and I am forty years old] -> Nice to meet you, Fero! Forty is a wonderful age. Where are you from?
+claude-haiku-4-5 nuevo OK  [My name is Fero and I am forty years old] -> Nice to meet you, Fero! Forty is a wonderful age. Where are you from?
+claude-haiku-4-5 nuevo OK  [My name is Fero and I am forty years old] -> Nice to meet you, Fero! Forty is a wonderful age. Where are you from?
+claude-haiku-4-5 nuevo OK  [I'm 40 and I am from Colombia] -> Oh, how wonderful! Colombia is beautiful, and forty is a great age. What's your name?
+claude-haiku-4-5 nuevo OK  [I'm 40 and I am from Colombia] -> Oh, wonderful! Colombia is beautiful—I'd love to visit someday! What do you do, or what's your job?
+claude-haiku-4-5 nuevo OK  [I'm 40 and I am from Colombia] -> That's wonderful! Colombia is beautiful—I'd love to visit someday. So you're forty years old and from Colombia, that's great! What do you do, are you a student or do you 
+claude-haiku-4-5 nuevo MAL [I do not like coffee, I like tea] -> Oh, tea is wonderful! You can say: 'I don't like coffee, I like tea.' /  / CORRECCIÓN: Dijiste "I do not like coffee" que es correcto, pero es más natural usar la forma c
+claude-haiku-4-5 nuevo MAL [I do not like coffee, I like tea] -> Oh, tea is wonderful! You can say: 'I don't like coffee, I like tea.' /  / CORRECCIÓN: Dijiste "I do not like coffee" que es correcto pero muy formal; en conversación cas
+claude-haiku-4-5 nuevo OK  [I do not like coffee, I like tea] -> That's great! Tea is very good and healthy too. What kind of tea do you like — green tea, black tea, or something else?
+claude-haiku-4-5 nuevo OK  [I have forty years] -> You can say: 'I'm forty years old' or just 'I'm forty.' That's wonderful! /  / CORRECCIÓN: Dijiste "I have forty years", pero en inglés se dice "I'm forty years old" o si
+claude-haiku-4-5 nuevo OK  [I have forty years] -> You can say: "I'm forty years old" or just "I'm forty." /  / That's wonderful! CORRECCIÓN: Dijiste "I have forty years", pero en inglés decimos "I'm forty years old" o si
+claude-haiku-4-5 nuevo OK  [I have forty years] -> You're forty, that's wonderful! You can say: "I'm forty years old" or just "I'm forty." /  / Where are you from? /  / CORRECCIÓN: Dijiste "I have forty years"; en inglés 
+claude-haiku-4-5 nuevo OK  [My sister is doctor and she work in a bank] -> Oh, a doctor, how nice! You can say: 'My sister is a doctor and she works in a bank.' That's interesting—does she like her job? /  / CORRECCIÓN: Dijiste "is doctor" y "sh
+claude-haiku-4-5 nuevo OK  [My sister is doctor and she work in a bank] -> Oh, a doctor in a bank—that's interesting! You can say: "My sister is a doctor and she works in a bank." Does your sister like her job? /  / CORRECCIÓN: Dijiste "is docto
+claude-haiku-4-5 nuevo OK  [My sister is doctor and she work in a bank] -> Oh, a doctor, how nice! You can say: 'My sister is a doctor and she works in a bank.' Does she like working there? /  / CORRECCIÓN: Dijiste "is doctor" y "she work"; las 
+claude-haiku-4-5 nuevo OK  [I am agree with you] -> I appreciate your enthusiasm! You can say: 'I agree with you.' So tell me, where are you from? /  / CORRECCIÓN: Dijiste "I am agree" pero el verbo "agree" ya expresa la i
+claude-haiku-4-5 nuevo OK  [I am agree with you] -> That's sweet of you! But just so you know, you can say: "I agree with you" — we don't use "am" with that verb. So what brings you here to the park today? /  / CORRECCIÓN:
+claude-haiku-4-5 nuevo OK  [I am agree with you] -> That's sweet! You can say: 'I agree with you.' Do you come to these language exchanges often? /  / CORRECCIÓN: Dijiste "I am agree", pero el verbo "agree" ya tiene sentid
+claude-sonnet-5  viejo MAL [I am forty] -> Wow, forty! You can say: "I'm forty years old." What's your name, by the way?
+claude-sonnet-5  viejo MAL [I am forty] -> Forty, nice! You can say: 'I am forty years old.' What's your name, by the way? /  / CORRECCIÓN: Dijiste "I am forty" pero falta la palabra "years old" para hablar de la 
+claude-sonnet-5  viejo MAL [I am forty] -> Wow, forty! You can say: 'I am forty years old.' Where are you from? /  / CORRECCIÓN: Dijiste "I am forty" sin especificar qué; para la edad se dice "I am forty years old
+claude-sonnet-5  viejo OK  [My name is Fero and I am forty years old] -> Nice to meet you, Fero! Where are you from?
+claude-sonnet-5  viejo OK  [My name is Fero and I am forty years old] -> Nice to meet you, Fero! That's a great sentence about your age. Where are you from, Fero?
+claude-sonnet-5  viejo OK  [My name is Fero and I am forty years old] -> Nice to meet you, Fero! What do you do for work?
+claude-sonnet-5  viejo MAL [I'm 40 and I am from Colombia] -> Colombia, how nice! I'd love to visit there someday. /  / You can say: "I'm 40 years old and I'm from Colombia." /  / CORRECCIÓN: Dijiste "I'm 40" sin especificar; para l
+claude-sonnet-5  viejo MAL [I'm 40 and I am from Colombia] -> Nice to meet you! You can say: "I'm 40 years old and I'm from Colombia." Do you work here in the city? /  / CORRECCIÓN: Dijiste "I'm 40" sin especificar; en inglés se sue
+claude-sonnet-5  viejo OK  [I'm 40 and I am from Colombia] -> Nice to meet you! Colombia sounds beautiful, and 40 is a great age. What's your name, by the way?
+claude-sonnet-5  viejo OK  [I do not like coffee, I like tea] -> Oh, tea is nice too! What's your name, friend?
+claude-sonnet-5  viejo OK  [I do not like coffee, I like tea] -> Oh, tea is nice too! What's your name, by the way?
+claude-sonnet-5  viejo OK  [I do not like coffee, I like tea] -> Oh, tea is nice too! By the way, what's your name?
+claude-sonnet-5  viejo OK  [I have forty years] -> Nice to meet you! You can say: 'I'm forty years old.' Do you have a job, or do you study? /  / CORRECCIÓN: Dijiste "I have forty years", pero en inglés la edad se dice co
+claude-sonnet-5  viejo OK  [I have forty years] -> Nice to meet you! You can say: 'I am forty years old.' /  / CORRECCIÓN: Dijiste "I have forty years", pero en inglés la edad se dice con el verbo to be: "I am forty years
+claude-sonnet-5  viejo OK  [I have forty years] -> Nice to meet you! You can say: 'I'm forty years old.' /  / CORRECCIÓN: Dijiste "I have forty years", pero la edad en inglés se dice con el verbo to be: "I'm forty years o
+claude-sonnet-5  viejo OK  [My sister is doctor and she work in a bank] -> A doctor working in a bank, that's interesting! You can say: 'My sister is a doctor and she works in a bank.' /  / CORRECCIÓN: Dijiste "my sister is doctor" y "she work";
+claude-sonnet-5  viejo OK  [My sister is doctor and she work in a bank] -> A doctor working in a bank, that's interesting! You can say: 'My sister is a doctor and she works in a bank.' /  / CORRECCIÓN: Dijiste "My sister is doctor" y "she work";
+claude-sonnet-5  viejo OK  [My sister is doctor and she work in a bank] -> Oh, that's interesting! You can say: 'My sister is a doctor and she works in a bank.' /  / CORRECCIÓN: Dijiste "is doctor" y "she work"; en inglés las profesiones llevan 
+claude-sonnet-5  viejo OK  [I am agree with you] -> Oh, we haven't even talked about anything yet, but I like your enthusiasm! You can say: "I agree with you." /  / CORRECCIÓN: Dijiste "I am agree", pero en inglés se dice 
+claude-sonnet-5  viejo OK  [I am agree with you] -> That's nice to hear, but let's start simple! You can say: "I agree with you." /  / CORRECCIÓN: Dijiste "I am agree", pero en inglés no se usa el verbo "to be" con "agree"
+claude-sonnet-5  viejo OK  [I am agree with you] -> It's nice to meet you! You can say: 'I agree with you.' /  / CORRECCIÓN: Dijiste "I am agree", pero "agree" ya es verbo, no se usa "am" antes; la forma correcta es "I agr
+claude-sonnet-5  nuevo OK  [I am forty] -> Nice to meet you, forty! And what's your name? I'd love to know what to call you.
+claude-sonnet-5  nuevo OK  [I am forty] -> Nice to meet you, forty is a wonderful age! What's your name, though?
+claude-sonnet-5  nuevo OK  [I am forty] -> Nice to meet you, forty is a great age! What's your name, by the way?
+claude-sonnet-5  nuevo OK  [My name is Fero and I am forty years old] -> Nice to meet you, Fero! Forty is a great age. What do you do for work?
+claude-sonnet-5  nuevo OK  [My name is Fero and I am forty years old] -> Nice to meet you, Fero! Forty is a great age, if you don't mind me saying. Where are you from?
+claude-sonnet-5  nuevo OK  [My name is Fero and I am forty years old] -> Nice to meet you, Fero! Forty is a great age, so what do you do for work?
+claude-sonnet-5  nuevo OK  [I'm 40 and I am from Colombia] -> Nice to meet you, and welcome from Colombia! What's your name, by the way?
+claude-sonnet-5  nuevo OK  [I'm 40 and I am from Colombia] -> Nice to meet you! Colombia is a beautiful country, and forty is a great age. What's your name, by the way?
+claude-sonnet-5  nuevo OK  [I'm 40 and I am from Colombia] -> Nice to meet you! Colombia sounds beautiful, and forty is a wonderful age. What do you do for work?
+claude-sonnet-5  nuevo OK  [I do not like coffee, I like tea] -> Tea is lovely! What's your name, by the way?
+claude-sonnet-5  nuevo OK  [I do not like coffee, I like tea] -> Tea sounds lovely on a nice day like this! What's your name, by the way?
+claude-sonnet-5  nuevo OK  [I do not like coffee, I like tea] -> Tea is lovely, especially here in the park! What's your name, by the way?
+claude-sonnet-5  nuevo OK  [I have forty years] -> Forty is a great age! You can say: 'I'm forty years old.' /  / CORRECCIÓN: Dijiste "I have forty years", pero en inglés la edad se dice con el verbo "to be": "I'm forty y
+claude-sonnet-5  nuevo OK  [I have forty years] -> Forty is a wonderful age! You can say: 'I'm forty years old.' /  / CORRECCIÓN: Dijiste "I have forty years", pero en inglés se usa el verbo "to be": "I'm forty years old"
+claude-sonnet-5  nuevo OK  [I have forty years] -> Great, forty is a wonderful age! You can say: "I'm forty years old" or just "I'm forty." /  / CORRECCIÓN: Dijiste "I have forty years", pero en inglés se dice "I'm forty 
+claude-sonnet-5  nuevo OK  [My sister is doctor and she work in a bank] -> Oh, that's interesting work for her! You can say: "My sister is a doctor and she works in a bank." /  / CORRECCIÓN: Dijiste "is doctor" y "she work"; las profesiones llev
+claude-sonnet-5  nuevo OK  [My sister is doctor and she work in a bank] -> A doctor working in a bank, that's interesting! You can say: 'My sister is a doctor and she works in a bank.' /  / CORRECCIÓN: Dijiste "is doctor" y "she work"; las profe
+claude-sonnet-5  nuevo OK  [My sister is doctor and she work in a bank] -> A doctor working at a bank, that's interesting! You can say: 'My sister is a doctor and she works at a bank.' /  / CORRECCIÓN: Dijiste "is doctor" y "she work"; las profe
+claude-sonnet-5  nuevo OK  [I am agree with you] -> Haha, glad you're on my side! You can say: "I agree with you." /  / CORRECCIÓN: Dijiste "I am agree", pero "agree" ya es verbo, no se usa "am": la forma correcta es "I ag
+claude-sonnet-5  nuevo OK  [I am agree with you] -> Oh, but we haven't talked about anything yet! You can say: 'I agree with you.' /  / CORRECCIÓN: Dijiste "I am agree" pero en inglés no se usa "am"; simplemente se dice "I
+claude-sonnet-5  nuevo OK  [I am agree with you] -> Ah, but we just met, so I haven't said anything yet! You can say: 'I agree with you.' What's your name? /  / CORRECCIÓN: Dijiste "I am agree", pero en inglés no se usa "a
+
+claude-haiku-4-5 viejo: 10/21 turnos bien decididos
+claude-haiku-4-5 nuevo: 19/21 turnos bien decididos
+claude-sonnet-5  viejo: 16/21 turnos bien decididos
+claude-sonnet-5  nuevo: 21/21 turnos bien decididos

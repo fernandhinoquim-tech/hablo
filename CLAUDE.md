@@ -490,6 +490,17 @@ ejemplos, 3 de 3** (Sonnet 5: 3/3 con las dos versiones; ninguno inventó
 correcciones en los 3 turnos mal oídos). Medido con
 `tools/asr-bench/claude_bench.py` y el A/B del scratchpad. Si se toca
 `buildSystemPrompt`, no volver a enterrar ese protocolo.
+**Y el ejemplo no puede ser solo el de la edad (2026-09-15):** con "I have 30
+years" como único ejemplo, Haiku corrigió "I am forty" (correcto) por "la
+edad siempre va con years old" y hasta inventó "I have forty years" donde
+Fero dijo "I am forty years old". A/B con 7 turnos (4 correctos, 3 con
+error) × 3 corridas: Haiku pasó de **10/21 a 19/21** decisiones correctas y
+Sonnet de 16/21 a 21/21 al (a) listar lo que NO se corrige ("I am forty",
+"I'm 40", formas largas, variantes, "nunca reescribir una frase correcta
+para hacerla más corta o natural"), (b) cambiar el ejemplo con error a
+"is doctor / she work" y (c) añadir un ejemplo sin error que se parece a uno
+("I am forty and I do not like coffee"). Con la regla de no reescribir,
+Haiku 8/8 en los correctos y 8/9 en los errores reales.
 
 **El primer mensaje de `messages` SÍ puede ser `assistant`** en la API de
 Anthropic (verificado dos veces el 2026-09-13, HTTP 200): la apertura de la
