@@ -328,11 +328,39 @@ val checkContent = tasks.register("checkContent") {
                             "i'll" to "i will", "you'll" to "you will", "he'll" to "he will", "she'll" to "she will", "it'll" to "it will",
                             "we'll" to "we will", "they'll" to "they will", "i've" to "i have", "you've" to "you have", "we've" to "we have",
                             "they've" to "they have", "let's" to "let us")
+                        // Numeros como Correccion.kt: "8" = "eight", "twenty five" = "twenty-five".
+                        val unidades = listOf("zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
+                            "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen")
+                        val decenas = mapOf(20 to "twenty", 30 to "thirty", 40 to "forty", 50 to "fifty", 60 to "sixty", 70 to "seventy", 80 to "eighty", 90 to "ninety")
+                        fun enLetras(n: Int): String? = when {
+                            n < 0 || n > 100 -> null
+                            n < 20 -> unidades[n]
+                            n == 100 -> "one hundred"
+                            n % 10 == 0 -> decenas[n]
+                            else -> decenas[n / 10 * 10] + "-" + unidades[n % 10]
+                        }
+                        fun numeros(tokens: List<String>): List<String> {
+                            val out = mutableListOf<String>()
+                            var i = 0
+                            while (i < tokens.size) {
+                                val t = tokens[i]
+                                if (t.all { it.isDigit() }) {
+                                    val letras = t.toIntOrNull()?.let { enLetras(it) }
+                                    if (letras != null) { out += letras.split(" "); i++; continue }
+                                }
+                                if (decenas.containsValue(t) && i + 1 < tokens.size && unidades.indexOf(tokens[i + 1]) in 1..9) {
+                                    out += t + "-" + tokens[i + 1]; i += 2; continue
+                                }
+                                if (t == "a" && i + 1 < tokens.size && tokens[i + 1] == "hundred") { out += "one"; i++; continue }
+                                out += t; i++
+                            }
+                            return out
+                        }
                         fun normaliza(t: String): String {
-                            var x = " " + t.lowercase().replace("\u2019", "'")
+                            var x = " " + t.lowercase().replace('-', ' ').replace('\u2013', ' ').replace("\u2019", "'")
                                 .filter { it.isLetterOrDigit() || it == ' ' || it == '\'' }.trim().replace(Regex("\\s+"), " ") + " "
                             for ((corta, larga) in contracciones) x = x.replace(" $corta ", " $larga ")
-                            return x.trim()
+                            return numeros(x.trim().split(" ").filter { it.isNotEmpty() }).joinToString(" ")
                         }
                         if (type == "write" || type == "cloze") {
                             val answer = textOf(e["answer"])

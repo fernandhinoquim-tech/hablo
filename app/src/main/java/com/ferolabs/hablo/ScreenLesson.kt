@@ -210,20 +210,31 @@ fun LessonScreen(
         is Exercise.TranslateChoose -> chosen == ex.answerIndex
         is Exercise.BuildSentence ->
             normalizeAnswer(built.joinToString(" ") { bank[it] }) == normalizeAnswer(ex.answer)
-        is Exercise.TypeWhatYouHear ->
-            normalizeAnswer(typed) == normalizeAnswer(ex.audio)
+        // Dictado: contracciones y números valen igual ("doesn't" = "does not", "4" = "four").
+        is Exercise.TypeWhatYouHear -> Correccion.acepta(typed, ex.audio, emptyList())
         is Exercise.SpeakIt -> (speakResult?.percent ?: 0) >= 60
         is Exercise.WriteIt -> Correccion.acepta(typed, ex.answer, ex.accept)
-        is Exercise.Cloze -> Correccion.acepta(typed, ex.answer, ex.accept)
+        // Vale la palabra del hueco sola o la frase completa (la pantalla la muestra como "la correcta").
+        is Exercise.Cloze -> Correccion.aceptaHueco(typed, ex.before, ex.after, ex.answer, ex.accept)
         // Shadowing: que salgan las palabras. El ritmo se muestra, no se califica.
         is Exercise.Shadow -> (speakResult?.percent ?: 0) >= 60
         is Exercise.MinimalPair -> chosen == ex.answerIndex
     }
 
-    /** Qué falló, en español, para write y cloze. Null si no hay nada concreto que decir. */
+    /** Qué falló, en español, para dictado, write y cloze. Null si no hay nada concreto que decir. */
     fun diagnosis(): String? = when (ex) {
+        is Exercise.TypeWhatYouHear -> Correccion.diagnostico(typed, ex.audio)
         is Exercise.WriteIt -> Correccion.diagnostico(typed, ex.answer, ex.accept)
-        is Exercise.Cloze -> Correccion.diagnostico(typed, ex.answer, ex.accept)
+        is Exercise.Cloze -> Correccion.diagnosticoHueco(typed, ex.before, ex.after, ex.answer, ex.accept)
+        else -> null
+    }
+
+    /** Aviso sin castigo cuando acertó de una forma que conviene comentar. */
+    fun note(): String? = when (ex) {
+        is Exercise.Cloze ->
+            if (Correccion.escribioLaFrase(typed, ex.before, ex.after, ex.answer, ex.accept))
+                "Bastaba con escribir «${ex.answer}», pero la frase entera está perfecta."
+            else null
         else -> null
     }
 
@@ -675,7 +686,7 @@ fun LessonScreen(
                 FeedbackBox(
                     ok = wasCorrect,
                     correctText = correctText(),
-                    detail = if (wasCorrect) null else diagnosis(),
+                    detail = if (wasCorrect) note() else diagnosis(),
                     teacher = teacher,
                     tip = ex.tip,
                     onReplay = { say(correctText(), 1f) }
@@ -837,9 +848,9 @@ private fun FeedbackBox(
                 style = MaterialTheme.typography.bodyLarge,
                 color = Ink
             )
-            if (!ok && detail != null) {
+            if (detail != null) {
                 Spacer(Modifier.height(6.dp))
-                Text(detail, style = MaterialTheme.typography.bodyMedium, color = BadRed)
+                Text(detail, style = MaterialTheme.typography.bodyMedium, color = if (ok) InkSoft else BadRed)
             }
             if (!ok) {
                 Spacer(Modifier.height(4.dp))

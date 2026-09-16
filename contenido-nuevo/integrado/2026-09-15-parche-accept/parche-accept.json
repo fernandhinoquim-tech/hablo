@@ -1,0 +1,22 @@
+{
+  "_comentario": "Parche de 'accept' para el diagnostico del 15-09. Cada entrada REEMPLAZA el array accept del ejercicio (y en a2u8l3e4 tambien el answer). Son respuestas correctas que hoy se marcan mal.",
+  "_clase1": "El adverbio de tiempo tambien puede ir al principio en ingles; faltaba esa variante.",
+  "_clase2": "El español lleva 'Ayer' y la respuesta inglesa no lo tenia: la traduccion fiel se marcaba mal. Bug introducido al ajustar el español en la verificacion de A2.",
+
+  "a1u4l1e10": {
+    "accept": ["My brother studies English daily.", "Every day my brother studies English."]
+  },
+  "a2u2l4e4": {
+    "accept": ["I watched that movie last week.", "I saw that film last week.", "I watched that film last week.", "Last week I saw that movie."]
+  },
+  "a2u8l1e5": {
+    "accept": ["My car got stolen last night.", "Last night my car was stolen."]
+  },
+  "a2u10l2e5": {
+    "accept": ["I exercise every morning.", "I work out every morning.", "Every morning I do exercise."]
+  },
+  "a2u8l3e4": {
+    "answer": "Yesterday we walked through the park.",
+    "accept": ["We walked through the park yesterday.", "Yesterday we walked across the park.", "We walked across the park yesterday."]
+  }
+}

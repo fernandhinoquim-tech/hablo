@@ -127,6 +127,59 @@ class NuevosTiposTest {
         assertFalse(d, d.contains("«in»"))
     }
 
+    // ------------------------------------------------------------ hueco y números (diagnóstico 2026-09-15)
+
+    @Test
+    fun `hueco acepta la palabra sola y la frase completa`() {
+        val before = "She "; val after = " in a hospital."
+        assertTrue(Correccion.aceptaHueco("works", before, after, "works", emptyList()))
+        // Lo que escribió Fero dos veces el 15-09 y se marcó mal.
+        assertTrue(Correccion.aceptaHueco("she works in a hospital ", before, after, "works", emptyList()))
+        assertTrue(Correccion.aceptaHueco("She works in a hospital", before, after, "works", emptyList()))
+        assertFalse(Correccion.aceptaHueco("she work in a hospital", before, after, "works", emptyList()))
+        assertFalse(Correccion.aceptaHueco("work", before, after, "works", emptyList()))
+        assertTrue(Correccion.escribioLaFrase("she works in a hospital", before, after, "works", emptyList()))
+        assertFalse(Correccion.escribioLaFrase("works", before, after, "works", emptyList()))
+    }
+
+    @Test
+    fun `hueco con alternativa vale tambien en la frase completa`() {
+        assertTrue(Correccion.aceptaHueco("She is working in a hospital", "She ", " in a hospital.", "works", listOf("is working")))
+    }
+
+    @Test
+    fun `hueco explica la palabra aunque escriba la frase entera`() {
+        val d = Correccion.diagnosticoHueco("she work in a hospital", "She ", " in a hospital.", "works", emptyList())
+        assertTrue(d, d!!.contains("works"))
+        val d2 = Correccion.diagnosticoHueco("works in the hospital yes", "She ", " in a hospital.", "works", emptyList())
+        assertTrue(d2, d2!!.contains("hueco"))
+        val d3 = Correccion.diagnosticoHueco("work", "She ", " in a hospital.", "works", emptyList())
+        assertTrue(d3, d3!!.contains("-s"))
+    }
+
+    @Test
+    fun `numeros en cifras y en letras son lo mismo`() {
+        assertEquals(Correccion.suelta("at eight"), Correccion.suelta("at 8"))
+        assertEquals(Correccion.suelta("I'm twenty-five years old."), Correccion.suelta("I am 25 years old"))
+        assertEquals(Correccion.suelta("twenty five"), Correccion.suelta("twenty-five"))
+        assertEquals("one hundred", Correccion.suelta("a hundred"))
+        assertEquals("one hundred", Correccion.suelta("100"))
+        assertEquals("forty", Correccion.suelta("40"))
+        assertTrue(Correccion.acepta("What were you doing at 8?", "What were you doing at eight?", emptyList()))
+        assertTrue(Correccion.acepta("There are 4 people in my family", "There are four people in my family.", emptyList()))
+        // Fuera de rango o con letras pegadas no se toca.
+        assertEquals("room 101", Correccion.suelta("Room 101"))
+        assertEquals("twenty-five", Correccion.enLetras(25))
+        assertNull(Correccion.enLetras(101))
+    }
+
+    @Test
+    fun `dictado con contraccion en forma larga vale`() {
+        assertTrue(Correccion.acepta("She does not live here", "She doesn't live here.", emptyList()))
+        val d = Correccion.diagnostico("he speaks espanish and english", "He speaks Spanish and English.")
+        assertTrue(d, d!!.contains("espanish"))
+    }
+
     // ------------------------------------------------------------ utilidades
 
     private fun curso(ejercicio: String) =

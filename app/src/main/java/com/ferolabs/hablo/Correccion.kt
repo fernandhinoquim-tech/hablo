@@ -24,11 +24,57 @@ object Correccion {
         "let's" to "let us"
     )
 
-    /** Como [normalizeAnswer], y además expande contracciones: "I'm" = "I am". */
+    private val UNIDADES = listOf(
+        "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
+        "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"
+    )
+    private val DECENAS = mapOf(
+        20 to "twenty", 30 to "thirty", 40 to "forty", 50 to "fifty",
+        60 to "sixty", 70 to "seventy", 80 to "eighty", 90 to "ninety"
+    )
+
+    /** 0..100 en letras, como se escribe en inglés ("twenty-five", "one hundred"); null fuera de rango. */
+    fun enLetras(n: Int): String? = when {
+        n < 0 || n > 100 -> null
+        n < 20 -> UNIDADES[n]
+        n == 100 -> "one hundred"
+        n % 10 == 0 -> DECENAS[n]
+        else -> DECENAS[n / 10 * 10] + "-" + UNIDADES[n % 10]
+    }
+
+    /**
+     * Números a una sola forma: "8" = "eight", "25" = "twenty five" = "twenty-five",
+     * "a hundred" = "one hundred". Las cifras se pasan a letras porque así está
+     * escrito el curso y así se lee mejor la corrección («eight», no «8»).
+     * El dictado (Moonshine) escribe siempre cifras: sin esto, "twenty-five"
+     * bien dicho salía en rojo 17 de 17 veces (diagnóstico del 2026-09-15).
+     */
+    private fun numeros(tokens: List<String>): List<String> {
+        val out = mutableListOf<String>()
+        var i = 0
+        while (i < tokens.size) {
+            val t = tokens[i]
+            if (t.all { it.isDigit() }) {
+                val letras = t.toIntOrNull()?.let { enLetras(it) }
+                if (letras != null) { out += letras.split(" "); i++; continue }
+            }
+            if (DECENAS.containsValue(t) && i + 1 < tokens.size && UNIDADES.indexOf(tokens[i + 1]) in 1..9) {
+                out += t + "-" + tokens[i + 1]; i += 2; continue
+            }
+            if (t == "a" && i + 1 < tokens.size && tokens[i + 1] == "hundred") { out += "one"; i++; continue }
+            out += t; i++
+        }
+        return out
+    }
+
+    /**
+     * Como [normalizeAnswer], y además: el guion cuenta como espacio, expande
+     * contracciones ("I'm" = "I am") e iguala números ("8" = "eight").
+     */
     fun suelta(text: String): String {
-        var t = " " + normalizeAnswer(text) + " "
+        var t = " " + normalizeAnswer(text.replace('-', ' ').replace('–', ' ')) + " "
         for ((corta, larga) in CONTRACCIONES) t = t.replace(" $corta ", " $larga ")
-        return t.trim()
+        return numeros(t.trim().split(" ").filter { it.isNotEmpty() }).joinToString(" ")
     }
 
     /** ¿La respuesta dada vale? Contra la esperada o cualquiera de las alternativas. */
@@ -36,6 +82,37 @@ object Correccion {
         val g = suelta(given)
         if (g.isBlank()) return false
         return g == suelta(answer) || accept.any { g == suelta(it) }
+    }
+
+    /**
+     * Completar el hueco: vale la palabra del hueco sola O la frase completa con
+     * el hueco lleno (con la respuesta o con cualquier alternativa). La pantalla
+     * muestra la frase completa como "la correcta", así que castigar por
+     * escribirla entera era indefendible (a1u4l1e9, dos veces, 2026-09-15).
+     */
+    fun aceptaHueco(given: String, before: String, after: String, answer: String, accept: List<String>): Boolean {
+        if (acepta(given, answer, accept)) return true
+        val frases = (listOf(answer) + accept).map { before + it + after }
+        return acepta(given, frases[0], frases.drop(1))
+    }
+
+    /** ¿Escribió la frase entera (correcta) en vez de solo el hueco? Para avisárselo sin castigar. */
+    fun escribioLaFrase(given: String, before: String, after: String, answer: String, accept: List<String>): Boolean =
+        !acepta(given, answer, accept) && aceptaHueco(given, before, after, answer, accept)
+
+    /**
+     * Diagnóstico del hueco: si escribió solo el hueco, se compara con la
+     * palabra; si escribió la frase (o un trozo), con la frase completa, y si
+     * ni así hay algo concreto que decir, se le recuerda qué se pedía.
+     */
+    fun diagnosticoHueco(given: String, before: String, after: String, answer: String, accept: List<String>): String? {
+        val g = suelta(given).split(" ").filter { it.isNotEmpty() }
+        if (g.isEmpty()) return null
+        val nHueco = suelta(answer).split(" ").count { it.isNotEmpty() }
+        if (g.size <= nHueco + 1) return diagnostico(given, answer, accept)
+        val frases = (listOf(answer) + accept).map { before + it + after }
+        return diagnostico(given, frases[0], frases.drop(1))
+            ?: "Solo hacía falta la palabra del hueco: «$answer»."
     }
 
     /**
