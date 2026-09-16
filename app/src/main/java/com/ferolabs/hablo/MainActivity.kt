@@ -38,10 +38,12 @@ class MainActivity : ComponentActivity() {
         val claude = ClaudeLlm(this)
         val store = Store(this)
         val prog = Progreso(this)
+        // La ficha de la charla libre: files/memoria/perfil.json, al lado de la app.
+        val mem = Memoria(java.io.File(getExternalFilesDir("memoria"), "perfil.json"))
         Course.load(this)
 
         setContent {
-            HabloApp(speaker = sp, listener = li, llm = ai, cloud = cloud, claude = claude, store = store, progreso = prog)
+            HabloApp(speaker = sp, listener = li, llm = ai, cloud = cloud, claude = claude, store = store, progreso = prog, memoria = mem)
         }
     }
 
@@ -79,7 +81,8 @@ fun HabloApp(
     cloud: CloudLlm,
     claude: ClaudeLlm,
     store: Store,
-    progreso: Progreso
+    progreso: Progreso,
+    memoria: Memoria
 ) {
 
     var teacherId by remember { mutableStateOf(store.teacherId) }
@@ -230,6 +233,9 @@ fun HabloApp(
                                 say = say,
                                 sayQueued = { text -> speaker.speakQueued(text, teacher, speechScale) },
                                 progreso = progreso,
+                                // Solo la charla libre lleva memoria; los escenarios arrancan limpios.
+                                memoria = if (scenario.id == Scenario.LIBRE.id) memoria else null,
+                                claude = claude,
                                 onBack = {
                                     speaker.stop()
                                     listener.stopRecording()
@@ -273,6 +279,7 @@ fun HabloApp(
                             cloud = cloud,
                             claude = claude,
                             progreso = progreso,
+                            memoria = memoria,
                             engineId = engineId,
                             onEngineChange = { id ->
                                 engineId = id

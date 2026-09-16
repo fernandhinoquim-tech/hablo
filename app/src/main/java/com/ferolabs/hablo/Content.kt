@@ -214,7 +214,28 @@ data class Scenario(
     val help: List<Ayuda>,
     /** Trampas típicas del hispanohablante en esta situación, en español. */
     val watch: List<String>
-)
+) {
+    companion object {
+        /**
+         * La charla libre ("Hablar de todo"): no vive en scenarios.json porque no
+         * es un escenario (sin papel, sin nivel, sin metas) y es la única con
+         * memoria entre charlas (etapa 2, 2026-09-16). El prompt lo arma
+         * ScreenConversation con la ficha de [Memoria].
+         */
+        val LIBRE = Scenario(
+            id = "libre",
+            title = "Hablar de todo",
+            emoji = "💬",
+            level = "",
+            goalEs = "De lo que quieras, sin escenario ni nivel. Ella se acuerda de lo básico entre charlas.",
+            role = "",
+            opening = "",
+            targets = emptyList(),
+            help = emptyList(),
+            watch = emptyList()
+        )
+    }
+}
 
 /** Un ejercicio de pronunciación suelto: frase objetivo + por qué es difícil. */
 data class Drill(
@@ -552,7 +573,8 @@ object Course {
 
     fun lessonById(id: String): Lesson? = allLessons().firstOrNull { it.id == id }
 
-    fun scenarioById(id: String): Scenario? = scenarios.firstOrNull { it.id == id }
+    fun scenarioById(id: String): Scenario? =
+        if (id == Scenario.LIBRE.id) Scenario.LIBRE else scenarios.firstOrNull { it.id == id }
 
     /** Ayudas que sirven en cualquier charla (pedir que repita, preguntar una palabra…). */
     var helpCommon: List<Ayuda> = emptyList()

@@ -261,6 +261,570 @@
           "es": "Pedir ayuda directo y educado."
         }
       ]
+    },
+    {
+      "id": "medico",
+      "title": "En el consultorio",
+      "emoji": "🩺",
+      "level": "A2",
+      "goalEs": "Cuéntale al médico qué te pasa, desde cuándo, y entiende lo que te manda.",
+      "role": "You are a doctor at a walk-in clinic. Ask what the problem is, how long it has lasted, whether the patient has taken anything, and give simple advice and a prescription. Be warm but efficient.",
+      "opening": "Good morning. Please have a seat. What seems to be the problem?",
+      "targets": [
+        "I have a ...",
+        "It started ... ago",
+        "It hurts when I ...",
+        "Do I have to ...?"
+      ],
+      "watch": [
+        "'I have pain in my head' → 'I have a headache'",
+        "'Since three days' → 'For three days' (duración lleva for)",
+        "'I am constipated' significa estreñido, no resfriado → 'I have a cold'",
+        "'Take a medicine' → 'take medicine' o 'take a pill'"
+      ],
+      "help": [
+        {
+          "en": "I have a headache / a sore throat / a fever.",
+          "es": "Los síntomas más comunes. Fíjate que headache lleva 'a'."
+        },
+        {
+          "en": "It started three days ago.",
+          "es": "'Ago' va al final y se usa con pasado simple."
+        },
+        {
+          "en": "I've had it for a week.",
+          "es": "'For' + duración. Con present perfect porque sigue."
+        },
+        {
+          "en": "It hurts when I swallow.",
+          "es": "'It hurts', no 'it pains'."
+        },
+        {
+          "en": "Do I have to take anything?",
+          "es": "'Have to' para preguntar si es obligatorio."
+        },
+        {
+          "en": "How often should I take it?",
+          "es": "'How often' = cada cuánto."
+        }
+      ]
+    },
+    {
+      "id": "reclamo",
+      "title": "Devolver algo que salió malo",
+      "emoji": "📦",
+      "level": "A2",
+      "goalEs": "Explica qué compraste, qué le pasa, y consigue que te lo cambien o te devuelvan el dinero.",
+      "role": "You work at the customer service desk of a store. A customer wants to return something. Ask what happened, when they bought it, whether they have the receipt, and offer an exchange before a refund. Be polite but not immediately agreeable.",
+      "opening": "Hello, how can I help you today?",
+      "targets": [
+        "I bought this ... and it doesn't work",
+        "I'd like a refund",
+        "Can I exchange it?",
+        "Here's the receipt"
+      ],
+      "watch": [
+        "'I want my money' suena agresivo → 'I'd like a refund, please'",
+        "'It's broken since yesterday' → 'It broke yesterday' o 'It's been broken since yesterday'",
+        "'Ticket' es de bus o cine; el papel de la compra es 'receipt'",
+        "'Change it' a secas → 'exchange it'"
+      ],
+      "help": [
+        {
+          "en": "I bought this here last week.",
+          "es": "Pasado simple con 'last week'."
+        },
+        {
+          "en": "It doesn't work / It stopped working.",
+          "es": "Las dos formas de decir que no sirve."
+        },
+        {
+          "en": "I'd like a refund, please.",
+          "es": "'Refund' = devolución del dinero."
+        },
+        {
+          "en": "Can I exchange it for another one?",
+          "es": "'Exchange it for', con for."
+        },
+        {
+          "en": "Here's the receipt.",
+          "es": "'Receipt' — la p no se pronuncia: «ri-SIIT»."
+        },
+        {
+          "en": "Could I speak to the manager, please?",
+          "es": "Para subir de nivel sin sonar grosero."
+        }
+      ]
+    },
+    {
+      "id": "apartamento",
+      "title": "Ver un apartamento",
+      "emoji": "🏠",
+      "level": "A2",
+      "goalEs": "Pregunta todo lo que necesitas saber antes de alquilar: qué incluye, cuánto cuesta, qué reglas hay.",
+      "role": "You are a landlord showing a small apartment. Describe the rooms, answer questions about rent, bills, furniture and rules, and ask the person about themselves. Mention that another person is also interested.",
+      "opening": "Come in, come in. So this is the living room — it gets a lot of light in the morning.",
+      "targets": [
+        "How much is the rent?",
+        "Are bills included?",
+        "Is there a ...?",
+        "Can I ...?"
+      ],
+      "watch": [
+        "'How much is the rent?' no 'How much costs the rent?'",
+        "'There is two bedrooms' → 'There ARE two bedrooms'",
+        "'It has a washing machine?' → 'Is there a washing machine?'",
+        "'Furnitures' no existe: furniture no lleva -s"
+      ],
+      "help": [
+        {
+          "en": "How much is the rent per month?",
+          "es": "'Per month' o 'a month', las dos valen."
+        },
+        {
+          "en": "Are the bills included?",
+          "es": "'Bills' = servicios. En plural."
+        },
+        {
+          "en": "Is there a washing machine?",
+          "es": "'Is there' para una cosa, 'Are there' para varias."
+        },
+        {
+          "en": "How many bedrooms are there?",
+          "es": "'How many' porque los cuartos se cuentan."
+        },
+        {
+          "en": "Am I allowed to have pets?",
+          "es": "'Allowed to' = permitido. Más natural que 'can I'."
+        },
+        {
+          "en": "When would it be available?",
+          "es": "'Would' lo vuelve más educado."
+        }
+      ]
+    },
+    {
+      "id": "plan_finde",
+      "title": "Hacer planes con un amigo",
+      "emoji": "🎬",
+      "level": "A2",
+      "goalEs": "Ponte de acuerdo para hacer algo el fin de semana: propón, rechaza algo con una razón, y cierra la hora y el sitio.",
+      "role": "You are a friend making weekend plans. Suggest two or three things, react to their ideas, mention you are busy Saturday morning, and agree on a time and place. Keep it casual and friendly.",
+      "opening": "Hey! So, are you doing anything this weekend?",
+      "targets": [
+        "I'm going to ...",
+        "How about ...?",
+        "I can't, I'm ...",
+        "Let's meet at ..."
+      ],
+      "watch": [
+        "'What do you do this weekend?' pregunta por tu trabajo → 'What are you doing this weekend?'",
+        "'How about to go?' → 'How about going?' (después de about va -ing)",
+        "'I have to work' está bien, pero 'I must work' suena exagerado entre amigos",
+        "'At Saturday' → 'On Saturday'"
+      ],
+      "help": [
+        {
+          "en": "What are you doing this weekend?",
+          "es": "Continuo para planes ya hechos."
+        },
+        {
+          "en": "How about going to the movies?",
+          "es": "Después de 'how about', el verbo lleva -ing."
+        },
+        {
+          "en": "I'd rather do something outside.",
+          "es": "'I'd rather' + verbo pelado."
+        },
+        {
+          "en": "I can't on Saturday morning, I'm working.",
+          "es": "Los días con 'on'."
+        },
+        {
+          "en": "Does seven work for you?",
+          "es": "Muy natural para proponer una hora."
+        },
+        {
+          "en": "Let's meet at the entrance.",
+          "es": "'Let's' + verbo pelado."
+        }
+      ]
+    },
+    {
+      "id": "aeropuerto",
+      "title": "Perdiste la conexión",
+      "emoji": "✈️",
+      "level": "A2",
+      "goalEs": "Explica qué pasó, averigua qué opciones tienes, y consigue que te reubiquen.",
+      "role": "You work at an airline help desk. A passenger missed their connection. Ask what happened, check options, explain there is a flight tomorrow morning and one tonight with a stop, and mention the hotel voucher policy. Be calm and professional.",
+      "opening": "Next, please. How can I help you?",
+      "targets": [
+        "I missed my connection",
+        "My flight was delayed",
+        "Is there another flight?",
+        "What are my options?"
+      ],
+      "watch": [
+        "'I lost my flight' → 'I missed my flight' (lose es perder un objeto)",
+        "'The flight had delay' → 'The flight was delayed'",
+        "'I am waiting since two hours' → 'I have been waiting for two hours'",
+        "'What I can do?' → 'What can I do?'"
+      ],
+      "help": [
+        {
+          "en": "I missed my connection to Bogotá.",
+          "es": "'Miss' para perder un vuelo o un bus."
+        },
+        {
+          "en": "My first flight was delayed.",
+          "es": "'Was delayed', en pasiva."
+        },
+        {
+          "en": "Is there another flight tonight?",
+          "es": "'Is there' para preguntar si existe."
+        },
+        {
+          "en": "What are my options?",
+          "es": "Frase corta y muy útil cuando algo falla."
+        },
+        {
+          "en": "Do you provide a hotel?",
+          "es": "'Provide' = dar, en contexto formal."
+        },
+        {
+          "en": "How long is the layover?",
+          "es": "'Layover' = la escala."
+        }
+      ]
+    },
+    {
+      "id": "primer_dia",
+      "title": "Tu primer día de trabajo",
+      "emoji": "💼",
+      "level": "A2",
+      "goalEs": "Preséntate, pregunta cómo funcionan las cosas y entiende qué se espera de ti.",
+      "role": "You are a friendly team lead welcoming a new colleague on their first day. Introduce yourself, explain the schedule and the lunch routine, ask about their background, and tell them who to ask for help.",
+      "opening": "You must be the new one — welcome! I'm Sarah, I lead the team. Did you find the office okay?",
+      "targets": [
+        "Nice to meet you",
+        "What time do we ...?",
+        "Who should I ask about ...?",
+        "I used to work at ..."
+      ],
+      "watch": [
+        "'I have 30 years' → 'I'm 30 years old'",
+        "'I work here since Monday' → 'I've worked here since Monday'",
+        "'Actually' significa 'en realidad', no 'actualmente' → 'currently'",
+        "'I am agree' → 'I agree'"
+      ],
+      "help": [
+        {
+          "en": "Nice to meet you. I'm ...",
+          "es": "Fórmula completa, no solo el nombre."
+        },
+        {
+          "en": "What time do we usually start?",
+          "es": "'What time' + do + sujeto + verbo."
+        },
+        {
+          "en": "Who should I ask about the computer?",
+          "es": "'Should' para pedir orientación."
+        },
+        {
+          "en": "I used to work at a hospital.",
+          "es": "'Used to' para un trabajo anterior."
+        },
+        {
+          "en": "Could you show me where the kitchen is?",
+          "es": "Ojo al orden: 'where the kitchen is', no 'where is the kitchen'."
+        },
+        {
+          "en": "Sorry, I didn't catch your name.",
+          "es": "Para pedir que repitan un nombre sin pena."
+        }
+      ]
+    },
+    {
+      "id": "entrevista",
+      "title": "Entrevista de trabajo",
+      "emoji": "🤝",
+      "level": "B1",
+      "goalEs": "Habla de tu experiencia, explica por qué te interesa el puesto y responde la pregunta incómoda.",
+      "role": "You are interviewing a candidate for a job. Ask about their experience, why they want the role, a strength and a weakness, and one difficult question about a gap or a mistake. Push gently for concrete examples rather than generalities.",
+      "opening": "Thanks for coming in. To start — tell me a little about yourself and what you've been doing recently.",
+      "targets": [
+        "I've been working as ...",
+        "In my last job I was responsible for ...",
+        "I'm interested in this role because ...",
+        "For example, ..."
+      ],
+      "watch": [
+        "'I have 5 years working here' → 'I've been working here for 5 years'",
+        "'I have experience in manage teams' → 'in managing teams' (tras preposición va -ing)",
+        "'I am responsible of' → 'responsible FOR'",
+        "'Assist to a meeting' → 'attend a meeting'"
+      ],
+      "help": [
+        {
+          "en": "I've been working as a ... for three years.",
+          "es": "Present perfect continuo: empezó antes y sigue."
+        },
+        {
+          "en": "In my last job I was responsible for ...",
+          "es": "'Responsible FOR', siempre con for."
+        },
+        {
+          "en": "What attracted me to this role is ...",
+          "es": "Suena más preparado que 'I like'."
+        },
+        {
+          "en": "For example, last year I ...",
+          "es": "Dar un ejemplo concreto es lo que más pesa en una entrevista."
+        },
+        {
+          "en": "I'd say my main strength is ...",
+          "es": "'I'd say' suaviza el autoelogio."
+        },
+        {
+          "en": "That's something I'm still working on.",
+          "es": "La mejor forma de contestar por una debilidad."
+        }
+      ]
+    },
+    {
+      "id": "desacuerdo",
+      "title": "Ponerse de acuerdo",
+      "emoji": "⚖️",
+      "level": "B1",
+      "goalEs": "Defiende tu propuesta, admite lo que tiene de bueno la otra, y llega a un punto medio.",
+      "role": "You are a colleague who disagrees about how to spend a small team budget. You want new equipment; push back on their idea with reasons, concede one point, and look for a compromise. Do not give in too quickly.",
+      "opening": "Look, I've been thinking about the budget, and honestly I think we should put it all into new equipment.",
+      "targets": [
+        "I see your point, but ...",
+        "I'm not sure I agree",
+        "What if we ...?",
+        "That makes sense"
+      ],
+      "watch": [
+        "'I am agree' → 'I agree' (agree es verbo, no adjetivo)",
+        "'I am not agree' → 'I don't agree' o 'I disagree'",
+        "'In my personal opinion I think' es redundante → 'I think' o 'In my opinion'",
+        "'Depends of' → 'depends ON'"
+      ],
+      "help": [
+        {
+          "en": "I see your point, but I'm not sure that's the priority.",
+          "es": "Conceder antes de discrepar: suena mucho mejor."
+        },
+        {
+          "en": "I don't agree, and here's why.",
+          "es": "'I don't agree', nunca 'I am not agree'."
+        },
+        {
+          "en": "What if we split it?",
+          "es": "'What if' + presente para proponer."
+        },
+        {
+          "en": "It depends on how long it lasts.",
+          "es": "'Depends ON', con on."
+        },
+        {
+          "en": "Couldn't we do both?",
+          "es": "La pregunta negativa suaviza la propuesta."
+        },
+        {
+          "en": "Fair enough — let's try it your way.",
+          "es": "Para ceder sin quedar debajo."
+        }
+      ]
+    },
+    {
+      "id": "contar_problema",
+      "title": "Contar cómo lo resolviste",
+      "emoji": "🧩",
+      "level": "B1",
+      "goalEs": "Cuenta un problema que tuviste, qué habías intentado antes, y cómo terminó.",
+      "role": "You are a friend catching up. Ask about a problem they had recently, and keep asking follow-up questions: what had happened before, what they tried, what they would do differently. React naturally.",
+      "opening": "You mentioned last time that something went wrong at work. What happened in the end?",
+      "targets": [
+        "It all started when ...",
+        "I had already tried ...",
+        "In the end, ...",
+        "If I could do it again, I'd ..."
+      ],
+      "watch": [
+        "'I was working there since 2020' → 'I had been working there since 2020'",
+        "'At the end' significa al final físico → 'In the end' para el desenlace",
+        "'I realized of' → 'I realized' (sin of)",
+        "'Support' no es soportar/aguantar → 'put up with'"
+      ],
+      "help": [
+        {
+          "en": "It all started when ...",
+          "es": "La mejor forma de abrir una historia."
+        },
+        {
+          "en": "I had already tried ... before that.",
+          "es": "Pasado perfecto: lo anterior a lo anterior."
+        },
+        {
+          "en": "While I was waiting, they called.",
+          "es": "Fondo en continuo, golpe en pasado simple."
+        },
+        {
+          "en": "In the end, it worked out.",
+          "es": "'In the end' = al final de la historia."
+        },
+        {
+          "en": "If I could do it again, I'd ask sooner.",
+          "es": "Segundo condicional para el arrepentimiento."
+        },
+        {
+          "en": "To be honest, I was pretty annoyed.",
+          "es": "Para meter emoción sin exagerar."
+        }
+      ]
+    },
+    {
+      "id": "tramite",
+      "title": "Un trámite que se complica",
+      "emoji": "🏛️",
+      "level": "B1",
+      "goalEs": "Explica qué te dijeron antes, señala la contradicción, y consigue una solución sin pelear.",
+      "role": "You are a bank clerk. The customer was told something different by a colleague last week. Explain the rule, ask for a document they probably don't have, and only after they insist politely, offer an alternative you can authorize.",
+      "opening": "Let me look at your account... Hmm. I'm afraid we can't process this without proof of address.",
+      "targets": [
+        "Last week I was told that ...",
+        "She said I only needed ...",
+        "Is there any way to ...?",
+        "Could you check again, please?"
+      ],
+      "watch": [
+        "'They said me' → 'They told me' (tell lleva persona, say no)",
+        "'He said that I have to' → en indirecto retrocede: 'he said I had to'",
+        "'I'm here since 20 minutes' → 'I've been here for 20 minutes'",
+        "Subir la voz no ayuda; en inglés se insiste con 'Could you...' y 'Is there any way...'"
+      ],
+      "help": [
+        {
+          "en": "Last week I was told that ...",
+          "es": "Pasiva: útil cuando no sabes el nombre de quién te atendió."
+        },
+        {
+          "en": "She told me I only needed my ID.",
+          "es": "'Told me' con persona. Y 'needed', que retrocede."
+        },
+        {
+          "en": "Is there any way around this?",
+          "es": "Pide una salida sin acusar a nadie."
+        },
+        {
+          "en": "Could you check with your colleague?",
+          "es": "'Could you' es lo más educado sin ser sumiso."
+        },
+        {
+          "en": "I understand it's not your fault, but ...",
+          "es": "Baja la tensión y mantiene la presión."
+        },
+        {
+          "en": "What would you do in my position?",
+          "es": "Los convierte en aliados. Funciona sorprendentemente bien."
+        }
+      ]
+    },
+    {
+      "id": "opinion",
+      "title": "Dar tu opinión sobre un tema",
+      "emoji": "💬",
+      "level": "B1",
+      "goalEs": "Toma una postura, dale dos razones, reconoce el otro lado y cierra.",
+      "role": "You are discussing whether people should work from home. Take the opposite position from whatever the learner takes, give reasons, and ask them to justify theirs with examples. Keep it friendly, not hostile.",
+      "opening": "I was reading something about remote work this morning. Do you think people are actually more productive at home?",
+      "targets": [
+        "I think that ... because ...",
+        "On the other hand, ...",
+        "For instance, ...",
+        "Overall, I'd say ..."
+      ],
+      "watch": [
+        "'I think that yes' → 'I think so'",
+        "'In one hand / in other hand' → 'On the one hand / on the other hand'",
+        "'Is very important the family' → 'Family is very important' (el inglés necesita el sujeto delante)",
+        "'People is' → 'People ARE'"
+      ],
+      "help": [
+        {
+          "en": "I think so, mainly because ...",
+          "es": "'I think so' para contestar que sí a una opinión."
+        },
+        {
+          "en": "On the one hand ... on the other hand ...",
+          "es": "Las dos con 'on'. Es la estructura que más se falla."
+        },
+        {
+          "en": "For instance, in my own case ...",
+          "es": "'For instance' = 'for example', suena más cuidado."
+        },
+        {
+          "en": "That's a fair point, but ...",
+          "es": "Reconocer el otro lado sube el nivel de tu inglés al instante."
+        },
+        {
+          "en": "It depends on the kind of job.",
+          "es": "Matizar vale más que tener razón."
+        },
+        {
+          "en": "Overall, I'd say it works for some people.",
+          "es": "'Overall' para cerrar."
+        }
+      ]
+    },
+    {
+      "id": "explicar_trabajo",
+      "title": "Explicar a qué te dedicas",
+      "emoji": "🔬",
+      "level": "B1",
+      "goalEs": "Explícale tu trabajo o tu estudio a alguien que no sabe nada del tema, sin tecnicismos.",
+      "role": "You are someone at a party with no background in the learner's field. Be curious and ask simple but persistent questions: what it is, why it matters, what a normal day looks like, and what the hardest part is. Ask them to explain anything technical in simple words.",
+      "opening": "So, what do you do? And I should warn you — I know absolutely nothing about it.",
+      "targets": [
+        "Basically, I ...",
+        "It's a bit like ...",
+        "The point of it is to ...",
+        "The hardest part is ..."
+      ],
+      "watch": [
+        "'I am studying a doctorate' → 'I'm doing a PhD'",
+        "'Investigation' es de policía; la científica es 'research'",
+        "'Research' no lleva -s: 'my research', nunca 'researches'",
+        "'Carrera' universitaria es 'degree', no 'career'"
+      ],
+      "help": [
+        {
+          "en": "Basically, I work on ...",
+          "es": "'Basically' avisa que viene la versión simple."
+        },
+        {
+          "en": "It's a bit like ... , but for ...",
+          "es": "La comparación es lo que hace entender un tema técnico."
+        },
+        {
+          "en": "The point of it is to ...",
+          "es": "Explica para qué sirve, que es lo que la gente quiere saber."
+        },
+        {
+          "en": "I'm doing a PhD in ...",
+          "es": "'Doing a PhD', no 'studying a doctorate'."
+        },
+        {
+          "en": "My research is about ...",
+          "es": "'Research' siempre en singular."
+        },
+        {
+          "en": "The hardest part is probably ...",
+          "es": "Invita a seguir la conversación en vez de cerrarla."
+        }
+      ]
     }
   ]
 }

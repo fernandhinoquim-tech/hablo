@@ -303,8 +303,8 @@ escenarios · corrección en español · informe descargable · cuaderno de erro
 |---|---|---|
 | 1 | Marca mal respuestas que están bien | **bug abierto**, diagnóstico hecho (scratchpad `eval/EVALUACION-HABLO-2026-09-15.md`) |
 | 2 | Leyendas viejas y textos sin actualizar | en diagnóstico |
-| 3 | Charla libre sin escenario ni nivel, **con memoria** | **no existe** (no hay `perfil.json`) |
-| 4 | Escenarios divididos **por nivel**, sin memoria | hay 5, **todos A1** |
+| 3 | Charla libre sin escenario ni nivel, **con memoria** | **hecha el 16-09** ("Hablar de todo", `Memoria.kt`, `files/memoria/perfil.json`); falta que Fero la use |
+| 4 | Escenarios divididos **por nivel**, sin memoria | **hecho el 16-09**: 5 A1 + 6 A2 + 6 B1, agrupados por nivel; cada uno arranca limpio |
 | 5 | Actividades más diversas | diseñadas, sin construir |
 | 6 | Retos con presión | diseñados, sin construir |
 | 7 | Vocabulario con cronómetro | Parejas existe, sin reloj visible ni banco |
@@ -326,10 +326,20 @@ informe, pares con frase, textos, prompt); termina cuando Fero la use una
 semana sin que lo corrija mal.** Quedan para Cowork los `accept` que no
 entraron en su parche (a2u6l3e5 "in general", a2u9l1e5 "she'd", a1u1l3e9,
 a2u1l3e5, a2u9l2e4) y para revisar el tip de a1u4l1e10 ("English con
-mayúscula" contradice "no te preocupes por mayúsculas"). 2) La profesora que se acuerda:
-charla libre con `files/memoria/perfil.json` (12 datos / 15 errores / 60
-palabras / 400 tokens; errores desde `CORRECCIÓN:`, resumen con UNA llamada a
-Haiku al cerrar) + escenarios por nivel sin memoria (Cowork escribe A2 y B1).
+mayúscula" contradice "no te preocupes por mayúsculas"). 2) La profesora que se acuerda —
+**código hecho el 16-09**: "Hablar de todo" (`Scenario.LIBRE`, prompt
+`buildFreePrompt` con la ficha de `Memoria`: 12 datos / 15 errores / 60
+palabras / 400 tokens; los errores se anotan gratis desde `CORRECCIÓN:` en
+cada turno; al cerrar, `cerrarCharlaLibre` hace UNA llamada a Haiku
+(`ClaudeLlm.resumir`, ~530 tokens de entrada, ~$0,001) que devuelve
+`{"datos","resumen"}` y `Memoria.aplicarRespuesta` conserva la ficha vieja si
+no parsea; probado en el PC 3/3 parsean, y Haiku usa la ficha sin recitarla
+—"your sister the doctor"—). Los escenarios van agrupados por nivel en la
+lista y arrancan limpios (12 nuevos de Cowork, `anexar_escenarios.py`). El
+prompt del escenario y el de la charla libre COMPARTEN `reglasComunes()` y
+`protocoloCorreccion()`: no duplicar. Ajustes muestra lo que recuerda y "Que
+lo olvide todo"; "Borrar todo mi progreso" también la borra. Termina cuando
+Fero pueda hablar de lo que quiera y al día siguiente ella se acuerde.
 3) Retos y repaso: adivina antes de ver → corrige tu propio error →
 contrarreloj (Parejas con reloj y banco; lo fallado vuelve) → "aguanta" (tres
 errores) → mazo Leitner 1/3/7/16/35 con escalera elegir→armar→escribir→oír y

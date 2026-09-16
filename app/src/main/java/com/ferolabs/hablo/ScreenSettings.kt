@@ -40,6 +40,7 @@ fun SettingsScreen(
     cloud: CloudLlm,
     claude: ClaudeLlm,
     progreso: Progreso,
+    memoria: Memoria,
     engineId: String,
     onEngineChange: (String) -> Unit,
     onChangeTeacher: () -> Unit,
@@ -301,6 +302,7 @@ fun SettingsScreen(
                         Box(modifier = Modifier.weight(1f)) {
                             BigButton("Sí, borrar", container = BadRed) {
                                 progreso.borrarTodo()
+                                memoria.borrar()
                                 onReset()
                                 confirmReset = false
                             }
@@ -310,6 +312,53 @@ fun SettingsScreen(
                         }
                     }
                 }
+            }
+
+            // --- Lo que la profesora recuerda (charla libre) ---------------------
+            var memoriaTick by remember { mutableStateOf(0) }
+            SettingsCard {
+                Text("Lo que ${teacher.name} recuerda de ti", style = MaterialTheme.typography.labelMedium, color = InkSoft)
+                Spacer(Modifier.height(8.dp))
+                val hay = remember(memoriaTick) { memoria.cargar(); memoria.hayAlgo() || memoria.errores.isNotEmpty() }
+                if (!hay) {
+                    Text(
+                        "Todavía nada. En \"Hablar de todo\" va guardando lo básico: tu nombre, de qué hablaron y los errores que te corrigió.",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = InkSoft
+                    )
+                } else {
+                    val d = memoria.datos
+                    val e = memoria.errores
+                    Text(
+                        "${d.size} datos · ${e.size} errores que vigila" +
+                            (if (memoria.actualizado.isNotBlank()) " · al día ${memoria.actualizado}" else ""),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = Ink
+                    )
+                    if (d.isNotEmpty()) Text(
+                        d.joinToString(" · ") { "${it.k}: ${it.v}" },
+                        style = MaterialTheme.typography.labelMedium,
+                        color = InkSoft
+                    )
+                    if (memoria.resumen.isNotBlank()) Text(
+                        "Última charla: ${memoria.resumen}",
+                        style = MaterialTheme.typography.labelMedium,
+                        color = InkSoft
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    Text(
+                        "Que lo olvide todo",
+                        style = MaterialTheme.typography.labelLarge,
+                        color = BadRed,
+                        modifier = Modifier.clickable { memoria.borrar(); memoriaTick += 1 }
+                    )
+                }
+                Spacer(Modifier.height(6.dp))
+                Text(
+                    "Solo la charla libre usa esta memoria; los escenarios arrancan de cero. Vive en tu celular.",
+                    style = MaterialTheme.typography.labelMedium,
+                    color = InkSoft
+                )
             }
 
             SettingsCard {

@@ -38,6 +38,8 @@ class ClaudeLlm(context: Context) : ChatEngine {
 
     private val app = context.applicationContext
     private val worker = Executors.newSingleThreadExecutor()
+    /** Para el resumen de la charla libre: no comparte hilo ni cancelacion con la charla. */
+    private val fondo = Executors.newSingleThreadExecutor()
 
     /** Modelo elegido en Ajustes. Ver [MODELOS]. */
     var model: String = DEFAULT_MODEL
@@ -225,6 +227,56 @@ class ClaudeLlm(context: Context) : ChatEngine {
         }
     }
 
+    /**
+     * UNA llamada corta a Haiku (siempre Haiku: es la barata) sin streaming, para
+     * el resumen de la charla libre al cerrar. Devuelve el texto o null si falló.
+     * Va por su propio hilo: no espera a la generación en curso ni la estorba.
+     */
+    fun resumir(system: String, user: String, maxTokens: Int = 400, onDone: (String?) -> Unit) {
+        fondo.execute {
+            val key = readKey()
+            if (key == null) { onDone(null); return@execute }
+            try {
+                val conn = (URL(URL_MESSAGES).openConnection() as HttpURLConnection).apply {
+                    requestMethod = "POST"
+                    connectTimeout = 15_000
+                    readTimeout = 60_000
+                    doOutput = true
+                    setRequestProperty("content-type", "application/json; charset=utf-8")
+                    setRequestProperty("x-api-key", key)
+                    setRequestProperty("anthropic-version", ANTHROPIC_VERSION)
+                }
+                val body = JSONObject()
+                    .put("model", MODELO_RESUMEN)
+                    .put("max_tokens", maxTokens)
+                    .put("system", system)
+                    .put("messages", JSONArray().put(JSONObject().put("role", "user").put("content", user)))
+                conn.outputStream.use { it.write(body.toString().toByteArray(Charsets.UTF_8)) }
+                val code = conn.responseCode
+                if (code != 200) {
+                    val err = try { conn.errorStream?.bufferedReader()?.readText() ?: "" } catch (e: Throwable) { "" }
+                    Log.w(TAG, "resumen: " + explicar(code, err))
+                    onDone(null)
+                    return@execute
+                }
+                val resp = JSONObject(conn.inputStream.bufferedReader(Charsets.UTF_8).readText())
+                conn.disconnect()
+                val texto = StringBuilder()
+                val content = resp.optJSONArray("content")
+                if (content != null) for (i in 0 until content.length()) {
+                    val bloque = content.optJSONObject(i) ?: continue
+                    if (bloque.optString("type") == "text") texto.append(bloque.optString("text"))
+                }
+                val uso = resp.optJSONObject("usage")
+                Log.i(TAG, "resumen con $MODELO_RESUMEN: ${uso?.optInt("input_tokens")} entrada / ${uso?.optInt("output_tokens")} salida")
+                onDone(texto.toString())
+            } catch (e: Throwable) {
+                Log.w(TAG, "resumen falló", e)
+                onDone(null)
+            }
+        }
+    }
+
     /** Prueba la clave con una petición mínima. Devuelve el texto para Ajustes. */
     fun testConnection(onDone: (String) -> Unit) {
         worker.execute {
@@ -270,6 +322,8 @@ class ClaudeLlm(context: Context) : ChatEngine {
         private const val URL_MESSAGES = "https://api.anthropic.com/v1/messages"
         private const val ANTHROPIC_VERSION = "2023-06-01"
         private const val MAX_TOKENS = 400
+        /** El resumen de la charla libre va siempre por el modelo barato (~$0,001 por charla). */
+        const val MODELO_RESUMEN = "claude-haiku-4-5"
 
         /** id → (nombre para la pantalla, cuánto cuesta al mes a 30 turnos diarios). */
         val MODELOS = listOf(

@@ -81,9 +81,17 @@ fun ConversationScreen(
     sayQueued: (String) -> Unit,
     /** Cuaderno de errores: guarda lo que la profesora corrige. */
     progreso: Progreso,
+    /**
+     * Solo en la charla libre ("Hablar de todo"): la ficha que la profesora
+     * recuerda entre charlas. En los escenarios va null: arrancan limpios.
+     */
+    memoria: Memoria? = null,
+    /** Para el resumen de la charla libre al cerrar (UNA llamada a Haiku). */
+    claude: ClaudeLlm? = null,
     onBack: () -> Unit
 ) {
     val accent = Color(teacher.color)
+    val libre = memoria != null
     val bubbles = remember { mutableStateListOf<Bubble>() }
     val history = remember { mutableStateListOf<Pair<String, String>>() }
     var draft by remember { mutableStateOf("") }
@@ -95,8 +103,12 @@ fun ConversationScreen(
     var showHelp by remember { mutableStateOf(false) }
     val listState = rememberLazyListState()
 
-    val opening = scenario.opening.replace("{teacher}", teacher.name)
-    val basePrompt = remember(scenario.id, teacher.id) { buildSystemPrompt(scenario, teacher) }
+    val opening = remember(scenario.id) {
+        if (memoria != null) aperturaLibre(teacher, memoria) else scenario.opening.replace("{teacher}", teacher.name)
+    }
+    val basePrompt = remember(scenario.id, teacher.id) {
+        if (memoria != null) buildFreePrompt(teacher, memoria) else buildSystemPrompt(scenario, teacher)
+    }
     val ready = actual.ready()
     val engineBusy = actual.busy
 
@@ -116,6 +128,10 @@ fun ConversationScreen(
             actual.stop()
             actual.release()
             local.release()
+            // Charla libre: UNA llamada a Haiku con la charla para actualizar la
+            // ficha (datos y resumen). Los errores ya se anotaron gratis en cada
+            // turno. Sin clave o sin charla de verdad, no se llama.
+            if (memoria != null && claude != null) cerrarCharlaLibre(memoria, claude, history.toList())
         }
     }
 
@@ -152,7 +168,10 @@ fun ConversationScreen(
             if (rest.isNotBlank()) sayQueued(rest)
             // La corrección se LEE, no se oye: Fero probó la voz española y la
             // rechazó ("no me gusta el cambio de voz"). Se anota para el informe.
-            if (!correction.isNullOrBlank()) progreso.anotarCorreccion(correction)
+            if (!correction.isNullOrBlank()) {
+                progreso.anotarCorreccion(correction)
+                memoria?.anotarError(correction)
+            }
         }
         val motor = actual
         motor.chat(
@@ -207,13 +226,18 @@ fun ConversationScreen(
             Spacer(Modifier.size(8.dp))
         }
 
-        // Meta del escenario, siempre a la vista.
+        // Meta del escenario, siempre a la vista (la charla libre no tiene metas).
         Column(modifier = Modifier.padding(horizontal = 20.dp)) {
             Text(scenario.goalEs, style = MaterialTheme.typography.bodyMedium, color = InkSoft)
-            Text(
+            if (scenario.targets.isNotEmpty()) Text(
                 "Intenta usar: " + scenario.targets.joinToString("  ·  "),
                 style = MaterialTheme.typography.labelMedium,
                 color = accent
+            )
+            if (libre && memoria.hayAlgo()) Text(
+                "${teacher.name} se acuerda de lo básico de tus charlas anteriores.",
+                style = MaterialTheme.typography.labelSmall,
+                color = InkSoft
             )
             Text(
                 actual.label,
@@ -267,7 +291,7 @@ fun ConversationScreen(
         // gramática porque se supone que el vocabulario lo debo llevar". Por eso
         // son patrones con hueco y la explicación dice CUÁNDO se usa, no qué
         // significa: las palabras las pone él.
-        val ayudas = remember(scenario.id) { scenario.help + Course.helpCommon }
+        val ayudas = remember(scenario.id) { scenario.help + Course.helpCommon }   // libre: help vacío, solo comunes
         if (ayudas.isNotEmpty()) {
             Column(
                 modifier = Modifier
@@ -434,19 +458,59 @@ private fun startConversation(
 private fun buildSystemPrompt(scenario: Scenario, teacher: Teacher): String {
     val origin = if (teacher.accent == Accent.UK) "from England" else "from the United States"
     return buildString {
-        appendLine("You are ${teacher.name}, a warm English teacher $origin. You are role-playing with a Spanish-speaking beginner (level ${scenario.level}).")
+        // El vocabulario sube con el nivel del escenario (desde el 16-09 hay A2 y B1).
+        val vocab = when (scenario.level) { "B1" -> "A2-B1 vocabulary, a bit richer"; "A2" -> "A2 vocabulary"; else -> "A1-A2 vocabulary" }
+        appendLine("You are ${teacher.name}, a warm English teacher $origin. You are role-playing with a Spanish-speaking student (level ${scenario.level}).")
         appendLine("Situation: ${scenario.role}")
         appendLine("Rules:")
-        appendLine("- Stay in character and REPLY to what the student said, as the character would. Write simple English (A1-A2 vocabulary), at most two short sentences, and end with a question or an invitation so the student keeps talking.")
-        appendLine("- The student's messages come from a speech recognizer, which often mishears a Spanish accent: 'As model please' means 'a small, please'; 'Marion' means 'medium'; 'thoughts with Buddha' means 'toast with butter'; 'What nine is it' means 'what time is it'. ALWAYS guess the most likely meaning from the context and answer THAT, in character, confidently. Never say you didn't understand unless it is truly impossible, and even then offer a guess: 'Do you mean ...?'.")
-        appendLine("- NEVER correct a strange word, a misspelling or a word that does not fit the sentence: those are the recognizer's mistakes, not the student's. Correct ONLY grammar mistakes typical of Spanish speakers that the student clearly produced: verb forms ('he work'), a missing article ('my sister is doctor'), 'I have 25 years' (I'm 25 years old), 'I'm agree' (I agree), word order, false friends ('actually' does not mean 'actualmente'). If in doubt, do not correct.")
-        appendLine("- Correct only what is WRONG, never what is merely different from how you would say it. These are all CORRECT and must not be corrected: 'I am forty' or 'I'm 40' (age without 'years old'), long forms instead of contractions ('I do not like tea', 'I am from Colombia'), British or American variants, informal but correct answers ('A coffee, please'). Never rewrite a correct sentence to make it shorter or more natural: that is not a correction.")
-        appendLine("- ALWAYS answer with at least one complete English sentence. Never answer with nothing. Vary your wording: never reuse a sentence you already said in this conversation.")
-        appendLine("- If the student talks about something else, follow them naturally (answer their question, react), and bring the conversation back to the situation a little later. Do not ignore what they say.")
+        appendLine("- Stay in character and REPLY to what the student said, as the character would. Write simple English ($vocab), at most two short sentences, and end with a question or an invitation so the student keeps talking.")
+        append(reglasComunes())
         appendLine("- The student's goals: ${scenario.targets.joinToString("; ")}. Gently steer the conversation so they get to use them.")
         appendLine("- Traps to watch in this situation: ${scenario.watch.joinToString(" | ")}.")
         appendLine("- Never use lists, emojis, or the word CORRECCIÓN inside the English part. Do not translate your English into Spanish.")
         appendLine()
+        append(protocoloCorreccion())
+    }
+}
+
+/**
+ * La charla libre ("Hablar de todo"): sin papel, sin nivel, sin metas, y con
+ * la ficha de memoria delante. Mismas reglas del dictado y mismo protocolo de
+ * corrección que los escenarios: no se duplican, se comparten.
+ */
+private fun buildFreePrompt(teacher: Teacher, memoria: Memoria): String {
+    val origin = if (teacher.accent == Accent.UK) "from England" else "from the United States"
+    return buildString {
+        appendLine("You are ${teacher.name}, a warm English teacher $origin, having a relaxed one-to-one chat with a Spanish-speaking student (level A1-B1). This is a FREE conversation: no role-play, no fixed topic.")
+        appendLine("Rules:")
+        appendLine("- Talk about whatever the student wants: their day, plans, family, opinions, questions about English. REPLY to what they said, show interest, and end with a question so they keep talking. Simple English (A2 vocabulary), at most two short sentences.")
+        append(reglasComunes())
+        appendLine("- If they ask you something about English (a word, a rule), answer briefly in English and, if the explanation needs Spanish, put it in the $CORRECTION_MARK line.")
+        appendLine("- Never use lists, emojis, or the word CORRECCIÓN inside the English part. Do not translate your English into Spanish.")
+        appendLine()
+        val ficha = memoria.bloquePrompt()
+        if (ficha.isNotBlank()) {
+            appendLine(ficha)
+            appendLine()
+        }
+        append(protocoloCorreccion())
+    }
+}
+
+/** Las reglas que no dependen del escenario: qué hacer con el dictado y qué NO corregir. */
+private fun reglasComunes(): String {
+    return buildString {
+        appendLine("- The student's messages come from a speech recognizer, which often mishears a Spanish accent: 'As model please' means 'a small, please'; 'Marion' means 'medium'; 'thoughts with Buddha' means 'toast with butter'; 'What nine is it' means 'what time is it'. ALWAYS guess the most likely meaning from the context and answer THAT, in character, confidently. Never say you didn't understand unless it is truly impossible, and even then offer a guess: 'Do you mean ...?'.")
+        appendLine("- NEVER correct a strange word, a misspelling or a word that does not fit the sentence: those are the recognizer's mistakes, not the student's. Correct ONLY grammar mistakes typical of Spanish speakers that the student clearly produced: verb forms ('he work'), a missing article ('my sister is doctor'), 'I have 25 years' (I'm 25 years old), 'I'm agree' (I agree), word order, false friends ('actually' does not mean 'actualmente'). If in doubt, do not correct.")
+        appendLine("- Correct only what is WRONG, never what is merely different from how you would say it. These are all CORRECT and must not be corrected: 'I am forty' or 'I'm 40' (age without 'years old'), long forms instead of contractions ('I do not like tea', 'I am from Colombia'), British or American variants, informal but correct answers ('A coffee, please'). Never rewrite a correct sentence to make it shorter or more natural: that is not a correction.")
+        appendLine("- ALWAYS answer with at least one complete English sentence. Never answer with nothing. Vary your wording: never reuse a sentence you already said in this conversation.")
+        appendLine("- If the student talks about something else, follow them naturally (answer their question, react), and bring the conversation back to the situation a little later if there is one. Do not ignore what they say.")
+    }
+}
+
+/** El protocolo de corrección, con ejemplos. Compartido por escenarios y charla libre. */
+private fun protocoloCorreccion(): String {
+    return buildString {
         // El protocolo de corrección va aparte y con ejemplo, no como una regla
         // más de la lista: medido el 2026-09-13 con seis turnos reales, Haiku
         // 4.5 decía la frase correcta en voz alta 0 de 3 veces con la regla
@@ -475,6 +539,51 @@ private fun buildSystemPrompt(scenario: Scenario, teacher: Teacher): String {
         appendLine("Example WITHOUT a mistake:")
         appendLine("  Student: A small coffee please.")
         append("  You: One small coffee, coming right up! Would you like anything to eat?")
+    }
+}
+
+/** La primera frase de la charla libre: con nombre y tema anterior si la ficha los tiene. */
+private fun aperturaLibre(teacher: Teacher, memoria: Memoria): String {
+    val nombre = memoria.nombre()
+    val saludo = if (nombre != null) "Hi, $nombre!" else "Hi! I'm ${teacher.name}."
+    return if (memoria.resumen.isNotBlank()) {
+        "$saludo Nice to see you again. What's new since we last talked?"
+    } else {
+        "$saludo We can talk about anything you like today. What's on your mind?"
+    }
+}
+
+/**
+ * Al cerrar la charla libre: UNA llamada a Haiku con la charla y la ficha
+ * actual, que devuelve `{"datos": [...], "resumen": "..."}`. Si no parsea,
+ * [Memoria.aplicarRespuesta] deja la ficha como estaba. Con menos de dos
+ * turnos del alumno no hay nada que resumir y no se gasta.
+ */
+private fun cerrarCharlaLibre(memoria: Memoria, claude: ClaudeLlm, history: List<Pair<String, String>>) {
+    val turnos = history.count { it.first == "user" }
+    if (turnos < 2 || !claude.keyPresent()) return
+    memoria.cargar()
+    val system = buildString {
+        appendLine("You maintain a short memory card about a Spanish-speaking English student, for his teacher to use in the next chat.")
+        appendLine("Reply with ONLY a JSON object, no prose: {\"datos\": [{\"k\": \"...\", \"v\": \"...\"}], \"resumen\": \"...\"}")
+        appendLine("- datos: up to ${Memoria.MAX_DATOS} stable facts about the student (name, city, job, family, likes, plans), each as a short key and a short value, in Spanish. Start from the existing facts, keep the ones still true, add new ones, drop the least useful if over ${Memoria.MAX_DATOS}. Never invent.")
+        appendLine("- resumen: what you talked about THIS time, in Spanish, at most ${Memoria.MAX_PALABRAS_RESUMEN} words, so the teacher can bring it up next time.")
+        append("Do not include the student's mistakes: those are tracked elsewhere.")
+    }
+    val user = buildString {
+        appendLine("Existing card:")
+        appendLine(memoria.toJson().toString())
+        appendLine()
+        appendLine("Transcript of today's chat (Teacher / Student):")
+        for ((role, text) in history) {
+            val quien = if (role == "assistant") "Teacher" else "Student"
+            appendLine("$quien: ${text.take(400)}")
+        }
+    }
+    claude.resumir(system, user) { texto ->
+        if (texto == null || !memoria.aplicarRespuesta(texto)) {
+            android.util.Log.w("HabloMemoria", "resumen no aplicado; se conserva la ficha anterior")
+        }
     }
 }
 
@@ -581,33 +690,68 @@ fun ScenariosScreen(
             }
             item {
                 Text(
-                    "Situaciones cortas y cerradas. ${teacher.name} hace un papel, tú hablas, y ella te corrige en español lo que se te escapa.",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = InkSoft
-                )
-                Text(
                     "Hoy responde: ${if (engine.usable()) engine.label else local.label}. Se cambia en Ajustes.",
                     style = MaterialTheme.typography.labelMedium,
                     color = accent
                 )
             }
-            items(Course.scenarios) { sc ->
+            // La charla libre: sin escenario ni nivel, y con memoria (etapa 2).
+            item {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .background(Color.White, RoundedCornerShape(16.dp))
-                        .border(1.dp, Line, RoundedCornerShape(16.dp))
-                        .clickable(enabled = canTalk) { onPick(sc) }
+                        .background(Color(teacher.softColor), RoundedCornerShape(16.dp))
+                        .border(1.dp, accent.copy(alpha = 0.5f), RoundedCornerShape(16.dp))
+                        .clickable(enabled = canTalk) { onPick(Scenario.LIBRE) }
                         .padding(16.dp)
                 ) {
-                    Text(sc.emoji, style = MaterialTheme.typography.headlineMedium)
+                    Text(Scenario.LIBRE.emoji, style = MaterialTheme.typography.headlineMedium)
                     Spacer(Modifier.size(14.dp))
                     Column(modifier = Modifier.weight(1f)) {
-                        Text(sc.title, style = MaterialTheme.typography.titleMedium)
-                        Text(sc.goalEs, style = MaterialTheme.typography.bodyMedium, color = InkSoft)
+                        Text(Scenario.LIBRE.title, style = MaterialTheme.typography.titleMedium)
+                        Text(Scenario.LIBRE.goalEs, style = MaterialTheme.typography.bodyMedium, color = InkSoft)
                     }
-                    Pill(sc.level, accent, Color(teacher.softColor))
+                }
+            }
+            item {
+                Text(
+                    "Situaciones cortas y cerradas, por nivel. ${teacher.name} hace un papel, tú hablas, y ella te corrige en español lo que se te escapa. Cada una arranca de cero.",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = InkSoft,
+                    modifier = Modifier.padding(top = 6.dp)
+                )
+            }
+            // Agrupados por nivel, en el orden del JSON (A1, A2, B1…).
+            val porNivel = Course.scenarios.groupBy { it.level }
+            for ((nivel, lista) in porNivel) {
+                item(key = "nivel-$nivel") {
+                    Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(top = 8.dp)) {
+                        Pill(nivel, accent, Color(teacher.softColor))
+                        Spacer(Modifier.size(10.dp))
+                        Text(
+                            when (nivel) { "A1" -> "Para empezar"; "A2" -> "Ya con lo básico"; "B1" -> "Para defenderte"; else -> nivel },
+                            style = MaterialTheme.typography.titleMedium
+                        )
+                    }
+                }
+                items(lista, key = { it.id }) { sc ->
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(Color.White, RoundedCornerShape(16.dp))
+                            .border(1.dp, Line, RoundedCornerShape(16.dp))
+                            .clickable(enabled = canTalk) { onPick(sc) }
+                            .padding(16.dp)
+                    ) {
+                        Text(sc.emoji, style = MaterialTheme.typography.headlineMedium)
+                        Spacer(Modifier.size(14.dp))
+                        Column(modifier = Modifier.weight(1f)) {
+                            Text(sc.title, style = MaterialTheme.typography.titleMedium)
+                            Text(sc.goalEs, style = MaterialTheme.typography.bodyMedium, color = InkSoft)
+                        }
+                    }
                 }
             }
         }

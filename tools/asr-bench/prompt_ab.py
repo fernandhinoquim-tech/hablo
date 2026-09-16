@@ -16,31 +16,30 @@ SC = {"level": "A1",
                 "'I am agree' → 'I agree', sin am", "'How do you call yourself?' → 'What's your name?'"]}
 OPENING = "Hi! I don't think we've met. I'm Mia. What's your name?"
 
-def prompt_from(src):
-    body = src[src.index("private fun buildSystemPrompt"):]
+def prompt_from(src, fn="buildSystemPrompt"):
+    """Saca el prompt REAL del .kt: los literales de appendLine/append de la funcion, e
+    inlinea las funciones compartidas (reglasComunes(), protocoloCorreccion())."""
+    import re as _re
+    body = src[src.index("private fun " + fn):]
     body = body[:body.index("\n}\n")]
     out = []
-    for m in re.finditer(r'append(Line)?\((".*?")\)\n', body):
-        lit = m.group(2)
-        # Kotlin string -> texto
-        t = lit[1:-1].replace('\\"', '"')
-        t = t.replace("${teacher.name}", "Mia").replace("$origin", "from the United States")
-        t = t.replace("${scenario.level}", SC["level"]).replace("${scenario.role}", SC["role"])
-        t = t.replace('${scenario.targets.joinToString("; ")}', "; ".join(SC["targets"]))
-        t = t.replace('${scenario.watch.joinToString(" | ")}', " | ".join(SC["watch"]))
-        t = t.replace("$CORRECTION_MARK", "CORRECCIÓN:")
-        assert "$" not in t, t
-        out.append(t)
-    for m in re.finditer(r'appendLine\(\)\n', body):
-        pass
-    # Reconstruir respetando appendLine() vacios: mas simple, re-recorrer secuencialmente
-    seq = []
-    for m in re.finditer(r'append(Line)?\((""|".*?")?\)\n', body):
-        if m.group(2) is None:
-            seq.append("")
-        else:
-            seq.append(out.pop(0))
-    return "\n".join(seq)
+    for line in body.splitlines():
+        m2 = _re.search(r'append(Line)?\((\w+)\(\)\)', line)
+        m = _re.search(r'append(Line)?\((".*?")?\)\s*$', line)
+        if m2:
+            out.append(prompt_from(src, m2.group(2)))
+        elif m and m.group(2) is None:
+            out.append("")
+        elif m:
+            t = m.group(2)[1:-1].replace('\\"', '"')
+            t = t.replace("${teacher.name}", "Mia").replace("$origin", "from the United States")
+            t = t.replace("${scenario.level}", SC["level"]).replace("${scenario.role}", SC["role"])
+            t = t.replace('${scenario.targets.joinToString("; ")}', "; ".join(SC["targets"]))
+            t = t.replace('${scenario.watch.joinToString(" | ")}', " | ".join(SC["watch"]))
+            t = t.replace("$CORRECTION_MARK", "CORRECCIÓN:").replace("$vocab", "A1-A2 vocabulary")
+            assert "$" not in t, t
+            out.append(t + ("\n" if m.group(1) else ""))
+    return "".join(x if x.endswith("\n") or x == "" else x + "\n" for x in out)
 
 def chat(model, system, user):
     body = {"model": model, "max_tokens": 300, "stream": False,
