@@ -340,9 +340,11 @@ prompt del escenario y el de la charla libre COMPARTEN `reglasComunes()` y
 `protocoloCorreccion()`: no duplicar. Ajustes muestra lo que recuerda y "Que
 lo olvide todo"; "Borrar todo mi progreso" también la borra. Termina cuando
 Fero pueda hablar de lo que quiera y al día siguiente ella se acuerde.
-3) Retos y repaso — **código hecho el 16-09** (ver "Etapa 3" abajo);
+3) Retos y repaso — **código hecho y probado en el teléfono el 16-09** (0.9.3;
+ver "Etapa 3" abajo: adivina, repaso, corrige tu propio error, contrarreloj y
+Aguanta vistos en pantalla; el mazo arrancó con 59 frases para el 17-09);
 termina cuando Fero pueda abrir la app sin lección pendiente y tener veinte
-minutos de práctica distinta. 4) Historias (`story`: leer → 3 preguntas → contarla de vuelta
+minutos de práctica distinta. Falta el `vocabulario.json` de Cowork. 4) Historias (`story`: leer → 3 preguntas → contarla de vuelta
 en voz alta → palabras al mazo; Cowork las escribe por tandas de 3-12).
 5) **Modo Aptis** (abajo). 6) B1 y B2 (Cowork), respaldo del progreso, modo
 oscuro, recalibración del audio.
