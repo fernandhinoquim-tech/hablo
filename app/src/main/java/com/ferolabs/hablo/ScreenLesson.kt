@@ -141,6 +141,7 @@ fun LessonScreen(
     if (finished) {
         val score = if (total == 0) 0 else (correctCount * 100) / total
         ResultsScreen(
+            lesson = lesson,
             teacher = teacher,
             speaking = speaking,
             showFace = showFace,
@@ -911,6 +912,7 @@ private fun FeedbackBox(
 
 @Composable
 private fun ResultsScreen(
+    lesson: Lesson,
     teacher: Teacher,
     speaking: Boolean,
     showFace: Boolean,
@@ -926,6 +928,12 @@ private fun ResultsScreen(
         score >= 60 -> "Good job. You're making progress."
         else -> "That's okay. Let's try it again together."
     }
+    // Con 56 lecciones en dos niveles hay que decir cuál fue, si se aprobó y qué sigue.
+    val unit = Course.unitOfLesson(lesson.id)
+    val level = unit?.let { Course.levelOfUnit(it.id) }
+    val todas = Course.allLessons()
+    val siguiente = todas.getOrNull(todas.indexOfFirst { it.id == lesson.id } + 1)
+    val aprobada = score >= 60
 
     LaunchedEffect(Unit) { say(phrase, 1f) }
 
@@ -939,15 +947,31 @@ private fun ResultsScreen(
         TeacherAvatar(teacher = teacher, speaking = speaking, size = 120.dp, showFace = showFace)
         Spacer(Modifier.height(12.dp))
         Text(
+            listOfNotNull(level?.id, unit?.title, lesson.title).joinToString(" · "),
+            style = MaterialTheme.typography.labelLarge,
+            color = InkSoft,
+            textAlign = TextAlign.Center
+        )
+        Spacer(Modifier.height(6.dp))
+        Text(
             "$score%",
             style = MaterialTheme.typography.headlineLarge,
-            color = if (score >= 60) GoodGreen else accent
+            color = if (aprobada) GoodGreen else accent
         )
         Text(
-            "$correct de $total correctas",
+            "$correct de $total correctas · " + (if (aprobada) "lección aprobada ✓" else "se aprueba con 60: vuelve a intentarla"),
             style = MaterialTheme.typography.bodyLarge,
-            color = InkSoft
+            color = if (aprobada) GoodGreen else InkSoft,
+            textAlign = TextAlign.Center
         )
+        if (aprobada && siguiente != null) {
+            Spacer(Modifier.height(4.dp))
+            Text(
+                "Sigue: ${siguiente.title}",
+                style = MaterialTheme.typography.bodyMedium,
+                color = InkSoft
+            )
+        }
         Spacer(Modifier.height(18.dp))
         Box(
             modifier = Modifier

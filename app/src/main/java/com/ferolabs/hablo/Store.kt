@@ -1,6 +1,7 @@
 package com.ferolabs.hablo
 
 import android.content.Context
+import java.io.File
 import java.util.Calendar
 
 /** Guarda el progreso en el propio celular. Nada de esto sale del teléfono. */
@@ -38,11 +39,14 @@ class Store(context: Context) {
      * Quién hace de profesora en la conversación: [ENGINE_LOCAL] (la IA del
      * teléfono, sin internet), [ENGINE_GEMINI] (gratis, con altibajos) o un id
      * de modelo de Claude (de pago). Por internet solo va el texto.
-     * Migra solo desde el interruptor de la 0.9.
+     * Sin elección guardada: Claude si la clave está en el teléfono (es el
+     * motor por defecto desde el 2026-09-13), si no el interruptor viejo de
+     * la 0.9, si no la IA del teléfono.
      */
     var conversationEngine: String
         get() = prefs.getString("conversation_engine", null)
-            ?: if (prefs.getBoolean("cloud_conversation", false)) ENGINE_GEMINI else ENGINE_LOCAL
+            ?: if (File(context.getExternalFilesDir("modelos"), ClaudeLlm.KEY_FILE).exists()) ClaudeLlm.MODELOS[0].first
+            else if (prefs.getBoolean("cloud_conversation", false)) ENGINE_GEMINI else ENGINE_LOCAL
         set(value) = prefs.edit().putString("conversation_engine", value).apply()
 
     /** Multiplicador global de velocidad de la voz (0.6 = lento, 1.4 = rápido). */
@@ -148,7 +152,16 @@ class Store(context: Context) {
         e.putInt("drill_day", todayKey()).putInt("drill_$key", previas + 1).apply()
     }
 
+    /** Borra el progreso (puntos, racha, lecciones, sonidos) pero conserva los ajustes. */
     fun resetEverything() {
-        prefs.edit().clear().apply()
+        val motor = prefs.getString("conversation_engine", null)
+        val caras = prefs.getBoolean("show_faces", true)
+        val velocidad = prefs.getFloat("speech_scale", 1.0f)
+        val e = prefs.edit().clear()
+        if (motor != null) e.putString("conversation_engine", motor)
+        e.putBoolean("show_faces", caras)
+            .putFloat("speech_scale", velocidad)
+            .putInt("sound_stats_epoch", SOUND_STATS_EPOCH)
+            .apply()
     }
 }

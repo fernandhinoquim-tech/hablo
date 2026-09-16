@@ -292,19 +292,22 @@ fun HomeScreen(
                     .border(1.dp, Line, RoundedCornerShape(14.dp))
                     .padding(16.dp)
             ) {
+                // Solo lo que de verdad falta (etapas 2 y 3 del plan): lo que ya existe o
+                // se descartó no se promete.
                 Text("Lo que viene", style = MaterialTheme.typography.titleMedium)
                 Spacer(Modifier.height(6.dp))
                 Text(
-                    "💬  Conversar con ${teacher.name} de verdad, con IA dentro del celular\n" +
-                        "👩  Verla mientras te habla y te corrige\n" +
-                        "📚  Vocabulario con repetición espaciada\n" +
-                        "✍️  Corrección de tu escritura explicada en español",
+                    "💬  Hablar de todo con ${teacher.name}, y que se acuerde de ti\n" +
+                        "🎭  Escenarios de conversación de A2\n" +
+                        "🔁  Repaso espaciado de lo que ya viste\n" +
+                        "📖  La gramática de cada lección en pantalla",
                     style = MaterialTheme.typography.bodyMedium,
                     color = InkSoft
                 )
                 Spacer(Modifier.height(6.dp))
                 Text(
-                    "Versión $appVersion · ${Course.allLessons().size} lecciones · todo sin internet",
+                    "Versión $appVersion · ${Course.levels.size} niveles · ${Course.allLessons().size} lecciones · " +
+                        "sin internet, salvo la conversación con Claude o Gemini",
                     style = MaterialTheme.typography.labelMedium,
                     color = InkSoft
                 )

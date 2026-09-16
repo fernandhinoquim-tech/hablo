@@ -1,7 +1,9 @@
 # Hablo — reglas del proyecto
 
-App Android para aprender inglés que funciona **sin internet** (única
-excepción, opcional y apagada por defecto: la conversación con Gemini), hecha
+App Android para aprender inglés. Lecciones, pronunciación y progreso van
+**sin internet**; la única excepción es la conversación, que sale como texto a
+Claude (de pago, el motor por defecto desde el 2026-09-13) o a Gemini si se
+elige en Ajustes, y sin clave se queda en el teléfono con Qwen. Hecha
 específicamente para hispanohablantes. Es un proyecto personal de Fero
 (fernandhinoquim@gmail.com), no un producto comercial. Meta: llevarlo de A1 a
 B2 leyendo, escribiendo, escuchando y hablando.

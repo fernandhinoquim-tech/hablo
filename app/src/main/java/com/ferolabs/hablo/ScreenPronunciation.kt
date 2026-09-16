@@ -74,7 +74,8 @@ fun PronunciationScreen(
         return
     }
 
-    var index by remember { mutableStateOf(0) }
+    // Arranca ya con el reparto ponderado, no siempre con el primero de la lista.
+    var index by remember { mutableStateOf(-1) }
     var result by remember { mutableStateOf<PronunciationResult?>(null) }
     var report by remember { mutableStateOf<SoundReport?>(null) }
     /** Hubo veredicto por fonema pero se descarto entero: el dictado no entendio esas palabras. */
@@ -88,9 +89,6 @@ fun PronunciationScreen(
     // "Hoy": un solo mensaje por sesión, el sonido que más falló.
     val sessionTries = remember { mutableStateMapOf<Sound, Int>() }
     val sessionFails = remember { mutableStateMapOf<Sound, Int>() }
-
-    val drill = drills[index % drills.size]
-    val triesToday = store.drillTriesToday(drill.text)
 
     /**
      * Siguiente frase. Antes era `(index + 1) % 40`: siempre el mismo orden, y
@@ -116,6 +114,10 @@ fun PronunciationScreen(
         }
         return pool.last()
     }
+
+    if (index < 0) index = pickNext(-1)
+    val drill = drills[index % drills.size]
+    val triesToday = store.drillTriesToday(drill.text)
 
     // El porcentaje sale de lo que el reconocedor de palabras entendió; el
     // veredicto del sonido, de la evaluación por fonema.

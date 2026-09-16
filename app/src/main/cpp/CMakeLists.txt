@@ -44,3 +44,8 @@ target_include_directories(hablo-llm PRIVATE
         ${LLAMA_SRC}/ggml/include)
 
 target_link_libraries(hablo-llm PRIVATE llama android log)
+
+# Android 15+ con paginas de 16 KB: los .so de sherpa-onnx y ONNX Runtime ya
+# vienen alineados a 0x4000; este era el unico a 0x1000 y el sistema avisaba
+# en cada arranque de la app de depuracion (diagnostico del 2026-09-15).
+target_link_options(hablo-llm PRIVATE "-Wl,-z,max-page-size=16384")

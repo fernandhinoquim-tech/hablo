@@ -271,60 +271,13 @@ fun SettingsScreen(
                 )
             }
 
-            // --- Laboratorio de IA (Fase 3): medir antes de construir ----------
-            var reply by remember { mutableStateOf("") }
-            SettingsCard {
-                Text("Laboratorio de IA (Fase 3)", style = MaterialTheme.typography.labelMedium, color = InkSoft)
-                Spacer(Modifier.height(8.dp))
-                val present = llm.modelPresent()
-                Text(
-                    if (present) "Modelo: ${Llm.MODEL_NAME} (${llm.modelFile.length() / 1_000_000_000.0} GB)"
-                    else "Falta el modelo. Se copia por USB a:\n${llm.modelFile.absolutePath}",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = if (present) Ink else BadRed
-                )
-                Spacer(Modifier.height(8.dp))
-                if (llm.status.isNotBlank()) {
-                    Text(llm.status, style = MaterialTheme.typography.labelMedium, color = InkSoft)
-                    Spacer(Modifier.height(8.dp))
-                }
-                if (!llm.loaded) {
-                    BigButton("Cargar el modelo", enabled = present && !llm.busy, container = accent) {
-                        speaker.stop()
-                        llm.load()
-                    }
-                } else {
-                    BigButton("Probar: preséntate en inglés", enabled = !llm.busy, container = accent) {
-                        reply = ""
-                        llm.chat(
-                            messages = listOf(
-                                "system" to "You are ${teacher.name}, a warm English teacher for Spanish speakers. " +
-                                    "Reply in simple English (A2 level), two sentences maximum. /no_think",
-                                "user" to "Hi! Please introduce yourself and ask me one question."
-                            ),
-                            onToken = { piece -> reply += piece },
-                            // Ciclo de voz completo: lo que escribe la IA lo dice la profesora.
-                            onDone = { if (reply.isNotBlank()) speaker.speak(reply.trim(), teacher, speed) }
-                        )
-                    }
-                    if (reply.isNotBlank()) {
-                        Spacer(Modifier.height(8.dp))
-                        Text(reply.trim(), style = MaterialTheme.typography.bodyLarge, color = Ink)
-                    }
-                    Spacer(Modifier.height(8.dp))
-                    Text(
-                        "Liberar el modelo",
-                        style = MaterialTheme.typography.labelLarge,
-                        color = InkSoft,
-                        modifier = Modifier.clickable { llm.release() }
-                    )
-                }
-            }
-
             SettingsCard {
                 Text("Tu progreso", style = MaterialTheme.typography.labelMedium, color = InkSoft)
                 Spacer(Modifier.height(8.dp))
-                Text("${store.xp} puntos · racha de ${store.streak} días", style = MaterialTheme.typography.bodyLarge)
+                Text(
+                    "${store.xp} puntos · " + (if (store.streak == 1) "racha de 1 día" else "racha de ${store.streak} días"),
+                    style = MaterialTheme.typography.bodyLarge
+                )
                 Spacer(Modifier.height(12.dp))
                 if (!confirmReset) {
                     Text(
@@ -360,12 +313,23 @@ fun SettingsScreen(
             }
 
             SettingsCard {
-                Text("Diagnóstico del motor de voz", style = MaterialTheme.typography.labelMedium, color = InkSoft)
+                Text("Diagnóstico", style = MaterialTheme.typography.labelMedium, color = InkSoft)
                 Spacer(Modifier.height(8.dp))
                 Text(
                     speaker.diagnostics(),
                     style = MaterialTheme.typography.bodyMedium,
                     color = Ink
+                )
+                Spacer(Modifier.height(6.dp))
+                // El antiguo "Laboratorio de IA (Fase 3)" (cargar/probar/liberar a mano)
+                // se quitó: la conversación carga y suelta el modelo sola.
+                val presente = llm.modelPresent()
+                Text(
+                    if (presente) "IA del teléfono: modelo ${Llm.MODEL_NAME} presente (%.1f GB).".format(
+                        java.util.Locale("es"), llm.modelFile.length() / 1_000_000_000.0
+                    ) else "IA del teléfono: falta el modelo. Se copia por USB a:\n${llm.modelFile.absolutePath}",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = if (presente) Ink else BadRed
                 )
                 Spacer(Modifier.height(8.dp))
                 Text(
@@ -381,16 +345,17 @@ fun SettingsScreen(
                 Text("Versión $appVersion", style = MaterialTheme.typography.bodyLarge)
                 Spacer(Modifier.height(8.dp))
                 Text(
-                    "Todo funciona sin internet y tu progreso vive solo en este celular. " +
-                        "La única excepción, si la enciendes arriba, es la conversación con Gemini.",
+                    "Las lecciones, la pronunciación y tu progreso viven solo en este celular, sin internet. " +
+                        "La única excepción es la conversación: si arriba eliges Claude o Gemini, sale por " +
+                        "internet solo el texto de la charla (nunca tu voz); con la IA del teléfono, nada sale.",
                     style = MaterialTheme.typography.bodyMedium,
                     color = InkSoft
                 )
                 Spacer(Modifier.height(10.dp))
                 Text(
                     "Voces: Piper (MIT) sobre sherpa-onnx (Apache 2.0). Dictado: Moonshine y " +
-                        "Parakeet. Fonemas: wav2vec2. IA en el teléfono: llama.cpp + Qwen3 8B. " +
-                        "Todo dentro de la app o en su carpeta.",
+                        "Parakeet. Fonemas: wav2vec2. Conversación: Claude API o Gemini API (texto), " +
+                        "o llama.cpp + Qwen3 8B en el teléfono. Todo dentro de la app o en su carpeta.",
                     style = MaterialTheme.typography.labelMedium,
                     color = InkSoft
                 )

@@ -64,7 +64,7 @@ fun TeacherPickerScreen(
                         )
                         Spacer(Modifier.height(6.dp))
                         Text(
-                            "Aprende inglés sin internet. Elige quién te va a enseñar.",
+                            "Aprende inglés con una profesora que vive en tu celular. Elige quién te va a enseñar.",
                             style = MaterialTheme.typography.bodyLarge,
                             color = InkSoft
                         )
