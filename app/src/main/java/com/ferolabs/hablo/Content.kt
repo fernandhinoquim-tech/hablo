@@ -293,11 +293,42 @@ data class Level(
  */
 data class Banco(val id: String, val title: String, val level: String, val pares: List<Pareja>)
 
+/** Una pregunta de comprensión de una historia: 3 opciones, [answer] es el texto de la correcta. */
+data class Pregunta(val q: String, val options: List<String>, val answer: String)
+
+/**
+ * Una historia corta (etapa 4): la profesora la lee y está en pantalla → 3
+ * preguntas → el alumno la cuenta de vuelta EN VOZ ALTA con las pistas
+ * (el retell no es opcional: sin él es comprensión lectora y se pierde la
+ * mitad del efecto) → el glosario pasa al mazo. Vive en historias.json.
+ */
+data class Historia(
+    val id: String,
+    val level: String,
+    val title: String,
+    val titleEs: String,
+    val text: List<String>,
+    val glosario: List<Pareja>,
+    val preguntas: List<Pregunta>,
+    val retellPromptEs: String,
+    val pistas: List<String>,
+    val trap: String
+) {
+    val texto: String get() = text.joinToString(" ")
+}
+
+/** Una tanda de historias (3 a 12: donde el efecto es máximo, d = 2,53). */
+data class Tanda(val id: String, val level: String, val title: String, val historias: List<Historia>)
+
 /**
  * Carga y guarda el curso. Es un objeto único porque el contenido no cambia
  * durante la sesión: se lee una vez al arrancar la app.
  */
 object Course {
+
+    /** Las tandas de historias (assets/content/historias.json; opcional). */
+    var tandas: List<Tanda> = emptyList()
+        private set
 
     /** Bancos de vocabulario del contrarreloj (opcional: sin el archivo, la lista queda vacía). */
     var bancos: List<Banco> = emptyList()
@@ -333,6 +364,11 @@ object Course {
             } catch (e: java.io.FileNotFoundException) {
                 emptyList()   // todavía no hay banco: el contrarreloj usa las frases de las lecciones
             }
+            tandas = try {
+                parseTandas(JSONObject(readAsset(context, "content/historias.json")).getJSONArray("tandas"))
+            } catch (e: java.io.FileNotFoundException) {
+                emptyList()
+            }
             loaded = true
             Log.i(TAG, "Curso cargado: ${levels.size} niveles, ${allLessons().size} lecciones, ${drills.size} drills, ${scenarios.size} escenarios")
         } catch (e: Throwable) {
@@ -350,6 +386,55 @@ object Course {
 
     private fun readAsset(context: Context, path: String): String =
         context.assets.open(path).bufferedReader().use { it.readText() }
+
+    fun historiaById(id: String): Historia? =
+        tandas.asSequence().flatMap { it.historias.asSequence() }.firstOrNull { it.id == id }
+
+    /** historias.json: tandas de 3 a 12 historias; cada una con texto, glosario, 3 preguntas y retell. */
+    fun parseTandas(arr: JSONArray): List<Tanda> {
+        val ids = HashSet<String>()
+        return (0 until arr.length()).map { t ->
+            val to = arr.getJSONObject(t)
+            val whereT = "historias.json, tanda ${t + 1}"
+            val ha = to.optJSONArray("historias") ?: throw IllegalArgumentException("$whereT: falta \"historias\"")
+            if (ha.length() < 3 || ha.length() > 12) throw IllegalArgumentException("$whereT: ${ha.length()} historias (el efecto máximo está entre 3 y 12)")
+            val historias = (0 until ha.length()).map { i ->
+                val o = ha.getJSONObject(i)
+                val where = "$whereT, historia ${i + 1}"
+                val id = req(o, "id", where)
+                if (!ids.add(id)) throw IllegalArgumentException("$where: id \"$id\" repetido")
+                val text = strings(o, "text")
+                if (text.size < 6 || text.size > 10) throw IllegalArgumentException("$where: ${text.size} frases (se pidió 6-10)")
+                val glosario = (o.optJSONArray("glosario") ?: JSONArray()).let { g ->
+                    (0 until g.length()).map { j ->
+                        val p = g.getJSONObject(j)
+                        val en = p.optString("en").trim(); val es = p.optString("es").trim()
+                        if (en.isBlank() || es.isBlank()) throw IllegalArgumentException("$where: glosario ${j + 1} sin \"en\" o sin \"es\"")
+                        Pareja(es, en)
+                    }
+                }
+                if (glosario.size < 2) throw IllegalArgumentException("$where: al menos 2 palabras de glosario (van al mazo)")
+                val pa = o.optJSONArray("preguntas") ?: JSONArray()
+                if (pa.length() != 3) throw IllegalArgumentException("$where: hacen falta 3 preguntas")
+                val preguntas = (0 until pa.length()).map { j ->
+                    val q = pa.getJSONObject(j)
+                    val options = strings(q, "options")
+                    val answer = q.optString("answer")
+                    checkChoice("$where, pregunta ${j + 1}", options, answer)
+                    Pregunta(req(q, "q", "$where, pregunta ${j + 1}"), options, answer)
+                }
+                val r = o.optJSONObject("retell") ?: throw IllegalArgumentException("$where: falta el retell (es la mitad del efecto)")
+                val pistas = strings(r, "pistas")
+                if (pistas.size < 2) throw IllegalArgumentException("$where: el retell necesita al menos 2 pistas")
+                Historia(
+                    id = id, level = req(o, "level", where), title = req(o, "title", where), titleEs = req(o, "titleEs", where),
+                    text = text, glosario = glosario, preguntas = preguntas,
+                    retellPromptEs = req(r, "prompt_es", "$where, retell"), pistas = pistas, trap = req(o, "trap", where)
+                )
+            }
+            Tanda(req(to, "id", whereT), req(to, "level", whereT), req(to, "title", whereT), historias)
+        }
+    }
 
     /** vocabulario.json: bancos con id, title, level y pares {en, es} sin repetidos. */
     fun parseBancos(arr: JSONArray): List<Banco> =

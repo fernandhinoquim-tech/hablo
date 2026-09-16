@@ -33,7 +33,9 @@ object Repaso {
         val ajenos = otros.filter {
             it.id != item.id && Correccion.sueltaEstricta(it.en) != enClave && normalizeAnswer(it.es) != esClave
         }
-        return when (item.escalon) {
+        // Una palabra suelta (glosario de una historia) no se "arma": del elegir pasa a escribir.
+        val escalon = if (item.escalon == 1 && !item.en.trim().contains(' ')) 2 else item.escalon
+        return when (escalon) {
             0 -> {
                 // Elegir. Primero los señuelos del ejercicio ORIGINAL (listen/translate): están
                 // hechos y revisados a mano para esa frase ("He work on Mondays" contra "He works

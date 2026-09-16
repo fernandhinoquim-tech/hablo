@@ -461,6 +461,53 @@ val checkContent = tasks.register("checkContent") {
             }
         }
 
+        // Historias (etapa 4): opcional; si esta, se revisa como validar_historias.py de Cowork.
+        val histFile = File(contentDir, "historias.json")
+        val glosarioPalabras = ArrayList<Pair<String, String>>()   // (donde, palabra) para el chequeo contra cmudict
+        if (histFile.exists()) {
+            val hist = slurper.parse(histFile) as Map<*, *>
+            val hIds = HashSet<String>()
+            ((hist["tandas"] as? List<*>) ?: emptyList<Any>()).forEachIndexed { ti, t ->
+                val tm = t as Map<*, *>
+                val whereT = "historias.json, tanda ${ti + 1}"
+                for (key in listOf("id", "level", "title")) {
+                    if (tm[key] == null || tm[key].toString().isBlank()) problems.add("$whereT: falta \"$key\"")
+                }
+                val hs = (tm["historias"] as? List<*>) ?: emptyList<Any>()
+                if (hs.size < 3 || hs.size > 12) problems.add("$whereT: ${hs.size} historias (el efecto maximo esta entre 3 y 12)")
+                hs.forEachIndexed { hi, h ->
+                    val o = h as Map<*, *>
+                    val where = "$whereT, historia ${hi + 1}"
+                    for (key in listOf("id", "level", "title", "titleEs", "trap")) {
+                        if (o[key] == null || o[key].toString().isBlank()) problems.add("$where: falta \"$key\"")
+                    }
+                    if (o["id"] != null && !hIds.add(o["id"].toString())) problems.add("$where: id repetido")
+                    val text = (o["text"] as? List<*>) ?: emptyList<Any>()
+                    if (text.size < 6 || text.size > 10) problems.add("$where: ${text.size} frases (se pidio 6-10)")
+                    val preguntas = (o["preguntas"] as? List<*>) ?: emptyList<Any>()
+                    if (preguntas.size != 3) problems.add("$where: hacen falta 3 preguntas")
+                    preguntas.forEachIndexed { qi, q ->
+                        val qm = q as Map<*, *>
+                        val opts = (qm["options"] as? List<*>)?.map { it.toString() } ?: emptyList()
+                        if (opts.size != 3) problems.add("$where, pregunta ${qi + 1}: 3 opciones")
+                        if (opts.toSet().size != opts.size) problems.add("$where, pregunta ${qi + 1}: opciones repetidas")
+                        if (qm["answer"].toString() !in opts) problems.add("$where, pregunta ${qi + 1}: answer fuera de options")
+                    }
+                    val retell = o["retell"] as? Map<*, *>
+                    if (retell == null || retell["prompt_es"].toString().isBlank()) problems.add("$where: falta el retell (es la mitad del efecto)")
+                    if (((retell?.get("pistas") as? List<*>)?.size ?: 0) < 2) problems.add("$where: el retell necesita al menos 2 pistas")
+                    val glos = (o["glosario"] as? List<*>) ?: emptyList<Any>()
+                    if (glos.size < 2) problems.add("$where: al menos 2 palabras de glosario")
+                    glos.forEach { g ->
+                        val gm = g as Map<*, *>
+                        val en = gm["en"]?.toString().orEmpty(); val es = gm["es"]?.toString().orEmpty()
+                        if (en.isBlank() || es.isBlank()) problems.add("$where: glosario sin \"en\" o sin \"es\"")
+                        glosarioPalabras.add(where to en)
+                    }
+                }
+            }
+        }
+
         // Toda palabra que se pide decir en voz alta tiene que estar en el
         // diccionario de pronunciacion: sin fonemas esperados no hay GOP y el
         // sonido del ejercicio quedaria sin evaluar en silencio.
@@ -481,6 +528,8 @@ val checkContent = tasks.register("checkContent") {
             (drills["drills"] as List<*>).forEachIndexed { i, d ->
                 texts.add("drills.json, drill ${i + 1}" to ((d as Map<*, *>)["text"].toString()))
             }
+            // El glosario de las historias va al mazo y se dice en voz alta: tiene que estar en cmudict.
+            texts.addAll(glosarioPalabras)
             for (level in curriculum["levels"] as List<*>) {
                 for (unit in (level as Map<*, *>)["units"] as List<*>) {
                     for (lesson in (unit as Map<*, *>)["lessons"] as List<*>) {
@@ -530,8 +579,8 @@ android {
         applicationId = "com.ferolabs.hablo"
         minSdk = 26
         targetSdk = 35
-        versionCode = 13
-        versionName = "0.9.4"
+        versionCode = 14
+        versionName = "0.9.5"
 
         // Solo el procesador del S25 Ultra. De paso el APK deja de llevar las
         // copias de sherpa-onnx y ONNX Runtime para x86/armv7 (~100 MB menos).

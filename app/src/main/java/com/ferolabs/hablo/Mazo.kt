@@ -158,6 +158,27 @@ class Mazo(private val file: File) {
         return nuevos
     }
 
+    /**
+     * Mete parejas sueltas (el glosario de una historia): id `<prefijo>|<en>`.
+     * Lo que ya estaba (misma frase en inglés) no se repite. Devuelve cuántas entraron.
+     */
+    @Synchronized
+    fun alimentarPares(prefijo: String, pares: List<Pareja>, hoy: String = hoy()): Int {
+        cargar()
+        var nuevos = 0
+        for (p in pares) {
+            if (p.en.isBlank() || p.es.isBlank()) continue
+            val clave = Correccion.sueltaEstricta(p.en)
+            if (items.values.any { Correccion.sueltaEstricta(it.en) == clave }) continue
+            val id = "$prefijo|${p.en}"
+            if (items.containsKey(id)) continue
+            items[id] = Item(id, p.en, p.es, 0, 0, sumarDias(hoy, INTERVALOS[0]), 0, 0, hoy)
+            nuevos++
+        }
+        if (nuevos > 0) guardar()
+        return nuevos
+    }
+
     /** Lo que toca hoy (o antes): primero lo más atrasado, luego las cajas bajas. Como mucho [max]. */
     @Synchronized
     fun pendientes(hoy: String = hoy(), max: Int = MAX_SESION): List<Item> {

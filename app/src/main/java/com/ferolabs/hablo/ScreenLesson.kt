@@ -9,18 +9,15 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.LinearProgressIndicator
@@ -40,6 +37,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.ferolabs.hablo.ejercicios.ArmaLaFrase
+import com.ferolabs.hablo.ejercicios.CompletaElHueco
+import com.ferolabs.hablo.ejercicios.CorrigeTuError
+import com.ferolabs.hablo.ejercicios.CualPalabraOiste
+import com.ferolabs.hablo.ejercicios.DiloEnVozAlta
+import com.ferolabs.hablo.ejercicios.EscribeLoQueEscuchas
+import com.ferolabs.hablo.ejercicios.EscribeloEnIngles
+import com.ferolabs.hablo.ejercicios.EscuchaYElige
+import com.ferolabs.hablo.ejercicios.RepiteCon
+import com.ferolabs.hablo.ejercicios.TraduceEligiendo
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
@@ -361,455 +368,54 @@ fun LessonScreen(
             if (showingGame) {
                 ParejasGame(parejas, accent) { _, _, _ -> gameDone = true }
             } else when (ex) {
-
-                is Exercise.ListenChoose -> {
-                    // Orden nuevo en cada ejercicio: si no, se aprueba tocando
-                    // siempre la primera casilla sin saber inglés.
-                    val order = remember(pos) { ex.options.indices.shuffled() }
-                    Text("Escucha y elige lo que oíste", style = MaterialTheme.typography.titleLarge)
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(12.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        SpeakerButton(big = true, tint = accent) { say(ex.audio, 1f) }
-                        SpeakerButton(slow = true, tint = accent.copy(alpha = 0.75f)) { say(ex.audio, 0.6f) }
-                        Text(
-                            "Toca para repetir.\nLa tortuga lo dice más lento.",
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = InkSoft
-                        )
-                    }
-                    order.forEach { i ->
-                        OptionRow(ex.options[i], i, chosen, checked, ex.answerIndex, accent) { if (!checked) chosen = i }
-                    }
-                }
-
-                is Exercise.TranslateChoose -> {
-                    val order = remember(pos) { ex.options.indices.shuffled() }
-                    Text("¿Cómo se dice en inglés?", style = MaterialTheme.typography.titleLarge)
-                    Text(
-                        "\"${ex.es}\"",
-                        style = MaterialTheme.typography.headlineMedium,
-                        color = accent
-                    )
-                    order.forEach { i ->
-                        OptionRow(ex.options[i], i, chosen, checked, ex.answerIndex, accent) { if (!checked) chosen = i }
-                    }
-                }
-
-                is Exercise.BuildSentence -> {
-                    Text("Arma la frase tocando las palabras", style = MaterialTheme.typography.titleLarge)
-                    Text(
-                        "\"${ex.es}\"",
-                        style = MaterialTheme.typography.titleMedium,
-                        color = accent
-                    )
-
-                    Column(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .heightIn(min = 74.dp)
-                            .background(Color.White, RoundedCornerShape(12.dp))
-                            .border(1.dp, Line, RoundedCornerShape(12.dp))
-                            .padding(12.dp)
-                    ) {
-                        if (built.isEmpty()) {
-                            Text(
-                                "Tu respuesta aparece aquí",
-                                style = MaterialTheme.typography.bodyMedium,
-                                color = InkSoft
-                            )
-                        } else {
-                            FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                                built.forEachIndexed { position, bankIndex ->
-                                    WordChip(bank[bankIndex], accent, filled = true) {
-                                        if (!checked) {
-                                            built = built.toMutableList()
-                                                .also { it.removeAt(position) }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        bank.forEachIndexed { bankIndex, word ->
-                            val used = built.contains(bankIndex)
-                            WordChip(word, accent, filled = false, dimmed = used) {
-                                if (!checked && !used) built = built + bankIndex
-                            }
-                        }
-                    }
-                }
-
-                is Exercise.TypeWhatYouHear -> {
-                    Text("Escribe lo que escuchas", style = MaterialTheme.typography.titleLarge)
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(12.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        SpeakerButton(big = true, tint = accent) { say(ex.audio, 1f) }
-                        SpeakerButton(slow = true, tint = accent.copy(alpha = 0.75f)) { say(ex.audio, 0.55f) }
-                        Text(
-                            "Significa: ${ex.meaningEs}",
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = InkSoft
-                        )
-                    }
-                    OutlinedTextField(
-                        value = typed,
-                        onValueChange = { if (!checked) typed = it },
-                        singleLine = true,
-                        readOnly = checked,
-                        placeholder = { Text("Escribe en inglés...") },
-                        modifier = Modifier.fillMaxWidth()
-                    )
-                    Text(
-                        "No te preocupes por mayúsculas ni puntos.",
-                        style = MaterialTheme.typography.labelMedium,
-                        color = InkSoft
-                    )
-                }
-
-                is Exercise.SpeakIt -> {
-                    Text("Dilo en voz alta", style = MaterialTheme.typography.titleLarge)
-                    Text(
-                        ex.text,
-                        style = MaterialTheme.typography.headlineMedium,
-                        color = accent
-                    )
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(12.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        SpeakerButton(big = true, tint = accent) { say(ex.text, 1f) }
-                        SpeakerButton(slow = true, tint = accent.copy(alpha = 0.75f)) { say(ex.text, 0.6f) }
-                        Text(
-                            "Escucha a ${teacher.name} y después dilo tú.",
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = InkSoft
-                        )
-                    }
-
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Box(
-                            contentAlignment = Alignment.Center,
-                            modifier = Modifier
-                                .size(84.dp)
-                                .background(if (listener.recording) BadRed else accent, CircleShape)
-                                .clickable(enabled = !listener.thinking && !checked) {
-                                    if (listener.recording) {
-                                        listener.stopRecording()
-                                    } else if (listener.hasMicPermission()) {
-                                        speakResult = null
-                                        speakReport = null
-                                        speakNotHeard = null
-                                        listen(ex.text, ex.sound)
-                                    } else {
-                                        speakTarget = ex.text
-                                        speakSound = ex.sound
-                                        micLauncher.launch(Manifest.permission.RECORD_AUDIO)
-                                    }
-                                }
-                        ) {
-                            Text(
-                                if (listener.recording) "■" else "🎤",
-                                style = MaterialTheme.typography.headlineMedium,
-                                color = Color.White
-                            )
-                        }
-                        Spacer(Modifier.height(8.dp))
-                        Text(
-                            when {
-                                listener.thinking -> "Analizando…"
-                                listener.recording -> "Grabando… toca para terminar"
-                                speakResult != null || speakNotHeard != null -> "Toca para intentarlo otra vez"
-                                else -> "Toca y dilo"
-                            },
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = if (listener.recording) BadRed else InkSoft
-                        )
+                is Exercise.ListenChoose -> EscuchaYElige(ex, pos, chosen, checked, accent, say) { chosen = it }
+                is Exercise.TranslateChoose -> TraduceEligiendo(ex, pos, chosen, checked, accent) { chosen = it }
+                is Exercise.BuildSentence -> ArmaLaFrase(ex, bank, built, checked, accent) { built = it }
+                is Exercise.TypeWhatYouHear -> EscribeLoQueEscuchas(ex, typed, checked, accent, say) { typed = it }
+                is Exercise.SpeakIt -> DiloEnVozAlta(
+                    ex = ex, teacher = teacher, listener = listener,
+                    speakResult = speakResult, speakReport = speakReport, speakNotHeard = speakNotHeard,
+                    showHeard = showHeard, checked = checked, accent = accent, say = say,
+                    onMic = {
                         if (listener.recording) {
-                            Spacer(Modifier.height(8.dp))
-                            LinearProgressIndicator(
-                                progress = { listener.level },
-                                color = BadRed,
-                                trackColor = Line,
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .height(6.dp)
-                            )
-                        }
-                    }
-
-                    speakNotHeard?.let { NotHeardBox(it) }
-
-                    // El "bien" del sonido solo vale sobre palabras que el dictado entendió.
-                    speakReport?.fiable(speakResult)?.let { SoundVerdictCard(it) }
-
-                    speakResult?.let { r ->
-                        Text(
-                            if (r.entendida) "Se te entendió: ${r.percent} % de las palabras"
-                            else "No se te entendió del todo: ${r.percent} % de las palabras",
-                            style = MaterialTheme.typography.titleSmall,
-                            color = if (r.entendida) GoodGreen else Color(0xFF8A5A00)
-                        )
-                        FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                            r.words.forEach { sw ->
-                                val bg = when (sw.score) {
-                                    WordScore.BIEN -> GoodGreenSoft
-                                    WordScore.DUDOSO -> Color(0xFFFFF6E3)
-                                    WordScore.MAL -> BadRedSoft
-                                }
-                                val fg = when (sw.score) {
-                                    WordScore.BIEN -> GoodGreen
-                                    WordScore.DUDOSO -> Color(0xFF8A5A00)
-                                    WordScore.MAL -> BadRed
-                                }
-                                Text(
-                                    sw.word,
-                                    style = MaterialTheme.typography.bodyLarge,
-                                    color = fg,
-                                    modifier = Modifier
-                                        .padding(vertical = 3.dp)
-                                        .background(bg, RoundedCornerShape(8.dp))
-                                        .padding(horizontal = 10.dp, vertical = 6.dp)
-                                )
-                            }
-                        }
-                        // La transcripción cruda va plegada (decisión de 0.8): verla junto
-                        // a una palabra en rojo es lo que hacía visible la contradicción.
-                        if (!showHeard) {
-                            Text(
-                                "Ver lo que oyó el dictado →",
-                                style = MaterialTheme.typography.labelMedium,
-                                color = accent,
-                                modifier = Modifier.clickable { showHeard = true }
-                            )
+                            listener.stopRecording()
+                        } else if (listener.hasMicPermission()) {
+                            speakResult = null
+                            speakReport = null
+                            speakNotHeard = null
+                            listen(ex.text, ex.sound)
                         } else {
-                            Text(
-                                "El dictado oyó: \"${r.heard}\"",
-                                style = MaterialTheme.typography.labelMedium,
-                                color = InkSoft
-                            )
+                            speakTarget = ex.text
+                            speakSound = ex.sound
+                            micLauncher.launch(Manifest.permission.RECORD_AUDIO)
+                        }
+                    },
+                    onShowHeard = { showHeard = true }
+                )
+                is Exercise.WriteIt -> EscribeloEnIngles(ex, typed, checked) { typed = it }
+                is Exercise.FixIt -> CorrigeTuError(ex, typed, checked) { typed = it }
+                is Exercise.Cloze -> CompletaElHueco(ex, typed, checked) { typed = it }
+                is Exercise.Shadow -> RepiteCon(
+                    ex = ex, teacher = teacher, listener = listener,
+                    speakResult = speakResult, speakNotHeard = speakNotHeard, checked = checked,
+                    teacherSeconds = teacherSeconds, studentSeconds = studentSeconds, accent = accent, say = say,
+                    onMic = {
+                        if (listener.recording) {
+                            listener.stopRecording()
+                        } else if (listener.hasMicPermission()) {
+                            speakResult = null
+                            speakReport = null
+                            speakNotHeard = null
+                            teacherSeconds = lastSpokenSeconds()
+                            listen(ex.text, Sound.GENERAL)
+                        } else {
+                            speakTarget = ex.text
+                            speakSound = Sound.GENERAL
+                            micLauncher.launch(Manifest.permission.RECORD_AUDIO)
                         }
                     }
-                }
-
-                is Exercise.WriteIt -> {
-                    Text("Escríbelo en inglés", style = MaterialTheme.typography.titleLarge)
-                    Text(ex.es, style = MaterialTheme.typography.headlineSmall, color = Ink)
-                    OutlinedTextField(
-                        value = typed,
-                        onValueChange = { if (!checked) typed = it },
-                        singleLine = true,
-                        readOnly = checked,
-                        placeholder = { Text("Escribe la frase en inglés...") },
-                        modifier = Modifier.fillMaxWidth()
-                    )
-                    Text(
-                        "Sin opciones ni fichas: escribirlo de memoria es lo que más se queda. " +
-                            "No te preocupes por mayúsculas ni puntos.",
-                        style = MaterialTheme.typography.labelMedium,
-                        color = InkSoft
-                    )
-                }
-
-                is Exercise.FixIt -> {
-                    Text("Corrige tu propio error", style = MaterialTheme.typography.titleLarge)
-                    Text(
-                        "Esto lo escribiste tú el ${Repaso.fechaLarga(ex.fecha)}:",
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = InkSoft
-                    )
-                    if (ex.hueco != null) Text(
-                        ex.hueco.before + "______" + ex.hueco.after,
-                        style = MaterialTheme.typography.bodyLarge,
-                        color = InkSoft
-                    )
-                    Text(
-                        "«${ex.tuya}»",
-                        style = MaterialTheme.typography.headlineSmall,
-                        color = BadRed,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .background(BadRedSoft, RoundedCornerShape(12.dp))
-                            .padding(12.dp)
-                    )
-                    Text(
-                        if (ex.hueco != null) "¿Qué iba en el hueco? Escríbelo bien." else "¿Qué le falta o qué le sobra? Escríbela bien.",
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = Ink
-                    )
-                    OutlinedTextField(
-                        value = typed,
-                        onValueChange = { if (!checked) typed = it },
-                        singleLine = true,
-                        readOnly = checked,
-                        placeholder = { Text(if (ex.hueco != null) "Lo que va en el hueco..." else "La frase, ya corregida...") },
-                        modifier = Modifier.fillMaxWidth()
-                    )
-                }
-
-                is Exercise.Cloze -> {
-                    Text("Completa el hueco", style = MaterialTheme.typography.titleLarge)
-                    Text(
-                        ex.before + "______" + ex.after,
-                        style = MaterialTheme.typography.headlineSmall,
-                        color = Ink
-                    )
-                    Text("Significa: ${ex.es}", style = MaterialTheme.typography.bodyMedium, color = InkSoft)
-                    OutlinedTextField(
-                        value = typed,
-                        onValueChange = { if (!checked) typed = it },
-                        singleLine = true,
-                        readOnly = checked,
-                        placeholder = { Text("Lo que va en el hueco...") },
-                        modifier = Modifier.fillMaxWidth()
-                    )
-                }
-
-                is Exercise.Shadow -> {
-                    Text("Repite con ${teacher.name}", style = MaterialTheme.typography.titleLarge)
-                    Text(ex.text, style = MaterialTheme.typography.headlineMedium, color = accent)
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(12.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        SpeakerButton(big = true, tint = accent) { say(ex.text, 1f) }
-                        Text(
-                            "Óyela y repítela ENSEGUIDA, siguiendo su ritmo, sin pausas. " +
-                                "Aquí no se juzga cada sonido: se practica el ritmo.",
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = InkSoft
-                        )
-                    }
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Box(
-                            contentAlignment = Alignment.Center,
-                            modifier = Modifier
-                                .size(84.dp)
-                                .background(if (listener.recording) BadRed else accent, CircleShape)
-                                .clickable(enabled = !listener.thinking && !checked) {
-                                    if (listener.recording) {
-                                        listener.stopRecording()
-                                    } else if (listener.hasMicPermission()) {
-                                        speakResult = null
-                                        speakReport = null
-                                        speakNotHeard = null
-                                        teacherSeconds = lastSpokenSeconds()
-                                        listen(ex.text, Sound.GENERAL)
-                                    } else {
-                                        speakTarget = ex.text
-                                        speakSound = Sound.GENERAL
-                                        micLauncher.launch(Manifest.permission.RECORD_AUDIO)
-                                    }
-                                }
-                        ) {
-                            Text(
-                                if (listener.recording) "■" else "🎤",
-                                style = MaterialTheme.typography.headlineMedium,
-                                color = Color.White
-                            )
-                        }
-                        Spacer(Modifier.height(8.dp))
-                        Text(
-                            when {
-                                listener.thinking -> "Analizando…"
-                                listener.recording -> "Grabando… toca para terminar"
-                                speakResult != null || speakNotHeard != null -> "Toca para intentarlo otra vez"
-                                else -> "Toca y repítela"
-                            },
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = if (listener.recording) BadRed else InkSoft
-                        )
-                    }
-
-                    speakNotHeard?.let { NotHeardBox(it) }
-
-                    speakResult?.let { r ->
-                        Text(
-                            if (r.entendida) "Se te entendió: ${r.percent} % de las palabras"
-                            else "No se te entendió del todo: ${r.percent} % de las palabras",
-                            style = MaterialTheme.typography.titleSmall,
-                            color = if (r.entendida) GoodGreen else Color(0xFF8A5A00)
-                        )
-                        FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                            r.words.forEach { sw ->
-                                val ok = sw.score == WordScore.BIEN
-                                Text(
-                                    sw.word,
-                                    style = MaterialTheme.typography.bodyLarge,
-                                    color = if (ok) GoodGreen else Color(0xFF8A5A00),
-                                    modifier = Modifier
-                                        .padding(vertical = 3.dp)
-                                        .background(if (ok) GoodGreenSoft else Color(0xFFFFF6E3), RoundedCornerShape(8.dp))
-                                        .padding(horizontal = 10.dp, vertical = 6.dp)
-                                )
-                            }
-                        }
-                        // Ritmo: un dato, no una nota. Nada de inventar un porcentaje.
-                        if (teacherSeconds > 0f && studentSeconds > 0f) {
-                            val ratio = studentSeconds / teacherSeconds
-                            Text(
-                                "Tú: %.1f s · %s: %.1f s — %s".format(
-                                    java.util.Locale("es"),
-                                    studentSeconds, teacher.name, teacherSeconds,
-                                    when {
-                                        ratio <= 1.15f -> "vas a su ritmo."
-                                        ratio <= 1.5f -> "vas bien, pégate más a su ritmo."
-                                        else -> "más seguido, sin pausas entre palabras."
-                                    }
-                                ),
-                                style = MaterialTheme.typography.bodyMedium,
-                                color = InkSoft
-                            )
-                        }
-                    }
-                }
-
-                is Exercise.MinimalPair -> {
-                    val order = remember(pos) { ex.options.indices.shuffled() }
-                    Text("¿Cuál palabra oíste?", style = MaterialTheme.typography.titleLarge)
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(12.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        SpeakerButton(big = true, tint = accent) { say(ex.spoken, 1f) }
-                        SpeakerButton(slow = true, tint = accent.copy(alpha = 0.75f)) { say(ex.spoken, 0.7f) }
-                        Text(
-                            "${teacher.name} dice UNA de estas. Toca la que oíste.",
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = InkSoft
-                        )
-                    }
-                    order.forEach { i ->
-                        OptionRow(ex.options[i], i, chosen, checked, ex.answerIndex, accent) { if (!checked) chosen = i }
-                    }
-                    if (checked && ex.sentence != null) {
-                        Text(
-                            "Óyela en una frase →  ${ex.sentence}",
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = accent,
-                            modifier = Modifier.clickable { say(ex.sentence, 1f) }
-                        )
-                    }
-                    if (checked) {
-                        Text(
-                            "Entrenar el oído mejora la boca, pero no del todo: después de oír, dilo tú.",
-                            style = MaterialTheme.typography.labelMedium,
-                            color = InkSoft
-                        )
-                    }
-                }
+                )
+                is Exercise.MinimalPair -> CualPalabraOiste(ex, pos, chosen, checked, teacher, accent, say) { chosen = it }
             }
 
             if (checked && !showingGame) {
@@ -893,7 +499,7 @@ fun LessonScreen(
 }
 
 @Composable
-private fun OptionRow(
+fun OptionRow(
     text: String,
     i: Int,
     chosen: Int,
@@ -932,7 +538,7 @@ private fun OptionRow(
 }
 
 @Composable
-private fun WordChip(
+fun WordChip(
     word: String,
     accent: Color,
     filled: Boolean,

@@ -1,0 +1,828 @@
+{
+ "_comentario": "Historias cortas con preguntas y retell (etapa 4). Tandas de 3 a 12; el retell NO es opcional. Las escribe Cowork; se anexan con tools/content/anexar_historias.py.",
+ "tandas": [
+  {
+   "id": "tanda-1",
+   "level": "A2",
+   "title": "Primeras historias",
+   "historias": [
+    {
+     "id": "h-a2-01",
+     "level": "A2",
+     "title": "The Last Bus",
+     "titleEs": "El último bus",
+     "text": [
+      "Miguel finished work at eleven at night.",
+      "He walked to the bus stop and waited.",
+      "The last bus was at eleven fifteen, and it never came.",
+      "He was tired and it was starting to rain.",
+      "Then a car stopped next to him.",
+      "It was his neighbor, coming back from the airport.",
+      "She drove him home and they talked the whole way.",
+      "They lived on the same street for six years and never spoke to each other."
+     ],
+     "glosario": [
+      {
+       "en": "neighbor",
+       "es": "vecino"
+      },
+      {
+       "en": "airport",
+       "es": "aeropuerto"
+      },
+      {
+       "en": "the whole way",
+       "es": "todo el camino"
+      }
+     ],
+     "preguntas": [
+      {
+       "q": "Why didn't Miguel take the bus?",
+       "options": [
+        "It was full",
+        "It never came",
+        "It was too expensive"
+       ],
+       "answer": "It never came"
+      },
+      {
+       "q": "Who stopped the car?",
+       "options": [
+        "His neighbor",
+        "His sister",
+        "A taxi driver"
+       ],
+       "answer": "His neighbor"
+      },
+      {
+       "q": "What is surprising at the end?",
+       "options": [
+        "They never spoke before",
+        "She was angry",
+        "He walked home"
+       ],
+       "answer": "They never spoke before"
+      }
+     ],
+     "retell": {
+      "prompt_es": "Cuenta la historia con tus palabras, en pasado.",
+      "pistas": [
+       "Miguel · eleven at night · the bus",
+       "it was starting to rain · a car stopped",
+       "his neighbor · they talked"
+      ]
+     },
+     "trap": "Ojo con 'waited': se escribe con -ed pero suena «WEI-tid», con sílaba aparte, porque wait termina en t."
+    },
+    {
+     "id": "h-a2-02",
+     "level": "A2",
+     "title": "The Wrong Coffee",
+     "titleEs": "El café equivocado",
+     "text": [
+      "Every morning Ana orders the same coffee before work.",
+      "Last Tuesday the barista was new and got it wrong.",
+      "Ana didn't say anything because there was a long line behind her.",
+      "She drank it at her desk and it was terrible.",
+      "The next day the same barista saw her and smiled.",
+      "\"Black coffee, no sugar, right?\" he said.",
+      "He remembered her order from the day before.",
+      "Ana didn't have the heart to tell him it was wrong."
+     ],
+     "glosario": [
+      {
+       "en": "order",
+       "es": "pedido"
+      },
+      {
+       "en": "line",
+       "es": "fila"
+      },
+      {
+       "en": "have the heart to",
+       "es": "atreverse a (por no herir)"
+      }
+     ],
+     "preguntas": [
+      {
+       "q": "What happened on Tuesday?",
+       "options": [
+        "The coffee was wrong",
+        "The shop was closed",
+        "Ana was late"
+       ],
+       "answer": "The coffee was wrong"
+      },
+      {
+       "q": "Why didn't Ana complain?",
+       "options": [
+        "There were people waiting",
+        "She liked it",
+        "She was in a hurry"
+       ],
+       "answer": "There were people waiting"
+      },
+      {
+       "q": "What did the barista remember?",
+       "options": [
+        "The wrong order",
+        "Her name",
+        "Her face only"
+       ],
+       "answer": "The wrong order"
+      }
+     ],
+     "retell": {
+      "prompt_es": "Cuenta qué pasó los dos días.",
+      "pistas": [
+       "every morning · the same coffee",
+       "Tuesday · the new barista",
+       "the next day · he remembered"
+      ]
+     },
+     "trap": "'Line' es la fila de gente. No es 'tail' ni 'row'. En inglés británico dicen 'queue'."
+    },
+    {
+     "id": "h-a2-03",
+     "level": "A2",
+     "title": "Two Suitcases",
+     "titleEs": "Dos maletas",
+     "text": [
+      "When Carlos moved to another city, he took two suitcases.",
+      "He used to have a lot of things, but he sold most of them.",
+      "His friends told him he was crazy.",
+      "The first month was hard and the apartment felt empty.",
+      "After a while he stopped noticing.",
+      "Now, three years later, he still has almost nothing.",
+      "He says it is the best decision he ever made."
+     ],
+     "glosario": [
+      {
+       "en": "suitcase",
+       "es": "maleta"
+      },
+      {
+       "en": "empty",
+       "es": "vacío"
+      },
+      {
+       "en": "most of them",
+       "es": "la mayoría de ellas"
+      }
+     ],
+     "preguntas": [
+      {
+       "q": "How many suitcases did Carlos take?",
+       "options": [
+        "Two",
+        "Three",
+        "None"
+       ],
+       "answer": "Two"
+      },
+      {
+       "q": "What did he do with his things?",
+       "options": [
+        "He sold most of them",
+        "He stored them",
+        "He gave them to his friends"
+       ],
+       "answer": "He sold most of them"
+      },
+      {
+       "q": "How does he feel now?",
+       "options": [
+        "He is happy about it",
+        "He regrets it",
+        "He is not sure"
+       ],
+       "answer": "He is happy about it"
+      }
+     ],
+     "retell": {
+      "prompt_es": "Cuenta qué hizo Carlos y qué piensa ahora.",
+      "pistas": [
+       "he moved · two suitcases",
+       "he used to have · he sold",
+       "three years later · the best decision"
+      ]
+     },
+     "trap": "'Used to have' es lo que tenía antes y ya no. No es 'I was having'."
+    },
+    {
+     "id": "h-a2-04",
+     "level": "A2",
+     "title": "The Dog That Waited",
+     "titleEs": "El perro que esperaba",
+     "text": [
+      "There is a small park near my office.",
+      "Every day at one o'clock a brown dog sits at the gate.",
+      "He doesn't bark and he doesn't move.",
+      "For weeks I thought he was lost.",
+      "Then one afternoon an old man arrived on a bicycle.",
+      "The dog ran to him and they left together.",
+      "Now I see them every day, always at the same time."
+     ],
+     "glosario": [
+      {
+       "en": "gate",
+       "es": "portón (entrada)"
+      },
+      {
+       "en": "bark",
+       "es": "ladrar"
+      },
+      {
+       "en": "together",
+       "es": "juntos"
+      }
+     ],
+     "preguntas": [
+      {
+       "q": "Where does the dog sit?",
+       "options": [
+        "At the gate of the park",
+        "Inside the office",
+        "On the street"
+       ],
+       "answer": "At the gate of the park"
+      },
+      {
+       "q": "What did the narrator think at first?",
+       "options": [
+        "That the dog was lost",
+        "That the dog was ill",
+        "That the dog was dangerous"
+       ],
+       "answer": "That the dog was lost"
+      },
+      {
+       "q": "Who came on a bicycle?",
+       "options": [
+        "An old man",
+        "A child",
+        "A woman"
+       ],
+       "answer": "An old man"
+      }
+     ],
+     "retell": {
+      "prompt_es": "Cuenta lo que pasa cada día en el parque y qué descubriste un día.",
+      "pistas": [
+       "a small park · one o'clock",
+       "a brown dog · he sits and doesn't bark",
+       "an old man · a bicycle"
+      ]
+     },
+     "trap": "Presente simple para lo que pasa siempre: 'he doesn't bark', con doesn't y el verbo pelado."
+    },
+    {
+     "id": "h-a2-05",
+     "level": "A2",
+     "title": "A Very Long Meeting",
+     "titleEs": "Una reunión larguísima",
+     "text": [
+      "The meeting started at nine and it was going to last one hour.",
+      "At eleven, nobody could agree on anything.",
+      "People were checking their phones under the table.",
+      "Then the newest person in the team raised her hand.",
+      "\"Can I ask what we are deciding?\" she said.",
+      "Nobody answered for several seconds.",
+      "The meeting finished four minutes later."
+     ],
+     "glosario": [
+      {
+       "en": "meeting",
+       "es": "reunión"
+      },
+      {
+       "en": "last",
+       "es": "durar"
+      },
+      {
+       "en": "raise your hand",
+       "es": "levantar la mano"
+      }
+     ],
+     "preguntas": [
+      {
+       "q": "How long was the meeting going to be?",
+       "options": [
+        "One hour",
+        "Two hours",
+        "All morning"
+       ],
+       "answer": "One hour"
+      },
+      {
+       "q": "What were people doing under the table?",
+       "options": [
+        "Checking their phones",
+        "Writing notes",
+        "Eating"
+       ],
+       "answer": "Checking their phones"
+      },
+      {
+       "q": "What happened just before the meeting finished?",
+       "options": [
+        "A question from the newest person",
+        "The boss leaving",
+        "A phone call"
+       ],
+       "answer": "A question from the newest person"
+      }
+     ],
+     "retell": {
+      "prompt_es": "Cuenta cómo fue la reunión y cómo terminó.",
+      "pistas": [
+       "it started at nine · one hour",
+       "at eleven · nobody could agree",
+       "the newest person · \"what are we deciding?\""
+      ]
+     },
+     "trap": "'Last' aquí es el verbo durar, no 'último'. Es la misma palabra con dos significados."
+    },
+    {
+     "id": "h-a2-06",
+     "level": "A2",
+     "title": "Rain in December",
+     "titleEs": "Lluvia en diciembre",
+     "text": [
+      "Last December we went to the coast for a week.",
+      "It rained every single day.",
+      "We couldn't swim and we couldn't walk on the beach.",
+      "On the fourth day we found a small place that sold soup.",
+      "We went back every afternoon after that.",
+      "The owner learned our names and kept a table for us.",
+      "We still talk about that trip more than the sunny ones."
+     ],
+     "glosario": [
+      {
+       "en": "coast",
+       "es": "costa"
+      },
+      {
+       "en": "owner",
+       "es": "dueño"
+      },
+      {
+       "en": "trip",
+       "es": "viaje"
+      }
+     ],
+     "preguntas": [
+      {
+       "q": "What was the weather like?",
+       "options": [
+        "It rained every day",
+        "It was hot",
+        "It was windy"
+       ],
+       "answer": "It rained every day"
+      },
+      {
+       "q": "What did they find on the fourth day?",
+       "options": [
+        "A place that sold soup",
+        "A dry beach",
+        "A hotel"
+       ],
+       "answer": "A place that sold soup"
+      },
+      {
+       "q": "How do they talk about the trip now?",
+       "options": [
+        "They talk about it more than the sunny trips",
+        "As the worst one",
+        "They never mention it"
+       ],
+       "answer": "They talk about it more than the sunny trips"
+      }
+     ],
+     "retell": {
+      "prompt_es": "Cuenta el viaje: cómo empezó y por qué lo recuerdan.",
+      "pistas": [
+       "last December · the coast",
+       "it rained · we couldn't swim",
+       "a small place · soup · every afternoon"
+      ]
+     },
+     "trap": "'Couldn't' + verbo pelado: 'we couldn't swim', nunca 'we couldn't to swim'."
+    }
+   ]
+  },
+  {
+   "id": "tanda-2",
+   "level": "B1",
+   "title": "Historias con más recorrido",
+   "historias": [
+    {
+     "id": "h-b1-01",
+     "level": "B1",
+     "title": "The Email He Didn't Send",
+     "titleEs": "El correo que no envió",
+     "text": [
+      "Andrés had been working at the company for eight years.",
+      "One Friday his manager took credit for a project he had finished alone.",
+      "That night he wrote a long email explaining everything.",
+      "He read it four times and then saved it as a draft.",
+      "On Monday he asked for a meeting instead.",
+      "The conversation lasted twenty minutes and it was uncomfortable.",
+      "But his name appeared on the project the following week.",
+      "He says the email would have felt better and worked worse."
+     ],
+     "glosario": [
+      {
+       "en": "take credit",
+       "es": "atribuirse el mérito"
+      },
+      {
+       "en": "draft",
+       "es": "borrador"
+      },
+      {
+       "en": "uncomfortable",
+       "es": "incómodo"
+      }
+     ],
+     "preguntas": [
+      {
+       "q": "What had Andrés done?",
+       "options": [
+        "Finished a project alone",
+        "Sent an angry email",
+        "Left the company"
+       ],
+       "answer": "Finished a project alone"
+      },
+      {
+       "q": "What did he do with the email?",
+       "options": [
+        "He saved it as a draft",
+        "He sent it on Friday",
+        "He deleted it"
+       ],
+       "answer": "He saved it as a draft"
+      },
+      {
+       "q": "What does he think now?",
+       "options": [
+        "The meeting worked better than the email would have",
+        "He should have sent it",
+        "Nothing changed"
+       ],
+       "answer": "The meeting worked better than the email would have"
+      }
+     ],
+     "retell": {
+      "prompt_es": "Cuenta qué pasó y por qué él cree que hizo bien.",
+      "pistas": [
+       "eight years · his manager",
+       "he wrote an email · a draft",
+       "on Monday · a meeting · his name appeared"
+      ]
+     },
+     "trap": "'Would have felt' es el condicional del pasado: para lo que habría pasado y no pasó."
+    },
+    {
+     "id": "h-b1-02",
+     "level": "B1",
+     "title": "The House That Was Never Finished",
+     "titleEs": "La casa que nunca se terminó",
+     "text": [
+      "On the road to my grandmother's town there is a house with no roof.",
+      "It was started in nineteen ninety-eight and it has never been finished.",
+      "People say the owner went abroad and never came back.",
+      "Every few years someone buys the land and plans to finish it.",
+      "Then nothing happens and the house stays exactly as it is.",
+      "Children in the town have invented three different stories about it.",
+      "My grandmother says the truth is much less interesting than any of them."
+     ],
+     "glosario": [
+      {
+       "en": "roof",
+       "es": "techo"
+      },
+      {
+       "en": "abroad",
+       "es": "al extranjero"
+      },
+      {
+       "en": "land",
+       "es": "terreno"
+      }
+     ],
+     "preguntas": [
+      {
+       "q": "What is missing from the house?",
+       "options": [
+        "The roof",
+        "The door",
+        "The windows"
+       ],
+       "answer": "The roof"
+      },
+      {
+       "q": "What do people say about the owner?",
+       "options": [
+        "He went abroad and never returned",
+        "He died there",
+        "He sold it quickly"
+       ],
+       "answer": "He went abroad and never returned"
+      },
+      {
+       "q": "What does the grandmother think?",
+       "options": [
+        "The real story is less interesting",
+        "The children are right",
+        "The house is dangerous"
+       ],
+       "answer": "The real story is less interesting"
+      }
+     ],
+     "retell": {
+      "prompt_es": "Cuenta la historia de la casa como si se la contaras a alguien del pueblo.",
+      "pistas": [
+       "a house with no roof · 1998",
+       "the owner · abroad",
+       "people buy it · nothing happens"
+      ]
+     },
+     "trap": "'It has never been finished' es pasiva en present perfect: has been + participio. El español lo diría con 'se': 'nunca se terminó'."
+    },
+    {
+     "id": "h-b1-03",
+     "level": "B1",
+     "title": "Three Minutes Late",
+     "titleEs": "Tres minutos tarde",
+     "text": [
+      "Laura had an interview at ten and she arrived three minutes after ten.",
+      "She apologized twice before she even sat down.",
+      "The interviewer told her that the previous candidate had not arrived at all.",
+      "The interview went well and she got the job.",
+      "Two years later she was the one doing the interviews.",
+      "Whenever someone arrives a few minutes late and apologizes too much, she remembers that morning.",
+      "She has never rejected anyone for being three minutes late."
+     ],
+     "glosario": [
+      {
+       "en": "apologize",
+       "es": "disculparse"
+      },
+      {
+       "en": "not arrive at all",
+       "es": "no presentarse"
+      },
+      {
+       "en": "reject",
+       "es": "rechazar"
+      }
+     ],
+     "preguntas": [
+      {
+       "q": "Why did Laura apologize?",
+       "options": [
+        "She arrived three minutes late",
+        "She forgot her CV",
+        "She was nervous"
+       ],
+       "answer": "She arrived three minutes late"
+      },
+      {
+       "q": "What had happened with the previous candidate?",
+       "options": [
+        "They had not come at all",
+        "They were also late",
+        "They got the job"
+       ],
+       "answer": "They had not come at all"
+      },
+      {
+       "q": "What does Laura do now?",
+       "options": [
+        "She interviews people",
+        "She has left the company",
+        "She is still a candidate"
+       ],
+       "answer": "She interviews people"
+      }
+     ],
+     "retell": {
+      "prompt_es": "Cuenta la historia de Laura desde la entrevista hasta hoy.",
+      "pistas": [
+       "an interview at ten · 10:03",
+       "the previous candidate · had not arrived",
+       "two years later · she interviews"
+      ]
+     },
+     "trap": "'Had not arrived' es pasado perfecto: lo que pasó ANTES de otro momento pasado."
+    },
+    {
+     "id": "h-b1-04",
+     "level": "B1",
+     "title": "What the Neighbours Heard",
+     "titleEs": "Lo que oyeron los vecinos",
+     "text": [
+      "At two in the morning the whole building woke up.",
+      "Someone was playing the piano, badly but with enthusiasm.",
+      "By three o'clock four neighbors were standing in the hallway in pajamas.",
+      "Nobody wanted to be the one to knock.",
+      "Finally the oldest woman in the building went and knocked.",
+      "A boy of about nineteen opened the door and burst into tears.",
+      "He had failed an exam and it was the only thing that calmed him down.",
+      "The next night nobody complained."
+     ],
+     "glosario": [
+      {
+       "en": "hallway",
+       "es": "pasillo"
+      },
+      {
+       "en": "knock",
+       "es": "tocar la puerta"
+      },
+      {
+       "en": "calm down",
+       "es": "calmarse"
+      }
+     ],
+     "preguntas": [
+      {
+       "q": "What woke the building up?",
+       "options": [
+        "Someone playing the piano",
+        "An alarm",
+        "A fight"
+       ],
+       "answer": "Someone playing the piano"
+      },
+      {
+       "q": "Who finally knocked on the door?",
+       "options": [
+        "The oldest woman",
+        "A young man",
+        "Nobody"
+       ],
+       "answer": "The oldest woman"
+      },
+      {
+       "q": "Why was the boy playing?",
+       "options": [
+        "He had failed an exam",
+        "He was celebrating",
+        "He was practicing for a concert"
+       ],
+       "answer": "He had failed an exam"
+      }
+     ],
+     "retell": {
+      "prompt_es": "Cuenta lo que pasó esa noche en el edificio.",
+      "pistas": [
+       "two in the morning · the piano",
+       "four neighbors · the hallway",
+       "the oldest woman · a boy of nineteen"
+      ]
+     },
+     "trap": "'Burst into tears' = echarse a llorar. Es una frase hecha: no se traduce pieza por pieza."
+    },
+    {
+     "id": "h-b1-05",
+     "level": "B1",
+     "title": "The Translation",
+     "titleEs": "La traducción",
+     "text": [
+      "A small museum asked my cousin to translate its signs into English.",
+      "She isn't a translator, but she speaks English well and they paid in cash.",
+      "She finished the job in two evenings and forgot about it.",
+      "Six months later a British tourist wrote a review online.",
+      "He said the museum was lovely but the English was full of mistakes.",
+      "My cousin read the review and recognized every single error he listed.",
+      "She now says that speaking a language and writing it professionally are two very different things."
+     ],
+     "glosario": [
+      {
+       "en": "sign",
+       "es": "cartel"
+      },
+      {
+       "en": "review",
+       "es": "reseña"
+      },
+      {
+       "en": "in cash",
+       "es": "en efectivo"
+      }
+     ],
+     "preguntas": [
+      {
+       "q": "What is true about the cousin?",
+       "options": [
+        "She speaks English well but isn't a translator",
+        "She is a professional translator",
+        "She works at the museum"
+       ],
+       "answer": "She speaks English well but isn't a translator"
+      },
+      {
+       "q": "What did the tourist say?",
+       "options": [
+        "The English was full of mistakes",
+        "The museum was closed",
+        "The signs were missing"
+       ],
+       "answer": "The English was full of mistakes"
+      },
+      {
+       "q": "What did she learn?",
+       "options": [
+        "Speaking and writing professionally are different",
+        "Never to work for money",
+        "That the tourist was wrong"
+       ],
+       "answer": "Speaking and writing professionally are different"
+      }
+     ],
+     "retell": {
+      "prompt_es": "Cuenta qué le pasó a tu prima y qué aprendió.",
+      "pistas": [
+       "a small museum · the signs",
+       "six months later · a review",
+       "she recognized every error"
+      ]
+     },
+     "trap": "'Recognized every single error': 'single' refuerza, no significa soltero. 'Every single' = cada uno sin excepción."
+    },
+    {
+     "id": "h-b1-06",
+     "level": "B1",
+     "title": "The Shortcut",
+     "titleEs": "El atajo",
+     "text": [
+      "My father drove the same route to work for twenty years.",
+      "One day a colleague told him about a shortcut that saved ten minutes.",
+      "He tried it once and got lost for half an hour.",
+      "He never used it again and told the story for years afterwards.",
+      "When I started driving, he gave me a serious warning about that road.",
+      "Last month I finally tried it out of curiosity.",
+      "It saves eleven minutes and it is impossible to get lost.",
+      "I have decided not to tell him."
+     ],
+     "glosario": [
+      {
+       "en": "route",
+       "es": "ruta"
+      },
+      {
+       "en": "shortcut",
+       "es": "atajo"
+      },
+      {
+       "en": "warn",
+       "es": "advertir"
+      }
+     ],
+     "preguntas": [
+      {
+       "q": "What did the colleague suggest?",
+       "options": [
+        "A shortcut",
+        "A new job",
+        "A different car"
+       ],
+       "answer": "A shortcut"
+      },
+      {
+       "q": "What happened the first time?",
+       "options": [
+        "He got lost",
+        "He saved ten minutes",
+        "He had an accident"
+       ],
+       "answer": "He got lost"
+      },
+      {
+       "q": "What did the narrator discover?",
+       "options": [
+        "The shortcut actually works",
+        "The road is closed",
+        "His father was right"
+       ],
+       "answer": "The shortcut actually works"
+      }
+     ],
+     "retell": {
+      "prompt_es": "Cuenta la historia del atajo, la versión de tu padre y la tuya.",
+      "pistas": [
+       "the same route · twenty years",
+       "a shortcut · he got lost",
+       "last month · it saves eleven minutes · I won't tell him"
+      ]
+     },
+     "trap": "'Afterwards' = después, sin decir de qué. 'After' necesita complemento: 'after the trip'. 'Afterwards' va solo: 'he told the story for years afterwards'."
+    }
+   ]
+  }
+ ]
+}

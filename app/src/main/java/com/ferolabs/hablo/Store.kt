@@ -101,6 +101,10 @@ class Store(context: Context) {
 
     fun studiedToday(): Boolean = prefs.getInt("last_day", 0) == todayKey()
 
+    // --- Historias (etapa 4) -------------------------------------------------
+    fun historiaHecha(id: String): Boolean = prefs.getBoolean("historia_$id", false)
+    fun marcarHistoria(id: String) = prefs.edit().putBoolean("historia_$id", true).apply()
+
     // --- Mapa personal de sonidos ---------------------------------------------
     // Lo valioso no es la frase de hoy: es "estos son los sonidos que fallo de
     // verdad, medido en muchas frases". Se acumula entre sesiones.

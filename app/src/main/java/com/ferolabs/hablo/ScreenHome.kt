@@ -49,7 +49,8 @@ fun HomeScreen(
     progreso: Progreso? = null,
     onRepaso: () -> Unit = {},
     onContrarreloj: () -> Unit = {},
-    onAguanta: () -> Unit = {}
+    onAguanta: () -> Unit = {},
+    onHistorias: () -> Unit = {}
 ) {
     val accent = Color(teacher.color)
     // Repaso de hoy: qué toca del mazo y cuántos errores propios hay para corregir.
@@ -299,6 +300,40 @@ fun HomeScreen(
             }
         }
 
+        // --- Etapa 4: historias -------------------------------------------------
+        if (Course.tandas.isNotEmpty()) {
+            item {
+                val total = Course.tandas.sumOf { it.historias.size }
+                val hechas = Course.tandas.sumOf { t -> t.historias.count { store.historiaHecha(it.id) } }
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(Color.White, RoundedCornerShape(16.dp))
+                        .border(1.dp, accent.copy(alpha = 0.35f), RoundedCornerShape(16.dp))
+                        .clickable { onHistorias() }
+                        .padding(16.dp)
+                ) {
+                    Box(
+                        contentAlignment = Alignment.Center,
+                        modifier = Modifier.size(46.dp).background(Color(teacher.softColor), CircleShape)
+                    ) {
+                        Text("📚", style = MaterialTheme.typography.titleLarge)
+                    }
+                    Spacer(Modifier.size(14.dp))
+                    Column(modifier = Modifier.weight(1f)) {
+                        Text("Historias", style = MaterialTheme.typography.titleMedium)
+                        Text(
+                            "Léela, responde y cuéntala tú · $hechas de $total",
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = InkSoft
+                        )
+                    }
+                    Text("›", style = MaterialTheme.typography.headlineMedium, color = accent)
+                }
+            }
+        }
+
         if (soundMap.isNotEmpty()) {
             item {
                 Column(
@@ -385,9 +420,7 @@ fun HomeScreen(
                 Text("Lo que viene", style = MaterialTheme.typography.titleMedium)
                 Spacer(Modifier.height(6.dp))
                 Text(
-                    "📖  La gramática de cada lección en pantalla\n" +
-                        "📚  Historias cortas para leer y contar\n" +
-                        "🎯  Modo Aptis: práctica con el formato del examen\n" +
+                    "🎯  Modo Aptis: práctica con el formato del examen\n" +
                         "🧗  Niveles B1 y B2",
                     style = MaterialTheme.typography.bodyMedium,
                     color = InkSoft

@@ -308,7 +308,7 @@ escenarios · corrección en español · informe descargable · cuaderno de erro
 | 5 | Actividades más diversas | **etapa 3 hecha el 16-09**: adivina antes de ver, repaso, corrige tu propio error, contrarreloj, Aguanta |
 | 6 | Retos con presión | **hecho el 16-09**: Aguanta (tres errores) y contrarreloj (solo ahí hay reloj) |
 | 7 | Vocabulario con cronómetro | **hecho el 16-09**: contrarreloj con reloj grande, "lo fallado vuelve", marcas por banco; falta el banco de Cowork (`vocabulario.json`) |
-| 8 | Historias cortas con preguntas | no existe |
+| 8 | Historias cortas con preguntas | **hecho el 16-09**: 12 historias de Cowork (6 A2, 6 B1) con retell obligatorio; ver "Etapa 4" |
 | 9 | Crucigramas | no existe |
 | 10 | Repaso espaciado (mazo) | **hecho el 16-09**: `Mazo.kt`, Leitner 1/3/7/16/35 + escalera elegir→armar→escribir→oír y escribir→decir |
 | 11 | Pantalla de Oído (pares mínimos) | el tipo existe, la pantalla no |
@@ -344,8 +344,7 @@ Fero pueda hablar de lo que quiera y al día siguiente ella se acuerde.
 ver "Etapa 3" abajo: adivina, repaso, corrige tu propio error, contrarreloj y
 Aguanta vistos en pantalla; el mazo arrancó con 59 frases para el 17-09);
 termina cuando Fero pueda abrir la app sin lección pendiente y tener veinte
-minutos de práctica distinta. Falta el `vocabulario.json` de Cowork. 4) Historias (`story`: leer → 3 preguntas → contarla de vuelta
-en voz alta → palabras al mazo; Cowork las escribe por tandas de 3-12).
+minutos de práctica distinta. Falta el `vocabulario.json` de Cowork. 4) Historias — **código hecho el 16-09** (ver "Etapa 4" abajo).
 5) **Modo Aptis** (abajo). 6) B1 y B2 (Cowork), respaldo del progreso, modo
 oscuro, recalibración del audio.
 
@@ -405,6 +404,27 @@ o la IA del teléfono solo se guardan los errores, y la cabecera lo dice).
 tocar): las explicaciones en español en la charla libre no son "errores"
 falsos; ver `subagents/workflows/wf_bd4683cb-21f`.
 
+**Etapa 4 (2026-09-16): historias cortas.** `assets/content/historias.json`
+(`tandas` → `historias`; formato en `contenido-nuevo/integrado/2026-09-16-historias/COMO-INTEGRAR-HISTORIAS.md`;
+se anexan con `tools/content/anexar_historias.py`; `checkContent` valida
+tandas de 3-12, 6-10 frases, 3 preguntas de 3 opciones, retell con ≥ 2 pistas
+y glosario ≥ 2 en cmudict). `ScreenHistoria.kt`: la profesora LEE la historia
+(frase por frase, Piper) con el texto y el glosario en pantalla → 3 preguntas
+→ **retell hablado obligatorio** (no hay botón para saltarlo: sin él es
+comprensión lectora y se pierde la mitad del efecto; intervención narrativa
+oral d = 1,36, tandas de 3-12 sesiones d = 2,53), por partes: una grabación
+de hasta 20 s por pista (`Listener.startRecording(maxSeconds = 20)`) → se
+puntúa como shadow (cobertura de palabras de contenido de la historia +
+segundos hablados; nunca por fonema, nunca reprueba) → el glosario entra al
+mazo (`Mazo.alimentarPares`, ids `historia:<id>|<en>`; una palabra suelta
+salta el escalón "armar"). Progreso en `Store.historiaHecha`. **Regla de
+Cowork (hallazgo al escribirlas): el curso va en inglés AMERICANO** (store,
+movie, neighbor, canceled); la excepción es el Modo Aptis, que es del British
+Council y enseña la diferencia como contenido (stopover, no layover).
+**La pantalla de lección se partió por tipo de ejercicio** (`ejercicios/Elegir.kt`,
+`Escribir.kt`, `Armar.kt`, `Hablar.kt`; refactor puro, sin MVVM: ScreenLesson
+pasó de 1.229 a 838 líneas y solo conserva el estado, la cola y los modos).
+
 **Formato de `vocabulario.json` (lo escribe Cowork, se anexa con
 `tools/content/anexar_vocabulario.py`):** `{"bancos": [{"id": "casa-a1",
 "title": "🏠 La casa · A1", "level": "A1", "pares": [{"en": "kitchen", "es":
@@ -444,8 +464,8 @@ pantalla: es una estimación, no la nota real**) y bancos grandes de ítems
 
 ## Estado y plan
 
-**Versión actual: 0.9.1** (2026-09-15: la etapa 1 del diagnóstico; ver
-"Inventario de lo pedido"). **0.9** (conversación por internet; el motor por defecto pasó a
+**Versión actual: 0.9.5** (2026-09-16: etapas 2, 3 y 4 en el teléfono, ver
+"Inventario de lo pedido"). **0.9.1** (2026-09-15: la etapa 1 del diagnóstico). **0.9** (conversación por internet; el motor por defecto pasó a
 Claude API el 2026-09-13, ver "Sesión del 2026-09-13" más abajo). **A1 completo
 el 2026-09-14: 27 lecciones, 207 ejercicios, 27 fichas de teoría** (19
 lecciones nuevas escritas por Claude Cowork siguiendo un sílabo A1 real, más

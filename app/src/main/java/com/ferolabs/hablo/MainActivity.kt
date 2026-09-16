@@ -78,6 +78,9 @@ private sealed class Route {
     data object Repaso : Route()
     data object Contrarreloj : Route()
     data object Aguanta : Route()
+    /** Etapa 4: historias cortas con retell. */
+    data object Historias : Route()
+    data class Cuento(val historiaId: String) : Route()
 }
 
 @Composable
@@ -179,8 +182,41 @@ fun HabloApp(
                             progreso = progreso,
                             onRepaso = { llm.release(); route = Route.Repaso },
                             onContrarreloj = { route = Route.Contrarreloj },
-                            onAguanta = { llm.release(); route = Route.Aguanta }
+                            onAguanta = { llm.release(); route = Route.Aguanta },
+                            onHistorias = { llm.release(); route = Route.Historias }
                         )
+                    }
+
+                    is Route.Historias -> {
+                        BackHandler { speaker.stop(); route = Route.Home }
+                        HistoriasScreen(
+                            teacher = teacher,
+                            store = store,
+                            onPick = { h -> listener.releaseSounds(); route = Route.Cuento(h.id) },
+                            onBack = { speaker.stop(); route = Route.Home }
+                        )
+                    }
+
+                    is Route.Cuento -> {
+                        val historia = Course.historiaById(current.historiaId)
+                        BackHandler { speaker.stop(); listener.stopRecording(); route = Route.Historias }
+                        if (historia == null) {
+                            route = Route.Historias
+                        } else {
+                            HistoriaScreen(
+                                historia = historia,
+                                teacher = teacher,
+                                speaker = speaker,
+                                listener = listener,
+                                store = store,
+                                mazo = mazo,
+                                progreso = progreso,
+                                say = say,
+                                sayQueued = { text -> speaker.speakQueued(text, teacher, speechScale) },
+                                onDone = { progressTick += 1; speaker.stop(); route = Route.Historias },
+                                onExit = { speaker.stop(); listener.stopRecording(); route = Route.Historias }
+                            )
+                        }
                     }
 
                     is Route.Repaso -> {

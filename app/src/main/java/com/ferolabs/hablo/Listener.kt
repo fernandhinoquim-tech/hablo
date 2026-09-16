@@ -46,7 +46,9 @@ class Listener(context: Context) {
     private val worker = Executors.newSingleThreadExecutor()
 
     private val sampleRate = AudioPrep.SAMPLE_RATE
-    private val maxSeconds = 12
+    /** Tope de la grabación; el retell de una historia (etapa 4) pide más que una frase. */
+    @Volatile
+    private var maxSeconds = 12
     private val assetsVersion = "v2"
 
     var recording by mutableStateOf(false)
@@ -252,10 +254,13 @@ class Listener(context: Context) {
         target: String,
         sound: Sound,
         conversation: Boolean = false,
+        /** Segundos máximos de grabación (12 para una frase; el retell de una historia usa más). */
+        maxSeconds: Int = 12,
         onResult: (ListenResult) -> Unit
     ) {
         autoStop = conversation
         if (recording) return
+        this.maxSeconds = maxSeconds.coerceIn(3, 40)
         if (!hasMicPermission()) {
             errorDetail = "Falta el permiso del micrófono."
             return
