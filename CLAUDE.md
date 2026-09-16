@@ -279,6 +279,10 @@ cambiar `prep()` en `bench.py` igual.
   speaks espanish" en el dictado. **Nunca subir ni aflojar el umbral de `es`
   por "falsa alarma": es el único detector de ese error.** Lo que sí se puede
   mejorar es el texto de la tarjeta amarilla.
+- **Moonshine devuelve '' con audio de más de ~12 s** (medido 2026-09-16: 17 s
+  de retell → '' en 150 ms, con voz 5-11 s y SNR 14-27 dB). `Listener`
+  reconoce por ventanas de 12 s (`VENTANA_S`) y junta los trozos; una frase
+  de lección cabe en un trozo y no cambia nada.
 - **live/leave (a1u4l1e12) NO está roto en la app.** El par solo reproduce
   la respuesta ("The word is leave."), que Piper dice bien con las 4 voces;
   "live" (heterónimo, Piper lo lee /laɪv/) nunca suena. El fallo de Fero

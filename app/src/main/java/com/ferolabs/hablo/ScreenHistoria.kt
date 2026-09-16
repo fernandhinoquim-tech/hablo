@@ -284,7 +284,7 @@ fun HistoriaScreen(
                                 .clickable(enabled = !listener.thinking) {
                                     when {
                                         listener.recording -> listener.stopRecording()
-                                        listener.hasMicPermission() -> { speaker.stop(); notHeard = null; grabar() }
+                                        listener.hasMicPermission() -> { notHeard = null; grabar() }
                                         else -> permiso.launch(Manifest.permission.RECORD_AUDIO)
                                     }
                                 }
@@ -310,6 +310,11 @@ fun HistoriaScreen(
                     Text(
                         "Aquí no se juzga cada sonido: cuenta que la historia salga con tus palabras. No hay reloj.",
                         style = MaterialTheme.typography.labelMedium, color = InkSoft
+                    )
+                    Text(
+                        "🔊 Oírla otra vez antes de contar esta parte",
+                        style = MaterialTheme.typography.labelLarge, color = accent,
+                        modifier = Modifier.clickable { if (!listener.recording) leer() }.padding(vertical = 4.dp)
                     )
                 }
 

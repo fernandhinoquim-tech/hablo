@@ -49,6 +49,8 @@ class Listener(context: Context) {
     /** Tope de la grabación; el retell de una historia (etapa 4) pide más que una frase. */
     @Volatile
     private var maxSeconds = 12
+    /** Moonshine se queda mudo con audio largo: se reconoce por ventanas de este largo. */
+    private val VENTANA_S = 12
     private val assetsVersion = "v2"
 
     var recording by mutableStateOf(false)
@@ -314,13 +316,25 @@ class Listener(context: Context) {
                     return@execute
                 }
                 val t0 = System.currentTimeMillis()
-                val stream = r.createStream()
-                stream.acceptWaveform(a.prepared, sampleRate)
-                r.decode(stream)
-                val text = r.getResult(stream).text.trim()
-                stream.release()
+                // Moonshine devuelve '' con audio de mas de ~12 s (medido el 16-09: 17 s de
+                // retell -> '' en 150 ms). Se reconoce por trozos de VENTANA_S segundos y se
+                // juntan; una frase de leccion cabe entera en un trozo.
+                val ventana = sampleRate * VENTANA_S
+                val trozos = ArrayList<String>()
+                var desde = 0
+                while (desde < a.prepared.size) {
+                    val hasta = minOf(desde + ventana, a.prepared.size)
+                    val stream = r.createStream()
+                    stream.acceptWaveform(a.prepared.copyOfRange(desde, hasta), sampleRate)
+                    r.decode(stream)
+                    val parte = r.getResult(stream).text.trim()
+                    stream.release()
+                    if (parte.isNotBlank()) trozos.add(parte)
+                    desde = hasta
+                }
+                val text = trozos.joinToString(" ")
                 val ms = System.currentTimeMillis() - t0
-                Log.i(TAG, "audio: ${a.summary()} | reconocido en ${ms}ms: '$text'")
+                Log.i(TAG, "audio: ${a.summary()} | reconocido en ${ms}ms (${maxOf(1, (a.prepared.size + ventana - 1) / ventana)} trozos): '$text'")
 
                 // Veredicto por fonema del sonido del ejercicio. Si falla, no
                 // se pierde el resto: el reporte queda en null.
