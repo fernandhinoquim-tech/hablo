@@ -43,10 +43,12 @@ class MainActivity : ComponentActivity() {
         val mem = Memoria(java.io.File(getExternalFilesDir("memoria"), "perfil.json"))
         // El mazo de repaso (etapa 3): al lado del cuaderno, dentro de la app.
         val mazo = Mazo(java.io.File(filesDir, "mazo.json"))
+        // El diagnóstico del Modo Aptis (etapa 5): sus cinco partes, al lado del mazo.
+        val aptis = Aptis(java.io.File(filesDir, "aptis.json"))
         Course.load(this)
 
         setContent {
-            HabloApp(speaker = sp, listener = li, llm = ai, cloud = cloud, claude = claude, store = store, progreso = prog, memoria = mem, mazo = mazo)
+            HabloApp(speaker = sp, listener = li, llm = ai, cloud = cloud, claude = claude, store = store, progreso = prog, memoria = mem, mazo = mazo, aptis = aptis)
         }
     }
 
@@ -81,6 +83,9 @@ private sealed class Route {
     /** Etapa 4: historias cortas con retell. */
     data object Historias : Route()
     data class Cuento(val historiaId: String) : Route()
+    /** Etapa 5: el diagnóstico del Modo Aptis (portada) y una de sus partes. */
+    data object Aptis : Route()
+    data class AptisParte(val seccionId: String) : Route()
 }
 
 @Composable
@@ -93,7 +98,8 @@ fun HabloApp(
     store: Store,
     progreso: Progreso,
     memoria: Memoria,
-    mazo: Mazo
+    mazo: Mazo,
+    aptis: Aptis
 ) {
 
     var teacherId by remember { mutableStateOf(store.teacherId) }
@@ -183,8 +189,47 @@ fun HabloApp(
                             onRepaso = { llm.release(); route = Route.Repaso },
                             onContrarreloj = { route = Route.Contrarreloj },
                             onAguanta = { llm.release(); route = Route.Aguanta },
-                            onHistorias = { llm.release(); route = Route.Historias }
+                            onHistorias = { llm.release(); route = Route.Historias },
+                            onAptis = { llm.release(); route = Route.Aptis }
                         )
+                    }
+
+                    is Route.Aptis -> {
+                        val diag = Course.diagnostico
+                        BackHandler { speaker.stop(); route = Route.Home }
+                        if (diag == null) {
+                            route = Route.Home
+                        } else {
+                            AptisScreen(
+                                diag = diag,
+                                aptis = aptis,
+                                teacher = teacher,
+                                claude = claude,
+                                onParte = { id -> route = Route.AptisParte(id) },
+                                onBack = { speaker.stop(); route = Route.Home }
+                            )
+                        }
+                    }
+
+                    is Route.AptisParte -> {
+                        val seccion = Course.diagnostico?.seccion(current.seccionId)
+                        BackHandler { speaker.stop(); listener.stopRecording(); route = Route.Aptis }
+                        if (seccion == null) {
+                            route = Route.Aptis
+                        } else {
+                            AptisParteScreen(
+                                seccion = seccion,
+                                aptis = aptis,
+                                teacher = teacher,
+                                speaker = speaker,
+                                listener = listener,
+                                claude = claude,
+                                say = say,
+                                sayQueued = { text -> speaker.speakQueued(text, teacher, speechScale) },
+                                onDone = { speaker.stop(); route = Route.Aptis },
+                                onExit = { speaker.stop(); listener.stopRecording(); route = Route.Aptis }
+                            )
+                        }
                     }
 
                     is Route.Historias -> {
@@ -440,6 +485,7 @@ fun HabloApp(
                             },
                             onReset = {
                                 store.resetEverything()
+                                aptis.borrarTodo()
                                 progressTick += 1
                                 teacherId = null
                                 route = Route.PickTeacher

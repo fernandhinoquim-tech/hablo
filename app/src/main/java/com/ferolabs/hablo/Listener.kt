@@ -256,13 +256,15 @@ class Listener(context: Context) {
         target: String,
         sound: Sound,
         conversation: Boolean = false,
-        /** Segundos máximos de grabación (12 para una frase; el retell de una historia usa más). */
+        /** Segundos máximos de grabación (12 para una frase; el retell de una historia 20; el Speaking del diagnóstico Aptis hasta 90). */
         maxSeconds: Int = 12,
+        /** Cortar solo al callarse (la conversación). El Speaking de Aptis usa Parakeet pero NO corta: pensar en silencio es parte de hablar 90 s. */
+        cortarSolo: Boolean = conversation,
         onResult: (ListenResult) -> Unit
     ) {
-        autoStop = conversation
+        autoStop = cortarSolo
         if (recording) return
-        this.maxSeconds = maxSeconds.coerceIn(3, 40)
+        this.maxSeconds = maxSeconds.coerceIn(3, 120)
         if (!hasMicPermission()) {
             errorDetail = "Falta el permiso del micrófono."
             return
@@ -355,7 +357,7 @@ class Listener(context: Context) {
                     onResult(ListenResult.NotHeard(NotHeardReason.NOTHING))
                 } else {
                     outcome = "OIDO $text" + outcome
-                    onResult(ListenResult.Heard(text, report, a.speechSeconds))
+                    onResult(ListenResult.Heard(text, report, a.speechSeconds, a.totalSeconds))
                 }
             } catch (e: Throwable) {
                 Log.e(TAG, "Error reconociendo", e)

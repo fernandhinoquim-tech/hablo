@@ -17,7 +17,9 @@ sealed class ListenResult {
         val text: String,
         val report: SoundReport? = null,
         /** Cuánto duró la voz del alumno (sin silencios), para el shadowing. */
-        val speechSeconds: Float = 0f
+        val speechSeconds: Float = 0f,
+        /** Cuánto duró la grabación entera (voz y pausas), para el Speaking del diagnóstico Aptis. */
+        val totalSeconds: Float = 0f
     ) : ListenResult()
     data class NotHeard(val reason: NotHeardReason) : ListenResult()
 }

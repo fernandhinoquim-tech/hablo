@@ -508,6 +508,108 @@ val checkContent = tasks.register("checkContent") {
             }
         }
 
+        // Diagnostico del Modo Aptis (etapa 5): opcional; si esta, se revisa como parseDiagnostico (Aptis.kt).
+        val diagFile = File(contentDir, "aptis-diagnostico.json")
+        if (diagFile.exists()) {
+            val diag = slurper.parse(diagFile) as Map<*, *>
+            val secIds = HashSet<String>()
+            val tareaIds = HashSet<String>()
+            val nivelesItem = setOf("A2", "B1", "B2")
+            fun strs(x: Any?): List<String> = (x as? List<*>)?.map { it.toString() } ?: emptyList()
+            fun idNuevo(where: String, id: Any?) {
+                val s = id?.toString().orEmpty()
+                if (s.isBlank()) problems.add("$where: falta \"id\"") else if (!tareaIds.add(s)) problems.add("$where: id repetido \"$s\"")
+            }
+            fun nivel(where: String, o: Map<*, *>) {
+                if (o["level"]?.toString() !in nivelesItem) problems.add("$where: level \"${o["level"]}\" no es A2, B1 ni B2")
+            }
+            fun opciones(where: String, o: Map<*, *>): List<String> {
+                val opts = strs(o["options"])
+                if (opts.size < 2) problems.add("$where: hacen falta al menos 2 opciones")
+                if (opts.toSet().size != opts.size) problems.add("$where: opciones repetidas")
+                if (o["answer"]?.toString() !in opts) problems.add("$where: answer fuera de options")
+                return opts
+            }
+            fun hueco(where: String, text: Any?) {
+                if (text.toString().split("___").size != 2) problems.add("$where: el texto necesita exactamente un hueco ___")
+            }
+            val secciones = (diag["secciones"] as? List<*>) ?: run { problems.add("aptis-diagnostico.json: falta \"secciones\""); emptyList<Any>() }
+            secciones.forEachIndexed { si, sec ->
+                val o = sec as Map<*, *>
+                val whereS = "aptis-diagnostico.json, seccion ${si + 1}"
+                val id = o["id"]?.toString().orEmpty()
+                if (id.isBlank() || !secIds.add(id)) problems.add("$whereS: id vacio o repetido")
+                for (key in listOf("skill", "title")) if (o[key]?.toString().isNullOrBlank()) problems.add("$whereS: falta \"$key\"")
+                if (((o["minutos"] as? Number)?.toInt() ?: 0) <= 0) problems.add("$whereS: \"minutos\" tiene que ser mayor que 0")
+                when (id) {
+                    "core" -> {
+                        if (((o["segundos_por_item"] as? Number)?.toInt() ?: 0) <= 0) problems.add("$whereS: falta \"segundos_por_item\"")
+                        val items = (o["items"] as? List<*>) ?: emptyList<Any>()
+                        val niveles = HashSet<String>()
+                        items.forEachIndexed { i, it ->
+                            val im = it as Map<*, *>
+                            val where = "$whereS, item ${i + 1}"
+                            idNuevo(where, im["id"]); nivel(where, im); hueco(where, im["text"]); opciones(where, im)
+                            niveles.add(im["level"].toString())
+                        }
+                        for (l in nivelesItem) if (l !in niveles) problems.add("$whereS: no hay items de $l (la estimacion los necesita)")
+                    }
+                    "reading" -> {
+                        val tareas = (o["tareas"] as? List<*>) ?: emptyList<Any>()
+                        if (tareas.isEmpty()) problems.add("$whereS: sin tareas")
+                        tareas.forEachIndexed { i, t ->
+                            val tm = t as Map<*, *>
+                            val where = "$whereS, tarea ${i + 1}"
+                            idNuevo(where, tm["id"]); nivel(where, tm)
+                            when (tm["tipo"]?.toString()) {
+                                "completar" -> { hueco(where, tm["text"]); opciones(where, tm) }
+                                "ordenar" -> {
+                                    if (tm["primera"]?.toString().isNullOrBlank()) problems.add("$where: falta \"primera\"")
+                                    val des = strs(tm["desordenadas"]); val orden = strs(tm["orden"])
+                                    if (des.size < 2) problems.add("$where: hacen falta al menos 2 frases desordenadas")
+                                    if (des.toSet().size != des.size) problems.add("$where: frases repetidas")
+                                    if (orden.sorted() != des.sorted()) problems.add("$where: \"orden\" no es una permutacion de \"desordenadas\"")
+                                }
+                                "titulos" -> {
+                                    val parrafos = strs(tm["parrafos"]); val titulos = strs(tm["titulos"]); val answer = strs(tm["answer"])
+                                    if (parrafos.size < 2) problems.add("$where: hacen falta al menos 2 parrafos")
+                                    if (titulos.size <= parrafos.size) problems.add("$where: tiene que sobrar al menos un titulo")
+                                    if (titulos.toSet().size != titulos.size) problems.add("$where: titulos repetidos")
+                                    if (answer.size != parrafos.size) problems.add("$where: \"answer\" necesita un titulo por parrafo")
+                                    if (answer.toSet().size != answer.size || answer.any { it !in titulos }) problems.add("$where: \"answer\" con titulos repetidos o fuera de \"titulos\"")
+                                }
+                                else -> problems.add("$where: tipo desconocido \"${tm["tipo"]}\"")
+                            }
+                        }
+                    }
+                    "listening" -> {
+                        val tareas = (o["tareas"] as? List<*>) ?: emptyList<Any>()
+                        if (tareas.isEmpty()) problems.add("$whereS: sin tareas")
+                        tareas.forEachIndexed { i, t ->
+                            val tm = t as Map<*, *>
+                            val where = "$whereS, tarea ${i + 1}"
+                            idNuevo(where, tm["id"]); nivel(where, tm); opciones(where, tm)
+                            for (key in listOf("audio", "pregunta")) if (tm[key]?.toString().isNullOrBlank()) problems.add("$where: falta \"$key\"")
+                        }
+                    }
+                    "writing", "speaking" -> {
+                        val tareas = (o["tareas"] as? List<*>) ?: emptyList<Any>()
+                        if (tareas.size < 2) problems.add("$whereS: la estimacion por IA necesita al menos 2 tareas")
+                        tareas.forEachIndexed { i, t ->
+                            val tm = t as Map<*, *>
+                            val where = "$whereS, tarea ${i + 1}"
+                            idNuevo(where, tm["id"]); nivel(where, tm)
+                            for (key in listOf("prompt_en", "prompt_es")) if (tm[key]?.toString().isNullOrBlank()) problems.add("$where: falta \"$key\"")
+                            if (strs(tm["rubrica"]).isEmpty()) problems.add("$where: falta la rubrica")
+                            val seg = if (id == "writing") "segundos" else "hablar_seg"
+                            if (((tm[seg] as? Number)?.toInt() ?: 0) <= 0) problems.add("$where: falta \"$seg\"")
+                        }
+                    }
+                    else -> problems.add("$whereS: seccion desconocida \"$id\"")
+                }
+            }
+        }
+
         // Toda palabra que se pide decir en voz alta tiene que estar en el
         // diccionario de pronunciacion: sin fonemas esperados no hay GOP y el
         // sonido del ejercicio quedaria sin evaluar en silencio.
@@ -579,8 +681,8 @@ android {
         applicationId = "com.ferolabs.hablo"
         minSdk = 26
         targetSdk = 35
-        versionCode = 14
-        versionName = "0.9.5"
+        versionCode = 15
+        versionName = "0.9.6"
 
         // Solo el procesador del S25 Ultra. De paso el APK deja de llevar las
         // copias de sherpa-onnx y ONNX Runtime para x86/armv7 (~100 MB menos).

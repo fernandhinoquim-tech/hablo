@@ -230,12 +230,21 @@ class ClaudeLlm(context: Context) : ChatEngine {
     /**
      * UNA llamada corta a Haiku (siempre Haiku: es la barata) sin streaming, para
      * el resumen de la charla libre al cerrar. Devuelve el texto o null si falló.
-     * Va por su propio hilo: no espera a la generación en curso ni la estorba.
      */
     fun resumir(system: String, user: String, maxTokens: Int = 400, onDone: (String?) -> Unit) {
+        preguntar(MODELO_RESUMEN, system, user, maxTokens) { texto, _ -> onDone(texto) }
+    }
+
+    /**
+     * Una pregunta suelta, sin streaming y sin razonamiento, por su propio hilo
+     * (no espera a la charla en curso ni la estorba). La usan el resumen de la
+     * charla libre y el juez del diagnóstico Aptis ([JuezAptis]). [onDone]
+     * recibe el texto, o null y el motivo legible para la pantalla.
+     */
+    fun preguntar(modelo: String, system: String, user: String, maxTokens: Int, onDone: (String?, String?) -> Unit) {
         fondo.execute {
             val key = readKey()
-            if (key == null) { onDone(null); return@execute }
+            if (key == null) { onDone(null, "No hay clave de Claude en el teléfono"); return@execute }
             try {
                 val conn = (URL(URL_MESSAGES).openConnection() as HttpURLConnection).apply {
                     requestMethod = "POST"
@@ -247,16 +256,20 @@ class ClaudeLlm(context: Context) : ChatEngine {
                     setRequestProperty("anthropic-version", ANTHROPIC_VERSION)
                 }
                 val body = JSONObject()
-                    .put("model", MODELO_RESUMEN)
+                    .put("model", modelo)
                     .put("max_tokens", maxTokens)
                     .put("system", system)
                     .put("messages", JSONArray().put(JSONObject().put("role", "user").put("content", user)))
+                if (modelo.startsWith("claude-sonnet") || modelo.startsWith("claude-opus")) {
+                    body.put("thinking", JSONObject().put("type", "disabled"))
+                }
                 conn.outputStream.use { it.write(body.toString().toByteArray(Charsets.UTF_8)) }
                 val code = conn.responseCode
                 if (code != 200) {
                     val err = try { conn.errorStream?.bufferedReader()?.readText() ?: "" } catch (e: Throwable) { "" }
-                    Log.w(TAG, "resumen: " + explicar(code, err))
-                    onDone(null)
+                    val motivo = explicar(code, err)
+                    Log.w(TAG, "pregunta a $modelo: $motivo")
+                    onDone(null, motivo)
                     return@execute
                 }
                 val resp = JSONObject(conn.inputStream.bufferedReader(Charsets.UTF_8).readText())
@@ -268,11 +281,11 @@ class ClaudeLlm(context: Context) : ChatEngine {
                     if (bloque.optString("type") == "text") texto.append(bloque.optString("text"))
                 }
                 val uso = resp.optJSONObject("usage")
-                Log.i(TAG, "resumen con $MODELO_RESUMEN: ${uso?.optInt("input_tokens")} entrada / ${uso?.optInt("output_tokens")} salida")
-                onDone(texto.toString())
+                Log.i(TAG, "pregunta a $modelo: ${uso?.optInt("input_tokens")} entrada / ${uso?.optInt("output_tokens")} salida, parada ${resp.optString("stop_reason")}")
+                onDone(texto.toString(), null)
             } catch (e: Throwable) {
-                Log.w(TAG, "resumen falló", e)
-                onDone(null)
+                Log.w(TAG, "pregunta a $modelo falló", e)
+                onDone(null, "Sin conexión (${e.javaClass.simpleName})")
             }
         }
     }

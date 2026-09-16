@@ -50,7 +50,9 @@ fun HomeScreen(
     onRepaso: () -> Unit = {},
     onContrarreloj: () -> Unit = {},
     onAguanta: () -> Unit = {},
-    onHistorias: () -> Unit = {}
+    onHistorias: () -> Unit = {},
+    /** Etapa 5: el Modo Aptis va como sección aparte (decisión de Fero). */
+    onAptis: () -> Unit = {}
 ) {
     val accent = Color(teacher.color)
     // Repaso de hoy: qué toca del mazo y cuántos errores propios hay para corregir.
@@ -334,6 +336,38 @@ fun HomeScreen(
             }
         }
 
+        // --- Etapa 5: Modo Aptis, sección aparte; por ahora solo el diagnóstico -----
+        Course.diagnostico?.let { diag ->
+            item {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(Color.White, RoundedCornerShape(16.dp))
+                        .border(1.dp, accent.copy(alpha = 0.35f), RoundedCornerShape(16.dp))
+                        .clickable { onAptis() }
+                        .padding(16.dp)
+                ) {
+                    Box(
+                        contentAlignment = Alignment.Center,
+                        modifier = Modifier.size(46.dp).background(Color(teacher.softColor), CircleShape)
+                    ) {
+                        Text("🎯", style = MaterialTheme.typography.titleLarge)
+                    }
+                    Spacer(Modifier.size(14.dp))
+                    Column(modifier = Modifier.weight(1f)) {
+                        Text("Modo Aptis · Diagnóstico", style = MaterialTheme.typography.titleMedium)
+                        Text(
+                            "${diag.duracionMin} minutos en ${diag.secciones.size} partes: en qué nivel está cada destreza y cuál es tu piso",
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = InkSoft
+                        )
+                    }
+                    Text("›", style = MaterialTheme.typography.headlineMedium, color = accent)
+                }
+            }
+        }
+
         if (soundMap.isNotEmpty()) {
             item {
                 Column(
@@ -420,7 +454,7 @@ fun HomeScreen(
                 Text("Lo que viene", style = MaterialTheme.typography.titleMedium)
                 Spacer(Modifier.height(6.dp))
                 Text(
-                    "🎯  Modo Aptis: práctica con el formato del examen\n" +
+                    "🎯  Modo Aptis: la práctica con el formato del examen (el diagnóstico ya está)\n" +
                         "🧗  Niveles B1 y B2",
                     style = MaterialTheme.typography.bodyMedium,
                     color = InkSoft
