@@ -54,13 +54,16 @@ vocabulario (368 parejas) · 12 historias (2 tandas).
 ## Lo que falta, en orden
 
 0. **Lo de la auditoría** (`auditoria-a1-a2/auditoria-a1-a2.md`, sección 9):
-   parche INTEGRADO; A1 ampliado INTEGRADO (43 lecciones, 568 ejercicios);
-   A2 ampliado ESCRITO y verificado en `contenido-nuevo/a2-nuevo/`
-   (45 lecciones, 531 ejercicios), falta que Claude Code lo integre.
-   Vocabulario ampliado ESCRITO y verificado en `contenido-nuevo/vocab-ampliado/`
-   (43 bancos, 971 parejas + parche de 13 parejas viejas; A1-A2 ≈ 1.480
-   palabras), falta integrarlo. Siguen del plan: historias A1, biblioteca de Gramática + "¿Por qué?", actividades
-   (crucigramas, Oído, dictado de números…), drills nuevos.
+   INTEGRADOS por Claude Code: parche, A1 ampliado (43 lecciones), A2
+   ampliado (45), vocabulario ampliado (84 bancos, 1.339 parejas).
+   ESCRITOS y verificados, falta integrar/construir:
+   `historias-nuevas/` (tanda A1 + segunda tanda A2, 12 historias) y
+   `crucigramas/` (103 rejillas + especificación de la pantalla).
+   `oido-dictado-drills/` (16 bloques de pares mínimos, 80 ítems de dictado
+   de números/horas/fechas/precios, 30 drills nuevos) — datos listos, falta
+   construir las pantallas (y una comparación estricta para el dictado).
+   Sigue del plan: biblioteca de Gramática + "¿Por qué?" (solo código).
+   Después: pistas de Aptis (Reading, Listening, Speaking) y B1/B2.
 1. **Pistas de Aptis**: Writing **hecho**
    (`contenido-nuevo/aptis/pista-writing.json`, 16 tareas). Faltan **Reading,
    Listening y Speaking** — mismo formato, ver `validar_pista.py`.

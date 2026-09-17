@@ -103,6 +103,10 @@ fun PronunciationScreen(
         val pool = frescas.ifEmpty { drills.indices.filter { it != current } }
         if (pool.isEmpty()) return current
         fun peso(i: Int): Double {
+            // Los de "general" (acento, formas débiles, entonación: 20 desde el 17-09) no
+            // tienen veredicto por fonema, así que nunca acumulan datos: peso fijo, o
+            // saldrían siempre como "sin probar" y taparían a los sonidos que sí se miden.
+            if (drills[i].sound == Sound.GENERAL) return 1.0
             val st = store.soundStats(drills[i].sound)
             if (st.tries == 0) return 1.5                       // sin datos: vale la pena probarlo
             return 0.5 + (st.mal * 2.0 + st.dudoso) / st.tries  // cuanto peor va, más sale

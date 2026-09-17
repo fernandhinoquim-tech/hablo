@@ -11,13 +11,16 @@ import java.io.File
 class HistoriasTest {
 
     @Test
-    fun `el historias json del repo carga con sus 12 historias`() {
+    fun `el historias json del repo carga con sus 24 historias, la tanda A1 primero`() {
         val f = File("src/main/assets/content/historias.json")
         assertTrue("falta " + f.absolutePath, f.exists())
         val tandas = Course.parseTandas(JSONObject(f.readText()).getJSONArray("tandas"))
-        assertEquals(2, tandas.size)
-        assertEquals(12, tandas.sumOf { it.historias.size })
-        val h = tandas[0].historias[0]
+        assertEquals(4, tandas.size)
+        assertEquals(24, tandas.sumOf { it.historias.size })
+        // Las tandas van por nivel (A1, A2, A2, B1): la de A1 entró el 17-09 y se puso primero.
+        assertEquals(listOf("A1", "A2", "A2", "B1"), tandas.map { it.level })
+        assertEquals("h-a1-01", tandas[0].historias[0].id)
+        val h = tandas[1].historias[0]
         assertEquals("h-a2-01", h.id)
         assertEquals(3, h.preguntas.size)
         assertTrue(h.pistas.size >= 2)
