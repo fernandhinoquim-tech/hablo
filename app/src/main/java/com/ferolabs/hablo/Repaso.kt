@@ -107,6 +107,9 @@ object Repaso {
             val clave = mazo.claveFallo(f.ejercicio, f.fecha, f.tuya)
             if (mazo.corregido(clave) || !vistos.add(clave)) continue
             val orig = if (f.ejercicio.isNotBlank()) buscar(f.ejercicio) else null
+            // Si el ejercicio cambió de contenido después del fallo (parche de la auditoría del
+            // 16-09), el error viejo ya no corresponde a lo que se pregunta ahora: se salta.
+            if (orig != null && !coincideCorrecta(orig, f.correcta)) continue
             val fix = when (orig) {
                 is Exercise.Cloze -> Exercise.FixIt(
                     id = "fix|$clave", tuya = f.tuya.trim(), fecha = f.fecha, answer = orig.answer,
@@ -159,6 +162,20 @@ object Repaso {
     }
 
     // ------------------------------------------------------- adivina antes
+
+    /** La respuesta correcta que se anotó en el fallo sigue siendo la del ejercicio (o una de sus alternativas). */
+    private fun coincideCorrecta(ex: Exercise, correcta: String): Boolean {
+        val ahora = when (ex) {
+            is Exercise.WriteIt -> listOf(ex.answer) + ex.accept
+            is Exercise.Cloze -> listOf(ex.full) + ex.accept.map { ex.before + it + ex.after }
+            is Exercise.TypeWhatYouHear -> listOf(ex.audio) + ex.accept
+            is Exercise.BuildSentence -> listOf(ex.answer) + ex.accept
+            is Exercise.TranslateChoose -> listOf(ex.answer) + ex.accept
+            else -> return true
+        }
+        val c = Correccion.sueltaEstricta(correcta)
+        return ahora.any { Correccion.sueltaEstricta(it) == c }
+    }
 
     /**
      * "Adivina antes de ver": hasta [max] frases de una lección nueva para

@@ -203,6 +203,36 @@ continuación y no toca nada de lo que había. El validador vigente es
 contracciones). **A1 quedó en 300 ejercicios el 2026-09-14** (161 de
 producción, 53 %; antes 62, 30 %).
 
+**Parche de la auditoría A1-A2 (Cowork, 2026-09-16; aplicado el mismo día):**
+`contenido-nuevo/integrado/2026-09-17-parche-auditoria/` (276 ids, 381
+cambios: 37 fichas de teoría, ≈150 `accept`, opciones que tenían dos
+respuestas buenas, 42 ejercicios reemplazados con el mismo id). Se aplica con
+su `parchar2.py` (como `parchar.py`, pero una clave puede ser id de lección y
+traer `theory` entera; escribe `curriculum.json.parchado.json` al lado).
+Consecuencias en código: (1) el mazo guarda copias de `en`/`es`, así que al
+arrancar `Mazo.refrescar` las vuelve a tomar del curso por id (conserva caja
+y escalón; retira el ítem si el ejercicio ya no trae par o su frase nueva ya
+está con otro id) — en el teléfono de Fero refrescó 10 ítems; (2) "Corrige tu
+propio error" salta los fallos cuya `correcta` ya no es la del ejercicio
+(`Repaso.propiosErrores`, `coincideCorrecta`); (3) cuatro fichas traen
+tablas Markdown (`| a | b |`) y `FichaScreen` las pinta como tabla
+(`tablaMarkdown` + `TablaFicha`). Oído con las 4 voces de Piper
+(`scratchpad/oir_frases.py`, Moonshine + Parakeet + modelo de fonemas): los
+seis audios nuevos se entienden con las cuatro voces (Grace dice "food" que
+suena a "fruit" y "home" que suena a "hand": es la voz menos fiable, ya
+sabido); a1u9l2e3 "I'll help you" / "I help you" se distinguen en las cuatro
+(el /l/ sale en 3 de 4 según el modelo de fonemas); **a2u8l1e2 "1920": Piper
+NO lo lee "nineteen twenty"**: Sophie y Mia dicen "nineteen hundred twenty" y
+a Emma los dos reconocedores le oyen "1902" (para Cowork: escribirlo en
+letras, "nineteen twenty", en audio/answer/options); a2u6l3e9 "live" salió
+/laɪv/ en 3 de 4 voces → como autorizó Cowork, el texto pasó a "Most of my
+friends are from here."; a2u2l3e8 "I have just gotten home." con `h` se oye
+bien (Grace no). Los cuatro pares mínimos "cuya frase delata la respuesta"
+(a1u6l3e12, a1u9l2e12, a2u2l4e10, a2u5l2e10) son los de `play: sentence`: la
+frase NO se muestra antes de responder pero SÍ se oye (es lo que la
+portadora rompía, ver abajo); se dejan como están salvo que Cowork prefiera
+frases donde las dos palabras encajen.
+
 **Pares mínimos y Piper (medido el 2026-09-14, `tools/content/oir_pares.py`):**
 con una palabra suelta de medio segundo Piper es inestable (Emma dijo "bed"
 como un balbuceo de un segundo) y el fonema distintivo del par aparece en 63

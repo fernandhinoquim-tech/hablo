@@ -46,6 +46,8 @@ class MainActivity : ComponentActivity() {
         // El diagnóstico del Modo Aptis (etapa 5): sus cinco partes, al lado del mazo.
         val aptis = Aptis(java.io.File(filesDir, "aptis.json"))
         Course.load(this)
+        // Si el contenido cambió (parche de Cowork), el mazo toma en/es del curso por id.
+        mazo.refrescar { Course.exerciseById(it) }
 
         setContent {
             HabloApp(speaker = sp, listener = li, llm = ai, cloud = cloud, claude = claude, store = store, progreso = prog, memoria = mem, mazo = mazo, aptis = aptis)

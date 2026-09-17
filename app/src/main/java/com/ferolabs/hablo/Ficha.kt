@@ -5,6 +5,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -51,7 +52,9 @@ fun FichaScreen(lesson: Lesson, accent: Color, primeraVez: Boolean, onDone: () -
             Text("📖 " + t.title, style = MaterialTheme.typography.headlineSmall, color = Ink)
             for (parrafo in t.body.split(Regex("\\n\\s*\\n"))) {
                 if (parrafo.isBlank()) continue
-                Text(
+                val tabla = tablaMarkdown(parrafo)
+                if (tabla != null) TablaFicha(tabla)
+                else Text(
                     markdownLite(parrafo.trim()),
                     style = MaterialTheme.typography.bodyLarge,
                     color = Ink
@@ -90,6 +93,46 @@ fun FichaScreen(lesson: Lesson, accent: Color, primeraVez: Boolean, onDone: () -
                     color = InkSoft,
                     modifier = Modifier.clickable { onDone() }.padding(6.dp)
                 )
+            }
+        }
+    }
+}
+
+/**
+ * Una tabla Markdown (`| a | b |` con su fila `|---|---|`), si el párrafo lo es:
+ * filas de celdas ya sin la fila separadora. Las fichas del parche del 16-09
+ * traen cuatro (this/that/these/those, some/any/no…).
+ */
+fun tablaMarkdown(parrafo: String): List<List<String>>? {
+    val lineas = parrafo.trim().lines().map { it.trim() }.filter { it.isNotEmpty() }
+    if (lineas.size < 2 || lineas.any { !it.startsWith("|") }) return null
+    val filas = lineas.filter { !Regex("^\\|?\\s*:?-{2,}:?\\s*(\\|\\s*:?-{2,}:?\\s*)*\\|?$").matches(it) }
+        .map { it.trim('|').split("|").map { c -> c.trim() } }
+    return filas.takeIf { it.isNotEmpty() }
+}
+
+/** La tabla de una ficha: la primera fila y la primera columna en negrita suave; celdas con `**`/`*`. */
+@Composable
+private fun TablaFicha(filas: List<List<String>>) {
+    val columnas = filas.maxOf { it.size }
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(Color.White, RoundedCornerShape(12.dp))
+            .border(1.dp, Line, RoundedCornerShape(12.dp))
+            .padding(10.dp)
+    ) {
+        filas.forEachIndexed { i, fila ->
+            Row(modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp)) {
+                for (c in 0 until columnas) {
+                    val celda = fila.getOrNull(c) ?: ""
+                    Text(
+                        markdownLite(celda),
+                        style = if (i == 0 || c == 0) MaterialTheme.typography.labelLarge else MaterialTheme.typography.bodyMedium,
+                        color = if (i == 0 || c == 0) InkSoft else Ink,
+                        modifier = Modifier.weight(if (c == 0) 1.3f else 1f).padding(horizontal = 4.dp)
+                    )
+                }
             }
         }
     }

@@ -112,6 +112,42 @@ class MazoTest {
         m.registrarCorreccion(Repaso.claveDe(hueco), true)
         m.registrarCorreccion(Repaso.claveDe(hueco), false)
         assertEquals(1, Repaso.propiosErrores(fallos, m, hoy, buscar = buscar).size)
+        // Si el ejercicio cambió de contenido después del fallo (parche de la auditoría), el error viejo no se muestra.
+        val cambiado: (String) -> Exercise? = { id ->
+            if (id == "t1l1e3") Exercise.Cloze("t1l1e3", "He ___ on Mondays.", "goes", "Él va los lunes.") else buscar(id)
+        }
+        assertEquals(0, Repaso.propiosErrores(fallos, m, hoy, buscar = cambiado).size)
+    }
+
+    @Test
+    fun `si el contenido cambia el mazo toma ingles y espanol del curso por id y conserva caja y escalon`() {
+        val m = nuevo()
+        m.alimentar(leccion, "2026-09-16")
+        m.registrar("t1l1e2", true, "2026-09-17")
+        val antes = m.item("t1l1e2")!!
+        // t1l1e2 cambia de frase; t1l1e3 pasa a ser un ejercicio sin español (se retira); t1l1e4 se queda igual
+        val nuevo: (String) -> Exercise? = { id ->
+            when (id) {
+                "t1l1e2" -> Exercise.WriteIt("t1l1e2", "Mi hermano aprende inglés.", "My brother learns English.")
+                "t1l1e3" -> Exercise.SpeakIt("t1l1e3", "He works on Mondays.", Sound.GENERAL)
+                else -> leccion.exercises.firstOrNull { it.id == id }
+            }
+        }
+        assertEquals(2, m.refrescar(nuevo))
+        val despues = m.item("t1l1e2")!!
+        assertEquals("My brother learns English.", despues.en)
+        assertEquals("Mi hermano aprende inglés.", despues.es)
+        assertEquals(antes.caja, despues.caja)
+        assertEquals(antes.escalon, despues.escalon)
+        assertEquals(antes.proximo, despues.proximo)
+        assertNull(m.item("t1l1e3"))
+        assertEquals("I don't have a car.", m.item("t1l1e4")!!.en)
+        assertEquals(0, m.refrescar(nuevo))   // idempotente
+        // si la frase nueva ya está en el mazo con otro id, el ítem se retira en vez de duplicarse
+        val duplica: (String) -> Exercise? = { id -> if (id == "t1l1e2") Exercise.WriteIt("t1l1e2", "No tengo carro.", "I don't have a car.") else nuevo(id) }
+        assertEquals(1, m.refrescar(duplica))
+        assertNull(m.item("t1l1e2"))
+        assertEquals(1, m.todos().count { it.id == "t1l1e4" })
     }
 
     @Test

@@ -46,6 +46,17 @@ class HistoriasTest {
     }
 
     @Test
+    fun `una tabla markdown de la ficha se parte en filas sin la linea separadora`() {
+        val filas = listOf("| | cerca | lejos |", "|---|---|---|", "| **uno** | this | that |", "| **varios** | these | those |")
+        val t = tablaMarkdown(filas.joinToString("\n"))
+        assertEquals(3, t!!.size)
+        assertEquals(listOf("", "cerca", "lejos"), t[0])
+        assertEquals(listOf("**varios**", "these", "those"), t[2])
+        assertEquals(null, tablaMarkdown("Solo hay dos preguntas: ¿está cerca o lejos?"))
+        assertEquals(null, tablaMarkdown("| una sola línea |"))
+    }
+
+    @Test
     fun `markdownLite conserva el texto y quita los asteriscos`() {
         val a = markdownLite("En inglés **he, she, it** lleva *-s*: *He work**s***.")
         assertEquals("En inglés he, she, it lleva -s: He works.", a.text)

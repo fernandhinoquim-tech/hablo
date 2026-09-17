@@ -159,6 +159,35 @@ class Mazo(private val file: File) {
     }
 
     /**
+     * El mazo guarda copias de `en`/`es`; si el contenido cambia (el parche de
+     * la auditoría del 16-09 reemplazó 42 ejercicios con el mismo id), al
+     * arrancar se vuelven a tomar del curso por id: se conservan caja y escalón,
+     * y si el ejercicio ya no trae inglés y español (o su frase nueva ya está en
+     * el mazo con otro id), el ítem se retira. Los ítems de historias y demás
+     * (ids con `|`) no se tocan. Devuelve cuántos cambiaron o se fueron.
+     */
+    @Synchronized
+    fun refrescar(buscar: (String) -> Exercise?): Int {
+        cargar()
+        var cambios = 0
+        for (id in items.keys.toList()) {
+            if (id.contains('|')) continue
+            val ex = buscar(id) ?: continue
+            val viejo = items[id] ?: continue
+            val par = parDe(ex)
+            if (par == null) { items.remove(id); cambios++; continue }
+            val (en, es) = par
+            if (en == viejo.en && es == viejo.es) continue
+            val clave = Correccion.sueltaEstricta(en)
+            val repetido = items.values.any { it.id != id && Correccion.sueltaEstricta(it.en) == clave }
+            if (repetido) items.remove(id) else items[id] = viejo.copy(en = en, es = es)
+            cambios++
+        }
+        if (cambios > 0) { Log.i(TAG, "mazo refrescado desde el curso: $cambios ítems"); guardar() }
+        return cambios
+    }
+
+    /**
      * Mete parejas sueltas (el glosario de una historia): id `<prefijo>|<en>`.
      * Lo que ya estaba (misma frase en inglés) no se repite. Devuelve cuántas entraron.
      */
