@@ -63,7 +63,12 @@ vocabulario (368 parejas) · 12 historias (2 tandas).
    de números/horas/fechas/precios, 30 drills nuevos) — datos listos, falta
    construir las pantallas (y una comparación estricta para el dictado).
    Sigue del plan: biblioteca de Gramática + "¿Por qué?" (solo código).
-   Después: pistas de Aptis (Reading, Listening, Speaking) y B1/B2.
+   Pistas de Aptis Reading/Listening/Speaking ESCRITAS y verificadas en
+   `aptis-pistas/` (112 tareas + lista de 20 fotos para Fero); falta integrar.
+   B1 ESCRITO y verificado en `b1-nivel/` (15 unidades, 45 lecciones, 540
+   ejercicios), falta integrar. Queda para Cowork: vocabulario B1 (~1.400
+   palabras) y B2 completo (~45 lecciones,
+   mismo método que A1/A2 ampliado: redactores en paralelo + un verificador).
 1. **Pistas de Aptis**: Writing **hecho**
    (`contenido-nuevo/aptis/pista-writing.json`, 16 tareas). Faltan **Reading,
    Listening y Speaking** — mismo formato, ver `validar_pista.py`.

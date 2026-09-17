@@ -128,9 +128,17 @@ data class TareaEscrita(
     val mensajes: List<String> = emptyList(), val parte: String = ""
 ) : TareaAptis
 
+/**
+ * Speaking. [foto] es la descripción en inglés de la(s) foto(s) de las partes 2 y 3
+ * (Cowork, 17-09): mientras no haya imagen, `promptEs` la describe y la tarea funciona
+ * igual; el juez la recibe para saber de qué se hablaba. [imagenes] son rutas dentro de
+ * `assets/` (`images/speaking/s-009.webp`; la parte 3 lleva dos) cuando Fero traiga las
+ * 20 fotos generadas con Gemini; checkContent exige que existan, .webp/.jpg y ≤ 400 KB.
+ */
 data class TareaHablada(
     override val id: String, override val level: String, val prepSeg: Int, val hablarSeg: Int,
-    val promptEn: String, val promptEs: String, val rubrica: List<String>, val parte: String = ""
+    val promptEn: String, val promptEs: String, val rubrica: List<String>, val parte: String = "",
+    val foto: String = "", val imagenes: List<String> = emptyList()
 ) : TareaAptis
 
 fun emojiAptis(id: String): String = when (id) {
@@ -362,9 +370,13 @@ internal class Lector(val idsTarea: HashSet<String>) {
         val rub = jsonStrings(t.optJSONArray("rubrica"))
         if (rub.isEmpty()) throw IllegalArgumentException("$where: falta la rúbrica")
         val prep = t.optInt("prep_seg", 0).let { if (it > 0) it else t.optInt("prepSeg", 0) }
+        val imagenes = jsonStrings(t.optJSONArray("imagenes"))
+        for (img in imagenes) {
+            if (!Regex("^images/[a-z0-9_/-]+\\.(webp|jpg)$").matches(img)) throw IllegalArgumentException("$where: imagen \"$img\" (ruta dentro de assets, .webp o .jpg)")
+        }
         return TareaHablada(
             t.getString("id"), nivel(where, t), prep.coerceAtLeast(0), hablar,
-            prompt(where, t, "en"), prompt(where, t, "es"), rub, parte
+            prompt(where, t, "en"), prompt(where, t, "es"), rub, parte, t.optString("foto"), imagenes
         )
     }
 
@@ -950,6 +962,7 @@ Responde SOLO con un JSON así, sin nada antes ni después:
     fun promptHablada(t: TareaHablada, transcripcion: String, segundosVoz: Int, citaMala: String? = null, duracion: Int = 0): String {
         val sb = StringBuilder()
         sb.append("TAREA de Speaking (nivel objetivo ${t.level}): ${t.promptEn}\n")
+        if (t.foto.isNotBlank()) sb.append("LA FOTO (o fotos) que el alumno tenía delante: ${t.foto}\n")
         sb.append("Tenía que hablar ${t.hablarSeg} segundos")
         if (duracion > 0) sb.append("; la grabación duró $duracion segundos, con $segundosVoz segundos de voz (el resto, pausas). ")
         else sb.append("; se midieron $segundosVoz segundos de voz. ")

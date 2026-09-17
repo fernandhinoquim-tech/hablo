@@ -366,6 +366,11 @@ cambiar `prep()` en `bench.py` igual.
   de retell → '' en 150 ms, con voz 5-11 s y SNR 14-27 dB). `Listener`
   reconoce por ventanas de 12 s (`VENTANA_S`) y junta los trozos; una frase
   de lección cabe en un trozo y no cambia nada.
+- **PowerShell `>` escribe UTF-16.** Al respaldar un archivo del teléfono con
+  `adb exec-out cat … > copia.json` y volverlo a subir, la app recibe UTF-16
+  y el JSON no parsea (pasó el 17-09 con `aptis.json`; se restauró
+  convirtiendo a UTF-8). Respaldar con `[IO.File]::WriteAllText(..., UTF8
+  sin BOM)` o `adb pull` del propio archivo, nunca con `>`.
 - **live/leave (a1u4l1e12) NO está roto en la app.** El par solo reproduce
   la respuesta ("The word is leave."), que Piper dice bien con las 4 voces;
   "live" (heterónimo, Piper lo lee /laɪv/) nunca suena. El fallo de Fero
@@ -630,7 +635,17 @@ SECCIÓN APARTE del curso. Cómo está construido:
   (`{"partes": [{"aptis": "Parte 1 · una palabra", "tareas": [...]}]}`, el de
   Cowork; `validar_pista.py` es su validador); `why` opcional se muestra al
   corregir. `tools/content/integrar_diagnostico.py` valida el simulacro; los
-  bancos del Core se copiaron tal cual.
+  bancos del Core se copiaron tal cual. **Reading, Listening y Speaking
+  entraron el 17-09** (Cowork, `contenido-nuevo/integrado/2026-09-17-aptis-pistas/`:
+  42 + 42 + 28 tareas A1-B2, por partes del examen; con las del simulacro,
+  46/48/31): las cuatro pistas arrancan en A1. Speaking partes 2 y 3 traen
+  `foto` (descripción en inglés, que el juez recibe como "LA FOTO") y, cuando
+  Fero genere las 20 fotos con Gemini (`FOTOS-PARA-GENERAR.md`), `"imagenes":
+  ["images/speaking/s-009.webp"]` (dos en la parte 3): `FotosSpeaking` las
+  pinta desde assets y `checkContent` exige que existan, .webp/.jpg y ≤ 400
+  KB. Reading parte 3 (opiniones) no tiene tipo en la app; Cowork escribe el
+  banco si se construye. `checkContent` avisa (no falla) si un nivel tiene
+  menos tareas que las que pide la promoción (Writing A1 trae 2).
 - **Cinco pistas** (`PistaAptis`: Core, Reading, Listening, Writing,
   Speaking). Cada una tiene DOS niveles a propósito (`Aptis`): el que se
   ENTRENA (`nivel`, arranca en el nivel más bajo con tareas: A2 hoy, A1

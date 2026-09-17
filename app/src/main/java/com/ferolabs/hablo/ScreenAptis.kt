@@ -37,7 +37,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -1179,6 +1181,8 @@ private fun TareaHablaUi(
     }
 
     Text("Tarea $n de $total · nivel ${t.level} · habla ${t.hablarSeg} s", style = MaterialTheme.typography.labelMedium, color = InkSoft)
+    // Las fotos de las partes 2 y 3, si ya están en assets/images/ (mientras no, promptEs las describe).
+    FotosSpeaking(t.imagenes)
     Text(t.promptEn, style = MaterialTheme.typography.headlineSmall, color = Ink)
     Text(t.promptEs, style = MaterialTheme.typography.bodyMedium, color = InkSoft)
     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -1244,6 +1248,37 @@ private fun TareaHablaUi(
                     )
                 }
                 null -> {}
+            }
+        }
+    }
+}
+
+/** Las fotos de una tarea de Speaking, leídas de assets (una o dos, lado a lado). Sin fotos no pinta nada. */
+@Composable
+fun FotosSpeaking(rutas: List<String>) {
+    if (rutas.isEmpty()) return
+    val context = androidx.compose.ui.platform.LocalContext.current
+    val bitmaps = remember(rutas) {
+        rutas.mapNotNull { ruta ->
+            try {
+                context.assets.open(ruta).use { android.graphics.BitmapFactory.decodeStream(it) }?.asImageBitmap()
+            } catch (e: Throwable) {
+                android.util.Log.e("HabloAptis", "no se pudo leer la foto $ruta", e)
+                null
+            }
+        }
+    }
+    if (bitmaps.isEmpty()) return
+    Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {
+        bitmaps.forEachIndexed { i, bmp ->
+            Column(modifier = Modifier.weight(1f)) {
+                androidx.compose.foundation.Image(
+                    bitmap = bmp,
+                    contentDescription = null,
+                    contentScale = androidx.compose.ui.layout.ContentScale.FillWidth,
+                    modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(12.dp))
+                )
+                if (bitmaps.size > 1) Text("Photo ${i + 1}", style = MaterialTheme.typography.labelMedium, color = InkSoft)
             }
         }
     }

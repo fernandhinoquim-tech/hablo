@@ -1,0 +1,780 @@
+{
+  "partes": [
+    {
+      "id": "parte1",
+      "aptis": "Parte 1 · completar frases",
+      "title": "Completar frases en mensajes cortos",
+      "descripcion": "En la Parte 1 de Reading lees mensajes cortos (correos, notas, avisos) con huecos y eliges la palabra que falta entre tres opciones. Lee la frase entera antes de elegir: la respuesta depende tanto de la gramática (preposición, tiempo verbal) como del sentido.",
+      "tareas": [
+        {
+          "id": "r-001",
+          "level": "A1",
+          "tipo": "completar",
+          "text": "Dear Sam, I'm in London with my sister. The weather is very cold, so I wear my ___ every day. Love, Maria",
+          "options": [
+            "coat",
+            "sunglasses",
+            "swimsuit"
+          ],
+          "answer": "coat",
+          "why": "Hace frío (very cold), así que la prenda lógica es el abrigo (coat). Las gafas de sol y el traje de baño son para el calor."
+        },
+        {
+          "id": "r-002",
+          "level": "A1",
+          "tipo": "completar",
+          "text": "LIBRARY: Please be quiet. Do not ___ on your phone.",
+          "options": [
+            "talk",
+            "read",
+            "write"
+          ],
+          "answer": "talk",
+          "why": "El aviso pide silencio (be quiet): lo que molesta es hablar (talk) por teléfono. Leer o escribir en el móvil no hace ruido."
+        },
+        {
+          "id": "r-003",
+          "level": "A1",
+          "tipo": "completar",
+          "text": "Hi Jo, my new flat is great! It has two bedrooms and a big kitchen. My bedroom is next ___ the bathroom.",
+          "options": [
+            "to",
+            "of",
+            "at"
+          ],
+          "answer": "to",
+          "why": "La expresión fija es 'next to' (al lado de). Ojo: 'flat' es inglés británico; en EE. UU. se dice 'apartment'."
+        },
+        {
+          "id": "r-004",
+          "level": "A1",
+          "tipo": "completar",
+          "text": "Hello Mr Brown, I can't come to class today. I'm ill and I'm ___ bed. Sorry! Luis",
+          "options": [
+            "in",
+            "on",
+            "at"
+          ],
+          "answer": "in",
+          "why": "Se dice 'in bed' (en la cama, acostado). 'On the bed' es encima de la cama, y 'at bed' no existe. 'Ill' es la forma británica habitual de 'sick'."
+        },
+        {
+          "id": "r-005",
+          "level": "A1",
+          "tipo": "completar",
+          "text": "Mum, I'm very hungry! What's for ___ tonight?",
+          "options": [
+            "dinner",
+            "breakfast",
+            "lunch"
+          ],
+          "answer": "dinner",
+          "why": "'Tonight' (esta noche) indica la cena (dinner); breakfast es el desayuno y lunch el almuerzo. 'Mum' es británico; en EE. UU. es 'Mom'."
+        },
+        {
+          "id": "r-006",
+          "level": "A1",
+          "tipo": "completar",
+          "text": "Hi Ben, my brother is twelve years old. ___ name is Jack and he loves football.",
+          "options": [
+            "His",
+            "Her",
+            "Their"
+          ],
+          "answer": "His",
+          "why": "El hermano es un chico, así que el posesivo es 'his'. 'Her' es de ella y 'their' de ellos."
+        },
+        {
+          "id": "r-007",
+          "level": "A2",
+          "tipo": "completar",
+          "text": "Hi Kate, thanks for the party invitation! I'd love to come, but I have to ___ my grandmother at the airport at eight.",
+          "options": [
+            "pick up",
+            "look after",
+            "take off"
+          ],
+          "answer": "pick up",
+          "why": "'Pick up' = recoger a alguien (en el aeropuerto). 'Look after' es cuidar y 'take off' es despegar o quitarse ropa."
+        },
+        {
+          "id": "r-008",
+          "level": "A2",
+          "tipo": "completar",
+          "text": "SWIMMING POOL: Children under ten must not swim ___ an adult.",
+          "options": [
+            "without",
+            "with",
+            "except"
+          ],
+          "answer": "without",
+          "why": "La regla prohíbe que los niños naden solos, es decir, sin (without) un adulto. Con 'with' la norma diría lo contrario."
+        },
+        {
+          "id": "r-009",
+          "level": "A2",
+          "tipo": "completar",
+          "text": "Dear Paul, I'm writing from Spain. We arrived ___ Tuesday and the hotel is lovely.",
+          "options": [
+            "on",
+            "in",
+            "at"
+          ],
+          "answer": "on",
+          "why": "Con días de la semana se usa 'on' (on Tuesday). 'In' va con meses y años, y 'at' con horas."
+        },
+        {
+          "id": "r-010",
+          "level": "A2",
+          "tipo": "completar",
+          "text": "Hi Sue, I can't find my keys. Have you ___ them anywhere? They were on the kitchen table.",
+          "options": [
+            "seen",
+            "saw",
+            "see"
+          ],
+          "answer": "seen",
+          "why": "Después de 'Have you' va el participio (present perfect): seen. 'Saw' es pasado simple y no va con 'have'."
+        },
+        {
+          "id": "r-011",
+          "level": "A2",
+          "tipo": "completar",
+          "text": "Hi everyone, the football match is cancelled ___ the rain. We'll play next Saturday instead.",
+          "options": [
+            "because of",
+            "because",
+            "although"
+          ],
+          "answer": "because of",
+          "why": "Delante de un sustantivo (the rain) se usa 'because of'. 'Because' necesita una oración con verbo (because it is raining)."
+        },
+        {
+          "id": "r-012",
+          "level": "A2",
+          "tipo": "completar",
+          "text": "Hi Emma, welcome to London! Our ___ is on the third floor. Take the lift and turn left.",
+          "options": [
+            "flat",
+            "garden",
+            "garage"
+          ],
+          "answer": "flat",
+          "why": "Un 'flat' (británico; 'apartment' en EE. UU.) puede estar en un tercer piso; un jardín o un garaje no. 'Lift' es el británico de 'elevator'."
+        },
+        {
+          "id": "r-013",
+          "level": "B1",
+          "tipo": "completar",
+          "text": "Hi Mark, sorry I missed your call. I was driving, so I couldn't answer. I'll ring you back ___ I get home.",
+          "options": [
+            "as soon as",
+            "unless",
+            "in case"
+          ],
+          "answer": "as soon as",
+          "why": "'As soon as' = en cuanto: llamará al llegar a casa. 'Unless' (a menos que) e 'in case' (por si acaso) no tienen sentido aquí. 'Ring' es británico para 'call'."
+        },
+        {
+          "id": "r-014",
+          "level": "B1",
+          "tipo": "completar",
+          "text": "Dear Ms Lee, I am writing to ___ about the noise from the flat above mine, which continues late every night.",
+          "options": [
+            "complain",
+            "explain",
+            "apologise"
+          ],
+          "answer": "complain",
+          "why": "El ruido es un problema que sufre quien escribe, así que se queja (complain about). No pide perdón (apologise, grafía británica de 'apologize')."
+        },
+        {
+          "id": "r-015",
+          "level": "B1",
+          "tipo": "completar",
+          "text": "Hi Tara, I've decided to ___ my job at the bank. I want to start my own business.",
+          "options": [
+            "leave",
+            "keep",
+            "enjoy"
+          ],
+          "answer": "leave",
+          "why": "Si quiere montar su propio negocio, va a dejar (leave) el banco. 'Keep' (conservar) y 'enjoy' (disfrutar) contradicen su plan."
+        },
+        {
+          "id": "r-016",
+          "level": "B1",
+          "tipo": "completar",
+          "text": "NOTICE: The lift will be out of order ___ Friday, so please use the stairs.",
+          "options": [
+            "until",
+            "since",
+            "ago"
+          ],
+          "answer": "until",
+          "why": "'Until Friday' = hasta el viernes, con futuro. 'Since' exige present perfect y 'ago' va detrás de un periodo (two days ago). 'Lift' = 'elevator' en EE. UU."
+        },
+        {
+          "id": "r-017",
+          "level": "B1",
+          "tipo": "completar",
+          "text": "Hi Carlos, the concert was amazing, but the tickets were so expensive that I ___ afford a drink afterwards!",
+          "options": [
+            "couldn't",
+            "mustn't",
+            "shouldn't"
+          ],
+          "answer": "couldn't",
+          "why": "'So expensive that...' expresa una consecuencia: no pudo (couldn't) permitirse una bebida. 'Mustn't' es prohibición y 'shouldn't' es consejo."
+        },
+        {
+          "id": "r-018",
+          "level": "B1",
+          "tipo": "completar",
+          "text": "Dear customers, ___ the heavy snow, all deliveries this week may arrive one or two days late.",
+          "options": [
+            "Due to",
+            "Despite",
+            "Instead of"
+          ],
+          "answer": "Due to",
+          "why": "La nieve es la causa del retraso: 'due to' = debido a. 'Despite' (a pesar de) expresaría contraste, no causa."
+        },
+        {
+          "id": "r-019",
+          "level": "B2",
+          "tipo": "completar",
+          "text": "Hi Ruth, I know you're busy, but I'd be really grateful if you could ___ over my presentation before Thursday. I'd value your honest opinion.",
+          "options": [
+            "look",
+            "get",
+            "turn"
+          ],
+          "answer": "look",
+          "why": "'Look over' = revisar algo por encima. 'Get over' es superar (una enfermedad, una ruptura) y 'turn over' es dar la vuelta (a una página): los tres usan 'over', pero solo uno encaja."
+        },
+        {
+          "id": "r-020",
+          "level": "B2",
+          "tipo": "completar",
+          "text": "Dear residents, the council has decided to ___ the opening of the new sports centre until the spring, as the building work is behind schedule.",
+          "options": [
+            "postpone",
+            "cancel",
+            "bring forward"
+          ],
+          "answer": "postpone",
+          "why": "'Until the spring' y el retraso de las obras indican aplazar (postpone). 'Bring forward' es adelantar, lo contrario, y 'cancel... until' no tiene sentido. 'Centre' es la grafía británica de 'center'."
+        },
+        {
+          "id": "r-021",
+          "level": "B2",
+          "tipo": "completar",
+          "text": "Hi Nina, had I known the road would be closed, I ___ the train instead.",
+          "options": [
+            "would have taken",
+            "would take",
+            "had taken"
+          ],
+          "answer": "would have taken",
+          "why": "'Had I known' es un tercer condicional invertido (= if I had known), que pide 'would have + participio' en la otra parte."
+        },
+        {
+          "id": "r-022",
+          "level": "B2",
+          "tipo": "completar",
+          "text": "NOTICE TO ALL MEMBERS: The committee is ___ reviewing the membership fees and will announce any changes in the next newsletter.",
+          "options": [
+            "currently",
+            "eventually",
+            "recently"
+          ],
+          "answer": "currently",
+          "why": "El presente continuo (is reviewing) describe algo que pasa ahora: 'currently'. 'Recently' va con pasado o present perfect, y 'eventually' significa 'al final', no 'actualmente' (falso amigo)."
+        }
+      ]
+    },
+    {
+      "id": "parte2",
+      "aptis": "Parte 2 · ordenar un texto",
+      "title": "Ordenar las frases de un texto",
+      "descripcion": "En la Parte 2 de Reading ordenas frases desordenadas para formar un texto con sentido (una biografía, unas instrucciones, una historia o un proceso). La primera frase ya está puesta. Fíjate en las pistas: pronombres (he, she, it, they), conectores (first, then, after that, finally) y artículos (a... y después the...).",
+      "tareas": [
+        {
+          "id": "r-023",
+          "level": "A1",
+          "tipo": "ordenar",
+          "instruccion": "Pon las frases en orden. La primera ya está puesta.",
+          "primera": "This is my friend Lucy.",
+          "desordenadas": [
+            "The school has six hundred students.",
+            "After school, Lucy goes to the park with her dog.",
+            "Its name is Max and it is black and white.",
+            "She is twenty-five years old and she is a teacher.",
+            "She teaches English at a big school in the city."
+          ],
+          "orden": [
+            "She is twenty-five years old and she is a teacher.",
+            "She teaches English at a big school in the city.",
+            "The school has six hundred students.",
+            "After school, Lucy goes to the park with her dog.",
+            "Its name is Max and it is black and white."
+          ],
+          "why": "'She' se refiere a Lucy; 'a big school' se presenta antes de 'The school'; 'Its name' solo tiene sentido después de mencionar al perro."
+        },
+        {
+          "id": "r-024",
+          "level": "A1",
+          "tipo": "ordenar",
+          "instruccion": "Pon las frases en orden. La primera ya está puesta.",
+          "primera": "On Saturday, Tom went to the shop.",
+          "desordenadas": [
+            "In the shop, there was a big chocolate cake.",
+            "Tom bought the cake and went home.",
+            "He wanted to buy a cake for his mother.",
+            "His mother was very happy.",
+            "It was her birthday."
+          ],
+          "orden": [
+            "He wanted to buy a cake for his mother.",
+            "It was her birthday.",
+            "In the shop, there was a big chocolate cake.",
+            "Tom bought the cake and went home.",
+            "His mother was very happy."
+          ],
+          "why": "'He' es Tom y 'her birthday' necesita que antes aparezca 'his mother'. Primero ve el pastel (a big cake) y después lo compra (the cake)."
+        },
+        {
+          "id": "r-025",
+          "level": "A2",
+          "tipo": "ordenar",
+          "instruccion": "Pon las frases en orden. La primera ya está puesta.",
+          "primera": "Making a good cup of tea is easy.",
+          "desordenadas": [
+            "When the water is ready, pour it into the cup.",
+            "Finally, add some milk if you like it.",
+            "After three minutes, take the tea bag out.",
+            "First, boil some water in a kettle.",
+            "Then put a tea bag in a cup."
+          ],
+          "orden": [
+            "First, boil some water in a kettle.",
+            "Then put a tea bag in a cup.",
+            "When the water is ready, pour it into the cup.",
+            "After three minutes, take the tea bag out.",
+            "Finally, add some milk if you like it."
+          ],
+          "why": "Los conectores marcan el orden: First, Then, When..., After three minutes, Finally. Además, 'the water' y 'the tea bag' remiten a lo ya mencionado."
+        },
+        {
+          "id": "r-026",
+          "level": "A2",
+          "tipo": "ordenar",
+          "instruccion": "Pon las frases en orden. La primera ya está puesta.",
+          "primera": "Last summer, Maria and her brother went camping in the mountains.",
+          "desordenadas": [
+            "They belonged to a hungry fox that wanted their food.",
+            "After that, they always kept their food inside the car.",
+            "On the first night, they heard a strange noise outside their tent.",
+            "He saw two small eyes behind a tree.",
+            "Maria's brother took a torch and went out to look."
+          ],
+          "orden": [
+            "On the first night, they heard a strange noise outside their tent.",
+            "Maria's brother took a torch and went out to look.",
+            "He saw two small eyes behind a tree.",
+            "They belonged to a hungry fox that wanted their food.",
+            "After that, they always kept their food inside the car."
+          ],
+          "why": "El ruido provoca que el hermano salga; 'He' es el hermano y 'They belonged' se refiere a los ojos. 'Torch' es británico; en EE. UU. se dice 'flashlight'."
+        },
+        {
+          "id": "r-027",
+          "level": "A2",
+          "tipo": "ordenar",
+          "instruccion": "Pon las frases en orden. La primera ya está puesta.",
+          "primera": "Ana García was born in a small village in Colombia in 1990.",
+          "desordenadas": [
+            "There, she started to play the guitar at school.",
+            "When she was ten, her family moved to Bogotá.",
+            "Today, she plays in an orchestra and travels all over the world.",
+            "Her music teacher said she had a lot of talent.",
+            "So after finishing school, Ana studied music at university."
+          ],
+          "orden": [
+            "When she was ten, her family moved to Bogotá.",
+            "There, she started to play the guitar at school.",
+            "Her music teacher said she had a lot of talent.",
+            "So after finishing school, Ana studied music at university.",
+            "Today, she plays in an orchestra and travels all over the world."
+          ],
+          "why": "Una biografía sigue el orden del tiempo: nacimiento, a los diez años, el colegio, la universidad y 'Today'. 'There' se refiere a Bogotá."
+        },
+        {
+          "id": "r-028",
+          "level": "A2",
+          "tipo": "ordenar",
+          "instruccion": "Pon las frases en orden. La primera ya está puesta.",
+          "primera": "It is easy to join the city library.",
+          "desordenadas": [
+            "You need to write your name, address and phone number on it.",
+            "Then show the librarian a document with your photo, like a passport.",
+            "First, fill in a form at the front desk.",
+            "With this card, you can borrow up to five books at a time.",
+            "She will give you a library card in a few minutes."
+          ],
+          "orden": [
+            "First, fill in a form at the front desk.",
+            "You need to write your name, address and phone number on it.",
+            "Then show the librarian a document with your photo, like a passport.",
+            "She will give you a library card in a few minutes.",
+            "With this card, you can borrow up to five books at a time."
+          ],
+          "why": "'On it' se refiere al formulario (a form); 'She' es la bibliotecaria (the librarian); 'this card' remite a 'a library card'."
+        },
+        {
+          "id": "r-029",
+          "level": "B1",
+          "tipo": "ordenar",
+          "instruccion": "Pon las frases en orden. La primera ya está puesta.",
+          "primera": "Florence Nightingale was born in 1820 into a rich British family.",
+          "desordenadas": [
+            "By improving hygiene, she and her team helped reduce the number of deaths dramatically.",
+            "At that time, women from wealthy families were not expected to work.",
+            "The conditions there shocked her: the wards were dirty and many soldiers died from infections rather than their wounds.",
+            "Florence, however, believed she had a duty to help sick people, and she trained as a nurse despite her parents' objections.",
+            "In 1854, she was sent to a military hospital in Turkey during the Crimean War."
+          ],
+          "orden": [
+            "At that time, women from wealthy families were not expected to work.",
+            "Florence, however, believed she had a duty to help sick people, and she trained as a nurse despite her parents' objections.",
+            "In 1854, she was sent to a military hospital in Turkey during the Crimean War.",
+            "The conditions there shocked her: the wards were dirty and many soldiers died from infections rather than their wounds.",
+            "By improving hygiene, she and her team helped reduce the number of deaths dramatically."
+          ],
+          "why": "'At that time' remite a 1820 y 'however' contrasta con lo que se esperaba de las mujeres. 'There' es el hospital, y la mejora de la higiene responde a la suciedad."
+        },
+        {
+          "id": "r-030",
+          "level": "B1",
+          "tipo": "ordenar",
+          "instruccion": "Pon las frases en orden. La primera ya está puesta.",
+          "primera": "When Daniel started his new job, he took the wrong bus on his very first morning.",
+          "desordenadas": [
+            "She said that the same thing had happened to her ten years earlier.",
+            "By the time he realised his mistake, he was already on the other side of the city.",
+            "Since that day, the two of them have become good friends.",
+            "To his surprise, she simply laughed and told him not to worry.",
+            "He quickly called his manager to explain what had happened."
+          ],
+          "orden": [
+            "By the time he realised his mistake, he was already on the other side of the city.",
+            "He quickly called his manager to explain what had happened.",
+            "To his surprise, she simply laughed and told him not to worry.",
+            "She said that the same thing had happened to her ten years earlier.",
+            "Since that day, the two of them have become good friends."
+          ],
+          "why": "'His mistake' es el autobús equivocado; 'she' solo aparece tras mencionar a 'his manager', y 'the two of them' cierra la historia. 'Realised' es la grafía británica de 'realized'."
+        },
+        {
+          "id": "r-031",
+          "level": "B1",
+          "tipo": "ordenar",
+          "instruccion": "Pon las frases en orden. La primera ya está puesta.",
+          "primera": "Have you ever wondered what happens to a plastic bottle after you recycle it?",
+          "desordenadas": [
+            "Finally, manufacturers use the pellets to make new products, such as clothes or more bottles.",
+            "First, it is collected with other recycling and taken to a sorting centre.",
+            "There, machines separate the plastic from paper, glass and metal.",
+            "The plastic is then washed and cut into very small pieces called flakes.",
+            "These flakes are melted down and made into tiny pellets."
+          ],
+          "orden": [
+            "First, it is collected with other recycling and taken to a sorting centre.",
+            "There, machines separate the plastic from paper, glass and metal.",
+            "The plastic is then washed and cut into very small pieces called flakes.",
+            "These flakes are melted down and made into tiny pellets.",
+            "Finally, manufacturers use the pellets to make new products, such as clothes or more bottles."
+          ],
+          "why": "Es un proceso: 'There' remite al centro de clasificación, 'These flakes' a 'flakes' y 'the pellets' a 'tiny pellets'. 'Centre' es británico ('center' en EE. UU.)."
+        },
+        {
+          "id": "r-032",
+          "level": "B1",
+          "tipo": "ordenar",
+          "instruccion": "Pon las frases en orden. La primera ya está puesta.",
+          "primera": "If you want to apply for a place on our summer volunteer programme, please follow these steps.",
+          "desordenadas": [
+            "After the interview, we will let you know our final decision.",
+            "In that case, you will be invited to a short interview at our office.",
+            "Once you have completed it, send it to us by email together with a short CV.",
+            "To begin with, download the application form from our website.",
+            "We will contact you within two weeks if your application is successful."
+          ],
+          "orden": [
+            "To begin with, download the application form from our website.",
+            "Once you have completed it, send it to us by email together with a short CV.",
+            "We will contact you within two weeks if your application is successful.",
+            "In that case, you will be invited to a short interview at our office.",
+            "After the interview, we will let you know our final decision."
+          ],
+          "why": "'It' es el formulario; 'In that case' significa 'si tu solicitud tiene éxito', y 'the interview' remite a 'a short interview'. 'CV' y 'programme' son británicos ('résumé' y 'program' en EE. UU.)."
+        },
+        {
+          "id": "r-033",
+          "level": "B2",
+          "tipo": "ordenar",
+          "instruccion": "Pon las frases en orden. La primera ya está puesta.",
+          "primera": "Alan Turing is now regarded as one of the founders of modern computer science.",
+          "desordenadas": [
+            "The machine he helped design there sped up the decoding of messages enormously.",
+            "Yet during his lifetime, much of his most important work remained secret.",
+            "This was because, in the Second World War, he had worked at Bletchley Park, breaking German military codes.",
+            "Despite such contributions, it was not until decades after his death that his role became widely known and celebrated.",
+            "Some historians believe that this achievement may have shortened the war by as much as two years."
+          ],
+          "orden": [
+            "Yet during his lifetime, much of his most important work remained secret.",
+            "This was because, in the Second World War, he had worked at Bletchley Park, breaking German military codes.",
+            "The machine he helped design there sped up the decoding of messages enormously.",
+            "Some historians believe that this achievement may have shortened the war by as much as two years.",
+            "Despite such contributions, it was not until decades after his death that his role became widely known and celebrated."
+          ],
+          "why": "'Yet' contrasta el reconocimiento actual con el secreto; 'This was because' explica ese secreto; 'there' es Bletchley Park; 'this achievement' y 'such contributions' resumen lo anterior."
+        },
+        {
+          "id": "r-034",
+          "level": "B2",
+          "tipo": "ordenar",
+          "instruccion": "Pon las frases en orden. La primera ya está puesta.",
+          "primera": "Nobody at the company expected a small complaint from a customer to change the way they worked.",
+          "desordenadas": [
+            "Within a year, complaints had fallen by half, and the woman who started it all was invited to join a customer advisory panel.",
+            "As a result, the company rewrote all of its manuals, this time with the help of ordinary users rather than engineers.",
+            "The woman had written to say that the instructions for their best-selling lamp were almost impossible to follow.",
+            "Not one of them managed to do so without help, which confirmed that the customer had a point.",
+            "Rather than sending the usual polite reply, the manager decided to test her claim by asking five colleagues to assemble the lamp."
+          ],
+          "orden": [
+            "The woman had written to say that the instructions for their best-selling lamp were almost impossible to follow.",
+            "Rather than sending the usual polite reply, the manager decided to test her claim by asking five colleagues to assemble the lamp.",
+            "Not one of them managed to do so without help, which confirmed that the customer had a point.",
+            "As a result, the company rewrote all of its manuals, this time with the help of ordinary users rather than engineers.",
+            "Within a year, complaints had fallen by half, and the woman who started it all was invited to join a customer advisory panel."
+          ],
+          "why": "'The woman' es la clienta; 'her claim' remite a su queja; 'Not one of them' son los cinco compañeros; 'As a result' y 'Within a year' marcan consecuencia y tiempo."
+        }
+      ]
+    },
+    {
+      "id": "parte3",
+      "aptis": "Parte 4 · títulos para párrafos",
+      "title": "Elegir el título de cada párrafo",
+      "descripcion": "En esta parte (Parte 4 de Reading en Aptis) lees un texto largo y eliges el mejor título para cada párrafo. Siempre sobra un título. Busca la idea principal de cada párrafo, no una palabra que se repita: los títulos trampa suelen usar palabras del texto con otro sentido.",
+      "tareas": [
+        {
+          "id": "r-035",
+          "level": "A2",
+          "tipo": "titulos",
+          "instruccion": "Cada párrafo lleva un título. Sobra uno.",
+          "parrafos": [
+            "My town is small, but there are lots of things to do. There is a cinema, a swimming pool and a big park where people play football at the weekend.",
+            "Getting around is easy. Buses go to the city every twenty minutes, and the train station is only five minutes from the centre.",
+            "The best month to visit is July. That's when we have our summer festival, with music, food and dancing in the streets."
+          ],
+          "titulos": [
+            "Where to stay",
+            "Free time in town",
+            "Buses and trains",
+            "A good time to visit"
+          ],
+          "answer": [
+            "Free time in town",
+            "Buses and trains",
+            "A good time to visit"
+          ],
+          "why": "El párrafo 1 habla de actividades, el 2 de transporte y el 3 del mejor mes. Sobra 'Where to stay': el texto no menciona hoteles. 'At the weekend' es británico ('on the weekend' en EE. UU.)."
+        },
+        {
+          "id": "r-036",
+          "level": "B1",
+          "tipo": "titulos",
+          "instruccion": "Cada párrafo lleva un título. Sobra uno.",
+          "parrafos": [
+            "Many people who work from home say they get more done. Without long meetings or colleagues stopping by their desk to chat, they can concentrate on one task for hours.",
+            "However, some workers miss the social side of office life. They say that, after a few months, they began to feel isolated and even a little lonely.",
+            "To avoid this, experts recommend creating a routine: getting dressed as if you were going to the office, taking regular breaks and switching off the computer at the same time every day."
+          ],
+          "titulos": [
+            "Fewer interruptions",
+            "Saving money on travel",
+            "Missing colleagues",
+            "Tips for a healthy routine"
+          ],
+          "answer": [
+            "Fewer interruptions",
+            "Missing colleagues",
+            "Tips for a healthy routine"
+          ],
+          "why": "La idea central del párrafo 1 es que nadie te interrumpe; la del 2, la soledad; la del 3, los consejos de los expertos. 'Saving money on travel' suena lógico, pero el texto nunca habla de ahorro."
+        },
+        {
+          "id": "r-037",
+          "level": "B1",
+          "tipo": "titulos",
+          "instruccion": "Cada párrafo lleva un título. Sobra uno.",
+          "parrafos": [
+            "Many adults believe it is too late to learn a new language. In fact, research shows that while children often achieve better pronunciation, adults usually learn grammar and vocabulary faster because they can use learning strategies.",
+            "The biggest problem for most adult learners is not ability but time. Between work and family, it can be hard to find even half an hour a day for study.",
+            "One solution is to build the language into daily life: listening to podcasts on the way to work, changing your phone settings to English, or labelling objects around the house."
+          ],
+          "titulos": [
+            "Why children are better learners",
+            "An advantage of age",
+            "The real obstacle",
+            "Learning without extra time"
+          ],
+          "answer": [
+            "An advantage of age",
+            "The real obstacle",
+            "Learning without extra time"
+          ],
+          "why": "La trampa es 'Why children are better learners': el párrafo 1 menciona a los niños, pero su idea principal es que los adultos aprenden más rápido. Busca la idea general del párrafo, no una palabra suelta. 'Labelling' se escribe con doble l en británico."
+        },
+        {
+          "id": "r-038",
+          "level": "B1",
+          "tipo": "titulos",
+          "instruccion": "Cada párrafo lleva un título. Sobra uno.",
+          "parrafos": [
+            "Last spring, a group of neighbours turned an empty car park behind the library into a community garden. It took three months of hard work to remove the concrete and bring in fresh soil.",
+            "Today, more than forty families grow vegetables there. Each family has its own small area, but the tools, the water and the compost are shared by everyone.",
+            "The garden has also had an unexpected benefit. Older residents who used to spend most of their time alone now come every day, and many say they have made real friends."
+          ],
+          "titulos": [
+            "How it all began",
+            "Problems with the neighbours",
+            "Sharing the space",
+            "A surprising result"
+          ],
+          "answer": [
+            "How it all began",
+            "Sharing the space",
+            "A surprising result"
+          ],
+          "why": "El párrafo 1 cuenta el origen, el 2 cómo se comparte el huerto y el 3 un beneficio inesperado (unexpected = surprising). Sobra 'Problems with the neighbours': los vecinos colaboran. 'Car park' es británico ('parking lot' en EE. UU.)."
+        },
+        {
+          "id": "r-039",
+          "level": "B2",
+          "tipo": "titulos",
+          "instruccion": "Cada párrafo lleva un título. Sobra uno.",
+          "parrafos": [
+            "The idea of working four days instead of five is no longer limited to a handful of experimental start-ups. Over the past few years, companies in several countries have run trials in which staff kept their full salary while working around eighty per cent of their previous hours, on the condition that productivity did not fall.",
+            "The results reported by many of these companies have been encouraging. Employees generally described feeling less stressed and more rested, and a number of firms found that output remained stable or even improved, partly because staff spent less time in unnecessary meetings.",
+            "Critics, however, point out that the model does not suit every sector. A hospital cannot simply close on Fridays, and in customer-facing businesses a shorter week may mean hiring extra staff to cover the gaps, which raises costs considerably.",
+            "Supporters of the change argue that the real question is not whether the four-day week will spread, but how quickly. They compare it to the introduction of the weekend itself, which was once considered an unrealistic demand."
+          ],
+          "titulos": [
+            "A growing movement",
+            "Promising early results",
+            "Not suitable for every workplace",
+            "Lower pay for shorter hours",
+            "Only a matter of time"
+          ],
+          "answer": [
+            "A growing movement",
+            "Promising early results",
+            "Not suitable for every workplace",
+            "Only a matter of time"
+          ],
+          "why": "Sobra 'Lower pay for shorter hours': el párrafo 1 dice justo lo contrario (kept their full salary). El 4 no trata del fin de semana, sino de que el cambio llegará tarde o temprano ('Only a matter of time')."
+        },
+        {
+          "id": "r-040",
+          "level": "B2",
+          "tipo": "titulos",
+          "instruccion": "Cada párrafo lleva un título. Sobra uno.",
+          "parrafos": [
+            "Buying second-hand clothes used to carry a certain stigma, as many people associated it with not being able to afford anything new. That perception has changed remarkably, especially among younger shoppers, for whom a vintage jacket is now something to show off rather than hide.",
+            "Much of this shift has been driven by online platforms. Apps that allow users to photograph and sell unwanted items in a matter of minutes have turned millions of ordinary people into small-scale traders, and have made it far easier to find a specific brand or size.",
+            "Environmental concerns are another factor. The fashion industry is responsible for a significant share of global water use and waste, and extending the life of a garment, even by a few months, reduces its overall impact.",
+            "Not everyone is convinced, though. Some charity shop managers complain that professional resellers now buy up the best donations in order to sell them online at much higher prices, leaving little for the low-income customers the shops were originally meant to serve.",
+            "Meanwhile, major retailers have noticed the trend and are responding by launching their own resale services, offering customers vouchers in exchange for clothes they no longer wear."
+          ],
+          "titulos": [
+            "A change in attitude",
+            "The role of technology",
+            "How to repair old clothes",
+            "Good for the planet",
+            "An unintended consequence",
+            "Big brands join in"
+          ],
+          "answer": [
+            "A change in attitude",
+            "The role of technology",
+            "Good for the planet",
+            "An unintended consequence",
+            "Big brands join in"
+          ],
+          "why": "Cada título resume la idea del párrafo: cambio de percepción, apps, medio ambiente, efecto no deseado para las tiendas benéficas y grandes marcas. Sobra 'How to repair old clothes'. 'Charity shop' es británico ('thrift store' en EE. UU.)."
+        },
+        {
+          "id": "r-041",
+          "level": "B2",
+          "tipo": "titulos",
+          "instruccion": "Cada párrafo lleva un título. Sobra uno.",
+          "parrafos": [
+            "For centuries, the town's narrow streets and medieval bridges attracted a steady trickle of travellers. In the last two decades, however, cheap flights and cruise ships have turned that trickle into a flood, and each year visitors now outnumber the local population by more than twenty to one.",
+            "Residents say the consequences are felt in every part of daily life. Rents have soared as landlords convert flats into short-term holiday lets, and traditional shops selling bread or hardware have been replaced by souvenir stalls.",
+            "In response, the local authorities have introduced a series of measures, including a daily entry fee for day-trippers and a ban on new holiday rentals in the historic centre.",
+            "It is too early to say whether these policies will work. Tourism still provides most of the town's jobs, and some business owners fear that discouraging visitors could do more harm than good."
+          ],
+          "titulos": [
+            "A dramatic rise in visitors",
+            "The best season to visit",
+            "The cost for locals",
+            "Rules to limit visitors",
+            "An uncertain future"
+          ],
+          "answer": [
+            "A dramatic rise in visitors",
+            "The cost for locals",
+            "Rules to limit visitors",
+            "An uncertain future"
+          ],
+          "why": "El párrafo 1 describe el paso de 'trickle' (goteo) a 'flood' (avalancha); el 4 no da una respuesta clara ('too early to say'). Sobra 'The best season to visit'. 'Holiday lets' y 'flats' son británicos ('vacation rentals' y 'apartments' en EE. UU.)."
+        },
+        {
+          "id": "r-042",
+          "level": "B2",
+          "tipo": "titulos",
+          "instruccion": "Cada párrafo lleva un título. Sobra uno.",
+          "parrafos": [
+            "You do not need a laboratory or a university degree to contribute to scientific research. Across the world, millions of volunteers are helping professional scientists by counting birds, photographing insects or classifying images of distant galaxies from their own homes.",
+            "For researchers, the main attraction is scale. A single team could never monitor wildlife across an entire continent, but thousands of amateur observers, each recording what they see in their own neighbourhood, can produce data sets of extraordinary size.",
+            "There are, of course, concerns about accuracy. Volunteers may misidentify species or record information inconsistently, so most projects provide training materials and use statistical methods to detect and correct unreliable entries.",
+            "The volunteers themselves often gain as much as the scientists. Many report that taking part has made them more aware of their local environment, and some have even gone on to study science formally as a result.",
+            "A number of projects have also led to genuine discoveries, from previously unknown types of galaxy to species found in places where they were thought to have disappeared long ago."
+          ],
+          "titulos": [
+            "Anyone can take part",
+            "Covering more ground",
+            "Can the data be trusted?",
+            "Funding problems for universities",
+            "What volunteers get out of it",
+            "Unexpected breakthroughs"
+          ],
+          "answer": [
+            "Anyone can take part",
+            "Covering more ground",
+            "Can the data be trusted?",
+            "What volunteers get out of it",
+            "Unexpected breakthroughs"
+          ],
+          "why": "'Scale' (escala) corresponde a 'Covering more ground'; 'concerns about accuracy' a '¿se puede confiar en los datos?'. Sobra 'Funding problems for universities': el dinero nunca se menciona. 'Neighbourhood' es la grafía británica de 'neighborhood'."
+        }
+      ]
+    }
+  ]
+}

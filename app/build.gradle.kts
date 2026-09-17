@@ -256,6 +256,7 @@ val fetchLlamaCpp = tasks.register("fetchLlamaCpp") {
 // ---------------------------------------------------------------------------
 
 val contentDir = File(projectDir, "src/main/assets/content")
+val assetsDir = File(projectDir, "src/main/assets")
 val validSounds = listOf("sh", "th", "h", "v", "ed", "final", "es", "rl", "general")
 val validTypes = setOf("listen", "translate", "build", "type", "speak", "write", "cloze", "shadow", "minimalPair")
 
@@ -750,6 +751,10 @@ val checkContent = tasks.register("checkContent") {
                 "listening" -> {
                     opciones(where, tm)
                     for (key in listOf("audio", "pregunta")) if (tm[key]?.toString().isNullOrBlank()) problems.add("$where: falta \"$key\"")
+                    val audio = tm["audio"]?.toString().orEmpty()
+                    // Piper lee las cifras a su manera ("1920" no es "nineteen twenty"): el audio va en palabras.
+                    if (audio.any { c -> c.isDigit() }) problems.add("$where: el audio lleva cifras (escribirlo en palabras)")
+                    if (tm["tipo"] == "quien" && !(audio.contains("MAN:") && audio.contains("WOMAN:"))) problems.add("$where: una tarea \"quien\" necesita MAN: y WOMAN: en el audio")
                 }
                 "writing", "speaking" -> {
                     for (idioma in listOf("en", "es")) {
@@ -759,26 +764,45 @@ val checkContent = tasks.register("checkContent") {
                     if (strs(tm["rubrica"]).isEmpty()) problems.add("$where: falta la rubrica")
                     val seg = if (pista == "writing") tm["segundos"] else (tm["hablar_seg"] ?: tm["hablarSeg"])
                     if (((seg as? Number)?.toInt() ?: 0) <= 0) problems.add("$where: falta " + (if (pista == "writing") "\"segundos\"" else "\"hablar_seg\""))
+                    // Las fotos de Speaking (partes 2 y 3), cuando esten: en assets, .webp/.jpg, <= 400 KB; la parte 3 lleva dos.
+                    if (pista == "speaking") {
+                        val imagenes = strs(tm["imagenes"])
+                        for (img in imagenes) {
+                            val f = File(assetsDir, img)
+                            if (!Regex("^images/[a-z0-9_/-]+\\.(webp|jpg)$").matches(img)) problems.add("$where: imagen \"$img\" (ruta dentro de assets, .webp o .jpg)")
+                            else if (!f.exists()) problems.add("$where: falta la imagen assets/$img")
+                            else if (f.length() > 400 * 1024) problems.add("$where: la imagen $img pesa ${f.length() / 1024} KB (tope 400)")
+                        }
+                        val parte3 = where.contains("parte 3")
+                        if (imagenes.isNotEmpty() && parte3 && imagenes.size != 2) problems.add("$where: la parte 3 (comparar) lleva dos imagenes")
+                        if (imagenes.isNotEmpty() && !parte3 && imagenes.size != 1) problems.add("$where: una sola imagen")
+                    }
                 }
             }
         }
 
         // Los bancos de las pistas de Cowork: aptis-<pista>.json, planos ("tareas") o por "partes" del examen.
+        // La promocion "4 de 5" (reading, listening) necesita al menos 5 tareas por nivel; "2 de 3" (writing, speaking), 3.
         for (pista in listOf("reading", "listening", "writing", "speaking")) {
             val f = File(contentDir, "aptis-$pista.json")
             if (!f.exists()) continue
             val banco = slurper.parse(f) as Map<*, *>
             val partes = banco["partes"] as? List<*>
+            val porNivel = HashMap<String, Int>()
+            fun cuenta(t: Map<*, *>) { t["level"]?.toString()?.let { porNivel[it] = (porNivel[it] ?: 0) + 1 } }
             if (partes != null) partes.forEachIndexed { pi, parte ->
                 val pm = parte as Map<*, *>
                 val whereP = "aptis-$pista.json, parte ${pi + 1}"
                 if (pm["aptis"]?.toString().isNullOrBlank() && pm["title"]?.toString().isNullOrBlank()) problems.add("$whereP: falta \"aptis\" o \"title\"")
-                ((pm["tareas"] as? List<*>) ?: emptyList<Any>()).forEachIndexed { i, t -> tareaDe(pista, "$whereP, tarea ${i + 1}", t as Map<*, *>) }
+                ((pm["tareas"] as? List<*>) ?: emptyList<Any>()).forEachIndexed { i, t -> tareaDe(pista, "$whereP, tarea ${i + 1}", t as Map<*, *>); cuenta(t as Map<*, *>) }
             } else {
                 val tareas = (banco["tareas"] as? List<*>) ?: (banco["items"] as? List<*>) ?: emptyList<Any>()
                 if (tareas.isEmpty()) problems.add("aptis-$pista.json: sin \"tareas\"")
-                tareas.forEachIndexed { i, t -> tareaDe(pista, "aptis-$pista.json, tarea ${i + 1}", t as Map<*, *>) }
+                tareas.forEachIndexed { i, t -> tareaDe(pista, "aptis-$pista.json, tarea ${i + 1}", t as Map<*, *>); cuenta(t as Map<*, *>) }
             }
+            // Aviso, no error: con menos tareas la ronda las repite y la promocion tarda mas (Writing A1 trae 2).
+            val minimo = if (pista in listOf("reading", "listening")) 5 else 3
+            for ((nivel, n) in porNivel.toSortedMap()) if (n < minimo) logger.warn("  aviso: aptis-$pista.json: $nivel tiene $n tareas y la promocion pide $minimo; la ronda las repetira")
         }
 
         // Diagnostico = simulacro del Modo Aptis: opcional; si esta, se revisa como parseDiagnostico (Aptis.kt).
