@@ -1,0 +1,915 @@
+{
+ "bloques": [
+  {
+   "id": "oido-i-ii",
+   "title": "ship / sheep",
+   "level": "A1",
+   "contraste": "/ɪ/ corta · /iː/ larga",
+   "explicacion": "En español solo hay una «i», pero el inglés tiene dos. La de ship es corta y relajada, casi entre «i» y «e»; la de sheep es más larga y tensa, con los labios estirados como al sonreír. Fíjate sobre todo en la duración y en si la «i» suena abierta o tensa.",
+   "hablar": "I feel the heat when I sleep on the ship.",
+   "sound": "general",
+   "pares": [
+    {
+     "a": "ship",
+     "b": "sheep",
+     "frase": "Now I say ___ again."
+    },
+    {
+     "a": "bit",
+     "b": "beat",
+     "frase": "Please say ___ out loud."
+    },
+    {
+     "a": "fill",
+     "b": "feel",
+     "frase": "I say ___ in English."
+    },
+    {
+     "a": "hit",
+     "b": "heat",
+     "frase": "Please write ___ on the board."
+    },
+    {
+     "a": "chip",
+     "b": "cheap",
+     "frase": "Let me say ___ a second time."
+    },
+    {
+     "a": "slip",
+     "b": "sleep",
+     "frase": "Did you say ___ or not?"
+    },
+    {
+     "a": "fit",
+     "b": "feet",
+     "frase": "Try to say ___ and listen."
+    },
+    {
+     "a": "rich",
+     "b": "reach",
+     "frase": "Now we say ___ again."
+    },
+    {
+     "a": "hill",
+     "b": "heal",
+     "frase": "I will say ___ again."
+    },
+    {
+     "a": "list",
+     "b": "least",
+     "frase": "Now I say ___ again."
+    }
+   ]
+  },
+  {
+   "id": "oido-b-v",
+   "title": "ban / van",
+   "level": "A1",
+   "contraste": "/b/ labios juntos · /v/ dientes y labio",
+   "explicacion": "En español la b y la v suenan igual, pero en inglés son sonidos distintos. Para la /b/ los labios se juntan y se sueltan de golpe; para la /v/ los dientes de arriba tocan el labio de abajo y se oye un zumbido continuo. Escucha si el sonido explota o si vibra.",
+   "hablar": "Vote for the best van in the village.",
+   "sound": "v",
+   "pares": [
+    {
+     "a": "ban",
+     "b": "van",
+     "frase": "Please write ___ on the board."
+    },
+    {
+     "a": "best",
+     "b": "vest",
+     "frase": "Please say ___ out loud."
+    },
+    {
+     "a": "boat",
+     "b": "vote",
+     "frase": "I say ___ in English."
+    },
+    {
+     "a": "bet",
+     "b": "vet",
+     "frase": "Now I say ___ again."
+    },
+    {
+     "a": "base",
+     "b": "vase",
+     "frase": "Let me say ___ a second time."
+    },
+    {
+     "a": "bent",
+     "b": "vent",
+     "frase": "Did you say ___ or not?"
+    },
+    {
+     "a": "curb",
+     "b": "curve",
+     "frase": "Try to say ___ and listen."
+    },
+    {
+     "a": "bat",
+     "b": "vat",
+     "frase": "Now we say ___ again."
+    }
+   ]
+  },
+  {
+   "id": "oido-sh-ch",
+   "title": "share / chair",
+   "level": "A1",
+   "contraste": "/ʃ/ continua · /tʃ/ con golpe",
+   "explicacion": "La /ʃ/ de share es un soplido suave y continuo, como cuando pides silencio («shh»). La /tʃ/ de chair es como la «ch» del español: empieza con un pequeño golpe de la lengua. Escucha si el sonido arranca de golpe o sale suave.",
+   "hablar": "She wants to choose cheap shoes at the shop.",
+   "sound": "sh",
+   "pares": [
+    {
+     "a": "share",
+     "b": "chair",
+     "frase": "Now I say ___ again."
+    },
+    {
+     "a": "shoes",
+     "b": "choose",
+     "frase": "Please say ___ out loud."
+    },
+    {
+     "a": "wash",
+     "b": "watch",
+     "frase": "I say ___ in English."
+    },
+    {
+     "a": "ship",
+     "b": "chip",
+     "frase": "Let me say ___ a second time."
+    },
+    {
+     "a": "sheep",
+     "b": "cheap",
+     "frase": "Did you say ___ or not?"
+    },
+    {
+     "a": "shop",
+     "b": "chop",
+     "frase": "Try to say ___ and listen."
+    },
+    {
+     "a": "cash",
+     "b": "catch",
+     "frase": "Now we say ___ again."
+    },
+    {
+     "a": "sheet",
+     "b": "cheat",
+     "frase": "I will say ___ again."
+    },
+    {
+     "a": "mash",
+     "b": "match",
+     "frase": "Now I say ___ again."
+    },
+    {
+     "a": "wish",
+     "b": "witch",
+     "frase": "Please say ___ out loud."
+    }
+   ]
+  },
+  {
+   "id": "oido-th-t",
+   "title": "three / tree",
+   "level": "A2",
+   "contraste": "/θ/ lengua entre los dientes · /t/",
+   "explicacion": "La /θ/ de three se hace con la punta de la lengua entre los dientes y deja salir aire, parecida a la «z» de España. La /t/ de tree es un golpe corto de la lengua detrás de los dientes. Escucha si hay un soplido suave o un golpe seco.",
+   "hablar": "I think there are three thick trees on the path.",
+   "sound": "th",
+   "pares": [
+    {
+     "a": "three",
+     "b": "tree",
+     "frase": "Please write ___ on the board."
+    },
+    {
+     "a": "thank",
+     "b": "tank",
+     "frase": "Please say ___ out loud."
+    },
+    {
+     "a": "both",
+     "b": "boat",
+     "frase": "I say ___ in English."
+    },
+    {
+     "a": "thought",
+     "b": "taught",
+     "frase": "Now I say ___ again."
+    },
+    {
+     "a": "thick",
+     "b": "tick",
+     "frase": "Did you say ___ or not?"
+    },
+    {
+     "a": "math",
+     "b": "mat",
+     "frase": "Try to say ___ and listen."
+    },
+    {
+     "a": "path",
+     "b": "pat",
+     "frase": "Now we say ___ again."
+    },
+    {
+     "a": "faith",
+     "b": "fate",
+     "frase": "I will say ___ again."
+    },
+    {
+     "a": "theme",
+     "b": "team",
+     "frase": "Now I say ___ again."
+    }
+   ]
+  },
+  {
+   "id": "oido-dh-d",
+   "title": "they / day",
+   "level": "B1",
+   "contraste": "/ð/ suave · /d/ con golpe",
+   "explicacion": "La /ð/ de they suena parecida a la «d» suave del español en «cada», con la lengua suelta entre los dientes y vibrando. La /d/ de day es más fuerte: la lengua toca detrás de los dientes y se suelta de golpe. Al principio de palabra el hispanohablante tiende a decir /d/; escucha si el sonido es suave o si explota.",
+   "hablar": "They said the other one is there with them.",
+   "sound": "th",
+   "pares": [
+    {
+     "a": "they",
+     "b": "day",
+     "frase": "Now I say ___ again."
+    },
+    {
+     "a": "though",
+     "b": "dough",
+     "frase": "Please say ___ out loud."
+    },
+    {
+     "a": "then",
+     "b": "den",
+     "frase": "I say ___ in English."
+    },
+    {
+     "a": "there",
+     "b": "dare",
+     "frase": "Let me say ___ a second time."
+    },
+    {
+     "a": "those",
+     "b": "doze",
+     "frase": "Did you say ___ or not?"
+    },
+    {
+     "a": "breathe",
+     "b": "breed",
+     "frase": "Try to say ___ and listen."
+    },
+    {
+     "a": "loathe",
+     "b": "load",
+     "frase": "Now we say ___ again."
+    }
+   ]
+  },
+  {
+   "id": "oido-h",
+   "title": "heat / eat",
+   "level": "A1",
+   "contraste": "/h/ soplo · sin /h/",
+   "explicacion": "La /h/ inglesa es un soplo suave, como una «j» muy suave, sin raspar la garganta. La h escrita del español no suena, pero en inglés sí cambia la palabra: heat no es eat. Escucha si hay un poquito de aire antes de la vocal.",
+   "hablar": "He held his hat in his hand.",
+   "sound": "h",
+   "pares": [
+    {
+     "a": "heat",
+     "b": "eat",
+     "frase": "Please say ___ out loud."
+    },
+    {
+     "a": "harm",
+     "b": "arm",
+     "frase": "Now I say ___ again."
+    },
+    {
+     "a": "hear",
+     "b": "ear",
+     "frase": "I say ___ in English."
+    },
+    {
+     "a": "hold",
+     "b": "old",
+     "frase": "Please write ___ on the board."
+    },
+    {
+     "a": "hair",
+     "b": "air",
+     "frase": "Let me say ___ a second time."
+    },
+    {
+     "a": "hedge",
+     "b": "edge",
+     "frase": "Did you say ___ or not?"
+    },
+    {
+     "a": "high",
+     "b": "eye",
+     "frase": "Try to say ___ and listen."
+    },
+    {
+     "a": "hate",
+     "b": "eight",
+     "frase": "Now we say ___ again."
+    },
+    {
+     "a": "hill",
+     "b": "ill",
+     "frase": "I will say ___ again."
+    },
+    {
+     "a": "heart",
+     "b": "art",
+     "frase": "Now I say ___ again."
+    }
+   ]
+  },
+  {
+   "id": "oido-ae-uh",
+   "title": "cat / cut",
+   "level": "A2",
+   "contraste": "/æ/ abierta · /ʌ/ corta y neutra",
+   "explicacion": "La /æ/ de cat se dice con la boca bien abierta, entre la «a» y la «e» del español. La /ʌ/ de cut es una «a» corta y relajada, con la boca menos abierta. Ninguna de las dos es exactamente la «a» española, así que escucha si suena más hacia la «e» o más apagada.",
+   "hablar": "The cat had fun with the bag and the cup.",
+   "sound": "general",
+   "pares": [
+    {
+     "a": "cat",
+     "b": "cut",
+     "frase": "Now I say ___ again."
+    },
+    {
+     "a": "bag",
+     "b": "bug",
+     "frase": "Please say ___ out loud."
+    },
+    {
+     "a": "cap",
+     "b": "cup",
+     "frase": "I say ___ in English."
+    },
+    {
+     "a": "hat",
+     "b": "hut",
+     "frase": "Please write ___ on the board."
+    },
+    {
+     "a": "ran",
+     "b": "run",
+     "frase": "Let me say ___ a second time."
+    },
+    {
+     "a": "match",
+     "b": "much",
+     "frase": "Did you say ___ or not?"
+    },
+    {
+     "a": "fan",
+     "b": "fun",
+     "frase": "Try to say ___ and listen."
+    },
+    {
+     "a": "lack",
+     "b": "luck",
+     "frase": "Now we say ___ again."
+    },
+    {
+     "a": "track",
+     "b": "truck",
+     "frase": "I will say ___ again."
+    },
+    {
+     "a": "cab",
+     "b": "cub",
+     "frase": "Now I say ___ again."
+    }
+   ]
+  },
+  {
+   "id": "oido-u-uu",
+   "title": "full / fool",
+   "level": "B1",
+   "contraste": "/ʊ/ corta · /uː/ larga",
+   "explicacion": "Igual que con la «i», el inglés tiene dos «u». La de full es corta y relajada, con los labios poco redondeados; la de fool es más larga y tensa, con los labios bien redondeados. Algunas palabras de esta lista son poco comunes, pero sirven para entrenar el oído.",
+   "hablar": "You can pull the wood out of the pool.",
+   "sound": "general",
+   "pares": [
+    {
+     "a": "full",
+     "b": "fool",
+     "frase": "Now I say ___ again."
+    },
+    {
+     "a": "pull",
+     "b": "pool",
+     "frase": "Please say ___ out loud."
+    },
+    {
+     "a": "pulled",
+     "b": "pooled",
+     "frase": "I say ___ in English."
+    },
+    {
+     "a": "wood",
+     "b": "wooed",
+     "frase": "Please write ___ on the board."
+    },
+    {
+     "a": "nook",
+     "b": "nuke",
+     "frase": "Let me say ___ a second time."
+    },
+    {
+     "a": "pulling",
+     "b": "pooling",
+     "frase": "Did you say ___ or not?"
+    },
+    {
+     "a": "soot",
+     "b": "suit",
+     "frase": "Try to say ___ and listen."
+    },
+    {
+     "a": "hood",
+     "b": "who'd",
+     "frase": "Now we say ___ again."
+    },
+    {
+     "a": "stood",
+     "b": "stewed",
+     "frase": "I will say ___ again."
+    }
+   ]
+  },
+  {
+   "id": "oido-final-t-d",
+   "title": "bet / bed",
+   "level": "A2",
+   "contraste": "/t/ final · /d/ final",
+   "explicacion": "Al final de palabra la /t/ y la /d/ pueden sonar muy suaves, así que la pista más útil suele ser la vocal: antes de /d/ se alarga y antes de /t/ es más corta. En bed la «e» dura más que en bet. Escucha la duración de la vocal además del final.",
+   "hablar": "The white cat sat on the bed and looked sad.",
+   "sound": "final",
+   "pares": [
+    {
+     "a": "bet",
+     "b": "bed",
+     "frase": "Say ___ for me, please."
+    },
+    {
+     "a": "write",
+     "b": "ride",
+     "frase": "Please say ___ one more time."
+    },
+    {
+     "a": "seat",
+     "b": "seed",
+     "frase": "Now I say ___ for you."
+    },
+    {
+     "a": "heart",
+     "b": "hard",
+     "frase": "You will hear ___ five times."
+    },
+    {
+     "a": "bat",
+     "b": "bad",
+     "frase": "We say ___ very slowly."
+    },
+    {
+     "a": "neat",
+     "b": "need",
+     "frase": "Now I say ___ once more."
+    },
+    {
+     "a": "white",
+     "b": "wide",
+     "frase": "Say ___ for me, please."
+    },
+    {
+     "a": "coat",
+     "b": "code",
+     "frase": "Please say ___ one more time."
+    },
+    {
+     "a": "feet",
+     "b": "feed",
+     "frase": "Now I say ___ for you."
+    },
+    {
+     "a": "sat",
+     "b": "sad",
+     "frase": "You will hear ___ five times."
+    }
+   ]
+  },
+  {
+   "id": "oido-final-consonante",
+   "title": "car / card",
+   "level": "A2",
+   "contraste": "con consonante final · sin ella",
+   "explicacion": "En español pocas palabras terminan en consonantes como /d/, /t/ o /f/, y es fácil no oírlas. En inglés esa última consonante cambia la palabra: car no es card. Escucha con atención el final de la palabra, justo antes de la siguiente.",
+   "hablar": "Take the card to the car and wait for me.",
+   "sound": "final",
+   "pares": [
+    {
+     "a": "car",
+     "b": "card",
+     "frase": "Now I say ___ again."
+    },
+    {
+     "a": "bee",
+     "b": "beef",
+     "frase": "Please say ___ out loud."
+    },
+    {
+     "a": "tie",
+     "b": "tight",
+     "frase": "I say ___ in English."
+    },
+    {
+     "a": "see",
+     "b": "seat",
+     "frase": "Let me say ___ a second time."
+    },
+    {
+     "a": "go",
+     "b": "goal",
+     "frase": "Did you say ___ or not?"
+    },
+    {
+     "a": "day",
+     "b": "date",
+     "frase": "Try to say ___ and listen."
+    },
+    {
+     "a": "pay",
+     "b": "pain",
+     "frase": "Now we say ___ again."
+    },
+    {
+     "a": "my",
+     "b": "mine",
+     "frase": "I will say ___ again."
+    },
+    {
+     "a": "two",
+     "b": "tooth",
+     "frase": "Now I say ___ again."
+    },
+    {
+     "a": "law",
+     "b": "lawn",
+     "frase": "Please say ___ out loud."
+    }
+   ]
+  },
+  {
+   "id": "oido-ed",
+   "title": "play / played",
+   "level": "A2",
+   "contraste": "sin -ed · con -ed",
+   "explicacion": "La terminación -ed del pasado suena /d/, /t/ o /ɪd/ según la palabra. Muchas veces es solo una consonante corta pegada al final (walked suena como «wokt»), así que se oye poco. Solo después de t o d se oye una sílaba extra, como en wanted.",
+   "hablar": "We walked home, cooked dinner and cleaned the kitchen.",
+   "sound": "ed",
+   "pares": [
+    {
+     "a": "play",
+     "b": "played",
+     "frase": "Now I say ___ again."
+    },
+    {
+     "a": "walk",
+     "b": "walked",
+     "frase": "Please say ___ out loud."
+    },
+    {
+     "a": "want",
+     "b": "wanted",
+     "frase": "I say ___ in English."
+    },
+    {
+     "a": "call",
+     "b": "called",
+     "frase": "Let me say ___ a second time."
+    },
+    {
+     "a": "cook",
+     "b": "cooked",
+     "frase": "Did you say ___ or not?"
+    },
+    {
+     "a": "need",
+     "b": "needed",
+     "frase": "Try to say ___ and listen."
+    },
+    {
+     "a": "clean",
+     "b": "cleaned",
+     "frase": "Now we say ___ again."
+    },
+    {
+     "a": "ask",
+     "b": "asked",
+     "frase": "I will say ___ again."
+    },
+    {
+     "a": "stay",
+     "b": "stayed",
+     "frase": "Now I say ___ again."
+    },
+    {
+     "a": "work",
+     "b": "worked",
+     "frase": "Please say ___ out loud."
+    }
+   ]
+  },
+  {
+   "id": "oido-s-z",
+   "title": "bus / buzz",
+   "level": "A2",
+   "contraste": "/s/ sin vibración · /z/ con vibración",
+   "explicacion": "La /s/ es solo aire, mientras que la /z/ es el mismo sonido con vibración de la garganta, como un zumbido de abeja. Al final de palabra la /z/ puede perder parte de la vibración, pero la vocal anterior suele durar más: en prize la vocal es más larga que en price. Escucha el zumbido y la duración de la vocal.",
+   "hablar": "My eyes hurt when the prices rise.",
+   "sound": "es",
+   "pares": [
+    {
+     "a": "bus",
+     "b": "buzz",
+     "frase": "Now I say ___ again."
+    },
+    {
+     "a": "price",
+     "b": "prize",
+     "frase": "Please say ___ out loud."
+    },
+    {
+     "a": "rice",
+     "b": "rise",
+     "frase": "I say ___ in English."
+    },
+    {
+     "a": "place",
+     "b": "plays",
+     "frase": "Please write ___ on the board."
+    },
+    {
+     "a": "ice",
+     "b": "eyes",
+     "frase": "Let me say ___ a second time."
+    },
+    {
+     "a": "race",
+     "b": "raise",
+     "frase": "Did you say ___ or not?"
+    },
+    {
+     "a": "loose",
+     "b": "lose",
+     "frase": "Try to say ___ and listen."
+    },
+    {
+     "a": "peace",
+     "b": "peas",
+     "frase": "Now we say ___ again."
+    },
+    {
+     "a": "sip",
+     "b": "zip",
+     "frase": "I will say ___ again."
+    },
+    {
+     "a": "sue",
+     "b": "zoo",
+     "frase": "Now I say ___ again."
+    }
+   ]
+  },
+  {
+   "id": "oido-m-n",
+   "title": "sum / sun",
+   "level": "A2",
+   "contraste": "/m/ labios cerrados · /n/ lengua arriba",
+   "explicacion": "En español la m final casi no aparece y muchos la cambian por n, pero en inglés sum y sun son palabras distintas. Para la /m/ los labios se cierran; para la /n/ los labios quedan abiertos y la lengua toca detrás de los dientes. La diferencia al final es sutil, así que escucha con atención.",
+   "hablar": "I came home with some gum for the team.",
+   "sound": "final",
+   "pares": [
+    {
+     "a": "sum",
+     "b": "sun",
+     "frase": "Now I say ___ again."
+    },
+    {
+     "a": "team",
+     "b": "teen",
+     "frase": "Please say ___ out loud."
+    },
+    {
+     "a": "comb",
+     "b": "cone",
+     "frase": "I say ___ in English."
+    },
+    {
+     "a": "gum",
+     "b": "gun",
+     "frase": "Please write ___ on the board."
+    },
+    {
+     "a": "ram",
+     "b": "ran",
+     "frase": "Let me say ___ a second time."
+    },
+    {
+     "a": "seem",
+     "b": "seen",
+     "frase": "Did you say ___ or not?"
+    },
+    {
+     "a": "same",
+     "b": "sane",
+     "frase": "Try to say ___ and listen."
+    },
+    {
+     "a": "came",
+     "b": "cane",
+     "frase": "Now we say ___ again."
+    },
+    {
+     "a": "dime",
+     "b": "dine",
+     "frase": "I will say ___ again."
+    },
+    {
+     "a": "mice",
+     "b": "nice",
+     "frase": "Now I say ___ again."
+    }
+   ]
+  },
+  {
+   "id": "oido-r-l",
+   "title": "right / light",
+   "level": "A2",
+   "contraste": "/r/ inglesa · /l/",
+   "explicacion": "La /r/ inglesa no vibra ni toca el paladar: la lengua se curva hacia atrás sin tocar nada. La /l/ sí toca detrás de los dientes de arriba. Escucha si el sonido es oscuro y curvado o limpio como la «l» española.",
+   "hablar": "The red light on the long road is right there.",
+   "sound": "rl",
+   "pares": [
+    {
+     "a": "right",
+     "b": "light",
+     "frase": "Now I say ___ again."
+    },
+    {
+     "a": "rock",
+     "b": "lock",
+     "frase": "Please say ___ out loud."
+    },
+    {
+     "a": "fry",
+     "b": "fly",
+     "frase": "I say ___ in English."
+    },
+    {
+     "a": "road",
+     "b": "load",
+     "frase": "Please write ___ on the board."
+    },
+    {
+     "a": "grass",
+     "b": "glass",
+     "frase": "Let me say ___ a second time."
+    },
+    {
+     "a": "pray",
+     "b": "play",
+     "frase": "Did you say ___ or not?"
+    },
+    {
+     "a": "correct",
+     "b": "collect",
+     "frase": "Try to say ___ and listen."
+    },
+    {
+     "a": "wrong",
+     "b": "long",
+     "frase": "Now we say ___ again."
+    },
+    {
+     "a": "rake",
+     "b": "lake",
+     "frase": "I will say ___ again."
+    },
+    {
+     "a": "free",
+     "b": "flee",
+     "frase": "Now I say ___ again."
+    }
+   ]
+  },
+  {
+   "id": "oido-j-dzh",
+   "title": "yet / jet",
+   "level": "B1",
+   "contraste": "/j/ suave · /dʒ/ con golpe",
+   "explicacion": "La /j/ de yet es suave, como la «i» de «tiene». La /dʒ/ de jet empieza con un golpe, parecido a la «y» fuerte de algunas regiones o a «ch» con vibración. Escucha si el sonido se desliza suave o arranca con un golpe.",
+   "hablar": "Yes, I want jam with my yogurt.",
+   "sound": "general",
+   "pares": [
+    {
+     "a": "year",
+     "b": "jeer",
+     "frase": "Now I say ___ again."
+    },
+    {
+     "a": "yet",
+     "b": "jet",
+     "frase": "Please say ___ out loud."
+    },
+    {
+     "a": "yolk",
+     "b": "joke",
+     "frase": "I say ___ in English."
+    },
+    {
+     "a": "yell",
+     "b": "jell",
+     "frase": "Let me say ___ a second time."
+    },
+    {
+     "a": "yam",
+     "b": "jam",
+     "frase": "Did you say ___ or not?"
+    },
+    {
+     "a": "yaw",
+     "b": "jaw",
+     "frase": "Try to say ___ and listen."
+    },
+    {
+     "a": "yak",
+     "b": "jack",
+     "frase": "Now we say ___ again."
+    }
+   ]
+  },
+  {
+   "id": "oido-numeros",
+   "title": "thirteen / thirty",
+   "level": "A1",
+   "contraste": "-teen acentuado · -ty",
+   "explicacion": "Dicho solo, thirteen lleva el acento en -teen, que suena largo, con /iː/ y una /n/ al final; thirty lleva el acento al principio y termina en una «i» corta. Antes de un sustantivo (thirteen dollars) el acento de -teen puede pasar al principio, así que fíjate sobre todo en la /n/ y la vocal larga. En inglés americano, la t de thirty o forty suele sonar casi como la «r» suave de «pero».",
+   "hablar": "I have fifteen dollars, not fifty.",
+   "sound": "general",
+   "pares": [
+    {
+     "a": "thirteen",
+     "b": "thirty",
+     "frase": "I have ___ dollars."
+    },
+    {
+     "a": "fourteen",
+     "b": "forty",
+     "frase": "Now I say ___ again."
+    },
+    {
+     "a": "fifteen",
+     "b": "fifty",
+     "frase": "Please turn to page ___ now."
+    },
+    {
+     "a": "sixteen",
+     "b": "sixty",
+     "frase": "I counted ___ of them."
+    },
+    {
+     "a": "seventeen",
+     "b": "seventy",
+     "frase": "She is ___ years old."
+    },
+    {
+     "a": "eighteen",
+     "b": "eighty",
+     "frase": "I have ___ dollars in all."
+    },
+    {
+     "a": "nineteen",
+     "b": "ninety",
+     "frase": "I said ___ again."
+    }
+   ]
+  }
+ ]
+}

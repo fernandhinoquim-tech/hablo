@@ -395,10 +395,10 @@ escenarios · corrección en español · informe descargable · cuaderno de erro
 | 5 | Actividades más diversas | **etapa 3 hecha el 16-09**: adivina antes de ver, repaso, corrige tu propio error, contrarreloj, Aguanta |
 | 6 | Retos con presión | **hecho el 16-09**: Aguanta (tres errores) y contrarreloj (solo ahí hay reloj) |
 | 7 | Vocabulario con cronómetro | **hecho el 16-09**: contrarreloj con reloj grande, "lo fallado vuelve", marcas por banco; el banco de Cowork (`vocabulario.json`, 41 bancos) entró el mismo día (714ef91) |
-| 8 | Historias cortas con preguntas | **hecho el 16-09**: 12 historias de Cowork (6 A2, 6 B1) con retell obligatorio; ver "Etapa 4" |
-| 9 | Crucigramas | no existe |
+| 8 | Historias cortas con preguntas | **hecho el 16-09**: 12 historias de Cowork (6 A2, 6 B1) con retell obligatorio; ver "Etapa 4". **17-09: 24 historias en 4 tandas** (A1 y segunda A2 de Cowork; las tandas van por nivel) |
+| 9 | Crucigramas | **hecho el 17-09**: 103 rejillas de Cowork (34 A1, 69 A2), `Crucigrama.kt` + `ScreenCrucigrama.kt`; ver "Oído, dictado y crucigramas" |
 | 10 | Repaso espaciado (mazo) | **hecho el 16-09**: `Mazo.kt`, Leitner 1/3/7/16/35 + escalera elegir→armar→escribir→oír y escribir→decir |
-| 11 | Pantalla de Oído (pares mínimos) | el tipo existe, la pantalla no |
+| 11 | Pantalla de Oído (pares mínimos) | **hecho el 17-09**: 16 bloques de Cowork (`oido.json`), `ScreenOido.kt`; y el **dictado de números** (`dictado.json`, 80 ítems, `ScreenDictado.kt`) con comparación estricta; ver "Oído, dictado y crucigramas" |
 | 12 | Contenido B1 y B2 | no existe |
 | 13 | Escritura con motor de reglas (Fase 4) | no existe |
 | 14 | Respaldo del progreso y modo oscuro (Fase 6) | no existe |
@@ -541,6 +541,67 @@ válidas a la vez; **una ronda nunca mezcla bancos** (al mezclar, la garantía
 desaparece). Los bancos van de 3 a 25 parejas: los grandes se parten en
 rondas de hasta 8 del mismo banco (un subconjunto conserva la garantía).
 
+**Oído, dictado de números y crucigramas (2026-09-17; datos de Cowork en
+`contenido-nuevo/integrado/2026-09-17-oido-dictado-drills/` y
+`…/2026-09-17-crucigramas/`).** Tres pantallas nuevas en el inicio, todas sin
+reloj y sin red:
+- **Oído** (`ScreenOido.kt`, `assets/content/oido.json`: 16 bloques, 6-10
+  pares cada uno, `sound` obligatorio como en los drills). Identificar CUÁL
+  palabra sonó (g = 0,95), nunca "¿son iguales?" (0,57). **Una voz por
+  bloque**, rotando entre las cuatro profesoras (`Store.siguienteVozOido`;
+  `Speaker` tiene una sola voz cargada). Cada par suena dentro de su frase
+  NEUTRA con `___` (el sentido no delata la respuesta); al fallar suena la
+  otra palabra en la misma frase para comparar. El bloque **cierra hablando**
+  la frase `hablar` con el jurado de su `sound` (oír bien y decir bien van
+  sueltos, r = 0,31, y la pantalla lo dice); el modelo de fonemas se carga en
+  esa fase y se suelta al salir. Resultado por bloque en prefs
+  (`oido_<id>_bien/total`), ✓ con ≥ 80 %. Los fallos van al cuaderno (tipo
+  "oído").
+  **Medición antes de publicar** (`tools/content/oir_oido.py`, pedida por
+  Cowork): dos jueces por (voz, palabra), porque ninguno es una persona: el
+  modelo de fonemas (tramo alineado contra la frase esperada, más cerca de la
+  palabra dicha que de su pareja) y Parakeet 0.6B (escribe la palabra). Una
+  palabra pasa si la reconoce cualquiera; un par pasa con ≥ 3 de 4 voces.
+  Solo con el modelo de fonemas se descartaba la mitad de los 147 pares
+  (78/147), casi todo por su propio oído: oye la d final como t (ride→ɹaɪt 4
+  de 4), b/v como ð, y las vocales de Grace mal; con los dos jueces quedan
+  los descartes de verdad (ver el informe a Cowork en el commit).
+- **Dictado de números** (`ScreenDictado.kt`, `dictado.json`: 80 ítems, 7
+  tipos, modos `escribir`/`elegir`; el `audio` va en palabras). Tarea literal
+  de Aptis Listening parte 1: hasta DOS escuchas, después el texto del audio
+  y el `tip`. **Comparación estricta** `Correccion.dictado` /
+  `aceptaDictado`: `suelta` quitaba `.`, `:`, `$`, `@` y daba por buenas
+  «$650» por «$6.50», «14:50» por «1450», «wademail.com» por «wade@mail.com»
+  (hallazgo de Cowork). La estricta conserva los signos DENTRO de una ficha,
+  quita solo los de los bordes y el `$` inicial, números 0-100 en letras, el
+  número tras un mes en cifras y el cero inicial de la hora («07:30» =
+  «7:30»). Tests en `DictadoTest.kt`. Los fallos van al cuaderno con tipo
+  "números" (NO "dictado": ese entra a "corrige tu propio error" con la regla
+  suelta y daría por corregido lo que no lo está). Rondas de 10, primero lo
+  que nunca salió bien (`Store.dictadoHecho`). **Deletreos con Grace:** sus
+  letras sueltas no se entienden con ninguna forma de escribirlas (medido con
+  Moonshine y Parakeet: «K, Y, L, E» → "case of white's L. E."); Sophie las
+  dice limpias 8 de 8. Si la profesora es Grace, los deletreos los lee Sophie
+  y la pantalla lo dice. La «A,» no se lee como artículo en ninguna voz.
+- **Crucigramas** (`Crucigrama.kt` modelo + `filesDir/crucigramas.json`;
+  `ScreenCrucigrama.kt`; `crucigramas.json`: 103 rejillas ≤ 10 × 10, 5-8
+  palabras, cada una de UN banco de `vocabulario.json`; `checkContent` y
+  `parseCrucigramas` replican `validar_cruci.py`: choques, corridas
+  fantasma, numeración clásica, conectividad, pista = `es` del banco; **si
+  se cambia un banco hay que regenerar con `generar.py` de Cowork**). Pista
+  en español, palabra en inglés. Tocar una casilla selecciona su palabra;
+  tocar el cursor en un cruce cambia de dirección. Palabra completa y bien →
+  verde, Piper la dice y se pasa a la siguiente; completa y mal → marca
+  suave. Ayudas «Una letra» y «Oírla» (la palabra deja de contar como "sin
+  ayuda" y al terminar entra al mazo como `cruci:<banco>|<en>`). Se guarda a
+  cada letra. **Teclado propio de 26 letras + ⌫, no el del sistema** (Cowork
+  pedía el del sistema; el propio no tiene autocorrección ni pierde el foco y
+  se pudo probar sin el teléfono a mano; se cambia si Fero lo prefiere).
+- **Drills**: 30 de Cowork (70 en total). Los de `general` no tienen
+  veredicto por fonema y nunca acumulan datos, así que en el sorteo de
+  `ScreenPronunciation` llevan peso fijo 1,0 (con el 1,5 de "sin probar"
+  taparían a los sonidos que sí se miden).
+
 **Etapa 5 (2026-09-16): el Modo Aptis es una PISTA DE PREPARACIÓN, no un
 test.** Pedido de Fero, tarde del 16-09, después de que el diagnóstico de 30
 tareas ya estaba hecho y probado: *un test de 30 tareas da una foto con margen
@@ -663,7 +724,9 @@ pantalla: es una estimación, no la nota real**) y bancos grandes de ítems
 
 ## Estado y plan
 
-**Versión actual: 0.9.7** (2026-09-16: el Modo Aptis como pista de
+**Versión actual: 0.9.8** (2026-09-17: Oído, dictado de números, crucigramas,
+24 historias y 70 drills; ver "Oído, dictado de números y crucigramas").
+**0.9.7** (2026-09-16: el Modo Aptis como pista de
 preparación por destreza, con el diagnóstico de la mañana convertido en el
 simulacro; las etapas 2, 3 y 4 ya estaban en el teléfono desde la 0.9.5; ver
 "Inventario de lo pedido"). **0.9.1** (2026-09-15: la etapa 1 del diagnóstico). **0.9** (conversación por internet; el motor por defecto pasó a

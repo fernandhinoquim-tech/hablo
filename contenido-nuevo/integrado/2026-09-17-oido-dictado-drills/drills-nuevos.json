@@ -1,0 +1,184 @@
+{
+  "drills": [
+    {
+      "text": "This hotel has a comfortable bed.",
+      "sound": "general",
+      "focus": "hoTEL y COMfortable",
+      "tip": "HoTEL lleva la fuerza al final, como en español (y la h suena). COMfortable la lleva al principio y se suele decir en tres sílabas: COMF-ter-ble. Error típico: \"comforTAble\"."
+    },
+    {
+      "text": "I love chocolate and bananas.",
+      "sound": "general",
+      "focus": "CHOColate y baNAnas",
+      "tip": "CHOColate: fuerza en la primera, y se suele decir en dos sílabas: CHOC-lit, no \"cho-co-LA-te\". BaNAnas: fuerza en la del medio; las otras dos a se debilitan: buh-NA-nuhz."
+    },
+    {
+      "text": "I need a photograph for my photography class.",
+      "sound": "general",
+      "focus": "PHOtograph contra phoTOgraphy",
+      "tip": "La fuerza se mueve: PHOtograph la lleva en la primera, pero phoTOgraphy en la segunda. Las palabras en -graphy suelen cargar la sílaba justo antes: phoTOgraphy, geOgraphy."
+    },
+    {
+      "text": "We buy vegetables every Wednesday.",
+      "sound": "general",
+      "focus": "VEGetables y WEDnesday",
+      "tip": "VEGetables: fuerza en la primera, y suele sonar en tres sílabas: VEJ-ta-bles. WEDnesday: la primera d no suena, se dice WENZ-dei. EVery también es corto: EV-ri."
+    },
+    {
+      "text": "The museum was really interesting.",
+      "sound": "general",
+      "focus": "muSEum e INteresting",
+      "tip": "MuSEum lleva la fuerza en la del medio (miu-ZI-um, con s que suena z), como museo. INteresting la lleva en la primera, no en \"-RES-\", y a menudo suena en tres sílabas: IN-tres-ting."
+    },
+    {
+      "text": "I'm thirteen, not thirty.",
+      "sound": "general",
+      "focus": "thirTEEN contra THIRty",
+      "tip": "ThirTEEN: fuerza en TEEN, con i larga y la n bien clara. THIRty: fuerza en THIR, y en inglés americano esa t suena casi como una d suave: \"THIR-di\". Si no marcas la diferencia, el número se confunde."
+    },
+    {
+      "text": "She is fifteen, not fifty.",
+      "sound": "general",
+      "focus": "fifTEEN contra FIFty",
+      "tip": "Mismo patrón: fifTEEN alarga el final y lo cierra con n; FIFty carga la primera y termina corto en i. En fifty la t va después de f, así que no se vuelve d."
+    },
+    {
+      "text": "I said sixteen, not sixty.",
+      "sound": "general",
+      "focus": "sixTEEN contra SIXty",
+      "tip": "Cuando corriges un número, marca bien TEEN: sixTEEN, largo y con n. En SIXty la fuerza va al principio y el final es corto. Lo que más ayuda: -teen es largo y con n; -ty es corto."
+    },
+    {
+      "text": "My grandmother is eighty, not eighteen.",
+      "sound": "general",
+      "focus": "EIGHty contra eighTEEN",
+      "tip": "EIGHty: fuerza en EIGH, y la t suena como una d suave: \"EI-di\". EighTEEN: la t se pronuncia clara y la fuerza cae en TEEN, alargada y con n."
+    },
+    {
+      "text": "Is it seventeen or seventy?",
+      "sound": "general",
+      "focus": "sevenTEEN contra SEVenty",
+      "tip": "SevenTEEN: fuerza en TEEN. SEVenty: fuerza en SEV y final corto; en el habla rápida americana la t de -ty puede casi desaparecer tras la n. Y en las dos, la v con el labio mordido."
+    },
+    {
+      "text": "I can swim, but I can't dance.",
+      "sound": "general",
+      "focus": "can débil (kn) contra can't",
+      "tip": "En la afirmación, can casi desaparece: \"ai-kn-SWIM\", y la fuerza va en el verbo. Can't se dice completo, con la a clara y con fuerza, aunque la t casi no se oiga. El ritmo es lo que los distingue."
+    },
+    {
+      "text": "What do you want to eat?",
+      "sound": "general",
+      "focus": "do you (dyuh) y want to (wanna)",
+      "tip": "En el habla informal, do you se junta en \"dyuh\" y want to en \"wanna\": \"wa-dyuh-WAna-EAT?\". Se escribe completo, pero se dice pegado. Como empieza con what, la voz baja al final."
+    },
+    {
+      "text": "I'm going to call you tonight.",
+      "sound": "general",
+      "focus": "going to → gonna (antes de verbo)",
+      "tip": "Cuando going to va seguido de un verbo (call), se suele decir \"gonna\": \"I'm gonna call you\". Si va seguido de un lugar (I'm going to the bank), no se reduce a gonna."
+    },
+    {
+      "text": "I need to go to the bank.",
+      "sound": "general",
+      "focus": "to débil (tə)",
+      "tip": "Los dos to suenan \"tə\", cortos y sin fuerza: \"I NEED-tə GO-tə-the BANK\". La fuerza va en need, go y bank. Si dices \"tu\" completo cada vez, suena robótico."
+    },
+    {
+      "text": "Salt and pepper, please.",
+      "sound": "general",
+      "focus": "and débil (n)",
+      "tip": "En frases hechas como esta, and se reduce a una n pegada: \"SALT-n-PEP-per\". Pasa lo mismo en black and white o rock and roll."
+    },
+    {
+      "text": "He works hard and plays soccer.",
+      "sound": "final",
+      "focus": "works (s) y plays (z)",
+      "tip": "Después de un sonido sordo como k, la -s suena s: works. Después de vocal o de un sonido sonoro, suena z, con zumbido: plays = \"pleiz\". En español ese zumbido casi no se usa, así que exagéralo."
+    },
+    {
+      "text": "She watches the news every night.",
+      "sound": "final",
+      "focus": "watches (iz) y news (z)",
+      "tip": "Después de ch, sh, s, z, x o el sonido de la j inglesa (page), la -es agrega una sílaba: WATCH-iz. News termina en z con zumbido: \"nuuz\", no \"nius\"."
+    },
+    {
+      "text": "The bus stops near the park.",
+      "sound": "final",
+      "focus": "stops (s) y la s de bus",
+      "tip": "Stops: después de p, la -s es sorda y no lleva vocal extra. Bus termina en s y se pega a stops sin meter una e: \"bus-stops\", no \"bus-es-tops\"."
+    },
+    {
+      "text": "My dogs love long walks.",
+      "sound": "final",
+      "focus": "dogs (z) y walks (s)",
+      "tip": "Dogs termina en z (después de g, que es sonora): \"dogz\". Walks termina en s (después de k, que es sorda): \"woks\". Las dos cierran la palabra; no te las comas."
+    },
+    {
+      "text": "Put the boxes in the kitchen.",
+      "sound": "final",
+      "focus": "boxes (iz)",
+      "tip": "Box ya termina en ks, así que el plural agrega una sílaba: BOX-iz. Son dos sílabas, con la segunda débil; no \"boks\" ni \"box-ES\" con e fuerte."
+    },
+    {
+      "text": "The right light is really low.",
+      "sound": "rl",
+      "focus": "r contra l: right / light",
+      "tip": "Para la r, curva la lengua hacia atrás sin tocar el paladar y sin vibrar. Para la l, la punta toca detrás de los dientes de arriba. Right y light solo se diferencian en eso. Really lleva las dos."
+    },
+    {
+      "text": "Don't drop the glass on the grass.",
+      "sound": "rl",
+      "focus": "gl contra gr: glass / grass",
+      "tip": "Glass: la punta de la lengua toca arriba, detrás de los dientes. Grass: la lengua no toca nada y se curva hacia atrás. Nada de r vibrada: en inglés no se usa."
+    },
+    {
+      "text": "Is the long road the wrong road?",
+      "sound": "rl",
+      "focus": "long contra wrong",
+      "tip": "Long empieza con l (la punta toca arriba). Wrong empieza con r (la w no suena): la lengua no toca nada y los labios se redondean un poco. Road lleva esa misma r suave, no la rr de \"rosa\"."
+    },
+    {
+      "text": "The teacher will collect and correct the tests.",
+      "sound": "rl",
+      "focus": "collect contra correct",
+      "tip": "ColLECT lleva l: la punta toca arriba. CorRECT lleva r: la lengua se curva sin tocar. Las dos cargan la segunda sílaba, y la primera o casi se pierde: \"kə\"."
+    },
+    {
+      "text": "The kids play while the parents pray.",
+      "sound": "rl",
+      "focus": "pl contra pr: play / pray",
+      "tip": "Play: después de la p, la punta de la lengua toca arriba. Pray: después de la p, la lengua se curva hacia atrás sin tocar. Parents también lleva esa r suave en medio."
+    },
+    {
+      "text": "Do you like coffee?",
+      "sound": "general",
+      "focus": "pregunta de sí o no: sube",
+      "tip": "Las preguntas que se responden con yes o no suelen subir al final: la voz sube en coffee. Si bajas, puede sonar seco o poco interesado."
+    },
+    {
+      "text": "Where are you from?",
+      "sound": "general",
+      "focus": "pregunta con where: baja",
+      "tip": "Las preguntas con where, what o how normalmente bajan al final. La fuerza va en FROM y la voz cae ahí. Si subes, puede sonar a que no escuchaste la respuesta."
+    },
+    {
+      "text": "I need eggs, milk, and bread.",
+      "sound": "general",
+      "focus": "listas: sube, sube, baja",
+      "tip": "En una lista, cada elemento sube un poco (eggs↗, milk↗) y el último baja (bread↘) para mostrar que terminaste. Si el último sube, parece que falta algo."
+    },
+    {
+      "text": "Really? You passed the test?",
+      "sound": "general",
+      "focus": "sorpresa: Really? sube",
+      "tip": "Para mostrar sorpresa, Really? sube mucho desde REAL-. You passed the test? tiene forma de afirmación, pero al subir la voz al final se vuelve una pregunta de sorpresa."
+    },
+    {
+      "text": "Do you want tea or coffee?",
+      "sound": "general",
+      "focus": "elegir entre dos: sube y baja",
+      "tip": "Cuando ofreces dos opciones, la voz sube en tea↗ y baja en coffee↘: así se entiende que son solo esas dos. Si subes al final, suena a \"¿quieres algo, como té o café?\"."
+    }
+  ]
+}

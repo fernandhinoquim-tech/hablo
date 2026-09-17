@@ -445,12 +445,18 @@ val checkContent = tasks.register("checkContent") {
 
         // Bancos de vocabulario del contrarreloj (etapa 3): opcional; si esta, se revisa.
         val vocabFile = File(contentDir, "vocabulario.json")
+        val bancoEs = HashMap<String, Map<String, String>>()   // id de banco -> (en -> es), para los crucigramas
         if (vocabFile.exists()) {
             val vocab = slurper.parse(vocabFile) as Map<*, *>
             val bancoIds = HashSet<String>()
             ((vocab["bancos"] as? List<*>) ?: emptyList<Any>()).forEachIndexed { i, b ->
                 val o = b as Map<*, *>
                 val where = "vocabulario.json, banco ${i + 1}"
+                o["id"]?.let { id ->
+                    bancoEs[id.toString()] = ((o["pares"] as? List<*>) ?: emptyList<Any>()).mapNotNull { p ->
+                        (p as? Map<*, *>)?.let { pm -> pm["en"]?.toString()?.trim().orEmpty() to pm["es"]?.toString()?.trim().orEmpty() }
+                    }.toMap()
+                }
                 for (key in listOf("id", "title", "level")) {
                     if (o[key] == null || o[key].toString().isBlank()) problems.add("$where: falta \"$key\"")
                 }
@@ -511,6 +517,142 @@ val checkContent = tasks.register("checkContent") {
                         if (en.isBlank() || es.isBlank()) problems.add("$where: glosario sin \"en\" o sin \"es\"")
                         glosarioPalabras.add(where to en)
                     }
+                }
+            }
+        }
+
+        // Oido (pares minimos) y dictado de numeros (Cowork, 17-09): opcionales; si estan, como validar_extra.py.
+        val oidoFile = File(contentDir, "oido.json")
+        if (oidoFile.exists()) {
+            val oido = slurper.parse(oidoFile) as Map<*, *>
+            val bIds = HashSet<String>()
+            ((oido["bloques"] as? List<*>) ?: emptyList<Any>()).forEachIndexed { i, b ->
+                val o = b as Map<*, *>
+                val where = "oido.json, bloque ${i + 1}"
+                for (key in listOf("id", "title", "level", "contraste", "explicacion", "hablar")) {
+                    if (o[key] == null || o[key].toString().isBlank()) problems.add("$where: falta \"$key\"")
+                }
+                if (o["id"] != null && !bIds.add(o["id"].toString())) problems.add("$where: id repetido")
+                checkSound(o, where)
+                glosarioPalabras.add(where to o["hablar"].toString())
+                val pares = (o["pares"] as? List<*>) ?: emptyList<Any>()
+                if (pares.size < 4 || pares.size > 10) problems.add("$where: ${pares.size} pares (se pidio 6-10; minimo 4 mientras Cowork repone los descartados por oir_oido.py)")
+                val vistos = HashSet<String>()
+                pares.forEachIndexed { j, p ->
+                    val pm = p as? Map<*, *>
+                    val a = pm?.get("a")?.toString()?.trim().orEmpty(); val bb = pm?.get("b")?.toString()?.trim().orEmpty()
+                    val frase = pm?.get("frase")?.toString().orEmpty()
+                    if (a.isBlank() || bb.isBlank() || a.equals(bb, true) || a.contains(' ') || bb.contains(' ')) problems.add("$where, par ${j + 1}: mal formado (\"$a\" / \"$bb\")")
+                    if (!vistos.add(a.lowercase() + "/" + bb.lowercase())) problems.add("$where: par repetido $a/$bb")
+                    if (frase.split("___").size != 2) problems.add("$where, par $a/$bb: la frase necesita exactamente un ___")
+                    // Las dos palabras y la frase las DICE la profesora: en cmudict, o la voz las inventa.
+                    glosarioPalabras.add("$where, par $a/$bb" to "$a $bb " + frase.replace("___", " "))
+                }
+            }
+        }
+        val dictadoFile = File(contentDir, "dictado.json")
+        if (dictadoFile.exists()) {
+            val dictado = slurper.parse(dictadoFile) as Map<*, *>
+            val dIds = HashSet<String>()
+            ((dictado["items"] as? List<*>) ?: emptyList<Any>()).forEachIndexed { i, it ->
+                val o = it as Map<*, *>
+                val where = "dictado.json, item ${i + 1}"
+                for (key in listOf("id", "level", "tipo", "modo", "audio", "tip", "answer", "pregunta_es")) {
+                    if (o[key] == null || o[key].toString().isBlank()) problems.add("$where: falta \"$key\"")
+                }
+                if (o["id"] != null && !dIds.add(o["id"].toString())) problems.add("$where: id repetido")
+                val audio = o["audio"]?.toString().orEmpty()
+                if (audio.any { c -> c.isDigit() }) problems.add("$where: el audio lleva cifras (escribirlo en palabras para que Piper lo lea como se dice)")
+                // El audio se dice en voz alta: sus palabras (sin las letras sueltas del deletreo) en cmudict.
+                glosarioPalabras.add(where to audio.split(Regex("[\\s,.!?;:]+")).filter { w -> w.length > 1 }.joinToString(" "))
+                when (o["modo"]) {
+                    // (que ningun accept repita la respuesta con la regla estricta lo revisa
+                    // Content.parseDictado al cargar, y DictadoTest sobre el archivo del repo)
+                    "escribir" -> ((o["accept"] as? List<*>) ?: emptyList<Any>()).forEach { a ->
+                        if (a.toString().isBlank()) problems.add("$where: accept vacio")
+                    }
+                    "elegir" -> {
+                        val opts = (o["options"] as? List<*>)?.map { x -> x.toString() } ?: emptyList()
+                        if (opts.size != 3 || opts.toSet().size != 3) problems.add("$where: hacen falta 3 opciones distintas")
+                        if (o["answer"].toString() !in opts) problems.add("$where: answer fuera de options")
+                    }
+                    else -> problems.add("$where: modo \"${o["modo"]}\" (escribir o elegir)")
+                }
+            }
+        }
+
+        // Crucigramas (Cowork, 17-09): como validar_cruci.py. Cada uno sale de UN banco y la pista es el "es" del banco.
+        val cruciFile = File(contentDir, "crucigramas.json")
+        if (cruciFile.exists()) {
+            val cruci = slurper.parse(cruciFile) as Map<*, *>
+            val cIds = HashSet<String>()
+            ((cruci["crucigramas"] as? List<*>) ?: emptyList<Any>()).forEachIndexed { i, c ->
+                val o = c as Map<*, *>
+                val where = "crucigramas.json, ${o["id"] ?: "crucigrama ${i + 1}"}"
+                for (key in listOf("id", "title", "level", "banco")) {
+                    if (o[key] == null || o[key].toString().isBlank()) problems.add("$where: falta \"$key\"")
+                }
+                if (o["id"] != null && !cIds.add(o["id"].toString())) problems.add("$where: id repetido")
+                val filas = (o["filas"] as? Number)?.toInt() ?: 0
+                val columnas = (o["columnas"] as? Number)?.toInt() ?: 0
+                if (filas !in 2..10 || columnas !in 2..10) problems.add("$where: rejilla de $filas x $columnas (como mucho 10 x 10)")
+                val es = bancoEs[o["banco"]?.toString()]
+                if (vocabFile.exists() && es == null) problems.add("$where: banco \"${o["banco"]}\" inexistente en vocabulario.json")
+                val palabras = (o["palabras"] as? List<*>) ?: emptyList<Any>()
+                if (palabras.size < 5 || palabras.size > 8) problems.add("$where: ${palabras.size} palabras (se pidio 5-8)")
+                val rejilla = HashMap<Pair<Int, Int>, Char>()
+                val inicios = HashMap<Pair<Int, Int>, Int>()
+                val ens = HashSet<String>()
+                val esperadas = HashSet<String>()
+                for (p in palabras) {
+                    val pm = p as Map<*, *>
+                    val en = pm["en"]?.toString()?.trim().orEmpty()
+                    val dir = pm["dir"]?.toString()?.trim()?.uppercase().orEmpty()
+                    val fila = (pm["fila"] as? Number)?.toInt() ?: -1
+                    val col = (pm["col"] as? Number)?.toInt() ?: -1
+                    val numero = (pm["numero"] as? Number)?.toInt() ?: 0
+                    if (en.isBlank() || !en.all { ch -> ch.isLetter() } || dir !in listOf("H", "V")) { problems.add("$where: palabra mal formada (\"$en\", dir \"$dir\")"); continue }
+                    if (!ens.add(en.lowercase())) problems.add("$where: palabra repetida \"$en\"")
+                    if (es != null && es[en] != pm["pista"]?.toString()?.trim()) problems.add("$where: la pista de \"$en\" no coincide con el banco (\"${pm["pista"]}\" frente a \"${es[en]}\")")
+                    for (k in en.indices) {
+                        val cell = if (dir == "H") fila to col + k else fila + k to col
+                        if (cell.first !in 0 until filas || cell.second !in 0 until columnas) { problems.add("$where: \"$en\" se sale de la rejilla"); break }
+                        val ch = en[k].lowercaseChar()
+                        val previa = rejilla[cell]
+                        if (previa != null && previa != ch) problems.add("$where: choque de letras en $cell (\"$en\")")
+                        rejilla[cell] = ch
+                    }
+                    val ini = fila to col
+                    if (inicios[ini]?.let { n -> n != numero } == true) problems.add("$where: numeracion inconsistente en $ini")
+                    inicios[ini] = numero
+                    esperadas.add("${en.lowercase()}@${fila},${col}$dir")
+                }
+                // numeracion clasica
+                inicios.keys.sortedWith(compareBy({ it.first }, { it.second })).forEachIndexed { k, cell ->
+                    if (inicios[cell] != k + 1) problems.add("$where: numeracion no clasica ($cell debia ser ${k + 1})")
+                }
+                // corridas de >= 2 letras == palabras (sin fantasmas)
+                val corridas = HashSet<String>()
+                for ((cell, _) in rejilla) {
+                    for (h in listOf(true, false)) {
+                        val antes = if (h) cell.first to cell.second - 1 else cell.first - 1 to cell.second
+                        if (antes in rejilla) continue
+                        val sb = StringBuilder(); var cur = cell
+                        while (cur in rejilla) { sb.append(rejilla[cur]); cur = if (h) cur.first to cur.second + 1 else cur.first + 1 to cur.second }
+                        if (sb.length >= 2) corridas.add("$sb@${cell.first},${cell.second}${if (h) "H" else "V"}")
+                    }
+                }
+                if (corridas != esperadas) problems.add("$where: corridas que no son palabras (fantasmas) o palabras sin corrida: ${(corridas - esperadas) + (esperadas - corridas)}")
+                // conectado
+                if (rejilla.isNotEmpty()) {
+                    val vistos = HashSet<Pair<Int, Int>>()
+                    val pila = ArrayDeque<Pair<Int, Int>>(); pila.add(rejilla.keys.first())
+                    while (pila.isNotEmpty()) {
+                        val z = pila.removeLast()
+                        if (!vistos.add(z)) continue
+                        for (n in listOf(z.first + 1 to z.second, z.first - 1 to z.second, z.first to z.second + 1, z.first to z.second - 1)) if (n in rejilla) pila.add(n)
+                    }
+                    if (vistos.size != rejilla.size) problems.add("$where: rejilla no conectada")
                 }
             }
         }
@@ -799,8 +941,8 @@ android {
         applicationId = "com.ferolabs.hablo"
         minSdk = 26
         targetSdk = 35
-        versionCode = 16
-        versionName = "0.9.7"
+        versionCode = 17
+        versionName = "0.9.8"
 
         // Solo el procesador del S25 Ultra. De paso el APK deja de llevar las
         // copias de sherpa-onnx y ONNX Runtime para x86/armv7 (~100 MB menos).

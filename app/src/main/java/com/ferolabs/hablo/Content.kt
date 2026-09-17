@@ -333,6 +333,64 @@ data class Historia(
 data class Tanda(val id: String, val level: String, val title: String, val historias: List<Historia>)
 
 /**
+ * Un par mínimo de la pantalla de Oído (assets/content/oido.json, Cowork
+ * 17-09): dos palabras que solo cambian en un sonido y una frase NEUTRA con
+ * un hueco `___` donde caben las dos, para que el sentido no delate cuál sonó.
+ */
+data class ParOido(val a: String, val b: String, val frase: String) {
+    fun con(palabra: String): String = frase.replace("___", palabra)
+}
+
+/**
+ * Un bloque de Oído: un contraste (ship/sheep, b/v, la h…), su explicación en
+ * español, de 6 a 10 pares y una frase para DECIR al final con el jurado de
+ * [sound]: oír la diferencia no garantiza decirla (r = 0,31), por eso cada
+ * bloque cierra hablando.
+ */
+data class BloqueOido(
+    val id: String,
+    val title: String,
+    val level: String,
+    val contraste: String,
+    val explicacion: String,
+    val hablar: String,
+    val sound: Sound,
+    val pares: List<ParOido>
+)
+
+/**
+ * Un ítem del dictado de números (assets/content/dictado.json): la tarea
+ * literal de Aptis Listening parte 1. [modo] "escribir" (se compara con
+ * [answer] y [accept] con la regla ESTRICTA de [Correccion.dictado]: «$6.50»
+ * no es «$650») o "elegir" (3 [options], las confusiones clásicas: 13/30,
+ * quarter to/past, fecha americana). El [audio] va en palabras para que
+ * Piper lo lea como se dice.
+ */
+data class ItemDictado(
+    val id: String,
+    val tipo: String,
+    val level: String,
+    val modo: String,
+    val audio: String,
+    val preguntaEs: String,
+    val answer: String,
+    val accept: List<String>,
+    val options: List<String>,
+    val tip: String
+) {
+    val escribir: Boolean get() = modo == "escribir"
+
+    companion object {
+        /** Los tipos en el orden en que se listan, con su nombre en pantalla. */
+        val TIPOS = listOf(
+            "numero" to "Números", "telefono" to "Teléfonos", "hora" to "Horas", "fecha" to "Fechas",
+            "precio" to "Precios", "deletreo" to "Deletreos", "direccion" to "Direcciones"
+        )
+        fun nombreTipo(tipo: String): String = TIPOS.firstOrNull { it.first == tipo }?.second ?: tipo
+    }
+}
+
+/**
  * Carga y guarda el curso. Es un objeto único porque el contenido no cambia
  * durante la sesión: se lee una vez al arrancar la app.
  */
@@ -344,6 +402,18 @@ object Course {
 
     /** Bancos de vocabulario del contrarreloj (opcional: sin el archivo, la lista queda vacía). */
     var bancos: List<Banco> = emptyList()
+        private set
+
+    /** Los bloques de la pantalla de Oído (assets/content/oido.json; opcional). */
+    var oido: List<BloqueOido> = emptyList()
+        private set
+
+    /** El dictado de números (assets/content/dictado.json; opcional). */
+    var dictado: List<ItemDictado> = emptyList()
+        private set
+
+    /** Los crucigramas (assets/content/crucigramas.json; opcional). Ver Crucigrama.kt. */
+    var crucigramas: List<Crucigrama> = emptyList()
         private set
 
     /** El Modo Aptis (assets/content/aptis-*.json; sin aptis-pistas.json no hay modo). Ver Aptis.kt. */
@@ -382,6 +452,21 @@ object Course {
             }
             tandas = try {
                 parseTandas(JSONObject(readAsset(context, "content/historias.json")).getJSONArray("tandas"))
+            } catch (e: java.io.FileNotFoundException) {
+                emptyList()
+            }
+            oido = try {
+                parseOido(JSONObject(readAsset(context, "content/oido.json")).getJSONArray("bloques"))
+            } catch (e: java.io.FileNotFoundException) {
+                emptyList()
+            }
+            dictado = try {
+                parseDictado(JSONObject(readAsset(context, "content/dictado.json")).getJSONArray("items"))
+            } catch (e: java.io.FileNotFoundException) {
+                emptyList()
+            }
+            crucigramas = try {
+                parseCrucigramas(JSONObject(readAsset(context, "content/crucigramas.json")).getJSONArray("crucigramas"))
             } catch (e: java.io.FileNotFoundException) {
                 emptyList()
             }
@@ -456,6 +541,135 @@ object Course {
                 )
             }
             Tanda(req(to, "id", whereT), req(to, "level", whereT), req(to, "title", whereT), historias)
+        }
+    }
+
+    /**
+     * oido.json: bloques con 6-10 pares de palabras SUELTAS distintas y una frase
+     * con exactamente un `___`; `sound` como en los drills (regla dura 5: decide
+     * el jurado del "hablar" final). Mismas reglas que validar_extra.py de Cowork.
+     */
+    fun parseOido(arr: JSONArray): List<BloqueOido> {
+        val ids = HashSet<String>()
+        return (0 until arr.length()).map { i ->
+            val o = arr.getJSONObject(i)
+            val where = "oido.json, bloque ${i + 1}"
+            val id = req(o, "id", where)
+            if (!ids.add(id)) throw IllegalArgumentException("$where: id repetido \"$id\"")
+            val pa = o.optJSONArray("pares") ?: throw IllegalArgumentException("$where: falta \"pares\"")
+            // Cowork pidió 6-10; el mínimo baja a 4 porque la medición con Piper (oir_oido.py) descarta
+            // pares y Cowork los repone después: un bloque corto vale más que uno que miente.
+            if (pa.length() < 4 || pa.length() > 10) throw IllegalArgumentException("$where: ${pa.length()} pares (se pidió 6-10; mínimo 4 mientras se reponen los descartados)")
+            val vistos = HashSet<String>()
+            val pares = (0 until pa.length()).map { j ->
+                val p = pa.getJSONObject(j)
+                val a = p.optString("a").trim(); val b = p.optString("b").trim(); val frase = p.optString("frase").trim()
+                if (a.isBlank() || b.isBlank() || a.equals(b, true) || a.contains(' ') || b.contains(' ')) {
+                    throw IllegalArgumentException("$where, par ${j + 1}: mal formado (\"$a\" / \"$b\": dos palabras sueltas y distintas)")
+                }
+                if (!vistos.add(a.lowercase() + "/" + b.lowercase())) throw IllegalArgumentException("$where: par repetido $a/$b")
+                if (frase.split("___").size != 2) throw IllegalArgumentException("$where, par $a/$b: la frase necesita exactamente un ___")
+                ParOido(a, b, frase)
+            }
+            BloqueOido(
+                id, req(o, "title", where), req(o, "level", where), req(o, "contraste", where),
+                req(o, "explicacion", where), req(o, "hablar", where), requireSound(o, where), pares
+            )
+        }
+    }
+
+    /** dictado.json: ítems `escribir` (answer + accept) o `elegir` (3 options distintas con answer entre ellas). */
+    fun parseDictado(arr: JSONArray): List<ItemDictado> {
+        val ids = HashSet<String>()
+        return (0 until arr.length()).map { i ->
+            val o = arr.getJSONObject(i)
+            val where = "dictado.json, ítem ${i + 1}"
+            val id = req(o, "id", where)
+            if (!ids.add(id)) throw IllegalArgumentException("$where: id repetido \"$id\"")
+            val modo = req(o, "modo", where)
+            val audio = req(o, "audio", where)
+            if (audio.any { it.isDigit() }) throw IllegalArgumentException("$where: el audio lleva cifras; escríbelo en palabras para que Piper lo lea como se dice")
+            val answer = req(o, "answer", where)
+            val accept = o.optJSONArray("accept")?.let { a -> (0 until a.length()).map { a.getString(it).trim() } } ?: emptyList()
+            val options = o.optJSONArray("options")?.let { a -> (0 until a.length()).map { a.getString(it).trim() } } ?: emptyList()
+            when (modo) {
+                "escribir" -> {
+                    val vistas = hashSetOf(Correccion.dictado(answer))
+                    for (a in accept) if (a.isBlank() || !vistas.add(Correccion.dictado(a))) throw IllegalArgumentException("$where: accept repite \"$a\"")
+                }
+                "elegir" -> {
+                    if (options.size != 3 || options.toSet().size != 3) throw IllegalArgumentException("$where: hacen falta 3 opciones distintas")
+                    if (answer !in options) throw IllegalArgumentException("$where: answer fuera de options")
+                }
+                else -> throw IllegalArgumentException("$where: modo \"$modo\" (escribir o elegir)")
+            }
+            ItemDictado(
+                id, req(o, "tipo", where), req(o, "level", where), modo, audio,
+                req(o, "pregunta_es", where), answer, accept, options, req(o, "tip", where)
+            )
+        }
+    }
+
+    /**
+     * crucigramas.json: rejillas de hasta 10 × 10 con 5-8 palabras de un solo
+     * banco. Las mismas reglas que validar_cruci.py de Cowork: ninguna casilla
+     * con dos letras distintas, nada fuera de la rejilla, toda corrida de dos o
+     * más letras es una palabra de la lista (sin "fantasmas"), y la numeración
+     * es la clásica (por orden de lectura de las casillas de inicio).
+     */
+    fun parseCrucigramas(arr: JSONArray): List<Crucigrama> {
+        val ids = HashSet<String>()
+        return (0 until arr.length()).map { i ->
+            val o = arr.getJSONObject(i)
+            val where = "crucigramas.json, crucigrama ${i + 1}"
+            val id = req(o, "id", where)
+            if (!ids.add(id)) throw IllegalArgumentException("$where: id repetido \"$id\"")
+            val filas = o.optInt("filas"); val columnas = o.optInt("columnas")
+            if (filas !in 2..10 || columnas !in 2..10) throw IllegalArgumentException("$where: rejilla de $filas × $columnas (como mucho 10 × 10)")
+            val pa = o.optJSONArray("palabras") ?: throw IllegalArgumentException("$where: falta \"palabras\"")
+            if (pa.length() < 5 || pa.length() > 8) throw IllegalArgumentException("$where: ${pa.length()} palabras (se pidió 5-8)")
+            val palabras = (0 until pa.length()).map { j ->
+                val p = pa.getJSONObject(j)
+                val en = p.optString("en").trim(); val pista = p.optString("pista").trim()
+                val dir = p.optString("dir").trim().uppercase()
+                if (en.isBlank() || pista.isBlank() || dir !in listOf("H", "V")) throw IllegalArgumentException("$where, palabra ${j + 1}: mal formada")
+                if (!en.all { it.isLetter() }) throw IllegalArgumentException("$where: «$en» tiene algo que no es letra")
+                PalabraCruci(p.optInt("numero"), dir[0], p.optInt("fila", -1), p.optInt("col", -1), en, pista)
+            }
+            val cruci = Crucigrama(id, req(o, "title", where), req(o, "level", where), req(o, "banco", where), filas, columnas, palabras)
+            val rejilla = HashMap<Celda, Char>()
+            val inicios = HashMap<Celda, Int>()
+            for (p in palabras) {
+                p.celdas.forEachIndexed { k, c ->
+                    if (c.fila !in 0 until filas || c.col !in 0 until columnas) throw IllegalArgumentException("$where: «${p.en}» se sale de la rejilla")
+                    val ch = p.en[k].lowercaseChar()
+                    val previa = rejilla[c]
+                    if (previa != null && previa != ch) throw IllegalArgumentException("$where: choque de letras en ${c.clave} («${p.en}»)")
+                    rejilla[c] = ch
+                }
+                val ini = Celda(p.fila, p.col)
+                val n = inicios[ini]
+                if (n != null && n != p.numero) throw IllegalArgumentException("$where: numeración inconsistente en ${ini.clave}")
+                inicios[ini] = p.numero
+            }
+            if (palabras.map { it.en.lowercase() }.toSet().size != palabras.size) throw IllegalArgumentException("$where: palabra repetida")
+            // numeración clásica: 1, 2, 3… por orden de lectura de las casillas de inicio
+            val ordenadas = inicios.keys.sortedWith(compareBy({ it.fila }, { it.col }))
+            ordenadas.forEachIndexed { k, c -> if (inicios[c] != k + 1) throw IllegalArgumentException("$where: numeración no clásica (${c.clave} debía ser ${k + 1})") }
+            // corridas de ≥ 2 letras = exactamente las palabras (sin fantasmas)
+            val corridas = HashSet<String>()
+            for ((c, _) in rejilla) {
+                for (h in listOf(true, false)) {
+                    val antes = if (h) Celda(c.fila, c.col - 1) else Celda(c.fila - 1, c.col)
+                    if (antes in rejilla) continue
+                    val sb = StringBuilder(); var cur = c
+                    while (cur in rejilla) { sb.append(rejilla[cur]); cur = if (h) Celda(cur.fila, cur.col + 1) else Celda(cur.fila + 1, cur.col) }
+                    if (sb.length >= 2) corridas.add("${sb}@${c.clave}${if (h) "H" else "V"}")
+                }
+            }
+            val esperadas = palabras.map { "${it.en.lowercase()}@${it.fila},${it.col}${it.dir}" }.toSet()
+            if (corridas != esperadas) throw IllegalArgumentException("$where: hay corridas que no son palabras (fantasmas) o palabras que no forman corrida: ${(corridas - esperadas) + (esperadas - corridas)}")
+            cruci
         }
     }
 

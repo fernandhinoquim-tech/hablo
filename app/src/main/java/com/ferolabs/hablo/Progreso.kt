@@ -457,6 +457,7 @@ class Progreso(context: Context) {
         "escribir" -> "escribir en inglés"
         "completar" -> "completar el hueco"
         "oído" -> "par mínimo (oído)"
+        "números" -> "dictado de números"
         else -> tipo
     }
 

@@ -53,7 +53,12 @@ fun HomeScreen(
     onHistorias: () -> Unit = {},
     /** Etapa 5: el Modo Aptis va como sección aparte (decisión de Fero). */
     aptis: Aptis? = null,
-    onAptis: () -> Unit = {}
+    onAptis: () -> Unit = {},
+    /** Oído (pares mínimos), dictado de números y crucigramas (17-09). */
+    onOido: () -> Unit = {},
+    onDictado: () -> Unit = {},
+    crucigramas: Crucigramas? = null,
+    onCrucigramas: () -> Unit = {}
 ) {
     val accent = Color(teacher.color)
     // Repaso de hoy: qué toca del mazo y cuántos errores propios hay para corregir.
@@ -292,6 +297,79 @@ fun HomeScreen(
                             style = MaterialTheme.typography.bodyMedium, color = InkSoft
                         )
                     }
+                }
+            }
+        }
+
+        // --- Oído y dictado de números (17-09): dos tarjetas, solo si hay datos ------
+        if (Course.oido.isNotEmpty() || Course.dictado.isNotEmpty()) {
+            item {
+                Row(horizontalArrangement = Arrangement.spacedBy(12.dp), modifier = Modifier.fillMaxWidth()) {
+                    if (Course.oido.isNotEmpty()) {
+                        val hechos = remember(refreshKey) { Course.oido.count { store.oidoResultado(it.id) != null } }
+                        Column(
+                            modifier = Modifier
+                                .weight(1f)
+                                .background(Color.White, RoundedCornerShape(16.dp))
+                                .border(1.dp, accent.copy(alpha = 0.35f), RoundedCornerShape(16.dp))
+                                .clickable { onOido() }
+                                .padding(14.dp)
+                        ) {
+                            Text("👂 Oído", style = MaterialTheme.typography.titleMedium)
+                            Text(
+                                "¿Ship o sheep? Con las cuatro voces · $hechos de ${Course.oido.size} bloques",
+                                style = MaterialTheme.typography.bodyMedium, color = InkSoft
+                            )
+                        }
+                    }
+                    if (Course.dictado.isNotEmpty()) {
+                        val hechos = remember(refreshKey) { Course.dictado.count { store.dictadoHecho(it.id) } }
+                        Column(
+                            modifier = Modifier
+                                .weight(1f)
+                                .background(Color.White, RoundedCornerShape(16.dp))
+                                .border(1.dp, accent.copy(alpha = 0.35f), RoundedCornerShape(16.dp))
+                                .clickable { onDictado() }
+                                .padding(14.dp)
+                        ) {
+                            Text("🔢 Dictado", style = MaterialTheme.typography.titleMedium)
+                            Text(
+                                "Números, horas, precios y fechas al oído · $hechos de ${Course.dictado.size}",
+                                style = MaterialTheme.typography.bodyMedium, color = InkSoft
+                            )
+                        }
+                    }
+                }
+            }
+        }
+
+        if (Course.crucigramas.isNotEmpty()) {
+            item {
+                val hechos = remember(refreshKey) { crucigramas?.hechos() ?: 0 }
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(Color.White, RoundedCornerShape(16.dp))
+                        .border(1.dp, accent.copy(alpha = 0.35f), RoundedCornerShape(16.dp))
+                        .clickable { onCrucigramas() }
+                        .padding(16.dp)
+                ) {
+                    Box(
+                        contentAlignment = Alignment.Center,
+                        modifier = Modifier.size(46.dp).background(Color(teacher.softColor), CircleShape)
+                    ) {
+                        Text("✏️", style = MaterialTheme.typography.titleLarge)
+                    }
+                    Spacer(Modifier.size(14.dp))
+                    Column(modifier = Modifier.weight(1f)) {
+                        Text("Crucigramas", style = MaterialTheme.typography.titleMedium)
+                        Text(
+                            "Pista en español, palabra en inglés; sin reloj · $hechos de ${Course.crucigramas.size}",
+                            style = MaterialTheme.typography.bodyMedium, color = InkSoft
+                        )
+                    }
+                    Text("›", style = MaterialTheme.typography.headlineMedium, color = accent)
                 }
             }
         }

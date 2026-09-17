@@ -1,0 +1,1146 @@
+{
+  "items": [
+    {
+      "id": "dict-001",
+      "tipo": "numero",
+      "level": "A1",
+      "modo": "escribir",
+      "audio": "I have thirteen cousins.",
+      "pregunta_es": "Escribe con cifras cuántos primos tiene.",
+      "answer": "13",
+      "accept": [],
+      "tip": "Thirteen lleva el acento al final (thir-TEEN) y una n clara; thirty lo lleva al inicio (THIR-ty)."
+    },
+    {
+      "id": "dict-002",
+      "tipo": "numero",
+      "level": "A1",
+      "modo": "escribir",
+      "audio": "There are fifty students in the class.",
+      "pregunta_es": "Escribe con cifras cuántos estudiantes hay.",
+      "answer": "50",
+      "accept": [],
+      "tip": "Fifty se acentúa al inicio (FIF-ty); fifteen, al final (fif-TEEN)."
+    },
+    {
+      "id": "dict-003",
+      "tipo": "numero",
+      "level": "A1",
+      "modo": "escribir",
+      "audio": "My son is fourteen years old.",
+      "pregunta_es": "Escribe con cifras la edad del hijo.",
+      "answer": "14",
+      "accept": [],
+      "tip": "Fourteen se acentúa al final (four-TEEN) y tiene una n clara; forty (40) se acentúa al inicio (FOR-ty)."
+    },
+    {
+      "id": "dict-004",
+      "tipo": "numero",
+      "level": "A1",
+      "modo": "escribir",
+      "audio": "Please take bus number eighteen.",
+      "pregunta_es": "Escribe con cifras el número del bus.",
+      "answer": "18",
+      "accept": [],
+      "tip": "Eighteen (18) termina en una n clara; eighty (80) termina en un sonido corto como «i»."
+    },
+    {
+      "id": "dict-005",
+      "tipo": "numero",
+      "level": "A2",
+      "modo": "escribir",
+      "audio": "The hotel has one hundred and twenty rooms.",
+      "pregunta_es": "Escribe con cifras cuántas habitaciones tiene el hotel.",
+      "answer": "120",
+      "accept": [
+        "one hundred twenty",
+        "one hundred and twenty"
+      ],
+      "tip": "En EE. UU. es común decir «one hundred twenty» sin and; con and también es correcto."
+    },
+    {
+      "id": "dict-006",
+      "tipo": "numero",
+      "level": "A2",
+      "modo": "escribir",
+      "audio": "About three thousand people came to the concert.",
+      "pregunta_es": "Escribe con cifras cuántas personas fueron al concierto.",
+      "answer": "3000",
+      "accept": [
+        "three thousand"
+      ],
+      "tip": "Thousand = mil. En inglés los miles se separan con coma: 3,000."
+    },
+    {
+      "id": "dict-007",
+      "tipo": "numero",
+      "level": "A2",
+      "modo": "escribir",
+      "audio": "It's two hundred and fifteen miles to Chicago.",
+      "pregunta_es": "Escribe con cifras cuántas millas hay hasta Chicago.",
+      "answer": "215",
+      "accept": [
+        "two hundred fifteen",
+        "two hundred and fifteen"
+      ],
+      "tip": "Two hundred fifteen = 215; no lo confundas con two hundred fifty (250)."
+    },
+    {
+      "id": "dict-008",
+      "tipo": "numero",
+      "level": "A1",
+      "modo": "elegir",
+      "audio": "Please open your books to page forty.",
+      "pregunta_es": "¿En qué página hay que abrir el libro?",
+      "options": [
+        "14",
+        "40",
+        "4"
+      ],
+      "answer": "40",
+      "tip": "Forty (40) se acentúa al inicio: FOR-ty."
+    },
+    {
+      "id": "dict-009",
+      "tipo": "numero",
+      "level": "A1",
+      "modo": "elegir",
+      "audio": "I need seventeen chairs for the party.",
+      "pregunta_es": "¿Cuántas sillas necesita?",
+      "options": [
+        "17",
+        "70",
+        "7"
+      ],
+      "answer": "17",
+      "tip": "Seventeen (17) termina en -teen, con acento al final."
+    },
+    {
+      "id": "dict-010",
+      "tipo": "numero",
+      "level": "A1",
+      "modo": "elegir",
+      "audio": "My grandmother is ninety years old.",
+      "pregunta_es": "¿Cuántos años tiene la abuela?",
+      "options": [
+        "19",
+        "90",
+        "9"
+      ],
+      "answer": "90",
+      "tip": "Ninety (90) se acentúa al inicio y termina en «i»; nineteen (19) termina en -teen."
+    },
+    {
+      "id": "dict-011",
+      "tipo": "numero",
+      "level": "A1",
+      "modo": "elegir",
+      "audio": "We have sixteen players on the team.",
+      "pregunta_es": "¿Cuántos jugadores hay en el equipo?",
+      "options": [
+        "16",
+        "60",
+        "6"
+      ],
+      "answer": "16",
+      "tip": "Sixteen (16) tiene la n final clara; sixty (60) no."
+    },
+    {
+      "id": "dict-012",
+      "tipo": "numero",
+      "level": "A2",
+      "modo": "elegir",
+      "audio": "Hi, this is Mark. The school trip is for thirty-three students, so please book one bus.",
+      "pregunta_es": "¿Para cuántos estudiantes es el paseo?",
+      "options": [
+        "33",
+        "13",
+        "30"
+      ],
+      "answer": "33",
+      "tip": "Thirty-three = 30 + 3. Escucha las dos partes del número."
+    },
+    {
+      "id": "dict-013",
+      "tipo": "numero",
+      "level": "A2",
+      "modo": "elegir",
+      "audio": "Welcome aboard. This train has twelve cars, and the dining car is car number seven.",
+      "pregunta_es": "¿Cuántos vagones tiene el tren?",
+      "options": [
+        "12",
+        "20",
+        "7"
+      ],
+      "answer": "12",
+      "tip": "Twelve (12) es una sola sílaba; twenty (20) tiene dos: TWEN-ty. El 7 es el número del vagón comedor, no el total."
+    },
+    {
+      "id": "dict-014",
+      "tipo": "numero",
+      "level": "A2",
+      "modo": "elegir",
+      "audio": "Attention, please. Flight four hundred and eighteen to Denver is now boarding.",
+      "pregunta_es": "¿Qué número tiene el vuelo?",
+      "options": [
+        "418",
+        "480",
+        "408"
+      ],
+      "answer": "418",
+      "tip": "Four hundred and eighteen = 418; eighty sería 480."
+    },
+    {
+      "id": "dict-015",
+      "tipo": "telefono",
+      "level": "A1",
+      "modo": "escribir",
+      "audio": "My phone number is five five five, oh one four two.",
+      "pregunta_es": "Escribe el número con cifras, como 555-0000.",
+      "answer": "555-0142",
+      "accept": [
+        "5550142"
+      ],
+      "tip": "En inglés el cero muchas veces se dice «oh», como la letra O."
+    },
+    {
+      "id": "dict-016",
+      "tipo": "telefono",
+      "level": "A1",
+      "modo": "escribir",
+      "audio": "The number is five five five, one two three four.",
+      "pregunta_es": "Escribe el número con cifras, como 555-0000.",
+      "answer": "555-1234",
+      "accept": [
+        "5551234"
+      ],
+      "tip": "Los números de teléfono se dicen dígito por dígito, con una pausa entre los grupos."
+    },
+    {
+      "id": "dict-017",
+      "tipo": "telefono",
+      "level": "A2",
+      "modo": "escribir",
+      "audio": "Hi, it's Laura from the dentist's office. Please call us back at two one two, five five five, oh nine three six.",
+      "pregunta_es": "Escribe con cifras el número al que debes llamar, como 212-555-0000.",
+      "answer": "212-555-0936",
+      "accept": [
+        "2125550936"
+      ],
+      "tip": "Oh = 0. Primero va el código de área (tres cifras), luego tres y luego cuatro."
+    },
+    {
+      "id": "dict-018",
+      "tipo": "telefono",
+      "level": "A2",
+      "modo": "escribir",
+      "audio": "My cell number is three one oh, five five five, seven seven two oh.",
+      "pregunta_es": "Escribe con cifras el número de celular, como 212-555-0000.",
+      "answer": "310-555-7720",
+      "accept": [
+        "3105557720"
+      ],
+      "tip": "«Oh» al final también es un cero: seven seven two oh = 7720."
+    },
+    {
+      "id": "dict-019",
+      "tipo": "telefono",
+      "level": "A1",
+      "modo": "elegir",
+      "audio": "Call me at five five five, oh four eight oh.",
+      "pregunta_es": "¿Cuál es el número?",
+      "options": [
+        "555-0480",
+        "555-4080",
+        "555-0408"
+      ],
+      "answer": "555-0480",
+      "tip": "«Oh» es cero. Anota los dígitos en el orden exacto en que los oyes."
+    },
+    {
+      "id": "dict-020",
+      "tipo": "telefono",
+      "level": "A2",
+      "modo": "elegir",
+      "audio": "Hello, this is Green Park Hotel. To make a reservation, please call eight hundred, five five five, oh one one nine.",
+      "pregunta_es": "¿A qué número debes llamar para reservar?",
+      "options": [
+        "800-555-0119",
+        "800-555-1019",
+        "800-555-0190"
+      ],
+      "answer": "800-555-0119",
+      "tip": "Eight hundred = 800, un código típico de números gratuitos en EE. UU."
+    },
+    {
+      "id": "dict-021",
+      "tipo": "telefono",
+      "level": "A2",
+      "modo": "elegir",
+      "audio": "Hi, it's Tom. My new number is six one seven, five five five, oh eight three oh. Text me later.",
+      "pregunta_es": "¿Cuál es el nuevo número de Tom?",
+      "options": [
+        "617-555-0830",
+        "617-555-8030",
+        "670-555-0830"
+      ],
+      "answer": "617-555-0830",
+      "tip": "Six one seven son tres dígitos (617), no «six seventy»."
+    },
+    {
+      "id": "dict-022",
+      "tipo": "telefono",
+      "level": "A2",
+      "modo": "elegir",
+      "audio": "The pharmacy number is four one five, five five five, twenty-six fifty.",
+      "pregunta_es": "¿Cuál es el número de la farmacia?",
+      "options": [
+        "415-555-2650",
+        "415-555-2615",
+        "415-555-6250"
+      ],
+      "answer": "415-555-2650",
+      "tip": "A veces los últimos cuatro dígitos se dicen en pares: twenty-six fifty = 2650. Fifty (50), no fifteen (15)."
+    },
+    {
+      "id": "dict-023",
+      "tipo": "hora",
+      "level": "A1",
+      "modo": "escribir",
+      "audio": "The class starts at seven thirty.",
+      "pregunta_es": "Escribe la hora con cifras, como 7:30.",
+      "answer": "7:30",
+      "accept": [
+        "seven thirty",
+        "half past seven"
+      ],
+      "tip": "Seven thirty = 7:30. Thirty (30) se acentúa al inicio; thirteen (13), al final."
+    },
+    {
+      "id": "dict-024",
+      "tipo": "hora",
+      "level": "A1",
+      "modo": "escribir",
+      "audio": "The store opens at nine o'clock.",
+      "pregunta_es": "Escribe la hora con cifras, como 7:30.",
+      "answer": "9:00",
+      "accept": [
+        "9",
+        "nine o'clock"
+      ],
+      "tip": "O'clock se usa solo con horas exactas: nine o'clock = 9:00."
+    },
+    {
+      "id": "dict-025",
+      "tipo": "hora",
+      "level": "A1",
+      "modo": "escribir",
+      "audio": "Lunch is at twelve fifteen.",
+      "pregunta_es": "Escribe la hora con cifras, como 7:30.",
+      "answer": "12:15",
+      "accept": [
+        "twelve fifteen",
+        "quarter past twelve",
+        "a quarter past twelve"
+      ],
+      "tip": "Fifteen (15) termina en -teen; twelve fifty sería 12:50."
+    },
+    {
+      "id": "dict-026",
+      "tipo": "hora",
+      "level": "A1",
+      "modo": "escribir",
+      "audio": "The movie starts at eight forty.",
+      "pregunta_es": "Escribe la hora con cifras, como 7:30.",
+      "answer": "8:40",
+      "accept": [
+        "eight forty"
+      ],
+      "tip": "Forty (40) se acentúa al inicio; fourteen (14), al final."
+    },
+    {
+      "id": "dict-027",
+      "tipo": "hora",
+      "level": "A2",
+      "modo": "escribir",
+      "audio": "The meeting is at a quarter to eleven.",
+      "pregunta_es": "Escribe la hora con cifras, como 7:30.",
+      "answer": "10:45",
+      "accept": [
+        "ten forty-five",
+        "quarter to eleven",
+        "a quarter to eleven"
+      ],
+      "tip": "A quarter to eleven = faltan 15 minutos para las 11, o sea 10:45 (no 11:15)."
+    },
+    {
+      "id": "dict-028",
+      "tipo": "hora",
+      "level": "A2",
+      "modo": "escribir",
+      "audio": "The train leaves at six oh five in the evening.",
+      "pregunta_es": "Escribe la hora con cifras, como 7:30.",
+      "answer": "6:05",
+      "accept": [
+        "six oh five",
+        "6:05 pm",
+        "18:05",
+        "6:05pm"
+      ],
+      "tip": "Six oh five = 6:05: la «oh» es el cero de los minutos."
+    },
+    {
+      "id": "dict-029",
+      "tipo": "hora",
+      "level": "A2",
+      "modo": "escribir",
+      "audio": "Your appointment is at a quarter after two.",
+      "pregunta_es": "Escribe la hora con cifras, como 7:30.",
+      "answer": "2:15",
+      "accept": [
+        "two fifteen",
+        "quarter after two",
+        "a quarter after two",
+        "quarter past two",
+        "a quarter past two"
+      ],
+      "tip": "En EE. UU. se dice «a quarter after» (y también «past») para las y cuarto: 2:15."
+    },
+    {
+      "id": "dict-030",
+      "tipo": "hora",
+      "level": "A1",
+      "modo": "elegir",
+      "audio": "The party is at three thirty.",
+      "pregunta_es": "¿A qué hora es la fiesta?",
+      "options": [
+        "3:30",
+        "3:13",
+        "2:30"
+      ],
+      "answer": "3:30",
+      "tip": "Three thirty = 3:30. Thirty se acentúa al inicio."
+    },
+    {
+      "id": "dict-031",
+      "tipo": "hora",
+      "level": "A1",
+      "modo": "elegir",
+      "audio": "The bank opens at eight fifteen.",
+      "pregunta_es": "¿A qué hora abre el banco?",
+      "options": [
+        "8:15",
+        "8:50",
+        "8:05"
+      ],
+      "answer": "8:15",
+      "tip": "Fifteen (15) tiene acento al final y una n clara; fifty (50) no."
+    },
+    {
+      "id": "dict-032",
+      "tipo": "hora",
+      "level": "A2",
+      "modo": "elegir",
+      "audio": "Hi, it's Sam. The game starts at a quarter to eight, so let's meet at seven thirty.",
+      "pregunta_es": "¿A qué hora empieza el partido?",
+      "options": [
+        "7:45",
+        "8:15",
+        "7:30"
+      ],
+      "answer": "7:45",
+      "tip": "A quarter to eight = 7:45. Ojo: 7:30 es la hora de encuentro, no la del partido."
+    },
+    {
+      "id": "dict-033",
+      "tipo": "hora",
+      "level": "A2",
+      "modo": "elegir",
+      "audio": "Attention, passengers. The bus to Boston is late. It will now leave at ten fifty.",
+      "pregunta_es": "¿A qué hora sale ahora el bus?",
+      "options": [
+        "10:50",
+        "10:15",
+        "10:05"
+      ],
+      "answer": "10:50",
+      "tip": "Fifty (50) se acentúa al inicio: FIF-ty."
+    },
+    {
+      "id": "dict-034",
+      "tipo": "hora",
+      "level": "A2",
+      "modo": "elegir",
+      "audio": "Hello, this is Doctor Smith's office. We need to move your visit to a quarter after four on Friday.",
+      "pregunta_es": "¿A qué hora es la nueva cita?",
+      "options": [
+        "4:15",
+        "3:45",
+        "4:45"
+      ],
+      "answer": "4:15",
+      "tip": "A quarter after four = 4:15; a quarter to four sería 3:45."
+    },
+    {
+      "id": "dict-035",
+      "tipo": "hora",
+      "level": "A2",
+      "modo": "elegir",
+      "audio": "Good morning. Today the pool is open from nine in the morning until eight thirty at night.",
+      "pregunta_es": "¿Hasta qué hora está abierta la piscina?",
+      "options": [
+        "8:30 p. m.",
+        "9:00 a. m.",
+        "8:30 a. m."
+      ],
+      "answer": "8:30 p. m.",
+      "tip": "At night = de la noche (p. m.); in the morning = de la mañana (a. m.)."
+    },
+    {
+      "id": "dict-036",
+      "tipo": "hora",
+      "level": "A2",
+      "modo": "elegir",
+      "audio": "Your flight to Miami leaves at noon, but please be at the airport by ten forty.",
+      "pregunta_es": "¿A qué hora tienes que estar en el aeropuerto?",
+      "options": [
+        "10:40",
+        "12:00",
+        "10:14"
+      ],
+      "answer": "10:40",
+      "tip": "Noon = mediodía (12:00), pero la pregunta es por la llegada al aeropuerto: ten forty."
+    },
+    {
+      "id": "dict-037",
+      "tipo": "fecha",
+      "level": "A1",
+      "modo": "escribir",
+      "audio": "My birthday is on June fifth.",
+      "pregunta_es": "Escribe la fecha en inglés: el mes en palabras y el día en cifras, como June 5.",
+      "answer": "June 5",
+      "accept": [
+        "June 5th",
+        "June fifth",
+        "the fifth of June"
+      ],
+      "tip": "Las fechas se dicen con ordinales (fifth), pero se pueden escribir June 5."
+    },
+    {
+      "id": "dict-038",
+      "tipo": "fecha",
+      "level": "A1",
+      "modo": "escribir",
+      "audio": "The test is on Thursday.",
+      "pregunta_es": "Escribe en inglés el día de la semana.",
+      "answer": "Thursday",
+      "accept": [],
+      "tip": "Thursday (jueves) empieza con th; Tuesday (martes), con t."
+    },
+    {
+      "id": "dict-039",
+      "tipo": "fecha",
+      "level": "A1",
+      "modo": "escribir",
+      "audio": "School starts on September second.",
+      "pregunta_es": "Escribe la fecha en inglés: el mes en palabras y el día en cifras, como June 5.",
+      "answer": "September 2",
+      "accept": [
+        "September 2nd",
+        "September second",
+        "the second of September"
+      ],
+      "tip": "Second (segundo) es el ordinal de two: September second = 2 de septiembre."
+    },
+    {
+      "id": "dict-040",
+      "tipo": "fecha",
+      "level": "A2",
+      "modo": "escribir",
+      "audio": "I was born in nineteen eighty-six.",
+      "pregunta_es": "Escribe el año con cifras, como 1990.",
+      "answer": "1986",
+      "accept": [
+        "nineteen eighty-six"
+      ],
+      "tip": "Los años se dicen en dos pares: nineteen / eighty-six = 1986."
+    },
+    {
+      "id": "dict-041",
+      "tipo": "fecha",
+      "level": "A2",
+      "modo": "escribir",
+      "audio": "The new store opens on March thirteenth.",
+      "pregunta_es": "Escribe la fecha en inglés: el mes en palabras y el día en cifras, como June 5.",
+      "answer": "March 13",
+      "accept": [
+        "March 13th",
+        "March thirteenth",
+        "the thirteenth of March"
+      ],
+      "tip": "Thirteenth (13) lleva acento en -teenth; thirtieth (30) suena distinto: THIR-ti-eth."
+    },
+    {
+      "id": "dict-042",
+      "tipo": "fecha",
+      "level": "A2",
+      "modo": "escribir",
+      "audio": "We moved here in two thousand fifteen.",
+      "pregunta_es": "Escribe el año con cifras, como 1990.",
+      "answer": "2015",
+      "accept": [
+        "two thousand fifteen",
+        "two thousand and fifteen",
+        "twenty fifteen"
+      ],
+      "tip": "Desde el 2010 muchos dicen los años de dos formas: two thousand fifteen o twenty fifteen."
+    },
+    {
+      "id": "dict-043",
+      "tipo": "fecha",
+      "level": "A2",
+      "modo": "escribir",
+      "audio": "The wedding is on October twenty-first, twenty twenty-seven.",
+      "pregunta_es": "Escribe la fecha completa: el mes en palabras, el día y el año en cifras, como May 4, 2026.",
+      "answer": "October 21, 2027",
+      "accept": [
+        "October 21st, 2027",
+        "October twenty-first, 2027",
+        "the twenty-first of October, 2027"
+      ],
+      "tip": "Twenty-first = 21. El año twenty twenty-seven se dice en dos pares: 2027."
+    },
+    {
+      "id": "dict-044",
+      "tipo": "fecha",
+      "level": "A1",
+      "modo": "elegir",
+      "audio": "The concert is on July fourth.",
+      "pregunta_es": "¿Cuándo es el concierto?",
+      "options": [
+        "4 de julio",
+        "14 de julio",
+        "4 de junio"
+      ],
+      "answer": "4 de julio",
+      "tip": "July (julio) termina en «lai»; June (junio) termina en n."
+    },
+    {
+      "id": "dict-045",
+      "tipo": "fecha",
+      "level": "A1",
+      "modo": "elegir",
+      "audio": "My English class is on Tuesday.",
+      "pregunta_es": "¿Qué día es la clase de inglés?",
+      "options": [
+        "martes",
+        "jueves",
+        "miércoles"
+      ],
+      "answer": "martes",
+      "tip": "Tuesday = martes; Thursday = jueves; Wednesday = miércoles."
+    },
+    {
+      "id": "dict-046",
+      "tipo": "fecha",
+      "level": "A2",
+      "modo": "elegir",
+      "audio": "The meeting is on May third.",
+      "pregunta_es": "¿Cómo se escribe esta fecha en formato de EE. UU. (mes/día)?",
+      "options": [
+        "5/3",
+        "3/5",
+        "5/13"
+      ],
+      "answer": "5/3",
+      "tip": "En EE. UU. se escribe primero el mes: 5/3 es May 3 (3 de mayo), no 5 de marzo."
+    },
+    {
+      "id": "dict-047",
+      "tipo": "fecha",
+      "level": "A2",
+      "modo": "elegir",
+      "audio": "Hi, it's Kate. I'm back from Chicago on April twelfth, so let's have dinner that week.",
+      "pregunta_es": "¿Cuándo vuelve Kate? (formato de EE. UU., mes/día)",
+      "options": [
+        "4/12",
+        "12/4",
+        "4/20"
+      ],
+      "answer": "4/12",
+      "tip": "April = mes 4, y en EE. UU. el mes va primero: 4/12. Twelfth es 12; twentieth sería 20."
+    },
+    {
+      "id": "dict-048",
+      "tipo": "fecha",
+      "level": "A2",
+      "modo": "elegir",
+      "audio": "Hello, this is City Library. The book you asked for will be here on August thirtieth.",
+      "pregunta_es": "¿Qué día llega el libro?",
+      "options": [
+        "30 de agosto",
+        "13 de agosto",
+        "30 de octubre"
+      ],
+      "answer": "30 de agosto",
+      "tip": "Thirtieth (30) se acentúa al inicio: THIR-ti-eth; thirteenth (13), en -teenth."
+    },
+    {
+      "id": "dict-049",
+      "tipo": "fecha",
+      "level": "A2",
+      "modo": "elegir",
+      "audio": "My grandfather was born in nineteen fifty.",
+      "pregunta_es": "¿En qué año nació el abuelo?",
+      "options": [
+        "1950",
+        "1915",
+        "1905"
+      ],
+      "answer": "1950",
+      "tip": "Nineteen fifty = 1950. Fifty se acentúa al inicio."
+    },
+    {
+      "id": "dict-050",
+      "tipo": "fecha",
+      "level": "A2",
+      "modo": "elegir",
+      "audio": "The doctor can see you on Wednesday, November fifteenth, at ten.",
+      "pregunta_es": "¿Qué fecha es la cita?",
+      "options": [
+        "miércoles 15 de noviembre",
+        "jueves 15 de noviembre",
+        "miércoles 5 de noviembre"
+      ],
+      "answer": "miércoles 15 de noviembre",
+      "tip": "Wednesday se pronuncia «uénsdei»: la primera d no suena. Fifteenth (15) termina en -teenth; fifth (5) es más corto."
+    },
+    {
+      "id": "dict-051",
+      "tipo": "precio",
+      "level": "A1",
+      "modo": "escribir",
+      "audio": "The ticket is twelve dollars.",
+      "pregunta_es": "Escribe el precio con cifras, como $4.50.",
+      "answer": "$12",
+      "accept": [
+        "12 dollars",
+        "$12.00"
+      ],
+      "tip": "Twelve (12) es una sola sílaba que termina en «lv»; twenty (20) tiene dos: TWEN-ty."
+    },
+    {
+      "id": "dict-052",
+      "tipo": "precio",
+      "level": "A1",
+      "modo": "escribir",
+      "audio": "The coffee is three dollars.",
+      "pregunta_es": "Escribe el precio con cifras, como $4.50.",
+      "answer": "$3",
+      "accept": [
+        "3 dollars",
+        "$3.00"
+      ],
+      "tip": "Three (3) es una sola sílaba; thirteen (13) y thirty (30) tienen dos."
+    },
+    {
+      "id": "dict-053",
+      "tipo": "precio",
+      "level": "A1",
+      "modo": "escribir",
+      "audio": "This T-shirt is fifteen dollars.",
+      "pregunta_es": "Escribe el precio con cifras, como $4.50.",
+      "answer": "$15",
+      "accept": [
+        "15 dollars",
+        "$15.00"
+      ],
+      "tip": "Fifteen (15) se acentúa al final; fifty (50), al inicio."
+    },
+    {
+      "id": "dict-054",
+      "tipo": "precio",
+      "level": "A2",
+      "modo": "escribir",
+      "audio": "That's nine dollars and ninety-nine cents, please.",
+      "pregunta_es": "Escribe el precio con cifras, como $4.50.",
+      "answer": "$9.99",
+      "accept": [
+        "nine ninety-nine",
+        "9 dollars and 99 cents",
+        "9 dollars 99 cents"
+      ],
+      "tip": "Cents = centavos. En el precio escrito van después del punto: $9.99."
+    },
+    {
+      "id": "dict-055",
+      "tipo": "precio",
+      "level": "A2",
+      "modo": "escribir",
+      "audio": "The sandwich is six fifty.",
+      "pregunta_es": "Escribe el precio con cifras, como $4.50.",
+      "answer": "$6.50",
+      "accept": [
+        "six fifty",
+        "6 dollars and 50 cents",
+        "6 dollars 50 cents"
+      ],
+      "tip": "Six fifty es la forma corta de six dollars and fifty cents: $6.50."
+    },
+    {
+      "id": "dict-056",
+      "tipo": "precio",
+      "level": "A2",
+      "modo": "escribir",
+      "audio": "Your total is forty-two dollars and fifteen cents.",
+      "pregunta_es": "Escribe el precio con cifras, como $4.50.",
+      "answer": "$42.15",
+      "accept": [
+        "forty-two fifteen",
+        "42 dollars and 15 cents",
+        "42 dollars 15 cents"
+      ],
+      "tip": "Primero van los dólares (forty-two) y luego los centavos (fifteen): $42.15."
+    },
+    {
+      "id": "dict-057",
+      "tipo": "precio",
+      "level": "A1",
+      "modo": "elegir",
+      "audio": "The book is thirty dollars.",
+      "pregunta_es": "¿Cuánto cuesta el libro?",
+      "options": [
+        "$13",
+        "$30",
+        "$3"
+      ],
+      "answer": "$30",
+      "tip": "Thirty (30) se acentúa al inicio: THIR-ty."
+    },
+    {
+      "id": "dict-058",
+      "tipo": "precio",
+      "level": "A1",
+      "modo": "elegir",
+      "audio": "An apple is fifty cents.",
+      "pregunta_es": "¿Cuánto cuesta una manzana?",
+      "options": [
+        "$0.50",
+        "$0.15",
+        "$50"
+      ],
+      "answer": "$0.50",
+      "tip": "Cents = centavos: fifty cents es medio dólar, no 50 dólares."
+    },
+    {
+      "id": "dict-059",
+      "tipo": "precio",
+      "level": "A2",
+      "modo": "elegir",
+      "audio": "Hi, it's Mike. I found the jacket online. It's on sale for sixty-nine ninety-nine.",
+      "pregunta_es": "¿Cuánto cuesta la chaqueta?",
+      "options": [
+        "$69.99",
+        "$60.99",
+        "$69.19"
+      ],
+      "answer": "$69.99",
+      "tip": "Sixty-nine ninety-nine = $69.99: primero dólares, luego centavos."
+    },
+    {
+      "id": "dict-060",
+      "tipo": "precio",
+      "level": "A2",
+      "modo": "elegir",
+      "audio": "Attention, shoppers. Today a large pizza is only eleven fifty.",
+      "pregunta_es": "¿Cuánto cuesta hoy una pizza grande?",
+      "options": [
+        "$11.50",
+        "$11.15",
+        "$7.50"
+      ],
+      "answer": "$11.50",
+      "tip": "Eleven fifty = $11.50. Eleven (11) empieza con «i»; seven (7), con s."
+    },
+    {
+      "id": "dict-061",
+      "tipo": "precio",
+      "level": "A2",
+      "modo": "elegir",
+      "audio": "The taxi to the airport is about seventy dollars, plus the tip.",
+      "pregunta_es": "¿Cuánto cuesta más o menos el taxi?",
+      "options": [
+        "$70",
+        "$17",
+        "$77"
+      ],
+      "answer": "$70",
+      "tip": "Seventy (70) se acentúa al inicio; seventeen (17), al final."
+    },
+    {
+      "id": "dict-062",
+      "tipo": "precio",
+      "level": "A2",
+      "modo": "elegir",
+      "audio": "Hello, this is the bike shop. Your bike is ready, and the total is one hundred and forty dollars.",
+      "pregunta_es": "¿Cuánto hay que pagar?",
+      "options": [
+        "$140",
+        "$114",
+        "$104"
+      ],
+      "answer": "$140",
+      "tip": "One hundred and forty = 140; one hundred and fourteen sería 114."
+    },
+    {
+      "id": "dict-063",
+      "tipo": "deletreo",
+      "level": "A1",
+      "modo": "escribir",
+      "audio": "My name is Gina. G, I, N, A.",
+      "pregunta_es": "Escribe el nombre tal como lo deletrean.",
+      "answer": "Gina",
+      "accept": [],
+      "tip": "En inglés la G se dice «yi» y la I se dice «ai»."
+    },
+    {
+      "id": "dict-064",
+      "tipo": "deletreo",
+      "level": "A1",
+      "modo": "escribir",
+      "audio": "My last name is Hayes. H, A, Y, E, S.",
+      "pregunta_es": "Escribe el apellido tal como lo deletrean.",
+      "answer": "Hayes",
+      "accept": [],
+      "tip": "H se dice «eich», A se dice «ei», Y se dice «uai» y E se dice «i»."
+    },
+    {
+      "id": "dict-065",
+      "tipo": "deletreo",
+      "level": "A1",
+      "modo": "escribir",
+      "audio": "I'm Jake. J, A, K, E.",
+      "pregunta_es": "Escribe el nombre tal como lo deletrean.",
+      "answer": "Jake",
+      "accept": [],
+      "tip": "J se dice «yei» y A se dice «ei»; no confundas J con G («yi»)."
+    },
+    {
+      "id": "dict-066",
+      "tipo": "deletreo",
+      "level": "A2",
+      "modo": "escribir",
+      "audio": "My email address is W, A, D, E, at mail dot com.",
+      "pregunta_es": "Escribe el correo completo, como ana@mail.com.",
+      "answer": "wade@mail.com",
+      "accept": [
+        "wade at mail dot com"
+      ],
+      "tip": "W se dice «dábel-iu», A «ei» y E «i». «At» es @ y «dot» es el punto."
+    },
+    {
+      "id": "dict-067",
+      "tipo": "deletreo",
+      "level": "A1",
+      "modo": "elegir",
+      "audio": "My name is Lee. L, E, E.",
+      "pregunta_es": "¿Cómo se escribe el nombre?",
+      "options": [
+        "Lee",
+        "Li",
+        "Leigh"
+      ],
+      "answer": "Lee",
+      "tip": "La E en inglés suena como nuestra «i»: E, E se oye «i, i»."
+    },
+    {
+      "id": "dict-068",
+      "tipo": "deletreo",
+      "level": "A1",
+      "modo": "elegir",
+      "audio": "My name is Kyle. K, Y, L, E.",
+      "pregunta_es": "¿Cómo se escribe el nombre?",
+      "options": [
+        "Kyle",
+        "Kile",
+        "Cyle"
+      ],
+      "answer": "Kyle",
+      "tip": "Y se dice «uai» e I se dice «ai»: suenan parecido, escucha la «u» inicial."
+    },
+    {
+      "id": "dict-069",
+      "tipo": "deletreo",
+      "level": "A2",
+      "modo": "elegir",
+      "audio": "Hi, this is Heidi from the bank. That's H, E, I, D, I. Please call me back.",
+      "pregunta_es": "¿Cómo se escribe el nombre?",
+      "options": [
+        "Heidi",
+        "Hiedi",
+        "Haidy"
+      ],
+      "answer": "Heidi",
+      "tip": "E se dice «i» e I se dice «ai»: E, I suena «i, ai»."
+    },
+    {
+      "id": "dict-070",
+      "tipo": "deletreo",
+      "level": "A2",
+      "modo": "elegir",
+      "audio": "Please send the form to Garcia at mail dot com. That's G, A, R, C, I, A.",
+      "pregunta_es": "¿Cuál es el correo?",
+      "options": [
+        "garcia@mail.com",
+        "jarcia@mail.com",
+        "garceia@mail.com"
+      ],
+      "answer": "garcia@mail.com",
+      "tip": "G se dice «yi» y J se dice «yei»; no las confundas."
+    },
+    {
+      "id": "dict-071",
+      "tipo": "direccion",
+      "level": "A1",
+      "modo": "escribir",
+      "audio": "My address is twenty-three Oak Street.",
+      "pregunta_es": "Escribe la dirección: el número con cifras y la calle, como 10 Main Street.",
+      "answer": "23 Oak Street",
+      "accept": [
+        "23 Oak St"
+      ],
+      "tip": "Twenty-three = 23. En inglés el número va antes del nombre de la calle."
+    },
+    {
+      "id": "dict-072",
+      "tipo": "direccion",
+      "level": "A1",
+      "modo": "escribir",
+      "audio": "The school is at forty Park Avenue.",
+      "pregunta_es": "Escribe la dirección: el número con cifras y la calle, como 10 Main Street.",
+      "answer": "40 Park Avenue",
+      "accept": [
+        "40 Park Ave"
+      ],
+      "tip": "Forty (40) se acentúa al inicio; fourteen (14), al final."
+    },
+    {
+      "id": "dict-073",
+      "tipo": "direccion",
+      "level": "A2",
+      "modo": "escribir",
+      "audio": "The office is at fourteen fifty Pine Street, suite two hundred.",
+      "pregunta_es": "Escribe con cifras el número del edificio.",
+      "answer": "1450",
+      "accept": [
+        "fourteen fifty",
+        "one thousand four hundred fifty",
+        "one thousand four hundred and fifty"
+      ],
+      "tip": "Los números de edificio se dicen en pares: fourteen / fifty = 1450."
+    },
+    {
+      "id": "dict-074",
+      "tipo": "direccion",
+      "level": "A2",
+      "modo": "escribir",
+      "audio": "My new address is eighty-one Maple Street, apartment four B.",
+      "pregunta_es": "Escribe solo el apartamento: número y letra, como 7C.",
+      "answer": "4B",
+      "accept": [
+        "4 B",
+        "apartment 4B",
+        "apt 4B",
+        "apartment 4 B",
+        "apt 4 B"
+      ],
+      "tip": "Apartment se abrevia apt. La letra B se dice «bi»."
+    },
+    {
+      "id": "dict-075",
+      "tipo": "direccion",
+      "level": "A2",
+      "modo": "escribir",
+      "audio": "The zip code is nine oh two one oh.",
+      "pregunta_es": "Escribe con cifras el código postal (zip code).",
+      "answer": "90210",
+      "accept": [],
+      "tip": "Los zip codes tienen cinco cifras y se dicen dígito por dígito; «oh» es cero."
+    },
+    {
+      "id": "dict-076",
+      "tipo": "direccion",
+      "level": "A1",
+      "modo": "elegir",
+      "audio": "The hotel is at sixty Main Street.",
+      "pregunta_es": "¿Dónde está el hotel?",
+      "options": [
+        "16 Main Street",
+        "60 Main Street",
+        "6 Main Street"
+      ],
+      "answer": "60 Main Street",
+      "tip": "Sixty (60) se acentúa al inicio; sixteen (16), al final."
+    },
+    {
+      "id": "dict-077",
+      "tipo": "direccion",
+      "level": "A1",
+      "modo": "elegir",
+      "audio": "My house is number nineteen.",
+      "pregunta_es": "¿Qué número tiene la casa?",
+      "options": [
+        "19",
+        "90",
+        "9"
+      ],
+      "answer": "19",
+      "tip": "Nineteen (19) termina en -teen con una n clara."
+    },
+    {
+      "id": "dict-078",
+      "tipo": "direccion",
+      "level": "A2",
+      "modo": "elegir",
+      "audio": "Hi, it's Lisa. The party is at my new place, seventeen seventy Lake Avenue, apartment twelve.",
+      "pregunta_es": "¿En qué número de Lake Avenue es la fiesta?",
+      "options": [
+        "1770 Lake Avenue",
+        "1717 Lake Avenue",
+        "1712 Lake Avenue"
+      ],
+      "answer": "1770 Lake Avenue",
+      "tip": "Seventeen seventy = 1770: el número de edificio se dice en dos pares. Twelve es el apartamento, no parte del número."
+    },
+    {
+      "id": "dict-079",
+      "tipo": "direccion",
+      "level": "A2",
+      "modo": "elegir",
+      "audio": "Please mail the package to one twenty Elm Street, Denver, Colorado, eight oh two oh five.",
+      "pregunta_es": "¿Cuál es el código postal?",
+      "options": [
+        "80205",
+        "80250",
+        "82005"
+      ],
+      "answer": "80205",
+      "tip": "El zip code va al final de la dirección y se dice dígito por dígito."
+    },
+    {
+      "id": "dict-080",
+      "tipo": "direccion",
+      "level": "A2",
+      "modo": "elegir",
+      "audio": "The doctor's office is on the third floor, room three thirteen.",
+      "pregunta_es": "¿Qué número tiene el consultorio?",
+      "options": [
+        "313",
+        "330",
+        "303"
+      ],
+      "answer": "313",
+      "tip": "Three thirteen = 313; three thirty sería 330."
+    }
+  ]
+}

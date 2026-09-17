@@ -45,12 +45,14 @@ class MainActivity : ComponentActivity() {
         val mazo = Mazo(java.io.File(filesDir, "mazo.json"))
         // El diagnóstico del Modo Aptis (etapa 5): sus cinco partes, al lado del mazo.
         val aptis = Aptis(java.io.File(filesDir, "aptis.json"))
+        // Los crucigramas a medias y terminados (17-09), al lado del mazo.
+        val crucigramas = Crucigramas(java.io.File(filesDir, "crucigramas.json"))
         Course.load(this)
         // Si el contenido cambió (parche de Cowork), el mazo toma en/es del curso por id.
         mazo.refrescar { Course.exerciseById(it) }
 
         setContent {
-            HabloApp(speaker = sp, listener = li, llm = ai, cloud = cloud, claude = claude, store = store, progreso = prog, memoria = mem, mazo = mazo, aptis = aptis)
+            HabloApp(speaker = sp, listener = li, llm = ai, cloud = cloud, claude = claude, store = store, progreso = prog, memoria = mem, mazo = mazo, aptis = aptis, crucigramas = crucigramas)
         }
     }
 
@@ -85,6 +87,10 @@ private sealed class Route {
     /** Etapa 4: historias cortas con retell. */
     data object Historias : Route()
     data class Cuento(val historiaId: String) : Route()
+    /** Oído (pares mínimos con las cuatro voces) y dictado de números (17-09). */
+    data object Oido : Route()
+    data object Dictado : Route()
+    data object Crucigramas : Route()
     /** Etapa 5: el Modo Aptis (tablero), una pista de entrenamiento y el simulacro completo. */
     data object Aptis : Route()
     data class AptisPista(val pistaId: String) : Route()
@@ -102,7 +108,8 @@ fun HabloApp(
     progreso: Progreso,
     memoria: Memoria,
     mazo: Mazo,
-    aptis: Aptis
+    aptis: Aptis,
+    crucigramas: Crucigramas
 ) {
 
     var teacherId by remember { mutableStateOf(store.teacherId) }
@@ -194,7 +201,11 @@ fun HabloApp(
                             onAguanta = { llm.release(); route = Route.Aguanta },
                             onHistorias = { llm.release(); route = Route.Historias },
                             aptis = aptis,
-                            onAptis = { llm.release(); route = Route.Aptis }
+                            onAptis = { llm.release(); route = Route.Aptis },
+                            onOido = { llm.release(); route = Route.Oido },
+                            onDictado = { route = Route.Dictado },
+                            crucigramas = crucigramas,
+                            onCrucigramas = { route = Route.Crucigramas }
                         )
                     }
 
@@ -254,6 +265,44 @@ fun HabloApp(
                                 onBack = { speaker.stop(); listener.stopRecording(); route = Route.Aptis }
                             )
                         }
+                    }
+
+                    is Route.Oido -> {
+                        BackHandler { speaker.stop(); listener.stopRecording(); progressTick += 1; route = Route.Home }
+                        OidoScreen(
+                            teacher = teacher,
+                            speaker = speaker,
+                            listener = listener,
+                            store = store,
+                            progreso = progreso,
+                            speechScale = speechScale,
+                            onBack = { speaker.stop(); listener.stopRecording(); progressTick += 1; route = Route.Home }
+                        )
+                    }
+
+                    is Route.Crucigramas -> {
+                        BackHandler { speaker.stop(); progressTick += 1; route = Route.Home }
+                        CrucigramasScreen(
+                            teacher = teacher,
+                            speaker = speaker,
+                            crucigramas = crucigramas,
+                            mazo = mazo,
+                            progreso = progreso,
+                            say = say,
+                            onBack = { speaker.stop(); progressTick += 1; route = Route.Home }
+                        )
+                    }
+
+                    is Route.Dictado -> {
+                        BackHandler { speaker.stop(); progressTick += 1; route = Route.Home }
+                        DictadoScreen(
+                            teacher = teacher,
+                            speaker = speaker,
+                            store = store,
+                            progreso = progreso,
+                            speechScale = speechScale,
+                            onBack = { speaker.stop(); progressTick += 1; route = Route.Home }
+                        )
                     }
 
                     is Route.Historias -> {
@@ -510,6 +559,7 @@ fun HabloApp(
                             onReset = {
                                 store.resetEverything()
                                 aptis.borrarTodo()
+                                crucigramas.borrarTodo()
                                 progressTick += 1
                                 teacherId = null
                                 route = Route.PickTeacher

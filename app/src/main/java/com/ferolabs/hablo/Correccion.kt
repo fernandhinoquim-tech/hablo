@@ -125,6 +125,41 @@ object Correccion {
         return t.trim()
     }
 
+    /**
+     * Normalización ESTRICTA para el dictado de números (Cowork, 17-09): [suelta]
+     * quita `.`, `:`, `$` y `@`, y por eso daba por buenas «$650» por «$6.50»,
+     * «$1200» por «$12», «14:50» por «1450» y «wademail.com» por «wade@mail.com»;
+     * en el dictado un falso «bien» es justo lo que enseña mal. Aquí se conserva
+     * todo signo que va DENTRO de una ficha (6.50, 7:30, 555-0142, wade@mail.com,
+     * 5th); solo se quitan los de los bordes (la coma, el punto final) y el `$`
+     * inicial («6.50» es tan correcto como «$6.50»: lo que se mide es el oído).
+     * Lo demás como [fichas]: minúsculas, sin tildes, espacios, números 0-100
+     * en letras (así «13» = «thirteen»), el número tras un mes en cifras, y el
+     * cero inicial de la hora («07:30» = «7:30»). «6.50» y «6:50» siguen
+     * siendo distintos entre sí y de «650», y «May three» sigue sin ser «May 3».
+     */
+    fun dictado(text: String): String {
+        val base = java.text.Normalizer.normalize(text.lowercase(), java.text.Normalizer.Form.NFD)
+            .replace(Regex("\\p{Mn}+"), "")
+            .replace("\u2019", "'")
+        val fichas = base.split(Regex("\\s+")).filter { it.isNotEmpty() }.mapNotNull { cruda ->
+            var t = cruda.trim { !it.isLetterOrDigit() && it != '$' }
+            t = t.removePrefix("$")
+            t = t.trim { !it.isLetterOrDigit() }
+            // el cero inicial de la hora: 07:30 = 7:30
+            Regex("^0(\\d:\\d\\d)$").matchEntire(t)?.let { t = it.groupValues[1] }
+            t.ifEmpty { null }
+        }
+        return numeros(fichas).joinToString(" ")
+    }
+
+    /** ¿Vale la respuesta del dictado? Con la regla estricta de [dictado]. */
+    fun aceptaDictado(given: String, answer: String, accept: List<String>): Boolean {
+        val g = dictado(given)
+        if (g.isBlank()) return false
+        return g == dictado(answer) || accept.any { g == dictado(it) }
+    }
+
     /** ¿La respuesta dada vale? Contra la esperada o cualquiera de las alternativas. */
     fun acepta(given: String, answer: String, accept: List<String>): Boolean {
         val g = suelta(given)

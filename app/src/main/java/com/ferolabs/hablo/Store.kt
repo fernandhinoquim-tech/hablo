@@ -105,6 +105,26 @@ class Store(context: Context) {
     fun historiaHecha(id: String): Boolean = prefs.getBoolean("historia_$id", false)
     fun marcarHistoria(id: String) = prefs.edit().putBoolean("historia_$id", true).apply()
 
+    // --- Oído (pares mínimos) y dictado de números (17-09) --------------------
+    /** El último resultado de un bloque de Oído: aciertos y total; null si nunca se hizo. */
+    fun oidoResultado(id: String): Pair<Int, Int>? {
+        val t = prefs.getInt("oido_${id}_total", 0)
+        return if (t == 0) null else prefs.getInt("oido_${id}_bien", 0) to t
+    }
+    fun registrarOido(id: String, bien: Int, total: Int) =
+        prefs.edit().putInt("oido_${id}_bien", bien).putInt("oido_${id}_total", total).apply()
+
+    /** Turno de la voz para el próximo bloque de Oído: una profesora por bloque, rotando (varias voces ayudan). */
+    fun siguienteVozOido(): Int {
+        val n = prefs.getInt("oido_voz", 0)
+        prefs.edit().putInt("oido_voz", n + 1).apply()
+        return n
+    }
+
+    /** Un ítem del dictado ya salió bien alguna vez. */
+    fun dictadoHecho(id: String): Boolean = prefs.getBoolean("dictado_$id", false)
+    fun marcarDictado(id: String) = prefs.edit().putBoolean("dictado_$id", true).apply()
+
     // --- Mapa personal de sonidos ---------------------------------------------
     // Lo valioso no es la frase de hoy: es "estos son los sonidos que fallo de
     // verdad, medido en muchas frases". Se acumula entre sesiones.
