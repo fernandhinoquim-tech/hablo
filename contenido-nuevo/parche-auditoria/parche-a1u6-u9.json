@@ -1,0 +1,524 @@
+{
+ "_comentario": "Parche de la auditoría 17-09, unidades a1u6 a a1u9 (lecciones a1u6l1..a1u9l3). Revisión: /home/claude/audit/revision_a1u6-u9.md",
+ "_descartados": {
+  "a1u7l2e10 y a1u7l3e10 (accept con dígitos)": "La app ya iguala dígitos y palabras 0-100; no hace falta. a1u7l3e10 se cambió igual porque repetía el español de e2 (y «She speaks three languages» entró como accept de e2).",
+  "a1u7l2 (teoría repetida de a1u2l1)": "Se deja la ficha: repasar would like en la unidad de pedir es útil. Solo se añadió el ofrecimiento con verbo y se cambió e1, que era idéntico a a1u2l1e2.",
+  "a1u6l2e1 (distractor 'I am working in a bank')": "Con el tip («tu trabajo de siempre») no es ambiguo; solo se le añadieron accept at/for a bank.",
+  "a1u9l3e3 (than me / that me)": "La diferencia n/t se oye con claridad antes de m; no se cambia."
+ },
+ "_pendientes": {
+  "Armar.kt / BuildSentence": "Leer accept en build. En este rango no hizo falta: a1u6l2e5 se arregló cambiando señuelos.",
+  "Mazo (escribir desde translate)": "Confirmar que el mazo usa el accept nuevo de los translate de este parche.",
+  "Audio a1u9l2e3": "Oír con las 4 voces de Piper si 'I'll help you' se distingue de 'I help you' (la l antes de h). Si no se oye, cambiar el distractor por 'I'm help you.'",
+  "Audio nuevo": "Oír con Piper los audios cambiados: a1u8l2e3 'They played at home.', a1u8l4e3 'She didn't visit us.', a1u8l4e4 'Did they want more food?', a1u7l3e6 'Can you say that again?'.",
+  "minimalPair con frase (a1u6l3e12, a1u9l2e12)": "La frase delata la respuesta por gramática ('I sink it is late', 'I want be late'). Decidir si la pantalla muestra la frase antes de responder, o cambiar won't por un par que salga 12/12 en la portadora.",
+  "Hueco a1u6l1/a1u6l2": "Falta ortografía del -ing (making, shopping) y un ejercicio que obligue a elegir simple o continuo por la palabra señal.",
+  "Hueco a1u7l1": "a few / a little están en la teoría y ningún ejercicio los practica; falta producir How many.",
+  "Hueco a1u8l3/a1u8l4": "did, got y ate nunca se practican; faltan preguntas con wh- en pasado (Where did you go?) y respuestas cortas (Yes, I did).",
+  "Hueco a1u9l2/a1u9l3": "Falta Will you...?; superlativos solo en listen; worse/worst y -ier sin práctica."
+ },
+ "a1u6l1": {
+  "_por_que": "«Nunca va solo el -ing» es falso (I like swimming) y I work now no significa «trabajo habitualmente».",
+  "theory": {
+   "title": "El presente continuo: am/is/are + -ing",
+   "body": "Para lo que está pasando **en este momento**, el inglés usa dos piezas:\n\n**am / is / are** + verbo con **-ing**\n\n*I **am eating**.* (Estoy comiendo)\n*She **is working**.* (Ella está trabajando)\n*They **are playing**.* (Están jugando)\n\nPara decir «estoy …-ando», el -ing no va solo. Si no está am, is o are, la frase está rota:\n*I eating* ❌ → *I **am** eating* ✅",
+   "trap": "En español decimos «trabajo ahora» tan tranquilos, con el presente de siempre. Por eso sale *I work now*. En inglés eso significa «ahora tengo trabajo», no «estoy trabajando en este momento». Si es ahora mismo: **I am working now**. El inglés separa lo que haces siempre de lo que estás haciendo en este segundo."
+  }
+ },
+ "a1u6l1e1": {
+  "_por_que": "El -ing sí va solo en otros usos (I like swimming).",
+  "tip": "Para «estoy …-ando», el -ing necesita am, is o are."
+ },
+ "a1u6l1e8": {
+  "_por_que": "La h de her sin acento se cae en el habla normal.",
+  "tip": "shopping con sh de «shhh», no «chopping»."
+ },
+ "a1u6l1e9": {
+  "_por_que": "Quien escribe la contracción en el hueco no debe salir mal; el tip decía «nunca va solo».",
+  "accept": [
+   "'m"
+  ],
+  "tip": "Para «estoy …-ando», el -ing necesita am, is o are delante."
+ },
+ "a1u6l1e10": {
+  "_por_que": "Faltaban right now al principio y at the moment, que es correcto.",
+  "accept": [
+   "She's working right now.",
+   "She is working now.",
+   "She's working now.",
+   "Right now she is working.",
+   "She is working at the moment.",
+   "At the moment she is working."
+  ]
+ },
+ "a1u6l2": {
+  "_por_que": "«Nunca» es falso (How are you liking it?), en español tampoco se dice «estoy queriendo», y today también va con simple (I work today). El ejemplo pasa a need, porque «I want a coffee» contradice a a1u2l1.",
+  "theory": {
+   "title": "Los dos presentes, y cómo elegir",
+   "body": "El inglés tiene dos presentes y cada uno dice algo distinto.\n\n**Presente simple** — lo que haces siempre, tu rutina, lo que es verdad en general:\n*I **work** in a bank.* (ese es mi trabajo)\n*She **drinks** coffee.* (le gusta el café)\n\n**Presente continuo** — lo que pasa ahora mismo, hoy, esta temporada:\n*I **am working** today.* (hoy, en este momento)\n*She **is drinking** coffee.* (la taza está en su mano)\n\nPalabras que te avisan: *always, usually, every day* → simple. *now, right now, at the moment* → continuo.\n\nOjo con *today*: va con los dos. *I am working today* (hoy estoy en eso) y *I work today* (hoy me toca turno) son normales.",
+   "trap": "Hay verbos que en inglés **casi nunca** van en continuo: like, want, need, know, understand. *I am needing a coffee* ❌ → **I need a coffee** ✅. Expresan un estado (lo que sabes, quieres o necesitas), no una acción."
+  }
+ },
+ "a1u6l2e1": {
+  "_por_que": "at a bank y for a bank también son correctos.",
+  "accept": [
+   "I work at a bank.",
+   "I work for a bank."
+  ]
+ },
+ "a1u6l2e2": {
+  "_por_que": "«I want a coffee» contradice a a1u2l1 y a1u7l2, que dicen que suena brusco.",
+  "es": "Necesito un café.",
+  "options": [
+   "I am needing a coffee.",
+   "I need a coffee.",
+   "I needing a coffee."
+  ],
+  "answer": "I need a coffee.",
+  "accept": [
+   "I need some coffee.",
+   "I need coffee."
+  ],
+  "tip": "need no se pone en continuo: I need, no I am needing."
+ },
+ "a1u6l2e5": {
+  "_por_que": "Con is y not se armaba 'She is not understanding the question', que la app rechazaba. El tip ahora coincide con la ficha (estado, casi nunca).",
+  "extra": [
+   "understands",
+   "don't",
+   "understanding"
+  ],
+  "tip": "understand expresa un estado: no va en continuo."
+ },
+ "a1u6l2e6": {
+  "_por_que": "«wait siempre lleva for» es falso: Please wait, wait a minute.",
+  "tip": "Si dices qué esperas, va for: wait for the bus. Sin eso va solo: Please wait."
+ },
+ "a1u6l2e10": {
+  "_por_que": "Faltaban 4 de las 8 combinaciones correctas (in/at, at/from home, today al final).",
+  "accept": [
+   "I work at a bank, but today I'm working at home.",
+   "I work in a bank, but today I'm working from home.",
+   "I work at a bank, but today I'm working from home.",
+   "I work in a bank, but I'm working at home today.",
+   "I work at a bank, but I'm working at home today.",
+   "I work in a bank, but I'm working from home today.",
+   "I work at a bank, but I'm working from home today.",
+   "I work for a bank, but today I'm working from home.",
+   "I work for a bank, but today I'm working at home.",
+   "I work for a bank, but I'm working at home today.",
+   "I work for a bank, but I'm working from home today."
+  ]
+ },
+ "a1u6l3e1": {
+  "_por_que": "cell phone es lo normal en EE. UU.",
+  "accept": [
+   "This is my cell phone.",
+   "This is my cellphone.",
+   "This is my telephone."
+  ]
+ },
+ "a1u6l3e2": {
+  "_por_que": "«sus» puede ser de ella, de ellos o de usted.",
+  "accept": [
+   "Those are her keys.",
+   "Those are their keys.",
+   "Those are your keys."
+  ]
+ },
+ "a1u6l3e5": {
+  "_por_que": "Practicaba el posesivo (repetido de a1u3l2e8), no this/that.",
+  "es": "Esos zapatos son nuevos.",
+  "answer": "Those shoes are new.",
+  "extra": [
+   "that",
+   "is",
+   "this"
+  ],
+  "tip": "Varios y lejos: those, con are."
+ },
+ "a1u6l3e8": {
+  "_por_que": "'These are those books' no es natural y contradice cerca/lejos.",
+  "text": "These are my books, and those are yours.",
+  "tip": "Dos th: these y those. Lengua entre los dientes en las dos."
+ },
+ "a1u6l3e10": {
+  "_por_que": "cell phone es lo normal en EE. UU.",
+  "accept": [
+   "That's my phone.",
+   "That is my cell phone.",
+   "That is my cellphone.",
+   "That is my telephone."
+  ]
+ },
+ "a1u7l1": {
+  "_por_que": "Faltaba la excepción de some al ofrecer y pedir, que la lección siguiente usa.",
+  "theory": {
+   "title": "Cosas que se cuentan y cosas que no",
+   "body": "El inglés separa las cosas en dos grupos y usa palabras distintas para cada uno.\n\n**Se cuentan** (apples, chairs, people):\n*How **many** apples?* · *a **few** apples* · *some apples*\n\n**No se cuentan** (water, money, time, rice):\n*How **much** water?* · *a **little** water* · *some water*\n\n**a lot of** sirve para los dos: *a lot of apples, a lot of water*.\n\nY en preguntas y negativos, **some** se vuelve **any**:\n*I have **some** money.* → *Do you have **any** money?* → *I don't have **any** money.*\n\nExcepción: al ofrecer o pedir algo se queda **some**: *Would you like **some** tea?* · *Can I have **some** water?*",
+   "trap": "*How many money do you have?* es el error clásico: en español «cuánto dinero» y «cuántas manzanas» se parecen demasiado. El dinero no se cuenta en inglés — se cuentan los billetes, no el dinero. Es **How much money**."
+  }
+ },
+ "a1u7l1e2": {
+  "_por_que": "'How many persons are there?' es gramatical (formal).",
+  "options": [
+   "How much people are there?",
+   "How many people are there?",
+   "How many people there are?"
+  ],
+  "tip": "people ya es plural: many. Y en la pregunta, are va antes de there."
+ },
+ "a1u7l1e9": {
+  "_por_que": "Repetía el español de e1, que ya mostraba la respuesta.",
+  "es": "¿Cuánto dinero necesitas?",
+  "text": "How ___ money do you need?"
+ },
+ "a1u7l2": {
+  "_por_que": "Se añade el ofrecimiento con verbo, que ahora practica e1.",
+  "theory": {
+   "title": "would like: pedir sin sonar brusco",
+   "body": "**I want** no está mal, pero suena seco, como un niño exigiendo. Para pedir cosas se usa:\n\n**I would like** = quisiera (casi siempre escrito **I'd like**)\n\n*I'd like a coffee, please.*\n*I'd like to see the menu.*\n\nY para ofrecer:\n**Would you like** a coffee? = ¿quiere un café?\n**Would you like** something **to** drink? = ¿quiere algo de beber?\n\nRegla: si va un verbo después, lleva **to**.\n*I'd like **to** go.* · *Would you like **to** sit down?*",
+   "trap": "*I want a coffee* en una cafetería suena a orden. No es gramática, es educación — y en inglés se nota más que en español, donde «quiero un café» pasa sin problema. Di **I'd like a coffee, please**."
+  }
+ },
+ "a1u7l2e1": {
+  "_por_que": "Era idéntico a a1u2l1e2; ahora practica el ofrecimiento.",
+  "es": "¿Quiere algo de beber?",
+  "options": [
+   "Do you want drink something?",
+   "Would you like something to drink?",
+   "Would you like drink something?"
+  ],
+  "answer": "Would you like something to drink?",
+  "accept": [
+   "Would you like anything to drink?",
+   "Would you like a drink?",
+   "Do you want something to drink?",
+   "Would you like to drink something?",
+   "Would you like to drink anything?",
+   "Do you want anything to drink?"
+  ],
+  "tip": "Para ofrecer: Would you like. Y drink lleva to delante."
+ },
+ "a1u7l2e2": {
+  "_por_que": "look at the menu también es correcto.",
+  "accept": [
+   "I'd like to look at the menu."
+  ]
+ },
+ "a1u7l2e7": {
+  "_por_que": "La lección dice que al hablar se contrae; practicar la forma larga da un ritmo raro. Ya no repite la mesa para dos de e5 y e10.",
+  "text": "I'd like the check, please.",
+  "tip": "I'd suena «aid», una sílaba. Tu frase al terminar de comer."
+ },
+ "a1u7l2e11": {
+  "_por_que": "Se imitaba la forma sin contraer, que no es la natural. Ya no es idéntico a a1u2l1e3.",
+  "text": "I'd like to see the menu, please.",
+  "tip": "I'd suena «aid», una sílaba. El peso en «MENU» y «PLEASE»."
+ },
+ "a1u7l3e1": {
+  "_por_que": "Could you help me también es correcto.",
+  "accept": [
+   "Could you help me?"
+  ]
+ },
+ "a1u7l3e2": {
+  "_por_que": "She speaks three languages es la forma más natural.",
+  "accept": [
+   "She speaks three languages."
+  ]
+ },
+ "a1u7l3e6": {
+  "_por_que": "La misma frase salía tres veces en la lección (e6, e8, e11).",
+  "audio": "Can you say that again?",
+  "meaning": "¿Puede repetir eso?",
+  "tip": "Guárdala: te salva cuando no entiendes algo."
+ },
+ "a1u7l3e8": {
+  "_por_que": "slowly también empieza con s + consonante.",
+  "tip": "speak y slowly empiezan con s pura: nada de «espeak» ni «eslowly»."
+ },
+ "a1u7l3e10": {
+  "_por_que": "Repetía el español de e2, que ya mostraba la respuesta.",
+  "es": "Él puede tocar la guitarra.",
+  "answer": "He can play the guitar.",
+  "accept": [
+   "He can play guitar.",
+   "He knows how to play the guitar.",
+   "He knows how to play guitar."
+  ],
+  "tip": "can no cambia nunca, y lo que sigue va sin to y sin -s."
+ },
+ "a1u7l3e12": {
+  "_por_que": "En inglés americano la t de can't casi no se oye; la pista real es el acento. Sin play, suena la palabra sola, y ahí la t sí se oye (10 de 12 veces con Piper).",
+  "tip": "Aquí la palabra suena sola: fíjate en la t final de can't, aunque sea corta. En una frase, can suena débil («kn») y can't fuerte. Al decirla tú, marca la t."
+ },
+ "a1u8l1e1": {
+  "_por_que": "«sitios con at» es demasiado general (in the kitchen, in Bogotá).",
+  "tip": "Eventos con at: at the party, at the concert. Y también at work, at school."
+ },
+ "a1u8l1e3": {
+  "_por_que": "«at home siempre» es falso: She was home, go home.",
+  "tip": "she → was. Estar en casa: at home (en EE. UU. también She was home). Con go, sin at: go home."
+ },
+ "a1u8l1e8": {
+  "_por_que": "shop suelto es británico; el curso es americano (store).",
+  "text": "They were at the coffee shop."
+ },
+ "a1u8l2": {
+  "_por_que": "Se usaban studied sin enseñar la ortografía, y no se decía que la l de walk no suena.",
+  "theory": {
+   "title": "La -ed, y cómo suena de verdad",
+   "body": "Para el pasado de la mayoría de verbos se pega **-ed** al final:\n\n*work → work**ed*** · *play → play**ed*** · *live → live**d***\n\nOrtografía: consonante + y cambia a **-ied** (*study → stud**ied***), y algunos cortos doblan la última letra (*stop → sto**pped***).\n\nY no cambia con la persona: **I worked, he worked, they worked**. Una sola forma para todos.\n\nLo difícil no es escribirla: es **sonarla**. La -ed suena de tres maneras y casi nunca es una sílaba nueva:\n\n- **/t/** tras sonido sordo: *walked* suena «wokt», *asked* suena «askt»\n- **/d/** tras sonido sonoro: *played* suena «pleid», *lived* suena «livd»\n- **/id/** — sílaba de verdad — **solo** tras t o d: *wanted* «wonted», *needed* «nidid»",
+   "trap": "El error insignia: decir *walk-ed* como dos sílabas, «wok-ed». En español todas las letras suenan, así que la mano y la boca quieren pronunciar esa e. En inglés la e es muda salvo tras t o d. Son **walked** «wokt», **talked** «tokt», **asked** «askt» — una sola sílaba. Y en *walk* y *talk* la l tampoco suena."
+  }
+ },
+ "a1u8l2e1": {
+  "_por_que": "Yesterday al principio también es correcto.",
+  "accept": [
+   "Yesterday I worked."
+  ]
+ },
+ "a1u8l2e3": {
+  "_por_que": "La d de played se pierde antes de f (play y played sonaban igual); y football en EE. UU. no es fútbol.",
+  "audio": "They played at home.",
+  "options": [
+   "They play at home.",
+   "They played at home.",
+   "They playing at home."
+  ],
+  "answer": "They played at home.",
+  "tip": "played suena «pleid», en una sola sílaba; antes de vocal la d se oye bien."
+ },
+ "a1u8l2e4": {
+  "_por_que": "'wantd' era un distractor solo de ortografía.",
+  "options": [
+   "I want to call you.",
+   "I wanted to call you.",
+   "I wanting to call you."
+  ]
+ },
+ "a1u8l2e10": {
+  "_por_que": "Repetía el español de e5, que ya mostraba la respuesta.",
+  "es": "Mis padres vivieron en Cali el año pasado.",
+  "answer": "My parents lived in Cali last year.",
+  "accept": [
+   "Last year my parents lived in Cali."
+  ],
+  "tip": "live ya termina en e: solo se suma d. Y «el año pasado» es last year, sin the."
+ },
+ "a1u8l3": {
+  "_por_que": "«no cambian con la persona» contradice was/were de l1.",
+  "theory": {
+   "title": "Los irregulares: hay que aprendérselos",
+   "body": "Unos 100 verbos no siguen la regla de -ed. Y son justo los que más se usan. No hay truco: se memorizan.\n\nLos diez que más vas a necesitar:\n\n| ahora | pasado | |\n|---|---|---|\n| go | **went** | ir |\n| have | **had** | tener |\n| do | **did** | hacer |\n| say | **said** | decir |\n| see | **saw** | ver |\n| get | **got** | conseguir |\n| make | **made** | hacer |\n| come | **came** | venir |\n| take | **took** | tomar |\n| eat | **ate** | comer |\n\nY como los regulares: **no cambian con la persona**. I went, he went, they went. El único que cambia es **be**: *was / were*.",
+   "trap": "El error no suele ser el verbo suelto, sino mezclarlo: *I didn't went* ❌. Cuando aparece **did** o **didn't**, el verbo vuelve a su forma normal: **I didn't go**. El did ya carga el pasado, igual que el does cargaba la -s."
+  }
+ },
+ "a1u8l3e1": {
+  "_por_que": "Hay otras formas correctas.",
+  "accept": [
+   "Yesterday I went to the doctor.",
+   "I went to see the doctor yesterday."
+  ]
+ },
+ "a1u8l3e2": {
+  "_por_que": "an issue también es correcto.",
+  "accept": [
+   "She had an issue."
+  ]
+ },
+ "a1u8l3e8": {
+  "_por_que": "La pronunciación de said es una trampa clásica.",
+  "tip": "three y things con la lengua entre los dientes. Y said suena «sed», no «seid»."
+ },
+ "a1u8l3e10": {
+  "_por_que": "«su carro» puede ser de él, de ellos o de usted; trouble/issue también son correctos.",
+  "accept": [
+   "She had a problem with the car.",
+   "She had a problem with his car.",
+   "She had a problem with their car.",
+   "She had a problem with your car.",
+   "She had trouble with her car.",
+   "She had an issue with her car.",
+   "She had trouble with the car.",
+   "She had an issue with the car."
+  ]
+ },
+ "a1u8l4": {
+  "_por_que": "Con was/were no se usa did, y el verbo va en forma base, no «en presente» (goes). La trampa cubre también los irregulares (went).",
+  "theory": {
+   "title": "did y didn't",
+   "body": "Para negar y preguntar en pasado hay un solo ayudante, y sirve para todos: **did**.\n\n**Negar:** didn't + verbo normal\n*I **didn't go**.* · *She **didn't work**.*\n\n**Preguntar:** Did + sujeto + verbo normal\n***Did** you **go**?* · ***Did** he **call**?*\n\nLa regla es la misma de siempre, con otra cara: **cuando aparece did, el verbo vuelve a su forma base**. El pasado ya está en el did.\n\n*I didn't went* ❌ → *I didn't **go*** ✅\n*Did you went?* ❌ → *Did you **go**?* ✅\n\nExcepción: con **was/were** no se usa did: *I **wasn't** tired* · ***Were** you there?*",
+   "trap": "Poner el pasado dos veces es el error más común de todos, y no es tontería: en español «no fui» lleva el pasado en el verbo, porque no hay ayudante. En inglés el pasado lo carga el did y el verbo se queda desnudo. Si ves did o didn't en tu frase, revisa que el verbo esté en su forma base: go (no went), work (no worked), sin -s."
+  }
+ },
+ "a1u8l4e1": {
+  "_por_que": "«en presente» confunde con la -s (goes).",
+  "tip": "didn't ya es el pasado: go va en su forma base."
+ },
+ "a1u8l4e2": {
+  "_por_que": "'You spoke with her?' es una pregunta válida al hablar.",
+  "options": [
+   "Did you spoke with her?",
+   "Did you speak with her?",
+   "Did you speaked with her?"
+  ],
+  "accept": [
+   "Did you talk to her?",
+   "Did you speak to her?",
+   "Did you talk with her?"
+  ]
+ },
+ "a1u8l4e3": {
+  "_por_que": "call me y called me suenan casi igual: no se podía resolver de oído.",
+  "audio": "She didn't visit us.",
+  "options": [
+   "She didn't visited us.",
+   "She didn't visit us.",
+   "She don't visit us."
+  ],
+  "answer": "She didn't visit us.",
+  "tip": "didn't + visit, sin -ed."
+ },
+ "a1u8l4e4": {
+  "_por_que": "like the y liked the suenan igual.",
+  "audio": "Did they want more food?",
+  "options": [
+   "Did they wanted more food?",
+   "Did they want more food?",
+   "Did they wants more food?"
+  ],
+  "answer": "Did they want more food?"
+ },
+ "a1u9l1": {
+  "_por_que": "gonna solo va antes de un verbo (going to Cali nunca es gonna).",
+  "theory": {
+   "title": "be going to: planes que ya están decididos",
+   "body": "Para lo que ya tienes planeado:\n\n**am / is / are + going to + verbo**\n\n*I **am going to** travel next week.*\n*She **is going to** study medicine.*\n*They **are going to** move to Cali.*\n\nSe parece mucho al español «voy a viajar», y por una vez la traducción funciona pieza por pieza. Lo único que no se puede olvidar es el **am/is/are** del principio.\n\nAl hablar rápido, *going to* suena «gonna». Lo vas a oír muchísimo, pero solo antes de un verbo: *I'm gonna travel*, y nunca *I'm gonna Cali* (eso es *I'm going to Cali*).",
+   "trap": "El calco directo es *I go to travel* — porque en español «voy» ya es el verbo ir. En inglés hacen falta las tres piezas: **I am going to travel**. Si te falta el am/is/are, la frase se rompe."
+  }
+ },
+ "a1u9l1e1": {
+  "_por_que": "Hay otras formas correctas de hablar de un plan.",
+  "accept": [
+   "I'm traveling next week.",
+   "Next week I am going to travel.",
+   "I will travel next week.",
+   "I'm gonna travel next week."
+  ]
+ },
+ "a1u9l1e2": {
+  "_por_que": "Sin marca de tiempo, 'She goes to study medicine' (va a un sitio a estudiar) era una lectura válida. «She goes to study medicine next year» sigue siendo defendible (presente de calendario): el distractor pasa a «She go to…».",
+  "es": "Ella va a estudiar medicina el próximo año.",
+  "options": [
+   "She is going to study medicine next year.",
+   "She go to study medicine next year.",
+   "She is going study medicine next year."
+  ],
+  "answer": "She is going to study medicine next year.",
+  "accept": [
+   "Next year she is going to study medicine.",
+   "She will study medicine next year.",
+   "She's gonna study medicine next year."
+  ]
+ },
+ "a1u9l1e10": {
+  "_por_que": "Repetía el español de e5 y no aceptaba gonna, que la teoría enseña.",
+  "es": "¿Qué vas a hacer el fin de semana?",
+  "answer": "What are you going to do this weekend?",
+  "accept": [
+   "What are you gonna do this weekend?",
+   "What will you do this weekend?",
+   "What are you doing this weekend?",
+   "What are you going to do on the weekend?",
+   "What are you gonna do on the weekend?",
+   "What will you do on the weekend?",
+   "What are you doing on the weekend?",
+   "What are you going to do over the weekend?",
+   "What are you gonna do over the weekend?",
+   "What will you do over the weekend?",
+   "What are you doing over the weekend?",
+   "What are you going to do for the weekend?",
+   "What are you doing for the weekend?"
+  ],
+  "tip": "Con going to es lo ya planeado. What are you doing...? también sirve para planes."
+ },
+ "a1u9l2e1": {
+  "_por_que": "going to y that también son correctos.",
+  "accept": [
+   "I think that it will rain.",
+   "I think it is going to rain."
+  ]
+ },
+ "a1u9l2e2": {
+  "_por_que": "«lo» también es it o that.",
+  "accept": [
+   "I won't forget it.",
+   "I won't forget that."
+  ]
+ },
+ "a1u9l2e9": {
+  "_por_que": "Repetía e1, y ningún ejercicio practicaba will para decidir en el momento. No repite el español de a2u4l1e4 ni el ejemplo de la ficha.",
+  "es": "¿Tienes frío? Yo cierro la ventana.",
+  "text": "Are you cold? I ___ close the window.",
+  "answer": "will",
+  "accept": [
+   "'ll"
+  ],
+  "tip": "Lo decides en este segundo: will (I'll close it), no going to."
+ },
+ "a1u9l2e10": {
+  "_por_que": "«lo» también es that; going to también es correcto.",
+  "accept": [
+   "I won't forget it.",
+   "I won't forget that.",
+   "I'm not going to forget.",
+   "I'm not going to forget it."
+  ]
+ },
+ "a1u9l3": {
+  "_por_que": "En EE. UU. la distancia es farther; faltaba la regla de doblar (bigger) y easy no es de una sílaba. La regla de doblar se precisa: una sola vocal (cheap → cheaper, new → newer).",
+  "theory": {
+   "title": "Comparar: -er o more, nunca los dos",
+   "body": "La regla depende del **largo** del adjetivo.\n\n**Cortos (una sílaba)** → **-er ... than**\n*bigger than* · *older than* · *cheaper than*\nSi termina en **una sola** vocal + una consonante, la consonante se dobla: *big → bi**gg**er*, *hot → ho**tt**er*. Con dos vocales no se dobla (*cheap → cheaper*), y la w nunca (*new → newer*).\n\n**Dos sílabas terminadas en -y** → **-ier**: *easy → eas**ier***\n\n**Largos (dos sílabas o más)** → **more ... than**\n*more expensive than* · *more interesting than*\n\nY para el máximo, lo mismo con **the**:\n*the big**gest*** · *the **most** expensive*\n\nTres que se salen de todo y hay que memorizar:\n*good → **better** → the **best***\n*bad → **worse** → the **worst***\n*far → **farther** → the **farthest*** (también *further*)",
+   "trap": "*more big* ❌ es calco de «más grande», y suena mal de inmediato a un oído inglés. Los cortos llevan **-er**: **bigger**. Y nunca los dos juntos: *more bigger* ❌. El otro: comparar es con **than**, no con *that* — se parecen demasiado al escribir."
+  }
+ },
+ "a1u9l3e1": {
+  "_por_que": "larger también es correcto.",
+  "accept": [
+   "My car is larger than yours."
+  ]
+ },
+ "a1u9l3e2": {
+  "_por_que": "costs more también es correcto.",
+  "accept": [
+   "This hotel costs more."
+  ]
+ },
+ "a1u9l3e8": {
+  "_por_que": "shop suelto es británico; el curso es americano.",
+  "text": "This shirt is cheaper.",
+  "tip": "shirt con sh. cheaper empieza con ch, que es otro sonido."
+ },
+ "a1u9l3e9": {
+  "_por_que": "larger también es correcto, y la g doble no se enseñaba.",
+  "accept": [
+   "larger"
+  ],
+  "tip": "big es corto: bigger (se dobla la g, como hot → hotter). Nada de more big."
+ },
+ "a1u9l3e10": {
+  "_por_que": "than the other hotel también es correcto.",
+  "accept": [
+   "This hotel is more expensive than the other.",
+   "This hotel is more expensive than the other hotel.",
+   "This hotel costs more than the other one."
+  ]
+ },
+ "a1u6l2e9": {
+  "_por_que": "El tip ahora coincide con la ficha (estado, casi nunca).",
+  "tip": "want expresa un estado: no va en continuo."
+ }
+}

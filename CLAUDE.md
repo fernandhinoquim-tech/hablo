@@ -556,7 +556,11 @@ SECCIÓN APARTE del curso. Cómo está construido:
   tareas por nivel: la promoción (4 de 5 / 2 de 3) exige repetirlas; se
   destraba cuando lleguen los bancos de Cowork. Con el banco de Writing
   puesto, la pista de Writing arranca en A1 (parte 1: cinco mensajes con una
-  palabra), probado en el teléfono: "✓ Cuenta como A1" con la cita.
+  palabra), probado en el teléfono: "✓ Cuenta como A1" con la cita. También
+  probado sembrando `aptis.json` (`etapa5k.ps1`): con 5 fallos en B1 el Core
+  avisa "van flojas: mezcla A2" y la ronda alterna B1/A2/B1/A2; con las cinco
+  en B1 el simulacro se abre, encadena Core → "Siguiente parte: Reading" y,
+  al salir y volver, retoma en la parte pendiente.
 
 **Modo Aptis (decisión de Fero, 2026-09-15).** Fero va a presentar **Aptis
 ESOL General** (sin fecha aún, sin saber qué nivel le exigen). **El curso por

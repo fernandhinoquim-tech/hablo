@@ -448,7 +448,7 @@ fun PistaScreen(
                         BarraNivel(alcanzado, nivelActual)
                         val ultimos = aptis.ultimos(pista, nivelActual, pista.promocion.de)
                         Text(
-                            "Entrenas ${nivelActual.etiqueta}" + (if (ultimos.isEmpty()) " · todavía sin tareas de ${nivelActual.etiqueta}. " else " · últimas ${ultimos.size}: ${ultimos.count { it.ok }} bien. ") +
+                            "Entrenas ${nivelActual.etiqueta}" + (if (ultimos.isEmpty()) " · todavía sin intentos en ${nivelActual.etiqueta}. " else " · últimas ${ultimos.size}: ${ultimos.count { it.ok }} bien. ") +
                                 (if (alcanzado == null || alcanzado < nivelActual) "Lo alcanzas con ${pista.promocion.bien} de ${pista.promocion.de}." else "Es el nivel más alto de la pista."),
                             style = MaterialTheme.typography.bodyLarge, color = Ink
                         )

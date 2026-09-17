@@ -1,0 +1,603 @@
+{
+ "_comentario": "Parche de la auditoría 17-09, unidades a2u6 a a2u10 (lecciones a2u6l1..a2u10l3). Revisión: /home/claude/audit/revision_a2u6-u10.md",
+ "a2u6l1": {
+  "_por_que": "«very expensive» es «muy caro», no «caro»; y too también va antes de adverbios.",
+  "theory": {
+   "title": "too y enough: dos que se ponen al revés",
+   "body": "**too** = demasiado. Va **antes** del adjetivo o del adverbio. (Al final de la frase, *too* es «también».)\n*It's **too** expensive.* · *You're driving **too** fast.*\n\nY si va con un sustantivo cambia de forma:\n**too much** + incontable: *too much noise*\n**too many** + contable: *too many people*\n\n**enough** = suficiente. Aquí está la vuelta: va **después** del adjetivo pero **antes** del sustantivo.\n*It's not big **enough**.* (después del adjetivo)\n*We don't have **enough** time.* (antes del sustantivo)",
+   "trap": "**too** no es **very**. *It's very expensive* = está muy caro (pero quizá lo compro). *It's too expensive* = tan caro que **no lo compro**. En español «muy» y «demasiado» también se distinguen, pero al traducir rápido sale *very* para todo y se pierde la queja."
+  }
+ },
+ "a2u6l2": {
+  "_por_que": "Faltaban las formas en -one, que los ejercicios aceptan.",
+  "theory": {
+   "title": "La tabla de some, any y no",
+   "body": "Se arman como piezas de Lego: **some / any / no / every** + **thing / body / where**.\n\n| | cosa | persona | lugar |\n|---|---|---|---|\n| afirmativo | something | somebody | somewhere |\n| pregunta y negativo | anything | anybody | anywhere |\n| negativo (el verbo va en afirmativo) | nothing | nobody | nowhere |\n| todo | everything | everybody | everywhere |\n\n*I need **something** to eat.*\n*Is there **anybody** here?*\n*There's **nothing** in the fridge.*\n\nLa terminación **-one** es igual que **-body**: *someone, anyone, no one, everyone*.\n\nY todas van con verbo en **singular**: *Everybody **is** here.*",
+   "trap": "«No hay nadie» lleva dos negaciones en español y solo una en inglés. *There isn't nobody* ❌ → **There isn't anybody** o **There is nobody**. Una u otra, nunca las dos."
+  }
+ },
+ "a2u7l1": {
+  "_por_que": "«speak slow» es informal en EE. UU., no un error absoluto.",
+  "theory": {
+   "title": "Adjetivo o adverbio: qué estás describiendo",
+   "body": "La pregunta es simple: **¿describes una cosa o describes una acción?**\n\n**Adjetivo** → describe un sustantivo\n*He is a **slow** driver.* (cómo es él)\n\n**Adverbio** → describe el verbo\n*He drives **slowly**.* (cómo maneja)\n\nEl adverbio casi siempre es el adjetivo + **-ly**: quick→quickly, careful→carefully, easy→easily.\n\nTres irregulares que hay que saberse:\n*good → **well*** · *fast → **fast*** · *hard → **hard***",
+   "trap": "«Habla lento» se traduce palabra por palabra como *He speaks slow*, que suena descuidado — en español el adjetivo hace de adverbio sin cambiar. En inglés hay que ponerle la -ly: **He speaks slowly**. Y ojo con *good*: *He speaks English good* ❌ → **He speaks English well**."
+  }
+ },
+ "a2u7l2": {
+  "_por_que": "La regla «of para grupos» contradecía «the tallest in the class»; faltaba -iest.",
+  "theory": {
+   "title": "Superlativos y as...as",
+   "body": "Ya sabes comparar dos cosas. Para el máximo, el patrón es el mismo con **the**:\n\n**cortos** → the + adjetivo + **-est**: *the bigg**est**, the old**est***\nterminados en **-y** → **-iest**: *easy → the easiest*\n**largos** → **the most** + adjetivo: *the most expensive*\n\nIrregulares: *good → the **best***, *bad → the **worst***.\n\nY para decir que dos cosas son **iguales**:\n**as + adjetivo + as**\n*She is **as tall as** her brother.*\n*It's not **as expensive as** I thought.*",
+   "trap": "El superlativo casi siempre lleva **the**: *This is biggest* ❌ → **the biggest**. Y con el grupo del que eliges se usa **in** con lugares y grupos (*the best restaurant **in** the city*, *the tallest **in** the class*) y **of** con periodos o cantidades (*the longest day **of** the year*, *the tallest **of** the three*)."
+  }
+ },
+ "a2u7l3": {
+  "_por_que": "La frase «si el que es el objeto» se leía confusa.",
+  "theory": {
+   "title": "who, which, that: una sola palabra en español, tres en inglés",
+   "body": "En español todo es **que**. En inglés se elige según de qué hablas.\n\n**who** → personas: *the man **who** called*\n**which** → cosas: *the book **which** I bought*\n**that** → sirve para las dos y es la más usada al hablar\n**where** → lugares: *the city **where** I was born*\n\n*She's the woman **who** works with me.*\n*This is the house **that** we bought.*\n\nY una cosa que sorprende: si el **que** es el **objeto** (recibe la acción), se puede quitar.\n*The book (**that**) I bought* — las dos son correctas.",
+   "trap": "No se repite el objeto después del relativo. «El libro que compré» es *The book that I bought* — no *The book that I bought **it*** ❌. En español tampoco se dice, pero al armar la frase en inglés se cuela."
+  }
+ },
+ "a2u8l1": {
+  "_por_que": "El «se» también se dice con they/people en activa, muy común en EE. UU.",
+  "theory": {
+   "title": "La pasiva: cuando no importa quién",
+   "body": "Se usa cuando lo importante es **qué pasó**, no quién lo hizo.\n\n**be + participio**\n\n*This house **was built** in 1920.*\n*English **is spoken** here.*\n*The letters **are sent** every Monday.*\n\nEl tiempo lo marca el **be**: *is/are* para presente, *was/were* para pasado.\n\nY si quieres decir quién, va con **by**:\n*The book **was written by** García Márquez.*",
+   "trap": "El español resuelve esto con «se»: «se habla inglés», «se construyó en 1920». Esa forma no existe en inglés y sale *It speaks English here* ❌, que significa otra cosa. La pasiva inglesa necesita **be + participio**: **English is spoken here**. También se dice *They speak English here*; en esta lección practicamos la pasiva."
+  }
+ },
+ "a2u8l2": {
+  "_por_que": "get on no sirve para el carro; en EE. UU. cuidar es más take care of; searching for sí es correcto.",
+  "theory": {
+   "title": "Phrasal verbs: el verbo cambia con la partícula",
+   "body": "En inglés un verbo corriente cambia de significado según la palabrita que lleve detrás. No hay lógica: se aprenden como vocabulario.\n\n*get **up*** = levantarse · *get **on*** = subirse (al bus, al tren; al carro es *get in*)\n*turn **on / off*** = encender / apagar\n*look **for*** = buscar · *look **after*** = cuidar (en EE. UU. se oye más *take care of*)\n*give **up*** = rendirse · *put **on*** = ponerse (ropa)\n*take **off*** = quitarse, y también despegar\n\n**Unos se pueden partir** (turn on/off, put on, take off, give up):\n*Turn **the light** off.* = *Turn off **the light**.*\nY en esos, si el objeto es un pronombre **va obligatoriamente en el medio**:\n*Turn **it** off.* ✅ · *Turn off it.* ❌\n\n**Otros no se parten nunca** (look for, look after, get on):\n*look after **her*** ✅ · *look **her** after* ❌",
+   "trap": "No se traducen pieza por pieza. *look for* no es «mirar para»: es **buscar**. Y por eso *I'm searching my keys* ❌ suena raro (*searching **for** my keys* sí es correcto) — lo natural es **I'm looking for my keys**."
+  }
+ },
+ "a2u8l3": {
+  "_por_que": "«home no lleva to» es falso con my/his: go to his home.",
+  "theory": {
+   "title": "Preposiciones de movimiento",
+   "body": "Ya viste las de lugar (in, on, at). Estas son las de **movimiento**, y casi todas se dibujan:\n\n**to** = hacia (destino): *go **to** the park*\n**into** = hacia dentro: *walk **into** the room*\n**out of** = hacia fuera: *get **out of** the car*\n**across** = de un lado al otro: *walk **across** the street*\n**along** = a lo largo: *walk **along** the river*\n**through** = atravesando algo: *walk **through** the park*\n**over** = por encima: *jump **over** the wall*\n**up / down** = subiendo / bajando",
+   "trap": "**go to home** ❌ es el error más repetido de todos. *home* solo (sin *my*, *his*) no lleva **to**: es **go home**, **come home**, **get home**. Lo mismo con *here* y *there*: *come here*, no *come to here*."
+  }
+ },
+ "a2u9l1": {
+  "_por_que": "say sí admite persona con to, tell va sin persona en fijas, y el retroceso no es absoluto.",
+  "theory": {
+   "title": "say y tell, y el verbo que retrocede",
+   "body": "Para repetir lo que alguien dijo, el verbo **da un paso atrás** en el tiempo.\n\n*\"I **am** tired\"* → *He said he **was** tired.*\n*\"I **work** here\"* → *She said she **worked** there.*\n*\"I **will** call\"* → *He said he **would** call.*\n\nEs lo normal; si algo sigue siendo verdad, en conversación a veces no se retrocede.\n\nY hay dos verbos para «decir», con reglas distintas:\n\n**say** — no lleva la persona pegada (si la pones, va con to: *said **to me***): *He **said** that he was tired.*\n**tell** — sí lleva a quién, pegado: *He **told me** that he was tired.*",
+   "trap": "*He said me* ❌ y *He told that* ❌ son las dos caras del mismo error, porque el español usa «decir» para todo. Regla corta: **tell** va con persona pegada (tell me, tell him), salvo fijas como *tell the truth*; **say** sin persona pegada. Y otro: *explain me* ❌ → **explain to me**."
+  }
+ },
+ "a2u9l2": {
+  "_por_que": "Faltaba Me neither, que los ejercicios aceptan.",
+  "theory": {
+   "title": "so am I / neither do I",
+   "body": "Para decir «yo también» hay que repetir el **ayudante** de la otra frase, no el verbo entero.\n\n**Estar de acuerdo con algo positivo → So + ayudante + yo**\n*\"I'm tired.\"* → ***So am I**.*\n*\"I like coffee.\"* → ***So do I**.*\n*\"I've been there.\"* → ***So have I**.*\n\n**Con algo negativo → Neither + ayudante + yo**\n*\"I don't like it.\"* → ***Neither do I**.*\n*\"I can't swim.\"* → ***Neither can I**.*\n\nFíjate que el orden se invierte: **so am I**, no *so I am*.",
+   "trap": "«Yo también» no es *Me too* en todos los casos — *Me too* funciona suelto, pero suena informal y no sirve para lo negativo: ahí va **Me neither**. Y el error de verdad es contestar *So I am* ❌ o *Also me* ❌. El orden es **So + ayudante + sujeto**."
+  }
+ },
+ "a2u10l1": {
+  "_por_que": "stop y try aceptan las dos formas con otro significado. Se aclara que try cambia de sentido.",
+  "theory": {
+   "title": "Qué pide cada verbo",
+   "body": "Cuando un verbo lleva otro detrás, el primero decide la forma del segundo. Hay que aprenderlo por listas.\n\n**Piden to:** want, need, decide, hope, learn, try, would like, promise\n*I **want to go**.* · *She **decided to stay**.*\n\n**Piden -ing:** enjoy, finish, stop, avoid, mind, suggest, keep\n*I **enjoy reading**.* · *He **finished working**.*\n\nOjo: **stop to + verbo** = detenerse PARA hacer algo (*stop to eat*). Y **try** cambia de sentido: *try to open* = intentar abrir; *try opening* = probar a abrir, a ver si funciona.\n\n**Después de una preposición, SIEMPRE -ing:**\n*before **going***, *after **eating***, *good at **cooking***, *interested in **learning***",
+   "trap": "Lo de la preposición es lo que más se falla, porque el español pone infinitivo ahí: «antes de **salir**» → *before **to go*** ❌. En inglés, si hay una preposición delante, el verbo lleva **-ing**: **before going**."
+  }
+ },
+ "a2u10l2": {
+  "_por_que": "«do exercise» suena poco natural en EE. UU. (se dice exercise o work out). Se añade do the housework, que practica e5.",
+  "theory": {
+   "title": "Un «hacer» español, dos verbos ingleses",
+   "body": "No hay regla perfecta, pero sí una guía que funciona casi siempre:\n\n**do** = tareas, trabajo, cosas sin resultado físico\n*do the homework · do the housework · do the dishes · do business · do yoga · do your best*\n\n**make** = crear algo, producir algo nuevo\n*make dinner · make a mistake · make a decision · make money · make noise · make friends*\n\nTruco: si al final **existe algo que antes no existía**, casi siempre es **make**.",
+   "trap": "El español usa «hacer» para todo, así que sale *do a mistake* ❌ y *make the homework* ❌. Las dos son de las que más delatan. Memoriza las parejas más comunes como si fueran una sola palabra: **make a mistake**, **do the homework**."
+  }
+ },
+ "a2u6l1e1": {
+  "_por_que": "Alternativas naturales para el mazo.",
+  "accept": [
+   "It's too expensive, I'm not buying it.",
+   "It's too expensive, I'm not going to buy it.",
+   "It's too expensive, so I won't buy it.",
+   "I won't buy it, it's too expensive."
+  ]
+ },
+ "a2u6l1e5": {
+  "_por_que": "Dentro de un lugar se dice in here, y loud es lo cotidiano.",
+  "accept": [
+   "There's too much noise here.",
+   "It is too noisy here.",
+   "It's too noisy here.",
+   "There is too much noise in here.",
+   "It is too loud here.",
+   "It is too loud in here.",
+   "It is too noisy in here."
+  ]
+ },
+ "a2u6l1e6": {
+  "_por_que": "Con much se arma «much too fast», que es correcto.",
+  "extra": [
+   "many",
+   "very",
+   "fastly"
+  ]
+ },
+ "a2u6l2e1": {
+  "_por_que": "Alternativas naturales para el mazo.",
+  "accept": [
+   "There isn't anyone in the office.",
+   "There is nobody in the office.",
+   "There is no one in the office.",
+   "Nobody is in the office.",
+   "No one is in the office."
+  ]
+ },
+ "a2u6l2e4": {
+  "_por_que": "some- en pregunta y «in here» también son correctos. Verificación: el tip no explicaba por qué vale some- en pregunta.",
+  "accept": [
+   "Is there anyone here?",
+   "Is anybody here?",
+   "Is anyone here?",
+   "Is there someone here?",
+   "Is there somebody here?",
+   "Is someone here?",
+   "Is somebody here?",
+   "Is anyone in here?",
+   "Is anybody in here?",
+   "Is there anyone in here?",
+   "Is there anybody in here?"
+  ],
+  "tip": "En pregunta lo normal es anybody o anyone; somebody/someone también vale si esperas un sí."
+ },
+ "a2u6l2e6": {
+  "_por_que": "El tip sugería que «can find … nowhere» es normal.",
+  "tip": "Con can't va anywhere. Nunca can't + nowhere: serían dos negaciones."
+ },
+ "a2u6l2e7": {
+  "_por_que": "left no muestra singular ni plural.",
+  "tip": "somebody = alguien, en frase afirmativa."
+ },
+ "a2u6l3e1": {
+  "_por_que": "Alternativa natural para el mazo.",
+  "accept": [
+   "Most people enjoy music."
+  ]
+ },
+ "a2u6l3e2": {
+  "_por_que": "«Most the» y «Most of the» casi no se distinguen al oído.",
+  "options": [
+   "The most of the students passed.",
+   "Most of the students passed.",
+   "The most students passed."
+  ]
+ },
+ "a2u6l3e4": {
+  "_por_que": "«This one is the most expensive» es lo más natural.",
+  "accept": [
+   "This is the most expensive.",
+   "This one is the most expensive.",
+   "This one is the most expensive one."
+  ]
+ },
+ "a2u6l3e5": {
+  "_por_que": "El español invitaba a poner «in general» en medio, y eso se rechazaba. Verificación: con «En general» delante faltaban sus combinaciones.",
+  "es": "En general, la mayoría de los colombianos habla español.",
+  "accept": [
+   "Most Colombian people speak Spanish.",
+   "In general, most Colombians speak Spanish.",
+   "Generally, most Colombians speak Spanish.",
+   "Most Colombians, in general, speak Spanish.",
+   "Most Colombians generally speak Spanish.",
+   "Most Colombians speak Spanish in general.",
+   "Most people in Colombia speak Spanish.",
+   "In general, most Colombian people speak Spanish.",
+   "Generally, most Colombian people speak Spanish.",
+   "In general, most people in Colombia speak Spanish.",
+   "Generally speaking, most Colombians speak Spanish."
+  ]
+ },
+ "a2u6l3e7": {
+  "_por_que": "«goes into work» era poco natural y se oye como «va al trabajo».",
+  "audio": "I spend most of my time at work.",
+  "meaning": "Paso la mayor parte de mi tiempo en el trabajo."
+ },
+ "a2u7l1e1": {
+  "_por_que": "El distractor era correcto salvo por too; ahora es el error típico de orden.",
+  "options": [
+   "He speaks English very good.",
+   "He speaks English very well.",
+   "He speaks very well English."
+  ],
+  "accept": [
+   "He speaks very good English.",
+   "His English is very good."
+  ]
+ },
+ "a2u7l1e3": {
+  "_por_que": "En Colombia «hablar despacio» también es hablar en voz baja. Verificación: «no tan rápido» no está en la frase inglesa.",
+  "es": "Por favor, habla más lento."
+ },
+ "a2u7l1e5": {
+  "_por_que": "El adverbio antes del verbo también es correcto.",
+  "accept": [
+   "I finished the job easily.",
+   "I easily finished the work.",
+   "I easily finished the job.",
+   "I finished my work easily."
+  ]
+ },
+ "a2u7l1e6": {
+  "_por_que": "Con drives + carefully se armaba «He drives carefully», que también vale.",
+  "extra": [
+   "carefully",
+   "drive",
+   "very"
+  ]
+ },
+ "a2u7l2e1": {
+  "_por_que": "Alternativas naturales para el mazo.",
+  "accept": [
+   "It's the best restaurant in town.",
+   "It's the city's best restaurant."
+  ]
+ },
+ "a2u7l2e4": {
+  "_por_que": "toughest es un sinónimo común.",
+  "accept": [
+   "This is the hardest problem.",
+   "This is the toughest problem."
+  ]
+ },
+ "a2u7l2e5": {
+  "_por_que": "«as I thought it was» es lo más natural en EE. UU.",
+  "accept": [
+   "It's not as expensive as I thought.",
+   "It isn't as expensive as I thought it was.",
+   "It isn't as expensive as I thought it would be.",
+   "It isn't as expensive as I expected.",
+   "This isn't as expensive as I thought."
+  ]
+ },
+ "a2u7l2e6": {
+  "_por_que": "my life no es un grupo: es un periodo.",
+  "tip": "bad → the worst. Con un periodo (my life) va of."
+ },
+ "a2u7l3e1": {
+  "_por_que": "Alternativa para el mazo.",
+  "accept": [
+   "She is the woman that works with me."
+  ]
+ },
+ "a2u7l3e3": {
+  "_por_que": "in which también llena el hueco.",
+  "accept": [
+   "in which"
+  ]
+ },
+ "a2u7l3e5": {
+  "_por_que": "«the girl next door» y «the girl living next door» son naturales.",
+  "accept": [
+   "Do you know the girl that lives next door?",
+   "Do you know the girl next door?",
+   "Do you know the girl living next door?"
+  ]
+ },
+ "a2u7l3e6": {
+  "_por_que": "La teoría dice que el that de objeto se quita; el armado lo rechazaba. Sin that en las fichas solo hay una frase válida.",
+  "answer": "The car I bought is red.",
+  "tip": "El that se puede quitar cuando es objeto: the car (that) I bought. Y no se repite el it."
+ },
+ "a2u8l1e1": {
+  "_por_que": "La activa con they/people es muy común.",
+  "accept": [
+   "They speak English here.",
+   "People speak English here."
+  ]
+ },
+ "a2u8l1e2": {
+  "_por_que": "«was build in» y «was built in» no se distinguen al oído.",
+  "options": [
+   "This house is built in 1920.",
+   "This house was built in 1920.",
+   "This house built in 1920."
+  ]
+ },
+ "a2u8l1e4": {
+  "_por_que": "mailed (EE. UU.), on Mondays, get sent y la activa también valen.",
+  "accept": [
+   "Letters are sent every Monday.",
+   "The letters are sent on Mondays.",
+   "The letters are mailed every Monday.",
+   "The letters get sent every Monday.",
+   "Every Monday the letters are sent.",
+   "They send the letters every Monday."
+  ]
+ },
+ "a2u8l2e1": {
+  "_por_que": "searching for sí es correcto.",
+  "accept": [
+   "I'm searching for my keys."
+  ]
+ },
+ "a2u8l2e4": {
+  "_por_que": "switch off y shut off también son comunes.",
+  "accept": [
+   "Please turn it off.",
+   "Switch it off, please.",
+   "Please switch it off.",
+   "Shut it off, please.",
+   "Please shut it off."
+  ]
+ },
+ "a2u8l2e5": {
+  "_por_que": "Don't quit es lo más común en EE. UU.",
+  "accept": [
+   "Never give up.",
+   "Don't quit."
+  ]
+ },
+ "a2u8l2e8": {
+  "_por_que": "El sonido es rl y el tip hablaba de la vocal.",
+  "tip": "looking con l (la lengua toca arriba) y for con r americana, sin vibrar."
+ },
+ "a2u8l3e1": {
+  "_por_que": "«nunca» es falso: go to his home existe; alternativas para el mazo.",
+  "tip": "Sin my/his, home no lleva to: go home.",
+  "accept": [
+   "I'm heading home.",
+   "I'm going back home."
+  ]
+ },
+ "a2u8l3e4": {
+  "_por_que": "«caminar por el parque» es sobre todo walk in/around the park. Verificación: faltaban went/took a walk con Yesterday delante.",
+  "accept": [
+   "We walked through the park yesterday.",
+   "Yesterday we walked across the park.",
+   "We walked across the park yesterday.",
+   "We walked around the park yesterday.",
+   "Yesterday we walked around the park.",
+   "We walked in the park yesterday.",
+   "Yesterday we walked in the park.",
+   "We went for a walk in the park yesterday.",
+   "We took a walk in the park yesterday.",
+   "Yesterday we went for a walk in the park.",
+   "Yesterday we took a walk in the park."
+  ]
+ },
+ "a2u8l3e5": {
+  "_por_que": "ride the bus (EE. UU.), get to work y el progresivo también valen.",
+  "accept": [
+   "I go to work on the bus.",
+   "I take the bus to work.",
+   "I ride the bus to work.",
+   "I get to work by bus.",
+   "I am going to work by bus.",
+   "I take a bus to work."
+  ]
+ },
+ "a2u8l3e10": {
+  "_por_que": "«go to ___ by bus» delataba la respuesta; en «I ___ every day» caben las dos.",
+  "sentence": "I work every day."
+ },
+ "a2u9l1e1": {
+  "_por_que": "Alternativas naturales para el mazo. Verificación: el tip contradecía el accept said to me.",
+  "accept": [
+   "He told me he was tired.",
+   "He said to me that he was tired.",
+   "He said to me he was tired."
+  ],
+  "tip": "Con la persona pegada va tell: told me. «said me» no existe (sería said to me)."
+ },
+ "a2u9l1e3": {
+  "_por_que": "«trabajaba» también es used to work. Verificación: que used to no parezca el retroceso de I work.",
+  "accept": [
+   "was working",
+   "used to work"
+  ],
+  "tip": "El presente retrocede a pasado: worked. (used to work también vale si ya no trabaja allí.)"
+ },
+ "a2u9l1e4": {
+  "_por_que": "Sin «to me» también es natural. Verificación: faltaba Could con it.",
+  "accept": [
+   "Could you explain this to me?",
+   "Can you explain this?",
+   "Could you explain this?",
+   "Can you explain it to me?",
+   "Could you explain it to me?"
+  ]
+ },
+ "a2u9l1e5": {
+  "_por_que": "«llegaría tarde» = would arrive late; was going to también retrocede bien. Verificación: faltaban las de going to con that.",
+  "accept": [
+   "He told me he would be late.",
+   "She told me that she would be late.",
+   "She told me she would be late.",
+   "He told me he'd be late.",
+   "She told me she'd be late.",
+   "He told me that he would arrive late.",
+   "He told me he would arrive late.",
+   "She told me that she would arrive late.",
+   "She told me she would arrive late.",
+   "He told me he was going to be late.",
+   "She told me she was going to be late.",
+   "He told me that he was going to be late.",
+   "She told me that she was going to be late."
+  ]
+ },
+ "a2u9l2e1": {
+  "_por_que": "Alternativas naturales para el mazo.",
+  "accept": [
+   "Me too.",
+   "I am too.",
+   "I am tired too."
+  ]
+ },
+ "a2u9l2e4": {
+  "_por_que": "Con el diálogo entero no se sabía si escribir las dos líneas. Verificación: la respuesta completa también vale, como en e5.",
+  "es": "—No puedo nadar. —Yo tampoco. (Escribe solo la respuesta)",
+  "accept": [
+   "I can't either.",
+   "Me neither.",
+   "Nor can I.",
+   "I can't swim either."
+  ]
+ },
+ "a2u9l2e5": {
+  "_por_que": "La forma completa se rechazaba, y no se sabía si escribir las dos líneas.",
+  "es": "—He estado allí. —Yo también. (Escribe solo la respuesta)",
+  "accept": [
+   "Me too.",
+   "I have too.",
+   "I have been there too.",
+   "I have been there as well."
+  ]
+ },
+ "a2u10l1e1": {
+  "_por_que": "Alternativas naturales para el mazo.",
+  "accept": [
+   "Call me before you go out.",
+   "Call me before you leave.",
+   "Call me before leaving."
+  ]
+ },
+ "a2u10l1e4": {
+  "_por_que": "stop + -ing (de esta lección), got off work y o'clock también valen.",
+  "accept": [
+   "I finished work at six.",
+   "I stopped working at six.",
+   "I finished working at six o'clock.",
+   "I got off work at six.",
+   "I finished work at six o'clock."
+  ]
+ },
+ "a2u10l1e5": {
+  "_por_que": "«She's a good cook» y «She cooks well» son naturales.",
+  "accept": [
+   "She's good at cooking.",
+   "She is a good cook.",
+   "She cooks well."
+  ]
+ },
+ "a2u10l1e6": {
+  "_por_que": "En EE. UU. se dice play guitar; sin the en las fichas solo hay una frase válida. Verificación: explicar por qué no hay ficha the.",
+  "answer": "I want to learn to play guitar.",
+  "tip": "want y learn piden los dos to. En EE. UU. se dice play guitar, sin the."
+ },
+ "a2u10l1e8": {
+  "_por_que": "enjoy lleva /dʒ/, no una y suave.",
+  "tip": "home con la h soplada. Y enjoy suena «in-YÓI», con una y fuerte, casi «dy»."
+ },
+ "a2u10l2e1": {
+  "_por_que": "Alternativa para el mazo.",
+  "accept": [
+   "I made an error."
+  ]
+ },
+ "a2u10l2e3": {
+  "_por_que": "reach a decision también es correcto.",
+  "accept": [
+   "reach"
+  ]
+ },
+ "a2u10l2e4": {
+  "_por_que": "Faltaban could + cook y fix dinner.",
+  "accept": [
+   "Could you make dinner tonight?",
+   "Can you cook dinner tonight?",
+   "Could you cook dinner tonight?",
+   "Can you fix dinner tonight?"
+  ]
+ },
+ "a2u10l2e5": {
+  "_por_que": "«I do exercise» es poco natural en EE. UU.; se cambia por una pareja de do que la teoría nombra y ningún ejercicio practicaba. Verificación: «lavar» no tiene «hacer» y aceptaba wash; los oficios de la casa sí obligan a elegir do.",
+  "es": "Hago los oficios de la casa los sábados.",
+  "answer": "I do the housework on Saturdays.",
+  "accept": [
+   "I do housework on Saturdays.",
+   "I do the chores on Saturdays.",
+   "I do chores on Saturdays.",
+   "I do the housework every Saturday.",
+   "I do the chores every Saturday.",
+   "On Saturdays I do the housework.",
+   "On Saturdays I do the chores."
+  ],
+  "tip": "Los oficios de la casa son tarea: do, no make. Y housework no lleva -s."
+ },
+ "a2u10l2e6": {
+  "_por_que": "«Please don't make noise» salía con las mismas fichas; sin please hay un solo orden. noises sí existe.",
+  "es": "No hagas ruido.",
+  "answer": "Don't make noise.",
+  "extra": [
+   "do",
+   "does",
+   "to"
+  ],
+  "tip": "El ruido se make. Aquí noise va sin -s: ruido en general."
+ },
+ "a2u10l3e1": {
+  "_por_que": "Alternativas naturales para el mazo.",
+  "accept": [
+   "I came here in order to study.",
+   "I came here so I could study."
+  ]
+ },
+ "a2u10l3e3": {
+  "_por_que": "in order to también llena el hueco.",
+  "accept": [
+   "in order to"
+  ]
+ },
+ "a2u10l3e4": {
+  "_por_que": "get milk, some milk y for milk (for + sustantivo) también valen.",
+  "accept": [
+   "I went to the shop to buy milk.",
+   "I went to the store to get milk.",
+   "I went to the store to buy some milk.",
+   "I went to the store to get some milk.",
+   "I went to the store for milk.",
+   "I went to the store for some milk."
+  ]
+ },
+ "a2u10l3e5": {
+  "_por_que": "find, in order to y so I can también valen.",
+  "accept": [
+   "I am studying English to get a better job.",
+   "I study English to find a better job.",
+   "I study English in order to get a better job.",
+   "I study English so I can get a better job.",
+   "I study English so that I can get a better job."
+  ]
+ },
+ "_descartados": {
+  "a2u10l1e4 'at 6' (dígitos)": "La app ya iguala dígitos y palabras 0-100.",
+  "a2u10l2e5 (dejar 'I do exercise' y cambiar la respuesta a 'I exercise')": "La respuesta sin do sacaba el ejercicio del tema; se reemplazó por do the dishes y la teoría ya no dice do exercise.",
+  "a2u8l2e6 (cuidar = take care of en el armado)": "Solo se añadió la nota en la teoría; look after es correcto y el armado sigue igual.",
+  "a2u10l3e6 (quitar el accept vacío)": "Un parche no puede borrar campos y un accept vacío no hace daño.",
+  "a2u8l2e5 quitar 'Never give up.'": "Solo acepta de más; no hace daño y se deja."
+ },
+ "_pendientes": {
+  "a2u6l3e9 (live en shadow)": "live es heterónimo y Piper puede leerlo /laɪv/. Medir con oir_pares.py 'Most of my friends live here.'; si sale /laɪv/, cambiar a 'Most of my friends are from here.'",
+  "a2u6l3e7 (audio nuevo)": "Oír 'I spend most of my time at work.' con las 4 voces antes de publicar.",
+  "a2u8l1e2 (1920)": "Confirmar que Piper lee 1920 como 'nineteen twenty'.",
+  "Armar.kt / BuildSentence": "Leer accept en build. En este rango se evitó con cambios de respuesta (a2u7l3e6, a2u10l1e6, a2u10l2e6); confirmar si el armado exige usar todas las fichas de la respuesta.",
+  "Mazo (escribir desde translate)": "Confirmar que el mazo usa los accept nuevos de los 13 translate de este parche.",
+  "Hueco a2u6l1": "Falta enough después de adverbio y enough to + verbo; too much/many se escribe una sola vez.",
+  "Hueco a2u6l2": "La doble negación solo se reconoce (e1); nobody/nowhere/everywhere/somewhere nunca se producen.",
+  "Hueco a2u6l3": "Falta un write con most of the + sustantivo.",
+  "Hueco a2u7l1": "good → well y fast → fast no se escriben nunca.",
+  "Hueco a2u7l2": "as...as afirmativo y -iest sin ejercicio.",
+  "Hueco a2u7l3": "which nunca se produce.",
+  "Hueco a2u8l1": "Falta pasiva en negativo y pregunta.",
+  "Hueco a2u8l2": "look after + pronombre y take off sin ejercicio.",
+  "Hueco a2u8l3": "along, over, down y come here sin ejercicio.",
+  "Hueco a2u9l1": "can → could y say to sin ejercicio.",
+  "Hueco a2u9l2": "Me neither e I don't either sin ejercicio propio; falta So does he.",
+  "Hueco a2u10l1": "need, hope, avoid, mind, keep, suggest y el contraste stop to / stop -ing sin ejercicio.",
+  "Hueco a2u10l2": "do your best, do business, make money sin ejercicio.",
+  "Hueco a2u10l3": "for + sustantivo nunca se escribe; for + -ing solo en el armado.",
+  "Mazo (ids con contenido reemplazado)": "El mazo guarda copias en/es: refrescar o retirar en mazo.json (y revisar progreso.json para «Corrige tu propio error») las entradas de a2u10l2e5, a2u6l3e7, a2u7l3e6, a2u10l1e6, a2u10l2e6 y a2u6l3e5."
+ }
+}

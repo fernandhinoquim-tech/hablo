@@ -39,11 +39,12 @@ vocabulario (368 parejas) · 12 historias (2 tandas).
 - **El rediseño del Modo Aptis YA LO CONSTRUYÓ Claude Code** (0.9.7, en el PC,
   sin commit todavía): cinco pistas, tablero con el piso, simulacro bloqueado
   hasta B1. No hay que volver a mandar `CAMBIO-MODO-APTIS.md`.
-- **Formato de las pistas:** la app espera `aptis-reading.json`,
-  `aptis-listening.json`, `aptis-writing.json` y `aptis-speaking.json` con
-  `{"tareas": [...]}` en el MISMO formato que las secciones de
-  `aptis-diagnostico.json` (más `why` opcional). `pista-writing.json` está en
-  otro formato (`partes`) y hay que convertirlo antes de mandarlo.
+- **Formato de las pistas:** resuelto. Claude Code ya integró Writing tal cual
+  (`aptis-writing.json`, commit 9103ce1): el parser acepta `partes` y dentro
+  de cada parte las tareas van en el formato de su sección del simulacro
+  (`aptis-diagnostico.json`). Reading, Listening y Speaking: mismo esquema.
+- Claude Code ya hizo los cambios de código de la auditoría: `accept` en
+  translate, build y type, respetado en mazo, Aguanta y adivina (6ff3cc9).
 - **Auditoría de A1 y A2** en `contenido-nuevo/auditoria-a1-a2/`: faltan 16
   lecciones básicas de A1 y 14 de A2, el vocabulario va al 38 % de A2, ≈ 220
   defectos en los 565 ejercicios (informes por unidad con el arreglo exacto),
@@ -53,7 +54,10 @@ vocabulario (368 parejas) · 12 historias (2 tandas).
 ## Lo que falta, en orden
 
 0. **Lo de la auditoría** (`auditoria-a1-a2/auditoria-a1-a2.md`, sección 9):
-   primero el parche de los ≈ 220 defectos, luego las lecciones nuevas de A1
+   el parche de los defectos está HECHO y verificado
+   (`contenido-nuevo/parche-auditoria/`, 276 ids, 381 cambios, 37 fichas);
+   falta que Claude Code lo aplique. Sigue: los "huecos" de sus
+   `_pendientes` + las 16 lecciones nuevas de A1, luego las lecciones nuevas de A1
    y A2, el vocabulario, la biblioteca de Gramática y las actividades.
 1. **Pistas de Aptis**: Writing **hecho**
    (`contenido-nuevo/aptis/pista-writing.json`, 16 tareas). Faltan **Reading,
@@ -79,6 +83,13 @@ vocabulario (368 parejas) · 12 historias (2 tandas).
   británico** como contenido (Aptis es del British Council).
 - **Aptis no puntúa fonemas**: el GOP sirve para hablar mejor, no para la nota.
 - **Una etapa a la vez**, y termina cuando Fero la usó, no cuando compila.
+
+## Trampa de Cowork
+
+- **No correr `git` desde Cowork en la carpeta del repo.** El 17-09 un
+  `git status` dejó `.git/index.lock` sin poder borrarlo (el puente no deja
+  borrar sin permiso) y habría bloqueado los commits de Claude Code. Para
+  saber el estado, leer archivos o preguntarle a Claude Code.
 
 ## Dos cosas que parecen bug y NO lo son
 

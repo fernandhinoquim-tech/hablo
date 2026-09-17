@@ -1,0 +1,509 @@
+{
+ "_comentario": "Parche de la auditoría 17-09, unidades a1u1 a a1u5 (lecciones a1u1l1..a1u5l3). Revisión: /home/claude/audit/revision_a1u1-u5.md",
+ "_descartados": {
+  "a1u3l1e4/a1u2l1e4/a1u2l3e4 (accept en build)": "Build no lee accept hoy: se arregló cambiando el señuelo, no con accept.",
+  "a1u3l2e9 (accept con dígitos)": "La app ya iguala dígitos y palabras 0-100; solo se corrige el tip.",
+  "a1u3l1e5 ≈ a1u5l2e1 (duplicado)": "Las dos lecciones enseñan el artículo con profesiones; repetirlo en la unidad de artículos es repaso útil, no un error.",
+  "a1u1l3e7, a1u2l3e6, a1u3l1e7 (do antes de enseñarlo)": "Son frases hechas de supervivencia; se dejan. a1u1l3e6 sí se cambió porque además duplicaba a1u4l2e3/e10.",
+  "a1u5l2e4 → 'Life is hard'": "Cambiaría el contenido de un ejercicio que está bien; el hueco de la trampa se maneja con los huecos (ver _pendientes)."
+ },
+ "_pendientes": {
+  "Armar.kt / BuildSentence": "Leer accept en build. Hasta entonces a1u4l3e5 pasó de usually a always porque 'Usually he works at home' (correcto) no se puede bloquear con señuelos.",
+  "Mazo (escribir desde translate)": "Confirmar que el mazo usa el accept nuevo de los translate de este parche.",
+  "Hueco a1u4l1": "Falta un ejercicio de has (he has) y de -es (watches); la teoría ya lo menciona.",
+  "Hueco a1u5l2": "Falta un ejercicio con la trampa 'The life is hard' y con plurales en general (Cars are expensive).",
+  "Hueco a1u1l1": "Ningún ejercicio practica you/we/they are ni he/she is; no hay Hello/Hi.",
+  "Audio a1u2l1e5": "Oír 'Here you go.' con las 4 voces de Piper (cambió el audio del dictado)."
+ },
+ "a1u1l1": {
+  "_por_que": "«Nunca» es falso: la misma unidad usa Nice to meet you, See you tomorrow y órdenes sin sujeto.",
+  "theory": {
+   "title": "En inglés el sujeto casi nunca se calla",
+   "body": "En español el verbo ya dice quién habla: «soy Fero», «trabajo aquí». El sujeto sobra.\n\nEn inglés **no**. Hay que decir quién:\n\n*Am Fero* ❌ → ***I** am Fero* ✅\n*Is my brother* ❌ → ***He** is my brother* ✅\n\nLas excepciones son las órdenes (*Sit down*) y las fórmulas fijas (*Nice to meet you*, *See you tomorrow*).\n\nY el verbo **to be** tiene tres formas en presente:\n**I am** · **you/we/they are** · **he/she/it is**\n\nAl hablar casi siempre se contraen: *I'm, you're, he's, she's, it's, we're, they're*.",
+   "trap": "Dejar caer el sujeto («Am from Colombia») es lo primero que delata a un hispanohablante, y cuesta quitárselo porque en español suena redundante. En inglés la frase sin sujeto está incompleta: **I'm from Colombia**."
+  }
+ },
+ "a1u1l1e2": {
+  "_por_que": "«Siempre» exagera.",
+  "tip": "Error clásico del español: no se traduce literal. Lo normal es What's your name?"
+ },
+ "a1u1l1e6": {
+  "_por_que": "Ningún ejercicio probaba la trampa de la lección (sujeto caído). Verificación: mismo español que a1u1l1e9, que acepta I'm Colombian.",
+  "options": [
+   "I am of Colombia.",
+   "Am from Colombia.",
+   "I'm from Colombia."
+  ],
+  "accept": [
+   "I come from Colombia.",
+   "I'm Colombian."
+  ],
+  "tip": "Origen con from, nunca of. Y siempre con sujeto: I'm from..."
+ },
+ "a1u1l1e9": {
+  "_por_que": "El tip decía «con to be» pero se acepta I come from; I'm Colombian también es natural.",
+  "accept": [
+   "I come from Colombia.",
+   "I'm Colombian."
+  ],
+  "tip": "Origen: I'm from... (también I come from...). Nunca 'I am of Colombia'."
+ },
+ "a1u1l1e12": {
+  "_por_que": "«siiip» enseña s en vez de sh, y la i española se parece más a la de sheep, no a la de ship.",
+  "tip": "sheep es larga y tensa, como «shiiip»; ship es corta y relajada, casi entre i y e. La i española se parece a la de sheep: la nueva es la de ship."
+ },
+ "a1u1l2": {
+  "_por_que": "I have cold no significa resfriado; I have a cold sí.",
+  "theory": {
+   "title": "Lo que en español «se tiene», en inglés «se es»",
+   "body": "Para decir cómo estás, el inglés usa **to be** donde nosotros usamos «tener» o «estar».\n\n*I **am** fine.* (estoy bien)\n*I **am** tired.* (estoy cansado)\n*I **am** hungry.* (tengo hambre)\n*I **am** cold.* (tengo frío)\n*I **am** thirty.* (tengo treinta)\n\nY la pregunta es fija, se aprende entera:\n***How are you?*** → *I'm fine, thanks. And you?*",
+   "trap": "«Tengo hambre» sale como *I have hunger* y «tengo frío» como *I have cold*, que además suena a *I have a cold* («tengo un resfriado»). En inglés esas cosas se **son**, no se tienen: **I am hungry**, **I am cold**."
+  }
+ },
+ "a1u1l2e1": {
+  "_por_que": "Traducción natural que el mazo pediría al escribir.",
+  "accept": [
+   "How are you doing?"
+  ]
+ },
+ "a1u1l2e2": {
+  "_por_que": "«I'm find, thanks» y «I'm fine, thanks» suenan casi igual (la d no se suelta antes de th).",
+  "options": [
+   "I'm fine, thanks. And you?",
+   "I fine, thanks. And you?",
+   "I'm five, thanks. And you?"
+  ]
+ },
+ "a1u1l2e3": {
+  "_por_que": "Para un colombiano la z es s: «zank» enseña justo el error de th.",
+  "tip": "Thank you son dos palabras. La th es la z de España (lengua entre los dientes). Ni «tenkiu» ni «sankiu»."
+ },
+ "a1u1l2e6": {
+  "_por_que": "Faltaba «en singular»; se añade la alternativa good.",
+  "accept": [
+   "Have a good day."
+  ],
+  "tip": "No olvides el a: casi siempre hace falta antes de un sustantivo contable en singular."
+ },
+ "a1u1l2e7": {
+  "_por_que": "Ejercicio de h con un tip que escribe «hava», que un hispanohablante lee con h muda.",
+  "tip": "Have a se pega: «HAV-a». La h se sopla suave, como empañando un vidrio; ni muda («ava») ni tan fuerte como la j."
+ },
+ "a1u1l2e9": {
+  "_por_que": "El cloze de la lección acepta feel; aquí también debe valer.",
+  "accept": [
+   "I'm tired, thanks.",
+   "I feel tired, thank you.",
+   "I feel tired, thanks."
+  ]
+ },
+ "a1u1l3e2": {
+  "_por_que": "Alternativa natural para el mazo.",
+  "accept": [
+   "No, I come from Bogota."
+  ]
+ },
+ "a1u1l3e3": {
+  "_por_que": "Con las mismas fichas salía «I speak English and Spanish» (correcto) y la app lo rechazaba; build no lee accept.",
+  "es": "Hablo español y un poco de inglés.",
+  "answer": "I speak Spanish and a little English",
+  "extra": [
+   "talk",
+   "the"
+  ],
+  "tip": "a little = un poco. Y al escribir, Spanish y English van con mayúscula."
+ },
+ "a1u1l3e6": {
+  "_por_que": "Duplicaba a1u4l2e3/e10, enseñaba do antes de tiempo y «You speak English?» vale en la calle; ahora practica el tema de la lección. Verificación: Do you come from Mexico? y Are you Mexican? también son correctas.",
+  "es": "¿Eres de México?",
+  "options": [
+   "Are you from Mexico?",
+   "Do you from Mexico?",
+   "Are you of Mexico?"
+  ],
+  "answer": "Are you from Mexico?",
+  "tip": "Con to be la pregunta se arma dándole la vuelta: Are you from...?",
+  "accept": [
+   "Do you come from Mexico?",
+   "Are you Mexican?"
+  ]
+ },
+ "a1u1l3e9": {
+  "_por_que": "Faltaba la variante con from sin repetir el I.",
+  "accept": [
+   "I am from Colombia and I speak Spanish.",
+   "I'm Colombian and speak Spanish.",
+   "I'm from Colombia and speak Spanish."
+  ]
+ },
+ "a1u2l1e2": {
+  "_por_que": "Alternativas naturales para el mazo.",
+  "accept": [
+   "I'd like some coffee, please.",
+   "I'd like coffee, please.",
+   "I'd like a cup of coffee, please."
+  ]
+ },
+ "a1u2l1e4": {
+  "_por_que": "Con cost y does se armaba «How much does it cost» (correcto) y la app lo rechazaba.",
+  "extra": [
+   "costs",
+   "many"
+  ]
+ },
+ "a1u2l1e5": {
+  "_por_que": "El curso es americano: lo normal allí es Here you go.",
+  "audio": "Here you go.",
+  "tip": "Es lo que dice el mesero al entregarte algo. También se oye Here you are."
+ },
+ "a1u2l1e6": {
+  "_por_que": "En Reino Unido se dice to take away; takeaway es el sustantivo.",
+  "tip": "En Reino Unido se dice to take away."
+ },
+ "a1u2l1e9": {
+  "_por_que": "Faltaba la forma más natural.",
+  "accept": [
+   "I'd like some tea, please.",
+   "I'd like tea, please.",
+   "I'd like a cup of tea, please."
+  ]
+ },
+ "a1u2l2e2": {
+  "_por_que": "«That's everything» también es correcto; se cambia el distractor por un sujeto caído.",
+  "options": [
+   "No, thanks. That's all.",
+   "No, thanks. Is all.",
+   "No, thank. That's all."
+  ],
+  "accept": [
+   "No, thanks. That's it.",
+   "No, thank you. That's all.",
+   "No, thank you. That's it.",
+   "No, thanks. That's everything."
+  ]
+ },
+ "a1u2l2e6": {
+  "_por_que": "Alternativas naturales para el mazo.",
+  "accept": [
+   "Thanks, have a nice day.",
+   "Thank you, have a good day.",
+   "Thanks, have a good day."
+  ]
+ },
+ "a1u2l2e7": {
+  "_por_que": "El curso es americano: check va primero; y bill también se usa en EE. UU.",
+  "answer": "check",
+  "accept": [
+   "bill"
+  ],
+  "tip": "check es lo más americano; bill también se oye (y es lo británico). account NO: esa es la del banco."
+ },
+ "a1u2l2e8": {
+  "_por_que": "«Puedo» también es May.",
+  "accept": [
+   "Can I pay with a card?",
+   "Can I pay by credit card?",
+   "Can I pay with a credit card?",
+   "Can I pay with my card?",
+   "May I pay by card?",
+   "May I pay with a card?"
+  ]
+ },
+ "a1u2l3": {
+  "_por_que": "En EE. UU. Excuse me también se usa al tropezar con alguien.",
+  "theory": {
+   "title": "Sorry y excuse me no son lo mismo",
+   "body": "Las dos se traducen «perdón», pero se usan en momentos distintos.\n\n**Excuse me** — *antes*: para llamar la atención, pedir paso, interrumpir.\n*Excuse me, where is the bathroom?*\n\n**Sorry** — *después*: cuando ya hiciste algo o algo salió mal.\n*Sorry, I'm late.* · *Sorry about that.*\n\nRegla corta: **excuse me** para molestar, **sorry** para disculparte. (En EE. UU. también se dice *Excuse me* al tropezar con alguien.)",
+   "trap": "Como en español «perdón» sirve para las dos, se usa *sorry* para llamar al mesero — y suena a que hiciste algo malo. Para llamar a alguien es **Excuse me**."
+  }
+ },
+ "a1u2l3e1": {
+  "_por_que": "La respuesta usa sorry para una queja, contra la regla de la lección; se explica y se aceptan alternativas.",
+  "accept": [
+   "Excuse me, this isn't what I ordered.",
+   "I'm sorry, this isn't what I ordered.",
+   "Sorry, this isn't what I asked for."
+  ],
+  "tip": "Aquí sorry suaviza la queja. Excuse me, this isn't what I ordered también vale."
+ },
+ "a1u2l3e2": {
+  "_por_que": "«fix that» y «fixed that» suenan casi igual.",
+  "options": [
+   "I'm so sorry, let me fix that.",
+   "I'm so sorry, let me to fix that.",
+   "I'm so sorry, leave me fix that."
+  ]
+ },
+ "a1u2l3e4": {
+  "_por_que": "Con repeat se armaba «Could you repeat that please» (correcto) y la app lo rechazaba. Verificación: con please se armaba también «Could you please say that again» (correcto); se quita please.",
+  "extra": [
+   "repeated",
+   "for"
+  ],
+  "es": "¿Puede repetirlo?",
+  "answer": "Could you say that again"
+ },
+ "a1u2l3e8": {
+  "_por_que": "Faltaban traducciones naturales.",
+  "accept": [
+   "I'm sorry, I'm late.",
+   "Sorry for being late.",
+   "I'm sorry for being late.",
+   "Sorry, I'm running late."
+  ]
+ },
+ "a1u3l1e1": {
+  "_por_que": "La forma corta es correcta y el mazo la pediría al escribir.",
+  "accept": [
+   "I'm 25."
+  ]
+ },
+ "a1u3l1e4": {
+  "_por_que": "Con in se armaba «I work in a bank», que es la respuesta de a1u6l2e1; la app lo rechazaba.",
+  "extra": [
+   "on",
+   "an"
+  ]
+ },
+ "a1u3l1e5": {
+  "_por_que": "Nombre + 's no se normaliza.",
+  "accept": [
+   "My sister's a doctor."
+  ]
+ },
+ "a1u3l1e7": {
+  "_por_que": "«What do you do» y «What you do» suenan casi igual en habla rápida. Verificación: «What are you» también se reduce a «whaddaya»; does se oye distinto.",
+  "options": [
+   "What do you do for a living?",
+   "What does you do for a living?",
+   "What do you do for living?"
+  ]
+ },
+ "a1u3l1e8": {
+  "_por_que": "«siempre las dos» contradice la teoría («o simplemente I'm 25»). Verificación: «nunca 25 years» es falso fuera de la edad (for 25 years).",
+  "tip": "Para la edad: 25 years old, o solo I'm 25; nunca I'm 25 years a secas. Y el verbo es am, no have."
+ },
+ "a1u3l2e1": {
+  "_por_que": "«hermanos» es ambiguo, como dice el tip de e9.",
+  "meaning": "Tengo dos hermanos (hombres)."
+ },
+ "a1u3l2e2": {
+  "_por_que": "Duplicaba a1u4l1e2 y probaba la -s antes de enseñarla; ahora practica el 's de la lección.",
+  "es": "La casa de mi hermano es grande.",
+  "options": [
+   "My brother's house is big.",
+   "My house's brother is big.",
+   "My brother house is big."
+  ],
+  "answer": "My brother's house is big.",
+  "accept": [
+   "My brother's house is large."
+  ],
+  "tip": "El dueño va primero con 's: my brother's house."
+ },
+ "a1u3l2e4": {
+  "_por_que": "Con las mismas fichas salía «I live with my family in Bogota» (correcto) y la app lo rechazaba; build no lee accept.",
+  "es": "Vivo con mi familia.",
+  "answer": "I live with my family",
+  "extra": [
+   "at",
+   "the"
+  ]
+ },
+ "a1u3l2e5": {
+  "_por_que": "Alternativa natural para el mazo.",
+  "accept": [
+   "I get up at six o'clock."
+  ]
+ },
+ "a1u3l2e6": {
+  "_por_que": "La th solo estaba en with, al final y débil.",
+  "text": "I live in Bogota with my three brothers."
+ },
+ "a1u3l2e9": {
+  "_por_que": "siblings no es formal: es de uso diario en EE. UU. Verificación: siblings también se usa al contar (I have three siblings).",
+  "tip": "Para «dos hermanas y un hermano» se nombran por separado: sisters y brothers. Para el total mixto existe siblings, de uso diario: I have three siblings."
+ },
+ "a1u4l1": {
+  "_por_que": "Olvidaba to be y has, y la trampa usaba on Monday (un lunes concreto). Verificación: «siempre» chocaba con does/doesn't de la lección siguiente.",
+  "theory": {
+   "title": "La -s que se nos olvida",
+   "body": "En presente el verbo casi no cambia (to be es aparte). **I work, you work, we work, they work** — todas iguales.\n\nLa única que cambia es **he, she, it**: se le pega una **-s** al final.\n\n*I work* → *He work**s***\n*I live* → *She live**s***\n*I go* → *It go**es***\n*I watch* → *She watch**es***\n\nY una irregular que se usa todo el tiempo: *I have* → *He **has***.\n\nEsa -s no significa nada. No es plural, no es posesivo. Es solo una marca que el inglés dejó ahí y hay que ponerla siempre en las frases afirmativas. (En preguntas y negaciones la -s se la lleva **does**: *Does he work?* · *He doesn't work*. Eso viene en la próxima lección.)",
+   "trap": "Un hispanohablante dice *He work on Mondays*. Suena natural porque en español «él trabaja» ya lleva su propia terminación y no necesitamos nada más. En inglés, si el sujeto es he, she o it, la -s va sí o sí: **He works on Mondays**."
+  }
+ },
+ "a1u4l1e2": {
+  "_por_que": "Alternativa natural para el mazo.",
+  "accept": [
+   "He works Mondays."
+  ]
+ },
+ "a1u4l1e4": {
+  "_por_que": "Las demás frases en inglés escriben Bogota sin tilde.",
+  "options": [
+   "My sister live in Bogota.",
+   "My sister lives in Bogota.",
+   "My sister is live in Bogota."
+  ],
+  "answer": "My sister lives in Bogota."
+ },
+ "a1u4l1e10": {
+  "_por_que": "La app no marca mayúsculas; el tip debe decirlo.",
+  "tip": "Consonante + y cambia a -ies: study → studies. Y English va con mayúscula (la app no te lo marca, pero en un correo sí se nota)."
+ },
+ "a1u4l1e12": {
+  "_por_que": "«liv» se lee con i tensa, que es la de leave.",
+  "tip": "leave es larga y tensa («liiiv»); live es corta y relajada, casi «lev». Cambian el significado por completo."
+ },
+ "a1u4l2e3": {
+  "_por_que": "«You speak English?» vale en la calle; el tip olvidaba las preguntas con be.",
+  "options": [
+   "Are you speak English?",
+   "Do you speak English?",
+   "Does you speak English?"
+  ],
+  "accept": [
+   "Can you speak English?"
+  ],
+  "tip": "Con verbos normales la pregunta empieza con Do o Does. Con you va Do."
+ },
+ "a1u4l3": {
+  "_por_que": "«sitio fijo» es falso para sometimes y usually, que pueden abrir la frase. Verificación: always/never sí abren las órdenes (Never give up).",
+  "theory": {
+   "title": "Dónde va «siempre» en inglés",
+   "body": "Las palabras de frecuencia — **always** (siempre), **usually** (normalmente), **often** (a menudo), **sometimes** (a veces), **never** (nunca) — tienen un sitio fijo:\n\n**Antes del verbo normal:**\nI **always** drink coffee.\nShe **never** works on Sundays.\n\n**Después del verbo to be:**\nHe **is** always late.\nThey **are** never tired.\n\nRegla corta: *antes del verbo, pero después de am/is/are*. (**sometimes** y **usually** también pueden abrir la frase: *Sometimes I walk to work*. **always** y **never** no abren una frase normal; solo una orden: *Never give up*.)",
+   "trap": "En español el «siempre» se mueve libre: «siempre tomo café», «tomo café siempre». Por eso sale *I drink always coffee*. En inglés no se mete entre el verbo y lo que recibe la acción: **I always drink coffee**."
+  }
+ },
+ "a1u4l3e1": {
+  "_por_que": "«tomar café» es también have coffee.",
+  "accept": [
+   "I always have coffee in the morning.",
+   "I always drink coffee in the mornings.",
+   "I always have coffee in the mornings."
+  ]
+ },
+ "a1u4l3e3": {
+  "_por_que": "Alternativa natural para el mazo.",
+  "accept": [
+   "I don't ever eat fish."
+  ]
+ },
+ "a1u4l3e5": {
+  "_por_que": "Con usually se armaba «Usually he works at home» (correcto) y build no lee accept; con always ese orden es incorrecto.",
+  "es": "Él siempre trabaja en casa.",
+  "answer": "He always works at home.",
+  "extra": [
+   "work",
+   "in",
+   "never"
+  ],
+  "tip": "always antes del verbo, y works con -s."
+ },
+ "a1u4l3e10": {
+  "_por_que": "Faltaba una traducción natural.",
+  "accept": [
+   "She never works on Sunday.",
+   "She never works Sundays.",
+   "She doesn't ever work on Sundays."
+  ]
+ },
+ "a1u5l1": {
+  "_por_que": "It has no es «ella tiene», y It has two bedrooms es correcto para describir una casa. Verificación: el ejemplo de It has no usaba It.",
+  "theory": {
+   "title": "«Hay» son dos palabras distintas",
+   "body": "El español tiene una sola palabra para todo: **hay**. El inglés tiene dos, según lo que venga después.\n\n**There is** + una cosa (singular)\n*There is a kitchen.*\n\n**There are** + varias cosas (plural)\n*There are two bedrooms.*\n\nPara preguntar se da la vuelta:\n*Is there a bathroom?* · *Are there any chairs?*\n\nY para negar:\n*There isn't a garage.* · *There aren't any windows.*",
+   "trap": "Como «hay» no cambia nunca en español, sale *There is two bedrooms*. Hay que mirar lo que sigue: si son dos o más, **there are**. Y ojo con el otro error: «hay una mesa» no es *There has a table* ni *Have a table*: es **There is a table**. (*It has…* es otra cosa, «tiene», para describir algo ya mencionado: *The apartment? It has two bedrooms.*)"
+  }
+ },
+ "a1u5l1e1": {
+  "_por_que": "«It has two bedrooms» es correcto al describir un apartamento; se cambia por un error real.",
+  "options": [
+   "There is two bedrooms.",
+   "There are two bedrooms.",
+   "There have two bedrooms."
+  ],
+  "accept": [
+   "There are two rooms."
+  ]
+ },
+ "a1u5l1e3": {
+  "_por_que": "Alternativas naturales (restroom es muy americano).",
+  "accept": [
+   "Is there a restroom here?",
+   "Is there a bathroom around here?",
+   "Is there a restroom around here?"
+  ]
+ },
+ "a1u5l1e6": {
+  "_por_que": "peoples existe (pueblos).",
+  "tip": "people ya es plural (personas); peoples solo significa «pueblos, naciones»."
+ },
+ "a1u5l1e10": {
+  "_por_que": "Faltaban formas comunes.",
+  "accept": [
+   "There's a store near here.",
+   "There is a shop near here.",
+   "There's a shop near here.",
+   "There is a store nearby.",
+   "There's a store nearby.",
+   "There is a shop nearby.",
+   "There's a shop nearby.",
+   "There is a store close by.",
+   "There is a store around here.",
+   "There is a shop close by.",
+   "There is a shop around here."
+  ]
+ },
+ "a1u5l2": {
+  "_por_que": "La regla parecía decir que los plurales nunca llevan artículo.",
+  "theory": {
+   "title": "a, an, the, o nada",
+   "body": "**a / an** = uno cualquiera, la primera vez que lo mencionas.\n*I have **a** car.* · *She is **an** engineer.*\n(**an** solo si la palabra empieza con sonido de vocal: an apple, an hour.)\n\n**the** = ese en concreto, el que ya sabemos cuál es.\n***The** car is red.* (el que acabo de mencionar)\n\n**Nada** delante de plurales o incontables **cuando hablas en general**:\n*I like coffee.* · *Cars are expensive.* · *Life is short.*",
+   "trap": "Dos errores que delatan al hispanohablante. Uno: *My sister is doctor* — en inglés una profesión en singular lleva artículo, **is a doctor**. Dos: *The life is hard* — al hablar de algo en general el inglés no pone the, **Life is hard**. Justo al revés que nosotros."
+  }
+ },
+ "a1u5l2e1": {
+  "_por_que": "«siempre» y «número uno» exageran (y chocan con a1u3l1e1).",
+  "accept": [
+   "My sister's a doctor."
+  ],
+  "tip": "Una profesión en singular lleva a o an: is a doctor. Es de los errores más típicos."
+ },
+ "a1u5l2e2": {
+  "_por_que": "Sin contexto, «el café» también puede ser uno concreto.",
+  "es": "Me gusta el café (en general)."
+ },
+ "a1u5l2e9": {
+  "_por_que": "«siempre» y «número uno» exageran.",
+  "tip": "Una profesión en singular lleva a o an: is a doctor. Es de los errores más típicos."
+ },
+ "a1u5l2e10": {
+  "_por_que": "accept vacío en una frase larga con alternativas naturales.",
+  "accept": [
+   "I like coffee but don't like tea.",
+   "I like coffee but not tea."
+  ]
+ },
+ "a1u5l3e2": {
+  "_por_que": "I'm home es correcto y el mazo lo pediría al escribir.",
+  "accept": [
+   "I'm home."
+  ]
+ },
+ "a1u5l3e4": {
+  "_por_que": "next week, next door: next no siempre lleva to.",
+  "tip": "Para «al lado de», next lleva to: next to. (next week es otra cosa: la próxima semana.)"
+ },
+ "a1u4l3e9": {
+  "_por_que": "Repetía a1u4l3e1 y la lección se quedó sin usually al cambiar a1u4l3e5.",
+  "es": "Normalmente trabajo en casa.",
+  "text": "I ___ work at home.",
+  "answer": "usually",
+  "accept": [
+   "normally",
+   "generally"
+  ],
+  "tip": "usually va antes del verbo, igual que always."
+ }
+}

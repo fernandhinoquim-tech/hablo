@@ -1,0 +1,669 @@
+{
+ "_comentario": "Parche de la auditoría 17-09, unidades a2u1 a a2u5 (lecciones a2u1l1..a2u5l2). Revisión: /home/claude/audit/revision_a2u1-u5.md",
+ "_descartados": {
+  "a2u1l1e4, a2u2l4e5, a2u3l1e5, a2u5l2e4 (accept con dígitos)": "La app ya iguala dígitos y palabras 0-100; solo se añadieron las variantes que no son de dígitos (8:00, 'been living … three years', 'Do you mind').",
+  "a2u2l4e6, a2u4l3e7, a2u5l1e6 (arreglo por señuelo)": "El otro orden de las oraciones sale con las fichas de la propia respuesta; ningún señuelo lo bloquea. Se añadió accept (armable con las mismas fichas) y queda en _pendientes.",
+  "a2u1l2e5 (cambiar es)": "Se prefirió aceptar el pasado simple en vez de reescribir el español.",
+  "a2u1l2e6 / a2u1l3e5 alternativas con 'didn't used to'": "Forma no estándar; la lección enseña use to tras did a propósito.",
+  "a2u4l1e1 'Tomorrow I will go to the doctor.' como accept": "Se quitó como distractor (no es incorrecta), pero no se acepta: la lección enseña el continuo para citas.",
+  "a2u5l1e5 quitar 'I would leave it'": "Solo acepta de más; no hace daño y se deja."
+ },
+ "_pendientes": {
+  "Armar.kt / BuildSentence": "Leer accept en build. Sin eso siguen rechazando inglés correcto: a2u2l4e6 ('In 2019 he worked here.'), a2u4l3e7 ('When you come back, we will talk.'), a2u5l1e6 ('She would pass if she studied more.').",
+  "Mazo (escribir desde translate)": "Confirmar que el mazo usa los accept nuevos de los 18 translate de este parche.",
+  "a2u2l4e10 (since/sense)": "La frase portadora delata la respuesta por sentido ('known her sense 2020' no existe). Buscar una frase donde las dos sean posibles y medir con oir_pares.py que Piper conserve la /ɪ/ (since solo sale bien dentro de frase).",
+  "a2u5l2e10 (ban/van)": "Igual: 'The ban is outside' no tiene sentido. Probar 'I saw the van.' con las 4 voces antes de cambiarla (van sale 9/12).",
+  "a2u2l3e8": "Cambió el texto de hablar a 'I have just gotten home.'; revisar que el jurado GOP de h no se altere (home sigue).",
+  "Hueco a2u1l2": "Falta contrastar used to con be used to (estar acostumbrado).",
+  "Hueco a2u2l1/a2u2l2": "Faltan preguntas y respuestas cortas (Have you finished? Yes, I have) y un write con been/gone.",
+  "Hueco a2u3l2": "Falta un ejercicio con can't / not allowed to como prohibición (la forma hablada en EE. UU.).",
+  "Hueco a2u3l3": "You could... está en la teoría y en ningún ejercicio.",
+  "Hueco a2u4l1": "Falta will para predicciones y going to con evidencia.",
+  "Hueco a2u4l2": "Falta maybe vs may be (ahora está en la teoría).",
+  "Hueco a2u5l2": "La respuesta 'No, not at all' de la trampa no tiene ejercicio; falta I'd rather en un write."
+ },
+ "a2u1l1": {
+  "_por_que": "when también va con el continuo, y la trampa explicaba mal «It rained when I went out».",
+  "theory": {
+   "title": "Dos pasados en la misma frase",
+   "body": "El inglés usa dos pasados a la vez para contar qué pasó mientras pasaba otra cosa.\n\n**Pasado continuo** (was/were + -ing) = el fondo, lo que ya venía pasando.\n**Pasado simple** = lo que ocurrió de golpe y lo interrumpió.\n\n*It **was raining** when I **went** out.*\n*I **was sleeping** when she **called**.*\n\nDos palabras que los amarran:\n**when** + pasado simple (el golpe): *when she called*\n**while** + pasado continuo (el fondo): *while I was sleeping*\n\nOjo: **when** también puede llevar el fondo: *When I was walking home, I saw Ana.* Lo que no cambia es que el fondo va en continuo.",
+   "trap": "En español decimos «llovía» y «estaba lloviendo» casi igual, así que sale *It rained when I went out* — que significa otra cosa: que empezó a llover justo cuando saliste. Si algo ya venía pasando, va **was/were + -ing**."
+  }
+ },
+ "a2u1l1e2": {
+  "_por_que": "Faltaban traducciones naturales para el repaso escrito.",
+  "accept": [
+   "It was raining when I left.",
+   "It was raining when I left the house.",
+   "It was raining when I went outside."
+  ]
+ },
+ "a2u1l1e4": {
+  "_por_que": "La hora con 8:00 no se normaliza.",
+  "accept": [
+   "What were you doing at eight o'clock?",
+   "What were you doing at 8:00?"
+  ]
+ },
+ "a2u1l1e5": {
+  "_por_que": "Faltaba el orden inverso con pasado simple (que el tip permite) y «paper».",
+  "accept": [
+   "While I was cooking, he read the newspaper.",
+   "He was reading the newspaper while I was cooking.",
+   "He read the newspaper while I was cooking.",
+   "While I was cooking, he was reading the paper.",
+   "He was reading the paper while I was cooking.",
+   "While I was cooking, he read the paper."
+  ]
+ },
+ "a2u1l1e7": {
+  "_por_que": "«wait siempre lleva for» es falso (wait here, wait a minute).",
+  "tip": "Esperar A algo o a alguien es wait for: wait for the bus."
+ },
+ "a2u1l2e1": {
+  "_por_que": "Faltaba una traducción natural para el repaso escrito.",
+  "accept": [
+   "I used to be a smoker."
+  ]
+ },
+ "a2u1l2e2": {
+  "_por_que": "«used to lived in» suena igual que la respuesta.",
+  "options": [
+   "She used to live in Cali.",
+   "She usually lives in Cali.",
+   "She was living in Cali."
+  ]
+ },
+ "a2u1l2e4": {
+  "_por_que": "El curso es americano: football es fútbol americano.",
+  "answer": "Did you use to play soccer?",
+  "accept": [
+   "Did you use to play football?"
+  ]
+ },
+ "a2u1l2e5": {
+  "_por_que": "«trabajaba» no dice «ya no»: el pasado simple también es correcto.",
+  "accept": [
+   "My dad used to work in a bank.",
+   "My father used to work at a bank.",
+   "My dad used to work at a bank.",
+   "My dad worked at a bank.",
+   "My dad worked in a bank.",
+   "My father worked at a bank.",
+   "My father worked in a bank.",
+   "My dad used to work for a bank.",
+   "My father used to work for a bank.",
+   "My dad worked for a bank.",
+   "My father worked for a bank."
+  ]
+ },
+ "a2u1l2e8": {
+  "_por_que": "La pronunciación de used to no coincidía con la de e9.",
+  "tip": "house con la h soplada. Y used to suena «YUUS-tu», pegado."
+ },
+ "a2u1l2e9": {
+  "_por_que": "La pronunciación de used to no coincidía con la de e8.",
+  "tip": "«used to» va pegado, casi una palabra: «YUUS-tu». El peso en WORK."
+ },
+ "a2u1l3": {
+  "_por_que": "El ejemplo de la trampa tenía un solo conector.",
+  "theory": {
+   "title": "Amarrar una historia: when, while, so, because",
+   "body": "Para contar algo no basta con los verbos: hacen falta las palabras que unen.\n\n**when** = cuando (el golpe) · **while** = mientras (el fondo)\n**so** = así que (consecuencia) · **because** = porque (causa)\n**then** = entonces, después · **suddenly** = de repente\n\n*I was walking home **when** it started to rain, **so** I took a taxi.*\n\nFíjate en el orden: **so** va delante de lo que pasó *después*; **because** delante de la *razón*. En español «así que» y «porque» funcionan igual, pero se confunden al traducir rápido.",
+   "trap": "En español se dice «**Como** llovía, **por eso** tomé un taxi», con dos piezas. En inglés **nunca se ponen because y so juntos**: *Because it was raining, so I took a taxi* ❌. O *Because it was raining, I took a taxi*, o *It was raining, so I took a taxi* — una de las dos, no las dos."
+  }
+ },
+ "a2u1l3e1": {
+  "_por_que": "Faltaban traducciones naturales para el repaso escrito.",
+  "accept": [
+   "I was walking home when it started raining.",
+   "I was walking home when it began to rain.",
+   "I was walking home when it began raining."
+  ]
+ },
+ "a2u1l3e4": {
+  "_por_que": "Faltaba «While I waited» (correcto) y «the paper».",
+  "accept": [
+   "I read the newspaper while I was waiting.",
+   "While I waited, I read the newspaper.",
+   "I read the newspaper while I waited.",
+   "While I was waiting, I read the paper.",
+   "I read the paper while I was waiting."
+  ]
+ },
+ "a2u1l3e5": {
+  "_por_que": "knock at the door también es correcto.",
+  "accept": [
+   "Someone suddenly knocked on the door.",
+   "Suddenly somebody knocked on the door.",
+   "Somebody suddenly knocked on the door.",
+   "Suddenly someone knocked at the door.",
+   "Someone suddenly knocked at the door.",
+   "Suddenly somebody knocked at the door.",
+   "All of a sudden someone knocked on the door."
+  ],
+  "tip": "knock on (o at) the door. La k inicial no suena."
+ },
+ "a2u1l3e6": {
+  "_por_que": "Con el señuelo because se armaba «I was late because I missed the bus», que es correcta.",
+  "extra": [
+   "but",
+   "lost",
+   "arrive"
+  ]
+ },
+ "a2u2l1e1": {
+  "_por_que": "Faltaban traducciones naturales (en EE. UU. se dice mucho I already finished / I'm done).",
+  "accept": [
+   "I have already finished.",
+   "I have finished already.",
+   "I already finished.",
+   "I am done."
+  ]
+ },
+ "a2u2l1e4": {
+  "_por_que": "Faltaban «I still haven't eaten», el orden «not yet» y la forma americana.",
+  "accept": [
+   "I have not eaten yet.",
+   "I still haven't eaten.",
+   "I have not yet eaten.",
+   "I didn't eat yet."
+  ]
+ },
+ "a2u2l1e5": {
+  "_por_que": "Se aceptaba «finished the work» pero no «finished the job».",
+  "accept": [
+   "They have finished the work.",
+   "They have done the job.",
+   "They have finished the job."
+  ]
+ },
+ "a2u2l1e7": {
+  "_por_que": "La glosa usaba pasado simple y «las» en vez de «mis».",
+  "meaning": "He perdido mis llaves."
+ },
+ "a2u2l1e9": {
+  "_por_que": "she's suena con z sonora.",
+  "tip": "«has gone» se pega: «shiz-GON». El peso en GONE y en STORE."
+ },
+ "a2u2l2e1": {
+  "_por_que": "Faltaban traducciones naturales para el repaso escrito.",
+  "accept": [
+   "Have you ever been in Mexico?",
+   "Have you ever visited Mexico?",
+   "Did you ever go to Mexico?"
+  ]
+ },
+ "a2u2l2e3": {
+  "_por_que": "«se fue ayer» mete una palabra de tiempo que la lección 4 asocia al pasado simple.",
+  "es": "Ella se fue a París y todavía está allá."
+ },
+ "a2u2l2e5": {
+  "_por_que": "Faltaba «the night shift».",
+  "accept": [
+   "Have you ever worked nights?",
+   "Have you ever worked the night shift?",
+   "Have you ever worked a night shift?"
+  ]
+ },
+ "a2u2l2e6": {
+  "_por_que": "Con el señuelo went se armaba «He went to London twice», aceptable en EE. UU.",
+  "extra": [
+   "gone",
+   "being",
+   "two"
+  ]
+ },
+ "a2u2l3": {
+  "_por_que": "still va después de be (el propio ejemplo lo contradecía) y faltaba el uso americano con pasado simple.",
+  "theory": {
+   "title": "yet, already, just, still",
+   "body": "Cuatro palabras que cambian de sitio según la frase.\n\n**already** = ya (antes de lo esperado) — va **en el medio**\n*I've **already** finished.*\n\n**yet** = todavía / ya — solo en negativo y pregunta, **al final**\n*I haven't finished **yet**.* · *Have you finished **yet**?*\n\n**just** = acabo de — **en el medio**\n*She has **just** left.*\n\n**still** = todavía (sigue igual) — antes del verbo principal, pero después de am/is/are; en negativo, antes del auxiliar\n*I **still** live here.* · *I'm **still** waiting.* · *I **still** haven't eaten.*\n\nEn inglés americano también se oye el **pasado simple** con just, already y yet: *I just arrived.* · *I already ate.* · *Did you eat yet?* Las dos formas son correctas.",
+   "trap": "«Acabo de llegar» se traduce solo con *just*: *I have **just** arrived*. No existe un verbo «acabar de» en inglés — *I finish to arrive* ❌ no significa nada."
+  }
+ },
+ "a2u2l3e1": {
+  "_por_que": "Faltaban traducciones naturales (la americana es I just arrived).",
+  "accept": [
+   "I just arrived.",
+   "I just got here.",
+   "I have just gotten here."
+  ]
+ },
+ "a2u2l3e2": {
+  "_por_que": "«haven't finish yet» suena igual que la respuesta: la t se pierde antes de yet.",
+  "options": [
+   "I've already finished.",
+   "I haven't finished yet.",
+   "I haven't already finished."
+  ]
+ },
+ "a2u2l3e4": {
+  "_por_que": "«salir» también es go out.",
+  "accept": [
+   "She's just left.",
+   "She just left.",
+   "She has just gone out.",
+   "She just went out."
+  ]
+ },
+ "a2u2l3e5": {
+  "_por_que": "still va después de am, y wait no siempre lleva for.",
+  "tip": "still va después de am y antes del -ing. Y esperar algo es wait for."
+ },
+ "a2u2l3e8": {
+  "_por_que": "«arrived home» suena rígido; en EE. UU. se dice gotten home.",
+  "text": "I have just gotten home."
+ },
+ "a2u2l4": {
+  "_por_que": "just/already/yet/ever con pasado simple es normal en EE. UU., y for/since se evaluaban sin enseñarse.",
+  "theory": {
+   "title": "La pregunta que decide: ¿dices CUÁNDO?",
+   "body": "Es la duda más grande del nivel, y hay una regla que casi nunca falla:\n\n**Si la frase dice cuándo pasó → pasado simple.**\n*I **ate** sushi **yesterday**.* · *She **went** to Paris **in 2020**.*\n\n**Si no dice cuándo, y lo que importa es el resultado → present perfect.**\n*I'**ve eaten** sushi.* (alguna vez) · *She'**s gone** to Paris.* (no está)\n\nPalabras que **obligan** al pasado simple: *yesterday, last week, in 2020, ago, when I was young*.\nPalabras que piden present perfect: *ever, never, already, yet, just, so far*. (En inglés americano, con just, already, yet y ever también se oye el pasado simple: *I just ate*, *Did you ever go?*)\n\nY para algo que **empezó antes y sigue hoy**: present perfect con **for** + duración (*for three years*) o **since** + punto de inicio (*since 2020*).\n*I've lived here **for** three years.* · *I've known her **since** 2020.*",
+   "trap": "*I have eaten sushi yesterday* ❌ es el error insignia. En español «he comido sushi ayer» se oye normal; en inglés es imposible: si dices **yesterday**, el verbo tiene que ser **ate**."
+  }
+ },
+ "a2u2l4e1": {
+  "_por_que": "Faltaban traducciones naturales para el repaso escrito.",
+  "accept": [
+   "Yesterday I ate sushi.",
+   "I had sushi yesterday.",
+   "Yesterday I had sushi."
+  ]
+ },
+ "a2u2l4e2": {
+  "_por_que": "«Con una fecha, siempre pasado simple» contradice «since 2020» (e7).",
+  "tip": "Con in 2020 (un momento ya cerrado) va pasado simple. Ojo: con since 2020 sí va present perfect."
+ },
+ "a2u2l4e4": {
+  "_por_que": "Faltaba «Last week I watched…».",
+  "accept": [
+   "I watched that movie last week.",
+   "I saw that film last week.",
+   "I watched that film last week.",
+   "Last week I saw that movie.",
+   "Last week I saw that film.",
+   "Last week I watched that movie.",
+   "Last week I watched that film."
+  ]
+ },
+ "a2u2l4e5": {
+  "_por_que": "Faltaba «been living» sin for.",
+  "accept": [
+   "I have been living here for three years.",
+   "I have lived here three years.",
+   "I have been living here three years."
+  ]
+ },
+ "a2u2l4e6": {
+  "_por_que": "Con las mismas fichas sale «In 2019 he worked here», que es correcta (la app aún no lee accept en armar).",
+  "accept": [
+   "In 2019 he worked here."
+  ]
+ },
+ "a2u2l4e7": {
+  "_por_que": "Es dictado: quien oye «twenty twenty» puede escribirlo en letras (los años no se normalizan).",
+  "accept": [
+   "I have known her since twenty twenty."
+  ]
+ },
+ "a2u3l1e1": {
+  "_por_que": "«I have work on Saturday» es inglés correcto con el mismo sentido.",
+  "options": [
+   "I must to work on Saturday.",
+   "I have to work on Saturday.",
+   "I have working on Saturday."
+  ],
+  "accept": [
+   "I have to work this Saturday.",
+   "I need to work on Saturday.",
+   "I have got to work on Saturday.",
+   "I have work on Saturday.",
+   "I have to work Saturday."
+  ]
+ },
+ "a2u3l1e2": {
+  "_por_que": "have to / has to solo se distinguen por una consonante.",
+  "options": [
+   "She had to wear a uniform.",
+   "She has to wear a uniform.",
+   "She has to wears a uniform."
+  ]
+ },
+ "a2u3l1e4": {
+  "_por_que": "need to se acepta en la lección siguiente para «tener que».",
+  "accept": [
+   "Have you got to work tomorrow?",
+   "Do you need to work tomorrow?"
+  ]
+ },
+ "a2u3l2": {
+  "_por_que": "mustn't casi no se usa hablando en EE. UU., y el español sí separa «no debes» de «no tienes que».",
+  "theory": {
+   "title": "must y mustn't: la trampa que cuesta caro",
+   "body": "**must** = deber, obligación fuerte o regla que tú mismo te pones. No cambia nunca y no lleva to:\n*You **must** be careful.* · *I **must** call my mother.*\n\nAhora la parte que hay que memorizar, porque cambia el significado por completo:\n\n| | qué significa |\n|---|---|\n| **mustn't** | está **prohibido** |\n| **don't have to** | **no hace falta** |\n\n*You **mustn't** smoke here.* = prohibido fumar.\n*You **don't have to** smoke.* = nadie te obliga a fumar.\n\nSon casi opuestos.\n\nEn EE. UU., hablando, la prohibición casi siempre es **can't** o **not allowed to**: *You **can't** smoke here.* En reglas escritas se ve **must not**, sin contraer; **mustn't** es más británico.",
+   "trap": "En español «no debes» prohíbe y «no tienes que» libera, pero al hablar se mezclan: «no tienes que tocar eso» se oye a menudo como prohibición. En inglés no: **mustn't** prohíbe, **don't have to** libera. Confundirlas en el trabajo o con una regla puede salir caro."
+  }
+ },
+ "a2u3l2e1": {
+  "_por_que": "Faltaban traducciones naturales (la americana es can't); must not no se normaliza.",
+  "accept": [
+   "You must not smoke here.",
+   "You can't smoke here.",
+   "You are not allowed to smoke here.",
+   "Smoking is not allowed here."
+  ]
+ },
+ "a2u3l2e2": {
+  "_por_que": "Faltaban traducciones naturales para el repaso escrito.",
+  "accept": [
+   "You don't need to pay, it's free.",
+   "There's no need to pay, it's free."
+  ]
+ },
+ "a2u3l2e4": {
+  "_por_que": "«mustn't to touch» y «must touch» casi no se distinguen al oído de mustn't touch; can es claramente distinto.",
+  "options": [
+   "You don't have to touch that.",
+   "You mustn't touch that.",
+   "You can touch that."
+  ]
+ },
+ "a2u3l2e5": {
+  "_por_que": "Faltaban «need to leave» y «have got to».",
+  "accept": [
+   "We have to go now.",
+   "We need to go now.",
+   "We must leave now.",
+   "We have to leave now.",
+   "We need to leave now.",
+   "We have got to go now.",
+   "We have got to leave now."
+  ]
+ },
+ "a2u3l2e9": {
+  "_por_que": "Lo del regaño era dudoso.",
+  "tip": "El peso en HAVE: «no es OBLIGATORIO venir»."
+ },
+ "a2u3l3e1": {
+  "_por_que": "Faltaban traducciones naturales para el repaso escrito.",
+  "accept": [
+   "You should see the doctor.",
+   "You should go to the doctor.",
+   "You should go to a doctor.",
+   "You should go see a doctor."
+  ]
+ },
+ "a2u3l3e2": {
+  "_por_que": "«shouldn't works so» suena igual que la respuesta (las dos s se juntan).",
+  "options": [
+   "He shouldn't work so much.",
+   "He should work so much.",
+   "He doesn't should work so much."
+  ]
+ },
+ "a2u3l3e4": {
+  "_por_que": "«that fast» es muy americano.",
+  "accept": [
+   "You shouldn't eat so quickly.",
+   "You shouldn't eat that fast.",
+   "You shouldn't eat that quickly."
+  ]
+ },
+ "a2u3l3e5": {
+  "_por_que": "Faltaban formas comunes de «descansar un poco».",
+  "accept": [
+   "Why don't you take a break?",
+   "Why don't you rest a bit?",
+   "Why don't you get some rest?",
+   "Why don't you rest for a while?",
+   "Why don't you rest for a bit?",
+   "Why don't you take a rest?",
+   "Why don't you take a short break?"
+  ]
+ },
+ "a2u3l3e9": {
+  "_por_que": "El tip ponía el acento en DON'T, justo el patrón de reproche.",
+  "tip": "«why don't you» va rápido y pegado: «why-dontchu TRY again». El peso en TRY y el tono baja al final."
+ },
+ "a2u4l1": {
+  "_por_que": "«el presente simple solo vale para trenes y cines» choca con la lección 3 (presente tras when/if).",
+  "theory": {
+   "title": "Tres futuros, y cuál usar",
+   "body": "El inglés tiene tres maneras de hablar del futuro y cada una dice algo distinto.\n\n**will** — lo decides ahora mismo, o es una predicción\n*The phone's ringing. I'**ll** get it.*\n\n**be going to** — ya lo tenías decidido\n*I'**m going to** look for a new job.*\n\n**presente continuo** — ya está **agendado**, con hora y sitio\n*I'**m meeting** Ana at seven.* (ya quedamos)\n\nDe los tres, el tercero es el que más sorprende: se usa el mismo am/is/are + -ing del «ahora mismo», pero con una hora futura la frase se entiende como cita.",
+   "trap": "«Mañana voy al médico» sale como *Tomorrow I go to the doctor* — presente simple, como en español. En inglés el presente simple para el futuro se guarda para horarios fijos (*the class starts at nine*) y para después de when/if (lección 3). Para tu cita: **I'm going to the doctor tomorrow**."
+  }
+ },
+ "a2u4l1e1": {
+  "_por_que": "«Tomorrow I will go to the doctor» no es incorrecta; faltaban traducciones.",
+  "options": [
+   "Tomorrow I go to the doctor.",
+   "I'm going to the doctor tomorrow.",
+   "Tomorrow I am go to the doctor."
+  ],
+  "accept": [
+   "Tomorrow I'm going to the doctor.",
+   "I'm seeing the doctor tomorrow.",
+   "I'm going to the doctor tomorrow, I already have an appointment.",
+   "I'm going to the doctor tomorrow, I have an appointment.",
+   "I am going to see the doctor tomorrow.",
+   "Tomorrow I am going to see the doctor."
+  ]
+ },
+ "a2u4l1e4": {
+  "_por_que": "'s tras un nombre no se normaliza, y faltaban respuestas.",
+  "accept": [
+   "The phone's ringing. I'll get it.",
+   "The phone is ringing. I'll answer it.",
+   "The phone's ringing. I'll answer it.",
+   "The phone is ringing. I will answer.",
+   "The phone's ringing. I'll answer.",
+   "The phone is ringing. I will pick it up.",
+   "The phone's ringing. I'll pick it up."
+  ]
+ },
+ "a2u4l1e5": {
+  "_por_que": "Faltaba going to y otras formas naturales.",
+  "accept": [
+   "What are you doing on the weekend?",
+   "What are your plans for this weekend?",
+   "What are you going to do this weekend?",
+   "What are you up to this weekend?",
+   "What are you doing over the weekend?",
+   "What are your plans this weekend?",
+   "What are your weekend plans?"
+  ]
+ },
+ "a2u4l1e6": {
+  "_por_que": "Con el señuelo will se armaba «She will study medicine», traducción válida.",
+  "extra": [
+   "goes",
+   "studying",
+   "studies"
+  ]
+ },
+ "a2u4l2": {
+  "_por_que": "can no es «soy capaz» aquí, y maybe se aceptaba sin enseñarse.",
+  "theory": {
+   "title": "might: la posibilidad",
+   "body": "**might** = puede que, a lo mejor. Es la palabra para cuando no estás seguro.\n\n*I **might** go to the party.* (puede que vaya)\n*It **might** rain later.*\n*She **might not** come.*\n\nComo can, will y should: **no cambia y no lleva to**. Y no usa do para negar: solo se le pega **not**.\n\n**may** significa casi lo mismo y es un poco más formal. Para hablar, **might** es la normal.\n\n**maybe** (una palabra) = quizás, va al principio: *Maybe I'll go.* No confundir con *may be* (dos palabras = puede ser).",
+   "trap": "«Puede que vaya» tienta a traducir con *can*: *I can go to the party* ❌ — pero eso significa «puedo ir» (tengo tiempo o permiso), no «a lo mejor voy». **can** es poder-capacidad o permiso; **might** es poder-posibilidad. En español las dos son «poder» y por eso se mezclan."
+  }
+ },
+ "a2u4l2e1": {
+  "_por_que": "Faltaban traducciones naturales para el repaso escrito.",
+  "accept": [
+   "I may go to the party.",
+   "Maybe I will go to the party."
+  ],
+  "tip": "Posibilidad: might. can sería capacidad o permiso."
+ },
+ "a2u4l2e4": {
+  "_por_que": "Faltaban formas comunes.",
+  "accept": [
+   "I may be late.",
+   "I might arrive late.",
+   "Maybe I will be late.",
+   "I may arrive late.",
+   "Maybe I will arrive late.",
+   "I might get there late.",
+   "Maybe I will get there late."
+  ]
+ },
+ "a2u4l2e5": {
+  "_por_que": "Faltaban need to y maybe.",
+  "accept": [
+   "We may have to wait.",
+   "We might need to wait.",
+   "We may need to wait.",
+   "Maybe we will have to wait."
+  ]
+ },
+ "a2u4l3": {
+  "_por_que": "«Nunca» falla cuando when es «cuándo» en una pregunta, y el inglés sí tiene subjuntivo (If I were).",
+  "theory": {
+   "title": "Después de when e if, NO va futuro",
+   "body": "Esta es la regla que más le cuesta al hispanohablante, y es sencilla de enunciar:\n\n**Después de when, if, before, after, as soon as y until, el inglés usa PRESENTE aunque hable del futuro.**\n\n*I'll call you **when I arrive**.* (cuando llegue)\n***If it rains**, we'll stay home.* (si llueve)\n***As soon as I finish**, I'll go.* (en cuanto termine)\n\nEl futuro va en la **otra** mitad de la frase, la del will.\n\nEsto es el **primer condicional**: *If + presente, ... will + verbo*.",
+   "trap": "El español usa el subjuntivo ahí: «cuando **llegue**», «si **llueve**», «en cuanto **termine**». Como el inglés no usa subjuntivo ahí, la mano quiere poner futuro: *when I **will** arrive* ❌. Después de when o if va **presente simple**. (Ojo: si when es «cuándo» en una pregunta, sí va will: *Do you know when she'll arrive?*)"
+  }
+ },
+ "a2u4l3e1": {
+  "_por_que": "Faltaban traducciones naturales para el repaso escrito.",
+  "accept": [
+   "I will call you when I get there.",
+   "When I arrive, I will call you.",
+   "When I get there, I will call you."
+  ]
+ },
+ "a2u4l3e2": {
+  "_por_que": "Faltaban traducciones naturales para el repaso escrito.",
+  "accept": [
+   "If it rains tomorrow, we will stay at home.",
+   "We will stay home if it rains tomorrow.",
+   "We will stay at home if it rains tomorrow.",
+   "If it rains tomorrow, we are going to stay home."
+  ]
+ },
+ "a2u4l3e5": {
+  "_por_que": "Faltaban el orden inverso y going to con hurry up.",
+  "accept": [
+   "If you don't hurry up, you'll miss the bus.",
+   "If you don't hurry, you are going to miss the bus.",
+   "If you don't hurry up, you are going to miss the bus.",
+   "You will miss the bus if you don't hurry.",
+   "You are going to miss the bus if you don't hurry.",
+   "Unless you hurry, you will miss the bus."
+  ]
+ },
+ "a2u4l3e6": {
+  "_por_que": "Faltaban till, gets here y comes.",
+  "accept": [
+   "I am going to wait until she arrives.",
+   "I will wait till she arrives.",
+   "I am going to wait till she arrives.",
+   "I will wait until she gets here.",
+   "I am going to wait until she gets here.",
+   "I will wait until she comes.",
+   "I am going to wait until she comes."
+  ]
+ },
+ "a2u4l3e7": {
+  "_por_que": "Con las mismas fichas sale «When you come back, we will talk», que es correcta (la app aún no lee accept en armar).",
+  "accept": [
+   "When you come back, we will talk."
+  ]
+ },
+ "a2u4l3e8": {
+  "_por_que": "«antes de salir» no dice quién sale.",
+  "meaning": "Llámame antes de irte."
+ },
+ "a2u5l1": {
+  "_por_que": "«were, no was» es demasiado tajante: If I was you se oye mucho en EE. UU.",
+  "theory": {
+   "title": "El segundo condicional: imaginar",
+   "body": "Para hablar de algo **imaginario o improbable**:\n\n**If + pasado simple, ... would + verbo**\n\n*If I **had** money, I **would** travel.* (pero no tengo)\n*If I **were** you, I **would** call her.* (pero no soy tú)\n*What **would** you **do** if you **won** the lottery?*\n\nDos detalles:\n- El pasado ahí **no es pasado**: es la marca de «esto no es real».\n- Con *I, he, she, it*, la forma cuidada es **were**: *If I **were** you*. Hablando se oye was, pero usa were: es la del examen.",
+   "trap": "El español pone el subjuntivo en el si («si tuviera») y el condicional en la otra mitad («viajaría»), igual que el inglés. El error es otro: meter **would en las dos mitades**. *If I would have money, I would travel* ❌. El would va **solo** en la mitad del resultado."
+  }
+ },
+ "a2u5l1e1": {
+  "_por_que": "Faltaban traducciones naturales para el repaso escrito.",
+  "accept": [
+   "I would travel if I had money.",
+   "If I had the money, I would travel."
+  ]
+ },
+ "a2u5l1e2": {
+  "_por_que": "«se dice así siempre» es falso: If I was you se oye.",
+  "tip": "If I were you es la forma cuidada y la que debes usar."
+ },
+ "a2u5l1e4": {
+  "_por_que": "Faltaban el orden inverso y go swimming.",
+  "accept": [
+   "If I lived on the beach, I would swim every day.",
+   "If I lived by the beach, I would swim every day.",
+   "If I lived at the beach, I'd swim every day.",
+   "If I lived on the beach, I'd swim every day.",
+   "I would swim every day if I lived at the beach.",
+   "I would swim every day if I lived on the beach.",
+   "I would swim every day if I lived by the beach.",
+   "If I lived at the beach, I would go swimming every day."
+  ]
+ },
+ "a2u5l1e5": {
+  "_por_que": "Faltaba «do that».",
+  "accept": [
+   "If I were you, I would leave it.",
+   "I wouldn't do it if I were you.",
+   "If I were you, I wouldn't do that.",
+   "I wouldn't do that if I were you."
+  ]
+ },
+ "a2u5l1e6": {
+  "_por_que": "Con las mismas fichas sale «She would pass if she studied more», que es correcta (la app aún no lee accept en armar).",
+  "accept": [
+   "She would pass if she studied more."
+  ]
+ },
+ "a2u5l1e8": {
+  "_por_que": "La frase no tiene ninguna v.",
+  "sound": "general"
+ },
+ "a2u5l1e9": {
+  "_por_que": "El tip marcaba WUD en mayúsculas y luego decía que el peso va en DO.",
+  "tip": "«what would you» se pega: «what-wud-ju». El peso en DO y en WON."
+ },
+ "a2u5l2e1": {
+  "_por_que": "Faltaban traducciones naturales (para ir a algo del otro, en inglés se dice come).",
+  "accept": [
+   "I would love to come.",
+   "I would really like to go."
+  ]
+ },
+ "a2u5l2e4": {
+  "_por_que": "Faltaba «Do you mind».",
+  "accept": [
+   "Would you mind waiting for five minutes?",
+   "Do you mind waiting five minutes?",
+   "Do you mind waiting for five minutes?"
+  ]
+ },
+ "a2u5l2e5": {
+  "_por_que": "Faltaban otras formas de «genial».",
+  "accept": [
+   "It'd be great to see you.",
+   "It would be nice to see you.",
+   "It would be awesome to see you.",
+   "It would be wonderful to see you.",
+   "Seeing you would be great.",
+   "It would be good to see you."
+  ]
+ },
+ "a2u1l2": {
+  "_por_que": "El curso es americano: el ejemplo pasa a soccer, como en e4.",
+  "theory": {
+   "title": "used to: lo que hacías y ya no",
+   "body": "Para hábitos y estados del pasado que **ya no son**:\n\n**used to** + verbo\n*I **used to** smoke.* (fumaba, ya no)\n*She **used to** live in Cali.* (vivía, ya no)\n\nNegativo y pregunta pierden la **d**, porque aparece el did:\n*I **didn't use to** like coffee.*\n***Did** you **use to** play soccer?*\n\nY no sirve para algo que pasó una sola vez: *I used to go to Spain in 2019* ❌ → *I went to Spain in 2019* ✅",
+   "trap": "El español lo dice con el imperfecto —«fumaba», «vivía»—, la misma forma que usamos para el fondo de una escena. Por eso sale *I was smoking* cuando quieres decir «antes fumaba». Si es un hábito que se acabó, es **used to**."
+  }
+ }
+}
