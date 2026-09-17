@@ -117,14 +117,20 @@ data class TareaEscucha(
     val options: List<String>, val answer: String, val why: String = ""
 ) : TareaAptis
 
+/**
+ * Una tarea de Writing. [mensajes]: lo que hay que contestar (parte 1: cinco
+ * mensajes con una palabra cada uno; parte 3: tres personas en un grupo);
+ * [parte]: "Parte 1 · una palabra", la parte del examen a la que imita.
+ */
 data class TareaEscrita(
     override val id: String, override val level: String, val palabras: String, val segundos: Int,
-    val promptEn: String, val promptEs: String, val rubrica: List<String>
+    val promptEn: String, val promptEs: String, val rubrica: List<String>,
+    val mensajes: List<String> = emptyList(), val parte: String = ""
 ) : TareaAptis
 
 data class TareaHablada(
     override val id: String, override val level: String, val prepSeg: Int, val hablarSeg: Int,
-    val promptEn: String, val promptEs: String, val rubrica: List<String>
+    val promptEn: String, val promptEs: String, val rubrica: List<String>, val parte: String = ""
 ) : TareaAptis
 
 fun emojiAptis(id: String): String = when (id) {
@@ -329,7 +335,14 @@ internal class Lector(val idsTarea: HashSet<String>) {
         return TareaEscucha(t.getString("id"), t.optString("tipo"), nivel(where, t), audio, pregunta, opts, respuesta(where, t, opts), t.optString("why"))
     }
 
-    fun escrita(where: String, t: JSONObject): TareaEscrita {
+    /** El simulacro escribe `prompt_en`; las pistas de Cowork, `promptEn`. Valen las dos. */
+    private fun prompt(where: String, t: JSONObject, idioma: String): String {
+        val camel = "prompt" + idioma.replaceFirstChar { it.uppercase() }
+        return t.optString("prompt_$idioma").ifBlank { t.optString(camel) }
+            .ifBlank { throw IllegalArgumentException("$where: falta \"prompt_$idioma\"") }
+    }
+
+    fun escrita(where: String, t: JSONObject, parte: String = ""): TareaEscrita {
         idNuevo(where, t.optString("id"))
         val seg = t.optInt("segundos", 0)
         if (seg <= 0) throw IllegalArgumentException("$where: falta \"segundos\"")
@@ -337,28 +350,26 @@ internal class Lector(val idsTarea: HashSet<String>) {
         if (rub.isEmpty()) throw IllegalArgumentException("$where: falta la rúbrica")
         return TareaEscrita(
             t.getString("id"), nivel(where, t), t.optString("palabras"), seg,
-            t.optString("prompt_en").ifBlank { throw IllegalArgumentException("$where: falta \"prompt_en\"") },
-            t.optString("prompt_es").ifBlank { throw IllegalArgumentException("$where: falta \"prompt_es\"") },
-            rub
+            prompt(where, t, "en"), prompt(where, t, "es"), rub,
+            jsonStrings(t.optJSONArray("mensajes")), parte
         )
     }
 
-    fun hablada(where: String, t: JSONObject): TareaHablada {
+    fun hablada(where: String, t: JSONObject, parte: String = ""): TareaHablada {
         idNuevo(where, t.optString("id"))
-        val hablar = t.optInt("hablar_seg", 0)
+        val hablar = t.optInt("hablar_seg", 0).let { if (it > 0) it else t.optInt("hablarSeg", 0) }
         if (hablar <= 0) throw IllegalArgumentException("$where: falta \"hablar_seg\"")
         val rub = jsonStrings(t.optJSONArray("rubrica"))
         if (rub.isEmpty()) throw IllegalArgumentException("$where: falta la rúbrica")
+        val prep = t.optInt("prep_seg", 0).let { if (it > 0) it else t.optInt("prepSeg", 0) }
         return TareaHablada(
-            t.getString("id"), nivel(where, t), t.optInt("prep_seg", 0).coerceAtLeast(0), hablar,
-            t.optString("prompt_en").ifBlank { throw IllegalArgumentException("$where: falta \"prompt_en\"") },
-            t.optString("prompt_es").ifBlank { throw IllegalArgumentException("$where: falta \"prompt_es\"") },
-            rub
+            t.getString("id"), nivel(where, t), prep.coerceAtLeast(0), hablar,
+            prompt(where, t, "en"), prompt(where, t, "es"), rub, parte
         )
     }
 
     /** Las tareas de una destreza en un array ("tareas" o "items"), según la pista. */
-    fun tareasDe(pistaId: String, where: String, arr: JSONArray?): List<TareaAptis> {
+    fun tareasDe(pistaId: String, where: String, arr: JSONArray?, parte: String = ""): List<TareaAptis> {
         val out = ArrayList<TareaAptis>()
         val a = arr ?: JSONArray()
         for (i in 0 until a.length()) {
@@ -369,11 +380,29 @@ internal class Lector(val idsTarea: HashSet<String>) {
                     "core" -> if (t.has("sub")) itemVocabulario(w, t) else itemGramatica(w, t)
                     "reading" -> lectura(w, t)
                     "listening" -> escucha(w, t)
-                    "writing" -> escrita(w, t)
-                    "speaking" -> hablada(w, t)
+                    "writing" -> escrita(w, t, parte)
+                    "speaking" -> hablada(w, t, parte)
                     else -> throw IllegalArgumentException("$w: pista desconocida \"$pistaId\"")
                 }
             )
+        }
+        return out
+    }
+
+    /**
+     * Un banco de pista de Cowork (`aptis-<pista>.json`): o un array plano
+     * "tareas"/"items", o "partes" (las partes del examen, cada una con su
+     * "aptis" —"Parte 1 · una palabra"—, "title", "descripcion" y "tareas").
+     */
+    fun tareasDeArchivo(pistaId: String, where: String, json: JSONObject): List<TareaAptis> {
+        val partes = json.optJSONArray("partes")
+        if (partes == null) return tareasDe(pistaId, where, json.optJSONArray("tareas") ?: json.optJSONArray("items"))
+        val out = ArrayList<TareaAptis>()
+        for (i in 0 until partes.length()) {
+            val p = partes.getJSONObject(i)
+            val etiqueta = p.optString("aptis").ifBlank { p.optString("title") }
+            if (etiqueta.isBlank()) throw IllegalArgumentException("$where, parte ${i + 1}: falta \"aptis\" o \"title\"")
+            out.addAll(tareasDe(pistaId, "$where, parte ${i + 1}", p.optJSONArray("tareas"), etiqueta))
         }
         return out
     }
@@ -447,7 +476,7 @@ fun parseBancoAptis(leer: (String) -> String?): BancoAptis {
             }
         }
         leer("aptis-$id.json")?.let { JSONObject(it) }?.let { json ->
-            tareas.addAll(lector.tareasDe(id, "aptis-$id.json", json.optJSONArray("tareas") ?: json.optJSONArray("items")))
+            tareas.addAll(lector.tareasDeArchivo(id, "aptis-$id.json", json))
         }
         // Las tareas del simulacro se reciclan en su pista, salvo las que repiten un ítem del banco (mismo enunciado).
         simulacro?.seccion(id)?.let { sec ->
@@ -904,8 +933,13 @@ Responde SOLO con un JSON así, sin nada antes ni después:
 
     fun promptEscrita(t: TareaEscrita, texto: String, segundos: Int, citaMala: String? = null): String {
         val sb = StringBuilder()
-        sb.append("TAREA de Writing (nivel objetivo ${t.level}): ${t.promptEn}\n")
-        sb.append("Se pedían ${t.palabras} palabras en ${t.segundos} segundos. El alumno escribió ${palabras(texto)} palabras")
+        sb.append("TAREA de Writing (nivel objetivo ${t.level}" + (if (t.parte.isNotBlank()) ", ${t.parte}" else "") + "): ${t.promptEn}\n")
+        if (t.mensajes.isNotEmpty()) {
+            sb.append("MENSAJES A LOS QUE RESPONDE, en orden:\n")
+            t.mensajes.forEachIndexed { i, m -> sb.append("${i + 1}. $m\n") }
+        }
+        sb.append(if (t.palabras.isNotBlank()) "Se pedían ${t.palabras} palabras" else "Se pedía lo que dice la tarea")
+        sb.append(" en ${t.segundos} segundos. El alumno escribió ${palabras(texto)} palabras")
         if (segundos > 0) sb.append(" en $segundos segundos")
         sb.append(".\n")
         sb.append(rubrica(t.rubrica))

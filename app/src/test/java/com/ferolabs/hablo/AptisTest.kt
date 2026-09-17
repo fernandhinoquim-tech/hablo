@@ -52,7 +52,18 @@ class AptisTest {
         // las otras pistas, por ahora, solo con lo reciclado del simulacro
         assertEquals(4, b.pista("reading")!!.tareas.size)
         assertEquals(6, b.pista("listening")!!.tareas.size)
-        assertEquals(2, b.pista("writing")!!.tareas.size)
+        // Writing: las 16 de Cowork (4 partes del examen, A1 a B2) más las 2 del simulacro
+        val writing = b.pista("writing")!!
+        assertEquals(18, writing.tareas.size)
+        assertEquals(listOf(NivelAptis.A1, NivelAptis.A2, NivelAptis.B1, NivelAptis.B2), writing.niveles)
+        assertEquals(NivelAptis.A1, writing.nivelInicial)
+        val w1 = writing.tarea("w1-01") as TareaEscrita
+        assertEquals(5, w1.mensajes.size)
+        assertEquals("Parte 1 · una palabra", w1.parte)
+        assertTrue(w1.promptEn.startsWith("You have joined a cooking club"))
+        assertEquals("50 + 120-150", (writing.tarea("w4-01") as TareaEscrita).palabras)
+        val prompt = JuezAptis.promptEscrita(w1, "Fernando, Bogota, Rice, Four, Saturday", 60)
+        assertTrue(prompt, prompt.contains("MENSAJES A LOS QUE RESPONDE") && prompt.contains("1. What's your first name?") && prompt.contains("Parte 1"))
         assertEquals(3, b.pista("speaking")!!.tareas.size)
         assertEquals(Condicion(2, 3), b.pista("writing")!!.promocion)
         assertTrue(b.pista("writing")!!.porIa && b.pista("speaking")!!.porIa && !core.porIa)
@@ -201,9 +212,11 @@ class AptisTest {
         assertEquals(listOf("reading", "listening", "writing", "speaking"), a.piso(b).map { it.id })   // todas empatan abajo: sin nivel
         assertFalse(a.simulacroDesbloqueado(b))
         assertEquals(5, a.faltanParaSimulacro(b).size)
-        // Writing solo trae B1 y B2: entrena B1 desde el arranque, pero NO lo ha alcanzado
-        assertEquals(NivelAptis.B1, a.nivel(b.pista("writing")!!))
+        // Writing arranca en A1 (el banco de Cowork trae A1); nada alcanzado todavía
+        assertEquals(NivelAptis.A1, a.nivel(b.pista("writing")!!))
         assertNull(a.alcanzado(b.pista("writing")!!))
+        // Speaking hoy solo trae A2, B1 y B2: entrena A2 desde el arranque, pero NO lo ha alcanzado
+        assertEquals(NivelAptis.A2, a.nivel(b.pista("speaking")!!))
         // subir Reading, Listening y Speaking hasta alcanzar B1 a mano; Writing se queda
         for (id in listOf("reading", "listening", "speaking")) {
             val p = b.pista(id)!!

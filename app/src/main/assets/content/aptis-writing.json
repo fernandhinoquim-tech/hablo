@@ -1,0 +1,323 @@
+{
+ "_comentario": "Pista de WRITING del Modo Aptis (0 a B2). Cuatro partes, las mismas del examen. Cada tarea la corrige la IA contra su 'rubrica': un criterio por linea, todos en pregunta, para que el juicio sea comprobable. LA IA TIENE QUE CITAR UNA FRASE DEL ALUMNO como prueba de cada criterio; sin evidencia el juicio no vale. Y la pantalla dice siempre que es una estimacion, no la nota de Aptis. La parte 4 vale 30 de los 50 minutos del examen: es donde mas nota se mueve por hora.",
+ "skill": "Writing",
+ "partes": [
+  {
+   "id": "parte1",
+   "aptis": "Parte 1 · una palabra",
+   "title": "Contestar con una palabra",
+   "descripcion": "Cinco mensajes cortos de un club o un curso. Se contesta cada uno con UNA palabra. Aquí manda comunicar, no la gramática.",
+   "tareas": [
+    {
+     "id": "w1-01",
+     "level": "A1",
+     "segundos": 180,
+     "promptEn": "You have joined a cooking club. Answer the five messages from other members with one word each.",
+     "promptEs": "Entraste a un club de cocina. Contesta los cinco mensajes con una sola palabra.",
+     "rubrica": [
+      "¿Contestó las cinco?",
+      "¿Cada respuesta es una sola palabra?",
+      "¿La palabra responde de verdad a la pregunta?"
+     ],
+     "mensajes": [
+      "What's your first name?",
+      "Which city are you from?",
+      "What's your favourite food?",
+      "How many people are in your family?",
+      "Which day can you come?"
+     ]
+    },
+    {
+     "id": "w1-02",
+     "level": "A1",
+     "segundos": 180,
+     "promptEn": "You signed up for an English course. Answer the five questions with one word each.",
+     "promptEs": "Te inscribiste a un curso de inglés. Contesta las cinco preguntas con una sola palabra.",
+     "rubrica": [
+      "¿Contestó las cinco?",
+      "¿Cada respuesta es una sola palabra?",
+      "¿Escribió los números y días en inglés?"
+     ],
+     "mensajes": [
+      "What's your surname?",
+      "What's your job?",
+      "How old are you?",
+      "Which level are you: beginner or intermediate?",
+      "What time do you prefer: morning or evening?"
+     ]
+    },
+    {
+     "id": "w1-03",
+     "level": "A2",
+     "segundos": 180,
+     "promptEn": "You joined a running group. Answer the five messages with one word each.",
+     "promptEs": "Entraste a un grupo de running. Contesta los cinco mensajes con una sola palabra.",
+     "rubrica": [
+      "¿Contestó las cinco?",
+      "¿Cada respuesta es una sola palabra?",
+      "¿Entendió preguntas con 'how often' y 'how far'?"
+     ],
+     "mensajes": [
+      "How often do you run?",
+      "How far can you run?",
+      "Do you prefer mornings or evenings?",
+      "Which park do you use?",
+      "Have you run a race before?"
+     ]
+    },
+    {
+     "id": "w1-04",
+     "level": "A2",
+     "segundos": 180,
+     "promptEn": "You are booking a hotel room. Answer the five questions with one word each.",
+     "promptEs": "Estás reservando un hotel. Contesta las cinco preguntas con una sola palabra.",
+     "rubrica": [
+      "¿Contestó las cinco?",
+      "¿Cada respuesta es una sola palabra?",
+      "¿Usó bien las fechas y los números?"
+     ],
+     "mensajes": [
+      "How many nights?",
+      "How many guests?",
+      "Which month are you coming?",
+      "Do you need breakfast?",
+      "Smoking or non-smoking?"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "parte2",
+   "aptis": "Parte 2 · 20-30 palabras",
+   "title": "Un texto corto",
+   "palabras": true,
+   "descripcion": "Un texto de 20 a 30 palabras sobre un tema concreto. Aquí SÍ se mira la gramática, la puntuación y la ortografía.",
+   "tareas": [
+    {
+     "id": "w2-01",
+     "level": "A2",
+     "segundos": 420,
+     "promptEn": "Tell the club about yourself: your name, where you live and what you do.",
+     "promptEs": "Cuéntale al club quién eres: tu nombre, dónde vives y a qué te dedicas.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿Da las tres cosas: nombre, ciudad y ocupación?",
+      "¿Usa 'I'm a ...' con artículo en la profesión?"
+     ],
+     "palabras": "20-30"
+    },
+    {
+     "id": "w2-02",
+     "level": "A2",
+     "segundos": 420,
+     "promptEn": "Describe your usual weekend in a few sentences.",
+     "promptEs": "Describe cómo es tu fin de semana normal, en unas pocas frases.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿Presente simple bien formado?",
+      "¿Usa al menos un adverbio de frecuencia?"
+     ],
+     "palabras": "20-30"
+    },
+    {
+     "id": "w2-03",
+     "level": "B1",
+     "segundos": 420,
+     "promptEn": "Write about a place you would recommend to a visitor, and say why.",
+     "promptEs": "Escribe sobre un sitio que le recomendarías a alguien de visita, y por qué.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿Recomienda Y justifica, no solo describe?",
+      "¿Usa 'because', 'so' o algún conector?"
+     ],
+     "palabras": "20-30"
+    },
+    {
+     "id": "w2-04",
+     "level": "B1",
+     "segundos": 420,
+     "promptEn": "Write about something you learned recently and how you learned it.",
+     "promptEs": "Escribe sobre algo que aprendiste hace poco y cómo lo aprendiste.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿Usa pasado simple o present perfect correctamente?",
+      "¿Cuenta el cómo, no solo el qué?"
+     ],
+     "palabras": "20-30"
+    }
+   ]
+  },
+  {
+   "id": "parte3",
+   "aptis": "Parte 3 · tres respuestas",
+   "title": "Conversación escrita",
+   "palabras": true,
+   "descripcion": "Tres personas escriben en un grupo y hay que contestarle a cada una con 30 a 40 palabras. Las respuestas deben enlazarse entre sí, como una conversación de verdad.",
+   "tareas": [
+    {
+     "id": "w3-01",
+     "level": "B1",
+     "segundos": 600,
+     "promptEn": "Three members of your sports club are discussing the schedule. Reply to each one.",
+     "promptEs": "Tres miembros de tu club deportivo discuten el horario. Contéstale a cada uno.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿Las tres respuestas se enlazan entre sí?",
+      "¿Responde a lo que cada uno dijo, no lo mismo tres veces?"
+     ],
+     "palabras": "30-40 cada una",
+     "mensajes": [
+      "I think Saturday morning is too early. Anyone else?",
+      "I can only come on weekdays because of work.",
+      "Could we try two different times and see what works?"
+     ]
+    },
+    {
+     "id": "w3-02",
+     "level": "B1",
+     "segundos": 600,
+     "promptEn": "Three colleagues are planning a farewell for someone leaving. Reply to each one.",
+     "promptEs": "Tres compañeros organizan una despedida para alguien que se va. Contéstale a cada uno.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿Aporta algo distinto en cada respuesta?",
+      "¿Registro informal pero cuidado?"
+     ],
+     "palabras": "30-40 cada una",
+     "mensajes": [
+      "Should we do lunch or something after work?",
+      "I can collect the money if someone else buys the gift.",
+      "Does anyone know what she actually likes?"
+     ]
+    },
+    {
+     "id": "w3-03",
+     "level": "B2",
+     "segundos": 600,
+     "promptEn": "Three neighbours disagree about a shared parking space. Reply to each one.",
+     "promptEs": "Tres vecinos no se ponen de acuerdo sobre un parqueadero común. Contéstale a cada uno.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿Discrepa sin sonar agresivo?",
+      "¿Usa fórmulas de concesión (I see your point, that said)?",
+      "¿Propone algo, no solo opina?"
+     ],
+     "palabras": "30-40 cada una",
+     "mensajes": [
+      "The space should go to whoever arrives first, simple.",
+      "That's unfair to those of us who work nights.",
+      "Honestly, I think we should pay for a second space."
+     ]
+    },
+    {
+     "id": "w3-04",
+     "level": "B2",
+     "segundos": 600,
+     "promptEn": "Three people in an online course are discussing whether the final project should be in groups. Reply to each one.",
+     "promptEs": "Tres personas de un curso en línea discuten si el trabajo final debe ser en grupo. Contéstale a cada uno.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿Toma postura y la sostiene en las tres?",
+      "¿Reconoce el argumento contrario al menos una vez?"
+     ],
+     "palabras": "30-40 cada una",
+     "mensajes": [
+      "Group work is always unfair, someone does nothing.",
+      "But working alone doesn't prepare you for a real job.",
+      "Could it be optional? Let people choose."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "parte4",
+   "aptis": "Parte 4 · dos correos",
+   "title": "Informal y formal",
+   "palabras": true,
+   "descripcion": "La tarea más pesada: 30 de los 50 minutos. Un correo informal a un amigo (50 palabras) y uno formal a alguien que no conoces (120-150). Los dos reaccionan al mismo cambio.",
+   "tareas": [
+    {
+     "id": "w4-01",
+     "level": "B1",
+     "segundos": 1800,
+     "promptEn": "Your gym is closing its swimming pool for six months. Write to a friend who goes with you, and a formal email to the manager.",
+     "promptEs": "Tu gimnasio cierra la piscina seis meses. Escríbele a un amigo que va contigo, y un correo formal al gerente.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿El informal suena informal y el formal, formal?",
+      "¿El formal abre y cierra como un correo de verdad?",
+      "¿Pide algo concreto, no solo se queja?",
+      "¿Usa conectores (however, therefore)?"
+     ],
+     "palabras": "50 + 120-150"
+    },
+    {
+     "id": "w4-02",
+     "level": "B1",
+     "segundos": 1800,
+     "promptEn": "Your English course is changing from evenings to Saturday mornings. Write to a classmate, and a formal email to the school.",
+     "promptEs": "Tu curso de inglés se pasa de las tardes a los sábados por la mañana. Escríbele a un compañero, y un correo formal a la escuela.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿Los dos correos reaccionan al MISMO cambio?",
+      "¿El formal explica cómo le afecta con un dato concreto?",
+      "¿Nada de abreviaturas ni jerga en el formal?"
+     ],
+     "palabras": "50 + 120-150"
+    },
+    {
+     "id": "w4-03",
+     "level": "B2",
+     "segundos": 1800,
+     "promptEn": "Your building is raising the monthly fee by thirty percent with one month's notice. Write to a neighbour, and a formal email to the administrator.",
+     "promptEs": "Tu edificio sube la cuota un treinta por ciento avisando con un mes. Escríbele a un vecino, y un correo formal al administrador.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿El formal cuestiona el procedimiento, no solo el monto?",
+      "¿Usa condicional o pasiva para suavizar la queja?",
+      "¿Cierra pidiendo una acción con plazo?"
+     ],
+     "palabras": "50 + 120-150"
+    },
+    {
+     "id": "w4-04",
+     "level": "B2",
+     "segundos": 1800,
+     "promptEn": "A conference you paid for has been moved online with no refund offered. Write to a colleague who also registered, and a formal email to the organisers.",
+     "promptEs": "Un congreso que pagaste pasó a ser virtual y no ofrecen devolución. Escríbele a un colega que también se inscribió, y un correo formal a los organizadores.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿Distingue lo que le molesta de lo que pide?",
+      "¿Menciona lo que esperaba y lo que recibió?",
+      "¿Ofrece una alternativa aceptable, no solo el reembolso?"
+     ],
+     "palabras": "50 + 120-150"
+    }
+   ]
+  }
+ ]
+}

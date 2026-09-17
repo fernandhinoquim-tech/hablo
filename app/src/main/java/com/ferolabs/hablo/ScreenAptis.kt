@@ -1106,10 +1106,22 @@ private fun TareaEscrituraUi(t: TareaEscrita, n: Int, total: Int, accent: Color,
         while (restante > 0) { delay(1000); restante -= 1 }
         entregar()
     }
-    Text("Tarea $n de $total · nivel ${t.level} · ${t.palabras} palabras", style = MaterialTheme.typography.labelMedium, color = InkSoft)
+    Text(
+        "Tarea $n de $total · nivel ${t.level}" + (if (t.parte.isNotBlank()) " · ${t.parte}" else "") + (if (t.palabras.isNotBlank()) " · ${t.palabras} palabras" else ""),
+        style = MaterialTheme.typography.labelMedium, color = InkSoft
+    )
     CuentaAtras(restante, t.segundos, accent)
     Text(t.promptEn, style = MaterialTheme.typography.bodyLarge, color = Ink)
     Text(t.promptEs, style = MaterialTheme.typography.bodyMedium, color = InkSoft)
+    if (t.mensajes.isNotEmpty()) {
+        Tarjeta { t.mensajes.forEachIndexed { i, m -> Text("${i + 1}. $m", style = MaterialTheme.typography.bodyLarge, color = Ink) } }
+        Text(
+            if (t.mensajes.size >= 5) "Contesta cada mensaje en su línea, con una sola palabra." else "Contesta a cada uno; separa las respuestas con una línea en blanco.",
+            style = MaterialTheme.typography.labelMedium, color = InkSoft
+        )
+    } else if (t.palabras.contains("+")) {
+        Text("Escribe primero el correo informal y, después de una línea en blanco, el formal.", style = MaterialTheme.typography.labelMedium, color = InkSoft)
+    }
     OutlinedTextField(
         value = texto,
         onValueChange = { if (!entregado) texto = it },

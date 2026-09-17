@@ -472,12 +472,18 @@ SECCIÓN APARTE del curso. Cómo está construido:
   vocabulario con `sub` synonym/definition/collocation + `prompt`, o usage +
   `text`; los 2 de C1 entran como B2), `aptis-diagnostico.json` (el
   simulacro; sus 30 tareas se reciclan como primeras tareas de sus pistas,
-  salvo las que repiten un ítem del Core con el mismo enunciado) y, cuando
-  Cowork los mande, `aptis-reading.json`, `aptis-listening.json`,
-  `aptis-writing.json`, `aptis-speaking.json` con `{"tareas": [...]}` en el
-  mismo formato que las secciones del simulacro (más `why` opcional, que se
-  muestra al corregir). `tools/content/integrar_diagnostico.py` valida el
-  simulacro; los bancos del Core se copiaron tal cual.
+  salvo las que repiten un ítem del Core con el mismo enunciado) y los bancos
+  de las pistas `aptis-<pista>.json`: **Writing ya entró el 16-09**
+  (`pista-writing.json` de Cowork, 16 tareas A1-B2 en las 4 partes del
+  examen: una palabra a cinco mensajes · 20-30 palabras · tres respuestas en
+  un grupo · dos correos informal + formal, con `mensajes` y `promptEn/Es`;
+  archivado en `contenido-nuevo/integrado/2026-09-16-aptis-writing/`);
+  faltan Reading, Listening y Speaking. Formato de esos bancos: plano
+  (`{"tareas": [...]}`, como las secciones del simulacro) o por partes
+  (`{"partes": [{"aptis": "Parte 1 · una palabra", "tareas": [...]}]}`, el de
+  Cowork; `validar_pista.py` es su validador); `why` opcional se muestra al
+  corregir. `tools/content/integrar_diagnostico.py` valida el simulacro; los
+  bancos del Core se copiaron tal cual.
 - **Cinco pistas** (`PistaAptis`: Core, Reading, Listening, Writing,
   Speaking). Cada una tiene DOS niveles a propósito (`Aptis`): el que se
   ENTRENA (`nivel`, arranca en el nivel más bajo con tareas: A2 hoy, A1
@@ -536,7 +542,9 @@ SECCIÓN APARTE del curso. Cómo está construido:
   por pista; "Empezar el Modo Aptis de cero" con confirmación. El teléfono
   quedó limpio. Con los bancos de hoy Reading, Listening y Speaking tienen 1-2
   tareas por nivel: la promoción (4 de 5 / 2 de 3) exige repetirlas; se
-  destraba cuando lleguen los bancos de Cowork.
+  destraba cuando lleguen los bancos de Cowork. Con el banco de Writing
+  puesto, la pista de Writing arranca en A1 (parte 1: cinco mensajes con una
+  palabra), probado en el teléfono: "✓ Cuenta como A1" con la cita.
 
 **Modo Aptis (decisión de Fero, 2026-09-15).** Fero va a presentar **Aptis
 ESOL General** (sin fecha aún, sin saber qué nivel le exigen). **El curso por

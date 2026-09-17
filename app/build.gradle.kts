@@ -556,29 +556,87 @@ val checkContent = tasks.register("checkContent") {
             }
         }
 
+        fun strs(x: Any?): List<String> = (x as? List<*>)?.map { it.toString() } ?: emptyList()
+        fun idNuevo(where: String, id: Any?) {
+            val s = id?.toString().orEmpty()
+            if (s.isBlank()) problems.add("$where: falta \"id\"") else if (!tareaIds.add(s)) problems.add("$where: id repetido \"$s\"")
+        }
+        fun nivel(where: String, o: Map<*, *>) {
+            if (o["level"]?.toString() !in nivelesItem) problems.add("$where: level \"${o["level"]}\" no es A1, A2, B1 ni B2")
+        }
+        fun opciones(where: String, o: Map<*, *>): List<String> {
+            val opts = strs(o["options"])
+            if (opts.size < 2) problems.add("$where: hacen falta al menos 2 opciones")
+            if (opts.toSet().size != opts.size) problems.add("$where: opciones repetidas")
+            if (o["answer"]?.toString() !in opts) problems.add("$where: answer fuera de options")
+            return opts
+        }
+        fun hueco(where: String, text: Any?) {
+            if (text.toString().split("___").size != 2) problems.add("$where: el texto necesita exactamente un hueco ___")
+        }
+        // Una tarea de pista o de simulacro, segun la destreza (como Lector en Aptis.kt).
+        fun tareaDe(pista: String, where: String, tm: Map<*, *>) {
+            idNuevo(where, tm["id"]); nivel(where, tm)
+            when (pista) {
+                "core" -> { hueco(where, tm["text"]); opciones(where, tm) }
+                "reading" -> when (tm["tipo"]?.toString()) {
+                    "completar" -> { hueco(where, tm["text"]); opciones(where, tm) }
+                    "ordenar" -> {
+                        if (tm["primera"]?.toString().isNullOrBlank()) problems.add("$where: falta \"primera\"")
+                        val des = strs(tm["desordenadas"]); val orden = strs(tm["orden"])
+                        if (des.size < 2) problems.add("$where: hacen falta al menos 2 frases desordenadas")
+                        if (des.toSet().size != des.size) problems.add("$where: frases repetidas")
+                        if (orden.sorted() != des.sorted()) problems.add("$where: \"orden\" no es una permutacion de \"desordenadas\"")
+                    }
+                    "titulos" -> {
+                        val parrafos = strs(tm["parrafos"]); val titulos = strs(tm["titulos"]); val answer = strs(tm["answer"])
+                        if (parrafos.size < 2) problems.add("$where: hacen falta al menos 2 parrafos")
+                        if (titulos.size <= parrafos.size) problems.add("$where: tiene que sobrar al menos un titulo")
+                        if (titulos.toSet().size != titulos.size) problems.add("$where: titulos repetidos")
+                        if (answer.size != parrafos.size) problems.add("$where: \"answer\" necesita un titulo por parrafo")
+                        if (answer.toSet().size != answer.size || answer.any { it !in titulos }) problems.add("$where: \"answer\" con titulos repetidos o fuera de \"titulos\"")
+                    }
+                    else -> problems.add("$where: tipo desconocido \"${tm["tipo"]}\"")
+                }
+                "listening" -> {
+                    opciones(where, tm)
+                    for (key in listOf("audio", "pregunta")) if (tm[key]?.toString().isNullOrBlank()) problems.add("$where: falta \"$key\"")
+                }
+                "writing", "speaking" -> {
+                    for (idioma in listOf("en", "es")) {
+                        val camel = "prompt" + idioma.replaceFirstChar { it.uppercase() }
+                        if (tm["prompt_$idioma"]?.toString().isNullOrBlank() && tm[camel]?.toString().isNullOrBlank()) problems.add("$where: falta \"prompt_$idioma\"")
+                    }
+                    if (strs(tm["rubrica"]).isEmpty()) problems.add("$where: falta la rubrica")
+                    val seg = if (pista == "writing") tm["segundos"] else (tm["hablar_seg"] ?: tm["hablarSeg"])
+                    if (((seg as? Number)?.toInt() ?: 0) <= 0) problems.add("$where: falta " + (if (pista == "writing") "\"segundos\"" else "\"hablar_seg\""))
+                }
+            }
+        }
+
+        // Los bancos de las pistas de Cowork: aptis-<pista>.json, planos ("tareas") o por "partes" del examen.
+        for (pista in listOf("reading", "listening", "writing", "speaking")) {
+            val f = File(contentDir, "aptis-$pista.json")
+            if (!f.exists()) continue
+            val banco = slurper.parse(f) as Map<*, *>
+            val partes = banco["partes"] as? List<*>
+            if (partes != null) partes.forEachIndexed { pi, parte ->
+                val pm = parte as Map<*, *>
+                val whereP = "aptis-$pista.json, parte ${pi + 1}"
+                if (pm["aptis"]?.toString().isNullOrBlank() && pm["title"]?.toString().isNullOrBlank()) problems.add("$whereP: falta \"aptis\" o \"title\"")
+                ((pm["tareas"] as? List<*>) ?: emptyList<Any>()).forEachIndexed { i, t -> tareaDe(pista, "$whereP, tarea ${i + 1}", t as Map<*, *>) }
+            } else {
+                val tareas = (banco["tareas"] as? List<*>) ?: (banco["items"] as? List<*>) ?: emptyList<Any>()
+                if (tareas.isEmpty()) problems.add("aptis-$pista.json: sin \"tareas\"")
+                tareas.forEachIndexed { i, t -> tareaDe(pista, "aptis-$pista.json, tarea ${i + 1}", t as Map<*, *>) }
+            }
+        }
+
         // Diagnostico = simulacro del Modo Aptis: opcional; si esta, se revisa como parseDiagnostico (Aptis.kt).
         val diagFile = File(contentDir, "aptis-diagnostico.json")
         if (diagFile.exists()) {
             val diag = slurper.parse(diagFile) as Map<*, *>
             val secIds = HashSet<String>()
-            fun strs(x: Any?): List<String> = (x as? List<*>)?.map { it.toString() } ?: emptyList()
-            fun idNuevo(where: String, id: Any?) {
-                val s = id?.toString().orEmpty()
-                if (s.isBlank()) problems.add("$where: falta \"id\"") else if (!tareaIds.add(s)) problems.add("$where: id repetido \"$s\"")
-            }
-            fun nivel(where: String, o: Map<*, *>) {
-                if (o["level"]?.toString() !in nivelesItem) problems.add("$where: level \"${o["level"]}\" no es A1, A2, B1 ni B2")
-            }
-            fun opciones(where: String, o: Map<*, *>): List<String> {
-                val opts = strs(o["options"])
-                if (opts.size < 2) problems.add("$where: hacen falta al menos 2 opciones")
-                if (opts.toSet().size != opts.size) problems.add("$where: opciones repetidas")
-                if (o["answer"]?.toString() !in opts) problems.add("$where: answer fuera de options")
-                return opts
-            }
-            fun hueco(where: String, text: Any?) {
-                if (text.toString().split("___").size != 2) problems.add("$where: el texto necesita exactamente un hueco ___")
-            }
             // Los umbrales del Core viven en el JSON ("4 de 5 en A2 y 4 de 5 en B1"): tienen que poder leerse.
             val estimacionCore = ((diag["estimacion"] as? Map<*, *>)?.get("core") as? Map<*, *>)
             if (estimacionCore == null) problems.add("aptis-diagnostico.json: falta \"estimacion.core\"")
