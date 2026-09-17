@@ -1,0 +1,59 @@
+{
+ "_comentario": "Siete fichas de A2 ganan una línea para lo que practican los ejercicios de adiciones-a2.json. Se aplica con integrado/2026-09-17-parche-auditoria/parchar2.py.",
+ "a2u1l2": {
+  "_por_que": "Los ejercicios añadidos practican esto y la ficha no lo explicaba.",
+  "theory": {
+   "title": "used to: lo que hacías y ya no",
+   "body": "Para hábitos y estados del pasado que **ya no son**:\n\n**used to** + verbo\n*I **used to** smoke.* (fumaba, ya no)\n*She **used to** live in Cali.* (vivía, ya no)\n\nNegativo y pregunta pierden la **d**, porque aparece el did:\n*I **didn't use to** like coffee.*\n***Did** you **use to** play soccer?*\n\nY no sirve para algo que pasó una sola vez: *I used to go to Spain in 2019* ❌ → *I went to Spain in 2019* ✅\n\nNo confundir con **be used to** + sustantivo o -ing = *estar acostumbrado*: *I'm **used to** the cold.* · *She isn't **used to** driving at night.*",
+   "trap": "El español lo dice con el imperfecto —«fumaba», «vivía»—, la misma forma que usamos para el fondo de una escena. Por eso sale *I was smoking* cuando quieres decir «antes fumaba». Si es un hábito que se acabó, es **used to**."
+  }
+ },
+ "a2u2l1": {
+  "_por_que": "Los ejercicios añadidos practican esto y la ficha no lo explicaba.",
+  "theory": {
+   "title": "have + participio",
+   "body": "El present perfect se arma con dos piezas:\n\n**have / has** + **participio** (la tercera forma del verbo)\n\n*I **have finished**.* · *She **has gone**.*\n\nEl participio de los regulares es igual al pasado (worked, lived). Los irregulares hay que aprenderlos:\n*go → went → **gone*** · *see → saw → **seen*** · *do → did → **done***\n*eat → ate → **eaten*** · *write → wrote → **written***\n\nSe usa para algo del pasado **que todavía importa ahora**: no dices cuándo pasó, dices que ya está.\n\nLas **respuestas cortas** repiten el ayudante: *Have you finished?* → ***Yes, I have.*** / ***No, I haven't.*** Es más natural que contestar con el verbo (*Yes, I finished*).",
+   "trap": "Cuidado con **has**, no **have**, para he/she/it — es la misma -s de siempre, escondida. *She have finished* ❌ → *She **has** finished* ✅"
+  }
+ },
+ "a2u4l1": {
+  "_por_que": "Los ejercicios añadidos practican esto y la ficha no lo explicaba.",
+  "theory": {
+   "title": "Tres futuros, y cuál usar",
+   "body": "El inglés tiene tres maneras de hablar del futuro y cada una dice algo distinto.\n\n**will** — lo decides ahora mismo, o es una predicción\n*The phone's ringing. I'**ll** get it.*\n\n**be going to** — ya lo tenías decidido\n*I'**m going to** look for a new job.*\n\n**presente continuo** — ya está **agendado**, con hora y sitio\n*I'**m meeting** Ana at seven.* (ya quedamos)\n\nOjo con el tercero: es el mismo am/is/are + -ing del «ahora mismo», pero con una hora futura se entiende como cita.\n\n**be going to** también sirve para predecir cuando **ves la prueba ahora**: *Look at those clouds. It's **going to** rain.* Para opinar sobre el futuro, **I think + will**: *I think Colombia **will** win.*",
+   "trap": "«Mañana voy al médico» sale como *Tomorrow I go to the doctor* — presente simple, como en español. En inglés el presente simple para el futuro se guarda para horarios fijos (*the class starts at nine*) y para después de when/if (lección 3). Para tu cita: **I'm going to the doctor tomorrow**."
+  }
+ },
+ "a2u6l1": {
+  "_por_que": "Los ejercicios añadidos practican esto y la ficha no lo explicaba.",
+  "theory": {
+   "title": "too y enough: dos que se ponen al revés",
+   "body": "**too** = demasiado. Va **antes** del adjetivo o del adverbio. (Al final de la frase, *too* es «también».)\n*It's **too** expensive.* · *You're driving **too** fast.*\n\nY si va con un sustantivo cambia de forma:\n**too much** + incontable: *too much noise*\n**too many** + contable: *too many people*\n\n**enough** = suficiente. Aquí está la vuelta: va **después** del adjetivo pero **antes** del sustantivo.\n*It's not big **enough**.* (después del adjetivo)\n*We don't have **enough** time.* (antes del sustantivo)\n\n**enough** también va **después del adverbio** (*You don't run **fast enough***) y puede seguir con **to + verbo**: *He isn't tall **enough to** play basketball.*",
+   "trap": "**too** no es **very**. *It's very expensive* = está muy caro (pero quizá lo compro). *It's too expensive* = tan caro que **no lo compro**. En español «muy» y «demasiado» también se distinguen, pero al traducir rápido sale *very* para todo y se pierde la queja."
+  }
+ },
+ "a2u8l1": {
+  "_por_que": "Los ejercicios añadidos practican esto y la ficha no lo explicaba.",
+  "theory": {
+   "title": "La pasiva: cuando no importa quién",
+   "body": "Se usa cuando lo importante es **qué pasó**, no quién lo hizo.\n\n**be + participio**\n\n*This house **was built** in 1920.*\n*English **is spoken** here.*\n*The letters **are sent** every Monday.*\n\nEl tiempo lo marca el **be**: *is/are* para presente, *was/were* para pasado.\n\nY si quieres decir quién, va con **by**:\n*The book **was written by** García Márquez.*\n\nEl negativo y la pregunta los arma el **be**, sin do: *The letter **wasn't sent**.* · ***Were** you **invited**?* · *Where **are** these shoes **made**?*",
+   "trap": "El español resuelve esto con «se»: «se habla inglés», «se construyó en 1920». Esa forma no existe en inglés y sale *It speaks English here* ❌, que significa otra cosa. La pasiva inglesa necesita **be + participio**: **English is spoken here**. También se dice *They speak English here*; en esta lección practicamos la pasiva."
+  }
+ },
+ "a2u9l1": {
+  "_por_que": "Los ejercicios añadidos practican esto y la ficha no lo explicaba.",
+  "theory": {
+   "title": "say y tell, y el verbo que retrocede",
+   "body": "Para repetir lo que alguien dijo, el verbo **da un paso atrás** en el tiempo.\n\n*\"I **am** tired\"* → *He said he **was** tired.*\n*\"I **work** here\"* → *She said she **worked** there.*\n*\"I **will** call\"* → *He said he **would** call.*\n\nEs lo normal; si algo sigue siendo verdad, en conversación a veces no se retrocede.\n\nY hay dos verbos para «decir», con reglas distintas:\n\n**say** — no lleva la persona pegada (si la pones, va con to: *said **to me***): *He **said** that he was tired.*\n**tell** — sí lleva a quién, pegado: *He **told me** that he was tired.*\n\n**can** también retrocede, a **could**: *\"I **can** help\"* → *She said she **could** help.*",
+   "trap": "*He said me* ❌ y *He told that* ❌ son las dos caras del mismo error, porque el español usa «decir» para todo. Regla corta: **tell** va con persona pegada (tell me, tell him), salvo fijas como *tell the truth*; **say** sin persona pegada. Y otro: *explain me* ❌ → **explain to me**."
+  }
+ },
+ "a2u9l2": {
+  "_por_que": "Los ejercicios añadidos practican esto y la ficha no lo explicaba.",
+  "theory": {
+   "title": "so am I / neither do I",
+   "body": "Para decir «yo también» hay que repetir el **ayudante** de la otra frase, no el verbo entero.\n\n**Estar de acuerdo con algo positivo → So + ayudante + yo**\n*\"I'm tired.\"* → ***So am I**.*\n*\"I like coffee.\"* → ***So do I**.*\n*\"I've been there.\"* → ***So have I**.*\n\n**Con algo negativo → Neither + ayudante + yo**\n*\"I don't like it.\"* → ***Neither do I**.*\n*\"I can't swim.\"* → ***Neither can I**.*\n\nFíjate que el orden se invierte: **so am I**, no *so I am*.\n\nCon otros sujetos cambia el ayudante: *Ana speaks French.* → ***So does he**.* Y para lo negativo, además de *Me neither*, se dice ***I don't either*** (el **either** va al final).",
+   "trap": "«Yo también» no es *Me too* en todos los casos — *Me too* funciona suelto, pero suena informal y no sirve para lo negativo: ahí va **Me neither**. Y el error de verdad es contestar *So I am* ❌ o *Also me* ❌. El orden es **So + ayudante + sujeto**."
+  }
+ }
+}

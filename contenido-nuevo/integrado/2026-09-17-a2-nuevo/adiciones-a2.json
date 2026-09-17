@@ -1,0 +1,1005 @@
+{
+ "a2u1l2": [
+  {
+   "type": "write",
+   "es": "Estoy acostumbrado a levantarme temprano.",
+   "answer": "I'm used to getting up early.",
+   "accept": [
+    "I'm used to waking up early.",
+    "I'm accustomed to getting up early.",
+    "I'm accustomed to waking up early.",
+    "I'm used to getting up early in the morning.",
+    "I'm used to waking up early in the morning.",
+    "I'm used to early mornings.",
+    "I have gotten used to getting up early.",
+    "I have gotten used to waking up early."
+   ],
+   "tip": "be used to + -ing = estar acostumbrado a. No es lo mismo que used to + verbo (antes hacía)."
+  },
+  {
+   "type": "translate",
+   "es": "Ya estoy acostumbrado al frío.",
+   "options": [
+    "I used to the cold now.",
+    "I'm used to the cold now.",
+    "I used to be cold now."
+   ],
+   "answer": "I'm used to the cold now.",
+   "accept": [
+    "I'm already used to the cold.",
+    "I'm used to the cold already.",
+    "I'm used to the cold.",
+    "I have gotten used to the cold.",
+    "I have gotten used to the cold now.",
+    "I got used to the cold.",
+    "I'm accustomed to the cold now.",
+    "I am now used to the cold.",
+    "I have already gotten used to the cold."
+   ],
+   "tip": "Con be delante (I'm used to) es «estar acostumbrado»; sin be (I used to) es «antes hacía»."
+  },
+  {
+   "type": "cloze",
+   "es": "Ella no está acostumbrada a manejar de noche.",
+   "text": "She isn't used to ___ at night.",
+   "answer": "driving",
+   "accept": [],
+   "tip": "En be used to, el to va seguido de sustantivo o de -ing: used to driving."
+  }
+ ],
+ "a2u2l1": [
+  {
+   "type": "write",
+   "es": "¿Ya terminaste?",
+   "answer": "Have you finished?",
+   "accept": [
+    "Have you finished yet?",
+    "Have you already finished?",
+    "Have you finished already?",
+    "Are you done?",
+    "Are you done yet?",
+    "Are you finished?",
+    "Are you finished yet?",
+    "Did you finish?",
+    "Did you finish yet?",
+    "Did you already finish?",
+    "Are you already done?",
+    "Are you done already?",
+    "Did you finish already?"
+   ],
+   "tip": "Pregunta: have va antes del sujeto y el participio después."
+  },
+  {
+   "type": "cloze",
+   "es": "—¿Ella ha terminado? —Sí.",
+   "text": "Has she finished? Yes, she ___.",
+   "answer": "has",
+   "accept": [],
+   "tip": "La respuesta corta repite el ayudante: Yes, she has / No, she hasn't."
+  },
+  {
+   "type": "listen",
+   "audio": "No, I haven't.",
+   "options": [
+    "No, I haven't.",
+    "No, I don't.",
+    "No, I'm not."
+   ],
+   "answer": "No, I haven't.",
+   "tip": "A una pregunta con have se contesta con have: No, I haven't."
+  }
+ ],
+ "a2u2l2": [
+  {
+   "type": "write",
+   "es": "Mi hermano se fue a Bogotá y todavía no ha vuelto.",
+   "answer": "My brother has gone to Bogota.",
+   "accept": [
+    "My brother's gone to Bogota.",
+    "My brother went to Bogota.",
+    "My brother has gone to Bogota and hasn't come back yet.",
+    "My brother went to Bogota and hasn't come back yet.",
+    "My brother has gone to Bogota and hasn't returned yet.",
+    "My brother went to Bogota and hasn't returned yet.",
+    "My brother has left for Bogota.",
+    "My brother left for Bogota.",
+    "My brother has gone to Bogota and he hasn't come back yet.",
+    "My brother went to Bogota and he hasn't come back yet.",
+    "My brother has gone to Bogota and hasn't come back.",
+    "My brother went to Bogota and hasn't come back.",
+    "My brother has gone to Bogota and still hasn't come back.",
+    "My brother went to Bogota and still hasn't come back.",
+    "My brother has gone to Bogota and is still there.",
+    "My brother went to Bogota and is still there."
+   ],
+   "tip": "gone = se fue y sigue allá."
+  },
+  {
+   "type": "write",
+   "es": "Nunca he estado en Nueva York.",
+   "answer": "I have never been to New York.",
+   "accept": [
+    "I have never been in New York.",
+    "I have never visited New York.",
+    "I have never gone to New York.",
+    "I never went to New York.",
+    "I have not been to New York.",
+    "I have never been to NYC.",
+    "I have never been to New York City.",
+    "I have never been to New York before.",
+    "I never visited New York.",
+    "I have never been in NYC."
+   ],
+   "tip": "been to = fui y volví: la experiencia de haber estado."
+  },
+  {
+   "type": "cloze",
+   "es": "—¿Alguna vez has comido arepas? —Sí.",
+   "text": "Have you ever eaten arepas? Yes, I ___.",
+   "answer": "have",
+   "accept": [],
+   "tip": "La respuesta corta repite el ayudante: Yes, I have / No, I haven't. Es más natural que contestar con el verbo."
+  },
+  {
+   "type": "speak",
+   "text": "Yes, I have. Have you?",
+   "sound": "h",
+   "tip": "La h de have se sopla suave, como un suspiro; no es la j fuerte del español."
+  }
+ ],
+ "a2u3l2": [
+  {
+   "type": "write",
+   "es": "Aquí no se puede estacionar, está prohibido.",
+   "answer": "You can't park here.",
+   "accept": [
+    "You aren't allowed to park here.",
+    "Parking is not allowed here.",
+    "You mustn't park here.",
+    "You must not park here.",
+    "No parking here.",
+    "Parking is prohibited here.",
+    "You can't park here, it's not allowed.",
+    "You can't park here, it's prohibited.",
+    "You aren't allowed to park here, it's prohibited.",
+    "Parking is not permitted here.",
+    "You are not permitted to park here.",
+    "Parking here is not allowed.",
+    "Parking here is prohibited.",
+    "Parking is forbidden here.",
+    "It is forbidden to park here.",
+    "It is prohibited to park here.",
+    "You can't park here, it's forbidden.",
+    "You mustn't park here, it's prohibited.",
+    "You must not park here, it's prohibited.",
+    "You can't park here, parking is not allowed.",
+    "You aren't allowed to park here, it's forbidden."
+   ],
+   "tip": "En EE. UU. la prohibición hablada es can't o not allowed to."
+  },
+  {
+   "type": "build",
+   "es": "No nos dejan fumar en el trabajo.",
+   "answer": "We aren't allowed to smoke at work.",
+   "accept": [
+    "At work we aren't allowed to smoke."
+   ],
+   "extra": [
+    "don't",
+    "allow",
+    "have"
+   ],
+   "tip": "be allowed to = tener permiso; allowed ya lleva la -ed."
+  },
+  {
+   "type": "listen",
+   "audio": "Sorry, you aren't allowed to take photos here.",
+   "options": [
+    "Sorry, you aren't allowed to take photos here.",
+    "Sorry, you are allowed to take photos here.",
+    "Sorry, you don't have to take photos here."
+   ],
+   "answer": "Sorry, you aren't allowed to take photos here.",
+   "tip": "not allowed to = prohibido; don't have to = no hace falta. Fíjate en la n de aren't."
+  }
+ ],
+ "a2u3l3": [
+  {
+   "type": "write",
+   "es": "Podrías pedirle ayuda a tu jefe.",
+   "answer": "You could ask your boss for help.",
+   "accept": [
+    "You could ask your boss to help you.",
+    "You could ask your boss for some help.",
+    "You could ask for help from your boss.",
+    "You could ask your boss for assistance.",
+    "You could ask your boss to help.",
+    "You could ask your boss to help you out.",
+    "You could ask your manager for help.",
+    "You could ask for your boss's help.",
+    "You could ask your boss for his help.",
+    "You could ask your boss for her help."
+   ],
+   "tip": "You could + verbo desnudo = una sugerencia suave, «podrías»."
+  },
+  {
+   "type": "cloze",
+   "es": "Podrías tomar un taxi.",
+   "text": "You ___ take a taxi.",
+   "answer": "could",
+   "accept": [],
+   "tip": "«Podrías» es could, sin to detrás."
+  },
+  {
+   "type": "speak",
+   "text": "You could take the bus.",
+   "sound": "general",
+   "tip": "En could la l no suena: se dice «cud», igual que should y would."
+  }
+ ],
+ "a2u4l1": [
+  {
+   "type": "translate",
+   "es": "Mira esas nubes. Va a llover.",
+   "options": [
+    "Look at those clouds. It will rains.",
+    "Look at those clouds. It's going to rain.",
+    "Look at those clouds. It goes to rain."
+   ],
+   "answer": "Look at those clouds. It's going to rain.",
+   "accept": [
+    "Look at those clouds. It's going to rain soon.",
+    "Look at the clouds. It's going to rain.",
+    "Look at those clouds. It will rain.",
+    "Look at those clouds. It's about to rain."
+   ],
+   "tip": "Si ves la prueba ahora mismo (las nubes), lo normal es going to."
+  },
+  {
+   "type": "write",
+   "es": "Creo que va a ganar Colombia.",
+   "answer": "I think Colombia will win.",
+   "accept": [
+    "I think Colombia is going to win.",
+    "I believe Colombia will win.",
+    "I believe Colombia is going to win.",
+    "I think that Colombia will win.",
+    "I think that Colombia is going to win.",
+    "I think Colombia's going to win.",
+    "I think Colombia will win the game.",
+    "I think Colombia is going to win the game."
+   ],
+   "tip": "Para una opinión sobre el futuro: I think + will (going to también sirve)."
+  },
+  {
+   "type": "write",
+   "es": "Cuidado, te vas a caer.",
+   "answer": "Be careful, you're going to fall.",
+   "accept": [
+    "Careful, you're going to fall.",
+    "Watch out, you're going to fall.",
+    "Look out, you're going to fall.",
+    "Be careful, you're going to fall down.",
+    "Careful, you're going to fall down.",
+    "Watch out, you're going to fall down.",
+    "Be careful, you'll fall.",
+    "Be careful or you'll fall.",
+    "Careful, you'll fall.",
+    "Careful, you'll fall down.",
+    "Be careful, you'll fall down.",
+    "Watch out, you'll fall.",
+    "Look out, you'll fall.",
+    "Watch it, you're going to fall."
+   ],
+   "tip": "Lo estás viendo venir: going to."
+  }
+ ],
+ "a2u4l2": [
+  {
+   "type": "cloze",
+   "es": "Quizás llueva mañana.",
+   "text": "___ it will rain tomorrow.",
+   "answer": "Maybe",
+   "accept": [
+    "Perhaps"
+   ],
+   "tip": "maybe (una palabra) = quizás, y va al principio de la frase."
+  },
+  {
+   "type": "cloze",
+   "es": "Puede ser que él esté enfermo.",
+   "text": "He ___ sick.",
+   "answer": "may be",
+   "accept": [
+    "might be",
+    "could be"
+   ],
+   "tip": "may be (dos palabras) es verbo: puede estar. might be y could be también valen. maybe es solo «quizás»."
+  },
+  {
+   "type": "write",
+   "es": "Quizás te llamo más tarde.",
+   "answer": "Maybe I will call you later.",
+   "accept": [
+    "I might call you later.",
+    "I may call you later.",
+    "Perhaps I will call you later.",
+    "Maybe I will call you back later.",
+    "I might call you back later.",
+    "I may call you back later.",
+    "Perhaps I will call you back later.",
+    "Maybe I will give you a call later.",
+    "I might give you a call later.",
+    "I may give you a call later.",
+    "Perhaps I will give you a call later.",
+    "Maybe I will call you later on.",
+    "I might call you later on."
+   ],
+   "tip": "Con maybe el verbo sigue completo: Maybe I'll call."
+  }
+ ],
+ "a2u5l2": [
+  {
+   "type": "write",
+   "es": "Preferiría no salir esta noche.",
+   "answer": "I would rather not go out tonight.",
+   "accept": [
+    "I would prefer not to go out tonight.",
+    "I would rather stay in tonight.",
+    "I would rather stay home tonight.",
+    "I would rather stay at home tonight.",
+    "I would rather not go anywhere tonight.",
+    "Tonight I would rather not go out.",
+    "I would rather not go out this evening.",
+    "I would prefer to stay home tonight.",
+    "I would prefer to stay in tonight.",
+    "I would rather not leave the house tonight."
+   ],
+   "tip": "El negativo es would rather not + verbo, sin don't."
+  },
+  {
+   "type": "write",
+   "es": "Preferiría tomar té.",
+   "answer": "I would rather have tea.",
+   "accept": [
+    "I would rather drink tea.",
+    "I would rather have some tea.",
+    "I would rather drink some tea.",
+    "I would rather have a tea.",
+    "I would rather have a cup of tea.",
+    "I would prefer tea.",
+    "I would prefer to have tea.",
+    "I would prefer to drink tea.",
+    "I would prefer some tea.",
+    "I would prefer a cup of tea.",
+    "I would rather have tea instead.",
+    "I would prefer to have some tea.",
+    "I would prefer to drink some tea."
+   ],
+   "tip": "would rather + verbo desnudo, sin to."
+  },
+  {
+   "type": "translate",
+   "es": "—¿Te importaría esperar? —No, para nada. (Escribe solo la respuesta)",
+   "options": [
+    "Yes, I would.",
+    "No, not at all.",
+    "Yes, I mind."
+   ],
+   "answer": "No, not at all.",
+   "accept": [
+    "Not at all.",
+    "No, of course not.",
+    "Of course not.",
+    "No, I wouldn't mind.",
+    "No, I don't mind.",
+    "No problem.",
+    "No, I wouldn't mind at all.",
+    "No, I don't mind at all.",
+    "No, I don't mind waiting.",
+    "No, I wouldn't mind waiting."
+   ],
+   "tip": "Te preguntan si te molesta. «No me molesta» = No, not at all."
+  }
+ ],
+ "a2u6l1": [
+  {
+   "type": "write",
+   "es": "No corres lo suficientemente rápido.",
+   "answer": "You don't run fast enough.",
+   "accept": [
+    "You aren't running fast enough.",
+    "You don't run quickly enough.",
+    "You aren't running quickly enough."
+   ],
+   "tip": "enough va después del adverbio: fast enough."
+  },
+  {
+   "type": "build",
+   "es": "Él no es lo bastante alto para jugar básquetbol.",
+   "answer": "He isn't tall enough to play basketball.",
+   "extra": [
+    "too",
+    "for",
+    "very"
+   ],
+   "tip": "adjetivo + enough + to + verbo = lo bastante... para.",
+   "accept": [
+    "He isn't tall enough for basketball."
+   ]
+  },
+  {
+   "type": "write",
+   "es": "Hay demasiados carros en la calle.",
+   "answer": "There are too many cars on the street.",
+   "accept": [
+    "There are too many cars in the street.",
+    "There are too many cars on the road.",
+    "There are too many cars on the streets.",
+    "The street has too many cars.",
+    "There are too many cars in the streets."
+   ],
+   "tip": "cars se cuenta, así que es too many (too much es para lo que no se cuenta)."
+  }
+ ],
+ "a2u6l2": [
+  {
+   "type": "write",
+   "es": "Nadie sabe la respuesta.",
+   "answer": "Nobody knows the answer.",
+   "accept": [
+    "No one knows the answer.",
+    "Nobody knows the answer to that.",
+    "Nobody knows what the answer is.",
+    "No one knows what the answer is."
+   ],
+   "tip": "nobody ya es negativo: el verbo va en afirmativo y con -s (knows)."
+  },
+  {
+   "type": "write",
+   "es": "Te busqué por todas partes.",
+   "answer": "I looked for you everywhere.",
+   "accept": [
+    "I looked everywhere for you.",
+    "I searched for you everywhere.",
+    "I searched everywhere for you.",
+    "I was looking for you everywhere.",
+    "I was looking everywhere for you.",
+    "I have looked everywhere for you.",
+    "I have looked for you everywhere.",
+    "I have been looking everywhere for you.",
+    "I have been looking for you everywhere.",
+    "I looked all over for you.",
+    "I looked for you all over.",
+    "I searched all over for you.",
+    "I looked all over the place for you.",
+    "I was searching for you everywhere.",
+    "I was looking all over for you."
+   ],
+   "tip": "«por todas partes» = everywhere."
+  },
+  {
+   "type": "cloze",
+   "es": "No vamos a ningún lado este fin de semana.",
+   "text": "We're going ___ this weekend.",
+   "answer": "nowhere",
+   "accept": [],
+   "tip": "Si el verbo va en afirmativo, la negación la pone nowhere."
+  },
+  {
+   "type": "build",
+   "es": "Quiero vivir en algún lugar tranquilo.",
+   "answer": "I want to live somewhere quiet.",
+   "extra": [
+    "anywhere",
+    "in",
+    "nowhere"
+   ],
+   "tip": "somewhere no lleva in delante: live somewhere."
+  }
+ ],
+ "a2u6l3": [
+  {
+   "type": "write",
+   "es": "La mayoría de los estudiantes vive cerca.",
+   "answer": "Most of the students live nearby.",
+   "accept": [
+    "Most of the students live close by.",
+    "Most of the students live near here.",
+    "Most of the students live close.",
+    "Most of the students live close to here.",
+    "Most students live nearby.",
+    "Most students live close by.",
+    "Most students live near here.",
+    "Most students live close.",
+    "Most of the students live around here.",
+    "Most students live around here."
+   ],
+   "tip": "Un grupo concreto (los estudiantes) pide most of the."
+  },
+  {
+   "type": "write",
+   "es": "Pasé la mayor parte del día en casa.",
+   "answer": "I spent most of the day at home.",
+   "accept": [
+    "I spent most of the day home.",
+    "I spent most of the day in the house.",
+    "I was at home most of the day.",
+    "I was home most of the day.",
+    "I stayed home most of the day.",
+    "I stayed at home most of the day.",
+    "I spent most of my day at home.",
+    "I spent most of the day at my house.",
+    "I spent most of my day home.",
+    "I stayed in most of the day."
+   ],
+   "tip": "«la mayor parte de» también es most of the."
+  }
+ ],
+ "a2u7l1": [
+  {
+   "type": "write",
+   "es": "Mi hermana cocina muy bien.",
+   "answer": "My sister cooks very well.",
+   "accept": [
+    "My sister cooks really well.",
+    "My sister is a very good cook.",
+    "My sister is a really good cook.",
+    "My sister's a very good cook.",
+    "My sister's a really good cook."
+   ],
+   "tip": "Para decir cómo cocina se usa well, no good."
+  },
+  {
+   "type": "write",
+   "es": "Él maneja muy rápido.",
+   "answer": "He drives very fast.",
+   "accept": [
+    "He drives really fast.",
+    "He drives very quickly.",
+    "He drives really quickly.",
+    "He is a very fast driver.",
+    "He is a really fast driver."
+   ],
+   "tip": "fast no cambia: fastly no existe."
+  },
+  {
+   "type": "cloze",
+   "es": "Ella canta bien.",
+   "text": "She sings ___.",
+   "answer": "well",
+   "accept": [
+    "nicely"
+   ],
+   "tip": "good describe cosas (a good singer); well describe cómo se hace algo."
+  }
+ ],
+ "a2u7l2": [
+  {
+   "type": "cloze",
+   "es": "Este es el examen más fácil.",
+   "text": "This is the ___ test.",
+   "answer": "easiest",
+   "accept": [
+    "simplest"
+   ],
+   "tip": "easy → easiest: la y se cambia por i."
+  },
+  {
+   "type": "write",
+   "es": "Mi hijo es tan alto como yo.",
+   "answer": "My son is as tall as me.",
+   "accept": [
+    "My son is as tall as I am.",
+    "My son is as tall as I.",
+    "My son's as tall as me.",
+    "My son's as tall as I am."
+   ],
+   "tip": "as + adjetivo + as. Al final se dice as me o as I am."
+  },
+  {
+   "type": "write",
+   "es": "Fue el día más feliz de mi vida.",
+   "answer": "It was the happiest day of my life.",
+   "accept": [
+    "That was the happiest day of my life.",
+    "It was the happiest day in my life.",
+    "That was the happiest day in my life."
+   ],
+   "tip": "happy → happiest. Con periodos como «mi vida» lo más común es of."
+  }
+ ],
+ "a2u7l3": [
+  {
+   "type": "cloze",
+   "es": "Es una película que te va a gustar.",
+   "text": "It's a movie ___ you're going to like.",
+   "answer": "that",
+   "accept": [
+    "which"
+   ],
+   "tip": "Para cosas: that (lo más común) o which, no who. Como aquí el que es objeto, al hablar también se puede quitar."
+  },
+  {
+   "type": "build",
+   "es": "Este es el bus que va al centro.",
+   "answer": "This is the bus that goes downtown.",
+   "extra": [
+    "who",
+    "it",
+    "where"
+   ],
+   "tip": "El bus es una cosa: that (o which), no who. Y no se repite it después."
+  },
+  {
+   "type": "write",
+   "es": "¿Dónde está la llave que estaba en la mesa?",
+   "answer": "Where is the key that was on the table?",
+   "accept": [
+    "Where is the key which was on the table?",
+    "Where did the key that was on the table go?",
+    "Where did the key which was on the table go?"
+   ],
+   "tip": "Aquí el que es sujeto (la llave estaba), así que no se puede quitar."
+  }
+ ],
+ "a2u8l1": [
+  {
+   "type": "write",
+   "es": "La carta no fue enviada.",
+   "answer": "The letter wasn't sent.",
+   "accept": [
+    "The letter didn't get sent.",
+    "The letter hasn't been sent.",
+    "The letter wasn't mailed.",
+    "The letter didn't get mailed.",
+    "The letter was never sent."
+   ],
+   "tip": "En negativo el not va pegado al be: wasn't sent. No se usa didn't con la pasiva de be."
+  },
+  {
+   "type": "write",
+   "es": "¿Dónde se hacen estos zapatos?",
+   "answer": "Where are these shoes made?",
+   "accept": [
+    "Where are these shoes manufactured?",
+    "Where are these shoes produced?",
+    "Where do they make these shoes?",
+    "Where do these shoes get made?"
+   ],
+   "tip": "En pregunta, el be pasa antes del sujeto: Where are these shoes made?"
+  },
+  {
+   "type": "build",
+   "es": "¿Te invitaron a la fiesta?",
+   "answer": "Were you invited to the party?",
+   "extra": [
+    "did",
+    "invite",
+    "was"
+   ],
+   "tip": "Pregunta en pasiva: Were you invited? (sin did)."
+  }
+ ],
+ "a2u8l2": [
+  {
+   "type": "write",
+   "es": "¿Puedes cuidarla mañana?",
+   "answer": "Can you look after her tomorrow?",
+   "accept": [
+    "Could you look after her tomorrow?",
+    "Can you take care of her tomorrow?",
+    "Could you take care of her tomorrow?",
+    "Can you watch her tomorrow?",
+    "Could you watch her tomorrow?",
+    "Can you babysit her tomorrow?",
+    "Could you babysit her tomorrow?",
+    "Can you look after it tomorrow?",
+    "Could you look after it tomorrow?",
+    "Can you take care of it tomorrow?",
+    "Could you take care of it tomorrow?",
+    "Can you watch it tomorrow?",
+    "Could you watch it tomorrow?",
+    "Can you keep an eye on her tomorrow?",
+    "Could you keep an eye on her tomorrow?"
+   ],
+   "tip": "look after no se parte: look after her, nunca look her after."
+  },
+  {
+   "type": "cloze",
+   "es": "Quítatelos (los zapatos), por favor.",
+   "text": "Take them ___, please.",
+   "answer": "off",
+   "accept": [],
+   "tip": "take off se parte, y el pronombre va en el medio: take them off."
+  },
+  {
+   "type": "build",
+   "es": "El avión despega a las ocho.",
+   "answer": "The plane takes off at eight.",
+   "extra": [
+    "take",
+    "up",
+    "on"
+   ],
+   "tip": "take off también es despegar.",
+   "accept": [
+    "At eight the plane takes off."
+   ]
+  }
+ ],
+ "a2u8l3": [
+  {
+   "type": "write",
+   "es": "Ven aquí, por favor.",
+   "answer": "Come here, please.",
+   "accept": [
+    "Please come here.",
+    "Come over here, please.",
+    "Please come over here."
+   ],
+   "tip": "here no lleva to: come here."
+  },
+  {
+   "type": "cloze",
+   "es": "Caminamos a lo largo de la playa.",
+   "text": "We walked ___ the beach.",
+   "answer": "along",
+   "accept": [
+    "down"
+   ],
+   "tip": "along = a lo largo de."
+  },
+  {
+   "type": "build",
+   "es": "El perro saltó por encima de la cerca.",
+   "answer": "The dog jumped over the fence.",
+   "extra": [
+    "on",
+    "above",
+    "through"
+   ],
+   "tip": "over = por encima, pasando al otro lado."
+  },
+  {
+   "type": "listen",
+   "audio": "She walked down the stairs.",
+   "options": [
+    "She walked down the stairs.",
+    "She walked up the stairs.",
+    "She walked along the stairs."
+   ],
+   "answer": "She walked down the stairs.",
+   "tip": "down = bajando; up = subiendo."
+  }
+ ],
+ "a2u9l1": [
+  {
+   "type": "write",
+   "es": "Ella dijo que podía ayudarme.",
+   "answer": "She said she could help me.",
+   "accept": [
+    "She said that she could help me.",
+    "She told me she could help me.",
+    "She told me that she could help me.",
+    "She said she was able to help me.",
+    "She said that she was able to help me.",
+    "She said she would be able to help me.",
+    "She said that she would be able to help me."
+   ],
+   "tip": "Al repetir lo que alguien dijo, can retrocede a could."
+  },
+  {
+   "type": "cloze",
+   "es": "Me dijo adiós y se fue.",
+   "text": "He said goodbye ___ me and left.",
+   "answer": "to",
+   "accept": [],
+   "tip": "Con say, la persona va con to: said goodbye to me."
+  },
+  {
+   "type": "listen",
+   "audio": "He said he couldn't come.",
+   "options": [
+    "He said he couldn't come.",
+    "He said he can come.",
+    "He told he couldn't come."
+   ],
+   "answer": "He said he couldn't come.",
+   "tip": "can pasa a could; y told necesita a quién: told me."
+  }
+ ],
+ "a2u9l2": [
+  {
+   "type": "cloze",
+   "es": "—No me gusta el pescado. —A mí tampoco.",
+   "text": "I don't ___.",
+   "answer": "either",
+   "accept": [],
+   "tip": "Con don't, «tampoco» es either y va al final: I don't either."
+  },
+  {
+   "type": "translate",
+   "es": "—No tengo hambre. —Yo tampoco.",
+   "options": [
+    "Me too.",
+    "Me neither.",
+    "So am I."
+   ],
+   "answer": "Me neither.",
+   "accept": [
+    "Neither am I.",
+    "Nor am I.",
+    "I'm not either.",
+    "I'm not hungry either."
+   ],
+   "tip": "Me neither es la forma corta e informal para lo negativo."
+  },
+  {
+   "type": "write",
+   "es": "—Ana habla francés. —Él también. (Escribe solo la respuesta)",
+   "answer": "So does he.",
+   "accept": [
+    "He does too.",
+    "He does as well.",
+    "He speaks French too.",
+    "He speaks French as well.",
+    "He also speaks French.",
+    "Him too."
+   ],
+   "tip": "Con he/she el ayudante es does: So does he."
+  }
+ ],
+ "a2u10l1": [
+  {
+   "type": "write",
+   "es": "Dejé de fumar hace dos años.",
+   "answer": "I stopped smoking two years ago.",
+   "accept": [
+    "I quit smoking two years ago.",
+    "I gave up smoking two years ago."
+   ],
+   "tip": "stop + -ing = dejar de hacer algo."
+  },
+  {
+   "type": "write",
+   "es": "Nos detuvimos para comer algo.",
+   "answer": "We stopped to eat something.",
+   "accept": [
+    "We stopped to eat.",
+    "We stopped to get something to eat.",
+    "We stopped to have something to eat.",
+    "We stopped to grab something to eat.",
+    "We stopped to get a bite to eat.",
+    "We stopped for something to eat.",
+    "We stopped to have a snack.",
+    "We stopped to eat a little something.",
+    "We stopped for a bite to eat.",
+    "We stopped for food."
+   ],
+   "tip": "stop to + verbo = parar PARA hacer algo."
+  },
+  {
+   "type": "build",
+   "es": "Él siempre evita hablar de su trabajo.",
+   "answer": "He always avoids talking about his work.",
+   "extra": [
+    "to",
+    "talk",
+    "avoid"
+   ],
+   "tip": "avoid pide -ing."
+  },
+  {
+   "type": "write",
+   "es": "Sigue lloviendo.",
+   "answer": "It keeps raining.",
+   "accept": [
+    "It's still raining.",
+    "It keeps on raining.",
+    "It's raining still.",
+    "It continues to rain."
+   ],
+   "tip": "keep + -ing = seguir haciendo algo."
+  },
+  {
+   "type": "cloze",
+   "es": "Sugiero tomar un taxi.",
+   "text": "I suggest ___ a taxi.",
+   "answer": "taking",
+   "accept": [
+    "getting",
+    "catching",
+    "grabbing",
+    "we take",
+    "that we take",
+    "you take",
+    "that you take"
+   ],
+   "tip": "suggest pide -ing: suggest taking. (También se dice suggest we take / suggest you take, pero nunca suggest to take.)"
+  },
+  {
+   "type": "type",
+   "audio": "I hope to see you soon.",
+   "meaning": "Espero verte pronto.",
+   "tip": "hope pide to: hope to see."
+  }
+ ],
+ "a2u10l2": [
+  {
+   "type": "write",
+   "es": "Haz lo mejor que puedas.",
+   "answer": "Do your best.",
+   "accept": [
+    "Try your best.",
+    "Just do your best.",
+    "Please do your best.",
+    "Do the best you can.",
+    "Do the best that you can.",
+    "Just do the best you can.",
+    "Try to do your best.",
+    "Just try your best."
+   ],
+   "tip": "«hacer lo mejor que puedas» = do your best: con do, no con make."
+  },
+  {
+   "type": "write",
+   "es": "Él gana mucho dinero.",
+   "answer": "He makes a lot of money.",
+   "accept": [
+    "He earns a lot of money.",
+    "He makes lots of money.",
+    "He earns lots of money.",
+    "He makes good money.",
+    "He earns good money.",
+    "He makes a lot.",
+    "He earns a lot."
+   ],
+   "tip": "Ganar dinero trabajando = make money (no win)."
+  },
+  {
+   "type": "cloze",
+   "es": "Hacemos negocios con empresas de México.",
+   "text": "We ___ business with companies in Mexico.",
+   "answer": "do",
+   "accept": [
+    "conduct"
+   ],
+   "tip": "hacer negocios = do business."
+  }
+ ],
+ "a2u10l3": [
+  {
+   "type": "write",
+   "es": "Estas flores son para mi mamá.",
+   "answer": "These flowers are for my mom.",
+   "accept": [
+    "These flowers are for my mother.",
+    "The flowers are for my mom.",
+    "The flowers are for my mother."
+   ],
+   "tip": "Para + persona o cosa → for."
+  },
+  {
+   "type": "write",
+   "es": "Esta máquina sirve para hacer café.",
+   "answer": "This machine is for making coffee.",
+   "accept": [
+    "This machine is used for making coffee.",
+    "This machine is used to make coffee.",
+    "This machine makes coffee.",
+    "You use this machine to make coffee.",
+    "This machine is for brewing coffee."
+   ],
+   "tip": "Para qué sirve algo: for + -ing."
+  },
+  {
+   "type": "cloze",
+   "es": "Vine para la entrevista.",
+   "text": "I came ___ the interview.",
+   "answer": "for",
+   "accept": [],
+   "tip": "the interview es sustantivo, así que va for."
+  }
+ ]
+}

@@ -54,14 +54,12 @@ vocabulario (368 parejas) · 12 historias (2 tandas).
 ## Lo que falta, en orden
 
 0. **Lo de la auditoría** (`auditoria-a1-a2/auditoria-a1-a2.md`, sección 9):
-   el parche de los defectos está INTEGRADO por Claude Code
-   (`integrado/2026-09-17-parche-auditoria/`). A1 ampliado ESCRITO y
-   verificado (`contenido-nuevo/a1-nuevo/`: 16 lecciones en 6 unidades
-   intercaladas + 57 ejercicios de huecos + 6 fichas), falta integrarlo y
-   arreglar la cadena de desbloqueo (ver su COMO-INTEGRAR). Sigue: las 14
-   lecciones nuevas de A2 (+ sus huecos, en los `_pendientes` del parche),
-   luego las lecciones nuevas de A1
-   y A2, el vocabulario, la biblioteca de Gramática y las actividades.
+   parche INTEGRADO; A1 ampliado INTEGRADO (43 lecciones, 568 ejercicios);
+   A2 ampliado ESCRITO y verificado en `contenido-nuevo/a2-nuevo/`
+   (45 lecciones, 531 ejercicios), falta que Claude Code lo integre.
+   Siguen del plan: vocabulario hasta ~1.500 palabras (12 bancos nuevos),
+   historias A1, biblioteca de Gramática + "¿Por qué?", actividades
+   (crucigramas, Oído, dictado de números…), drills nuevos.
 1. **Pistas de Aptis**: Writing **hecho**
    (`contenido-nuevo/aptis/pista-writing.json`, 16 tareas). Faltan **Reading,
    Listening y Speaking** — mismo formato, ver `validar_pista.py`.

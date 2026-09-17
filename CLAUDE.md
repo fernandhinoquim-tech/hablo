@@ -261,8 +261,18 @@ unidades nuevas INTERCALADAS donde les toca según Empower (a1u10 tras a1u1,
 a1u11 tras a1u3, a1u12 tras a1u4, a1u13 tras a1u5, a1u14 tras a1u7, a1u15 tras
 a1u8; 16 lecciones, 211 ejercicios) con su `anexar_unidades.py`, más 57
 ejercicios añadidos a 16 lecciones viejas (`anexar.py`) y 6 fichas ampliadas
-(`parchar2.py`). Total: **2 niveles, 72 lecciones, 833 ejercicios** (A1: 15
-unidades, 43 lecciones, 568; A2: 29 lecciones, 265).** Consecuencias en
+(`parchar2.py`). **A2 ampliado el mismo día
+(`contenido-nuevo/integrado/2026-09-17-a2-nuevo/`, mismo método: a2u11 tras
+a2u2, a2u12 tras a2u3, a2u13 tras a2u6, a2u14 tras a2u7, a2u15 tras a2u8,
+a2u16 tras a2u10; 16 lecciones, 195 ejercicios, más 71 añadidos a 22
+lecciones y 7 fichas ampliadas; a2u16l2e8 trae 540 `accept` legítimos —
+although/even though/though × lugar × final × sujeto × orden— y `acepta` los
+recorre sin problema).** Total: **2 niveles, 31 unidades, 88 lecciones,
+1.099 ejercicios** (A1: 15 unidades, 43 lecciones, 568; A2: 16 unidades, 45
+lecciones, 531). Comprobado con el progreso real de Fero (11 lecciones
+aprobadas, a1u1-a1u4): con la regla nueva quedan abiertas a1u1-a1u5 y las
+tres nuevas intercaladas, y ninguna unidad tocada tiene candado; con la
+vieja, todo desde a1u2 quedaba cerrado.** Consecuencias en
 código: (1) **la cadena de desbloqueo** (`desbloqueadas` en `ScreenHome.kt`,
 con test): una unidad está abierta si es la primera, si alguna lección suya
 tiene puntaje, si la anterior está aprobada, o si la anterior está abierta y

@@ -1,0 +1,975 @@
+{
+ "insertar": [
+  {
+   "despues_de": "a2u2",
+   "unit": {
+    "id": "a2u11",
+    "emoji": "⏳",
+    "title": "Desde cuándo y lo que pudiste",
+    "subtitle": "for, since, How long…? y could / was able to",
+    "lessons": [
+     {
+      "id": "a2u11l1",
+      "title": "¿Hace cuánto?",
+      "theory": {
+       "title": "for y since: lo que empezó y sigue",
+       "body": "Para algo que **empezó en el pasado y sigue hoy**, el inglés usa el present perfect, no el presente.\n\n**for** + cuánto tiempo: *for ten years, for two weeks*\n**since** + el momento en que empezó: *since 2016, since Monday, since I was a kid*\n«Desde hace diez años» = **for** ten years (❌ *since ten years*).\n\n*I**'ve lived** here **for** ten years.* · *I**'ve lived** here **since** 2016.*\n***How long have you** worked there?* = ¿Hace cuánto trabajas ahí?\n\nSi ya terminó, va pasado simple: *I **lived** in Cali **for** two years.* (ya no vivo allá)\n\nY **ago** va con pasado simple: *I **moved** here ten years **ago**.*",
+       "trap": "«Vivo aquí desde 2016» y «llevo diez años aquí» están en presente, y salen ❌ *I live here since 2016* y ❌ *I am here for ten years*; y «desde hace» sale ❌ *since two years*. Si empezó antes y sigue, va **have + participio**: **I've lived here since 2016**, **I've been here for ten years**. Y el «hace» de «llegué hace diez años» es **ago**, con pasado simple: *I came here ten years ago*."
+      },
+      "exercises": [
+       {
+        "id": "a2u11l1e1",
+        "type": "translate",
+        "es": "Vivo aquí desde 2016.",
+        "options": [
+         "I live here since 2016.",
+         "I've lived here since 2016.",
+         "I've lived here for 2016."
+        ],
+        "answer": "I've lived here since 2016.",
+        "accept": [
+         "I've lived here since twenty sixteen.",
+         "I've been living here since 2016.",
+         "I've been living here since twenty sixteen.",
+         "I've been here since 2016.",
+         "I've been here since twenty sixteen.",
+         "I've lived here since two thousand sixteen.",
+         "I've been here since two thousand sixteen."
+        ],
+        "tip": "Empezó en 2016 y sigue: have + participio + since."
+       },
+       {
+        "id": "a2u11l1e2",
+        "type": "listen",
+        "audio": "How long have you worked there?",
+        "options": [
+         "How long do you work there?",
+         "How long have you worked there?",
+         "How long you work there?"
+        ],
+        "answer": "How long have you worked there?",
+        "tip": "¿Hace cuánto…? = How long have you + participio?"
+       },
+       {
+        "id": "a2u11l1e3",
+        "type": "cloze",
+        "es": "Trabajo en este banco desde marzo.",
+        "text": "I've worked at this bank ___ March.",
+        "answer": "since",
+        "accept": [],
+        "tip": "March es el momento en que empezó: since."
+       },
+       {
+        "id": "a2u11l1e4",
+        "type": "write",
+        "es": "Conozco a Ana desde hace cinco años.",
+        "answer": "I've known Ana for five years.",
+        "accept": [
+         "I've known Ana five years.",
+         "I met Ana five years ago.",
+         "I've known Ana for the past five years.",
+         "I've known Ana for the last five years."
+        ],
+        "tip": "«Conozco desde hace» = I've known… for. know casi nunca va en -ing."
+       },
+       {
+        "id": "a2u11l1e5",
+        "type": "listen",
+        "audio": "She moved to Miami two years ago.",
+        "options": [
+         "She moved to Miami two years ago.",
+         "She has moved to Miami since two years.",
+         "She moves to Miami for two years."
+        ],
+        "answer": "She moved to Miami two years ago.",
+        "tip": "ago = hace, y va con pasado simple: moved."
+       },
+       {
+        "id": "a2u11l1e6",
+        "type": "speak",
+        "text": "I've lived in this city for three years.",
+        "sound": "v",
+        "tip": "I've y lived terminan en v: dientes de arriba sobre el labio de abajo. No es «aib libd»."
+       },
+       {
+        "id": "a2u11l1e7",
+        "type": "write",
+        "es": "Estoy casado desde 2015.",
+        "answer": "I've been married since 2015.",
+        "accept": [
+         "I've been married since twenty fifteen.",
+         "I got married in 2015.",
+         "I got married in twenty fifteen.",
+         "I've been married since two thousand fifteen.",
+         "I got married in two thousand fifteen."
+        ],
+        "tip": "Estar casado = be married. Desde 2015 y sigue: have been married since."
+       },
+       {
+        "id": "a2u11l1e8",
+        "type": "build",
+        "es": "¿Hace cuánto tienes tu carro?",
+        "answer": "How long have you had your car?",
+        "extra": [
+         "do",
+         "since",
+         "has"
+        ],
+        "tip": "have + had es normal: have es el ayudante y had el participio de have."
+       },
+       {
+        "id": "a2u11l1e9",
+        "type": "cloze",
+        "es": "Viví en Cali dos años (ya no vivo allá).",
+        "text": "I lived in Cali ___ two years.",
+        "answer": "for",
+        "accept": [],
+        "tip": "Ya terminó: pasado simple. Pero la duración sigue siendo for."
+       },
+       {
+        "id": "a2u11l1e10",
+        "type": "minimalPair",
+        "options": [
+         "fifteen",
+         "fifty"
+        ],
+        "answer": "fifteen",
+        "sentence": "She has lived here for fifteen years.",
+        "play": "sentence",
+        "tip": "fifteen lleva el acento al final, «fif-TEEN», y una n. fifty lo lleva al principio, «FIF-ty»."
+       },
+       {
+        "id": "a2u11l1e11",
+        "type": "type",
+        "audio": "We haven't seen each other since Christmas.",
+        "meaning": "No nos vemos desde Navidad.",
+        "tip": "since + el momento: since Christmas. Y no nos vemos = haven't seen each other."
+       },
+       {
+        "id": "a2u11l1e12",
+        "type": "write",
+        "es": "¿Hace cuánto vives en este apartamento?",
+        "answer": "How long have you lived in this apartment?",
+        "accept": [
+         "How long have you been living in this apartment?",
+         "How long have you lived in this apartment for?",
+         "How long have you been in this apartment?",
+         "How long have you been living in this apartment for?",
+         "How long have you been in this apartment for?"
+        ],
+        "tip": "Vives ahí todavía: How long have you lived…?, no How long do you live…?"
+       },
+       {
+        "id": "a2u11l1e13",
+        "type": "shadow",
+        "text": "How long have you been here? For about two years.",
+        "tip": "«how long» va pegado y sube en LONG. been se dice corto: «bin»."
+       }
+      ]
+     },
+     {
+      "id": "a2u11l2",
+      "title": "Podía, pude",
+      "theory": {
+       "title": "could y was able to",
+       "body": "**could** es el pasado de can: sirve para una **habilidad general** en el pasado. Como can, **no cambia y no lleva to**.\n\n*I **could** swim when I was six.*\n*My dad **couldn't** read English.*\n\nPara **un logro concreto**, una vez y con esfuerzo, se usa **was/were able to** o **managed to**:\n*The door was stuck, but I **was able to** open it.*\n*We **managed to** find a taxi.*\n\nEn negativo, **couldn't** sirve para los dos casos: *I **couldn't** open the door.*\n\nExcepción: con see, hear y understand, could sí sirve para una vez: *I **could** see the ocean.*",
+       "trap": "«Podía» y «pude» salen igual en español, y aparecen ❌ *I could to go*, ❌ *I can swim when I was a child* (can es presente) y ❌ *Finally I could open the door* para un logro de una sola vez. Con **could** el verbo va desnudo, y para «por fin pude» lo natural es **I was able to open it**."
+      },
+      "exercises": [
+       {
+        "id": "a2u11l2e1",
+        "type": "translate",
+        "es": "Podía nadar cuando tenía seis años.",
+        "options": [
+         "I can swim when I was six.",
+         "I could to swim when I was six.",
+         "I could swim when I was six."
+        ],
+        "answer": "I could swim when I was six.",
+        "accept": [
+         "I could swim when I was six years old.",
+         "I was able to swim when I was six.",
+         "I was able to swim when I was six years old.",
+         "I knew how to swim when I was six.",
+         "I knew how to swim when I was six years old."
+        ],
+        "tip": "Habilidad general en el pasado: could + verbo desnudo. Y la edad va con was."
+       },
+       {
+        "id": "a2u11l2e2",
+        "type": "listen",
+        "audio": "I couldn't find my keys.",
+        "options": [
+         "I can't find my keys.",
+         "I didn't could find my keys.",
+         "I couldn't find my keys."
+        ],
+        "answer": "I couldn't find my keys.",
+        "tip": "couldn't: la l no suena, se dice «KUD-nt». No usa did."
+       },
+       {
+        "id": "a2u11l2e3",
+        "type": "cloze",
+        "es": "Por fin pude abrir la puerta.",
+        "text": "Finally, I was ___ to open the door.",
+        "answer": "able",
+        "accept": [],
+        "tip": "Un logro de una vez: was able to."
+       },
+       {
+        "id": "a2u11l2e4",
+        "type": "write",
+        "es": "Mi abuela no sabía leer.",
+        "answer": "My grandmother couldn't read.",
+        "accept": [
+         "My grandma couldn't read.",
+         "My grandmother didn't know how to read.",
+         "My grandma didn't know how to read.",
+         "My grandmother wasn't able to read.",
+         "My grandma wasn't able to read."
+        ],
+        "tip": "«Saber» + verbo, como habilidad, es can/could: couldn't read."
+       },
+       {
+        "id": "a2u11l2e5",
+        "type": "speak",
+        "text": "I couldn't hear the teacher.",
+        "sound": "h",
+        "tip": "hear con la h soplada, no «ear». Y en couldn't la l no se pronuncia."
+       },
+       {
+        "id": "a2u11l2e6",
+        "type": "build",
+        "es": "Logramos encontrar un taxi.",
+        "answer": "We managed to find a taxi.",
+        "extra": [
+         "could",
+         "found",
+         "for"
+        ],
+        "tip": "managed to = logramos, con esfuerzo. Después de to, el verbo desnudo: find."
+       },
+       {
+        "id": "a2u11l2e7",
+        "type": "write",
+        "es": "Anoche no pude dormir.",
+        "answer": "I couldn't sleep last night.",
+        "accept": [
+         "Last night I couldn't sleep.",
+         "I wasn't able to sleep last night.",
+         "Last night I wasn't able to sleep.",
+         "I couldn't fall asleep last night.",
+         "Last night I couldn't fall asleep.",
+         "I couldn't get to sleep last night.",
+         "I couldn't get any sleep last night.",
+         "Last night I couldn't get to sleep.",
+         "I wasn't able to fall asleep last night.",
+         "Last night I wasn't able to fall asleep.",
+         "I couldn't sleep at all last night."
+        ],
+        "tip": "En negativo, couldn't sirve para cualquier «no pude»."
+       },
+       {
+        "id": "a2u11l2e8",
+        "type": "listen",
+        "audio": "She was able to pass the test.",
+        "options": [
+         "She was able to pass the test.",
+         "She could passed the test.",
+         "She can pass the test."
+        ],
+        "answer": "She was able to pass the test.",
+        "tip": "Pasar un examen concreto es un logro de una vez: was able to."
+       },
+       {
+        "id": "a2u11l2e9",
+        "type": "type",
+        "audio": "When I was young, I could run really fast.",
+        "meaning": "Cuando era joven, podía correr muy rápido.",
+        "tip": "could para lo que sabías hacer en general. fast no lleva -ly."
+       },
+       {
+        "id": "a2u11l2e10",
+        "type": "cloze",
+        "es": "Mi hermano podía tocar la guitarra a los diez años.",
+        "text": "My brother ___ play the guitar when he was ten.",
+        "answer": "could",
+        "accept": [
+         "was able to",
+         "knew how to"
+        ],
+        "tip": "Habilidad general: could, sin to detrás."
+       },
+       {
+        "id": "a2u11l2e11",
+        "type": "minimalPair",
+        "options": [
+         "walk",
+         "work"
+        ],
+        "answer": "walk",
+        "sentence": "I couldn't walk for two weeks.",
+        "play": "sentence",
+        "tip": "walk no tiene r y suena «wok»; work lleva r y suena «werk»."
+       },
+       {
+        "id": "a2u11l2e12",
+        "type": "write",
+        "es": "¿Pudiste hablar con tu jefe?",
+        "answer": "Were you able to talk to your boss?",
+        "accept": [
+         "Were you able to talk with your boss?",
+         "Were you able to speak to your boss?",
+         "Were you able to speak with your boss?",
+         "Did you manage to talk to your boss?",
+         "Did you manage to talk with your boss?",
+         "Did you manage to speak to your boss?",
+         "Did you manage to speak with your boss?",
+         "Did you get to talk to your boss?",
+         "Did you get to talk with your boss?",
+         "Did you get to speak to your boss?",
+         "Did you get to speak with your boss?",
+         "Did you get a chance to talk to your boss?",
+         "Did you get a chance to talk with your boss?",
+         "Did you get a chance to speak to your boss?",
+         "Did you get a chance to speak with your boss?"
+        ],
+        "tip": "Una ocasión concreta: Were you able to…?. Ojo: Could you talk to your boss? se entiende como «¿podrías hablar con tu jefe?»."
+       },
+       {
+        "id": "a2u11l2e13",
+        "type": "shadow",
+        "text": "The door was stuck, but I was able to open it.",
+        "tip": "«was able to» sale rápido: «wəz-EI-bəl-tə». El peso cae en O de open."
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "despues_de": "a2u3",
+   "unit": {
+    "id": "a2u12",
+    "emoji": "🙋",
+    "title": "Pedir, invitar y llamar",
+    "subtitle": "Can/Could/May I…?, How about…?, y el teléfono",
+    "lessons": [
+     {
+      "id": "a2u12l1",
+      "title": "¿Podría…?",
+      "theory": {
+       "title": "Pedir un favor y pedir permiso",
+       "body": "Para **pedir algo**: **Can you…?** (normal) o **Could you…?** (más amable). El verbo va **sin to**.\n*Could you **close** the window, please?*\n\nPara **pedir permiso**: **Can I…?**, **Could I…?** o **May I…?** (formal).\n*May I come in?*\n\nLa más suave, que verás más adelante: **Would you mind** + -ing? (*Would you mind waiting?*)\n\nPara decir que sí: *Sure.* · *Of course.* · *Go ahead.* (adelante)\nPara decir que no con cortesía: *Sorry, I'm afraid you can't.*\n\nOjo: ***Could I…?*** es una pregunta cortés, pero se responde con **can**: *Yes, you can.*",
+       "trap": "❌ *Can you to help me?* y ❌ *Could you please to close the door?*: en español «¿puedes ayudarme?» lleva infinitivo y se cuela el to. Después de can, could y may el verbo va desnudo, aunque haya please en medio. Y a *Could I…?* no se responde ❌ *Yes, you could*, sino **Yes, you can** o **Sure**."
+      },
+      "exercises": [
+       {
+        "id": "a2u12l1e1",
+        "type": "listen",
+        "audio": "Could you close the window, please?",
+        "options": [
+         "Could you close the window, please?",
+         "Could you to close the window, please?",
+         "Can you closing the window, please?"
+        ],
+        "answer": "Could you close the window, please?",
+        "tip": "Could you + verbo desnudo: close, sin to."
+       },
+       {
+        "id": "a2u12l1e2",
+        "type": "write",
+        "es": "¿Podrías hablar más despacio, por favor?",
+        "answer": "Could you speak more slowly, please?",
+        "accept": [
+         "Could you please speak more slowly?",
+         "Could you speak more slowly?",
+         "Could you speak slower, please?",
+         "Could you please speak slower?",
+         "Could you speak slower?",
+         "Could you talk more slowly, please?",
+         "Could you please talk more slowly?",
+         "Could you talk more slowly?",
+         "Could you talk slower, please?",
+         "Could you please talk slower?",
+         "Could you talk slower?",
+         "Can you speak more slowly, please?",
+         "Can you please speak more slowly?",
+         "Can you speak more slowly?",
+         "Can you speak slower, please?",
+         "Can you please speak slower?",
+         "Can you speak slower?",
+         "Can you talk more slowly, please?",
+         "Can you please talk more slowly?",
+         "Can you talk more slowly?",
+         "Can you talk slower, please?",
+         "Can you please talk slower?",
+         "Can you talk slower?",
+         "Would you speak more slowly, please?",
+         "Would you please speak more slowly?",
+         "Would you speak more slowly?",
+         "Would you speak slower, please?",
+         "Would you please speak slower?",
+         "Would you speak slower?",
+         "Would you talk more slowly, please?",
+         "Would you please talk more slowly?",
+         "Would you talk more slowly?",
+         "Would you talk slower, please?",
+         "Would you please talk slower?",
+         "Would you talk slower?"
+        ],
+        "tip": "Could you…? suena más amable que Can you…?. «Más despacio» = more slowly (en conversación también slower). please va al final o después de you."
+       },
+       {
+        "id": "a2u12l1e3",
+        "type": "translate",
+        "es": "¿Puedo entrar?",
+        "options": [
+         "May I to come in?",
+         "May I come in?",
+         "Do I can come in?"
+        ],
+        "answer": "May I come in?",
+        "accept": [
+         "Can I come in?",
+         "Could I come in?",
+         "May I come inside?",
+         "Can I come inside?",
+         "Could I come inside?",
+         "May I enter?",
+         "Can I enter?"
+        ],
+        "tip": "May I…? es la forma más formal de pedir permiso. Tampoco lleva to ni do."
+       },
+       {
+        "id": "a2u12l1e4",
+        "type": "cloze",
+        "es": "¿Me podrías ayudar con esta caja, por favor?",
+        "text": "Could you please ___ me with this box?",
+        "answer": "help",
+        "accept": [],
+        "tip": "Aunque please quede en medio, el verbo sigue desnudo: please help, no please to help."
+       },
+       {
+        "id": "a2u12l1e5",
+        "type": "speak",
+        "text": "Of course. Go ahead.",
+        "sound": "h",
+        "tip": "ahead: la h de en medio se sopla suave, «a-HED». Go ahead = adelante, hazlo."
+       },
+       {
+        "id": "a2u12l1e6",
+        "type": "build",
+        "es": "¿Podrías llamarme más tarde?",
+        "answer": "Could you call me later?",
+        "extra": [
+         "to",
+         "calling",
+         "for"
+        ],
+        "tip": "«Llamarme» = call me: el me va después del verbo."
+       },
+       {
+        "id": "a2u12l1e7",
+        "type": "listen",
+        "audio": "Can I leave early today?",
+        "options": [
+         "Can I to leave early today?",
+         "Do I can leave early today?",
+         "Can I leave early today?"
+        ],
+        "answer": "Can I leave early today?",
+        "tip": "Pedir permiso: Can I + verbo. can no usa do."
+       },
+       {
+        "id": "a2u12l1e8",
+        "type": "write",
+        "es": "¿Me puedes prestar tu cargador?",
+        "answer": "Can you lend me your charger?",
+        "accept": [
+         "Could you lend me your charger?",
+         "Would you lend me your charger?",
+         "Can I borrow your charger?",
+         "Could I borrow your charger?",
+         "May I borrow your charger?",
+         "Can you lend me your phone charger?",
+         "Could you lend me your phone charger?",
+         "Can I borrow your phone charger?",
+         "Could I borrow your phone charger?",
+         "Can you loan me your charger?",
+         "Could you loan me your charger?"
+        ],
+        "tip": "lend = prestar (dar); borrow = pedir prestado. Can I borrow…? también sirve."
+       },
+       {
+        "id": "a2u12l1e9",
+        "type": "type",
+        "audio": "Excuse me, may I sit here?",
+        "meaning": "Disculpe, ¿me puedo sentar aquí?",
+        "tip": "may I…? = ¿puedo…?, en tono formal. Sentarme es solo sit."
+       },
+       {
+        "id": "a2u12l1e10",
+        "type": "cloze",
+        "es": "¿Podría usar su baño? —Claro que sí puede.",
+        "text": "Could I use your bathroom? — Of course you ___.",
+        "answer": "can",
+        "accept": [
+         "may"
+        ],
+        "tip": "A Could I…? se responde con can: Of course you can. Nunca «you could»."
+       },
+       {
+        "id": "a2u12l1e11",
+        "type": "write",
+        "es": "Lo siento, me temo que no puede estacionar aquí.",
+        "answer": "Sorry, I'm afraid you can't park here.",
+        "accept": [
+         "I'm sorry, I'm afraid you can't park here.",
+         "I'm afraid you can't park here, sorry.",
+         "I'm sorry, but I'm afraid you can't park here.",
+         "Sorry, I'm afraid you're not allowed to park here.",
+         "I'm sorry, I'm afraid you're not allowed to park here.",
+         "Sorry, I'm afraid you can't park your car here.",
+         "I'm sorry, I'm afraid you can't park your car here.",
+         "Sorry, but I'm afraid you can't park here."
+        ],
+        "tip": "I'm afraid… = me temo que…: suaviza un no."
+       },
+       {
+        "id": "a2u12l1e12",
+        "type": "shadow",
+        "text": "Could you say that again, please?",
+        "tip": "«could you» se une: «KU-ju». El tono baja en please."
+       }
+      ]
+     },
+     {
+      "id": "a2u12l2",
+      "title": "¿Y si vamos…?",
+      "theory": {
+       "title": "Proponer, aceptar y decir que no",
+       "body": "Para proponer:\n**How about** / **What about** + -ing o una cosa: *How about **going** to the beach?*\n**Why don't we** + verbo: *Why don't we order pizza?*\n**Let's** + verbo: *Let's stay home.*\n**Do you feel like** + -ing?: *Do you feel like **watching** a movie?* (¿te provoca…?)\n\nPara aceptar: *I'd love to.* · *Sounds great!* · *Why not?*\n\nPara decir que no sin sonar brusco: di que te gustaría, que no puedes y **da una razón**:\n*I'd love to, but I can't. I have to work. Maybe another time.*",
+       "trap": "❌ *How about to go?*: después de how about va **-ing** (*How about going?*), no to. ❌ *Why we don't go?*: en la pregunta, don't va antes del sujeto: **Why don't we go?** Y un «No.» a secas suena grosero en inglés; lo normal es suavizarlo con una razón."
+      },
+      "exercises": [
+       {
+        "id": "a2u12l2e1",
+        "type": "translate",
+        "es": "¿Qué tal si vamos a la playa?",
+        "options": [
+         "How about going to the beach?",
+         "How about to go to the beach?",
+         "What about go to the beach?"
+        ],
+        "answer": "How about going to the beach?",
+        "accept": [
+         "What about going to the beach?",
+         "Why don't we go to the beach?",
+         "How about we go to the beach?",
+         "What if we go to the beach?",
+         "Should we go to the beach?",
+         "Shall we go to the beach?"
+        ],
+        "tip": "How about + -ing: going, no to go."
+       },
+       {
+        "id": "a2u12l2e2",
+        "type": "write",
+        "es": "Me encantaría, pero no puedo. Tengo que trabajar.",
+        "answer": "I'd love to, but I can't. I have to work.",
+        "accept": [
+         "I'd love to, but I can't because I have to work.",
+         "I'd love to, but I can't. I need to work.",
+         "I'd love to, but I can't. I've got to work.",
+         "I'd love to, but I can't. I have to go to work.",
+         "I'd love to, but I can't because I have to go to work.",
+         "I'd love to, but I can't. I need to go to work.",
+         "I'd love to, but I can't. I have work.",
+         "I'd really like to, but I can't. I have to work."
+        ],
+        "tip": "I'd love to, but… es la forma amable de decir que no. Luego, la razón."
+       },
+       {
+        "id": "a2u12l2e3",
+        "type": "listen",
+        "audio": "Why don't we order pizza?",
+        "options": [
+         "Why we don't order pizza?",
+         "Why don't we order pizza?",
+         "Why doesn't we order pizza?"
+        ],
+        "answer": "Why don't we order pizza?",
+        "tip": "Es pregunta: don't va antes de we."
+       },
+       {
+        "id": "a2u12l2e4",
+        "type": "cloze",
+        "es": "¿Te provoca ver una película?",
+        "text": "Do you feel like ___ a movie?",
+        "answer": "watching",
+        "accept": [
+         "seeing"
+        ],
+        "tip": "feel like + -ing. Es el «¿te provoca…?» colombiano."
+       },
+       {
+        "id": "a2u12l2e5",
+        "type": "speak",
+        "text": "Why don't we go to the movies?",
+        "sound": "v",
+        "tip": "La v de movies: dientes de arriba sobre el labio de abajo. No es «mubis»."
+       },
+       {
+        "id": "a2u12l2e6",
+        "type": "build",
+        "es": "¿Por qué no nos quedamos en casa?",
+        "answer": "Why don't we stay home?",
+        "extra": [
+         "doesn't",
+         "staying",
+         "to"
+        ],
+        "tip": "Quedarse en casa = stay home, sin to."
+       },
+       {
+        "id": "a2u12l2e7",
+        "type": "write",
+        "es": "¿Y si cenamos el viernes?",
+        "answer": "How about having dinner on Friday?",
+        "accept": [
+         "How about having dinner Friday?",
+         "How about having dinner this Friday?",
+         "How about eating dinner on Friday?",
+         "How about eating dinner Friday?",
+         "How about eating dinner this Friday?",
+         "What about having dinner on Friday?",
+         "What about having dinner Friday?",
+         "What about having dinner this Friday?",
+         "What about eating dinner on Friday?",
+         "What about eating dinner Friday?",
+         "What about eating dinner this Friday?",
+         "Why don't we have dinner on Friday?",
+         "Why don't we have dinner Friday?",
+         "Why don't we have dinner this Friday?",
+         "Why don't we eat dinner on Friday?",
+         "Why don't we eat dinner Friday?",
+         "Why don't we eat dinner this Friday?",
+         "How about we have dinner on Friday?",
+         "How about we have dinner Friday?",
+         "How about we have dinner this Friday?",
+         "How about we eat dinner on Friday?",
+         "How about we eat dinner Friday?",
+         "How about we eat dinner this Friday?",
+         "What if we have dinner on Friday?",
+         "What if we have dinner Friday?",
+         "What if we have dinner this Friday?",
+         "What if we eat dinner on Friday?",
+         "What if we eat dinner Friday?",
+         "What if we eat dinner this Friday?",
+         "Should we have dinner on Friday?",
+         "Should we have dinner Friday?",
+         "Should we have dinner this Friday?",
+         "Should we eat dinner on Friday?",
+         "Should we eat dinner Friday?",
+         "Should we eat dinner this Friday?",
+         "Shall we have dinner on Friday?",
+         "Shall we have dinner Friday?",
+         "Shall we have dinner this Friday?",
+         "Shall we eat dinner on Friday?",
+         "Shall we eat dinner Friday?",
+         "Shall we eat dinner this Friday?",
+         "Let's have dinner on Friday.",
+         "How about dinner on Friday?",
+         "How about dinner Friday?",
+         "How about dinner this Friday?",
+         "What about dinner on Friday?",
+         "What about dinner Friday?",
+         "Do you want to have dinner on Friday?",
+         "Do you want to have dinner Friday?"
+        ],
+        "tip": "How about + -ing, o Why don't we + verbo. Los dos proponen."
+       },
+       {
+        "id": "a2u12l2e8",
+        "type": "listen",
+        "audio": "I'd love to, but I'm busy tonight.",
+        "options": [
+         "I'd like it, but I'm busy tonight.",
+         "I'd love to, but I have busy tonight.",
+         "I'd love to, but I'm busy tonight."
+        ],
+        "answer": "I'd love to, but I'm busy tonight.",
+        "tip": "Ocupado es un estado: I'm busy, no I have busy."
+       },
+       {
+        "id": "a2u12l2e9",
+        "type": "type",
+        "audio": "Do you feel like going out tonight?",
+        "meaning": "¿Te provoca salir esta noche?",
+        "tip": "feel like + -ing: going out."
+       },
+       {
+        "id": "a2u12l2e10",
+        "type": "cloze",
+        "es": "¿Por qué no llamamos a Ana?",
+        "text": "Why ___ we call Ana?",
+        "answer": "don't",
+        "accept": [],
+        "tip": "Why don't we…? propone algo; don't va antes de we."
+       },
+       {
+        "id": "a2u12l2e11",
+        "type": "write",
+        "es": "Salgamos a caminar.",
+        "answer": "Let's go for a walk.",
+        "accept": [
+         "Let's take a walk.",
+         "Let's go walking.",
+         "Let's go out for a walk.",
+         "Let's go take a walk.",
+         "Let's go on a walk.",
+         "Let's go out walking.",
+         "Let's go walk."
+        ],
+        "tip": "«Salgamos» es una propuesta: let's + verbo."
+       },
+       {
+        "id": "a2u12l2e12",
+        "type": "shadow",
+        "text": "I'd love to, but I can't. Maybe another time.",
+        "tip": "Sube en love y baja en can't. Suena amable, no seco."
+       }
+      ]
+     },
+     {
+      "id": "a2u12l3",
+      "title": "Al teléfono",
+      "theory": {
+       "title": "Hablar por teléfono",
+       "body": "Al teléfono te presentas con **this is**:\n*Hello, **this is** Fero.* (Hola, habla Fero.)\n\nPedir por alguien: ***Can I speak to** Ana?* · ***Is** Ana **there**?*\nPreguntar quién llama: ***Who's calling?***\nPedir que esperen: ***Hold on.*** · ***Just a second.***\n\nSi la persona no está: *She's not here right now.*\n**Can I take a message?** (lo dice quien contesta)\n**Can I leave a message?** (lo dice quien llama)\n\n*I'll call back later.* · *Sorry, you have the wrong number.*\nSi se oye mal: *Can you speak up?* · *You're breaking up.* (se te corta)",
+       "trap": "En español «Hola, soy Fero» sirve igual en persona y por teléfono, y sale ❌ *Hello, I am Fero*. Al teléfono lo natural es **This is Fero** (en persona, *I'm Fero* está bien). Y ojo con el mensaje: quien llama lo **leaves** (lo deja); quien contesta lo **takes** (lo toma)."
+      },
+      "exercises": [
+       {
+        "id": "a2u12l3e1",
+        "type": "listen",
+        "audio": "Hello, this is Fero. Is Ana there?",
+        "options": [
+         "Hello, I am Fero. Ana is there?",
+         "Hello, this is Fero. Is Ana there?",
+         "Hello, here is Fero. Is Ana here?"
+        ],
+        "answer": "Hello, this is Fero. Is Ana there?",
+        "tip": "Al teléfono: this is + tu nombre. Y para preguntar por alguien: Is… there?"
+       },
+       {
+        "id": "a2u12l3e2",
+        "type": "translate",
+        "es": "¿Puedo hablar con Ana, por favor?",
+        "options": [
+         "Can I speak Ana, please?",
+         "Can I to speak with Ana, please?",
+         "Can I speak to Ana, please?"
+        ],
+        "answer": "Can I speak to Ana, please?",
+        "accept": [
+         "Can I please speak to Ana?",
+         "Can I speak with Ana, please?",
+         "Can I please speak with Ana?",
+         "Can I talk to Ana, please?",
+         "Can I please talk to Ana?",
+         "Can I talk with Ana, please?",
+         "Can I please talk with Ana?",
+         "Could I speak to Ana, please?",
+         "Could I please speak to Ana?",
+         "Could I speak with Ana, please?",
+         "Could I please speak with Ana?",
+         "Could I talk to Ana, please?",
+         "Could I please talk to Ana?",
+         "Could I talk with Ana, please?",
+         "Could I please talk with Ana?",
+         "May I speak to Ana, please?",
+         "May I please speak to Ana?",
+         "May I speak with Ana, please?",
+         "May I please speak with Ana?",
+         "May I talk to Ana, please?",
+         "May I please talk to Ana?",
+         "May I talk with Ana, please?",
+         "May I please talk with Ana?",
+         "Is Ana there, please?",
+         "Is Ana there?"
+        ],
+        "tip": "speak to o talk to (también with). Sin to antes del verbo."
+       },
+       {
+        "id": "a2u12l3e3",
+        "type": "cloze",
+        "es": "¿De parte de quién?",
+        "text": "Who's ___?",
+        "answer": "calling",
+        "accept": [
+         "speaking"
+        ],
+        "tip": "Who's calling? = ¿de parte de quién? Es lo más común en EE. UU."
+       },
+       {
+        "id": "a2u12l3e4",
+        "type": "write",
+        "es": "Ella no está en este momento. ¿Quiere dejarle un mensaje?",
+        "answer": "She's not here right now. Would you like to leave a message?",
+        "accept": [
+         "She's not here right now. Do you want to leave a message?",
+         "She's not here right now. Would you like to leave her a message?",
+         "She's not here right now. Do you want to leave her a message?",
+         "She's not here right now. Can I take a message?",
+         "She's not here right now. Can I take a message for her?",
+         "She's not here right now. Would you like to leave a message for her?",
+         "She's not here right now. Do you want to leave a message for her?",
+         "She's not here at the moment. Would you like to leave a message?",
+         "She's not here at the moment. Do you want to leave a message?",
+         "She's not here at the moment. Would you like to leave her a message?",
+         "She's not here at the moment. Do you want to leave her a message?",
+         "She's not here at the moment. Can I take a message?",
+         "She's not here at the moment. Can I take a message for her?",
+         "She's not here at the moment. Would you like to leave a message for her?",
+         "She's not here at the moment. Do you want to leave a message for her?",
+         "She's not here now. Would you like to leave a message?",
+         "She's not here now. Do you want to leave a message?",
+         "She's not here now. Would you like to leave her a message?",
+         "She's not here now. Do you want to leave her a message?",
+         "She's not here now. Can I take a message?",
+         "She's not here now. Can I take a message for her?",
+         "She's not here now. Would you like to leave a message for her?",
+         "She's not here now. Do you want to leave a message for her?",
+         "She's not in right now. Would you like to leave a message?",
+         "She's not in right now. Do you want to leave a message?",
+         "She's not in right now. Would you like to leave her a message?",
+         "She's not in right now. Do you want to leave her a message?",
+         "She's not in right now. Can I take a message?",
+         "She's not in right now. Can I take a message for her?",
+         "She's not in right now. Would you like to leave a message for her?",
+         "She's not in right now. Do you want to leave a message for her?",
+         "She's not in at the moment. Would you like to leave a message?",
+         "She's not in at the moment. Do you want to leave a message?",
+         "She's not in at the moment. Would you like to leave her a message?",
+         "She's not in at the moment. Do you want to leave her a message?",
+         "She's not in at the moment. Can I take a message?",
+         "She's not in at the moment. Can I take a message for her?",
+         "She's not in at the moment. Would you like to leave a message for her?",
+         "She's not in at the moment. Do you want to leave a message for her?",
+         "She's not available right now. Would you like to leave a message?",
+         "She's not available right now. Do you want to leave a message?",
+         "She's not available right now. Would you like to leave her a message?",
+         "She's not available right now. Do you want to leave her a message?",
+         "She's not available right now. Can I take a message?",
+         "She's not available right now. Can I take a message for her?",
+         "She's not available right now. Would you like to leave a message for her?",
+         "She's not available right now. Do you want to leave a message for her?",
+         "She's not available at the moment. Would you like to leave a message?",
+         "She's not available at the moment. Do you want to leave a message?",
+         "She's not available at the moment. Would you like to leave her a message?",
+         "She's not available at the moment. Do you want to leave her a message?",
+         "She's not available at the moment. Can I take a message?",
+         "She's not available at the moment. Can I take a message for her?",
+         "She's not available at the moment. Would you like to leave a message for her?",
+         "She's not available at the moment. Do you want to leave a message for her?",
+         "She's out right now. Would you like to leave a message?",
+         "She's out right now. Do you want to leave a message?",
+         "She's out right now. Can I take a message?"
+        ],
+        "tip": "Quien llama deja el mensaje: leave a message. Quien contesta puede decir Can I take a message?"
+       },
+       {
+        "id": "a2u12l3e5",
+        "type": "speak",
+        "text": "Hi, this is Carlos. Is Ana there?",
+        "sound": "th",
+        "tip": "this y there llevan th sonora: la lengua asoma entre los dientes. No es «dis» ni «der»."
+       },
+       {
+        "id": "a2u12l3e6",
+        "type": "build",
+        "es": "Te devuelvo la llamada más tarde.",
+        "answer": "I'll call you back later.",
+        "accept": [
+         "Later, I'll call you back."
+        ],
+        "extra": [
+         "return",
+         "to",
+         "me"
+        ],
+        "tip": "Devolver una llamada = call back. No es return."
+       },
+       {
+        "id": "a2u12l3e7",
+        "type": "listen",
+        "audio": "Sorry, you have the wrong number.",
+        "options": [
+         "Sorry, you are wrong number.",
+         "Sorry, you have the wrong number.",
+         "Sorry, you have a bad number."
+        ],
+        "answer": "Sorry, you have the wrong number.",
+        "tip": "Número equivocado = the wrong number, con have y con the."
+       },
+       {
+        "id": "a2u12l3e8",
+        "type": "write",
+        "es": "¿Puedo dejarle un mensaje a Ana?",
+        "answer": "Can I leave a message for Ana?",
+        "accept": [
+         "Can I leave Ana a message?",
+         "Could I leave a message for Ana?",
+         "Could I leave Ana a message?",
+         "May I leave a message for Ana?",
+         "May I leave Ana a message?"
+        ],
+        "tip": "Tú llamas, tú dejas el mensaje: leave a message."
+       },
+       {
+        "id": "a2u12l3e9",
+        "type": "cloze",
+        "es": "(Contestas tú) ¿Le tomo el mensaje?",
+        "text": "Can I ___ a message?",
+        "answer": "take",
+        "accept": [],
+        "tip": "Quien contesta toma el mensaje: take a message."
+       },
+       {
+        "id": "a2u12l3e10",
+        "type": "type",
+        "audio": "Can you speak up? You're breaking up.",
+        "meaning": "¿Puedes hablar más duro? Se te está cortando.",
+        "tip": "speak up = hablar más duro. breaking up = la llamada se corta a ratos."
+       },
+       {
+        "id": "a2u12l3e11",
+        "type": "write",
+        "es": "Marqué el número equivocado.",
+        "answer": "I dialed the wrong number.",
+        "accept": [
+         "I called the wrong number.",
+         "I've dialed the wrong number.",
+         "I've called the wrong number.",
+         "I dialled the wrong number.",
+         "I got the wrong number.",
+         "I dialed a wrong number.",
+         "I called a wrong number."
+        ],
+        "tip": "Marcar = dial. Y equivocado aquí es wrong."
+       },
+       {
+        "id": "a2u12l3e12",
+        "type": "shadow",
+        "text": "Hold on, please. Who's calling?",
+        "tip": "«hold on» va pegado: «HOL-don». Who's calling? baja al final, como casi toda pregunta con who."
+       }
+      ]
+     }
+    ]
+   }
+  }
+ ]
+}

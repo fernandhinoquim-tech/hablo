@@ -1,0 +1,1066 @@
+{
+ "insertar": [
+  {
+   "despues_de": "a2u6",
+   "unit": {
+    "id": "a2u13",
+    "emoji": "🔢",
+    "title": "Poco, mío y yo mismo",
+    "subtitle": "a few / a little, mine / whose, myself / each other",
+    "lessons": [
+     {
+      "id": "a2u13l1",
+      "title": "Pocos, unos pocos",
+      "theory": {
+       "title": "a few, a little, few, little",
+       "body": "**a few** + contable en plural = unos pocos, algunos (idea positiva):\n*I have **a few** friends here.*\n\n**a little** + incontable = un poco (positivo):\n*I speak **a little** English.*\nEn la conversación también: **a bit (of)** / **a little bit (of)**: *a bit of help*.\n\nSin la **a**, la idea se vuelve negativa (= casi nada):\n**few** = pocos: *Very **few** people came.*\n**little** = poco: *We have very **little** time.*\n\nAl hablar, *few* y *little* solos suenan algo formales; lo más común es **not many** / **not much**: *Not many people came.*\n\nY **quite a few** = bastantes: *Quite a few people came.*",
+       "trap": "«Un poco» y «unos pocos» se sienten iguales, y sale *I have a few money* ❌ → **a little money**, porque el dinero no se cuenta. Y sin la a cambia la idea: *I speak little English* dice «casi no hablo inglés»; para «hablo un poco» es **I speak a little English**."
+      },
+      "exercises": [
+       {
+        "id": "a2u13l1e1",
+        "type": "translate",
+        "es": "Hablo un poco de inglés.",
+        "options": [
+         "I speak a few English.",
+         "I speak a little English.",
+         "I speak a little of English."
+        ],
+        "answer": "I speak a little English.",
+        "accept": [
+         "I speak some English.",
+         "I speak a bit of English.",
+         "I speak a little bit of English.",
+         "I can speak a little English.",
+         "I can speak some English.",
+         "I can speak a bit of English.",
+         "I can speak a little bit of English.",
+         "I know a little English.",
+         "I know some English.",
+         "I know a bit of English."
+        ],
+        "tip": "English no se cuenta: a little. Y sin of."
+       },
+       {
+        "id": "a2u13l1e2",
+        "type": "listen",
+        "audio": "There are a few eggs in the fridge.",
+        "options": [
+         "There is a little eggs in the fridge.",
+         "There are a few eggs in the fridge.",
+         "There are a few of eggs in the fridge."
+        ],
+        "answer": "There are a few eggs in the fridge.",
+        "tip": "eggs se cuentan: a few. Y en plural, there are."
+       },
+       {
+        "id": "a2u13l1e3",
+        "type": "cloze",
+        "es": "Tenemos muy poco tiempo, apúrate.",
+        "text": "We have very ___ time, hurry up.",
+        "answer": "little",
+        "accept": [],
+        "tip": "time no se cuenta y la idea es «casi nada»: very little."
+       },
+       {
+        "id": "a2u13l1e4",
+        "type": "write",
+        "es": "Necesito un poco de ayuda con esto.",
+        "answer": "I need a little help with this.",
+        "accept": [
+         "I need some help with this.",
+         "I need a bit of help with this.",
+         "I need a little bit of help with this.",
+         "I need a little help with this one.",
+         "I need some help with this one.",
+         "I need a little help with it.",
+         "I need some help with it.",
+         "I need a bit of help with it.",
+         "I need a little bit of help with this one.",
+         "I need a bit of help with this one."
+        ],
+        "tip": "help no se cuenta: a little help, nunca a few help."
+       },
+       {
+        "id": "a2u13l1e5",
+        "type": "speak",
+        "text": "I have a few friends here.",
+        "sound": "h",
+        "tip": "have y here llevan la h soplada. «a few» se pega: «a-FIU»."
+       },
+       {
+        "id": "a2u13l1e6",
+        "type": "write",
+        "es": "Poca gente vino a la fiesta.",
+        "answer": "Not many people came to the party.",
+        "accept": [
+         "Few people came to the party.",
+         "Very few people came to the party.",
+         "Not a lot of people came to the party.",
+         "Only a few people came to the party.",
+         "Not many people went to the party.",
+         "Few people went to the party.",
+         "Very few people went to the party.",
+         "Only a few people went to the party.",
+         "Not a lot of people went to the party.",
+         "Not many people showed up to the party.",
+         "Not many people showed up at the party.",
+         "Not many people were at the party.",
+         "Few people were at the party.",
+         "Very few people were at the party.",
+         "Not a lot of people showed up to the party.",
+         "Few people showed up to the party.",
+         "Very few people showed up to the party.",
+         "Only a few people showed up to the party.",
+         "Not many people showed up for the party.",
+         "Not a lot of people were at the party.",
+         "Only a few people were at the party.",
+         "Not many people attended the party.",
+         "Few people attended the party.",
+         "Very few people attended the party."
+        ],
+        "tip": "«Poca gente» = no mucha gente: not many people. Few people también está bien, pero suena más formal."
+       },
+       {
+        "id": "a2u13l1e7",
+        "type": "listen",
+        "audio": "She has very little money.",
+        "options": [
+         "She has very few money.",
+         "She has very little money.",
+         "She has very little of money."
+        ],
+        "answer": "She has very little money.",
+        "tip": "money no se cuenta: little. Y sin of: very little money."
+       },
+       {
+        "id": "a2u13l1e8",
+        "type": "build",
+        "es": "Espera unos minutos, por favor.",
+        "answer": "Wait a few minutes, please.",
+        "accept": [
+         "Please wait a few minutes."
+        ],
+        "extra": [
+         "little",
+         "of",
+         "minute"
+        ],
+        "tip": "minutes se cuentan: a few minutes."
+       },
+       {
+        "id": "a2u13l1e9",
+        "type": "cloze",
+        "es": "Hay bastantes restaurantes buenos en este barrio.",
+        "text": "There are quite ___ good restaurants in this neighborhood.",
+        "answer": "a few",
+        "accept": [
+         "a lot of"
+        ],
+        "tip": "quite a few = bastantes. Parece «poco», pero significa bastantes."
+       },
+       {
+        "id": "a2u13l1e10",
+        "type": "type",
+        "audio": "Can I have a little more coffee?",
+        "meaning": "¿Me das un poco más de café?",
+        "tip": "a little more = un poco más, con lo que no se cuenta."
+       },
+       {
+        "id": "a2u13l1e11",
+        "type": "write",
+        "es": "Tengo algunas preguntas para ti.",
+        "answer": "I have a few questions for you.",
+        "accept": [
+         "I have some questions for you.",
+         "I've got a few questions for you.",
+         "I've got some questions for you.",
+         "I have a couple of questions for you.",
+         "I have a couple questions for you.",
+         "I have several questions for you.",
+         "I have a few questions to ask you.",
+         "I have some questions to ask you."
+        ],
+        "tip": "questions se cuentan: a few o some."
+       },
+       {
+        "id": "a2u13l1e12",
+        "type": "shadow",
+        "text": "I speak a little English, but not much.",
+        "tip": "«a little» se pega: «a-LI-dl». La t entre vocales suena casi como una d rápida. El peso en ENG-lish y en MUCH."
+       }
+      ]
+     },
+     {
+      "id": "a2u13l2",
+      "title": "Es mío. ¿De quién es?",
+      "theory": {
+       "title": "mine, yours, whose",
+       "body": "Si ya se sabe de qué cosa hablas, no la repites: usas el posesivo solo.\n**my → mine · your → yours · his → his · her → hers · our → ours · their → theirs**\n\n*This phone is **mine**.* · *Is this bag **yours**?*\nVan **solos**: sin sustantivo detrás y sin **the**.\n\nPara preguntar por el dueño: **Whose + cosa** o **Whose is this?**\n***Whose** keys are these?* — *They're **Tom's**.*\nCon un nombre basta la **'s**, también sola: *It's **Maria's**.*\n\n«Un amigo mío» = **a friend of mine** (no *a friend of me*).",
+       "trap": "En español «el mío» lleva artículo, y sale *It's the mine* ❌ → **It's mine**. Tampoco se deja *Is it your?* ❌: sin sustantivo detrás va **yours**. Y ojo al oído: **whose** (de quién) suena igual que **who's** (quién es)."
+      },
+      "exercises": [
+       {
+        "id": "a2u13l2e1",
+        "type": "listen",
+        "audio": "That car is ours.",
+        "options": [
+         "That car is the ours.",
+         "That car is ours.",
+         "That car is of us."
+        ],
+        "answer": "That car is ours.",
+        "tip": "ours va solo, sin the."
+       },
+       {
+        "id": "a2u13l2e2",
+        "type": "translate",
+        "es": "¿Esta chaqueta es tuya?",
+        "options": [
+         "Is this jacket yours?",
+         "Is this jacket the yours?",
+         "Is this jacket your?"
+        ],
+        "answer": "Is this jacket yours?",
+        "accept": [
+         "Is this your jacket?",
+         "Is this coat yours?",
+         "Is this your coat?",
+         "Does this jacket belong to you?"
+        ],
+        "tip": "Sin sustantivo detrás: yours, no your."
+       },
+       {
+        "id": "a2u13l2e3",
+        "type": "cloze",
+        "es": "No es mi maleta, es la de ella.",
+        "text": "It isn't my suitcase, it's ___.",
+        "answer": "hers",
+        "accept": [
+         "her suitcase",
+         "her bag"
+        ],
+        "tip": "her + cosa, o hers solo. Nunca the hers."
+       },
+       {
+        "id": "a2u13l2e4",
+        "type": "write",
+        "es": "¿De quién son estas llaves?",
+        "answer": "Whose keys are these?",
+        "accept": [
+         "Whose are these keys?",
+         "Who do these keys belong to?",
+         "Who owns these keys?",
+         "Whose keys are they?"
+        ],
+        "tip": "Whose + la cosa. Who are these keys? preguntaría quiénes SON las llaves."
+       },
+       {
+        "id": "a2u13l2e5",
+        "type": "build",
+        "es": "Ana es una amiga mía.",
+        "answer": "Ana is a friend of mine.",
+        "extra": [
+         "me",
+         "the",
+         "I"
+        ],
+        "tip": "«Una amiga mía» = a friend of mine. of me no se usa así."
+       },
+       {
+        "id": "a2u13l2e6",
+        "type": "listen",
+        "audio": "Whose bag is this?",
+        "options": [
+         "Whose bag is this?",
+         "Who is this bag?",
+         "Of who is this bag?"
+        ],
+        "answer": "Whose bag is this?",
+        "tip": "whose va pegado a la cosa: whose bag."
+       },
+       {
+        "id": "a2u13l2e7",
+        "type": "write",
+        "es": "Ese no es mi carro. El mío es azul.",
+        "answer": "That isn't my car. Mine is blue.",
+        "accept": [
+         "That isn't my car. Mine's blue.",
+         "That car isn't mine. Mine is blue.",
+         "That car isn't mine. Mine's blue.",
+         "That isn't my car. My car is blue.",
+         "That isn't my car. Mine is the blue one.",
+         "That car isn't mine. My car is blue.",
+         "That car isn't mine. Mine is the blue one.",
+         "That isn't my car. Mine's the blue one.",
+         "That car isn't mine. Mine's the blue one.",
+         "That isn't my car. My car is the blue one."
+        ],
+        "tip": "El mío = mine, sin the."
+       },
+       {
+        "id": "a2u13l2e8",
+        "type": "speak",
+        "text": "Whose shoes are these?",
+        "sound": "sh",
+        "tip": "Whose suena «huuz», con h de aire; shoes lleva sh suave, no «chus»."
+       },
+       {
+        "id": "a2u13l2e9",
+        "type": "cloze",
+        "es": "¿Quién es ese hombre? — Es el papá de Laura.",
+        "text": "Who's that man? — He's ___ dad.",
+        "answer": "Laura's",
+        "accept": [],
+        "tip": "El dueño va primero con 's: Laura's dad. Y who's (quién es) no es whose."
+       },
+       {
+        "id": "a2u13l2e10",
+        "type": "type",
+        "audio": "Those aren't our seats. Ours are over there.",
+        "meaning": "Esos no son nuestros puestos. Los nuestros están allá.",
+        "tip": "Los nuestros = ours, sin the."
+       },
+       {
+        "id": "a2u13l2e11",
+        "type": "write",
+        "es": "Esta no es mi taza, es la tuya.",
+        "answer": "This isn't my cup, it's yours.",
+        "accept": [
+         "This isn't my mug, it's yours.",
+         "This cup isn't mine, it's yours.",
+         "This mug isn't mine, it's yours.",
+         "This cup is yours, not mine.",
+         "This mug is yours, not mine.",
+         "This is your cup, not mine.",
+         "This is your mug, not mine.",
+         "This isn't my cup, it's your cup.",
+         "This isn't my mug, it's your mug.",
+         "This cup is yours, it isn't mine.",
+         "This mug is yours, it isn't mine."
+        ],
+        "tip": "La tuya = yours. Ni the yours ni your."
+       },
+       {
+        "id": "a2u13l2e12",
+        "type": "shadow",
+        "text": "Is this yours or mine?",
+        "tip": "Sube el tono en YOURS y bájalo en MINE, como cuando das dos opciones."
+       }
+      ]
+     },
+     {
+      "id": "a2u13l3",
+      "title": "Yo mismo y el uno al otro",
+      "theory": {
+       "title": "myself, yourself... y each other",
+       "body": "Cuando alguien se hace algo **a sí mismo**:\n**myself · yourself · himself · herself · itself · ourselves · yourselves · themselves**\n*I cut **myself**.* · *Did you hurt **yourself**?* · *Enjoy **yourselves**!*\n\n**by myself** = solo, sin ayuda: *I live **by myself**.*\n\nPero muchos verbos que en español llevan «me/se» en inglés normalmente van **sin nada**:\n*get up · shower · get dressed · feel · sit down · relax · remember · meet*\n*I **get up** at six.* · *I **feel** tired.*\n\n**each other** = el uno al otro, cuando dos o más se hacen algo entre sí:\n*They love **each other**.* (se quieren)",
+       "trap": "El «me» y el «se» del español se cuelan: *I shower me* ❌ y *I feel myself tired* ❌ → **I shower**, **I feel tired**. Y «se quieren» no es *They love themselves* (cada uno se quiere a sí mismo): es **They love each other**."
+      },
+      "exercises": [
+       {
+        "id": "a2u13l3e1",
+        "type": "translate",
+        "es": "Mis papás se quieren mucho.",
+        "options": [
+         "My parents love each other a lot.",
+         "My parents love themselves a lot.",
+         "My parents love them a lot."
+        ],
+        "answer": "My parents love each other a lot.",
+        "accept": [
+         "My parents love each other very much.",
+         "My parents love each other so much.",
+         "My parents really love each other.",
+         "My parents love one another a lot.",
+         "My parents love one another very much.",
+         "My parents really love one another.",
+         "My mom and dad love each other a lot.",
+         "My mom and dad love each other very much.",
+         "My mom and dad really love each other."
+        ],
+        "tip": "«Se quieren» (el uno al otro) = each other. themselves sería que cada uno se quiere a sí mismo."
+       },
+       {
+        "id": "a2u13l3e2",
+        "type": "listen",
+        "audio": "I get up at six every day.",
+        "options": [
+         "I get me up at six every day.",
+         "I get up at six every day.",
+         "I wake me up at six every day."
+        ],
+        "answer": "I get up at six every day.",
+        "tip": "get up y wake up van solos: nada de me."
+       },
+       {
+        "id": "a2u13l3e3",
+        "type": "cloze",
+        "es": "¿Te cortaste?",
+        "text": "Did you cut ___?",
+        "answer": "yourself",
+        "accept": [],
+        "tip": "Uno se corta a sí mismo: cut yourself."
+       },
+       {
+        "id": "a2u13l3e4",
+        "type": "write",
+        "es": "Me siento cansado hoy.",
+        "answer": "I feel tired today.",
+        "accept": [
+         "I'm feeling tired today.",
+         "I'm tired today.",
+         "Today I feel tired.",
+         "Today I'm tired.",
+         "Today I'm feeling tired."
+        ],
+        "tip": "feel va sin myself: I feel tired."
+       },
+       {
+        "id": "a2u13l3e5",
+        "type": "build",
+        "es": "Mi hijo se viste solo.",
+        "answer": "My son gets dressed by himself.",
+        "accept": [
+         "My son gets himself dressed."
+        ],
+        "extra": [
+         "him",
+         "self",
+         "get"
+        ],
+        "tip": "«Se viste» = gets dressed, sin reflexivo. «Solo», sin ayuda = by himself."
+       },
+       {
+        "id": "a2u13l3e6",
+        "type": "speak",
+        "text": "They send each other messages every day.",
+        "sound": "th",
+        "tip": "They arranca con la th sonora, lengua entre los dientes; each other también la lleva."
+       },
+       {
+        "id": "a2u13l3e7",
+        "type": "write",
+        "es": "Siéntate y relájate.",
+        "answer": "Sit down and relax.",
+        "accept": [
+         "Have a seat and relax.",
+         "Take a seat and relax.",
+         "Sit down and take it easy.",
+         "Sit and relax.",
+         "Have a seat and take it easy.",
+         "Take a seat and take it easy.",
+         "Sit back and relax.",
+         "Sit down and chill.",
+         "Sit down and chill out."
+        ],
+        "tip": "Ni sit you ni relax you: en inglés van solos."
+       },
+       {
+        "id": "a2u13l3e8",
+        "type": "listen",
+        "audio": "We met each other at work.",
+        "options": [
+         "We met ourselves at work.",
+         "We met each other at work.",
+         "We met us at work."
+        ],
+        "answer": "We met each other at work.",
+        "tip": "«Nos conocimos» (el uno al otro) = each other. También se dice solo We met at work."
+       },
+       {
+        "id": "a2u13l3e9",
+        "type": "cloze",
+        "es": "¿Ustedes se divirtieron en la fiesta?",
+        "text": "Did you enjoy ___ at the party?",
+        "answer": "yourselves",
+        "accept": [],
+        "tip": "enjoy necesita algo detrás; para ustedes, yourselves."
+       },
+       {
+        "id": "a2u13l3e10",
+        "type": "type",
+        "audio": "She taught herself to play the piano.",
+        "meaning": "Ella aprendió sola a tocar el piano.",
+        "tip": "teach yourself = aprender por tu cuenta, sin profesor."
+       },
+       {
+        "id": "a2u13l3e11",
+        "type": "write",
+        "es": "¿Te acuerdas de mí?",
+        "answer": "Do you remember me?",
+        "accept": [
+         "Remember me?",
+         "You remember me?"
+        ],
+        "tip": "remember va sin yourself y sin of: remember me."
+       },
+       {
+        "id": "a2u13l3e12",
+        "type": "shadow",
+        "text": "I get up, take a shower, and get dressed.",
+        "tip": "Tres acciones en fila, con una pausa corta en cada coma. Ninguna lleva myself."
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "despues_de": "a2u7",
+   "unit": {
+    "id": "a2u14",
+    "emoji": "🧍",
+    "title": "Cómo es y cómo se siente",
+    "subtitle": "bored o boring, look like / be like y las preposiciones que van pegadas",
+    "lessons": [
+     {
+      "id": "a2u14l1",
+      "title": "Aburrido o aburridor",
+      "theory": {
+       "title": "bored o boring",
+       "body": "Muchos adjetivos tienen dos formas:\n**-ed** → cómo **se siente** una persona\n**-ing** → cómo **es** lo que causa ese sentimiento\n\n*I'm **bored**.* (estoy aburrido) · *The movie is **boring**.* (es aburridora)\n*She's **interested** in art.* · *Art is **interesting**.*\n\nLas parejas más comunes:\n*bored/boring · tired/tiring · interested/interesting · excited/exciting · worried/worrying · surprised/surprising · confused/confusing · embarrassed/embarrassing*\n\nOjo: una persona también puede ser **-ing**: *He's **boring**.* = él es aburridor (aburre a los demás).",
+       "trap": "*I'm boring* ❌, cuando quieres decir «estoy aburrido», dice que tú aburres a los demás: es **I'm bored**. Lo mismo con *I'm very interesting in...* ❌ → **I'm very interested in...** Y **embarrassed** es «avergonzado», no embarazada (eso es **pregnant**)."
+      },
+      "exercises": [
+       {
+        "id": "a2u14l1e1",
+        "type": "translate",
+        "es": "Estoy aburrido, vamos a salir.",
+        "options": [
+         "I'm boring, let's go out.",
+         "I'm bored, let's go out.",
+         "I'm bore, let's go out."
+        ],
+        "answer": "I'm bored, let's go out.",
+        "accept": [
+         "I'm bored, so let's go out.",
+         "I'm bored, let's go somewhere.",
+         "I'm bored, let's do something.",
+         "I'm bored, let's go out somewhere."
+        ],
+        "tip": "Tú sientes el aburrimiento: bored. I'm boring = yo aburro a los demás."
+       },
+       {
+        "id": "a2u14l1e2",
+        "type": "listen",
+        "audio": "The movie was really boring.",
+        "options": [
+         "The movie was really bored.",
+         "The movie was really boring.",
+         "I was really boring at the movie."
+        ],
+        "answer": "The movie was really boring.",
+        "tip": "La película causa el aburrimiento: boring."
+       },
+       {
+        "id": "a2u14l1e3",
+        "type": "cloze",
+        "es": "Estoy muy interesado en la historia.",
+        "text": "I'm very ___ in history.",
+        "answer": "interested",
+        "accept": [],
+        "tip": "La persona siente: interested, con -ed. Y va con in."
+       },
+       {
+        "id": "a2u14l1e4",
+        "type": "write",
+        "es": "El viaje fue muy agotador.",
+        "answer": "The trip was very tiring.",
+        "accept": [
+         "The trip was really tiring.",
+         "The trip was so tiring.",
+         "The trip was very exhausting.",
+         "The trip was really exhausting.",
+         "The trip was so exhausting.",
+         "The trip was exhausting.",
+         "It was a very tiring trip.",
+         "It was a really tiring trip.",
+         "The journey was very tiring.",
+         "The journey was really tiring.",
+         "It was a very exhausting trip.",
+         "It was a really exhausting trip.",
+         "It was an exhausting trip.",
+         "It was a tiring trip."
+        ],
+        "tip": "El viaje causa el cansancio: tiring, con -ing."
+       },
+       {
+        "id": "a2u14l1e5",
+        "type": "speak",
+        "text": "I was surprised and a little confused.",
+        "sound": "ed",
+        "tip": "surprised y confused terminan en una d suave, no en «-ed» con vocal: «sur-PRAIZD», «con-FIUZD»."
+       },
+       {
+        "id": "a2u14l1e6",
+        "type": "listen",
+        "audio": "My brother is worried about his job.",
+        "options": [
+         "My brother is worried about his job.",
+         "My brother has worry about his job.",
+         "My brother is worrying for his job."
+        ],
+        "answer": "My brother is worried about his job.",
+        "tip": "Él siente la preocupación: worried about."
+       },
+       {
+        "id": "a2u14l1e7",
+        "type": "build",
+        "es": "Los niños están emocionados por el viaje.",
+        "answer": "The kids are excited about the trip.",
+        "extra": [
+         "exciting",
+         "of",
+         "with"
+        ],
+        "tip": "Los niños sienten: excited. Y excited about + la cosa."
+       },
+       {
+        "id": "a2u14l1e8",
+        "type": "cloze",
+        "es": "Fue una situación muy vergonzosa.",
+        "text": "It was a very ___ situation.",
+        "answer": "embarrassing",
+        "accept": [
+         "awkward",
+         "shameful"
+        ],
+        "tip": "La situación causa la vergüenza: embarrassing. (Embarazada es pregnant.)"
+       },
+       {
+        "id": "a2u14l1e9",
+        "type": "write",
+        "es": "Me sentí avergonzado.",
+        "answer": "I felt embarrassed.",
+        "accept": [
+         "I was embarrassed.",
+         "I felt ashamed.",
+         "I was ashamed.",
+         "I felt really embarrassed.",
+         "I felt so embarrassed.",
+         "I was so embarrassed.",
+         "I was really embarrassed.",
+         "I got embarrassed.",
+         "I got really embarrassed.",
+         "I got so embarrassed."
+        ],
+        "tip": "La persona siente: embarrassed. Y no es «embarazada»."
+       },
+       {
+        "id": "a2u14l1e10",
+        "type": "type",
+        "audio": "Her new job sounds really interesting.",
+        "meaning": "Su nuevo trabajo suena muy interesante.",
+        "tip": "El trabajo causa el interés: interesting."
+       },
+       {
+        "id": "a2u14l1e11",
+        "type": "write",
+        "es": "Las instrucciones son muy confusas.",
+        "answer": "The instructions are very confusing.",
+        "accept": [
+         "The instructions are really confusing.",
+         "The instructions are so confusing.",
+         "The directions are very confusing.",
+         "The directions are really confusing.",
+         "The directions are so confusing."
+        ],
+        "tip": "Las instrucciones causan la confusión: confusing. Tú quedas confused."
+       },
+       {
+        "id": "a2u14l1e12",
+        "type": "shadow",
+        "text": "The class was boring, so I was bored.",
+        "tip": "Marca la diferencia: BOR-ing con dos sílabas, BORD con una sola."
+       }
+      ]
+     },
+     {
+      "id": "a2u14l2",
+      "title": "¿Cómo es? ¿A quién se parece?",
+      "theory": {
+       "title": "look like, be like, like",
+       "body": "Tres preguntas que se parecen y preguntan cosas distintas:\n***What does he look like?*** → el físico: *He's tall and has dark hair.*\n***What is he like?*** → la manera de ser: *He's friendly and funny.*\n***What does he like?*** → los gustos: *He likes soccer.*\n\n**look like + sustantivo** = parecerse a:\n*She **looks like** her mother.*\n\n**look + adjetivo** = verse:\n*You **look tired**.*\n\nPara la manera de ser: *friendly, shy, lazy, hard-working, funny, serious, generous, patient, rude, polite*.",
+       "trap": "«¿Cómo es?» sale *How is he?* ❌, pero eso pregunta cómo **está** (salud, ánimo); para el carácter es **What is he like?** Con adjetivo no va like: *He looks like tired* ❌ → **He looks tired**. Y *sympathetic* no es simpático sino «comprensivo»: simpático es **nice** o **friendly**."
+      },
+      "exercises": [
+       {
+        "id": "a2u14l2e1",
+        "type": "translate",
+        "es": "¿Cómo es tu jefe? (de carácter)",
+        "options": [
+         "How is your boss?",
+         "What is your boss like?",
+         "What does your boss look like?"
+        ],
+        "answer": "What is your boss like?",
+        "accept": [
+         "What kind of person is your boss?",
+         "What is your boss like as a person?"
+        ],
+        "tip": "Carácter = What is he like? How is your boss? pregunta cómo está."
+       },
+       {
+        "id": "a2u14l2e2",
+        "type": "listen",
+        "audio": "She looks like her mother.",
+        "options": [
+         "She looks like her mother.",
+         "She looks her mother.",
+         "She seems her mother."
+        ],
+        "answer": "She looks like her mother.",
+        "tip": "Parecerse a alguien = look like + persona."
+       },
+       {
+        "id": "a2u14l2e3",
+        "type": "cloze",
+        "es": "Te ves cansado. ¿Estás bien?",
+        "text": "You look ___. Are you okay?",
+        "answer": "tired",
+        "accept": [
+         "exhausted"
+        ],
+        "tip": "look + adjetivo, sin like."
+       },
+       {
+        "id": "a2u14l2e4",
+        "type": "write",
+        "es": "Mi hermana es muy amable y un poco tímida.",
+        "answer": "My sister is very friendly and a little shy.",
+        "accept": [
+         "My sister is very friendly and a bit shy.",
+         "My sister is very nice and a little shy.",
+         "My sister is very nice and a bit shy.",
+         "My sister is very kind and a little shy.",
+         "My sister is very kind and a bit shy.",
+         "My sister is really friendly and a little shy.",
+         "My sister is really friendly and a bit shy.",
+         "My sister is really nice and a little shy.",
+         "My sister is really nice and a bit shy.",
+         "My sister is really kind and a little shy.",
+         "My sister is really kind and a bit shy.",
+         "My sister's very friendly and a little shy.",
+         "My sister's very friendly and a bit shy.",
+         "My sister's very nice and a little shy.",
+         "My sister's very nice and a bit shy.",
+         "My sister's very kind and a little shy.",
+         "My sister's very kind and a bit shy.",
+         "My sister's really friendly and a little shy.",
+         "My sister's really friendly and a bit shy.",
+         "My sister's really nice and a little shy.",
+         "My sister's really nice and a bit shy.",
+         "My sister's really kind and a little shy.",
+         "My sister's really kind and a bit shy.",
+         "My sister is very friendly and a little bit shy.",
+         "My sister is very nice and a little bit shy.",
+         "My sister is very kind and a little bit shy.",
+         "My sister is really friendly and a little bit shy.",
+         "My sister is really nice and a little bit shy.",
+         "My sister is really kind and a little bit shy.",
+         "My sister's very friendly and a little bit shy.",
+         "My sister's very nice and a little bit shy.",
+         "My sister's very kind and a little bit shy.",
+         "My sister's really friendly and a little bit shy.",
+         "My sister's really nice and a little bit shy.",
+         "My sister's really kind and a little bit shy."
+        ],
+        "tip": "Amable o simpática = friendly o nice. sympathetic es otra cosa."
+       },
+       {
+        "id": "a2u14l2e5",
+        "type": "speak",
+        "text": "What is your brother like?",
+        "sound": "th",
+        "tip": "brother lleva th sonora: lengua entre los dientes, no «broder»."
+       },
+       {
+        "id": "a2u14l2e6",
+        "type": "build",
+        "es": "Te pareces a tu papá.",
+        "answer": "You look like your dad.",
+        "extra": [
+         "to",
+         "of",
+         "at"
+        ],
+        "tip": "Parecerse a = look like, sin to."
+       },
+       {
+        "id": "a2u14l2e7",
+        "type": "write",
+        "es": "¿Cómo es físicamente tu nuevo compañero de trabajo?",
+        "answer": "What does your new coworker look like?",
+        "accept": [
+         "What does your new co-worker look like?",
+         "What does your new colleague look like?",
+         "What does your new workmate look like?",
+         "What does your new coworker look like physically?",
+         "What does your new colleague look like physically?",
+         "What does your new co-worker look like physically?",
+         "What is your new coworker like physically?",
+         "What is your new colleague like physically?"
+        ],
+        "tip": "El físico = What does he look like? El like va al final."
+       },
+       {
+        "id": "a2u14l2e8",
+        "type": "listen",
+        "audio": "He looks tired today.",
+        "options": [
+         "He looks like tired today.",
+         "He looks tired today.",
+         "He is looking like tired today."
+        ],
+        "answer": "He looks tired today.",
+        "tip": "look + adjetivo, sin like."
+       },
+       {
+        "id": "a2u14l2e9",
+        "type": "cloze",
+        "es": "Mi vecino es muy grosero; nunca saluda.",
+        "text": "My neighbor is very ___; he never says hello.",
+        "answer": "rude",
+        "accept": [
+         "impolite"
+        ],
+        "tip": "rude = grosero, maleducado. Lo contrario es polite."
+       },
+       {
+        "id": "a2u14l2e10",
+        "type": "type",
+        "audio": "What does your sister like to do on weekends?",
+        "meaning": "¿Qué le gusta hacer a tu hermana los fines de semana?",
+        "tip": "What does she like...? pregunta por los gustos, no por cómo es."
+       },
+       {
+        "id": "a2u14l2e11",
+        "type": "write",
+        "es": "Mi jefe es trabajador y muy paciente.",
+        "answer": "My boss is hard-working and very patient.",
+        "accept": [
+         "My boss is hardworking and very patient.",
+         "My boss is hard-working and really patient.",
+         "My boss is hardworking and really patient.",
+         "My boss is a hard worker and very patient.",
+         "My boss is a hard worker and really patient.",
+         "My boss works hard and is very patient.",
+         "My boss works hard and is really patient."
+        ],
+        "tip": "Trabajador (de carácter) = hard-working. worker es el sustantivo."
+       },
+       {
+        "id": "a2u14l2e12",
+        "type": "shadow",
+        "text": "She looks like her mother, but she's very different.",
+        "tip": "«looks like her» se pega: «LUKS-lai-ker». El peso en MOTH-er y en DIF-ferent."
+       }
+      ]
+     },
+     {
+      "id": "a2u14l3",
+      "title": "Palabras que van con preposición",
+      "theory": {
+       "title": "La preposición que va pegada",
+       "body": "Muchos adjetivos y verbos llevan una preposición fija, que no siempre es la del español. Apréndelos en bloque:\n\n**Adjetivo +:** *interested **in** · good/bad **at** · afraid **of** · tired **of** · proud **of** · worried/excited **about** · married **to** · different **from***\n\n**Verbo +:** *depend **on** · listen **to** · wait **for** · look **at** · think **about/of** · dream **about** · belong **to** · pay **for***\n\n**arrive in** + ciudad o país · **arrive at** + un lugar concreto. No se dice *arrive to* (y *arrive home* va sin nada).\n\nDespués de la preposición, el verbo va con **-ing**: *good at **cooking*** · *tired of **waiting***.",
+       "trap": "El español dicta la preposición y salen *married with* ❌, *depends of* ❌, *arrive to* ❌ e *interested on* ❌. Y como «escuchar música» no lleva nada, sale *listen music* ❌ → **listen to music**: en inglés la preposición va pegada a la palabra, aunque en español no haya ninguna."
+      },
+      "exercises": [
+       {
+        "id": "a2u14l3e1",
+        "type": "translate",
+        "es": "Ella está casada con un estadounidense.",
+        "options": [
+         "She is married with an American.",
+         "She is married to an American.",
+         "She is married of an American."
+        ],
+        "answer": "She is married to an American.",
+        "accept": [
+         "She is married to an American man.",
+         "She is married to an American guy.",
+         "She has an American husband."
+        ],
+        "tip": "married to, no with."
+       },
+       {
+        "id": "a2u14l3e2",
+        "type": "listen",
+        "audio": "It depends on the weather.",
+        "options": [
+         "It depends of the weather.",
+         "It depends on the weather.",
+         "It depends from the weather."
+        ],
+        "answer": "It depends on the weather.",
+        "tip": "depend on, aunque en español sea «depende de»."
+       },
+       {
+        "id": "a2u14l3e3",
+        "type": "cloze",
+        "es": "Mi hijo es muy bueno para las matemáticas.",
+        "text": "My son is very good ___ math.",
+        "answer": "at",
+        "accept": [
+         "in"
+        ],
+        "tip": "good at + actividad. En EE. UU. se dice math."
+       },
+       {
+        "id": "a2u14l3e4",
+        "type": "write",
+        "es": "Llegamos a Bogotá a las ocho.",
+        "answer": "We arrived in Bogota at eight.",
+        "accept": [
+         "We arrived in Bogota at eight o'clock.",
+         "We arrived in Bogota at 8:00.",
+         "We arrived in Bogota at eight a.m..",
+         "We arrived in Bogota at eight p.m..",
+         "We got to Bogota at eight.",
+         "We got to Bogota at eight o'clock.",
+         "We got to Bogota at 8:00.",
+         "We got to Bogota at eight a.m..",
+         "We got to Bogota at eight p.m..",
+         "We got into Bogota at eight.",
+         "We got into Bogota at eight o'clock.",
+         "We got into Bogota at 8:00.",
+         "We got into Bogota at eight a.m..",
+         "We got into Bogota at eight p.m..",
+         "We landed in Bogota at eight.",
+         "We landed in Bogota at eight o'clock.",
+         "We landed in Bogota at 8:00.",
+         "We landed in Bogota at eight a.m..",
+         "We landed in Bogota at eight p.m..",
+         "We reached Bogota at eight.",
+         "We reached Bogota at eight o'clock.",
+         "We reached Bogota at 8:00.",
+         "We reached Bogota at eight a.m..",
+         "We reached Bogota at eight p.m..",
+         "We arrive in Bogota at eight.",
+         "We arrive in Bogota at eight o'clock.",
+         "We arrive in Bogota at 8:00.",
+         "We arrive in Bogota at eight a.m..",
+         "We arrive in Bogota at eight p.m..",
+         "We get to Bogota at eight.",
+         "We get to Bogota at eight o'clock.",
+         "We get to Bogota at 8:00.",
+         "We get to Bogota at eight a.m..",
+         "We get to Bogota at eight p.m..",
+         "We arrived at eight in Bogota.",
+         "We arrive at eight in Bogota."
+        ],
+        "tip": "arrive in + ciudad. No se dice arrive to."
+       },
+       {
+        "id": "a2u14l3e5",
+        "type": "speak",
+        "text": "I'm thinking about my family.",
+        "sound": "th",
+        "tip": "thinking lleva th sorda: lengua entre los dientes y aire, no «tinking»."
+       },
+       {
+        "id": "a2u14l3e6",
+        "type": "listen",
+        "audio": "We're waiting for my sister.",
+        "options": [
+         "We're waiting my sister.",
+         "We're waiting for my sister.",
+         "We're waiting to my sister."
+        ],
+        "answer": "We're waiting for my sister.",
+        "tip": "«Esperar a alguien» = wait for."
+       },
+       {
+        "id": "a2u14l3e7",
+        "type": "build",
+        "es": "Estoy cansado de esperar.",
+        "answer": "I'm tired of waiting.",
+        "extra": [
+         "to",
+         "wait",
+         "for"
+        ],
+        "tip": "Después de of, el verbo va con -ing."
+       },
+       {
+        "id": "a2u14l3e8",
+        "type": "cloze",
+        "es": "¿De quién es este celular? — Es de Juan.",
+        "text": "Whose cell phone is this? — It belongs ___ Juan.",
+        "answer": "to",
+        "accept": [],
+        "tip": "belong to = pertenecer a, ser de."
+       },
+       {
+        "id": "a2u14l3e9",
+        "type": "write",
+        "es": "Ella le tiene miedo a los perros.",
+        "answer": "She is afraid of dogs.",
+        "accept": [
+         "She's scared of dogs.",
+         "She is frightened of dogs.",
+         "She is afraid of the dogs.",
+         "She's scared of the dogs.",
+         "She fears dogs.",
+         "Dogs scare her.",
+         "She is frightened of the dogs."
+        ],
+        "tip": "afraid of. Para los perros en general, sin the."
+       },
+       {
+        "id": "a2u14l3e10",
+        "type": "type",
+        "audio": "Who is going to pay for dinner?",
+        "meaning": "¿Quién va a pagar la cena?",
+        "tip": "Pagar una cosa = pay for. La cuenta o el arriendo van sin for: pay the bill."
+       },
+       {
+        "id": "a2u14l3e11",
+        "type": "write",
+        "es": "Estoy pensando en cambiar de trabajo.",
+        "answer": "I'm thinking about changing jobs.",
+        "accept": [
+         "I'm thinking about changing my job.",
+         "I'm thinking about getting a new job.",
+         "I'm thinking about finding a new job.",
+         "I'm thinking about switching jobs.",
+         "I'm thinking about getting another job.",
+         "I'm thinking of changing jobs.",
+         "I'm thinking of changing my job.",
+         "I'm thinking of getting a new job.",
+         "I'm thinking of finding a new job.",
+         "I'm thinking of switching jobs.",
+         "I'm thinking of getting another job.",
+         "I'm considering changing jobs.",
+         "I'm considering changing my job.",
+         "I'm thinking about getting a different job.",
+         "I'm thinking of getting a different job."
+        ],
+        "tip": "think about/of + -ing. «Pensar en» no es think in."
+       },
+       {
+        "id": "a2u14l3e12",
+        "type": "minimalPair",
+        "options": [
+         "thirteen",
+         "thirty"
+        ],
+        "answer": "thirty",
+        "sentence": "I waited for the bus for thirty minutes.",
+        "play": "sentence",
+        "tip": "thirTEEN lleva el peso al final y una n clara; THIRty lleva el peso al principio."
+       },
+       {
+        "id": "a2u14l3e13",
+        "type": "shadow",
+        "text": "I'm very proud of my daughter.",
+        "tip": "«proud of» se pega: «PRAU-dov». El peso en PROUD y en DAUGH-ter."
+       }
+      ]
+     }
+    ]
+   }
+  }
+ ]
+}
