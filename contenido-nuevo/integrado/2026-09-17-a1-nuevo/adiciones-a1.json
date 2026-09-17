@@ -1,0 +1,91 @@
+{
+ "a1u1l1": [
+  {"type": "translate", "es": "Hola, soy Ana.", "options": ["Hi, am Ana.", "Hi, I'm Ana.", "Hi, I is Ana."], "answer": "Hi, I'm Ana.", "accept": ["Hello, I'm Ana.", "Hi, my name is Ana.", "Hello, my name is Ana.", "Hey, I'm Ana.", "Hey, my name is Ana."], "tip": "Hi y Hello son «hola» (Hi es más informal). Después va el sujeto: I'm Ana, nunca «am Ana»."},
+  {"type": "write", "es": "Nosotros somos de Colombia.", "answer": "We are from Colombia.", "accept": ["We come from Colombia.", "We are Colombian.", "We are Colombians."], "tip": "Con we, you y they el verbo es are: we are, we're."},
+  {"type": "cloze", "es": "Ellos son mis amigos.", "text": "They ___ my friends.", "answer": "are", "accept": ["'re"], "tip": "they va con are. is es solo para he, she, it."},
+  {"type": "listen", "audio": "He is my teacher.", "options": ["Is my teacher.", "He is my teacher.", "He are my teacher."], "answer": "He is my teacher.", "tip": "he y she van con is, y el sujeto no se calla: He is…"}
+ ],
+ "a1u4l1": [
+  {"type": "cloze", "es": "Él tiene dos hijos.", "text": "He ___ two children.", "answer": "has", "accept": [], "tip": "have es irregular: con he, she, it no es «haves», es has."},
+  {"type": "write", "es": "Ella ve televisión por la noche.", "answer": "She watches TV at night.", "accept": ["She watches television at night.", "She watches TV in the evening.", "She watches television in the evening.", "She watches TV in the evenings.", "At night she watches TV.", "In the evening she watches TV.", "She watches television in the evenings.", "At night she watches television.", "In the evening she watches television."], "tip": "watch termina en -ch, así que lleva -es: watches (suena «wáchis», con una sílaba de más)."},
+  {"type": "translate", "es": "Mi papá va al trabajo en bus.", "options": ["My dad go to work by bus.", "My dad goes to work by bus.", "My dad goes to the work by bus."], "answer": "My dad goes to work by bus.", "accept": ["My father goes to work by bus.", "My dad takes the bus to work.", "My father takes the bus to work.", "My dad goes to work on the bus.", "My father goes to work on the bus.", "My dad takes a bus to work.", "My father takes a bus to work."], "tip": "go con he/she lleva -es: goes. Y «al trabajo» es to work, sin the."},
+  {"type": "speak", "text": "She has a big house.", "sound": "h", "tip": "has y house empiezan con h aspirada: un soplo suave, no una jota."}
+ ],
+ "a1u4l2": [
+  {"type": "write", "es": "¿Tu hermano trabaja aquí?", "answer": "Does your brother work here?", "accept": [], "tip": "Tu hermano = he, así que la pregunta lleva Does, y work se queda sin -s."},
+  {"type": "cloze", "es": "—¿Tienes carro? —Sí, tengo.", "text": "Do you have a car? Yes, I ___.", "answer": "do", "accept": ["have one"], "tip": "La respuesta corta repite el ayudante de la pregunta: Do you…? → Yes, I do. «Yes, I have» a secas no se dice así; o Yes, I do, o Yes, I have one."},
+  {"type": "translate", "es": "(A «¿Ella trabaja los sábados?») No, no trabaja.", "options": ["No, she doesn't.", "No, she don't.", "No, she isn't."], "answer": "No, she doesn't.", "accept": ["No, she doesn't work.", "No, she doesn't work on Saturdays.", "No, she doesn't work Saturdays.", "No, she doesn't work on Saturday."], "tip": "Si la pregunta es con Does, la respuesta corta también: No, she doesn't. isn't sería para una pregunta con Is."},
+  {"type": "build", "es": "¿Tu hermana vive en Bogotá?", "answer": "Does your sister live in Bogota?", "extra": ["lives", "do", "is"], "tip": "Does va al principio y se lleva la -s: Does… live, no «Does… lives»."}
+ ],
+ "a1u4l3": [
+  {"type": "cloze", "es": "A menudo voy al cine.", "text": "I ___ go to the movies.", "answer": "often", "accept": ["frequently"], "tip": "often (a menudo) va antes del verbo, como always. Muchos no pronuncian la t («ófen»), aunque otros sí: las dos formas son correctas."},
+  {"type": "write", "es": "¿Con qué frecuencia vas al gimnasio?", "answer": "How often do you go to the gym?", "accept": ["How frequently do you go to the gym?"], "tip": "«¿Con qué frecuencia…?» es How often…? y después va la pregunta normal con do."},
+  {"type": "translate", "es": "Ella cocina en casa a menudo.", "options": ["She often cooks at home.", "She often cook at home.", "She is often cook at home."], "answer": "She often cooks at home.", "accept": ["She cooks at home often.", "She frequently cooks at home.", "She cooks at home a lot."], "tip": "often no le quita la -s al verbo: She often cooks. Y no hace falta is."}
+ ],
+ "a1u5l1": [
+  {"type": "write", "es": "¿Hay sillas en la cocina?", "answer": "Are there any chairs in the kitchen?", "accept": ["Are there chairs in the kitchen?"], "tip": "Varias sillas → Are there…? En preguntas con plural se suele poner any."},
+  {"type": "cloze", "es": "No hay un banco cerca de aquí.", "text": "There ___ a bank near here.", "answer": "isn't", "accept": [], "tip": "Una sola cosa en negativo: There isn't a… Con varias: There aren't any…"},
+  {"type": "build", "es": "No hay ventanas en el baño.", "answer": "There aren't any windows in the bathroom.", "accept": ["In the bathroom there aren't any windows.", "There aren't windows in the bathroom."], "extra": ["isn't", "some", "is"], "tip": "Plural y negativo: There aren't any. En negativo some se vuelve any."}
+ ],
+ "a1u5l2": [
+  {"type": "translate", "es": "La vida es difícil.", "options": ["The life is hard.", "Life is hard.", "A life is hard."], "answer": "Life is hard.", "accept": ["Life is difficult.", "Life is tough."], "tip": "Hablando de la vida en general, el inglés no pone the: Life is hard."},
+  {"type": "write", "es": "Los carros son caros (en general).", "answer": "Cars are expensive.", "accept": ["Cars cost a lot.", "Cars are pricey."], "tip": "Plural en general, sin the: Cars are expensive. «The cars» serían unos carros concretos."},
+  {"type": "cloze", "es": "Tengo un perro y un gato. El perro es negro.", "text": "I have a dog and a cat. ___ dog is black.", "answer": "The", "accept": [], "tip": "La primera vez es a dog; cuando ya lo mencionaste, es the dog."},
+  {"type": "cloze", "es": "La clase dura una hora.", "text": "The class is ___ hour long.", "answer": "an", "accept": ["one"], "tip": "En hour la h no suena («áuer»): empieza con sonido de vocal, por eso an hour."}
+ ],
+ "a1u5l3": [
+  {"type": "write", "es": "El banco está entre el hotel y la escuela.", "answer": "The bank is between the hotel and the school.", "accept": ["The bank's between the hotel and the school.", "The bank is in between the hotel and the school."], "tip": "between = entre dos cosas: between A and B."},
+  {"type": "cloze", "es": "El carro está delante de la casa.", "text": "The car is ___ the house.", "answer": "in front of", "accept": [], "tip": "«Delante de» son tres palabras: in front of. No se puede quitar ni in ni of."},
+  {"type": "translate", "es": "Estoy delante de la escuela.", "options": ["I am in front the school.", "I am in front of the school.", "I am on front of the school."], "answer": "I am in front of the school.", "accept": ["I'm outside the school."], "tip": "in front of lleva of siempre, igual que «delante de» lleva de."}
+ ],
+ "a1u6l1": [
+  {"type": "cloze", "es": "Ella está haciendo la cena.", "text": "She is ___ dinner.", "answer": "making", "accept": ["cooking", "preparing", "fixing"], "tip": "Si el verbo termina en -e, la e se va: make → making, no «makeing»."},
+  {"type": "build", "es": "Estamos sentados en el parque.", "answer": "We are sitting in the park.", "extra": ["siting", "sit", "is"], "tip": "sit termina en vocal + consonante: la t se dobla, sitting (igual que shop → shopping). Y «estamos sentados» en inglés es are sitting."},
+  {"type": "write", "es": "No estoy viendo televisión.", "answer": "I'm not watching TV.", "accept": ["I'm not watching television."], "tip": "Para negar, not va después de am/is/are: I'm not watching."},
+  {"type": "write", "es": "¿Tu hermano está trabajando?", "answer": "Is your brother working?", "accept": ["Is your brother working now?", "Is your brother working right now?"], "tip": "Para preguntar se da la vuelta: Is + sujeto + -ing. Sin do."}
+ ],
+ "a1u6l2": [
+  {"type": "cloze", "es": "Ella cocina todos los días.", "text": "She ___ every day.", "answer": "cooks", "accept": [], "tip": "every day es rutina → presente simple, con -s para she: cooks."},
+  {"type": "cloze", "es": "Ella está cocinando ahora mismo.", "text": "She ___ right now.", "answer": "is cooking", "accept": ["'s cooking"], "tip": "right now es este momento → is + -ing: is cooking."},
+  {"type": "write", "es": "Mi papá lee el periódico todas las mañanas.", "answer": "My dad reads the newspaper every morning.", "accept": ["My father reads the newspaper every morning.", "My dad reads the paper every morning.", "My father reads the paper every morning.", "Every morning my dad reads the newspaper.", "Every morning my father reads the newspaper.", "Every morning my dad reads the paper.", "Every morning my father reads the paper."], "tip": "every morning es una costumbre: presente simple (reads), no is reading."},
+  {"type": "translate", "es": "En este momento estoy hablando por teléfono.", "options": ["At the moment I talk on the phone.", "At the moment I am talking on the phone.", "At the moment I am talk on the phone."], "answer": "At the moment I am talking on the phone.", "accept": ["I am talking on the phone at the moment.", "Right now I am talking on the phone.", "I am talking on the phone right now.", "I am on the phone right now.", "I am on the phone at the moment.", "At the moment I am speaking on the phone.", "I am speaking on the phone at the moment.", "Right now I am on the phone.", "At the moment I am on the phone."], "tip": "at the moment avisa: continuo (am talking). Y «por teléfono» es on the phone."}
+ ],
+ "a1u6l3": [
+  {"type": "cloze", "es": "Me gusta esta camisa.", "text": "I like ___ shirt.", "answer": "this", "accept": [], "tip": "this también va delante de una cosa: this shirt, this phone."},
+  {"type": "write", "es": "Esos libros son muy caros.", "answer": "Those books are very expensive.", "accept": ["Those books are really expensive."], "tip": "Plural y lejos: those books. Nunca «that books»."},
+  {"type": "build", "es": "Esta casa es muy grande.", "answer": "This house is very big.", "extra": ["these", "are", "that"], "tip": "Una casa aquí: this house is. these es para varias."}
+ ],
+ "a1u7l1": [
+  {"type": "cloze", "es": "Tengo unos pocos amigos aquí.", "text": "I have ___ friends here.", "answer": "a few", "accept": [], "tip": "Cosas que se cuentan (amigos) → a few. a little es para las que no se cuentan."},
+  {"type": "cloze", "es": "Necesito un poco de leche.", "text": "I need ___ milk.", "answer": "a little", "accept": ["some", "a bit of", "a little bit of"], "tip": "La leche no se cuenta → a little milk, no «a few milk»."},
+  {"type": "write", "es": "¿Cuánta agua tomas al día?", "answer": "How much water do you drink a day?", "accept": ["How much water do you drink per day?", "How much water do you drink every day?", "How much water do you drink each day?", "How much water do you drink daily?", "How much water do you drink in a day?"], "tip": "El agua no se cuenta → How much water, nunca «How many water». «Al día» es a day."},
+  {"type": "translate", "es": "Tengo un poco de tiempo.", "options": ["I have a little time.", "I have a few time.", "I have a little times."], "answer": "I have a little time.", "accept": ["I have some time.", "I have a bit of time.", "I have a little bit of time."], "tip": "time (tiempo) no se cuenta: a little time. «a few times» sería «unas pocas veces», otra cosa."}
+ ],
+ "a1u7l3": [
+  {"type": "write", "es": "¿Puedo abrir la ventana?", "answer": "Can I open the window?", "accept": ["May I open the window?", "Could I open the window?"], "tip": "Para pedir permiso: Can I…? y el verbo sin to."},
+  {"type": "translate", "es": "¿Puedo usar tu teléfono?", "options": ["Can I use your phone?", "Can I to use your phone?", "Do I can use your phone?"], "answer": "Can I use your phone?", "accept": ["May I use your phone?", "Could I use your phone?", "Can I use your cell phone?", "Can I borrow your phone?"], "tip": "can no usa do para preguntar: Can I…?, nunca «Do I can…?»."},
+  {"type": "build", "es": "¿Puedo sentarme aquí?", "answer": "Can I sit here?", "extra": ["to", "me", "sits"], "tip": "«Sentarme» es solo sit: el «me» del español no pasa al inglés."}
+ ],
+ "a1u8l1": [
+  {"type": "cloze", "es": "—¿Estabas en casa? —Sí, estaba.", "text": "Were you at home? Yes, I ___.", "answer": "was", "accept": ["was at home", "was home"], "tip": "Te preguntan con you (were), pero respondes con I: Yes, I was."},
+  {"type": "translate", "es": "(A «¿Él estaba cansado?») No, no estaba.", "options": ["No, he wasn't.", "No, he weren't.", "No, he isn't."], "answer": "No, he wasn't.", "accept": ["No, he wasn't tired."], "tip": "Pregunta con Was → respuesta corta con was: No, he wasn't. weren't es para you, we, they, e isn't es presente."},
+  {"type": "write", "es": "¿Ella estaba en la oficina ayer?", "answer": "Was she at the office yesterday?", "accept": ["Was she in the office yesterday?"], "tip": "Para preguntar en pasado, Was va antes del sujeto: Was she…?"},
+  {"type": "listen", "audio": "Were they at the party?", "options": ["Was they at the party?", "Were they at the party?", "They were at the party?"], "answer": "Were they at the party?", "tip": "they va con were, y en la pregunta were va primero."}
+ ],
+ "a1u8l3": [
+  {"type": "cloze", "es": "Comí pollo en el almuerzo.", "text": "I ___ chicken for lunch.", "answer": "ate", "accept": ["had"], "tip": "El pasado de eat es ate (suena «éit»), no «eated»."},
+  {"type": "write", "es": "Ella consiguió un trabajo nuevo.", "answer": "She got a new job.", "accept": ["She found a new job.", "She landed a new job."], "tip": "El pasado de get (conseguir) es got."},
+  {"type": "translate", "es": "Hice la tarea anoche.", "options": ["I did my homework last night.", "I doed my homework last night.", "I made my homework last night."], "answer": "I did my homework last night.", "accept": ["I did the homework last night.", "Last night I did my homework.", "Last night I did the homework."], "tip": "La tarea se hace con do (did), no con make: «hacer» se traduce de dos formas."}
+ ],
+ "a1u9l2": [
+  {"type": "write", "es": "¿Me ayudarás?", "answer": "Will you help me?", "accept": ["Are you going to help me?"], "tip": "Para preguntar, will va antes del sujeto: Will you…? El verbo sigue sin to."},
+  {"type": "cloze", "es": "¿Vendrás a la fiesta?", "text": "___ you come to the party?", "answer": "Will", "accept": [], "tip": "Pregunta en futuro: Will you come…? No lleva do."},
+  {"type": "translate", "es": "¿Estarás en casa mañana?", "options": ["Will you be at home tomorrow?", "Will you are at home tomorrow?", "Do you will be at home tomorrow?"], "answer": "Will you be at home tomorrow?", "accept": ["Will you be home tomorrow?", "Are you going to be at home tomorrow?", "Are you going to be home tomorrow?"], "tip": "Después de will, to be se queda como be: Will you be…?"}
+ ],
+ "a1u9l3": [
+  {"type": "write", "es": "Esta es la ciudad más grande de Colombia.", "answer": "This is the biggest city in Colombia.", "accept": ["This is the largest city in Colombia.", "This is Colombia's biggest city.", "This is Colombia's largest city."], "tip": "El máximo: the + -est (biggest, con la g doblada). Y «de Colombia» aquí es in Colombia, no of."},
+  {"type": "cloze", "es": "El inglés es más fácil que el francés.", "text": "English is ___ than French.", "answer": "easier", "accept": [], "tip": "easy termina en -y: la y cambia a i y se pone -er, easier. No «more easy»."},
+  {"type": "cloze", "es": "Hoy es el peor día de mi vida.", "text": "Today is the ___ day of my life.", "answer": "worst", "accept": [], "tip": "bad → worse → the worst. Es irregular: nada de «baddest»."},
+  {"type": "translate", "es": "Mi inglés es peor que el tuyo.", "options": ["My English is more bad than yours.", "My English is worse than yours.", "My English is badder than yours."], "answer": "My English is worse than yours.", "accept": [], "tip": "«Peor que» es worse than. bad no sigue la regla."}
+ ]
+}

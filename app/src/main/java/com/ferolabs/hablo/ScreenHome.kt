@@ -94,16 +94,9 @@ fun HomeScreen(
     // Los niveles, cada uno con sus unidades: A1 y A2 se ven separados.
     val levels = remember(refreshKey) { Course.levels }
 
-    // Una unidad se abre cuando la anterior está terminada.
-    val unlocked = remember(refreshKey) {
-        val out = HashSet<String>()
-        var allow = true
-        for (u in units) {
-            if (allow) out.add(u.id)
-            allow = allow && u.lessons.all { (scores[it.id] ?: 0) >= 60 }
-        }
-        out
-    }
+    // Qué unidades están abiertas: ver desbloqueadas() (la cadena admite una unidad
+    // nueva intercalada sin cerrar lo que ya estaba abierto).
+    val unlocked = remember(refreshKey) { desbloqueadas(units) { scores[it] ?: 0 } }
 
     var expanded by remember(refreshKey) {
         mutableStateOf(units.firstOrNull { u -> u.lessons.any { (scores[it.id] ?: 0) < 60 } }?.id)
@@ -476,6 +469,30 @@ fun HomeScreen(
             }
         }
     }
+}
+
+/**
+ * La cadena de desbloqueo. Una unidad está abierta si (a) es la primera, (b)
+ * alguna de sus lecciones ya tiene puntaje, (c) la anterior está aprobada, o
+ * (d) la anterior está abierta y la de antes de esa está aprobada. La (b) y la (d) existen porque el A1 ampliado (Cowork, 16-09)
+ * INTERCALA unidades nuevas (a1u10 justo después de a1u1): sin (b), todo lo
+ * que Fero ya aprobó desde a1u2 quedaba con candado; sin (d), la unidad vieja
+ * que sigue a una nueva sin empezar también. En la práctica la cadena deja
+ * DOS unidades abiertas por delante (la siguiente y la que le sigue), así la
+ * nueva y la vieja se hacen en paralelo; una cadena de dos sin empezar cierra.
+ */
+fun desbloqueadas(units: List<CourseUnit>, score: (String) -> Int): Set<String> {
+    val out = HashSet<String>()
+    fun aprobada(u: CourseUnit) = u.lessons.all { score(it.id) >= 60 }
+    fun tocada(u: CourseUnit) = u.lessons.any { score(it.id) > 0 }
+    for ((i, u) in units.withIndex()) {
+        val prev = units.getOrNull(i - 1)
+        val prev2 = units.getOrNull(i - 2)
+        val abierta = i == 0 || tocada(u) || (prev != null && aprobada(prev)) ||
+            (prev != null && prev.id in out && prev2 != null && aprobada(prev2))
+        if (abierta) out.add(u.id)
+    }
+    return out
 }
 
 @Composable

@@ -1,0 +1,51 @@
+{
+ "_comentario": "Seis fichas de A1 ganan una línea para lo que practican los ejercicios de adiciones-a1.json (respuestas cortas, How often, ortografía del -ing, Can I…? de permiso, Yes I was, Will you…?). Llegó después de que se integrara parche-auditoria; se aplica con parchar2.py (integrado/2026-09-17-parche-auditoria/).",
+ "a1u4l2": {
+  "_por_que": "Los ejercicios añadidos practican esto y la ficha no lo explicaba.",
+  "theory": {
+   "title": "Do y does: el ayudante invisible",
+   "body": "Para negar y para preguntar en presente, el inglés mete un ayudante: **do** (o **does** para he/she/it).\n\n**Negar:** I **don't** work · He **doesn't** work\n**Preguntar:** **Do** you work? · **Does** he work?\n\nLa regla de oro: **cuando aparece do o does, el verbo se queda desnudo**, sin -s.\n\n*He doesn't work**s*** ❌\n*He doesn't work* ✅\n\nLa -s ya se la llevó el does.\n\n**Respuesta corta:** se repite el ayudante, sin el verbo.\n*Do you work?* → *Yes, I **do**.* · *No, I **don't**.*\n*Does she work?* → *Yes, she **does**.* · *No, she **doesn't**.*",
+   "trap": "En español negamos poniendo «no» delante y ya: «él no trabaja». Por eso sale *He no work*. En inglés hace falta el ayudante: **He doesn't work**. Y al preguntar no basta con cambiar la entonación: «¿trabajas?» no es *You work?*, es **Do you work?**"
+  }
+ },
+ "a1u4l3": {
+  "_por_que": "Los ejercicios añadidos practican esto y la ficha no lo explicaba.",
+  "theory": {
+   "title": "Dónde va «siempre» en inglés",
+   "body": "Las palabras de frecuencia — **always** (siempre), **usually** (normalmente), **often** (a menudo), **sometimes** (a veces), **never** (nunca) — tienen un sitio fijo:\n\n**Antes del verbo normal:**\nI **always** drink coffee.\nShe **never** works on Sundays.\n\n**Después del verbo to be:**\nHe **is** always late.\nThey **are** never tired.\n\nRegla corta: *antes del verbo, pero después de am/is/are*. (**sometimes** y **usually** también pueden abrir la frase: *Sometimes I walk to work*. **always** y **never** no abren una frase normal; solo una orden: *Never give up*.)\n\nPara preguntar con qué frecuencia: ***How often** do you go to the gym?* → *Twice a week.*",
+   "trap": "En español el «siempre» se mueve libre: «siempre tomo café», «tomo café siempre». Por eso sale *I drink always coffee*. En inglés no se mete entre el verbo y lo que recibe la acción: **I always drink coffee**."
+  }
+ },
+ "a1u6l1": {
+  "_por_que": "Los ejercicios añadidos practican esto y la ficha no lo explicaba.",
+  "theory": {
+   "title": "El presente continuo: am/is/are + -ing",
+   "body": "Para lo que está pasando **en este momento**, el inglés usa dos piezas:\n\n**am / is / are** + verbo con **-ing**\n\n*I **am eating**.* (Estoy comiendo)\n*She **is working**.* (Ella está trabajando)\n*They **are playing**.* (Están jugando)\n\nPara decir «estoy …-ando», el -ing no va solo. Si no está am, is o are, la frase está rota:\n*I eating* ❌ → *I **am** eating* ✅\n\n**Ortografía del -ing:** la -e final se va (*make → making*); una vocal + una consonante al final dobla la consonante (*sit → sitting*, *shop → shopping*).\n\n**Negativo y pregunta:** *She **isn't** working.* · ***Are** you working?*",
+   "trap": "En español decimos «trabajo ahora» tan tranquilos, con el presente de siempre. Por eso sale *I work now*. En inglés eso significa «ahora tengo trabajo», no «estoy trabajando en este momento». Si es ahora mismo: **I am working now**. El inglés separa lo que haces siempre de lo que estás haciendo en este segundo."
+  }
+ },
+ "a1u7l3": {
+  "_por_que": "Los ejercicios añadidos practican esto y la ficha no lo explicaba.",
+  "theory": {
+   "title": "can: una sola forma para todo",
+   "body": "**can** es de los más fáciles del inglés porque **no cambia nunca**.\n\n*I can · you can · he can · she can · we can · they can*\n\nSin -s, sin do, sin nada.\n\n**Negativo:** can't (*I can't swim.*)\n**Pregunta:** Can you...? (*Can you help me?*)\n\nY lo que va después siempre es el verbo pelado, **sin to**:\n*I can **swim**.* · *Can you **help** me?*\n\nTambién sirve para **pedir permiso**: *Can I sit here?* · *Can I use your phone?*",
+   "trap": "*He cans* ❌ y *Can you to help me?* ❌ son los dos errores. En español «poder» se conjuga («puedo, puedes, puede») y lleva infinitivo detrás, así que la mano quiere escribir to. En inglés can se queda quieto y lo que sigue va desnudo: **Can you help me?**"
+  }
+ },
+ "a1u8l1": {
+  "_por_que": "Los ejercicios añadidos practican esto y la ficha no lo explicaba.",
+  "theory": {
+   "title": "was y were: el pasado de to be",
+   "body": "El pasado de **am/is/are** son solo dos palabras:\n\n**was** → I, he, she, it\n*I **was** tired.* · *She **was** at home.*\n\n**were** → you, we, they\n*You **were** right.* · *They **were** happy.*\n\n**Negativo:** wasn't / weren't\n**Pregunta:** *Were you at the party?* · *Was he there?*\n\n**Respuesta corta:** *Were you tired?* → *Yes, I **was**.* · *No, I **wasn't**.*",
+   "trap": "«Estuve en la fiesta» sale como *I was in the party* — y eso significa que estabas *dentro* del concepto fiesta. Para eventos el inglés usa **at**: **I was at the party**. Lo mismo con at school, at work, at the concert."
+  }
+ },
+ "a1u9l2": {
+  "_por_que": "Los ejercicios añadidos practican esto y la ficha no lo explicaba.",
+  "theory": {
+   "title": "will: lo que decides en el momento",
+   "body": "**will** es para lo que **no** tenías planeado: una decisión que tomas ahora mismo, una promesa, una predicción.\n\n*The phone is ringing. I'**ll** get it.* (lo decides en ese segundo)\n*I think it **will** rain.* (predicción)\n*I **won't** forget.* (promesa)\n\nComo **can**, no cambia nunca: I will, he will, they will. Y lo que sigue va desnudo, sin to.\n\n**will not = won't**\n\nLa diferencia con *going to*: **going to** ya estaba decidido, **will** se decide al hablar.\n\n**Pregunta:** will va delante: ***Will** you help me?* · ***Will** it rain tomorrow?*",
+   "trap": "En español el futuro va pegado al verbo («lloverá», «iré»), así que no hay una palabra suelta que recordar y se olvida el will. Y ojo: *I will to go* ❌ — igual que can, will no lleva to: **I will go**."
+  }
+ }
+}

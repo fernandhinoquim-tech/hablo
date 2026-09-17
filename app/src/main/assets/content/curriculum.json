@@ -32,7 +32,11 @@
                 {"id": "a1u1l1e9", "type": "write", "es": "Soy de Colombia.", "answer": "I'm from Colombia.", "accept": ["I come from Colombia.", "I'm Colombian."], "tip": "Origen: I'm from... (también I come from...). Nunca 'I am of Colombia'."},
                 {"id": "a1u1l1e10", "type": "cloze", "es": "Me llamo Fernando.", "text": "My name ___ Fernando.", "answer": "is", "accept": [], "tip": "'My name is': el nombre 'es', no 'se llama'. Nada de 'My name calls'."},
                 {"id": "a1u1l1e11", "type": "shadow", "text": "Nice to meet you.", "tip": "Cuatro palabras, un solo golpe de voz: NICE-to-MEET-you. Sin parar entre ellas."},
-                {"id": "a1u1l1e12", "type": "minimalPair", "options": ["ship", "sheep"], "answer": "sheep", "sentence": "The sheep is white.", "tip": "sheep es larga y tensa, como «shiiip»; ship es corta y relajada, casi entre i y e. La i española se parece a la de sheep: la nueva es la de ship."}
+                {"id": "a1u1l1e12", "type": "minimalPair", "options": ["ship", "sheep"], "answer": "sheep", "sentence": "The sheep is white.", "tip": "sheep es larga y tensa, como «shiiip»; ship es corta y relajada, casi entre i y e. La i española se parece a la de sheep: la nueva es la de ship."},
+                {"id": "a1u1l1e13", "type": "translate", "es": "Hola, soy Ana.", "options": ["Hi, am Ana.", "Hi, I'm Ana.", "Hi, I is Ana."], "answer": "Hi, I'm Ana.", "accept": ["Hello, I'm Ana.", "Hi, my name is Ana.", "Hello, my name is Ana.", "Hey, I'm Ana.", "Hey, my name is Ana."], "tip": "Hi y Hello son «hola» (Hi es más informal). Después va el sujeto: I'm Ana, nunca «am Ana»."},
+                {"id": "a1u1l1e14", "type": "write", "es": "Nosotros somos de Colombia.", "answer": "We are from Colombia.", "accept": ["We come from Colombia.", "We are Colombian.", "We are Colombians."], "tip": "Con we, you y they el verbo es are: we are, we're."},
+                {"id": "a1u1l1e15", "type": "cloze", "es": "Ellos son mis amigos.", "text": "They ___ my friends.", "answer": "are", "accept": ["'re"], "tip": "they va con are. is es solo para he, she, it."},
+                {"id": "a1u1l1e16", "type": "listen", "audio": "He is my teacher.", "options": ["Is my teacher.", "He is my teacher.", "He are my teacher."], "answer": "He is my teacher.", "tip": "he y she van con is, y el sujeto no se calla: He is…"}
               ]
             },
             {
@@ -76,6 +80,88 @@
                 {"id": "a1u1l3e8", "type": "cloze", "es": "¿De dónde eres?", "text": "Where are you ___?", "answer": "from", "accept": [], "tip": "El from se va al final. No es 'From where are you?'."},
                 {"id": "a1u1l3e9", "type": "write", "es": "Soy colombiano y hablo español.", "answer": "I'm Colombian and I speak Spanish.", "accept": ["I am from Colombia and I speak Spanish.", "I'm Colombian and speak Spanish.", "I'm from Colombia and speak Spanish."], "tip": "Repetir el I es lo más claro. Y al escribir de verdad, Colombian y Spanish van con mayúscula."},
                 {"id": "a1u1l3e10", "type": "shadow", "text": "Where are you from?", "tip": "Se dice pegado, casi «WEAR-a-yu-FROM». No separes palabra por palabra."}
+              ]
+            }
+          ]
+        },
+        {
+          "id": "a1u10",
+          "emoji": "🔤",
+          "title": "Letras, números y el sí/no de be",
+          "subtitle": "Deletrear, contar y preguntar con am/is/are",
+          "lessons": [
+            {
+              "id": "a1u10l1",
+              "title": "El alfabeto y deletrear",
+              "theory": {
+                "title": "Las letras no se llaman como en español",
+                "body": "En inglés cada letra tiene su nombre, y tres vocales engañan:\n\n**A** suena «ei» · **E** suena «i» · **I** suena «ai»\n**O** suena «ou» · **U** suena «iu»\n\nOtras que confunden: **G** «yi» y **J** «yei» · **H** «eich» · **K** «kei» · **Q** «kiu» · **R** «ar» · **W** «dábel iu» · **Y** «uai» · **Z** «zi» (en EE. UU.).\n\nPara pedir las letras: ***How do you spell that?*** · ***Can you spell your name?***\n\nLas letras dobles se dicen con **double**: *Anna → A, double N, A*. También vale nombrarlas dos veces: *A, N, N, A*.",
+                "trap": "Al deletrear, la boca lee A, E, I como vocales españolas, y el otro anota letras equivocadas: si dices «i» pensando en la I, él escribe **E**. En inglés la **E** suena «i» y la **I** suena «ai»: justo al revés de lo que espera el oído español."
+              },
+              "exercises": [
+                {"id": "a1u10l1e1", "type": "listen", "audio": "How do you spell that?", "options": ["How do you spell that?", "How is spelled that?", "How do you call that?"], "answer": "How do you spell that?", "tip": "spell = deletrear. Es la pregunta fija para pedir las letras. «How do you call that?» no existe: se dice What do you call that?"},
+                {"id": "a1u10l1e2", "type": "translate", "es": "¿Cómo se deletrea tu apellido?", "options": ["How do you spell your last name?", "How is spelled your last name?", "How do you call your last name?"], "answer": "How do you spell your last name?", "accept": ["How do you spell your surname?", "How is your last name spelled?", "How is your surname spelled?", "How do you spell your family name?"], "tip": "last name = apellido (lo más americano); surname también se entiende. «Se deletrea» no se traduce palabra por palabra: How do you spell...?"},
+                {"id": "a1u10l1e3", "type": "speak", "text": "How do you spell that?", "sound": "th", "tip": "that empieza con la lengua entre los dientes, suave, como una d soplada. Ni «dat» ni «zat»."},
+                {"id": "a1u10l1e4", "type": "cloze", "es": "La W se llama así en inglés: «dábel iu».", "text": "The letter W is called double ___.", "answer": "u", "accept": [], "tip": "En español la W tiene varios nombres (doble ve, doble u); en inglés es double u, que suena «dábel iu»."},
+                {"id": "a1u10l1e5", "type": "build", "es": "¿Puedes deletrearlo, por favor?", "answer": "Can you spell it, please?", "accept": ["Can you please spell it?", "Please can you spell it?"], "extra": ["to", "is", "spelled"], "tip": "Después de can, el verbo va solo: can you spell, sin to."},
+                {"id": "a1u10l1e6", "type": "listen", "audio": "My name is Anna, with double N.", "options": ["My name is Anna, with double N.", "My name is Anna, with double E.", "My name is Anna, with one N."], "answer": "My name is Anna, with double N.", "tip": "Las letras dobles se dicen con double: double N, double S, double L."},
+                {"id": "a1u10l1e7", "type": "write", "es": "Me llamo Emma, con doble eme.", "answer": "My name is Emma, with double M.", "accept": ["My name is Emma, with a double M.", "My name is Emma, with two M's.", "My name is Emma, with two Ms.", "My name is Emma, double M.", "My name is Emma, spelled with double M.", "My name is Emma, spelled with a double M.", "My name's Emma, with double M.", "My name's Emma, with a double M.", "My name's Emma, with two M's.", "I'm Emma, with double M.", "I'm Emma, with a double M.", "I'm Emma, with two M's.", "I'm Emma, double M.", "My name's Emma, with two Ms.", "My name's Emma, double M.", "I'm Emma, with two Ms.", "My name is Emma, spelled with two M's.", "My name is Emma, spelled with two Ms."], "tip": "Letra doble = double M. Y el nombre no «se llama»: My name is..."},
+                {"id": "a1u10l1e8", "type": "minimalPair", "options": ["E", "I"], "answer": "I", "sentence": "My name starts with I.", "play": "sentence", "tip": "La I inglesa suena «ai» y la E suena «i». Si la I te suena a «i», estás oyendo en español."},
+                {"id": "a1u10l1e9", "type": "type", "audio": "Can you spell that again, please?", "meaning": "¿Puedes deletrear eso otra vez, por favor?", "tip": "again = otra vez. Muy útil cuando no alcanzaste a anotar las letras."},
+                {"id": "a1u10l1e10", "type": "translate", "es": "Se escribe con doble ese.", "options": ["It's spelled with double S.", "Is spelled with double S.", "It's spell with double S."], "answer": "It's spelled with double S.", "accept": ["It's spelled with a double S.", "It's spelled with two S's.", "It's written with double S.", "It's written with a double S.", "It has a double S.", "It has two S's.", "It's spelled with two Ss.", "It's written with two S's.", "It has two Ss."], "tip": "«Se escribe» = It's spelled: el sujeto it no se calla. La letra doble: double S, o two S's."},
+                {"id": "a1u10l1e11", "type": "speak", "text": "Can you spell your name, please?", "sound": "es", "tip": "spell arranca con s pura: nada de «espel». Deja sonar la s y pega la p de una vez."},
+                {"id": "a1u10l1e12", "type": "cloze", "es": "Apple se escribe con doble pe: A, P, P, L, E.", "text": "Apple is spelled with a double ___: A, P, P, L, E.", "answer": "P", "accept": [], "tip": "La P en inglés se dice «pi», y la E del final se dice «i»."},
+                {"id": "a1u10l1e13", "type": "write", "es": "¿Cómo se escribe «Bogotá» en inglés?", "answer": "How do you spell Bogota in English?", "accept": ["How is Bogota spelled in English?", "How do you write Bogota in English?", "How is Bogota written in English?", "How do you spell Bogota in English, please?"], "tip": "Para preguntar por las letras, lo más común es spell: How do you spell...? Y en inglés Bogota se escribe sin tilde."},
+                {"id": "a1u10l1e14", "type": "shadow", "text": "How do you spell your last name?", "tip": "Un solo golpe de voz, con el peso en «SPELL» y en «LAST». Lo demás pasa rápido."}
+              ]
+            },
+            {
+              "id": "a1u10l2",
+              "title": "Números del 0 al 100 y tu teléfono",
+              "theory": {
+                "title": "Thirteen o thirty: el acento decide",
+                "body": "Del 13 al 19 terminan en **-teen** y, dichos solos o al final de la frase, el golpe va al final: *thir**TEEN***, *fif**TEEN***.\nLas decenas terminan en **-ty** y el golpe va al principio: ***THIR**ty*, ***FIF**ty*.\n\nDespués del 20 se unen con guion: *twenty-one, forty-five, ninety-nine*. Y **100** es *a hundred* o *one hundred*.\n\nOjo con la escritura: *four* pero **forty** (sin u); *five* pero **fifteen** y **fifty**; *eight* + teen = **eighteen** (una sola t).\n\nEl teléfono se dice **cifra por cifra**, y el cero suele sonar **oh** (también se oye *zero*): *three one oh, five five five...*\n\nLa pregunta: ***What's your phone number?***",
+                "trap": "En español «trece» y «treinta» no se parecen, así que no cuidamos el acento; en inglés *thirteen* y *thirty* se distinguen casi solo por el golpe y la n final. Si dices «TÉR-tin», te entienden 30. Y el teléfono no se agrupa como en Colombia («trescientos diez, cuarenta y cinco...»): va cifra por cifra."
+              },
+              "exercises": [
+                {"id": "a1u10l2e1", "type": "listen", "audio": "What's your phone number?", "options": ["What's your phone number?", "Which is your phone number?", "What's your number phone?"], "answer": "What's your phone number?", "tip": "«¿Cuál es tu número?» se pregunta con What, no con Which. Y phone va antes de number."},
+                {"id": "a1u10l2e2", "type": "translate", "es": "Son cincuenta dólares.", "options": ["It's fifty dollars.", "It's fifteen dollars.", "Are fifty dollars."], "answer": "It's fifty dollars.", "accept": ["That's fifty dollars.", "That'll be fifty dollars.", "Fifty dollars.", "It costs fifty dollars."], "tip": "Para un precio, It's: el sujeto no se calla. fifty (50) lleva el golpe al inicio; fifteen (15), al final."},
+                {"id": "a1u10l2e3", "type": "speak", "text": "My son is fifteen, not fifty.", "sound": "final", "tip": "fifTEEN con golpe al final y la n bien cerrada; FIFty con golpe al inicio. Esa diferencia es todo el mensaje."},
+                {"id": "a1u10l2e4", "type": "cloze", "es": "Diecinueve, veinte, veintiuno, veintidós.", "text": "Nineteen, twenty, twenty-___, twenty-two.", "answer": "one", "accept": [], "tip": "Después del 20 se pega la unidad con guion: twenty-one, twenty-two."},
+                {"id": "a1u10l2e5", "type": "minimalPair", "options": ["fifteen", "fifty"], "answer": "fifteen", "sentence": "The number is fifteen.", "play": "sentence", "tip": "fifteen tiene el golpe al final y termina en n; fifty tiene el golpe al inicio y termina en «ti»."},
+                {"id": "a1u10l2e6", "type": "type", "audio": "My phone number is three one oh, five five five, two four six eight.", "accept": ["My phone number is three one zero, five five five, two four six eight.", "My phone number is 310-555-2468.", "My phone number is 3105552468.", "My phone number is three one o, five five five, two four six eight."], "meaning": "Mi número de teléfono es tres uno cero, cinco cinco cinco, dos cuatro seis ocho.", "tip": "En un teléfono el cero suele decirse oh, como la letra O (zero también vale)."},
+                {"id": "a1u10l2e7", "type": "listen", "audio": "I'm forty-five.", "options": ["I'm forty-five.", "I'm fifty-four.", "I have forty-five."], "answer": "I'm forty-five.", "tip": "La edad va con I'm, sin have. Y forty se escribe sin u, aunque four sí la lleva."},
+                {"id": "a1u10l2e8", "type": "write", "es": "¿Cuál es tu número de teléfono?", "answer": "What's your phone number?", "accept": ["What's your telephone number?", "What's your cell phone number?", "What's your cell number?", "What's your mobile number?", "What's your number?", "What's your cellphone number?"], "tip": "Con What, no con Which. Y el orden es phone number: primero el tipo, luego la cosa."},
+                {"id": "a1u10l2e9", "type": "translate", "es": "Mi abuela tiene cien años.", "options": ["My grandmother is a hundred years old.", "My grandmother has a hundred years.", "My grandmother is hundred years old."], "answer": "My grandmother is a hundred years old.", "accept": ["My grandmother is a hundred.", "My grandmother's a hundred years old.", "My grandmother's a hundred.", "My grandma is a hundred years old.", "My grandma is a hundred.", "My grandma's a hundred years old.", "My grandma's a hundred."], "tip": "100 = a hundred o one hundred; hundred solo, sin a u one delante, no va. Y la edad se es (is), no se tiene."},
+                {"id": "a1u10l2e10", "type": "speak", "text": "My sister is thirty-three.", "sound": "th", "tip": "Dos th (thirty y three): lengua entre los dientes en cada una. Ni «tirty» ni «sirty»."},
+                {"id": "a1u10l2e11", "type": "cloze", "es": "Mi número es cinco cinco cinco, dos cero uno cuatro.", "text": "My number is five five five, two ___ one four.", "answer": "oh", "accept": ["zero", "o"], "tip": "En teléfonos el cero se dice oh. zero también se entiende, pero oh es lo más común."},
+                {"id": "a1u10l2e12", "type": "build", "es": "Mi hijo tiene trece años.", "answer": "My son is thirteen years old.", "accept": ["My son is thirteen."], "extra": ["has", "thirty", "have"], "tip": "La edad va con is, no con has. thirteen (13) termina en -teen; thirty (30), en -ty."},
+                {"id": "a1u10l2e13", "type": "write", "es": "Mi hermano tiene treinta y cuatro años.", "answer": "My brother is thirty-four years old.", "accept": ["My brother is thirty-four.", "My brother's thirty-four years old.", "My brother's thirty-four."], "tip": "34 = thirty-four, con guion y sin u en thirty. La edad va con is: nada de has."},
+                {"id": "a1u10l2e14", "type": "shadow", "text": "Thirteen, thirty. Fifteen, fifty.", "tip": "Exagera el golpe: thirTEEN, THIRty, fifTEEN, FIFty. Que se note el cambio."}
+              ]
+            },
+            {
+              "id": "a1u10l3",
+              "title": "No soy, ¿eres?",
+              "theory": {
+                "title": "Negar y preguntar con be",
+                "body": "Para negar, **not** va después de am/is/are:\n*I'm **not** tired.* · *She **isn't** here.* · *They **aren't** from Cali.*\n(**isn't** = is not · **aren't** = are not; también se oye *she's not*, *they're not*)\n\nPara preguntar, el verbo **pasa adelante**:\n*You are tired.* → ***Are you** tired?*\n*He is Colombian.* → ***Is he** Colombian?*\n\nLa respuesta corta repite el verbo, no la frase:\n***Yes, I am.*** · ***No, I'm not.*** · ***Yes, she is.*** · ***No, she isn't.***\n\nEn el sí corto no se contrae: *Yes, I'm* ❌ → *Yes, I am* ✅. Y con *I* no hay forma corta con n't: se dice ***I'm not***.",
+                "trap": "En español la pregunta se hace solo con el tono («¿Estás cansado?»), así que sale *You are tired?* ❌ → ***Are you tired?*** ✅ (con tono de sorpresa a veces se oye sin invertir, pero la pregunta normal invierte). Y *Yes, I'm* ❌: la contracción no puede quedar al final de la frase; se dice ***Yes, I am***."
+              },
+              "exercises": [
+                {"id": "a1u10l3e1", "type": "listen", "audio": "Are you tired?", "options": ["Are you tired?", "You are tired?", "Is you tired?"], "answer": "Are you tired?", "tip": "Para preguntar, are pasa adelante: Are you...? Con you siempre are."},
+                {"id": "a1u10l3e2", "type": "translate", "es": "No soy de Medellín.", "options": ["I'm not from Medellin.", "I no am from Medellin.", "I amn't from Medellin."], "answer": "I'm not from Medellin.", "accept": ["I don't come from Medellin."], "tip": "not va después de am: I'm not. En inglés no se niega con no delante del verbo."},
+                {"id": "a1u10l3e3", "type": "speak", "text": "No, she isn't. She's at home.", "sound": "sh", "tip": "she con sh suave y larga, como pidiendo silencio. No «chi»."},
+                {"id": "a1u10l3e4", "type": "cloze", "es": "¿Eres de Colombia? —Sí, lo soy.", "text": "Are you from Colombia? Yes, I ___.", "answer": "am", "accept": [], "tip": "Respuesta corta: Yes, I am. Nunca Yes, I'm: la contracción no va al final."},
+                {"id": "a1u10l3e5", "type": "write", "es": "¿Tu hermana está cansada?", "answer": "Is your sister tired?", "accept": ["Is your sister feeling tired?"], "tip": "Pregunta con be: is va primero. Nada de «Your sister is tired?»."},
+                {"id": "a1u10l3e6", "type": "listen", "audio": "No, I'm not.", "options": ["No, I'm not.", "No, I don't.", "No, I amn't."], "answer": "No, I'm not.", "tip": "Si la pregunta es con are, la respuesta es con am: No, I'm not."},
+                {"id": "a1u10l3e7", "type": "build", "es": "Ellos no están en casa.", "answer": "They aren't at home.", "accept": ["They aren't home."], "extra": ["no", "is", "not"], "tip": "aren't = are not. «En casa» = at home, o solo home."},
+                {"id": "a1u10l3e8", "type": "type", "audio": "Is he Colombian?", "meaning": "¿Él es colombiano?", "tip": "is pasa adelante: Is he...? Y Colombian va con mayúscula."},
+                {"id": "a1u10l3e9", "type": "translate", "es": "¿Ella es de Cali? —No, no es.", "options": ["Is she from Cali? No, she isn't.", "She is from Cali? No, she isn't.", "Is she from Cali? No, she no is."], "answer": "Is she from Cali? No, she isn't.", "accept": ["Does she come from Cali? No, she doesn't."], "tip": "La pregunta invierte (Is she...?) y la respuesta corta repite is: No, she isn't."},
+                {"id": "a1u10l3e10", "type": "speak", "text": "Are you from Spain? No, I'm not.", "sound": "es", "tip": "Spain arranca con s pura, sin e delante: ni «Espain» ni «Espein»."},
+                {"id": "a1u10l3e11", "type": "cloze", "es": "Mis papás no están aquí hoy.", "text": "My parents ___ here today.", "answer": "aren't", "accept": [], "tip": "parents = they, así que aren't. Ojo: parents son los papás; los parientes son relatives."},
+                {"id": "a1u10l3e12", "type": "write", "es": "No estoy cansado, estoy bien.", "answer": "I'm not tired, I'm fine.", "accept": ["I'm not tired, I'm okay.", "I'm not tired, I'm OK.", "I'm not tired, I'm good.", "I'm not tired, I'm well.", "I'm not tired, I'm all right.", "I'm not tired, I'm alright.", "I'm not tired, I feel fine.", "I'm not tired, I feel good.", "I'm not tired, I feel okay."], "tip": "not va después de am. Y el sujeto se repite en cada parte: I'm not..., I'm..."},
+                {"id": "a1u10l3e13", "type": "shadow", "text": "Are you tired? No, I'm not.", "tip": "La pregunta sube al final; la respuesta baja. Dos golpes: «are you TIRED?» / «no, I'm NOT»."}
               ]
             }
           ]
@@ -200,6 +286,86 @@
           ]
         },
         {
+          "id": "a1u11",
+          "emoji": "🧑",
+          "title": "Tú y los demás",
+          "subtitle": "Tener, me/him/them, our/their y cómo es alguien",
+          "lessons": [
+            {
+              "id": "a1u11l1",
+              "title": "Tengo, tiene",
+              "theory": {
+                "title": "have y has",
+                "body": "**Tener** es **have**, y cambia solo con he/she/it:\n*I **have** a car.* · *You **have** two kids.*\n*He **has** a dog.* · *My sister **has** a cat.*\n\nPara preguntar, aprende estas dos enteras (el porqué viene más adelante, en «Tu día a día»):\n***Do you have** a car?* · ***Does she have** kids?*\nFíjate: después de *does* vuelve **have**, no *has*.\n\nPara negar, otro bloque fijo: ***I don't have** a car.* · ***She doesn't have** a car.*\n\nRespuestas cortas: *Yes, I do.* · *No, she doesn't.*",
+                "trap": "*He have a car* ❌ sale porque en español no pensamos en que «tener» cambie con él o ella; en inglés con he/she/it va **has**. Y *Have you a car?* ❌ copia la pregunta de be y hoy suena a libro viejo: lo normal es ***Do you have a car?***"
+              },
+              "exercises": [
+                {"id": "a1u11l1e1", "type": "listen", "audio": "My brother has a new car.", "options": ["My brother has a new car.", "My brother have a new car.", "My brother has a car new."], "answer": "My brother has a new car.", "tip": "My brother = he, así que has. Y el adjetivo va antes: a new car."},
+                {"id": "a1u11l1e2", "type": "translate", "es": "¿Tienes carro?", "options": ["Do you have a car?", "Have you a car?", "Do you has a car?"], "answer": "Do you have a car?", "accept": ["Have you got a car?", "Do you own a car?"], "tip": "La pregunta normal es Do you have...? Y car lleva a, aunque en español digamos «carro» sin artículo."},
+                {"id": "a1u11l1e3", "type": "speak", "text": "He has a house in Bogota.", "sound": "h", "tip": "Tres h seguidas (he, has, house): un soplo suave, como empañando un vidrio. Ni muda ni como j."},
+                {"id": "a1u11l1e4", "type": "cloze", "es": "Mi mamá tiene tres hermanas.", "text": "My mother ___ three sisters.", "answer": "has", "accept": [], "tip": "My mother = she, así que has."},
+                {"id": "a1u11l1e5", "type": "write", "es": "No tengo carro.", "answer": "I don't have a car.", "accept": ["I haven't got a car.", "I don't own a car.", "I have no car."], "tip": "I don't have: apréndelo como bloque. Nada de «I no have» ni «I haven't a car»."},
+                {"id": "a1u11l1e6", "type": "type", "audio": "Does she have children?", "meaning": "¿Ella tiene hijos?", "tip": "Después de does, have se queda igual: nada de «does she has»."},
+                {"id": "a1u11l1e7", "type": "build", "es": "Mi papá tiene dos perros.", "answer": "My dad has two dogs.", "extra": ["have", "is", "dog"], "tip": "My dad = he: has. Y dos perros, con -s: dogs."},
+                {"id": "a1u11l1e8", "type": "listen", "audio": "Do you have a pen?", "options": ["Do you have a pen?", "Have you a pen?", "You have a pen?"], "answer": "Do you have a pen?", "tip": "Con have, la pregunta arranca con Do. No se le da la vuelta como a be."},
+                {"id": "a1u11l1e9", "type": "translate", "es": "Ella tiene una hermana y dos hermanos.", "options": ["She has a sister and two brothers.", "She have a sister and two brothers.", "She has one sister and two brother."], "answer": "She has a sister and two brothers.", "accept": ["She has one sister and two brothers.", "She's got a sister and two brothers.", "She's got one sister and two brothers."], "tip": "She: has. Y two brothers con -s."},
+                {"id": "a1u11l1e10", "type": "speak", "text": "Do you have a big family?", "sound": "v", "tip": "have termina en v: los dientes de arriba tocan el labio de abajo. No «jab»."},
+                {"id": "a1u11l1e11", "type": "cloze", "es": "¿Tu hermano tiene trabajo?", "text": "___ your brother have a job?", "answer": "Does", "accept": [], "tip": "Con he/she (your brother) la pregunta es Does... have? Y have se queda sin s."},
+                {"id": "a1u11l1e12", "type": "write", "es": "¿Tienes hermanos?", "answer": "Do you have brothers or sisters?", "accept": ["Do you have any brothers or sisters?", "Do you have brothers and sisters?", "Do you have any brothers and sisters?", "Do you have siblings?", "Do you have any siblings?", "Do you have brothers?", "Do you have any brothers?", "Have you got any brothers or sisters?", "Have you got brothers or sisters?", "Have you got any siblings?", "Have you got siblings?", "Have you got any brothers?", "Have you got brothers?"], "tip": "«Hermanos» mezclados = brothers or sisters, o siblings. Y la pregunta va con Do you have."},
+                {"id": "a1u11l1e13", "type": "shadow", "text": "Does she have kids? No, she doesn't.", "tip": "La pregunta sube al final; la respuesta es corta: «no, she DOESN'T»."}
+              ]
+            },
+            {
+              "id": "a1u11l2",
+              "title": "Me, him, her, us, them",
+              "theory": {
+                "title": "Después del verbo, otra forma",
+                "body": "Después de un verbo o de una preposición, el pronombre cambia:\n**I → me** · **he → him** · **she → her** · **we → us** · **they → them** (*you* e *it* no cambian)\n*Call **me**.* · *I love **her**.* · *with **him*** · *for **them***\n\nPara decir de quién es algo:\n**my · your · his · her · its · our · their**\n*our house* · ***their** car* (el carro de ellos)\n\n«Su» puede ser *his, her, its, their* o *your*: lo decide el **dueño**, no la cosa: *Ana and **her** brother* (Ana y su hermano).\n\n**its** (de una cosa o un animal) va sin apóstrofo; ***it's*** es *it is*.",
+                "trap": "Después de preposición el español usa la misma forma del sujeto («con ella», «para él»), y sale *with she* ❌ → ***with her*** ✅; y como «la amo» lleva el pronombre antes, sale *I love she* ❌ → ***I love her*** ✅. Tampoco lleva «a»: *Call to me* ❌ → ***Call me***. Y ***their*** (de ellos), ***there*** (allí) y ***they're*** (ellos son) suenan igual: solo se distinguen al escribir."
+              },
+              "exercises": [
+                {"id": "a1u11l2e1", "type": "listen", "audio": "I love her.", "options": ["I love her.", "I love she.", "I love here."], "answer": "I love her.", "tip": "Después del verbo, she se vuelve her."},
+                {"id": "a1u11l2e2", "type": "translate", "es": "Llámame mañana.", "options": ["Call me tomorrow.", "Call to me tomorrow.", "Call I tomorrow."], "answer": "Call me tomorrow.", "accept": ["Give me a call tomorrow.", "Phone me tomorrow."], "tip": "call va pegado a la persona, sin to: call me, call her."},
+                {"id": "a1u11l2e3", "type": "speak", "text": "Their house is near here.", "sound": "th", "tip": "their arranca con la lengua entre los dientes, suave. Y suena igual que there."},
+                {"id": "a1u11l2e4", "type": "cloze", "es": "Esta es mi amiga Ana. Trabajo con ella.", "text": "This is my friend Ana. I work with ___.", "answer": "her", "accept": [], "tip": "Después de with va la forma de objeto: with her, no with she."},
+                {"id": "a1u11l2e5", "type": "write", "es": "Su casa (la de ellos) es muy grande.", "answer": "Their house is very big.", "accept": ["Their house is really big.", "Their house is very large.", "Their house is really large.", "Their home is very big.", "Their home is really big.", "Their home is very large.", "Their house is huge.", "Their home is really large.", "Their home is huge."], "tip": "De ellos = their. Se escribe distinto de there (allí) y they're (ellos son)."},
+                {"id": "a1u11l2e6", "type": "build", "es": "Mis papás viven con nosotros.", "answer": "My parents live with us.", "extra": ["we", "them", "lives"], "tip": "Después de with, we se vuelve us."},
+                {"id": "a1u11l2e7", "type": "type", "audio": "Their children are with us.", "meaning": "Sus hijos (los de ellos) están con nosotros.", "tip": "Suena «der», pero «de ellos» se escribe their."},
+                {"id": "a1u11l2e8", "type": "translate", "es": "El perro está en su cama.", "options": ["The dog is in its bed.", "The dog is in it's bed.", "The dog is in it bed."], "answer": "The dog is in its bed.", "accept": ["The dog's in its bed.", "The dog is in his bed.", "The dog is in her bed.", "The dog is on its bed.", "The dog's on its bed.", "The dog is on his bed.", "The dog is on her bed.", "The dog is in their bed."], "tip": "its sin apóstrofo = su (de una cosa o animal); it's = it is. Con mascotas también se oye his o her."},
+                {"id": "a1u11l2e9", "type": "listen", "audio": "Our house is small.", "options": ["Our house is small.", "Us house is small.", "We house is small."], "answer": "Our house is small.", "tip": "Nuestro = our. us es «nos» o «nosotros» después de un verbo."},
+                {"id": "a1u11l2e10", "type": "speak", "text": "Can you help us with this?", "sound": "h", "tip": "help con la h soplada, suave. Y us va después del verbo."},
+                {"id": "a1u11l2e11", "type": "cloze", "es": "A mi hermano y a mí nos encanta nuestro apartamento nuevo.", "text": "My brother and I love ___ new apartment.", "answer": "our", "accept": [], "tip": "Nuestro = our. Y el adjetivo va antes: new apartment."},
+                {"id": "a1u11l2e12", "type": "write", "es": "¿Puedes llamarlos hoy?", "answer": "Can you call them today?", "accept": ["Could you call them today?", "Can you phone them today?", "Could you phone them today?", "Can you give them a call today?", "Could you give them a call today?"], "tip": "«Llamarlos» = call them. En inglés el pronombre va después del verbo y separado."},
+                {"id": "a1u11l2e13", "type": "shadow", "text": "Is this for me or for them?", "tip": "El peso cae en «ME» y en «THEM». Lo demás pasa rápido."}
+              ]
+            },
+            {
+              "id": "a1u11l3",
+              "title": "¿Cómo es?",
+              "theory": {
+                "title": "Pelo largo, ojos cafés... al revés",
+                "body": "Para describir a alguien se usan dos verbos:\n**be** para cómo es: *He's **tall**.* · *She's **young**.* · *He's **friendly** and **funny**.*\n**have** para lo que tiene: *She **has** long hair.* · *He **has** brown eyes.*\n\nEl adjetivo va **antes** del sustantivo y no lleva -s: *long hair* · *brown eyes* (no *eyes browns*).\n\n*hair*, cuando es todo el pelo, va sin *the* y sin -s. Si van varios adjetivos: largo → forma → color: *She has **long curly black hair**.*\n\nBajito = **short** (no *low*).\n\nLa pregunta fija: ***What does he look like?*** (¿Cómo es físicamente?). Para la manera de ser: ***What is he like?***",
+                "trap": "*She has the hair long* ❌ y *He has eyes blues* ❌ copian el orden del español (el pelo largo, ojos azules) y el plural del adjetivo. En inglés el tamaño y el color van delante y no cambian: ***She has long hair***, ***He has blue eyes***. Y *She is long hair* ❌: el pelo se **tiene**."
+              },
+              "exercises": [
+                {"id": "a1u11l3e1", "type": "listen", "audio": "She has long hair.", "options": ["She has long hair.", "She has the hair long.", "She is long hair."], "answer": "She has long hair.", "tip": "El pelo se tiene (has), sin the, y long va antes de hair."},
+                {"id": "a1u11l3e2", "type": "translate", "es": "Él tiene los ojos azules.", "options": ["He has blue eyes.", "He has the eyes blues.", "He has eyes blue."], "answer": "He has blue eyes.", "accept": ["He's got blue eyes."], "tip": "Color antes y sin -s: blue eyes. Y sin the."},
+                {"id": "a1u11l3e3", "type": "speak", "text": "She has short black hair.", "sound": "sh", "tip": "she y short arrancan con sh suave, como pidiendo silencio. No «chi» ni «chort»."},
+                {"id": "a1u11l3e4", "type": "cloze", "es": "¿Cómo es tu hermana (físicamente)?", "text": "What does your sister look ___?", "answer": "like", "accept": [], "tip": "Pregunta fija: What does she look like? El like va al final."},
+                {"id": "a1u11l3e5", "type": "write", "es": "Mi hermano es alto y tiene el pelo corto.", "answer": "My brother is tall and has short hair.", "accept": ["My brother is tall and he has short hair.", "My brother's tall and has short hair.", "My brother's tall and he has short hair.", "My brother is tall with short hair.", "My brother's tall with short hair.", "My brother is tall and has got short hair.", "My brother is tall and he's got short hair.", "My brother's tall and has got short hair."], "tip": "Alto se es (is tall); el pelo se tiene (has short hair), sin the."},
+                {"id": "a1u11l3e6", "type": "type", "audio": "He is very friendly and funny.", "meaning": "Él es muy amable y chistoso.", "tip": "funny = chistoso, divertido. friendly = amable, simpático."},
+                {"id": "a1u11l3e7", "type": "listen", "audio": "He has brown eyes.", "options": ["He has brown eyes.", "He has eyes browns.", "He is brown eyes."], "answer": "He has brown eyes.", "tip": "Ojos cafés = brown eyes: el color primero y sin -s."},
+                {"id": "a1u11l3e8", "type": "build", "es": "Ella tiene el pelo largo y rizado.", "answer": "She has long curly hair.", "extra": ["the", "is", "hairs"], "tip": "Primero el largo, luego la forma: long curly hair. Sin the y sin -s."},
+                {"id": "a1u11l3e9", "type": "translate", "es": "Es un poco tímido, pero muy amable.", "options": ["He's a little shy, but very kind.", "He's a little shy, but very kinds.", "Is a little shy, but very kind."], "answer": "He's a little shy, but very kind.", "accept": ["He's a bit shy, but very kind.", "He's a little shy, but very nice.", "He's a little shy, but very friendly.", "He's a bit shy, but very nice.", "He's a bit shy, but very friendly."], "tip": "El sujeto no se calla (He's) y el adjetivo no lleva -s."},
+                {"id": "a1u11l3e10", "type": "speak", "text": "What does he look like?", "sound": "final", "tip": "look y like terminan en k: ciérrala, que se note."},
+                {"id": "a1u11l3e11", "type": "cloze", "es": "Mi papá tiene los ojos verdes.", "text": "My dad has ___ eyes.", "answer": "green", "accept": [], "tip": "El color va antes del sustantivo y sin -s: green eyes."},
+                {"id": "a1u11l3e12", "type": "write", "es": "Mi mamá es bajita y tiene los ojos cafés.", "answer": "My mom is short and has brown eyes.", "accept": ["My mom is short and she has brown eyes.", "My mom's short and has brown eyes.", "My mom's short and she has brown eyes.", "My mother is short and has brown eyes.", "My mother is short and she has brown eyes.", "My mother's short and has brown eyes.", "My mother's short and she has brown eyes.", "My mom is short with brown eyes.", "My mother is short with brown eyes.", "My mom's short with brown eyes.", "My mother's short with brown eyes."], "tip": "Baja de estatura = short (no low). Y los ojos se tienen: has brown eyes."},
+                {"id": "a1u11l3e13", "type": "shadow", "text": "My friend is young and has blond hair.", "tip": "Dos bloques: «my friend is YOUNG» / «and has BLOND hair»."}
+              ]
+            }
+          ]
+        },
+        {
           "id": "a1u4",
           "emoji": "⏰",
           "title": "Tu día a día",
@@ -225,7 +391,11 @@
                 {"id": "a1u4l1e9", "type": "cloze", "es": "Ella trabaja en un hospital.", "text": "She ___ in a hospital.", "answer": "works", "accept": [], "tip": "she lleva la -s: works."},
                 {"id": "a1u4l1e10", "type": "write", "es": "Mi hermano estudia inglés todos los días.", "answer": "My brother studies English every day.", "accept": ["My brother studies English daily.", "Every day my brother studies English."], "tip": "Consonante + y cambia a -ies: study → studies. Y English va con mayúscula (la app no te lo marca, pero en un correo sí se nota)."},
                 {"id": "a1u4l1e11", "type": "shadow", "text": "He speaks Spanish every day.", "tip": "Cinco palabras seguidas, sin pausa. Fíjate que speaks y Spanish arrancan con s pura."},
-                {"id": "a1u4l1e12", "type": "minimalPair", "options": ["live", "leave"], "answer": "leave", "sentence": "I leave at six.", "tip": "leave es larga y tensa («liiiv»); live es corta y relajada, casi «lev». Cambian el significado por completo."}
+                {"id": "a1u4l1e12", "type": "minimalPair", "options": ["live", "leave"], "answer": "leave", "sentence": "I leave at six.", "tip": "leave es larga y tensa («liiiv»); live es corta y relajada, casi «lev». Cambian el significado por completo."},
+                {"id": "a1u4l1e13", "type": "cloze", "es": "Él tiene dos hijos.", "text": "He ___ two children.", "answer": "has", "accept": [], "tip": "have es irregular: con he, she, it no es «haves», es has."},
+                {"id": "a1u4l1e14", "type": "write", "es": "Ella ve televisión por la noche.", "answer": "She watches TV at night.", "accept": ["She watches television at night.", "She watches TV in the evening.", "She watches television in the evening.", "She watches TV in the evenings.", "At night she watches TV.", "In the evening she watches TV.", "She watches television in the evenings.", "At night she watches television.", "In the evening she watches television."], "tip": "watch termina en -ch, así que lleva -es: watches (suena «wáchis», con una sílaba de más)."},
+                {"id": "a1u4l1e15", "type": "translate", "es": "Mi papá va al trabajo en bus.", "options": ["My dad go to work by bus.", "My dad goes to work by bus.", "My dad goes to the work by bus."], "answer": "My dad goes to work by bus.", "accept": ["My father goes to work by bus.", "My dad takes the bus to work.", "My father takes the bus to work.", "My dad goes to work on the bus.", "My father goes to work on the bus.", "My dad takes a bus to work.", "My father takes a bus to work."], "tip": "go con he/she lleva -es: goes. Y «al trabajo» es to work, sin the."},
+                {"id": "a1u4l1e16", "type": "speak", "text": "She has a big house.", "sound": "h", "tip": "has y house empiezan con h aspirada: un soplo suave, no una jota."}
               ]
             },
             {
@@ -233,7 +403,7 @@
               "title": "Lo que no haces y lo que preguntas",
               "theory": {
                 "title": "Do y does: el ayudante invisible",
-                "body": "Para negar y para preguntar en presente, el inglés mete un ayudante: **do** (o **does** para he/she/it).\n\n**Negar:** I **don't** work · He **doesn't** work\n**Preguntar:** **Do** you work? · **Does** he work?\n\nLa regla de oro: **cuando aparece do o does, el verbo se queda desnudo**, sin -s.\n\n*He doesn't work**s*** ❌\n*He doesn't work* ✅\n\nLa -s ya se la llevó el does.",
+                "body": "Para negar y para preguntar en presente, el inglés mete un ayudante: **do** (o **does** para he/she/it).\n\n**Negar:** I **don't** work · He **doesn't** work\n**Preguntar:** **Do** you work? · **Does** he work?\n\nLa regla de oro: **cuando aparece do o does, el verbo se queda desnudo**, sin -s.\n\n*He doesn't work**s*** ❌\n*He doesn't work* ✅\n\nLa -s ya se la llevó el does.\n\n**Respuesta corta:** se repite el ayudante, sin el verbo.\n*Do you work?* → *Yes, I **do**.* · *No, I **don't**.*\n*Does she work?* → *Yes, she **does**.* · *No, she **doesn't**.*",
                 "trap": "En español negamos poniendo «no» delante y ya: «él no trabaja». Por eso sale *He no work*. En inglés hace falta el ayudante: **He doesn't work**. Y al preguntar no basta con cambiar la entonación: «¿trabajas?» no es *You work?*, es **Do you work?**"
               },
               "exercises": [
@@ -247,7 +417,11 @@
                 {"id": "a1u4l2e8", "type": "speak", "text": "Do you have a phone?", "sound": "h", "tip": "La h de have se sopla de verdad. En español la h es muda; aquí no."},
                 {"id": "a1u4l2e9", "type": "cloze", "es": "Ella no come carne.", "text": "She ___ eat meat.", "answer": "doesn't", "accept": [], "tip": "doesn't con she. Y eat se queda sin -s porque el doesn't ya la tiene."},
                 {"id": "a1u4l2e10", "type": "write", "es": "¿Hablas inglés?", "answer": "Do you speak English?", "accept": ["Can you speak English?"], "tip": "La pregunta necesita el ayudante Do. No basta con el tono."},
-                {"id": "a1u4l2e11", "type": "shadow", "text": "I don't understand.", "tip": "Tres palabras que valen oro. «I don't unnerSTAND», con el peso al final."}
+                {"id": "a1u4l2e11", "type": "shadow", "text": "I don't understand.", "tip": "Tres palabras que valen oro. «I don't unnerSTAND», con el peso al final."},
+                {"id": "a1u4l2e12", "type": "write", "es": "¿Tu hermano trabaja aquí?", "answer": "Does your brother work here?", "accept": [], "tip": "Tu hermano = he, así que la pregunta lleva Does, y work se queda sin -s."},
+                {"id": "a1u4l2e13", "type": "cloze", "es": "—¿Tienes carro? —Sí, tengo.", "text": "Do you have a car? Yes, I ___.", "answer": "do", "accept": ["have one"], "tip": "La respuesta corta repite el ayudante de la pregunta: Do you…? → Yes, I do. «Yes, I have» a secas no se dice así; o Yes, I do, o Yes, I have one."},
+                {"id": "a1u4l2e14", "type": "translate", "es": "(A «¿Ella trabaja los sábados?») No, no trabaja.", "options": ["No, she doesn't.", "No, she don't.", "No, she isn't."], "answer": "No, she doesn't.", "accept": ["No, she doesn't work.", "No, she doesn't work on Saturdays.", "No, she doesn't work Saturdays.", "No, she doesn't work on Saturday."], "tip": "Si la pregunta es con Does, la respuesta corta también: No, she doesn't. isn't sería para una pregunta con Is."},
+                {"id": "a1u4l2e15", "type": "build", "es": "¿Tu hermana vive en Bogotá?", "answer": "Does your sister live in Bogota?", "extra": ["lives", "do", "is"], "tip": "Does va al principio y se lleva la -s: Does… live, no «Does… lives»."}
               ]
             },
             {
@@ -255,7 +429,7 @@
               "title": "Siempre, a veces, nunca",
               "theory": {
                 "title": "Dónde va «siempre» en inglés",
-                "body": "Las palabras de frecuencia — **always** (siempre), **usually** (normalmente), **often** (a menudo), **sometimes** (a veces), **never** (nunca) — tienen un sitio fijo:\n\n**Antes del verbo normal:**\nI **always** drink coffee.\nShe **never** works on Sundays.\n\n**Después del verbo to be:**\nHe **is** always late.\nThey **are** never tired.\n\nRegla corta: *antes del verbo, pero después de am/is/are*. (**sometimes** y **usually** también pueden abrir la frase: *Sometimes I walk to work*. **always** y **never** no abren una frase normal; solo una orden: *Never give up*.)",
+                "body": "Las palabras de frecuencia — **always** (siempre), **usually** (normalmente), **often** (a menudo), **sometimes** (a veces), **never** (nunca) — tienen un sitio fijo:\n\n**Antes del verbo normal:**\nI **always** drink coffee.\nShe **never** works on Sundays.\n\n**Después del verbo to be:**\nHe **is** always late.\nThey **are** never tired.\n\nRegla corta: *antes del verbo, pero después de am/is/are*. (**sometimes** y **usually** también pueden abrir la frase: *Sometimes I walk to work*. **always** y **never** no abren una frase normal; solo una orden: *Never give up*.)\n\nPara preguntar con qué frecuencia: ***How often** do you go to the gym?* → *Twice a week.*",
                 "trap": "En español el «siempre» se mueve libre: «siempre tomo café», «tomo café siempre». Por eso sale *I drink always coffee*. En inglés no se mete entre el verbo y lo que recibe la acción: **I always drink coffee**."
               },
               "exercises": [
@@ -270,7 +444,90 @@
                 {"id": "a1u4l3e9", "type": "cloze", "es": "Normalmente trabajo en casa.", "text": "I ___ work at home.", "answer": "usually", "accept": ["normally", "generally"], "tip": "usually va antes del verbo, igual que always."},
                 {"id": "a1u4l3e10", "type": "write", "es": "Ella nunca trabaja los domingos.", "answer": "She never works on Sundays.", "accept": ["She never works on Sunday.", "She never works Sundays.", "She doesn't ever work on Sundays."], "tip": "never antes del verbo, works con -s, y los días con on."},
                 {"id": "a1u4l3e11", "type": "shadow", "text": "She is always late.", "tip": "El peso cae en «LATE». Di las cuatro palabras completas, sin contraer."},
-                {"id": "a1u4l3e12", "type": "minimalPair", "options": ["watch", "wash"], "answer": "wash", "sentence": "I wash my hands.", "tip": "wash termina en sh («shhh»); watch termina en ch. Nosotros las mezclamos."}
+                {"id": "a1u4l3e12", "type": "minimalPair", "options": ["watch", "wash"], "answer": "wash", "sentence": "I wash my hands.", "tip": "wash termina en sh («shhh»); watch termina en ch. Nosotros las mezclamos."},
+                {"id": "a1u4l3e13", "type": "cloze", "es": "A menudo voy al cine.", "text": "I ___ go to the movies.", "answer": "often", "accept": ["frequently"], "tip": "often (a menudo) va antes del verbo, como always. Muchos no pronuncian la t («ófen»), aunque otros sí: las dos formas son correctas."},
+                {"id": "a1u4l3e14", "type": "write", "es": "¿Con qué frecuencia vas al gimnasio?", "answer": "How often do you go to the gym?", "accept": ["How frequently do you go to the gym?"], "tip": "«¿Con qué frecuencia…?» es How often…? y después va la pregunta normal con do."},
+                {"id": "a1u4l3e15", "type": "translate", "es": "Ella cocina en casa a menudo.", "options": ["She often cooks at home.", "She often cook at home.", "She is often cook at home."], "answer": "She often cooks at home.", "accept": ["She cooks at home often.", "She frequently cooks at home.", "She cooks at home a lot."], "tip": "often no le quita la -s al verbo: She often cooks. Y no hace falta is."}
+              ]
+            }
+          ]
+        },
+        {
+          "id": "a1u12",
+          "emoji": "📅",
+          "title": "La hora, las fechas y el clima",
+          "subtitle": "What time is it?, meses, cumpleaños y estaciones",
+          "lessons": [
+            {
+              "id": "a1u12l1",
+              "title": "¿Qué hora es?",
+              "theory": {
+                "title": "La hora es «it», en singular",
+                "body": "Para la hora, el inglés usa **it** y **is**, aunque en español digamos «son las siete»: ***What time is it?*** → ***It's seven o'clock.***\n\n**o'clock** solo va con la hora en punto. Lo demás se dice hora + minutos: *seven thirty* (7:30), *seven fifteen* (7:15). También se oye *a quarter after seven* (7:15) y *ten to eight* (7:50).\n\n**at** + hora, sin artículo: *I get up **at** six.* Para un horario: ***from** nine **to** five*.\n\nPartes del día: *in the morning*, *in the afternoon*, *in the evening*, pero ***at night***.\n\n*noon* = las doce del día · *midnight* = las doce de la noche.",
+                "trap": "«Son las siete» va en plural y sin sujeto, y por eso sale *Are the seven* o *Is seven*. En inglés la hora es una sola cosa y lleva sujeto: **It's seven**. Y a la hora no se le pone artículo: *at the 8* ❌ → **at 8** ✅."
+              },
+              "exercises": [
+                {"id": "a1u12l1e1", "type": "listen", "audio": "It's seven thirty.", "options": ["It's seven thirty.", "Are the seven thirty.", "It's eleven thirty."], "answer": "It's seven thirty.", "tip": "La hora va con It's, en singular. Y 7:30 se dice seven thirty: primero la hora, luego los minutos."},
+                {"id": "a1u12l1e2", "type": "translate", "es": "¿Qué hora es?", "options": ["What time is it?", "What hour is it?", "What time it is?"], "answer": "What time is it?", "accept": ["What's the time?", "Do you have the time?"], "tip": "time es la hora del reloj; hour es una hora de duración (sesenta minutos). Y en la pregunta, is va antes de it."},
+                {"id": "a1u12l1e3", "type": "speak", "text": "It's seven o'clock in the morning.", "sound": "final", "tip": "o'clock suena «a-CLOK»: que se oiga la k del final."},
+                {"id": "a1u12l1e4", "type": "cloze", "es": "Me levanto a las seis y media.", "text": "I get up ___ six thirty.", "answer": "at", "accept": [], "tip": "Con la hora va at, sin the: at six thirty."},
+                {"id": "a1u12l1e5", "type": "write", "es": "Son las siete y media.", "answer": "It's seven thirty.", "accept": ["It's 7:30.", "It's half past seven."], "tip": "Hora y luego minutos: seven thirty. Half past seven también está bien, pero en Estados Unidos se oye más seven thirty."},
+                {"id": "a1u12l1e6", "type": "minimalPair", "options": ["thirteen", "thirty"], "answer": "thirty", "sentence": "The bus leaves at two thirty.", "play": "sentence", "tip": "thirty lleva la fuerza al principio («THIR-di»); thirteen, al final («thir-TIIN»)."},
+                {"id": "a1u12l1e7", "type": "build", "es": "Trabajo de nueve a cinco.", "answer": "I work from nine to five.", "accept": ["I work nine to five."], "extra": ["at", "the", "in"], "tip": "Para un horario: from ... to ..., sin the y sin at."},
+                {"id": "a1u12l1e8", "type": "listen", "audio": "The class is at noon.", "options": ["The class is at noon.", "The class is at the noon.", "The class is at night."], "answer": "The class is at noon.", "tip": "noon es el mediodía y va sin the. night es la noche."},
+                {"id": "a1u12l1e9", "type": "type", "audio": "What time do you get up?", "meaning": "¿A qué hora te levantas?", "tip": "What time do you...? es la forma normal de preguntar «¿a qué hora...?». El at del principio casi nunca se dice."},
+                {"id": "a1u12l1e10", "type": "speak", "text": "I have lunch at noon.", "sound": "h", "tip": "have lleva una h de aire, como un suspiro: ni «jav» con j fuerte, ni «av»."},
+                {"id": "a1u12l1e11", "type": "translate", "es": "Ella trabaja por la noche.", "options": ["She works at night.", "She works in the night.", "She works on the night."], "answer": "She works at night.", "accept": ["She works nights.", "She works at nighttime.", "She works during the night."], "tip": "in the morning, in the afternoon, in the evening... pero at night."},
+                {"id": "a1u12l1e12", "type": "write", "es": "¿A qué hora empieza la clase?", "answer": "What time does the class start?", "accept": ["What time does class start?", "When does the class start?", "When does class start?", "What time does the class begin?", "What time does class begin?", "When does the class begin?", "When does class begin?", "At what time does the class start?", "At what time does class start?", "At what time does the class begin?", "At what time does class begin?", "What time does the lesson start?", "What time does the lesson begin?", "When does the lesson start?", "When does the lesson begin?"], "tip": "does porque la clase es it, y start se queda sin -s porque ya está does."},
+                {"id": "a1u12l1e13", "type": "shadow", "text": "What time is it? It's midnight.", "tip": "midnight suena «MID-nait»: las doce de la noche. Las doce del día son noon."}
+              ]
+            },
+            {
+              "id": "a1u12l2",
+              "title": "Fechas y cumpleaños",
+              "theory": {
+                "title": "El día es «tercero», no «tres»",
+                "body": "Los meses siempre van con **mayúscula**: *January, February, March, April, May, June, July, August, September, October, November, December*.\n\nEl día se dice con **ordinal**: *first, second, third, fourth, fifth… twenty-first… thirty-first*. Escrito: **1st, 2nd, 3rd**, aunque en EE. UU. suele escribirse *May 3* (se lee *May third*).\n\n**on** + fecha: *on May third* · **in** + mes o año solo: *in May*, *in 2026*.\n\n*When is your birthday?* → *It's on May third.*\n\nEn Estados Unidos el mes va primero: **5/3 = May 3** (no el 5 de marzo).\n\nLos años se leen de dos en dos: *1990* = *nineteen ninety* · *2026* = *twenty twenty-six*. Del 2000 al 2009 no: *2005* = *two thousand five*.",
+                "trap": "Pensamos «el tres de mayo» y sale *the three of May* o *in May 3*. En inglés el día es un ordinal (**third**, no *three*) y la fecha completa va con **on**: **on May third**. El *in* es solo para el mes o el año sin día."
+              },
+              "exercises": [
+                {"id": "a1u12l2e1", "type": "listen", "audio": "My birthday is on May third.", "options": ["My birthday is on May third.", "My birthday is in May three.", "My birthday is on May thirty."], "answer": "My birthday is on May third.", "tip": "Fecha completa → on, y el día es ordinal: third, no three."},
+                {"id": "a1u12l2e2", "type": "translate", "es": "¿Cuándo es tu cumpleaños?", "options": ["When is your birthday?", "When your birthday is?", "How is your birthday?"], "answer": "When is your birthday?", "accept": ["What day is your birthday?", "What's the date of your birthday?"], "tip": "Pregunta con when, y is va antes de your birthday."},
+                {"id": "a1u12l2e3", "type": "speak", "text": "My birthday is on August third.", "sound": "th", "tip": "birthday y third llevan th: la lengua entre los dientes. Ni «birday» ni «tird»."},
+                {"id": "a1u12l2e4", "type": "cloze", "es": "Mi cumpleaños es en junio.", "text": "My birthday is ___ June.", "answer": "in", "accept": [], "tip": "Mes solo → in: in June. Con día → on: on June fifth."},
+                {"id": "a1u12l2e5", "type": "write", "es": "Mi cumpleaños es el tres de mayo.", "answer": "My birthday is on May third.", "accept": ["My birthday is May third.", "My birthday is on May 3rd.", "My birthday is May 3rd.", "My birthday is on May the third.", "My birthday is on the third of May.", "My birthday is the third of May.", "My birthday is on the 3rd of May.", "My birthday is the 3rd of May.", "My birthday's on May third.", "My birthday's May third.", "My birthday is May the third."], "tip": "Fecha → on + mes + ordinal: on May third. Escrito también vale May 3rd. (Aquí escribe el día con letras o con -st/-nd/-rd/-th: May 3rd.)"},
+                {"id": "a1u12l2e6", "type": "build", "es": "Hoy es primero de junio.", "answer": "Today is June first.", "accept": ["Today is June the first.", "June first is today."], "extra": ["one", "in", "the"], "tip": "El día es ordinal: first, no one. Y el mes va primero."},
+                {"id": "a1u12l2e7", "type": "listen", "audio": "School starts in September.", "options": ["School starts in September.", "School starts on September.", "School starts in December."], "answer": "School starts in September.", "tip": "Mes solo → in September. Y los meses van con mayúscula."},
+                {"id": "a1u12l2e8", "type": "type", "audio": "The trip is in twenty twenty-seven.", "accept": ["The trip is in 2027."], "meaning": "El viaje es en 2027.", "tip": "Los años se leen de dos en dos: twenty twenty-seven. Con número también vale: 2027."},
+                {"id": "a1u12l2e9", "type": "speak", "text": "Today is June twenty-first.", "sound": "final", "tip": "first termina en «st»: que se oigan las dos, no «firs»."},
+                {"id": "a1u12l2e10", "type": "translate", "es": "La fiesta es el primero de enero.", "options": ["The party is on January first.", "The party is in January first.", "The party is the one of January."], "answer": "The party is on January first.", "accept": ["The party is January first.", "The party is on January 1st.", "The party is January 1st.", "The party is on the first of January.", "The party is the first of January.", "The party is on January the first.", "The party's on January first."], "tip": "Fecha → on + mes + ordinal: on January first. Es first, no one: the one of January no existe. (Aquí escribe el día con letras o con -st/-nd/-rd/-th: May 3rd.)"},
+                {"id": "a1u12l2e11", "type": "cloze", "es": "Su cumpleaños es el dos de abril.", "text": "Her birthday is on April ___.", "answer": "second", "accept": ["2nd", "the second"], "tip": "2 → second (2nd). Los tres primeros son irregulares: first, second, third."},
+                {"id": "a1u12l2e12", "type": "write", "es": "Hoy es veintiuno de octubre.", "answer": "Today is October twenty-first.", "accept": ["Today is October 21st.", "Today is October the twenty-first.", "Today is the twenty-first of October.", "Today is the 21st of October.", "It's October twenty-first.", "It's October 21st.", "It's the twenty-first of October.", "Today's October twenty-first.", "Today's October 21st.", "It's the 21st of October.", "It's October the twenty-first."], "tip": "21 → twenty-first: solo la última parte se vuelve ordinal. (Aquí escribe el día con letras o con -st/-nd/-rd/-th: May 3rd.)"},
+                {"id": "a1u12l2e13", "type": "shadow", "text": "January, February, March, April, May, June.", "tip": "February suena «FEB-ru-e-ri». Y los meses siempre van con mayúscula."}
+              ]
+            },
+            {
+              "id": "a1u12l3",
+              "title": "¿Qué tiempo hace?",
+              "theory": {
+                "title": "El clima no «hace»: «es»",
+                "body": "Para el clima, el inglés usa **it** + **is**, igual que con la hora: ***It's hot.*** · ***It's cold.*** · ***It's warm.*** · ***It's sunny.*** · ***It's cloudy.*** · ***It's windy.***\n\nDonde el español dice «hace», el inglés dice **is**: nada de *make*.\n\nPara lo que pasa en este momento: ***It's raining.*** · ***It's snowing.*** Esa forma con -ing la verás a fondo más adelante; por ahora apréndela entera.\n\nLa pregunta: ***What's the weather like?*** o ***How's the weather?***\n\nLas estaciones: *spring, summer, **fall**, winter* (en Estados Unidos otoño es *fall*). Van con **in**: *in summer* o *in the summer*.",
+                "trap": "«Hace frío» nos lleva a *Makes cold*, y «está haciendo calor» a *Is hot*, sin sujeto. En inglés el clima lleva **it** y el verbo **be**: **It's cold**. Y *It's rain* ❌: rain es «lluvia»; «está lloviendo» es **It's raining**."
+              },
+              "exercises": [
+                {"id": "a1u12l3e1", "type": "listen", "audio": "It's very cold today.", "options": ["It's very cold today.", "Makes very cold today.", "It's very hot today."], "answer": "It's very cold today.", "tip": "Hace frío = It's cold. El inglés no usa make para el clima."},
+                {"id": "a1u12l3e2", "type": "translate", "es": "¿Qué tiempo hace?", "options": ["What's the weather like?", "What weather makes?", "How is the weather like?"], "answer": "What's the weather like?", "accept": ["How is the weather?"], "tip": "Con like al final: What's the weather like? Sin like: How's the weather? Las dos juntas (How... like), no."},
+                {"id": "a1u12l3e3", "type": "speak", "text": "It's warm and sunny in spring.", "sound": "es", "tip": "spring arranca con s pura: no «espring»."},
+                {"id": "a1u12l3e4", "type": "cloze", "es": "Está lloviendo en Bogotá.", "text": "It's ___ in Bogota.", "answer": "raining", "accept": [], "tip": "Ahora mismo → raining. rain sola es la lluvia."},
+                {"id": "a1u12l3e5", "type": "write", "es": "Hace calor.", "answer": "It's hot.", "accept": ["It's warm.", "The weather is hot.", "It's hot outside.", "It's hot out."], "tip": "El clima lleva it: It's hot. A Is hot le falta el sujeto."},
+                {"id": "a1u12l3e6", "type": "build", "es": "En invierno hace mucho frío.", "answer": "It's very cold in winter.", "accept": ["In winter it's very cold.", "Winter is very cold."], "extra": ["makes", "is", "much"], "tip": "Hace frío = It's cold. Mucho frío = very cold, no much cold."},
+                {"id": "a1u12l3e7", "type": "listen", "audio": "It's snowing in New York.", "options": ["It's snowing in New York.", "It's snow in New York.", "It's sunny in New York."], "answer": "It's snowing in New York.", "tip": "It's snowing = está nevando en este momento. snow sola es la nieve."},
+                {"id": "a1u12l3e8", "type": "type", "audio": "It's cloudy and windy today.", "meaning": "Hoy está nublado y hace viento.", "tip": "cloudy = nublado, windy = con viento. Aquí la -y convierte la palabra en adjetivo: cloud (nube) → cloudy."},
+                {"id": "a1u12l3e9", "type": "speak", "text": "My favorite season is fall.", "sound": "v", "tip": "favorite lleva v: los dientes de arriba tocan el labio de abajo. Y fall es el otoño en Estados Unidos."},
+                {"id": "a1u12l3e10", "type": "translate", "es": "No hace frío en Cartagena.", "options": ["It isn't cold in Cartagena.", "It doesn't make cold in Cartagena.", "No is cold in Cartagena."], "answer": "It isn't cold in Cartagena.", "accept": ["In Cartagena it isn't cold.", "Cartagena isn't cold."], "tip": "Para negar el clima se niega is: It isn't cold. Ni make ni doesn't."},
+                {"id": "a1u12l3e11", "type": "cloze", "es": "Vamos a la playa en verano.", "text": "We go to the beach ___ summer.", "answer": "in", "accept": ["in the", "during", "during the"], "tip": "Estaciones con in: in summer o in the summer."},
+                {"id": "a1u12l3e12", "type": "write", "es": "En otoño hace viento.", "answer": "It's windy in the fall.", "accept": ["It's windy in fall.", "In the fall it's windy.", "In fall it's windy.", "It's windy in autumn.", "It's windy in the autumn.", "In autumn it's windy.", "In the autumn it's windy.", "Fall is windy.", "Autumn is windy.", "The fall is windy.", "It gets windy in the fall.", "It gets windy in fall."], "tip": "Hace viento = It's windy. Otoño es fall en Estados Unidos; autumn también se entiende."},
+                {"id": "a1u12l3e13", "type": "shadow", "text": "What's the weather like today? It's sunny.", "tip": "weather lleva th en el medio: la lengua asoma entre los dientes. No es «WE-der»."}
               ]
             }
           ]
@@ -301,7 +558,10 @@
                 {"id": "a1u5l1e9", "type": "cloze", "es": "Hay dos cuartos.", "text": "There ___ two bedrooms.", "answer": "are", "accept": [], "tip": "Dos cuartos son plural: there are."},
                 {"id": "a1u5l1e10", "type": "write", "es": "Hay una tienda cerca de aquí.", "answer": "There is a store near here.", "accept": ["There's a store near here.", "There is a shop near here.", "There's a shop near here.", "There is a store nearby.", "There's a store nearby.", "There is a shop nearby.", "There's a shop nearby.", "There is a store close by.", "There is a store around here.", "There is a shop close by.", "There is a shop around here."], "tip": "Una sola tienda: there is. store y shop sirven las dos."},
                 {"id": "a1u5l1e11", "type": "shadow", "text": "There are three houses here.", "tip": "Cuidado con three: lengua entre los dientes, y sin parar antes de houses."},
-                {"id": "a1u5l1e12", "type": "minimalPair", "options": ["three", "tree"], "answer": "three", "sentence": "I have three books.", "play": "sentence", "tip": "three empieza con th (lengua entre los dientes); tree con t normal."}
+                {"id": "a1u5l1e12", "type": "minimalPair", "options": ["three", "tree"], "answer": "three", "sentence": "I have three books.", "play": "sentence", "tip": "three empieza con th (lengua entre los dientes); tree con t normal."},
+                {"id": "a1u5l1e13", "type": "write", "es": "¿Hay sillas en la cocina?", "answer": "Are there any chairs in the kitchen?", "accept": ["Are there chairs in the kitchen?"], "tip": "Varias sillas → Are there…? En preguntas con plural se suele poner any."},
+                {"id": "a1u5l1e14", "type": "cloze", "es": "No hay un banco cerca de aquí.", "text": "There ___ a bank near here.", "answer": "isn't", "accept": [], "tip": "Una sola cosa en negativo: There isn't a… Con varias: There aren't any…"},
+                {"id": "a1u5l1e15", "type": "build", "es": "No hay ventanas en el baño.", "answer": "There aren't any windows in the bathroom.", "accept": ["In the bathroom there aren't any windows.", "There aren't windows in the bathroom."], "extra": ["isn't", "some", "is"], "tip": "Plural y negativo: There aren't any. En negativo some se vuelve any."}
               ]
             },
             {
@@ -323,7 +583,11 @@
                 {"id": "a1u5l2e8", "type": "speak", "text": "She is a teacher.", "sound": "general", "tip": "No te comas el a: is a teacher."},
                 {"id": "a1u5l2e9", "type": "cloze", "es": "Mi hermana es doctora.", "text": "My sister is ___ doctor.", "answer": "a", "accept": [], "tip": "Una profesión en singular lleva a o an: is a doctor. Es de los errores más típicos."},
                 {"id": "a1u5l2e10", "type": "write", "es": "Me gusta el café pero no me gusta el té.", "answer": "I like coffee but I don't like tea.", "accept": ["I like coffee but don't like tea.", "I like coffee but not tea."], "tip": "En general, sin artículo: coffee y tea pelados."},
-                {"id": "a1u5l2e11", "type": "shadow", "text": "I am a student here.", "tip": "Di «I am» completo, sin contraer. El peso en «STU-dent»."}
+                {"id": "a1u5l2e11", "type": "shadow", "text": "I am a student here.", "tip": "Di «I am» completo, sin contraer. El peso en «STU-dent»."},
+                {"id": "a1u5l2e12", "type": "translate", "es": "La vida es difícil.", "options": ["The life is hard.", "Life is hard.", "A life is hard."], "answer": "Life is hard.", "accept": ["Life is difficult.", "Life is tough."], "tip": "Hablando de la vida en general, el inglés no pone the: Life is hard."},
+                {"id": "a1u5l2e13", "type": "write", "es": "Los carros son caros (en general).", "answer": "Cars are expensive.", "accept": ["Cars cost a lot.", "Cars are pricey."], "tip": "Plural en general, sin the: Cars are expensive. «The cars» serían unos carros concretos."},
+                {"id": "a1u5l2e14", "type": "cloze", "es": "Tengo un perro y un gato. El perro es negro.", "text": "I have a dog and a cat. ___ dog is black.", "answer": "The", "accept": [], "tip": "La primera vez es a dog; cuando ya lo mencionaste, es the dog."},
+                {"id": "a1u5l2e15", "type": "cloze", "es": "La clase dura una hora.", "text": "The class is ___ hour long.", "answer": "an", "accept": ["one"], "tip": "En hour la h no suena («áuer»): empieza con sonido de vocal, por eso an hour."}
               ]
             },
             {
@@ -346,7 +610,90 @@
                 {"id": "a1u5l3e9", "type": "cloze", "es": "El libro está en la mesa.", "text": "The book is ___ the table.", "answer": "on", "accept": [], "tip": "Encima de una superficie: on. in sería dentro de la mesa."},
                 {"id": "a1u5l3e10", "type": "write", "es": "Las llaves están debajo de la cama.", "answer": "The keys are under the bed.", "accept": ["The keys are underneath the bed."], "tip": "under ya significa «debajo de»: no lleva of detrás."},
                 {"id": "a1u5l3e11", "type": "shadow", "text": "The store is next to the bank.", "tip": "next to va pegado, suena casi «NEKS-to». Y no olvides el to."},
-                {"id": "a1u5l3e12", "type": "minimalPair", "options": ["chair", "share"], "answer": "chair", "sentence": "The chair is next to the table.", "tip": "chair empieza con ch; share con sh («shhh»). Es el par que más se nos mezcla."}
+                {"id": "a1u5l3e12", "type": "minimalPair", "options": ["chair", "share"], "answer": "chair", "sentence": "The chair is next to the table.", "tip": "chair empieza con ch; share con sh («shhh»). Es el par que más se nos mezcla."},
+                {"id": "a1u5l3e13", "type": "write", "es": "El banco está entre el hotel y la escuela.", "answer": "The bank is between the hotel and the school.", "accept": ["The bank's between the hotel and the school.", "The bank is in between the hotel and the school."], "tip": "between = entre dos cosas: between A and B."},
+                {"id": "a1u5l3e14", "type": "cloze", "es": "El carro está delante de la casa.", "text": "The car is ___ the house.", "answer": "in front of", "accept": [], "tip": "«Delante de» son tres palabras: in front of. No se puede quitar ni in ni of."},
+                {"id": "a1u5l3e15", "type": "translate", "es": "Estoy delante de la escuela.", "options": ["I am in front the school.", "I am in front of the school.", "I am on front of the school."], "answer": "I am in front of the school.", "accept": ["I'm outside the school."], "tip": "in front of lleva of siempre, igual que «delante de» lleva de."}
+              ]
+            }
+          ]
+        },
+        {
+          "id": "a1u13",
+          "emoji": "🗺️",
+          "title": "Colores, órdenes y preguntas",
+          "subtitle": "El adjetivo va antes, el imperativo y las palabras para preguntar",
+          "lessons": [
+            {
+              "id": "a1u13l1",
+              "title": "Colores y el orden del adjetivo",
+              "theory": {
+                "title": "El color va antes, y sin -s",
+                "body": "Como con el pelo y los ojos, en inglés el color va **antes** de la cosa: ***a red car***.\n\n*a car red* ❌ → ***a red car*** ✅\n*the house white* ❌ → ***the white house*** ✅\n\nEl adjetivo **no tiene plural** ni cambia por masculino o femenino: *two red cars*, *a white house*.\n\nDespués de *be*, el color va solo al final: *The car is red.* · *My shoes are black.*\n\nColores: *red, blue, green, yellow, black, white, brown, gray, orange, pink, purple*. Con *a/an* manda el color: ***an** orange car*. Como tema, sin *the*: *My favorite color is blue.*\n\nLa pregunta: ***What color is it?*** En Estados Unidos se escribe **color**, sin u.",
+                "trap": "Traducimos palabra por palabra y sale *a car red* o *blues shoes*. En inglés el adjetivo va **antes** del sustantivo y no lleva -s nunca: **blue shoes**, **two red cars**. La -s solo la lleva la cosa."
+              },
+              "exercises": [
+                {"id": "a1u13l1e1", "type": "listen", "audio": "I have a red car.", "options": ["I have a red car.", "I have a car red.", "I have two red cars."], "answer": "I have a red car.", "tip": "El color va antes de la cosa: a red car."},
+                {"id": "a1u13l1e2", "type": "translate", "es": "Tengo unos zapatos negros.", "options": ["I have black shoes.", "I have shoes black.", "I have blacks shoes."], "answer": "I have black shoes.", "accept": ["I have some black shoes.", "I have a pair of black shoes."], "tip": "black no lleva -s aunque los zapatos sean varios, y va antes de shoes."},
+                {"id": "a1u13l1e3", "type": "speak", "text": "I have a blue shirt.", "sound": "sh", "tip": "shirt empieza con sh suave, como pidiendo silencio: no «chirt»."},
+                {"id": "a1u13l1e4", "type": "cloze", "es": "¿De qué color es tu carro?", "text": "What ___ is your car?", "answer": "color", "accept": ["colour"], "tip": "What color...? En Estados Unidos, color va sin u."},
+                {"id": "a1u13l1e5", "type": "build", "es": "Ella tiene dos gatos negros.", "answer": "She has two black cats.", "extra": ["blacks", "cat", "is"], "tip": "El color antes, y la -s solo en cats."},
+                {"id": "a1u13l1e6", "type": "write", "es": "Mi casa es blanca.", "answer": "My house is white.", "accept": ["My home is white."], "tip": "Después de is, el color va solo al final. Y white no cambia aunque casa sea femenino."},
+                {"id": "a1u13l1e7", "type": "listen", "audio": "The green bag is on the table.", "options": ["The green bag is on the table.", "The bag green is on the table.", "The green bags are on the table."], "answer": "The green bag is on the table.", "tip": "green va antes de bag. Fíjate también en is (una) y are (varias)."},
+                {"id": "a1u13l1e8", "type": "type", "audio": "My favorite color is blue.", "accept": ["My favourite colour is blue."], "meaning": "Mi color favorito es el azul.", "tip": "favorite y color, sin u (forma americana). Y sin the antes de blue."},
+                {"id": "a1u13l1e9", "type": "minimalPair", "options": ["white", "wide"], "answer": "white", "sentence": "The door is white.", "play": "sentence", "tip": "white termina en una t cortita; wide, en d, con la vocal un poco más larga."},
+                {"id": "a1u13l1e10", "type": "speak", "text": "There are two yellow chairs.", "sound": "th", "tip": "There con la lengua entre los dientes. Y yellow suena «YE-lou», no «shelou»."},
+                {"id": "a1u13l1e11", "type": "translate", "es": "El carro es gris.", "options": ["The car is gray.", "The car gray.", "Is gray the car."], "answer": "The car is gray.", "accept": ["The car is grey.", "The car's gray."], "tip": "gray es la forma americana; grey, la británica. Y no se puede quitar el is."},
+                {"id": "a1u13l1e12", "type": "write", "es": "Hay tres carros rojos en la calle.", "answer": "There are three red cars on the street.", "accept": ["There are three red cars in the street.", "There are three red cars on the road."], "tip": "red antes de cars y sin -s. En Estados Unidos se dice on the street."},
+                {"id": "a1u13l1e13", "type": "shadow", "text": "What color is your car? It's blue.", "tip": "color suena «CA-ler», con la fuerza al principio."}
+              ]
+            },
+            {
+              "id": "a1u13l2",
+              "title": "Sigue derecho y gira a la izquierda",
+              "theory": {
+                "title": "Órdenes: el verbo solo",
+                "body": "Para dar una orden o una indicación, el inglés usa el verbo **solo**, sin sujeto: ***Turn left.*** · ***Go straight.*** · ***Open the door.*** · ***Sit down, please.***\n\nPara decir que no, se pone **Don't** delante: ***Don't turn left.*** · ***Don't open the door.***\n\nPara pedir el camino: ***Excuse me, where is the bank?*** · ***How do I get to the park?***\n\nY para responder: *Go straight* (sigue derecho) · *Turn right* (gira a la derecha) · *Take the second street on the left* · *It's **on the corner*** · *It's **next to** the bank* · *It's **across from** the park* (al frente, al otro lado de la calle).",
+                "trap": "En español la orden negativa es «no» y ya («no gires»), y por eso sale *No turn left* o *Not open the door*. En inglés va **Don't**: **Don't turn left**. (Al dar indicaciones también se oye *You turn left*, y está bien; lo que no existe es *No turn left*.)"
+              },
+              "exercises": [
+                {"id": "a1u13l2e1", "type": "listen", "audio": "Turn left at the bank.", "options": ["Turn left at the bank.", "Turn right at the bank.", "You turn left in the bank."], "answer": "Turn left at the bank.", "tip": "Turn left = gira a la izquierda. La orden va con el verbo solo."},
+                {"id": "a1u13l2e2", "type": "translate", "es": "No abras la puerta.", "options": ["Don't open the door.", "No open the door.", "Not open the door."], "answer": "Don't open the door.", "accept": [], "tip": "Orden negativa: Don't + verbo. Ni No ni Not."},
+                {"id": "a1u13l2e3", "type": "speak", "text": "Go straight and turn right.", "sound": "es", "tip": "straight arranca con s pura: no «estreit». Y right es derecha, no derecho."},
+                {"id": "a1u13l2e4", "type": "cloze", "es": "No te sientes aquí, por favor.", "text": "___ sit here, please.", "answer": "Don't", "accept": [], "tip": "«No te sientes» = Don't sit. El no del español se vuelve Don't."},
+                {"id": "a1u13l2e5", "type": "write", "es": "Disculpa, ¿dónde está el banco?", "answer": "Excuse me, where is the bank?", "accept": ["Pardon me, where is the bank?"], "tip": "Para llamar la atención de alguien se usa Excuse me (antes de molestar), no Sorry (después)."},
+                {"id": "a1u13l2e6", "type": "build", "es": "Toma la segunda calle a la derecha.", "answer": "Take the second street on the right.", "accept": ["Take the second on the right.", "Take the second right."], "extra": ["in", "two", "left"], "tip": "on the right / on the left, con on. Y segunda es second, no two."},
+                {"id": "a1u13l2e7", "type": "listen", "audio": "The pharmacy is across from the park.", "options": ["The pharmacy is across from the park.", "The pharmacy is next to the park.", "The pharmacy is in front the park."], "answer": "The pharmacy is across from the park.", "tip": "across from = al frente, al otro lado de la calle. next to = al lado."},
+                {"id": "a1u13l2e8", "type": "type", "audio": "How do I get to the station?", "meaning": "¿Cómo llego a la estación?", "tip": "How do I get to...? es la pregunta fija para pedir el camino."},
+                {"id": "a1u13l2e9", "type": "speak", "text": "Don't turn left here.", "sound": "final", "tip": "Don't y left terminan en t: que se oiga, aunque sea cortita."},
+                {"id": "a1u13l2e10", "type": "translate", "es": "El supermercado está en la esquina.", "options": ["The supermarket is on the corner.", "The supermarket is in the corner.", "The supermarket on the corner."], "answer": "The supermarket is on the corner.", "accept": ["The supermarket is at the corner.", "The grocery store is on the corner.", "The grocery store is at the corner.", "The supermarket's on the corner."], "tip": "La esquina de la calle: on the corner (at the corner también). in the corner es el rincón de un cuarto."},
+                {"id": "a1u13l2e11", "type": "cloze", "es": "Sigue derecho y gira a la izquierda.", "text": "Go ___ and turn left.", "answer": "straight", "accept": ["straight ahead"], "tip": "Derecho (sin girar) = straight. right es la derecha."},
+                {"id": "a1u13l2e12", "type": "write", "es": "No gires a la derecha. Gira a la izquierda.", "answer": "Don't turn right. Turn left.", "accept": ["Don't go right. Go left.", "Don't take a right. Take a left.", "Don't turn to the right. Turn to the left.", "Turn left. Don't turn right.", "Don't turn right. Go left.", "Turn left, not right.", "Don't make a right. Make a left.", "Turn left. Don't go right."], "tip": "Orden: el verbo solo (Turn left). Orden negativa: Don't + verbo."},
+                {"id": "a1u13l2e13", "type": "shadow", "text": "Excuse me, how do I get to the bank?", "tip": "Excuse me suena «ek-SKIUZ-mi», con la z zumbada como una abeja. Dilo de corrido, sin pausas."}
+              ]
+            },
+            {
+              "id": "a1u13l3",
+              "title": "Qué, cuál, quién, de quién",
+              "theory": {
+                "title": "Las palabras para preguntar",
+                "body": "**what** = qué · **which** = cuál · **who** = quién · **whose** = de quién · **where** = dónde · **when** = cuándo · **why** = por qué · **how** = cómo.\n\nCon **how**: *how old* (qué edad), *how much* (cuánto), *how many* (cuántos), *how often* (qué tan seguido).\n\nEl orden: palabra de pregunta + **be** o **do/does** + sujeto: *Where **do you** live?* · *Where **is** she?* Si la palabra de pregunta es el sujeto, no va do: *Which bus **goes** to the airport?*\n\n**whose** va con la cosa: ***Whose car is this?***\n\n**which** es para elegir dentro de un grupo de opciones: *Which bus?* Para pedir un dato, **what**: ***What's** your name?*",
+                "trap": "«¿De quién es este carro?» se vuelve *Who is this car?*, que significa «¿quién es este carro?». Para el dueño es **whose**: **Whose car is this?** Y el otro clásico: *Where you live?*, sin do. Con un verbo normal en presente, la pregunta necesita **do/does**: **Where do you live?**"
+              },
+              "exercises": [
+                {"id": "a1u13l3e1", "type": "listen", "audio": "Whose phone is this?", "options": ["Whose phone is this?", "Who is this phone?", "Where is this phone?"], "answer": "Whose phone is this?", "tip": "whose = de quién, y va pegado a la cosa: whose phone."},
+                {"id": "a1u13l3e2", "type": "translate", "es": "¿Dónde vives?", "options": ["Where do you live?", "Where you live?", "Where live you?"], "answer": "Where do you live?", "accept": ["Where are you living?"], "tip": "Verbo normal en presente → do: Where do you live?"},
+                {"id": "a1u13l3e3", "type": "speak", "text": "Who is your English teacher?", "sound": "h", "tip": "who suena «hu», con una h de aire: sin j fuerte."},
+                {"id": "a1u13l3e4", "type": "cloze", "es": "¿De quién es este carro?", "text": "___ car is this?", "answer": "Whose", "accept": [], "tip": "Para el dueño: whose + la cosa. Who is this car? pregunta quién ES el carro."},
+                {"id": "a1u13l3e5", "type": "write", "es": "¿Cuántos hermanos tienes?", "answer": "How many brothers and sisters do you have?", "accept": ["How many siblings do you have?", "How many brothers do you have?", "How many sisters and brothers do you have?"], "tip": "Cosas que se cuentan → how many + plural. Hermanos en general = brothers and sisters, o siblings."},
+                {"id": "a1u13l3e6", "type": "listen", "audio": "Which bus goes to the airport?", "options": ["Which bus goes to the airport?", "Whose bus goes to the airport?", "Where does the bus go?"], "answer": "Which bus goes to the airport?", "tip": "which = cuál, cuando hay varias opciones: varios buses, ¿cuál va al aeropuerto?"},
+                {"id": "a1u13l3e7", "type": "build", "es": "¿Cuándo es tu clase de inglés?", "answer": "When is your English class?", "extra": ["does", "what", "do"], "tip": "when = cuándo. Con be no hace falta do: When is...?"},
+                {"id": "a1u13l3e8", "type": "type", "audio": "How often do you go to the gym?", "meaning": "¿Qué tan seguido vas al gimnasio?", "tip": "How often = qué tan seguido. Se responde con every day, once a week, sometimes..."},
+                {"id": "a1u13l3e9", "type": "speak", "text": "Whose shirt is this?", "sound": "sh", "tip": "Whose suena «huuz», con h de aire y z zumbada; shirt, con sh suave, no «chirt»."},
+                {"id": "a1u13l3e10", "type": "translate", "es": "¿Cuál es tu nombre?", "options": ["What's your name?", "Which is your name?", "What is you name?"], "answer": "What's your name?", "accept": [], "tip": "«¿Cuál es tu...?» casi siempre es What's your...? which es para elegir dentro de un grupo de opciones."},
+                {"id": "a1u13l3e11", "type": "cloze", "es": "¿Cuánto cuesta el café?", "text": "How ___ is the coffee?", "answer": "much", "accept": [], "tip": "Precio → How much is...? how many es para contar cosas."},
+                {"id": "a1u13l3e12", "type": "write", "es": "¿Por qué estudias inglés?", "answer": "Why do you study English?", "accept": ["Why are you studying English?", "Why are you learning English?", "Why do you learn English?"], "tip": "Why + do + you + verbo. La respuesta empieza con Because."},
+                {"id": "a1u13l3e13", "type": "shadow", "text": "Where do you live, and what do you do?", "tip": "Las dos preguntas llevan do. Dilas de corrido: «wer-du-iu-LIV»."}
               ]
             }
           ]
@@ -362,7 +709,7 @@
               "title": "Lo que está pasando ahora",
               "theory": {
                 "title": "El presente continuo: am/is/are + -ing",
-                "body": "Para lo que está pasando **en este momento**, el inglés usa dos piezas:\n\n**am / is / are** + verbo con **-ing**\n\n*I **am eating**.* (Estoy comiendo)\n*She **is working**.* (Ella está trabajando)\n*They **are playing**.* (Están jugando)\n\nPara decir «estoy …-ando», el -ing no va solo. Si no está am, is o are, la frase está rota:\n*I eating* ❌ → *I **am** eating* ✅",
+                "body": "Para lo que está pasando **en este momento**, el inglés usa dos piezas:\n\n**am / is / are** + verbo con **-ing**\n\n*I **am eating**.* (Estoy comiendo)\n*She **is working**.* (Ella está trabajando)\n*They **are playing**.* (Están jugando)\n\nPara decir «estoy …-ando», el -ing no va solo. Si no está am, is o are, la frase está rota:\n*I eating* ❌ → *I **am** eating* ✅\n\n**Ortografía del -ing:** la -e final se va (*make → making*); una vocal + una consonante al final dobla la consonante (*sit → sitting*, *shop → shopping*).\n\n**Negativo y pregunta:** *She **isn't** working.* · ***Are** you working?*",
                 "trap": "En español decimos «trabajo ahora» tan tranquilos, con el presente de siempre. Por eso sale *I work now*. En inglés eso significa «ahora tengo trabajo», no «estoy trabajando en este momento». Si es ahora mismo: **I am working now**. El inglés separa lo que haces siempre de lo que estás haciendo en este segundo."
               },
               "exercises": [
@@ -376,7 +723,11 @@
                 {"id": "a1u6l1e8", "type": "speak", "text": "She is shopping with her mother.", "sound": "sh", "tip": "shopping con sh de «shhh», no «chopping»."},
                 {"id": "a1u6l1e9", "type": "cloze", "es": "Estoy comiendo.", "text": "I ___ eating.", "answer": "am", "accept": ["'m"], "tip": "Para «estoy …-ando», el -ing necesita am, is o are delante."},
                 {"id": "a1u6l1e10", "type": "write", "es": "Ella está trabajando ahora mismo.", "answer": "She is working right now.", "accept": ["She's working right now.", "She is working now.", "She's working now.", "Right now she is working.", "She is working at the moment.", "At the moment she is working."], "tip": "Ahora mismo: presente continuo, is + working."},
-                {"id": "a1u6l1e11", "type": "shadow", "text": "What are you doing?", "tip": "Suena casi «WHAT-are-ya-DOO-ing». Cuatro palabras en un solo golpe."}
+                {"id": "a1u6l1e11", "type": "shadow", "text": "What are you doing?", "tip": "Suena casi «WHAT-are-ya-DOO-ing». Cuatro palabras en un solo golpe."},
+                {"id": "a1u6l1e12", "type": "cloze", "es": "Ella está haciendo la cena.", "text": "She is ___ dinner.", "answer": "making", "accept": ["cooking", "preparing", "fixing"], "tip": "Si el verbo termina en -e, la e se va: make → making, no «makeing»."},
+                {"id": "a1u6l1e13", "type": "build", "es": "Estamos sentados en el parque.", "answer": "We are sitting in the park.", "extra": ["siting", "sit", "is"], "tip": "sit termina en vocal + consonante: la t se dobla, sitting (igual que shop → shopping). Y «estamos sentados» en inglés es are sitting."},
+                {"id": "a1u6l1e14", "type": "write", "es": "No estoy viendo televisión.", "answer": "I'm not watching TV.", "accept": ["I'm not watching television."], "tip": "Para negar, not va después de am/is/are: I'm not watching."},
+                {"id": "a1u6l1e15", "type": "write", "es": "¿Tu hermano está trabajando?", "answer": "Is your brother working?", "accept": ["Is your brother working now?", "Is your brother working right now?"], "tip": "Para preguntar se da la vuelta: Is + sujeto + -ing. Sin do."}
               ]
             },
             {
@@ -398,7 +749,11 @@
                 {"id": "a1u6l2e8", "type": "speak", "text": "He is speaking Spanish.", "sound": "es", "tip": "speaking y Spanish: las dos empiezan con s pura, sin e."},
                 {"id": "a1u6l2e9", "type": "cloze", "es": "Quiero un teléfono nuevo.", "text": "I ___ a new phone.", "answer": "want", "accept": [], "tip": "want expresa un estado: no va en continuo."},
                 {"id": "a1u6l2e10", "type": "write", "es": "Trabajo en un banco, pero hoy estoy trabajando en casa.", "answer": "I work in a bank, but today I'm working at home.", "accept": ["I work at a bank, but today I'm working at home.", "I work in a bank, but today I'm working from home.", "I work at a bank, but today I'm working from home.", "I work in a bank, but I'm working at home today.", "I work at a bank, but I'm working at home today.", "I work in a bank, but I'm working from home today.", "I work at a bank, but I'm working from home today.", "I work for a bank, but today I'm working from home.", "I work for a bank, but today I'm working at home.", "I work for a bank, but I'm working at home today.", "I work for a bank, but I'm working from home today."], "tip": "Los dos presentes en una frase: la rutina con work, el hoy con am working."},
-                {"id": "a1u6l2e11", "type": "shadow", "text": "I don't understand the question.", "tip": "Frase de cinco palabras. El peso en «STAND» y en «QUES-tion»."}
+                {"id": "a1u6l2e11", "type": "shadow", "text": "I don't understand the question.", "tip": "Frase de cinco palabras. El peso en «STAND» y en «QUES-tion»."},
+                {"id": "a1u6l2e12", "type": "cloze", "es": "Ella cocina todos los días.", "text": "She ___ every day.", "answer": "cooks", "accept": [], "tip": "every day es rutina → presente simple, con -s para she: cooks."},
+                {"id": "a1u6l2e13", "type": "cloze", "es": "Ella está cocinando ahora mismo.", "text": "She ___ right now.", "answer": "is cooking", "accept": ["'s cooking"], "tip": "right now es este momento → is + -ing: is cooking."},
+                {"id": "a1u6l2e14", "type": "write", "es": "Mi papá lee el periódico todas las mañanas.", "answer": "My dad reads the newspaper every morning.", "accept": ["My father reads the newspaper every morning.", "My dad reads the paper every morning.", "My father reads the paper every morning.", "Every morning my dad reads the newspaper.", "Every morning my father reads the newspaper.", "Every morning my dad reads the paper.", "Every morning my father reads the paper."], "tip": "every morning es una costumbre: presente simple (reads), no is reading."},
+                {"id": "a1u6l2e15", "type": "translate", "es": "En este momento estoy hablando por teléfono.", "options": ["At the moment I talk on the phone.", "At the moment I am talking on the phone.", "At the moment I am talk on the phone."], "answer": "At the moment I am talking on the phone.", "accept": ["I am talking on the phone at the moment.", "Right now I am talking on the phone.", "I am talking on the phone right now.", "I am on the phone right now.", "I am on the phone at the moment.", "At the moment I am speaking on the phone.", "I am speaking on the phone at the moment.", "Right now I am on the phone.", "At the moment I am on the phone."], "tip": "at the moment avisa: continuo (am talking). Y «por teléfono» es on the phone."}
               ]
             },
             {
@@ -421,7 +776,10 @@
                 {"id": "a1u6l3e9", "type": "cloze", "es": "Estas son mis llaves.", "text": "___ are my keys.", "answer": "These", "accept": [], "tip": "Varias y cerca: these. Y con are, no is."},
                 {"id": "a1u6l3e10", "type": "write", "es": "Ese es mi teléfono.", "answer": "That is my phone.", "accept": ["That's my phone.", "That is my cell phone.", "That is my cellphone.", "That is my telephone."], "tip": "Uno solo y lejos: that."},
                 {"id": "a1u6l3e11", "type": "shadow", "text": "This is my brother.", "tip": "Empieza con th sonora. Suena «DHIS-is-my-BRO-ther», sin cortar."},
-                {"id": "a1u6l3e12", "type": "minimalPair", "options": ["think", "sink"], "answer": "think", "sentence": "I think it is late.", "play": "sentence", "tip": "think saca la lengua; sink no. Si dices «sink» estás diciendo «lavaplatos»."}
+                {"id": "a1u6l3e12", "type": "minimalPair", "options": ["think", "sink"], "answer": "think", "sentence": "I think it is late.", "play": "sentence", "tip": "think saca la lengua; sink no. Si dices «sink» estás diciendo «lavaplatos»."},
+                {"id": "a1u6l3e13", "type": "cloze", "es": "Me gusta esta camisa.", "text": "I like ___ shirt.", "answer": "this", "accept": [], "tip": "this también va delante de una cosa: this shirt, this phone."},
+                {"id": "a1u6l3e14", "type": "write", "es": "Esos libros son muy caros.", "answer": "Those books are very expensive.", "accept": ["Those books are really expensive."], "tip": "Plural y lejos: those books. Nunca «that books»."},
+                {"id": "a1u6l3e15", "type": "build", "es": "Esta casa es muy grande.", "answer": "This house is very big.", "extra": ["these", "are", "that"], "tip": "Una casa aquí: this house is. these es para varias."}
               ]
             }
           ]
@@ -452,7 +810,11 @@
                 {"id": "a1u7l1e9", "type": "cloze", "es": "¿Cuánto dinero necesitas?", "text": "How ___ money do you need?", "answer": "much", "accept": [], "tip": "El dinero no se cuenta en inglés: much. Se cuentan los billetes, no el dinero."},
                 {"id": "a1u7l1e10", "type": "write", "es": "No tengo azúcar.", "answer": "I don't have any sugar.", "accept": ["I have no sugar.", "I don't have sugar."], "tip": "En negativo, some se vuelve any. Y sugar nunca lleva -s."},
                 {"id": "a1u7l1e11", "type": "shadow", "text": "How much does this cost?", "tip": "La pregunta de cualquier tienda. Suena «how MUCH does this COST», en dos golpes."},
-                {"id": "a1u7l1e12", "type": "minimalPair", "options": ["much", "match"], "answer": "much", "sentence": "How much is it?", "tip": "much lleva una vocal central y relajada, entre la a y la o; match lleva la a bien abierta y estirada hacia adelante («mætch»)."}
+                {"id": "a1u7l1e12", "type": "minimalPair", "options": ["much", "match"], "answer": "much", "sentence": "How much is it?", "tip": "much lleva una vocal central y relajada, entre la a y la o; match lleva la a bien abierta y estirada hacia adelante («mætch»)."},
+                {"id": "a1u7l1e13", "type": "cloze", "es": "Tengo unos pocos amigos aquí.", "text": "I have ___ friends here.", "answer": "a few", "accept": [], "tip": "Cosas que se cuentan (amigos) → a few. a little es para las que no se cuentan."},
+                {"id": "a1u7l1e14", "type": "cloze", "es": "Necesito un poco de leche.", "text": "I need ___ milk.", "answer": "a little", "accept": ["some", "a bit of", "a little bit of"], "tip": "La leche no se cuenta → a little milk, no «a few milk»."},
+                {"id": "a1u7l1e15", "type": "write", "es": "¿Cuánta agua tomas al día?", "answer": "How much water do you drink a day?", "accept": ["How much water do you drink per day?", "How much water do you drink every day?", "How much water do you drink each day?", "How much water do you drink daily?", "How much water do you drink in a day?"], "tip": "El agua no se cuenta → How much water, nunca «How many water». «Al día» es a day."},
+                {"id": "a1u7l1e16", "type": "translate", "es": "Tengo un poco de tiempo.", "options": ["I have a little time.", "I have a few time.", "I have a little times."], "answer": "I have a little time.", "accept": ["I have some time.", "I have a bit of time.", "I have a little bit of time."], "tip": "time (tiempo) no se cuenta: a little time. «a few times» sería «unas pocas veces», otra cosa."}
               ]
             },
             {
@@ -482,7 +844,7 @@
               "title": "Puedo, no puedo",
               "theory": {
                 "title": "can: una sola forma para todo",
-                "body": "**can** es de los más fáciles del inglés porque **no cambia nunca**.\n\n*I can · you can · he can · she can · we can · they can*\n\nSin -s, sin do, sin nada.\n\n**Negativo:** can't (*I can't swim.*)\n**Pregunta:** Can you...? (*Can you help me?*)\n\nY lo que va después siempre es el verbo pelado, **sin to**:\n*I can **swim**.* · *Can you **help** me?*",
+                "body": "**can** es de los más fáciles del inglés porque **no cambia nunca**.\n\n*I can · you can · he can · she can · we can · they can*\n\nSin -s, sin do, sin nada.\n\n**Negativo:** can't (*I can't swim.*)\n**Pregunta:** Can you...? (*Can you help me?*)\n\nY lo que va después siempre es el verbo pelado, **sin to**:\n*I can **swim**.* · *Can you **help** me?*\n\nTambién sirve para **pedir permiso**: *Can I sit here?* · *Can I use your phone?*",
                 "trap": "*He cans* ❌ y *Can you to help me?* ❌ son los dos errores. En español «poder» se conjuga («puedo, puedes, puede») y lleva infinitivo detrás, así que la mano quiere escribir to. En inglés can se queda quieto y lo que sigue va desnudo: **Can you help me?**"
               },
               "exercises": [
@@ -497,7 +859,91 @@
                 {"id": "a1u7l3e9", "type": "cloze", "es": "¿Puedes ayudarme?", "text": "Can you ___ me?", "answer": "help", "accept": [], "tip": "Después de can, el verbo va desnudo: sin to y sin -s."},
                 {"id": "a1u7l3e10", "type": "write", "es": "Él puede tocar la guitarra.", "answer": "He can play the guitar.", "accept": ["He can play guitar.", "He knows how to play the guitar.", "He knows how to play guitar."], "tip": "can no cambia nunca, y lo que sigue va sin to y sin -s."},
                 {"id": "a1u7l3e11", "type": "shadow", "text": "Can you speak more slowly?", "tip": "Guárdala para cuando te hablen rápido. Sube el tono al final."},
-                {"id": "a1u7l3e12", "type": "minimalPair", "options": ["can", "can't"], "answer": "can't", "sentence": "I can't go today.", "tip": "Aquí la palabra suena sola: fíjate en la t final de can't, aunque sea corta. En una frase, can suena débil («kn») y can't fuerte. Al decirla tú, marca la t."}
+                {"id": "a1u7l3e12", "type": "minimalPair", "options": ["can", "can't"], "answer": "can't", "sentence": "I can't go today.", "tip": "Aquí la palabra suena sola: fíjate en la t final de can't, aunque sea corta. En una frase, can suena débil («kn») y can't fuerte. Al decirla tú, marca la t."},
+                {"id": "a1u7l3e13", "type": "write", "es": "¿Puedo abrir la ventana?", "answer": "Can I open the window?", "accept": ["May I open the window?", "Could I open the window?"], "tip": "Para pedir permiso: Can I…? y el verbo sin to."},
+                {"id": "a1u7l3e14", "type": "translate", "es": "¿Puedo usar tu teléfono?", "options": ["Can I use your phone?", "Can I to use your phone?", "Do I can use your phone?"], "answer": "Can I use your phone?", "accept": ["May I use your phone?", "Could I use your phone?", "Can I use your cell phone?", "Can I borrow your phone?"], "tip": "can no usa do para preguntar: Can I…?, nunca «Do I can…?»."},
+                {"id": "a1u7l3e15", "type": "build", "es": "¿Puedo sentarme aquí?", "answer": "Can I sit here?", "extra": ["to", "me", "sits"], "tip": "«Sentarme» es solo sit: el «me» del español no pasa al inglés."}
+              ]
+            }
+          ]
+        },
+        {
+          "id": "a1u14",
+          "emoji": "🎉",
+          "title": "Precios, gustos y planes",
+          "subtitle": "How much is it?, like + -ing y cómo invitar",
+          "lessons": [
+            {
+              "id": "a1u14l1",
+              "title": "¿Cuánto cuesta?",
+              "theory": {
+                "title": "How much is it? y los plurales con are",
+                "body": "Para preguntar el precio: **How much is it?** (una cosa) · **How much are they?** (varias). También: *How much **does** it cost?*\n\nSe responde con el mismo verbo: *It's twelve dollars.* · *They're twenty dollars.*\n\n*$12.50* se dice **twelve fifty** o **twelve dollars and fifty cents**. En pesos: *fifty thousand pesos* (50.000); **thousand** no lleva -s después de un número. Y para opinar: *That's **expensive**.* · *That's **cheap**.*\n\nLos plurales llevan **are**: *These shoes **are** cheap.* Ojo con los irregulares: **person → people** · **child → children** · **man → men** · **woman → women**. *People* ya es plural: ❌ *the peoples* (*peoples* solo existe como «pueblos, naciones»).",
+                "trap": "De «¿cuánto cuesta?» sale *How much cost?*, pero al inglés le falta el sujeto y el ayudante: **How much is it?** o **How much does it cost?** Y como «los zapatos» ya suena a varios, se escapa el verbo: ❌ *the shoes is* → ✅ **the shoes are**. Tampoco *the peoples*: **people** ya es plural."
+              },
+              "exercises": [
+                {"id": "a1u14l1e1", "type": "listen", "audio": "How much are these shoes?", "options": ["How much is these shoes?", "How much are these shoes?", "How many are these shoes?"], "answer": "How much are these shoes?", "tip": "shoes es plural, así que va are. Y el precio se pregunta con much, no con many."},
+                {"id": "a1u14l1e2", "type": "translate", "es": "¿Cuánto cuesta esta camisa?", "options": ["How much cost this shirt?", "How much is this shirt?", "How many is this shirt?"], "answer": "How much is this shirt?", "accept": ["How much does this shirt cost?", "What does this shirt cost?"], "tip": "«¿Cuánto cuesta?» = How much is...? Si preguntas con el verbo cost, hace falta does: How much does it cost?"},
+                {"id": "a1u14l1e3", "type": "speak", "text": "It's twelve dollars and fifty cents.", "sound": "final", "tip": "Cierra bien las finales: dollars con z, cents con ts. Si las sueltas, suena «dolar» y «cen»."},
+                {"id": "a1u14l1e4", "type": "build", "es": "Estos zapatos son baratos.", "answer": "These shoes are cheap.", "extra": ["is", "this", "much"], "tip": "These (estos) y are van con plural: these shoes are."},
+                {"id": "a1u14l1e5", "type": "listen", "audio": "They're twenty dollars.", "options": ["They is twenty dollars.", "They're twenty dollars.", "They're twelve dollars."], "answer": "They're twenty dollars.", "tip": "Escucha bien el número: twenty (20) y twelve (12) empiezan igual."},
+                {"id": "a1u14l1e6", "type": "translate", "es": "Eso es caro.", "options": ["Is expensive.", "That's expensive.", "That's a expensive."], "answer": "That's expensive.", "accept": ["It's expensive.", "That's pricey."], "tip": "Hace falta el sujeto: that's (o it's). Y sin a delante del adjetivo solo."},
+                {"id": "a1u14l1e7", "type": "type", "audio": "It's fifty thousand pesos.", "accept": ["It's 50,000 pesos."], "meaning": "Son cincuenta mil pesos.", "tip": "thousand = mil, y no lleva -s después de un número: fifty thousand, no fifty thousands."},
+                {"id": "a1u14l1e8", "type": "cloze", "es": "¿Cuánto cuestan?", "text": "How much ___ they?", "answer": "are", "accept": [], "tip": "they es plural: are."},
+                {"id": "a1u14l1e9", "type": "speak", "text": "She wants cheap shoes.", "sound": "sh", "tip": "She y shoes empiezan con sh suave, como cuando pides silencio. cheap sí es ch, con la t pegada: no las confundas."},
+                {"id": "a1u14l1e10", "type": "write", "es": "Hay muchas personas en la tienda.", "answer": "There are a lot of people in the store.", "accept": ["There are many people in the store.", "There are lots of people in the store.", "There are a lot of people at the store.", "There are many people at the store.", "There are lots of people at the store.", "There are a lot of people in the shop.", "There are many people in the shop.", "There are lots of people in the shop.", "There are a lot of people at the shop.", "There are many people at the shop.", "There are lots of people at the shop."], "tip": "people ya es plural (personas): va con are y nunca lleva -s."},
+                {"id": "a1u14l1e11", "type": "minimalPair", "options": ["fifteen", "fifty"], "answer": "fifteen", "sentence": "It's fifteen dollars.", "play": "sentence", "tip": "fifteen (15) carga la fuerza al final y alarga la i: fif-TEEN. fifty (50) la carga al principio: FIF-ty."},
+                {"id": "a1u14l1e12", "type": "cloze", "es": "Los niños están en el parque.", "text": "The ___ are in the park.", "answer": "children", "accept": ["kids", "boys"], "tip": "child → children. Plural irregular: no se dice childs."},
+                {"id": "a1u14l1e13", "type": "write", "es": "Cuesta doce dólares con cincuenta.", "answer": "It's twelve fifty.", "accept": ["It's twelve dollars and fifty cents.", "It costs twelve fifty.", "It costs twelve dollars and fifty cents.", "It's twelve dollars fifty.", "It costs twelve dollars fifty.", "It's $12.50.", "It costs $12.50."], "tip": "Con precios se usa it's o it costs. «Doce con cincuenta» se dice twelve fifty."},
+                {"id": "a1u14l1e14", "type": "shadow", "text": "How much is it? It's twelve fifty.", "tip": "twelve fifty sale de corrido, como un solo número."}
+              ]
+            },
+            {
+              "id": "a1u14l2",
+              "title": "Me gusta, me encanta, odio",
+              "theory": {
+                "title": "like + -ing: el que gusta eres tú",
+                "body": "En inglés la persona va primero y el verbo es **like**: *I like coffee.* (Me gusta el café.)\n\nDespués de **like, love, hate, enjoy** y **don't mind** (no me molesta) va una cosa o un verbo con **-ing**:\n*I **like cooking**.* · *She **loves dancing**.* · *I **don't mind** waiting.*\n\nCon like, love y hate también se oye **to**: *I like to cook.* Con enjoy y don't mind, solo -ing.\n\nPreguntar: ***Do you like** soccer? — Yes, I **do**. / No, I **don't**.*\n\nY no confundas: **I like** = me gusta (en general). **I'd like** = quisiera (ahora).",
+                "trap": "«Me gusta» está al revés: no es *It likes me* sino **I like it**. Y lo que sigue va directo: ❌ *I like to the music* · ❌ *I love cook* → ✅ **I like music** · **I love cooking**. El «mucho» va al final: ❌ *I like very much soccer* → ✅ **I like soccer very much**."
+              },
+              "exercises": [
+                {"id": "a1u14l2e1", "type": "listen", "audio": "I like cooking.", "options": ["I like cook.", "I like cooking.", "I like to cooking."], "answer": "I like cooking.", "tip": "Después de like, el verbo va con -ing (cooking) o con to (to cook), pero no los dos."},
+                {"id": "a1u14l2e2", "type": "translate", "es": "Me encanta nadar.", "options": ["I love swim.", "I love swimming.", "Swimming loves me."], "answer": "I love swimming.", "accept": ["I love to swim."], "tip": "love + -ing. swim dobla la m: swimming."},
+                {"id": "a1u14l2e3", "type": "speak", "text": "She hates washing the dishes.", "sound": "sh", "tip": "sh en she, washing y dishes: suave y largo, sin la t de ch."},
+                {"id": "a1u14l2e4", "type": "build", "es": "No me molesta esperar.", "answer": "I don't mind waiting.", "extra": ["wait", "me", "it"], "tip": "don't mind = no me molesta. Después va el verbo con -ing."},
+                {"id": "a1u14l2e5", "type": "translate", "es": "¿Te gusta bailar?", "options": ["Would you like to dance?", "Do you like dancing?", "Are you like dancing?"], "answer": "Do you like dancing?", "accept": ["Do you like to dance?", "Do you enjoy dancing?"], "tip": "Do you like...? pregunta por tus gustos. Would you like to dance? es una invitación: ¿quieres bailar (ahora)?"},
+                {"id": "a1u14l2e6", "type": "listen", "audio": "Yes, I do. I love it.", "options": ["Yes, I like. I love it.", "Yes, I do. I love it.", "Yes, I do. I love."], "answer": "Yes, I do. I love it.", "tip": "La respuesta corta repite el ayudante: Yes, I do. Y love necesita su objeto: I love it."},
+                {"id": "a1u14l2e7", "type": "cloze", "es": "Me gusta leer por la noche.", "text": "I like ___ at night.", "answer": "reading", "accept": ["to read"], "tip": "like + -ing: reading. También vale to read."},
+                {"id": "a1u14l2e8", "type": "type", "audio": "My brother doesn't like shopping.", "meaning": "A mi hermano no le gusta ir de compras.", "tip": "doesn't se lleva la -s: like queda sin -s. shopping dobla la p."},
+                {"id": "a1u14l2e9", "type": "speak", "text": "He hates his job.", "sound": "h", "tip": "Las tres h suenan: un soplo suave, como cuando empañas un vidrio. No es la j española."},
+                {"id": "a1u14l2e10", "type": "write", "es": "Me gusta mucho el fútbol.", "answer": "I like soccer a lot.", "accept": ["I like soccer very much.", "I really like soccer.", "I like soccer so much.", "I like football a lot.", "I like football very much.", "I really like football.", "I like football so much."], "tip": "El «mucho» va al final: I like soccer a lot. En Estados Unidos el fútbol es soccer."},
+                {"id": "a1u14l2e11", "type": "cloze", "es": "¿Te gusta cocinar? — Sí.", "text": "Do you like cooking? — Yes, I ___.", "answer": "do", "accept": [], "tip": "La respuesta corta usa el ayudante de la pregunta: Do you...? → Yes, I do."},
+                {"id": "a1u14l2e12", "type": "write", "es": "A ella le gusta caminar, pero odia correr.", "answer": "She likes walking, but she hates running.", "accept": ["She likes walking but hates running.", "She likes to walk, but she hates to run.", "She likes to walk but hates to run.", "She likes to walk, but she hates running.", "She likes to walk but hates running.", "She likes walking, but she hates to run.", "She likes walking but hates to run."], "tip": "Con she, los dos verbos llevan -s: likes, hates. running dobla la n."},
+                {"id": "a1u14l2e13", "type": "shadow", "text": "Do you like dancing? Yes, I do. I love it.", "tip": "Pregunta subiendo al final; la respuesta, bajando."}
+              ]
+            },
+            {
+              "id": "a1u14l3",
+              "title": "¿Vamos al cine?",
+              "theory": {
+                "title": "Proponer e invitar",
+                "body": "Para proponer algo entre todos: **Let's** + verbo, sin to.\n*Let's go to the movies.* · *Let's not wait.*\n\nPara invitar: **Would you like to** + verbo (la más amable) o **Do you want to** + verbo.\n*Would you like to come?* · *Do you want to eat something?*\n\n**How about** + una cosa: *How about pizza?* · *How about Friday?* O un verbo con **-ing**, como después de like: *How about going out?*\n\nAceptar: *Sure!* · *I'd love to.* · *Sounds good.*\nRechazar con cortesía: *Sorry, I can't. I'm busy.*",
+                "trap": "«Vamos a...» empuja a poner to: ❌ *Let's to go*. Después de **let's** el verbo va pelado: **Let's go**. Con would like pasa lo contrario, sí lleva to: ❌ *Would you like come?* → ✅ **Would you like to come?** Y «¿quieres que vaya?» no se arma con that: ❌ *Do you want that I go?* → ✅ **Do you want me to go?**"
+              },
+              "exercises": [
+                {"id": "a1u14l3e1", "type": "listen", "audio": "Let's go to the movies.", "options": ["Let's to go to the movies.", "Let's go to the movies.", "We go to the movies."], "answer": "Let's go to the movies.", "tip": "Let's + verbo pelado: let's go. Ir al cine = go to the movies."},
+                {"id": "a1u14l3e2", "type": "translate", "es": "¿Te gustaría venir a mi casa?", "options": ["Would you like come to my house?", "Would you like to come to my house?", "Do you like to come to my house?"], "answer": "Would you like to come to my house?", "accept": ["Do you want to come to my house?", "Would you like to come over?", "Do you want to come over?", "Would you like to come to my place?", "Would you like to come over to my house?", "Do you want to come over to my house?", "Do you want to come to my place?"], "tip": "Would you like + to + verbo. Do you like...? pregunta por gustos, no invita."},
+                {"id": "a1u14l3e3", "type": "speak", "text": "Sure! I'd love to.", "sound": "v", "tip": "La v de love se hace con los dientes de arriba sobre el labio de abajo. No la cambies por b."},
+                {"id": "a1u14l3e4", "type": "build", "es": "No vayamos hoy.", "answer": "Let's not go today.", "accept": ["Today, let's not go."], "extra": ["to", "don't", "we"], "tip": "Para negar una propuesta: let's not + verbo."},
+                {"id": "a1u14l3e5", "type": "translate", "es": "Lo siento, no puedo. Estoy ocupado.", "options": ["Sorry, I can't. I'm busy.", "Sorry, I don't can. I'm busy.", "Sorry, I can't. I have busy."], "answer": "Sorry, I can't. I'm busy.", "accept": ["I'm sorry, I can't. I'm busy.", "Sorry, I can't make it. I'm busy.", "I'm sorry, I can't make it. I'm busy."], "tip": "Ocupado es un estado: I'm busy (con be), no I have busy."},
+                {"id": "a1u14l3e6", "type": "cloze", "es": "¿Quieres comer algo?", "text": "Do you want ___ eat something?", "answer": "to", "accept": [], "tip": "want pide to antes del verbo: want to eat."},
+                {"id": "a1u14l3e7", "type": "listen", "audio": "How about Friday night?", "options": ["How about Friday night?", "How is Friday night?", "How about to Friday night?"], "answer": "How about Friday night?", "tip": "How about + una cosa o un día, sin to: How about Friday night?"},
+                {"id": "a1u14l3e8", "type": "type", "audio": "Sounds good. See you at eight.", "accept": ["Sounds good. See you at 8:00."], "meaning": "Me parece bien. Nos vemos a las ocho.", "tip": "Sounds good = me parece bien. Es una forma corta de aceptar."},
+                {"id": "a1u14l3e9", "type": "speak", "text": "How about this Thursday?", "sound": "th", "tip": "this y Thursday llevan th: la punta de la lengua asoma entre los dientes. En this vibra; en Thursday es solo aire."},
+                {"id": "a1u14l3e10", "type": "write", "es": "Comamos pizza esta noche.", "answer": "Let's eat pizza tonight.", "accept": ["Let's have pizza tonight.", "Let's get pizza tonight.", "Let's eat some pizza tonight.", "Let's have some pizza tonight.", "Let's get some pizza tonight.", "Tonight let's eat pizza.", "Let's eat pizza this evening.", "Let's have pizza this evening.", "Tonight let's have pizza.", "Tonight let's get pizza."], "tip": "«Comamos» es una propuesta: let's + verbo."},
+                {"id": "a1u14l3e11", "type": "cloze", "es": "¿Te gustaría bailar? — ¡Me encantaría!", "text": "Would you like to dance? — I'd ___ to!", "answer": "love", "accept": [], "tip": "I'd love to = me encantaría. El to del final reemplaza al verbo: no hace falta repetir dance."},
+                {"id": "a1u14l3e12", "type": "write", "es": "¿Quieres venir con nosotros?", "answer": "Do you want to come with us?", "accept": ["Would you like to come with us?", "Want to come with us?", "Do you want to join us?", "Would you like to join us?", "Do you want to go with us?", "Would you like to go with us?", "Do you want to come along with us?", "Would you like to come along with us?"], "tip": "Do you want + to + verbo. Con would you like suena más amable."},
+                {"id": "a1u14l3e13", "type": "shadow", "text": "Let's go to the movies. Sure, sounds good!", "tip": "Let's go sale como una sola palabra: «letsgou»."}
               ]
             }
           ]
@@ -513,7 +959,7 @@
               "title": "Dónde estuviste",
               "theory": {
                 "title": "was y were: el pasado de to be",
-                "body": "El pasado de **am/is/are** son solo dos palabras:\n\n**was** → I, he, she, it\n*I **was** tired.* · *She **was** at home.*\n\n**were** → you, we, they\n*You **were** right.* · *They **were** happy.*\n\n**Negativo:** wasn't / weren't\n**Pregunta:** *Were you at the party?* · *Was he there?*",
+                "body": "El pasado de **am/is/are** son solo dos palabras:\n\n**was** → I, he, she, it\n*I **was** tired.* · *She **was** at home.*\n\n**were** → you, we, they\n*You **were** right.* · *They **were** happy.*\n\n**Negativo:** wasn't / weren't\n**Pregunta:** *Were you at the party?* · *Was he there?*\n\n**Respuesta corta:** *Were you tired?* → *Yes, I **was**.* · *No, I **wasn't**.*",
                 "trap": "«Estuve en la fiesta» sale como *I was in the party* — y eso significa que estabas *dentro* del concepto fiesta. Para eventos el inglés usa **at**: **I was at the party**. Lo mismo con at school, at work, at the concert."
               },
               "exercises": [
@@ -527,7 +973,11 @@
                 {"id": "a1u8l1e8", "type": "speak", "text": "They were at the coffee shop.", "sound": "sh", "tip": "shop con sh de «shhh», no «chop»."},
                 {"id": "a1u8l1e9", "type": "cloze", "es": "Estuve en la fiesta.", "text": "I was ___ the party.", "answer": "at", "accept": [], "tip": "Eventos con at: at the party, at work, at school. in sería dentro."},
                 {"id": "a1u8l1e10", "type": "write", "es": "Ellos estaban cansados ayer.", "answer": "They were tired yesterday.", "accept": ["Yesterday they were tired."], "tip": "they siempre con were, nunca was."},
-                {"id": "a1u8l1e11", "type": "shadow", "text": "I was at home last night.", "tip": "Seis palabras de un tirón. El peso en «HOME» y en «NIGHT»."}
+                {"id": "a1u8l1e11", "type": "shadow", "text": "I was at home last night.", "tip": "Seis palabras de un tirón. El peso en «HOME» y en «NIGHT»."},
+                {"id": "a1u8l1e12", "type": "cloze", "es": "—¿Estabas en casa? —Sí, estaba.", "text": "Were you at home? Yes, I ___.", "answer": "was", "accept": ["was at home", "was home"], "tip": "Te preguntan con you (were), pero respondes con I: Yes, I was."},
+                {"id": "a1u8l1e13", "type": "translate", "es": "(A «¿Él estaba cansado?») No, no estaba.", "options": ["No, he wasn't.", "No, he weren't.", "No, he isn't."], "answer": "No, he wasn't.", "accept": ["No, he wasn't tired."], "tip": "Pregunta con Was → respuesta corta con was: No, he wasn't. weren't es para you, we, they, e isn't es presente."},
+                {"id": "a1u8l1e14", "type": "write", "es": "¿Ella estaba en la oficina ayer?", "answer": "Was she at the office yesterday?", "accept": ["Was she in the office yesterday?"], "tip": "Para preguntar en pasado, Was va antes del sujeto: Was she…?"},
+                {"id": "a1u8l1e15", "type": "listen", "audio": "Were they at the party?", "options": ["Was they at the party?", "Were they at the party?", "They were at the party?"], "answer": "Were they at the party?", "tip": "they va con were, y en la pregunta were va primero."}
               ]
             },
             {
@@ -572,7 +1022,10 @@
                 {"id": "a1u8l3e8", "type": "speak", "text": "She said three things.", "sound": "th", "tip": "three y things con la lengua entre los dientes. Y said suena «sed», no «seid»."},
                 {"id": "a1u8l3e9", "type": "cloze", "es": "Fui al médico ayer.", "text": "I ___ to the doctor yesterday.", "answer": "went", "accept": [], "tip": "go se vuelve went. No existe goed."},
                 {"id": "a1u8l3e10", "type": "write", "es": "Ella tuvo un problema con su carro.", "answer": "She had a problem with her car.", "accept": ["She had a problem with the car.", "She had a problem with his car.", "She had a problem with their car.", "She had a problem with your car.", "She had trouble with her car.", "She had an issue with her car.", "She had trouble with the car.", "She had an issue with the car."], "tip": "have se vuelve had, para todas las personas."},
-                {"id": "a1u8l3e11", "type": "shadow", "text": "I took the bus to work.", "tip": "Frase corta y muy usada. «I TOOK the bus to WORK»."}
+                {"id": "a1u8l3e11", "type": "shadow", "text": "I took the bus to work.", "tip": "Frase corta y muy usada. «I TOOK the bus to WORK»."},
+                {"id": "a1u8l3e12", "type": "cloze", "es": "Comí pollo en el almuerzo.", "text": "I ___ chicken for lunch.", "answer": "ate", "accept": ["had"], "tip": "El pasado de eat es ate (suena «éit»), no «eated»."},
+                {"id": "a1u8l3e13", "type": "write", "es": "Ella consiguió un trabajo nuevo.", "answer": "She got a new job.", "accept": ["She found a new job.", "She landed a new job."], "tip": "El pasado de get (conseguir) es got."},
+                {"id": "a1u8l3e14", "type": "translate", "es": "Hice la tarea anoche.", "options": ["I did my homework last night.", "I doed my homework last night.", "I made my homework last night."], "answer": "I did my homework last night.", "accept": ["I did the homework last night.", "Last night I did my homework.", "Last night I did the homework."], "tip": "La tarea se hace con do (did), no con make: «hacer» se traduce de dos formas."}
               ]
             },
             {
@@ -595,6 +1048,38 @@
                 {"id": "a1u8l4e9", "type": "cloze", "es": "No fui a la fiesta.", "text": "I didn't ___ to the party.", "answer": "go", "accept": [], "tip": "didn't ya carga el pasado: el verbo vuelve a su forma normal."},
                 {"id": "a1u8l4e10", "type": "write", "es": "¿Hablaste con ella ayer?", "answer": "Did you speak with her yesterday?", "accept": ["Did you talk to her yesterday?", "Did you speak to her yesterday?", "Did you talk with her yesterday?"], "tip": "Did + speak, no spoke. El pasado ya está en el did."},
                 {"id": "a1u8l4e11", "type": "shadow", "text": "Did you have a good weekend?", "tip": "La pregunta del lunes. Suena «did-ya HAVE a good WEEKend?»."}
+              ]
+            }
+          ]
+        },
+        {
+          "id": "a1u15",
+          "emoji": "🔎",
+          "title": "Preguntar por el pasado",
+          "subtitle": "Where did you go?, había y respuestas cortas",
+          "lessons": [
+            {
+              "id": "a1u15l1",
+              "title": "¿Adónde fuiste? ¿Había mucha gente?",
+              "theory": {
+                "title": "Where did you go? y «había»",
+                "body": "Para preguntar en pasado con **where, what, when, who**: palabra de pregunta + **did** + sujeto + verbo **normal**.\n*Where **did** you **go**?* · *When **did** she **arrive**?* (Si **who** es quien hizo la acción, va sin did: *Who called?*)\n\nRespuestas cortas: *Yes, I **did**.* · *No, he **didn't**.* Con be: *Yes, it **was**.*\n\n**Había** (cuando significa «existía») es el pasado de *there is / there are*:\n**there was** + una cosa (o algo que no se cuenta: *a lot of noise*) · **there were** + varias\n*There **was** a party.* · *There **were** many people.*\nPregunta: ***Was there** a problem?* · ***Were there** many people?*",
+                "trap": "En español basta la entonación, y sale *Where you went?*; o, mezclando, *Where did you went?* Con **did** el verbo vuelve a su forma normal: **Where did you go?** Y el «había» de existir no es *had* ni *there had*: ❌ *Had a party* → ✅ **There was a party**. Con gente va were: ❌ *There was many people* → ✅ **There were many people**."
+              },
+              "exercises": [
+                {"id": "a1u15l1e1", "type": "listen", "audio": "Where did you go?", "options": ["Where you went?", "Where did you go?", "Where did you went?"], "answer": "Where did you go?", "tip": "El pasado ya está en did: el verbo queda en go, no en went."},
+                {"id": "a1u15l1e2", "type": "translate", "es": "¿Qué hiciste el fin de semana?", "options": ["What you did on the weekend?", "What did you do on the weekend?", "What did you did on the weekend?"], "answer": "What did you do on the weekend?", "accept": ["What did you do over the weekend?", "What did you do this weekend?", "What did you do last weekend?", "What did you do this past weekend?", "What did you do at the weekend?"], "tip": "What + did + you + do: el primer do es el ayudante (did), el segundo es el verbo hacer."},
+                {"id": "a1u15l1e3", "type": "speak", "text": "There were a lot of people there.", "sound": "th", "tip": "There lleva th que vibra: lengua entre los dientes, no una d."},
+                {"id": "a1u15l1e4", "type": "build", "es": "¿Cuándo llegó ella?", "answer": "When did she arrive?", "extra": ["arrived", "was", "does"], "tip": "Con did, arrive sin -ed. Y llegó es pasado: did, no does."},
+                {"id": "a1u15l1e5", "type": "listen", "audio": "There were many people.", "options": ["There was many people.", "There were many people.", "It had many people."], "answer": "There were many people.", "tip": "people es plural: there were. «Había» nunca se dice con had."},
+                {"id": "a1u15l1e6", "type": "translate", "es": "¿Había un problema?", "options": ["Had a problem?", "Was there a problem?", "Did there a problem?"], "answer": "Was there a problem?", "accept": ["Was there an issue?", "Was there any problem?"], "tip": "Para preguntar se voltea: there was → was there?"},
+                {"id": "a1u15l1e7", "type": "cloze", "es": "¿A quién viste en la fiesta?", "text": "Who ___ you see at the party?", "answer": "did", "accept": [], "tip": "Aquí who es a quien viste (tú viste): hace falta did y see queda normal."},
+                {"id": "a1u15l1e8", "type": "type", "audio": "No, she didn't. She stayed home.", "meaning": "No, ella no. Se quedó en casa.", "tip": "Respuesta corta: No, she didn't, sin repetir el verbo."},
+                {"id": "a1u15l1e9", "type": "speak", "text": "What did you do last weekend?", "sound": "final", "tip": "Cierra las finales: la d de did, la st de last, la d de weekend."},
+                {"id": "a1u15l1e10", "type": "write", "es": "¿Adónde fuiste ayer?", "answer": "Where did you go yesterday?", "accept": [], "tip": "Where + did + you + go. Nada de went después de did."},
+                {"id": "a1u15l1e11", "type": "cloze", "es": "¿Estuvo buena la película? — Sí.", "text": "Was the movie good? — Yes, it ___.", "answer": "was", "accept": [], "tip": "Si la pregunta va con was, la respuesta corta también: Yes, it was."},
+                {"id": "a1u15l1e12", "type": "write", "es": "¿Había mucha gente en el concierto?", "answer": "Were there a lot of people at the concert?", "accept": ["Were there many people at the concert?", "Were there lots of people at the concert?", "Was the concert crowded?", "Was it crowded at the concert?", "Was there a big crowd at the concert?"], "tip": "gente = people, que es plural: were there, no was there."},
+                {"id": "a1u15l1e13", "type": "shadow", "text": "Where did you go? Was there a party?", "tip": "La pregunta con where baja al final; la de sí o no (Was there...?) sube."}
               ]
             }
           ]
@@ -632,7 +1117,7 @@
               "title": "Creo que...",
               "theory": {
                 "title": "will: lo que decides en el momento",
-                "body": "**will** es para lo que **no** tenías planeado: una decisión que tomas ahora mismo, una promesa, una predicción.\n\n*The phone is ringing. I'**ll** get it.* (lo decides en ese segundo)\n*I think it **will** rain.* (predicción)\n*I **won't** forget.* (promesa)\n\nComo **can**, no cambia nunca: I will, he will, they will. Y lo que sigue va desnudo, sin to.\n\n**will not = won't**\n\nLa diferencia con *going to*: **going to** ya estaba decidido, **will** se decide al hablar.",
+                "body": "**will** es para lo que **no** tenías planeado: una decisión que tomas ahora mismo, una promesa, una predicción.\n\n*The phone is ringing. I'**ll** get it.* (lo decides en ese segundo)\n*I think it **will** rain.* (predicción)\n*I **won't** forget.* (promesa)\n\nComo **can**, no cambia nunca: I will, he will, they will. Y lo que sigue va desnudo, sin to.\n\n**will not = won't**\n\nLa diferencia con *going to*: **going to** ya estaba decidido, **will** se decide al hablar.\n\n**Pregunta:** will va delante: ***Will** you help me?* · ***Will** it rain tomorrow?*",
                 "trap": "En español el futuro va pegado al verbo («lloverá», «iré»), así que no hay una palabra suelta que recordar y se olvida el will. Y ojo: *I will to go* ❌ — igual que can, will no lleva to: **I will go**."
               },
               "exercises": [
@@ -647,7 +1132,10 @@
                 {"id": "a1u9l2e9", "type": "cloze", "es": "¿Tienes frío? Yo cierro la ventana.", "text": "Are you cold? I ___ close the window.", "answer": "will", "accept": ["'ll"], "tip": "Lo decides en este segundo: will (I'll close it), no going to."},
                 {"id": "a1u9l2e10", "type": "write", "es": "No lo olvidaré.", "answer": "I won't forget.", "accept": ["I won't forget it.", "I won't forget that.", "I'm not going to forget.", "I'm not going to forget it."], "tip": "won't es will not. Se escribe raro pero se usa muchísimo."},
                 {"id": "a1u9l2e11", "type": "shadow", "text": "I think it will be hot.", "tip": "think con la lengua entre los dientes, y sin parar antes de «hot»."},
-                {"id": "a1u9l2e12", "type": "minimalPair", "options": ["want", "won't"], "answer": "won't", "sentence": "I won't be late.", "play": "sentence", "tip": "won't es larga, como «wount»; want es corta. Cambian la frase entera."}
+                {"id": "a1u9l2e12", "type": "minimalPair", "options": ["want", "won't"], "answer": "won't", "sentence": "I won't be late.", "play": "sentence", "tip": "won't es larga, como «wount»; want es corta. Cambian la frase entera."},
+                {"id": "a1u9l2e13", "type": "write", "es": "¿Me ayudarás?", "answer": "Will you help me?", "accept": ["Are you going to help me?"], "tip": "Para preguntar, will va antes del sujeto: Will you…? El verbo sigue sin to."},
+                {"id": "a1u9l2e14", "type": "cloze", "es": "¿Vendrás a la fiesta?", "text": "___ you come to the party?", "answer": "Will", "accept": [], "tip": "Pregunta en futuro: Will you come…? No lleva do."},
+                {"id": "a1u9l2e15", "type": "translate", "es": "¿Estarás en casa mañana?", "options": ["Will you be at home tomorrow?", "Will you are at home tomorrow?", "Do you will be at home tomorrow?"], "answer": "Will you be at home tomorrow?", "accept": ["Will you be home tomorrow?", "Are you going to be at home tomorrow?", "Are you going to be home tomorrow?"], "tip": "Después de will, to be se queda como be: Will you be…?"}
               ]
             },
             {
@@ -670,7 +1158,11 @@
                 {"id": "a1u9l3e9", "type": "cloze", "es": "Mi carro es más grande que el tuyo.", "text": "My car is ___ than yours.", "answer": "bigger", "accept": ["larger"], "tip": "big es corto: bigger (se dobla la g, como hot → hotter). Nada de more big."},
                 {"id": "a1u9l3e10", "type": "write", "es": "Este hotel es más caro que el otro.", "answer": "This hotel is more expensive than the other one.", "accept": ["This hotel is more expensive than the other.", "This hotel is more expensive than the other hotel.", "This hotel costs more than the other one."], "tip": "expensive es largo: lleva more. Y se compara con than, no con that."},
                 {"id": "a1u9l3e11", "type": "shadow", "text": "This is better than that.", "tip": "Tres th en la misma frase: this, than, that. Despacio la primera vez."},
-                {"id": "a1u9l3e12", "type": "minimalPair", "options": ["cheap", "sheep"], "answer": "cheap", "sentence": "This hotel is cheap.", "tip": "cheap empieza con ch; sheep con sh. Es el par que más se nos mezcla."}
+                {"id": "a1u9l3e12", "type": "minimalPair", "options": ["cheap", "sheep"], "answer": "cheap", "sentence": "This hotel is cheap.", "tip": "cheap empieza con ch; sheep con sh. Es el par que más se nos mezcla."},
+                {"id": "a1u9l3e13", "type": "write", "es": "Esta es la ciudad más grande de Colombia.", "answer": "This is the biggest city in Colombia.", "accept": ["This is the largest city in Colombia.", "This is Colombia's biggest city.", "This is Colombia's largest city."], "tip": "El máximo: the + -est (biggest, con la g doblada). Y «de Colombia» aquí es in Colombia, no of."},
+                {"id": "a1u9l3e14", "type": "cloze", "es": "El inglés es más fácil que el francés.", "text": "English is ___ than French.", "answer": "easier", "accept": [], "tip": "easy termina en -y: la y cambia a i y se pone -er, easier. No «more easy»."},
+                {"id": "a1u9l3e15", "type": "cloze", "es": "Hoy es el peor día de mi vida.", "text": "Today is the ___ day of my life.", "answer": "worst", "accept": [], "tip": "bad → worse → the worst. Es irregular: nada de «baddest»."},
+                {"id": "a1u9l3e16", "type": "translate", "es": "Mi inglés es peor que el tuyo.", "options": ["My English is more bad than yours.", "My English is worse than yours.", "My English is badder than yours."], "answer": "My English is worse than yours.", "accept": [], "tip": "«Peor que» es worse than. bad no sigue la regla."}
               ]
             }
           ]

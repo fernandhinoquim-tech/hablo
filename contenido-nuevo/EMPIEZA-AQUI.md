@@ -54,10 +54,13 @@ vocabulario (368 parejas) · 12 historias (2 tandas).
 ## Lo que falta, en orden
 
 0. **Lo de la auditoría** (`auditoria-a1-a2/auditoria-a1-a2.md`, sección 9):
-   el parche de los defectos está HECHO y verificado
-   (`contenido-nuevo/parche-auditoria/`, 276 ids, 381 cambios, 37 fichas);
-   falta que Claude Code lo aplique. Sigue: los "huecos" de sus
-   `_pendientes` + las 16 lecciones nuevas de A1, luego las lecciones nuevas de A1
+   el parche de los defectos está INTEGRADO por Claude Code
+   (`integrado/2026-09-17-parche-auditoria/`). A1 ampliado ESCRITO y
+   verificado (`contenido-nuevo/a1-nuevo/`: 16 lecciones en 6 unidades
+   intercaladas + 57 ejercicios de huecos + 6 fichas), falta integrarlo y
+   arreglar la cadena de desbloqueo (ver su COMO-INTEGRAR). Sigue: las 14
+   lecciones nuevas de A2 (+ sus huecos, en los `_pendientes` del parche),
+   luego las lecciones nuevas de A1
    y A2, el vocabulario, la biblioteca de Gramática y las actividades.
 1. **Pistas de Aptis**: Writing **hecho**
    (`contenido-nuevo/aptis/pista-writing.json`, 16 tareas). Faltan **Reading,

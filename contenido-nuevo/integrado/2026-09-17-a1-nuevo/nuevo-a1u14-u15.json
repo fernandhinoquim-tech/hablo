@@ -1,0 +1,123 @@
+{
+ "insertar": [
+  {
+   "despues_de": "a1u7",
+   "unit": {
+    "id": "a1u14",
+    "emoji": "🎉",
+    "title": "Precios, gustos y planes",
+    "subtitle": "How much is it?, like + -ing y cómo invitar",
+    "lessons": [
+     {
+      "id": "a1u14l1",
+      "title": "¿Cuánto cuesta?",
+      "theory": {
+       "title": "How much is it? y los plurales con are",
+       "body": "Para preguntar el precio: **How much is it?** (una cosa) · **How much are they?** (varias). También: *How much **does** it cost?*\n\nSe responde con el mismo verbo: *It's twelve dollars.* · *They're twenty dollars.*\n\n*$12.50* se dice **twelve fifty** o **twelve dollars and fifty cents**. En pesos: *fifty thousand pesos* (50.000); **thousand** no lleva -s después de un número. Y para opinar: *That's **expensive**.* · *That's **cheap**.*\n\nLos plurales llevan **are**: *These shoes **are** cheap.* Ojo con los irregulares: **person → people** · **child → children** · **man → men** · **woman → women**. *People* ya es plural: ❌ *the peoples* (*peoples* solo existe como «pueblos, naciones»).",
+       "trap": "De «¿cuánto cuesta?» sale *How much cost?*, pero al inglés le falta el sujeto y el ayudante: **How much is it?** o **How much does it cost?** Y como «los zapatos» ya suena a varios, se escapa el verbo: ❌ *the shoes is* → ✅ **the shoes are**. Tampoco *the peoples*: **people** ya es plural."
+      },
+      "exercises": [
+       {"id": "a1u14l1e1", "type": "listen", "audio": "How much are these shoes?", "options": ["How much is these shoes?", "How much are these shoes?", "How many are these shoes?"], "answer": "How much are these shoes?", "tip": "shoes es plural, así que va are. Y el precio se pregunta con much, no con many."},
+       {"id": "a1u14l1e2", "type": "translate", "es": "¿Cuánto cuesta esta camisa?", "options": ["How much cost this shirt?", "How much is this shirt?", "How many is this shirt?"], "answer": "How much is this shirt?", "accept": ["How much does this shirt cost?", "What does this shirt cost?"], "tip": "«¿Cuánto cuesta?» = How much is...? Si preguntas con el verbo cost, hace falta does: How much does it cost?"},
+       {"id": "a1u14l1e3", "type": "speak", "text": "It's twelve dollars and fifty cents.", "sound": "final", "tip": "Cierra bien las finales: dollars con z, cents con ts. Si las sueltas, suena «dolar» y «cen»."},
+       {"id": "a1u14l1e4", "type": "build", "es": "Estos zapatos son baratos.", "answer": "These shoes are cheap.", "extra": ["is", "this", "much"], "tip": "These (estos) y are van con plural: these shoes are."},
+       {"id": "a1u14l1e5", "type": "listen", "audio": "They're twenty dollars.", "options": ["They is twenty dollars.", "They're twenty dollars.", "They're twelve dollars."], "answer": "They're twenty dollars.", "tip": "Escucha bien el número: twenty (20) y twelve (12) empiezan igual."},
+       {"id": "a1u14l1e6", "type": "translate", "es": "Eso es caro.", "options": ["Is expensive.", "That's expensive.", "That's a expensive."], "answer": "That's expensive.", "accept": ["It's expensive.", "That's pricey."], "tip": "Hace falta el sujeto: that's (o it's). Y sin a delante del adjetivo solo."},
+       {"id": "a1u14l1e7", "type": "type", "audio": "It's fifty thousand pesos.", "accept": ["It's 50,000 pesos."], "meaning": "Son cincuenta mil pesos.", "tip": "thousand = mil, y no lleva -s después de un número: fifty thousand, no fifty thousands."},
+       {"id": "a1u14l1e8", "type": "cloze", "es": "¿Cuánto cuestan?", "text": "How much ___ they?", "answer": "are", "accept": [], "tip": "they es plural: are."},
+       {"id": "a1u14l1e9", "type": "speak", "text": "She wants cheap shoes.", "sound": "sh", "tip": "She y shoes empiezan con sh suave, como cuando pides silencio. cheap sí es ch, con la t pegada: no las confundas."},
+       {"id": "a1u14l1e10", "type": "write", "es": "Hay muchas personas en la tienda.", "answer": "There are a lot of people in the store.", "accept": ["There are many people in the store.", "There are lots of people in the store.", "There are a lot of people at the store.", "There are many people at the store.", "There are lots of people at the store.", "There are a lot of people in the shop.", "There are many people in the shop.", "There are lots of people in the shop.", "There are a lot of people at the shop.", "There are many people at the shop.", "There are lots of people at the shop."], "tip": "people ya es plural (personas): va con are y nunca lleva -s."},
+       {"id": "a1u14l1e11", "type": "minimalPair", "options": ["fifteen", "fifty"], "answer": "fifteen", "sentence": "It's fifteen dollars.", "play": "sentence", "tip": "fifteen (15) carga la fuerza al final y alarga la i: fif-TEEN. fifty (50) la carga al principio: FIF-ty."},
+       {"id": "a1u14l1e12", "type": "cloze", "es": "Los niños están en el parque.", "text": "The ___ are in the park.", "answer": "children", "accept": ["kids", "boys"], "tip": "child → children. Plural irregular: no se dice childs."},
+       {"id": "a1u14l1e13", "type": "write", "es": "Cuesta doce dólares con cincuenta.", "answer": "It's twelve fifty.", "accept": ["It's twelve dollars and fifty cents.", "It costs twelve fifty.", "It costs twelve dollars and fifty cents.", "It's twelve dollars fifty.", "It costs twelve dollars fifty.", "It's $12.50.", "It costs $12.50."], "tip": "Con precios se usa it's o it costs. «Doce con cincuenta» se dice twelve fifty."},
+       {"id": "a1u14l1e14", "type": "shadow", "text": "How much is it? It's twelve fifty.", "tip": "twelve fifty sale de corrido, como un solo número."}
+      ]
+     },
+     {
+      "id": "a1u14l2",
+      "title": "Me gusta, me encanta, odio",
+      "theory": {
+       "title": "like + -ing: el que gusta eres tú",
+       "body": "En inglés la persona va primero y el verbo es **like**: *I like coffee.* (Me gusta el café.)\n\nDespués de **like, love, hate, enjoy** y **don't mind** (no me molesta) va una cosa o un verbo con **-ing**:\n*I **like cooking**.* · *She **loves dancing**.* · *I **don't mind** waiting.*\n\nCon like, love y hate también se oye **to**: *I like to cook.* Con enjoy y don't mind, solo -ing.\n\nPreguntar: ***Do you like** soccer? — Yes, I **do**. / No, I **don't**.*\n\nY no confundas: **I like** = me gusta (en general). **I'd like** = quisiera (ahora).",
+       "trap": "«Me gusta» está al revés: no es *It likes me* sino **I like it**. Y lo que sigue va directo: ❌ *I like to the music* · ❌ *I love cook* → ✅ **I like music** · **I love cooking**. El «mucho» va al final: ❌ *I like very much soccer* → ✅ **I like soccer very much**."
+      },
+      "exercises": [
+       {"id": "a1u14l2e1", "type": "listen", "audio": "I like cooking.", "options": ["I like cook.", "I like cooking.", "I like to cooking."], "answer": "I like cooking.", "tip": "Después de like, el verbo va con -ing (cooking) o con to (to cook), pero no los dos."},
+       {"id": "a1u14l2e2", "type": "translate", "es": "Me encanta nadar.", "options": ["I love swim.", "I love swimming.", "Swimming loves me."], "answer": "I love swimming.", "accept": ["I love to swim."], "tip": "love + -ing. swim dobla la m: swimming."},
+       {"id": "a1u14l2e3", "type": "speak", "text": "She hates washing the dishes.", "sound": "sh", "tip": "sh en she, washing y dishes: suave y largo, sin la t de ch."},
+       {"id": "a1u14l2e4", "type": "build", "es": "No me molesta esperar.", "answer": "I don't mind waiting.", "extra": ["wait", "me", "it"], "tip": "don't mind = no me molesta. Después va el verbo con -ing."},
+       {"id": "a1u14l2e5", "type": "translate", "es": "¿Te gusta bailar?", "options": ["Would you like to dance?", "Do you like dancing?", "Are you like dancing?"], "answer": "Do you like dancing?", "accept": ["Do you like to dance?", "Do you enjoy dancing?"], "tip": "Do you like...? pregunta por tus gustos. Would you like to dance? es una invitación: ¿quieres bailar (ahora)?"},
+       {"id": "a1u14l2e6", "type": "listen", "audio": "Yes, I do. I love it.", "options": ["Yes, I like. I love it.", "Yes, I do. I love it.", "Yes, I do. I love."], "answer": "Yes, I do. I love it.", "tip": "La respuesta corta repite el ayudante: Yes, I do. Y love necesita su objeto: I love it."},
+       {"id": "a1u14l2e7", "type": "cloze", "es": "Me gusta leer por la noche.", "text": "I like ___ at night.", "answer": "reading", "accept": ["to read"], "tip": "like + -ing: reading. También vale to read."},
+       {"id": "a1u14l2e8", "type": "type", "audio": "My brother doesn't like shopping.", "meaning": "A mi hermano no le gusta ir de compras.", "tip": "doesn't se lleva la -s: like queda sin -s. shopping dobla la p."},
+       {"id": "a1u14l2e9", "type": "speak", "text": "He hates his job.", "sound": "h", "tip": "Las tres h suenan: un soplo suave, como cuando empañas un vidrio. No es la j española."},
+       {"id": "a1u14l2e10", "type": "write", "es": "Me gusta mucho el fútbol.", "answer": "I like soccer a lot.", "accept": ["I like soccer very much.", "I really like soccer.", "I like soccer so much.", "I like football a lot.", "I like football very much.", "I really like football.", "I like football so much."], "tip": "El «mucho» va al final: I like soccer a lot. En Estados Unidos el fútbol es soccer."},
+       {"id": "a1u14l2e11", "type": "cloze", "es": "¿Te gusta cocinar? — Sí.", "text": "Do you like cooking? — Yes, I ___.", "answer": "do", "accept": [], "tip": "La respuesta corta usa el ayudante de la pregunta: Do you...? → Yes, I do."},
+       {"id": "a1u14l2e12", "type": "write", "es": "A ella le gusta caminar, pero odia correr.", "answer": "She likes walking, but she hates running.", "accept": ["She likes walking but hates running.", "She likes to walk, but she hates to run.", "She likes to walk but hates to run.", "She likes to walk, but she hates running.", "She likes to walk but hates running.", "She likes walking, but she hates to run.", "She likes walking but hates to run."], "tip": "Con she, los dos verbos llevan -s: likes, hates. running dobla la n."},
+       {"id": "a1u14l2e13", "type": "shadow", "text": "Do you like dancing? Yes, I do. I love it.", "tip": "Pregunta subiendo al final; la respuesta, bajando."}
+      ]
+     },
+     {
+      "id": "a1u14l3",
+      "title": "¿Vamos al cine?",
+      "theory": {
+       "title": "Proponer e invitar",
+       "body": "Para proponer algo entre todos: **Let's** + verbo, sin to.\n*Let's go to the movies.* · *Let's not wait.*\n\nPara invitar: **Would you like to** + verbo (la más amable) o **Do you want to** + verbo.\n*Would you like to come?* · *Do you want to eat something?*\n\n**How about** + una cosa: *How about pizza?* · *How about Friday?* O un verbo con **-ing**, como después de like: *How about going out?*\n\nAceptar: *Sure!* · *I'd love to.* · *Sounds good.*\nRechazar con cortesía: *Sorry, I can't. I'm busy.*",
+       "trap": "«Vamos a...» empuja a poner to: ❌ *Let's to go*. Después de **let's** el verbo va pelado: **Let's go**. Con would like pasa lo contrario, sí lleva to: ❌ *Would you like come?* → ✅ **Would you like to come?** Y «¿quieres que vaya?» no se arma con that: ❌ *Do you want that I go?* → ✅ **Do you want me to go?**"
+      },
+      "exercises": [
+       {"id": "a1u14l3e1", "type": "listen", "audio": "Let's go to the movies.", "options": ["Let's to go to the movies.", "Let's go to the movies.", "We go to the movies."], "answer": "Let's go to the movies.", "tip": "Let's + verbo pelado: let's go. Ir al cine = go to the movies."},
+       {"id": "a1u14l3e2", "type": "translate", "es": "¿Te gustaría venir a mi casa?", "options": ["Would you like come to my house?", "Would you like to come to my house?", "Do you like to come to my house?"], "answer": "Would you like to come to my house?", "accept": ["Do you want to come to my house?", "Would you like to come over?", "Do you want to come over?", "Would you like to come to my place?", "Would you like to come over to my house?", "Do you want to come over to my house?", "Do you want to come to my place?"], "tip": "Would you like + to + verbo. Do you like...? pregunta por gustos, no invita."},
+       {"id": "a1u14l3e3", "type": "speak", "text": "Sure! I'd love to.", "sound": "v", "tip": "La v de love se hace con los dientes de arriba sobre el labio de abajo. No la cambies por b."},
+       {"id": "a1u14l3e4", "type": "build", "es": "No vayamos hoy.", "answer": "Let's not go today.", "accept": ["Today, let's not go."], "extra": ["to", "don't", "we"], "tip": "Para negar una propuesta: let's not + verbo."},
+       {"id": "a1u14l3e5", "type": "translate", "es": "Lo siento, no puedo. Estoy ocupado.", "options": ["Sorry, I can't. I'm busy.", "Sorry, I don't can. I'm busy.", "Sorry, I can't. I have busy."], "answer": "Sorry, I can't. I'm busy.", "accept": ["I'm sorry, I can't. I'm busy.", "Sorry, I can't make it. I'm busy.", "I'm sorry, I can't make it. I'm busy."], "tip": "Ocupado es un estado: I'm busy (con be), no I have busy."},
+       {"id": "a1u14l3e6", "type": "cloze", "es": "¿Quieres comer algo?", "text": "Do you want ___ eat something?", "answer": "to", "accept": [], "tip": "want pide to antes del verbo: want to eat."},
+       {"id": "a1u14l3e7", "type": "listen", "audio": "How about Friday night?", "options": ["How about Friday night?", "How is Friday night?", "How about to Friday night?"], "answer": "How about Friday night?", "tip": "How about + una cosa o un día, sin to: How about Friday night?"},
+       {"id": "a1u14l3e8", "type": "type", "audio": "Sounds good. See you at eight.", "accept": ["Sounds good. See you at 8:00."], "meaning": "Me parece bien. Nos vemos a las ocho.", "tip": "Sounds good = me parece bien. Es una forma corta de aceptar."},
+       {"id": "a1u14l3e9", "type": "speak", "text": "How about this Thursday?", "sound": "th", "tip": "this y Thursday llevan th: la punta de la lengua asoma entre los dientes. En this vibra; en Thursday es solo aire."},
+       {"id": "a1u14l3e10", "type": "write", "es": "Comamos pizza esta noche.", "answer": "Let's eat pizza tonight.", "accept": ["Let's have pizza tonight.", "Let's get pizza tonight.", "Let's eat some pizza tonight.", "Let's have some pizza tonight.", "Let's get some pizza tonight.", "Tonight let's eat pizza.", "Let's eat pizza this evening.", "Let's have pizza this evening.", "Tonight let's have pizza.", "Tonight let's get pizza."], "tip": "«Comamos» es una propuesta: let's + verbo."},
+       {"id": "a1u14l3e11", "type": "cloze", "es": "¿Te gustaría bailar? — ¡Me encantaría!", "text": "Would you like to dance? — I'd ___ to!", "answer": "love", "accept": [], "tip": "I'd love to = me encantaría. El to del final reemplaza al verbo: no hace falta repetir dance."},
+       {"id": "a1u14l3e12", "type": "write", "es": "¿Quieres venir con nosotros?", "answer": "Do you want to come with us?", "accept": ["Would you like to come with us?", "Want to come with us?", "Do you want to join us?", "Would you like to join us?", "Do you want to go with us?", "Would you like to go with us?", "Do you want to come along with us?", "Would you like to come along with us?"], "tip": "Do you want + to + verbo. Con would you like suena más amable."},
+       {"id": "a1u14l3e13", "type": "shadow", "text": "Let's go to the movies. Sure, sounds good!", "tip": "Let's go sale como una sola palabra: «letsgou»."}
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "despues_de": "a1u8",
+   "unit": {
+    "id": "a1u15",
+    "emoji": "🔎",
+    "title": "Preguntar por el pasado",
+    "subtitle": "Where did you go?, había y respuestas cortas",
+    "lessons": [
+     {
+      "id": "a1u15l1",
+      "title": "¿Adónde fuiste? ¿Había mucha gente?",
+      "theory": {
+       "title": "Where did you go? y «había»",
+       "body": "Para preguntar en pasado con **where, what, when, who**: palabra de pregunta + **did** + sujeto + verbo **normal**.\n*Where **did** you **go**?* · *When **did** she **arrive**?* (Si **who** es quien hizo la acción, va sin did: *Who called?*)\n\nRespuestas cortas: *Yes, I **did**.* · *No, he **didn't**.* Con be: *Yes, it **was**.*\n\n**Había** (cuando significa «existía») es el pasado de *there is / there are*:\n**there was** + una cosa (o algo que no se cuenta: *a lot of noise*) · **there were** + varias\n*There **was** a party.* · *There **were** many people.*\nPregunta: ***Was there** a problem?* · ***Were there** many people?*",
+       "trap": "En español basta la entonación, y sale *Where you went?*; o, mezclando, *Where did you went?* Con **did** el verbo vuelve a su forma normal: **Where did you go?** Y el «había» de existir no es *had* ni *there had*: ❌ *Had a party* → ✅ **There was a party**. Con gente va were: ❌ *There was many people* → ✅ **There were many people**."
+      },
+      "exercises": [
+       {"id": "a1u15l1e1", "type": "listen", "audio": "Where did you go?", "options": ["Where you went?", "Where did you go?", "Where did you went?"], "answer": "Where did you go?", "tip": "El pasado ya está en did: el verbo queda en go, no en went."},
+       {"id": "a1u15l1e2", "type": "translate", "es": "¿Qué hiciste el fin de semana?", "options": ["What you did on the weekend?", "What did you do on the weekend?", "What did you did on the weekend?"], "answer": "What did you do on the weekend?", "accept": ["What did you do over the weekend?", "What did you do this weekend?", "What did you do last weekend?", "What did you do this past weekend?", "What did you do at the weekend?"], "tip": "What + did + you + do: el primer do es el ayudante (did), el segundo es el verbo hacer."},
+       {"id": "a1u15l1e3", "type": "speak", "text": "There were a lot of people there.", "sound": "th", "tip": "There lleva th que vibra: lengua entre los dientes, no una d."},
+       {"id": "a1u15l1e4", "type": "build", "es": "¿Cuándo llegó ella?", "answer": "When did she arrive?", "extra": ["arrived", "was", "does"], "tip": "Con did, arrive sin -ed. Y llegó es pasado: did, no does."},
+       {"id": "a1u15l1e5", "type": "listen", "audio": "There were many people.", "options": ["There was many people.", "There were many people.", "It had many people."], "answer": "There were many people.", "tip": "people es plural: there were. «Había» nunca se dice con had."},
+       {"id": "a1u15l1e6", "type": "translate", "es": "¿Había un problema?", "options": ["Had a problem?", "Was there a problem?", "Did there a problem?"], "answer": "Was there a problem?", "accept": ["Was there an issue?", "Was there any problem?"], "tip": "Para preguntar se voltea: there was → was there?"},
+       {"id": "a1u15l1e7", "type": "cloze", "es": "¿A quién viste en la fiesta?", "text": "Who ___ you see at the party?", "answer": "did", "accept": [], "tip": "Aquí who es a quien viste (tú viste): hace falta did y see queda normal."},
+       {"id": "a1u15l1e8", "type": "type", "audio": "No, she didn't. She stayed home.", "meaning": "No, ella no. Se quedó en casa.", "tip": "Respuesta corta: No, she didn't, sin repetir el verbo."},
+       {"id": "a1u15l1e9", "type": "speak", "text": "What did you do last weekend?", "sound": "final", "tip": "Cierra las finales: la d de did, la st de last, la d de weekend."},
+       {"id": "a1u15l1e10", "type": "write", "es": "¿Adónde fuiste ayer?", "answer": "Where did you go yesterday?", "accept": [], "tip": "Where + did + you + go. Nada de went después de did."},
+       {"id": "a1u15l1e11", "type": "cloze", "es": "¿Estuvo buena la película? — Sí.", "text": "Was the movie good? — Yes, it ___.", "answer": "was", "accept": [], "tip": "Si la pregunta va con was, la respuesta corta también: Yes, it was."},
+       {"id": "a1u15l1e12", "type": "write", "es": "¿Había mucha gente en el concierto?", "answer": "Were there a lot of people at the concert?", "accept": ["Were there many people at the concert?", "Were there lots of people at the concert?", "Was the concert crowded?", "Was it crowded at the concert?", "Was there a big crowd at the concert?"], "tip": "gente = people, que es plural: were there, no was there."},
+       {"id": "a1u15l1e13", "type": "shadow", "text": "Where did you go? Was there a party?", "tip": "La pregunta con where baja al final; la de sí o no (Was there...?) sube."}
+      ]
+     }
+    ]
+   }
+  }
+ ]
+}

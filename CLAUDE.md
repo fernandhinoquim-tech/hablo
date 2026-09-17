@@ -255,8 +255,30 @@ modelo de fonemas, no el de una persona, y con Grace (vocales) es el menos
 fiable. Sonidos que la portadora sí conserva 12/12: ship/sheep, chair/share;
 can't 10/12.
 **A2 entró el 2026-09-14 (noche): 10 unidades, 29 lecciones, 265 ejercicios
-(producción 65 %)** con `tools/content/anexar_nivel.py`. Total: **2 niveles,
-56 lecciones, 565 ejercicios.** La pantalla de inicio agrupa por nivel (un
+(producción 65 %)** con `tools/content/anexar_nivel.py`. **A1 ampliado el
+2026-09-16 (Cowork, `contenido-nuevo/integrado/2026-09-17-a1-nuevo/`): 6
+unidades nuevas INTERCALADAS donde les toca según Empower (a1u10 tras a1u1,
+a1u11 tras a1u3, a1u12 tras a1u4, a1u13 tras a1u5, a1u14 tras a1u7, a1u15 tras
+a1u8; 16 lecciones, 211 ejercicios) con su `anexar_unidades.py`, más 57
+ejercicios añadidos a 16 lecciones viejas (`anexar.py`) y 6 fichas ampliadas
+(`parchar2.py`). Total: **2 niveles, 72 lecciones, 833 ejercicios** (A1: 15
+unidades, 43 lecciones, 568; A2: 29 lecciones, 265).** Consecuencias en
+código: (1) **la cadena de desbloqueo** (`desbloqueadas` en `ScreenHome.kt`,
+con test): una unidad está abierta si es la primera, si alguna lección suya
+tiene puntaje, si la anterior está aprobada, o si la anterior está abierta y
+la de antes de esa aprobada; en la práctica quedan DOS unidades abiertas por
+delante y así la nueva intercalada y la vieja que sigue se hacen en paralelo
+(con la regla vieja, "todas las anteriores aprobadas", lo que Fero ya tenía
+desde a1u2 quedaba con candado). (2) **Fechas**: en `Correccion.numeros` un
+número justo después de un mes se queda en cifras ("May 3" ≠ "May three": es
+el error que enseña a1u12l2; Cowork vuelve a poner esos `accept`); igual en
+`checkContent` y en `validar2.py`, cuyo `suelta()` ahora replica de verdad
+`sueltaEstricta` (guion = espacio, tildes fuera, números en letras: antes daba
+un falso positivo en a1u10l2e6 con "310-555-2468" / "3105552468"). (3) Oído
+con Piper (`scratchpad/oir_a1nuevo.py`): a1u10l1e8 E/I salen /i/ y /aɪ/ en las
+cuatro voces; a1u13l1e9 white/wide se distinguen con Emma, Mia y Grace y **no
+con Sophie** (su "wide" sale con /t/); a1u15l1e5 was/were se distinguen en las
+cuatro. La pantalla de inicio agrupa por nivel (un
 encabezado con barra "x de y lecciones" por nivel) y la cadena de desbloqueo
 sigue de A1 a A2. Pares mínimos de A2 medidos: `ban`/`walk`/`work`/`sense`
 bien; `since` (ɪ) sale 1 de 4 y `van` (v) 2 de 4 — marginales.
@@ -299,6 +321,9 @@ cambiar `prep()` en `bench.py` igual.
   Para logs que se leen desde el PC, pasar `Locale.US`.
 - Fero graba con el teléfono desconectado del cable: `adb` se queda colgado
   si el teléfono no está. Revisar `adb devices` antes de cualquier `adb shell`.
+- **Con unidades intercaladas, "todas las anteriores aprobadas" cierra lo ya
+  hecho.** La cadena de desbloqueo es `desbloqueadas()` (dos por delante);
+  si se cambia, correr `DesbloqueoTest`.
 - **`adb shell input tap` sin argumentos revienta** (pasa cuando `find` no
   encontró el texto por un acento: los scripts PowerShell con acentos
   necesitan BOM UTF-8, y un comando en línea no lo tiene). Revisar que el

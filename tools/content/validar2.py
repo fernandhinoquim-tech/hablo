@@ -14,10 +14,37 @@ CONTR=[("i'm","i am"),("you're","you are"),("we're","we are"),("they're","they a
  ("i've","i have"),("you've","you have"),("we've","we have"),("they've","they have"),
  ("let's","let us")]
 
+UNIDADES=["zero","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve",
+ "thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen"]
+DECENAS={20:"twenty",30:"thirty",40:"forty",50:"fifty",60:"sixty",70:"seventy",80:"eighty",90:"ninety"}
+MESES={"january","february","march","april","may","june","july","august","september","october","november","december"}
+def en_letras(n):
+    if n<0 or n>100: return None
+    if n<20: return UNIDADES[n]
+    if n==100: return "one hundred"
+    if n%10==0: return DECENAS[n]
+    return DECENAS[n//10*10]+"-"+UNIDADES[n%10]
+def numeros(tokens):
+    # como Correccion.numeros: "8"="eight", "twenty five"="twenty-five", "a hundred"="one hundred";
+    # un numero pegado a un mes ("May 3") es una fecha y se queda en cifras
+    out=[]; i=0
+    while i<len(tokens):
+        t=tokens[i]
+        if t.isdigit() and (i==0 or tokens[i-1] not in MESES):
+            l=en_letras(int(t))
+            if l is not None: out+=l.split(" "); i+=1; continue
+        if t in DECENAS.values() and i+1<len(tokens) and tokens[i+1] in UNIDADES[1:10]:
+            out.append(t+"-"+tokens[i+1]); i+=2; continue
+        if t=="a" and i+1<len(tokens) and tokens[i+1]=="hundred": out.append("one"); i+=1; continue
+        out.append(t); i+=1
+    return out
 def norm(t):
-    t=t.lower().replace("’","'")
-    t="".join(c for c in t if c.isalnum() or c in " '")
-    return re.sub(r"\s+"," ",t.strip())
+    # normalizeAnswer + Correccion.fichas: sin tildes, guion = espacio, numeros en letras
+    import unicodedata
+    t=unicodedata.normalize("NFD",t.lower()).replace("\u2019","'").replace("-"," ").replace("\u2013"," ")
+    t="".join(c for c in t if (c.isalnum() and not unicodedata.combining(c)) or c in " '")
+    t=re.sub(r"\s+"," ",t.strip())
+    return " ".join(numeros([x for x in t.split(" ") if x]))
 def suelta(t):
     s=" "+norm(t)+" "
     for a,b in CONTR: s=s.replace(f" {a} ",f" {b} ")

@@ -62,12 +62,15 @@ object Correccion {
      * El dictado (Moonshine) escribe siempre cifras: sin esto, "twenty-five"
      * bien dicho salía en rojo 17 de 17 veces (diagnóstico del 2026-09-15).
      */
+    /** Un número pegado a un mes es una fecha ("May 3") y se queda en cifras: "May three" es justo el error que enseña a1u12l2. */
+    private val MESES = setOf("january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december")
+
     private fun numeros(tokens: List<String>): List<String> {
         val out = mutableListOf<String>()
         var i = 0
         while (i < tokens.size) {
             val t = tokens[i]
-            if (t.all { it.isDigit() }) {
+            if (t.all { it.isDigit() } && (i == 0 || tokens[i - 1] !in MESES)) {
                 val letras = t.toIntOrNull()?.let { enLetras(it) }
                 if (letras != null) { out += letras.split(" "); i++; continue }
             }
@@ -82,8 +85,9 @@ object Correccion {
 
     /**
      * Como [normalizeAnswer], y además el guion cuenta como espacio y los
-     * números van en letras ("8" = "eight", "25" = "twenty-five"). Las
-     * contracciones se dejan como están.
+     * números van en letras ("8" = "eight", "25" = "twenty-five"), salvo el
+     * que sigue a un mes ("May 3" se queda; ver [MESES]). Las contracciones
+     * se dejan como están.
      */
     fun fichas(text: String): String =
         numeros(normalizeAnswer(text.replace('-', ' ').replace('\u2013', ' ')).split(" ").filter { it.isNotEmpty() })

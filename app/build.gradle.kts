@@ -340,12 +340,14 @@ val checkContent = tasks.register("checkContent") {
                             n % 10 == 0 -> decenas[n]
                             else -> decenas[n / 10 * 10] + "-" + unidades[n % 10]
                         }
+                        val meses = setOf("january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december")
                         fun numeros(tokens: List<String>): List<String> {
                             val out = mutableListOf<String>()
                             var i = 0
                             while (i < tokens.size) {
                                 val t = tokens[i]
-                                if (t.all { it.isDigit() }) {
+                                // un numero pegado a un mes es una fecha y se queda en cifras (Correccion.MESES)
+                                if (t.all { it.isDigit() } && (i == 0 || tokens[i - 1] !in meses)) {
                                     val letras = t.toIntOrNull()?.let { enLetras(it) }
                                     if (letras != null) { out += letras.split(" "); i++; continue }
                                 }
