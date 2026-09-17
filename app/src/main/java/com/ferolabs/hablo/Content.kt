@@ -62,24 +62,36 @@ sealed class Exercise {
         val answerIndex: Int get() = options.indexOf(answer)
     }
 
-    /** Ves español y eliges la traducción correcta. Mismo contrato que [ListenChoose]. */
+    /**
+     * Ves español y eliges la traducción correcta. Mismo contrato que [ListenChoose].
+     * [accept]: otras formas válidas de la respuesta; aquí no se usan (se elige),
+     * pero el mazo, Aguanta y "adivina antes de ver" convierten este ejercicio
+     * en "escribir" y sin ellas marcaban mal "I'm 25" o "That's it" (auditoría
+     * de Cowork, 2026-09-16).
+     */
     data class TranslateChoose(
         override val id: String,
         val es: String,
         val options: List<String>,
         val answer: String,
-        override val tip: String? = null
+        override val tip: String? = null,
+        val accept: List<String> = emptyList()
     ) : Exercise() {
         val answerIndex: Int get() = options.indexOf(answer)
     }
 
-    /** Armas la frase tocando palabras. */
+    /**
+     * Armas la frase tocando palabras. [accept]: otros órdenes correctos con las
+     * mismas fichas (a2u2l4e6, a2u4l3e7, a2u5l1e6 arman otra frase válida) y las
+     * formas que valen cuando el mazo lo convierte en "escribir".
+     */
     data class BuildSentence(
         override val id: String,
         val es: String,
         val answer: String,
         val extraWords: List<String> = emptyList(),
-        override val tip: String? = null
+        override val tip: String? = null,
+        val accept: List<String> = emptyList()
     ) : Exercise()
 
     /** Escribes lo que escuchaste. */
@@ -648,7 +660,9 @@ object Course {
                     val options = strings(o, "options")
                     val answer = o.optString("answer", "")
                     checkChoice(where, options, answer)
-                    Exercise.TranslateChoose(id = id, es = o.getString("es"), options = options, answer = answer, tip = tip)
+                    val accept = strings(o, "accept")
+                    checkProduced(where, answer, accept)
+                    Exercise.TranslateChoose(id = id, es = o.getString("es"), options = options, answer = answer, tip = tip, accept = accept)
                 }
                 "build" -> {
                     val answer = o.getString("answer")
@@ -662,12 +676,17 @@ object Course {
                     if (extra.map { it.trim().lowercase() }.toSet().size != extra.size) {
                         throw IllegalArgumentException("$where: \"extra\" tiene palabras repetidas")
                     }
-                    Exercise.BuildSentence(id = id, es = o.getString("es"), answer = answer, extraWords = extra, tip = tip)
+                    val accept = strings(o, "accept")
+                    checkProduced(where, answer, accept)
+                    Exercise.BuildSentence(id = id, es = o.getString("es"), answer = answer, extraWords = extra, tip = tip, accept = accept)
                 }
                 "type" -> {
                     val meaning = o.optString("meaning", "")
                     if (meaning.isBlank()) throw IllegalArgumentException("$where: falta \"meaning\" (qué significa lo que se escribe)")
-                    Exercise.TypeWhatYouHear(id = id, audio = o.getString("audio"), meaningEs = meaning, tip = tip)
+                    val audio = o.getString("audio")
+                    val accept = strings(o, "accept")
+                    checkProduced(where, audio, accept)
+                    Exercise.TypeWhatYouHear(id = id, audio = audio, meaningEs = meaning, tip = tip, accept = accept)
                 }
                 "speak" -> Exercise.SpeakIt(
                     id = id,

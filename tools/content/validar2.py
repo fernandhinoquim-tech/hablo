@@ -103,6 +103,14 @@ def main(path):
                         if t=="cloze":
                             txt=e.get("text","")
                             if txt.count("___")!=1: p.append(f"{w}: text necesita exactamente un ___ (tiene {txt.count('___')})")
+                    if t in ("translate","build","type") and e.get("accept") is not None:
+                        # accept tambien en translate, build y type (16-09): el mazo los convierte en "escribir"
+                        base=e.get("audio","") if t=="type" else e.get("answer","")
+                        vistas={suelta(base)}
+                        for x in e.get("accept",[]):
+                            if not x.strip(): p.append(f"{w}: accept con entrada vacia")
+                            elif suelta(x) in vistas: p.append(f"{w}: accept duplica la respuesta (contracciones/puntuacion): {x!r}")
+                            else: vistas.add(suelta(x))
     if p:
         print(f"PROBLEMAS ({len(p)}):")
         for x in p: print("  -",x)

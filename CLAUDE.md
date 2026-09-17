@@ -148,10 +148,22 @@ archivo aparte en el teléfono, copiado una vez por USB.
 - `listen`: `audio`, `options` (≥ 2, sin repetidas), **`answer` = el TEXTO de
   la opción correcta** (nunca un índice) y `audio == answer`.
 - `translate`: `es`, `options` (≥ 2, sin repetidas), `answer` = texto de la
-  opción correcta.
+  opción correcta; `accept` opcional (desde el 16-09).
 - `build`: `es`, `answer` (la frase), `extra` (señuelos: sin repetidos y sin
-  palabras que ya estén en `answer`).
-- `type`: `audio`, `meaning` (no vacío).
+  palabras que ya estén en `answer`); `accept` opcional (desde el 16-09): los
+  otros órdenes correctos con las mismas fichas (a2u2l4e6, a2u4l3e7, a2u5l1e6)
+  y las formas que valen cuando el mazo lo convierte en "escribir".
+- `type`: `audio`, `meaning` (no vacío); `accept` opcional (desde el 16-09).
+- **`accept` vale en los cinco tipos con respuesta en inglés** (write, cloze,
+  translate, build, type), con la misma regla (`checkProduced`: sin vacíos,
+  sin repetir la respuesta ni entre sí, con contracciones y números
+  igualados). Hace falta porque el mazo, Aguanta y "adivina antes de ver"
+  convierten translate y build en "escribir" y sin alternativas marcaban mal
+  "I'm 25", "I'm home" o "That's it" (auditoría de Cowork del 16-09,
+  `contenido-nuevo/auditoria-a1-a2/`, sección 5). `Repaso.ejercicioDe`,
+  `adivinanzas` y los "corrige tu propio error" pasan el `accept` de todos.
+  La `'s` tras sustantivo, "o'clock" y los años NO se normalizan a propósito:
+  van en `accept`.
 - `speak`: `text`, `sound` (regla dura 5); toda palabra de `text` tiene que
   estar en `cmudict.dict`.
 - **Los cuatro tipos de producción (2026-09-14, propuesta de Cowork en

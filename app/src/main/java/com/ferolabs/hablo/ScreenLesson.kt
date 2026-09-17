@@ -273,7 +273,7 @@ fun LessonScreen(
         is Exercise.ListenChoose -> chosen == ex.answerIndex
         is Exercise.TranslateChoose -> chosen == ex.answerIndex
         // Armar: la variante contraída o larga vale igual (los señuelos pueden traerla).
-        is Exercise.BuildSentence -> Correccion.acepta(built.joinToString(" ") { bank[it] }, ex.answer, emptyList())
+        is Exercise.BuildSentence -> Correccion.acepta(built.joinToString(" ") { bank[it] }, ex.answer, ex.accept)
         // Dictado: contracciones y números valen igual ("doesn't" = "does not", "4" = "four").
         is Exercise.TypeWhatYouHear -> Correccion.acepta(typed, ex.audio, ex.accept)
         is Exercise.SpeakIt -> speakResult?.entendida == true

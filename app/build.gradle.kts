@@ -365,16 +365,21 @@ val checkContent = tasks.register("checkContent") {
                             for ((corta, larga) in contracciones) x = x.replace(" $corta ", " $larga ")
                             return numeros(x.trim().split(" ").filter { it.isNotEmpty() }).joinToString(" ")
                         }
-                        if (type == "write" || type == "cloze") {
-                            val answer = textOf(e["answer"])
-                            if (answer.isBlank()) problems.add("$where: falta \"answer\"")
-                            if (textOf(e["es"]).isBlank()) problems.add("$where: falta \"es\"")
+                        // "accept" vale en los seis tipos con respuesta en ingles (write, cloze, y desde el 16-09
+                        // translate, build y type: el mazo los convierte en "escribir"); misma regla que checkProduced.
+                        if (type in setOf("write", "cloze", "translate", "build", "type")) {
+                            val answer = textOf(if (type == "type") e["audio"] else e["answer"])
                             val accept = (e["accept"] as? List<*>)?.map { textOf(it) } ?: emptyList()
                             val vistas = hashSetOf(normaliza(answer))
                             for (a in accept) {
                                 if (a.isBlank()) problems.add("$where: \"accept\" tiene una entrada vacia")
                                 else if (!vistas.add(normaliza(a))) problems.add("$where: \"accept\" repite la respuesta o se repite: \"$a\"")
                             }
+                        }
+                        if (type == "write" || type == "cloze") {
+                            val answer = textOf(e["answer"])
+                            if (answer.isBlank()) problems.add("$where: falta \"answer\"")
+                            if (textOf(e["es"]).isBlank()) problems.add("$where: falta \"es\"")
                             if (type == "cloze") {
                                 val text = textOf(e["text"])
                                 val huecos = text.windowed(3).count { it == "___" }

@@ -25,9 +25,14 @@ object Repaso {
         // Otro ítem con el MISMO español ("Trabajo en un banco." → "I work at a bank" / "I work in a bank."):
         // su inglés también vale, y nunca sirve de señuelo.
         val gemelos = otros.filter { it.id != item.id && normalizeAnswer(it.es) == esClave && Correccion.sueltaEstricta(it.en) != enClave }
+        // Las alternativas del ejercicio original valgan de donde vengan: translate y build
+        // también las traen (auditoría del 16-09: sin ellas el mazo marcaba mal "I'm 25").
         val accept = (when (original) {
             is Exercise.WriteIt -> original.accept
             is Exercise.Cloze -> original.accept.map { original.before + it + original.after }
+            is Exercise.TranslateChoose -> original.accept
+            is Exercise.BuildSentence -> original.accept
+            is Exercise.TypeWhatYouHear -> original.accept
             else -> emptyList()
         } + gemelos.map { it.en }).distinctBy { Correccion.sueltaEstricta(it) }.filter { Correccion.sueltaEstricta(it) != enClave }
         val ajenos = otros.filter {
@@ -66,7 +71,7 @@ object Repaso {
                 val extra = ajenos.shuffled(rnd).flatMap { it.en.split(" ") }
                     .filter { w -> w.isNotBlank() && normalizeAnswer(w) !in propias && Correccion.suelta(w).split(" ").none { it in propias } }
                     .distinctBy { normalizeAnswer(it) }.take(3)
-                Exercise.BuildSentence(item.id, item.es, item.en, extra)
+                Exercise.BuildSentence(item.id, item.es, item.en, extra, accept = accept)
             }
             2 -> Exercise.WriteIt(item.id, item.es, item.en, accept)
             3 -> Exercise.TypeWhatYouHear(item.id, item.en, item.es, accept = accept)
@@ -108,7 +113,9 @@ object Repaso {
                     accept = orig.accept, hueco = orig, tip = orig.tip
                 )
                 is Exercise.WriteIt -> Exercise.FixIt("fix|$clave", f.tuya.trim(), f.fecha, orig.answer, orig.accept, tip = orig.tip)
-                is Exercise.TypeWhatYouHear -> Exercise.FixIt("fix|$clave", f.tuya.trim(), f.fecha, orig.audio, tip = orig.tip)
+                is Exercise.TypeWhatYouHear -> Exercise.FixIt("fix|$clave", f.tuya.trim(), f.fecha, orig.audio, orig.accept, tip = orig.tip)
+                is Exercise.BuildSentence -> Exercise.FixIt("fix|$clave", f.tuya.trim(), f.fecha, orig.answer, orig.accept, tip = orig.tip)
+                is Exercise.TranslateChoose -> Exercise.FixIt("fix|$clave", f.tuya.trim(), f.fecha, orig.answer, orig.accept, tip = orig.tip)
                 else -> Exercise.FixIt("fix|$clave", f.tuya.trim(), f.fecha, f.correcta)
             }
             out.add(fix)
@@ -164,10 +171,10 @@ object Repaso {
         val candidatas = lesson.exercises.mapNotNull { ex ->
             when (ex) {
                 is Exercise.WriteIt -> Exercise.WriteIt(ex.id, ex.es, ex.answer, ex.accept)
-                is Exercise.BuildSentence -> Exercise.WriteIt(ex.id, ex.es, ex.answer)
-                is Exercise.TranslateChoose -> Exercise.WriteIt(ex.id, ex.es, ex.answer)
+                is Exercise.BuildSentence -> Exercise.WriteIt(ex.id, ex.es, ex.answer, ex.accept)
+                is Exercise.TranslateChoose -> Exercise.WriteIt(ex.id, ex.es, ex.answer, ex.accept)
                 is Exercise.Cloze -> Exercise.WriteIt(ex.id, ex.es, ex.full, ex.accept.map { ex.before + it + ex.after })
-                is Exercise.TypeWhatYouHear -> Exercise.WriteIt(ex.id, ex.meaningEs, ex.audio)
+                is Exercise.TypeWhatYouHear -> Exercise.WriteIt(ex.id, ex.meaningEs, ex.audio, ex.accept)
                 else -> null
             }
         }

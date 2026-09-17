@@ -116,6 +116,28 @@ class ContentTest {
     }
 
     @Test
+    fun `translate, build y type leen accept y no admiten que repita la respuesta`() {
+        val levels = Course.parseCurriculum(curso(
+            """{"id":"t1l1e1","type":"build","es":"Leí el periódico mientras esperaba","answer":"I read the newspaper while I waited","extra":["for"],"accept":["While I waited I read the newspaper"]},""" +
+            """{"id":"t1l1e2","type":"translate","es":"Tengo 25 años","options":["I'm 25 years old","I have 25 years"],"answer":"I'm 25 years old","accept":["I'm 25","I am 25 years"]},""" +
+            """{"id":"t1l1e3","type":"type","audio":"It's five o'clock.","meaning":"Son las cinco","accept":["It is 5 o'clock"]}"""
+        ))
+        val ex = levels[0].units[0].lessons[0].exercises
+        assertEquals(listOf("While I waited I read the newspaper"), (ex[0] as Exercise.BuildSentence).accept)
+        assertEquals(listOf("I'm 25", "I am 25 years"), (ex[1] as Exercise.TranslateChoose).accept)
+        assertEquals(listOf("It is 5 o'clock"), (ex[2] as Exercise.TypeWhatYouHear).accept)
+        // lo que se arma en otro orden correcto pasa por accept, igual que en ScreenLesson
+        assertTrue(Correccion.acepta("while I waited I read the newspaper", "I read the newspaper while I waited", (ex[0] as Exercise.BuildSentence).accept))
+        // "adivina antes de ver" conserva las alternativas de translate y build
+        val lesson = levels[0].units[0].lessons[0]
+        val adivinanzas = Repaso.adivinanzas(lesson, 3, kotlin.random.Random(1))
+        assertTrue(adivinanzas.first { it.id == "t1l1e2" }.accept.contains("I'm 25"))
+        assertTrue(adivinanzas.first { it.id == "t1l1e1" }.accept.contains("While I waited I read the newspaper"))
+        val e = falla(curso("""{"id":"t1l1e1","type":"translate","es":"Estoy bien","options":["I'm fine","I fine"],"answer":"I'm fine","accept":["I am fine"]}"""))
+        assertTrue(e, e.contains("repite la respuesta"))
+    }
+
+    @Test
     fun `speak sin sound revienta`() {
         val e = falla(curso("""{"id":"t1l1e1","type":"speak","text":"Hello."}"""))
         assertTrue(e, e.contains("sound"))

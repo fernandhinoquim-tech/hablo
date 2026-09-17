@@ -34,26 +34,27 @@ contrarreloj y Aguanta · historias con retell.
 fichas de teoría) · 17 escenarios (5 A1 · 6 A2 · 6 B1) · 41 bancos de
 vocabulario (368 parejas) · 12 historias (2 tandas).
 
-## ⚠️ LO ÚNICO QUE NO ESTÁ EN NINGÚN REPO: el rediseño del Modo Aptis
+## Actualización 17-09 (tarde): dos correcciones y una auditoría
 
-Decidido el 17-09 y **Fero todavía no se lo ha mandado a Claude Code.** Si se
-pierde esto, se construye lo que no es.
-
-**El Modo Aptis NO es un diagnóstico. Es una PISTA DE PREPARACIÓN de 0 a B2
-por destreza, que evalúa continuamente mientras entrena.** Fero lo pidió así
-y tiene razón: una pista mide con cada tarea, no con una foto de 36 minutos, y
-subir rápido de nivel *es* el diagnóstico.
-
-Claude Code ya construyó el diagnóstico (`Aptis.kt`, `ScreenAptis.kt`,
-`AptisTest.kt`). **Casi todo se reaprovecha:** `Condicion.cumple()` pasa a ser
-la regla de promoción; `EstimacionAptis` sirve igual con datos acumulados; las
-clases de tarea no cambian. Lo que cambia es el flujo y la pantalla.
-
-El mensaje completo para Claude Code está en
-**`contenido-nuevo/aptis/CAMBIO-MODO-APTIS.md`**. Mandarlo es lo primero.
+- **El rediseño del Modo Aptis YA LO CONSTRUYÓ Claude Code** (0.9.7, en el PC,
+  sin commit todavía): cinco pistas, tablero con el piso, simulacro bloqueado
+  hasta B1. No hay que volver a mandar `CAMBIO-MODO-APTIS.md`.
+- **Formato de las pistas:** la app espera `aptis-reading.json`,
+  `aptis-listening.json`, `aptis-writing.json` y `aptis-speaking.json` con
+  `{"tareas": [...]}` en el MISMO formato que las secciones de
+  `aptis-diagnostico.json` (más `why` opcional). `pista-writing.json` está en
+  otro formato (`partes`) y hay que convertirlo antes de mandarlo.
+- **Auditoría de A1 y A2** en `contenido-nuevo/auditoria-a1-a2/`: faltan 16
+  lecciones básicas de A1 y 14 de A2, el vocabulario va al 38 % de A2, ≈ 220
+  defectos en los 565 ejercicios (informes por unidad con el arreglo exacto),
+  y tres cambios de código (`accept` en translate/build/type). **Su plan de 10
+  pasos es el orden de trabajo vigente.**
 
 ## Lo que falta, en orden
 
+0. **Lo de la auditoría** (`auditoria-a1-a2/auditoria-a1-a2.md`, sección 9):
+   primero el parche de los ≈ 220 defectos, luego las lecciones nuevas de A1
+   y A2, el vocabulario, la biblioteca de Gramática y las actividades.
 1. **Pistas de Aptis**: Writing **hecho**
    (`contenido-nuevo/aptis/pista-writing.json`, 16 tareas). Faltan **Reading,
    Listening y Speaking** — mismo formato, ver `validar_pista.py`.

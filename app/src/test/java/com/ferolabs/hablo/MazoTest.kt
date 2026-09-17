@@ -68,6 +68,13 @@ class MazoTest {
         assertTrue(armar.extraWords.none { normalizeAnswer(it) in armar.answer.lowercase().split(" ").map { w -> normalizeAnswer(w) } })
         val escribir = Repaso.ejercicioDe(it.copy(escalon = 2), todos, Course.exerciseById("nope") ?: leccion.exercises[1], rnd) as Exercise.WriteIt
         assertEquals(listOf("My brother studies English every day."), escribir.accept)   // conserva las alternativas del original
+        // un translate o un build original también entregan su accept al escribir y al armar (auditoría del 16-09)
+        val t = Exercise.TranslateChoose("t1l1e1", "Ella trabaja en un hospital.", listOf("She works in a hospital.", "She work in a hospital."), "She works in a hospital.", accept = listOf("She works at a hospital."))
+        val it1 = m.item("t1l1e1")!!
+        assertEquals(listOf("She works at a hospital."), (Repaso.ejercicioDe(it1.copy(escalon = 2), todos, t, rnd) as Exercise.WriteIt).accept)
+        assertEquals(listOf("She works at a hospital."), (Repaso.ejercicioDe(it1.copy(escalon = 1), todos, t, rnd) as Exercise.BuildSentence).accept)
+        val b = Exercise.BuildSentence("t1l1e1", "Ella trabaja en un hospital.", "She works in a hospital.", listOf("at"), accept = listOf("She works at a hospital."))
+        assertEquals(listOf("She works at a hospital."), (Repaso.ejercicioDe(it1.copy(escalon = 3), todos, b, rnd) as Exercise.TypeWhatYouHear).accept)
         assertTrue(Repaso.ejercicioDe(it.copy(escalon = 3), todos, null, rnd) is Exercise.TypeWhatYouHear)
         val decir = Repaso.ejercicioDe(it.copy(escalon = 4), todos, null, rnd) as Exercise.SpeakIt
         assertEquals(Sound.GENERAL, decir.sound)
