@@ -1,0 +1,83 @@
+{
+ "_comentario": "Cambios a bancos que YA existen en vocabulario.json: inglés británico → americano, español de España → colombiano, y choques con los bancos nuevos. Se aplica con parchar_vocab.py ANTES de anexar los bancos nuevos.",
+ "reemplazos": [
+  {
+   "banco": "ropa-a1",
+   "en_antes": "trousers",
+   "en": "pants",
+   "es": "pantalón"
+  },
+  {
+   "banco": "casa-a2",
+   "en_antes": "neighbour",
+   "en": "neighbor",
+   "es": "vecino"
+  },
+  {
+   "banco": "ciudad-a2",
+   "en_antes": "neighbourhood",
+   "en": "neighborhood",
+   "es": "barrio"
+  },
+  {
+   "banco": "casa-b1",
+   "en_antes": "tap",
+   "en": "faucet",
+   "es": "grifo"
+  },
+  {
+   "banco": "ciudad-b1",
+   "en_antes": "pavement",
+   "en": "curb",
+   "es": "sardinel (borde del andén)"
+  },
+  {
+   "banco": "comida-a2",
+   "en_antes": "bill",
+   "en": "check",
+   "es": "cuenta (en el restaurante)"
+  },
+  {
+   "banco": "estudio-a2",
+   "en_antes": "mark",
+   "en": "grade",
+   "es": "nota"
+  },
+  {
+   "banco": "ciudad-a2",
+   "en_antes": "hairdresser",
+   "en": "hair salon",
+   "es": "peluquería"
+  },
+  {
+   "banco": "ciudad-b1",
+   "en_antes": "car park",
+   "en": "prison",
+   "es": "cárcel"
+  },
+  {
+   "banco": "ciudad-b1",
+   "en_antes": "town hall",
+   "en": "courthouse",
+   "es": "juzgado"
+  },
+  {
+   "banco": "ciudad-b1",
+   "en_antes": "police station",
+   "en": "police station",
+   "es": "estación de policía"
+  },
+  {
+   "banco": "ropa-a1",
+   "en_antes": "sock",
+   "en": "sock",
+   "es": "media (calcetín)"
+  },
+  {
+   "banco": "casa-b1",
+   "en_antes": "move",
+   "en": "move",
+   "es": "mudarse (de casa)"
+  }
+ ]
+}

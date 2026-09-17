@@ -526,7 +526,16 @@ pasó de 1.229 a 838 líneas y solo conserva el estado, la cola y los modos).
 "cocina"}, …]}]}`; mínimo 3 parejas por banco, sin inglés ni español
 repetido dentro del banco; `checkContent` lo valida si el archivo existe.
 **Entró el 2026-09-16: 41 bancos (tema × nivel, 14 A1 / 14 A2 / 13 B1), 368
-parejas.** Regla de Cowork: dentro de un banco no hay dos ingleses casi
+parejas; y esa misma noche el vocabulario ampliado de Cowork
+(`contenido-nuevo/integrado/2026-09-17-vocab-ampliado/`: 43 bancos y 971
+parejas nuevas más 13 parejas viejas corregidas con su `parchar_vocab.py`
+—británico → americano, España → Colombia—; el parche va ANTES de
+`anexar_vocabulario.py` o chocan parejas repetidas). Total: **84 bancos (26
+A1 / 45 A2 / 13 B1), 1.339 parejas**, sin inglés ni español repetido en todo
+el archivo; lecciones y bancos juntos rondan las 1.480 palabras distintas
+(meta English Profile A2: ~1.526). La lista del contrarreloj va agrupada por
+nivel, con cuántos bancos de cada nivel ya tienen marca y ⏱ en los que la
+tienen.** Regla de Cowork: dentro de un banco no hay dos ingleses casi
 sinónimos ni dos españoles equivalentes, así que nunca hay dos respuestas
 válidas a la vez; **una ronda nunca mezcla bancos** (al mezclar, la garantía
 desaparece). Los bancos van de 3 a 25 parejas: los grandes se parten en

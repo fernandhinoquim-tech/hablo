@@ -57,8 +57,9 @@ vocabulario (368 parejas) · 12 historias (2 tandas).
    parche INTEGRADO; A1 ampliado INTEGRADO (43 lecciones, 568 ejercicios);
    A2 ampliado ESCRITO y verificado en `contenido-nuevo/a2-nuevo/`
    (45 lecciones, 531 ejercicios), falta que Claude Code lo integre.
-   Siguen del plan: vocabulario hasta ~1.500 palabras (12 bancos nuevos),
-   historias A1, biblioteca de Gramática + "¿Por qué?", actividades
+   Vocabulario ampliado ESCRITO y verificado en `contenido-nuevo/vocab-ampliado/`
+   (43 bancos, 971 parejas + parche de 13 parejas viejas; A1-A2 ≈ 1.480
+   palabras), falta integrarlo. Siguen del plan: historias A1, biblioteca de Gramática + "¿Por qué?", actividades
    (crucigramas, Oído, dictado de números…), drills nuevos.
 1. **Pistas de Aptis**: Writing **hecho**
    (`contenido-nuevo/aptis/pista-writing.json`, 16 tareas). Faltan **Reading,

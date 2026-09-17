@@ -88,27 +88,46 @@ fun ContrarrelojScreen(
                         )
                     }
                 }
-                items(bancos, key = { it.id }) { b ->
-                    val marcas = mazo.marcas(b.id)
-                    val mejor = marcas.minByOrNull { it.porPareja }
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .background(Color.White, RoundedCornerShape(16.dp))
-                            .border(1.dp, Line, RoundedCornerShape(16.dp))
-                            .clickable { banco = b }
-                            .padding(16.dp)
-                    ) {
-                        Column(modifier = Modifier.weight(1f)) {
-                            Text(b.title, style = MaterialTheme.typography.titleMedium)
-                            Text(
-                                "${b.pares.size} parejas" + (if (mejor != null) " · tu marca: ${"%.1f".format(Locale("es"), mejor.porPareja)} s por pareja" else " · sin marca todavía"),
-                                style = MaterialTheme.typography.bodyMedium,
-                                color = InkSoft
-                            )
+                // Con 84 bancos (vocabulario ampliado del 16-09) la lista va por nivel, como
+                // las lecciones: "Frases de tus lecciones" arriba y luego A1, A2, B1, cada uno
+                // con cuántos bancos ya tienen marca.
+                val grupos = listOf("" to "", "A1" to "A1", "A2" to "A2", "B1" to "B1") +
+                    bancos.map { it.level }.filter { it !in setOf("", "A1", "A2", "B1") }.distinct().map { it to it }
+                for ((nivel, titulo) in grupos) {
+                    val delNivel = bancos.filter { it.level == nivel }
+                    if (delNivel.isEmpty()) continue
+                    if (titulo.isNotBlank()) item(key = "nivel-$nivel") {
+                        val conMarca = delNivel.count { mazo.marcas(it.id).isNotEmpty() }
+                        Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(top = 8.dp)) {
+                            Pill(titulo, accent, Color(teacher.softColor))
+                            Spacer(Modifier.size(10.dp))
+                            Text("${delNivel.size} bancos", style = MaterialTheme.typography.titleMedium)
+                            Spacer(Modifier.weight(1f))
+                            Text("$conMarca con marca", style = MaterialTheme.typography.labelLarge, color = InkSoft)
                         }
-                        if (b.level.isNotBlank()) Pill(b.level, accent, Color(teacher.softColor))
+                    }
+                    items(delNivel, key = { it.id }) { b ->
+                        val marcas = mazo.marcas(b.id)
+                        val mejor = marcas.minByOrNull { it.porPareja }
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .background(Color.White, RoundedCornerShape(16.dp))
+                                .border(1.dp, if (mejor != null) GoodGreen.copy(alpha = 0.4f) else Line, RoundedCornerShape(16.dp))
+                                .clickable { banco = b }
+                                .padding(16.dp)
+                        ) {
+                            Column(modifier = Modifier.weight(1f)) {
+                                Text(b.title, style = MaterialTheme.typography.titleMedium)
+                                Text(
+                                    "${b.pares.size} parejas" + (if (mejor != null) " · tu marca: ${"%.1f".format(Locale("es"), mejor.porPareja)} s por pareja" else " · sin marca todavía"),
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    color = InkSoft
+                                )
+                            }
+                            if (mejor != null) Text("⏱", style = MaterialTheme.typography.titleMedium, color = GoodGreen)
+                        }
                     }
                 }
             }

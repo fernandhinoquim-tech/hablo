@@ -1,0 +1,4190 @@
+{
+ "_comentario": "Ampliación de vocabulario A1-A2 (Cowork, 17-09-2026): 43 bancos, 971 parejas. Misma garantía que los anteriores: ningún inglés ni español se repite en todo vocabulario.json, y dentro de un banco no hay dos respuestas válidas a la vez. Todo el inglés está en cmudict.",
+ "bancos": [
+  {
+   "id": "colores-a1",
+   "title": "🎨 Colores · A1",
+   "level": "A1",
+   "pares": [
+    {
+     "en": "color",
+     "es": "color"
+    },
+    {
+     "en": "red",
+     "es": "rojo"
+    },
+    {
+     "en": "blue",
+     "es": "azul"
+    },
+    {
+     "en": "green",
+     "es": "verde"
+    },
+    {
+     "en": "yellow",
+     "es": "amarillo"
+    },
+    {
+     "en": "black",
+     "es": "negro"
+    },
+    {
+     "en": "white",
+     "es": "blanco"
+    },
+    {
+     "en": "brown",
+     "es": "café (color)"
+    },
+    {
+     "en": "pink",
+     "es": "rosado"
+    },
+    {
+     "en": "purple",
+     "es": "morado"
+    },
+    {
+     "en": "gray",
+     "es": "gris"
+    },
+    {
+     "en": "gold",
+     "es": "dorado"
+    },
+    {
+     "en": "silver",
+     "es": "plateado"
+    },
+    {
+     "en": "light",
+     "es": "claro (color)"
+    },
+    {
+     "en": "dark",
+     "es": "oscuro"
+    },
+    {
+     "en": "light blue",
+     "es": "azul claro"
+    },
+    {
+     "en": "dark green",
+     "es": "verde oscuro"
+    },
+    {
+     "en": "bright",
+     "es": "brillante"
+    },
+    {
+     "en": "colorful",
+     "es": "colorido"
+    },
+    {
+     "en": "rainbow",
+     "es": "arcoíris"
+    }
+   ]
+  },
+  {
+   "id": "numeros-a1",
+   "title": "🔢 Números · A1",
+   "level": "A1",
+   "pares": [
+    {
+     "en": "eleven",
+     "es": "once"
+    },
+    {
+     "en": "twelve",
+     "es": "doce"
+    },
+    {
+     "en": "thirteen",
+     "es": "trece"
+    },
+    {
+     "en": "fourteen",
+     "es": "catorce"
+    },
+    {
+     "en": "fifteen",
+     "es": "quince"
+    },
+    {
+     "en": "sixteen",
+     "es": "dieciséis"
+    },
+    {
+     "en": "seventeen",
+     "es": "diecisiete"
+    },
+    {
+     "en": "eighteen",
+     "es": "dieciocho"
+    },
+    {
+     "en": "nineteen",
+     "es": "diecinueve"
+    },
+    {
+     "en": "twenty",
+     "es": "veinte"
+    },
+    {
+     "en": "thirty",
+     "es": "treinta"
+    },
+    {
+     "en": "forty",
+     "es": "cuarenta"
+    },
+    {
+     "en": "fifty",
+     "es": "cincuenta"
+    },
+    {
+     "en": "sixty",
+     "es": "sesenta"
+    },
+    {
+     "en": "seventy",
+     "es": "setenta"
+    },
+    {
+     "en": "eighty",
+     "es": "ochenta"
+    },
+    {
+     "en": "ninety",
+     "es": "noventa"
+    },
+    {
+     "en": "hundred",
+     "es": "cien"
+    },
+    {
+     "en": "thousand",
+     "es": "mil"
+    },
+    {
+     "en": "million",
+     "es": "millón"
+    },
+    {
+     "en": "half",
+     "es": "mitad"
+    },
+    {
+     "en": "dozen",
+     "es": "docena"
+    }
+   ]
+  },
+  {
+   "id": "ordinales-a1",
+   "title": "🥇 Números ordinales · A1",
+   "level": "A1",
+   "pares": [
+    {
+     "en": "first",
+     "es": "primero"
+    },
+    {
+     "en": "second",
+     "es": "segundo (2.º)"
+    },
+    {
+     "en": "third",
+     "es": "tercero"
+    },
+    {
+     "en": "fourth",
+     "es": "cuarto (4.º)"
+    },
+    {
+     "en": "fifth",
+     "es": "quinto"
+    },
+    {
+     "en": "sixth",
+     "es": "sexto"
+    },
+    {
+     "en": "seventh",
+     "es": "séptimo"
+    },
+    {
+     "en": "eighth",
+     "es": "octavo"
+    },
+    {
+     "en": "ninth",
+     "es": "noveno"
+    },
+    {
+     "en": "tenth",
+     "es": "décimo"
+    },
+    {
+     "en": "eleventh",
+     "es": "undécimo"
+    },
+    {
+     "en": "twelfth",
+     "es": "duodécimo"
+    },
+    {
+     "en": "last",
+     "es": "último"
+    },
+    {
+     "en": "next",
+     "es": "próximo"
+    }
+   ]
+  },
+  {
+   "id": "fechas-a1",
+   "title": "📅 Meses y fechas · A1",
+   "level": "A1",
+   "pares": [
+    {
+     "en": "January",
+     "es": "enero"
+    },
+    {
+     "en": "February",
+     "es": "febrero"
+    },
+    {
+     "en": "March",
+     "es": "marzo"
+    },
+    {
+     "en": "April",
+     "es": "abril"
+    },
+    {
+     "en": "May",
+     "es": "mayo"
+    },
+    {
+     "en": "June",
+     "es": "junio"
+    },
+    {
+     "en": "July",
+     "es": "julio"
+    },
+    {
+     "en": "August",
+     "es": "agosto"
+    },
+    {
+     "en": "September",
+     "es": "septiembre"
+    },
+    {
+     "en": "October",
+     "es": "octubre"
+    },
+    {
+     "en": "November",
+     "es": "noviembre"
+    },
+    {
+     "en": "December",
+     "es": "diciembre"
+    },
+    {
+     "en": "spring",
+     "es": "primavera"
+    },
+    {
+     "en": "summer",
+     "es": "verano"
+    },
+    {
+     "en": "fall",
+     "es": "otoño"
+    },
+    {
+     "en": "winter",
+     "es": "invierno"
+    },
+    {
+     "en": "weekend",
+     "es": "fin de semana"
+    },
+    {
+     "en": "birthday",
+     "es": "cumpleaños"
+    },
+    {
+     "en": "holiday",
+     "es": "día festivo"
+    },
+    {
+     "en": "date",
+     "es": "fecha"
+    }
+   ]
+  },
+  {
+   "id": "animales-a1",
+   "title": "🐶 Animales · A1",
+   "level": "A1",
+   "pares": [
+    {
+     "en": "animal",
+     "es": "animal"
+    },
+    {
+     "en": "pet",
+     "es": "mascota"
+    },
+    {
+     "en": "dog",
+     "es": "perro"
+    },
+    {
+     "en": "cat",
+     "es": "gato"
+    },
+    {
+     "en": "bird",
+     "es": "pájaro"
+    },
+    {
+     "en": "horse",
+     "es": "caballo"
+    },
+    {
+     "en": "cow",
+     "es": "vaca"
+    },
+    {
+     "en": "pig",
+     "es": "cerdo"
+    },
+    {
+     "en": "rabbit",
+     "es": "conejo"
+    },
+    {
+     "en": "mouse",
+     "es": "ratón"
+    },
+    {
+     "en": "duck",
+     "es": "pato"
+    },
+    {
+     "en": "lion",
+     "es": "león"
+    },
+    {
+     "en": "tiger",
+     "es": "tigre"
+    },
+    {
+     "en": "elephant",
+     "es": "elefante"
+    },
+    {
+     "en": "monkey",
+     "es": "mico"
+    },
+    {
+     "en": "bear",
+     "es": "oso"
+    },
+    {
+     "en": "snake",
+     "es": "culebra"
+    },
+    {
+     "en": "zoo",
+     "es": "zoológico"
+    }
+   ]
+  },
+  {
+   "id": "animales-a2",
+   "title": "🐝 Animales · A2",
+   "level": "A2",
+   "pares": [
+    {
+     "en": "farm",
+     "es": "granja"
+    },
+    {
+     "en": "sheep",
+     "es": "oveja"
+    },
+    {
+     "en": "goat",
+     "es": "cabra"
+    },
+    {
+     "en": "hen",
+     "es": "gallina"
+    },
+    {
+     "en": "rooster",
+     "es": "gallo"
+    },
+    {
+     "en": "donkey",
+     "es": "burro"
+    },
+    {
+     "en": "bull",
+     "es": "toro"
+    },
+    {
+     "en": "puppy",
+     "es": "cachorro (de perro)"
+    },
+    {
+     "en": "kitten",
+     "es": "gatico"
+    },
+    {
+     "en": "parrot",
+     "es": "loro"
+    },
+    {
+     "en": "turtle",
+     "es": "tortuga"
+    },
+    {
+     "en": "frog",
+     "es": "rana"
+    },
+    {
+     "en": "insect",
+     "es": "insecto"
+    },
+    {
+     "en": "fly",
+     "es": "mosca"
+    },
+    {
+     "en": "mosquito",
+     "es": "zancudo"
+    },
+    {
+     "en": "ant",
+     "es": "hormiga"
+    },
+    {
+     "en": "bee",
+     "es": "abeja"
+    },
+    {
+     "en": "butterfly",
+     "es": "mariposa"
+    },
+    {
+     "en": "spider",
+     "es": "araña"
+    },
+    {
+     "en": "whale",
+     "es": "ballena"
+    },
+    {
+     "en": "shark",
+     "es": "tiburón"
+    },
+    {
+     "en": "tail",
+     "es": "cola (de animal)"
+    }
+   ]
+  },
+  {
+   "id": "paises-a1",
+   "title": "🌎 Países e idiomas · A1",
+   "level": "A1",
+   "pares": [
+    {
+     "en": "country",
+     "es": "país"
+    },
+    {
+     "en": "flag",
+     "es": "bandera"
+    },
+    {
+     "en": "United States",
+     "es": "Estados Unidos"
+    },
+    {
+     "en": "American",
+     "es": "estadounidense"
+    },
+    {
+     "en": "England",
+     "es": "Inglaterra"
+    },
+    {
+     "en": "English",
+     "es": "inglés (idioma)"
+    },
+    {
+     "en": "Spain",
+     "es": "España"
+    },
+    {
+     "en": "Spanish",
+     "es": "español (idioma)"
+    },
+    {
+     "en": "Mexico",
+     "es": "México"
+    },
+    {
+     "en": "Mexican",
+     "es": "mexicano"
+    },
+    {
+     "en": "Colombian",
+     "es": "colombiano"
+    },
+    {
+     "en": "Canada",
+     "es": "Canadá"
+    },
+    {
+     "en": "Brazil",
+     "es": "Brasil"
+    },
+    {
+     "en": "Portuguese",
+     "es": "portugués (idioma)"
+    },
+    {
+     "en": "France",
+     "es": "Francia"
+    },
+    {
+     "en": "French",
+     "es": "francés (idioma)"
+    },
+    {
+     "en": "Germany",
+     "es": "Alemania"
+    },
+    {
+     "en": "German",
+     "es": "alemán (idioma)"
+    },
+    {
+     "en": "Italy",
+     "es": "Italia"
+    },
+    {
+     "en": "Italian",
+     "es": "italiano (idioma)"
+    },
+    {
+     "en": "China",
+     "es": "China"
+    },
+    {
+     "en": "Chinese",
+     "es": "chino (idioma)"
+    },
+    {
+     "en": "Japan",
+     "es": "Japón"
+    },
+    {
+     "en": "Japanese",
+     "es": "japonés (idioma)"
+    },
+    {
+     "en": "foreigner",
+     "es": "extranjero"
+    }
+   ]
+  },
+  {
+   "id": "personas-a2",
+   "title": "🧔 Describir personas · A2",
+   "level": "A2",
+   "pares": [
+    {
+     "en": "tall",
+     "es": "alto (de estatura)"
+    },
+    {
+     "en": "short",
+     "es": "bajo (de estatura)"
+    },
+    {
+     "en": "young",
+     "es": "joven"
+    },
+    {
+     "en": "elderly",
+     "es": "anciano"
+    },
+    {
+     "en": "middle-aged",
+     "es": "de mediana edad"
+    },
+    {
+     "en": "thin",
+     "es": "delgado"
+    },
+    {
+     "en": "overweight",
+     "es": "con sobrepeso"
+    },
+    {
+     "en": "handsome",
+     "es": "guapo"
+    },
+    {
+     "en": "pretty",
+     "es": "bonita"
+    },
+    {
+     "en": "ugly",
+     "es": "feo"
+    },
+    {
+     "en": "hair",
+     "es": "pelo"
+    },
+    {
+     "en": "blond",
+     "es": "rubio"
+    },
+    {
+     "en": "redhead",
+     "es": "pelirrojo"
+    },
+    {
+     "en": "bald",
+     "es": "calvo"
+    },
+    {
+     "en": "curly",
+     "es": "crespo"
+    },
+    {
+     "en": "straight",
+     "es": "liso (pelo)"
+    },
+    {
+     "en": "beard",
+     "es": "barba"
+    },
+    {
+     "en": "mustache",
+     "es": "bigote"
+    },
+    {
+     "en": "glasses",
+     "es": "gafas"
+    },
+    {
+     "en": "age",
+     "es": "edad"
+    },
+    {
+     "en": "tattoo",
+     "es": "tatuaje"
+    },
+    {
+     "en": "look like",
+     "es": "parecerse a"
+    }
+   ]
+  },
+  {
+   "id": "accesorios-a2",
+   "title": "👜 Accesorios · A2",
+   "level": "A2",
+   "pares": [
+    {
+     "en": "wallet",
+     "es": "billetera"
+    },
+    {
+     "en": "handbag",
+     "es": "cartera (bolso de mujer)"
+    },
+    {
+     "en": "backpack",
+     "es": "morral"
+    },
+    {
+     "en": "umbrella",
+     "es": "paraguas"
+    },
+    {
+     "en": "sunglasses",
+     "es": "gafas de sol"
+    },
+    {
+     "en": "cap",
+     "es": "gorra"
+    },
+    {
+     "en": "boots",
+     "es": "botas"
+    },
+    {
+     "en": "sandals",
+     "es": "sandalias"
+    },
+    {
+     "en": "sneakers",
+     "es": "tenis (zapatos)"
+    },
+    {
+     "en": "slippers",
+     "es": "pantuflas"
+    },
+    {
+     "en": "tie",
+     "es": "corbata"
+    },
+    {
+     "en": "necklace",
+     "es": "collar"
+    },
+    {
+     "en": "earrings",
+     "es": "aretes"
+    },
+    {
+     "en": "bracelet",
+     "es": "pulsera"
+    },
+    {
+     "en": "jewelry",
+     "es": "joyas"
+    },
+    {
+     "en": "key chain",
+     "es": "llavero"
+    },
+    {
+     "en": "comb",
+     "es": "peinilla"
+    },
+    {
+     "en": "perfume",
+     "es": "perfume"
+    },
+    {
+     "en": "makeup",
+     "es": "maquillaje"
+    },
+    {
+     "en": "lipstick",
+     "es": "labial"
+    },
+    {
+     "en": "leather",
+     "es": "cuero"
+    },
+    {
+     "en": "wool",
+     "es": "lana"
+    },
+    {
+     "en": "cotton",
+     "es": "algodón"
+    }
+   ]
+  },
+  {
+   "id": "frutas-a1",
+   "title": "🍎 Frutas y verduras · A1",
+   "level": "A1",
+   "pares": [
+    {
+     "en": "fruit",
+     "es": "fruta"
+    },
+    {
+     "en": "vegetable",
+     "es": "verdura"
+    },
+    {
+     "en": "banana",
+     "es": "banano"
+    },
+    {
+     "en": "plantain",
+     "es": "plátano (para cocinar)"
+    },
+    {
+     "en": "pineapple",
+     "es": "piña"
+    },
+    {
+     "en": "grape",
+     "es": "uva"
+    },
+    {
+     "en": "lemon",
+     "es": "limón"
+    },
+    {
+     "en": "watermelon",
+     "es": "patilla (sandía)"
+    },
+    {
+     "en": "pear",
+     "es": "pera"
+    },
+    {
+     "en": "peach",
+     "es": "durazno"
+    },
+    {
+     "en": "cherry",
+     "es": "cereza"
+    },
+    {
+     "en": "mango",
+     "es": "mango"
+    },
+    {
+     "en": "avocado",
+     "es": "aguacate"
+    },
+    {
+     "en": "coconut",
+     "es": "coco"
+    },
+    {
+     "en": "tomato",
+     "es": "tomate"
+    },
+    {
+     "en": "potato",
+     "es": "papa"
+    },
+    {
+     "en": "carrot",
+     "es": "zanahoria"
+    },
+    {
+     "en": "lettuce",
+     "es": "lechuga"
+    },
+    {
+     "en": "corn",
+     "es": "maíz"
+    },
+    {
+     "en": "bean",
+     "es": "fríjol"
+    },
+    {
+     "en": "cucumber",
+     "es": "pepino"
+    },
+    {
+     "en": "bell pepper",
+     "es": "pimentón"
+    }
+   ]
+  },
+  {
+   "id": "cocina-a2",
+   "title": "🍳 En la cocina · A2",
+   "level": "A2",
+   "pares": [
+    {
+     "en": "cook",
+     "es": "cocinar"
+    },
+    {
+     "en": "boil",
+     "es": "hervir"
+    },
+    {
+     "en": "fry",
+     "es": "freír"
+    },
+    {
+     "en": "bake",
+     "es": "hornear"
+    },
+    {
+     "en": "slice",
+     "es": "cortar en tajadas"
+    },
+    {
+     "en": "chop",
+     "es": "picar"
+    },
+    {
+     "en": "peel",
+     "es": "pelar"
+    },
+    {
+     "en": "mix",
+     "es": "mezclar"
+    },
+    {
+     "en": "pour",
+     "es": "echar (un líquido)"
+    },
+    {
+     "en": "heat",
+     "es": "calentar"
+    },
+    {
+     "en": "grill",
+     "es": "asar a la parrilla"
+    },
+    {
+     "en": "pan",
+     "es": "sartén"
+    },
+    {
+     "en": "pot",
+     "es": "olla"
+    },
+    {
+     "en": "oven",
+     "es": "horno"
+    },
+    {
+     "en": "stove",
+     "es": "estufa"
+    },
+    {
+     "en": "microwave",
+     "es": "microondas"
+    },
+    {
+     "en": "bowl",
+     "es": "tazón"
+    },
+    {
+     "en": "cutting board",
+     "es": "tabla de picar"
+    },
+    {
+     "en": "napkin",
+     "es": "servilleta"
+    },
+    {
+     "en": "teaspoon",
+     "es": "cucharita"
+    },
+    {
+     "en": "lid",
+     "es": "tapa"
+    },
+    {
+     "en": "blender",
+     "es": "licuadora"
+    }
+   ]
+  },
+  {
+   "id": "quehaceres-a2",
+   "title": "🧹 Quehaceres y muebles · A2",
+   "level": "A2",
+   "pares": [
+    {
+     "en": "housework",
+     "es": "quehaceres"
+    },
+    {
+     "en": "sweep",
+     "es": "barrer"
+    },
+    {
+     "en": "mop",
+     "es": "trapear"
+    },
+    {
+     "en": "dust",
+     "es": "sacudir el polvo"
+    },
+    {
+     "en": "fold",
+     "es": "doblar (la ropa)"
+    },
+    {
+     "en": "armchair",
+     "es": "sillón (individual)"
+    },
+    {
+     "en": "bathtub",
+     "es": "tina"
+    },
+    {
+     "en": "take out the trash",
+     "es": "sacar la basura"
+    },
+    {
+     "en": "trash can",
+     "es": "caneca"
+    },
+    {
+     "en": "broom",
+     "es": "escoba"
+    },
+    {
+     "en": "bucket",
+     "es": "balde"
+    },
+    {
+     "en": "sponge",
+     "es": "esponja"
+    },
+    {
+     "en": "vacuum cleaner",
+     "es": "aspiradora"
+    },
+    {
+     "en": "dishwasher",
+     "es": "lavavajillas"
+    },
+    {
+     "en": "dryer",
+     "es": "secadora"
+    },
+    {
+     "en": "furniture",
+     "es": "muebles"
+    },
+    {
+     "en": "couch",
+     "es": "sofá"
+    },
+    {
+     "en": "closet",
+     "es": "clóset"
+    },
+    {
+     "en": "dresser",
+     "es": "cómoda (mueble)"
+    },
+    {
+     "en": "lamp",
+     "es": "lámpara"
+    },
+    {
+     "en": "rug",
+     "es": "alfombra"
+    },
+    {
+     "en": "curtain",
+     "es": "cortina"
+    }
+   ]
+  },
+  {
+   "id": "dinero-a2",
+   "title": "💵 El dinero · A2",
+   "level": "A2",
+   "pares": [
+    {
+     "en": "money",
+     "es": "dinero"
+    },
+    {
+     "en": "cash",
+     "es": "efectivo"
+    },
+    {
+     "en": "coin",
+     "es": "moneda (de metal)"
+    },
+    {
+     "en": "dollar",
+     "es": "dólar"
+    },
+    {
+     "en": "cent",
+     "es": "centavo"
+    },
+    {
+     "en": "price",
+     "es": "precio"
+    },
+    {
+     "en": "free",
+     "es": "gratis"
+    },
+    {
+     "en": "credit card",
+     "es": "tarjeta de crédito"
+    },
+    {
+     "en": "savings",
+     "es": "ahorros"
+    },
+    {
+     "en": "ATM",
+     "es": "cajero automático"
+    },
+    {
+     "en": "bank transfer",
+     "es": "transferencia bancaria"
+    },
+    {
+     "en": "piggy bank",
+     "es": "alcancía"
+    },
+    {
+     "en": "debt",
+     "es": "deuda"
+    },
+    {
+     "en": "spend",
+     "es": "gastar"
+    },
+    {
+     "en": "earn",
+     "es": "ganar (dinero)"
+    },
+    {
+     "en": "afford",
+     "es": "poder pagar (costear)"
+    },
+    {
+     "en": "owe",
+     "es": "deber (dinero)"
+    },
+    {
+     "en": "tip",
+     "es": "propina"
+    },
+    {
+     "en": "tax",
+     "es": "impuesto"
+    },
+    {
+     "en": "loan",
+     "es": "préstamo"
+    },
+    {
+     "en": "how much",
+     "es": "cuánto"
+    },
+    {
+     "en": "exchange money",
+     "es": "cambiar dinero"
+    }
+   ]
+  },
+  {
+   "id": "compras-a2",
+   "title": "🛍️ De compras · A2",
+   "level": "A2",
+   "pares": [
+    {
+     "en": "go shopping",
+     "es": "ir de compras"
+    },
+    {
+     "en": "mall",
+     "es": "centro comercial"
+    },
+    {
+     "en": "supermarket",
+     "es": "supermercado"
+    },
+    {
+     "en": "on sale",
+     "es": "en promoción"
+    },
+    {
+     "en": "discount",
+     "es": "descuento"
+    },
+    {
+     "en": "bargain",
+     "es": "ganga"
+    },
+    {
+     "en": "receipt",
+     "es": "recibo"
+    },
+    {
+     "en": "refund",
+     "es": "reembolso"
+    },
+    {
+     "en": "basket",
+     "es": "canasta"
+    },
+    {
+     "en": "try on",
+     "es": "probarse"
+    },
+    {
+     "en": "fit",
+     "es": "quedar bien (de talla)"
+    },
+    {
+     "en": "brand",
+     "es": "marca"
+    },
+    {
+     "en": "salesperson",
+     "es": "vendedor"
+    },
+    {
+     "en": "checkout",
+     "es": "caja (para pagar)"
+    },
+    {
+     "en": "shopping cart",
+     "es": "carrito de compras"
+    },
+    {
+     "en": "plastic bag",
+     "es": "bolsa plástica"
+    },
+    {
+     "en": "aisle",
+     "es": "pasillo"
+    },
+    {
+     "en": "stand in line",
+     "es": "hacer fila"
+    },
+    {
+     "en": "price tag",
+     "es": "etiqueta del precio"
+    },
+    {
+     "en": "sold out",
+     "es": "agotado"
+    },
+    {
+     "en": "keep the change",
+     "es": "quédese con las vueltas"
+    },
+    {
+     "en": "delivery",
+     "es": "domicilio"
+    }
+   ]
+  },
+  {
+   "id": "servicios-a2",
+   "title": "🏤 Servicios y trámites · A2",
+   "level": "A2",
+   "pares": [
+    {
+     "en": "post office",
+     "es": "oficina de correos"
+    },
+    {
+     "en": "mailbox",
+     "es": "buzón"
+    },
+    {
+     "en": "stamp",
+     "es": "estampilla"
+    },
+    {
+     "en": "envelope",
+     "es": "sobre (de carta)"
+    },
+    {
+     "en": "package",
+     "es": "paquete"
+    },
+    {
+     "en": "postcard",
+     "es": "postal"
+    },
+    {
+     "en": "zip code",
+     "es": "código postal"
+    },
+    {
+     "en": "mail carrier",
+     "es": "cartero"
+    },
+    {
+     "en": "bank account",
+     "es": "cuenta bancaria"
+    },
+    {
+     "en": "deposit",
+     "es": "consignar"
+    },
+    {
+     "en": "withdraw",
+     "es": "retirar (dinero)"
+    },
+    {
+     "en": "ID card",
+     "es": "cédula"
+    },
+    {
+     "en": "form",
+     "es": "formulario"
+    },
+    {
+     "en": "fill out",
+     "es": "llenar (un formulario)"
+    },
+    {
+     "en": "library card",
+     "es": "carné de la biblioteca"
+    },
+    {
+     "en": "gas station",
+     "es": "bomba de gasolina"
+    },
+    {
+     "en": "fire department",
+     "es": "cuerpo de bomberos"
+    },
+    {
+     "en": "police",
+     "es": "la policía"
+    },
+    {
+     "en": "embassy",
+     "es": "embajada"
+    },
+    {
+     "en": "signature",
+     "es": "firma"
+    },
+    {
+     "en": "city hall",
+     "es": "alcaldía"
+    },
+    {
+     "en": "laundromat",
+     "es": "lavandería"
+    }
+   ]
+  },
+  {
+   "id": "transporte-a2",
+   "title": "🚇 Transporte · A2",
+   "level": "A2",
+   "pares": [
+    {
+     "en": "subway",
+     "es": "metro"
+    },
+    {
+     "en": "platform",
+     "es": "plataforma (del tren o bus)"
+    },
+    {
+     "en": "ticket office",
+     "es": "taquilla"
+    },
+    {
+     "en": "fare",
+     "es": "pasaje"
+    },
+    {
+     "en": "round trip",
+     "es": "ida y vuelta"
+    },
+    {
+     "en": "one-way",
+     "es": "solo ida"
+    },
+    {
+     "en": "seat belt",
+     "es": "cinturón de seguridad"
+    },
+    {
+     "en": "traffic",
+     "es": "tráfico"
+    },
+    {
+     "en": "rush hour",
+     "es": "hora pico"
+    },
+    {
+     "en": "parking lot",
+     "es": "parqueadero"
+    },
+    {
+     "en": "flat tire",
+     "es": "llanta pinchada"
+    },
+    {
+     "en": "gas",
+     "es": "gasolina"
+    },
+    {
+     "en": "truck",
+     "es": "camión"
+    },
+    {
+     "en": "taxi",
+     "es": "taxi"
+    },
+    {
+     "en": "motorcycle",
+     "es": "moto"
+    },
+    {
+     "en": "passenger",
+     "es": "pasajero"
+    },
+    {
+     "en": "bus stop",
+     "es": "paradero"
+    },
+    {
+     "en": "driver's license",
+     "es": "pase de conducción"
+    },
+    {
+     "en": "highway",
+     "es": "autopista"
+    },
+    {
+     "en": "get on",
+     "es": "subirse"
+    },
+    {
+     "en": "get off",
+     "es": "bajarse"
+    },
+    {
+     "en": "miss the bus",
+     "es": "perder el bus"
+    }
+   ]
+  },
+  {
+   "id": "hotel-a2",
+   "title": "🏨 En el hotel · A2",
+   "level": "A2",
+   "pares": [
+    {
+     "en": "reservation",
+     "es": "reserva (de hotel)"
+    },
+    {
+     "en": "front desk",
+     "es": "recepción"
+    },
+    {
+     "en": "receptionist",
+     "es": "recepcionista"
+    },
+    {
+     "en": "check in",
+     "es": "registrarse"
+    },
+    {
+     "en": "check out",
+     "es": "entregar la habitación"
+    },
+    {
+     "en": "single room",
+     "es": "habitación sencilla"
+    },
+    {
+     "en": "double room",
+     "es": "habitación doble"
+    },
+    {
+     "en": "room service",
+     "es": "servicio a la habitación"
+    },
+    {
+     "en": "key card",
+     "es": "tarjeta de la habitación"
+    },
+    {
+     "en": "lobby",
+     "es": "lobby (vestíbulo)"
+    },
+    {
+     "en": "hostel",
+     "es": "hostal"
+    },
+    {
+     "en": "towel",
+     "es": "toalla"
+    },
+    {
+     "en": "sheet",
+     "es": "sábana"
+    },
+    {
+     "en": "soap",
+     "es": "jabón"
+    },
+    {
+     "en": "shampoo",
+     "es": "champú"
+    },
+    {
+     "en": "toothbrush",
+     "es": "cepillo de dientes"
+    },
+    {
+     "en": "hair dryer",
+     "es": "secador de pelo"
+    },
+    {
+     "en": "air conditioning",
+     "es": "aire acondicionado"
+    },
+    {
+     "en": "view",
+     "es": "vista"
+    },
+    {
+     "en": "wake-up call",
+     "es": "llamada para despertar"
+    },
+    {
+     "en": "stay",
+     "es": "hospedarse"
+    },
+    {
+     "en": "cancel",
+     "es": "cancelar"
+    }
+   ]
+  },
+  {
+   "id": "profesiones-a1",
+   "title": "👩‍⚕️ Profesiones · A1",
+   "level": "A1",
+   "pares": [
+    {
+     "en": "nurse",
+     "es": "enfermero"
+    },
+    {
+     "en": "engineer",
+     "es": "ingeniero"
+    },
+    {
+     "en": "waiter",
+     "es": "mesero"
+    },
+    {
+     "en": "lawyer",
+     "es": "abogado"
+    },
+    {
+     "en": "farmer",
+     "es": "agricultor"
+    },
+    {
+     "en": "driver",
+     "es": "conductor"
+    },
+    {
+     "en": "doctor",
+     "es": "médico"
+    },
+    {
+     "en": "teacher",
+     "es": "profesor"
+    },
+    {
+     "en": "police officer",
+     "es": "policía"
+    },
+    {
+     "en": "firefighter",
+     "es": "bombero"
+    },
+    {
+     "en": "chef",
+     "es": "cocinero"
+    },
+    {
+     "en": "dentist",
+     "es": "odontólogo"
+    },
+    {
+     "en": "actor",
+     "es": "actor"
+    },
+    {
+     "en": "pilot",
+     "es": "piloto"
+    },
+    {
+     "en": "mechanic",
+     "es": "mecánico"
+    },
+    {
+     "en": "scientist",
+     "es": "científico"
+    },
+    {
+     "en": "writer",
+     "es": "escritor"
+    },
+    {
+     "en": "photographer",
+     "es": "fotógrafo"
+    },
+    {
+     "en": "musician",
+     "es": "músico"
+    },
+    {
+     "en": "plumber",
+     "es": "plomero"
+    },
+    {
+     "en": "accountant",
+     "es": "contador"
+    },
+    {
+     "en": "architect",
+     "es": "arquitecto"
+    }
+   ]
+  },
+  {
+   "id": "deportes-a1",
+   "title": "⚽ Deportes y juegos · A1",
+   "level": "A1",
+   "pares": [
+    {
+     "en": "soccer",
+     "es": "fútbol"
+    },
+    {
+     "en": "basketball",
+     "es": "baloncesto"
+    },
+    {
+     "en": "baseball",
+     "es": "béisbol"
+    },
+    {
+     "en": "tennis",
+     "es": "tenis"
+    },
+    {
+     "en": "swimming",
+     "es": "natación"
+    },
+    {
+     "en": "cycling",
+     "es": "ciclismo"
+    },
+    {
+     "en": "chess",
+     "es": "ajedrez"
+    },
+    {
+     "en": "ball",
+     "es": "balón"
+    },
+    {
+     "en": "player",
+     "es": "jugador"
+    },
+    {
+     "en": "coach",
+     "es": "entrenador"
+    },
+    {
+     "en": "referee",
+     "es": "árbitro"
+    },
+    {
+     "en": "fan",
+     "es": "hincha"
+    },
+    {
+     "en": "game",
+     "es": "partido"
+    },
+    {
+     "en": "goal",
+     "es": "gol"
+    },
+    {
+     "en": "score",
+     "es": "marcador"
+    },
+    {
+     "en": "field",
+     "es": "cancha"
+    },
+    {
+     "en": "stadium",
+     "es": "estadio"
+    },
+    {
+     "en": "gym",
+     "es": "gimnasio"
+    },
+    {
+     "en": "race",
+     "es": "carrera (competencia)"
+    },
+    {
+     "en": "champion",
+     "es": "campeón"
+    },
+    {
+     "en": "medal",
+     "es": "medalla"
+    },
+    {
+     "en": "volleyball",
+     "es": "voleibol"
+    }
+   ]
+  },
+  {
+   "id": "ocio-a2",
+   "title": "🎭 Ocio y entretenimiento · A2",
+   "level": "A2",
+   "pares": [
+    {
+     "en": "concert",
+     "es": "concierto"
+    },
+    {
+     "en": "band",
+     "es": "banda (musical)"
+    },
+    {
+     "en": "song",
+     "es": "canción"
+    },
+    {
+     "en": "singer",
+     "es": "cantante"
+    },
+    {
+     "en": "novel",
+     "es": "novela"
+    },
+    {
+     "en": "comedy",
+     "es": "comedia"
+    },
+    {
+     "en": "museum",
+     "es": "museo"
+    },
+    {
+     "en": "hobby",
+     "es": "pasatiempo"
+    },
+    {
+     "en": "painting",
+     "es": "pintura"
+    },
+    {
+     "en": "movie",
+     "es": "película"
+    },
+    {
+     "en": "movie theater",
+     "es": "cine"
+    },
+    {
+     "en": "theater",
+     "es": "teatro"
+    },
+    {
+     "en": "festival",
+     "es": "festival"
+    },
+    {
+     "en": "party",
+     "es": "fiesta"
+    },
+    {
+     "en": "drum",
+     "es": "tambor"
+    },
+    {
+     "en": "drawing",
+     "es": "dibujo"
+    },
+    {
+     "en": "photography",
+     "es": "fotografía"
+    },
+    {
+     "en": "board game",
+     "es": "juego de mesa"
+    },
+    {
+     "en": "video game",
+     "es": "videojuego"
+    },
+    {
+     "en": "guitar",
+     "es": "guitarra"
+    },
+    {
+     "en": "amusement park",
+     "es": "parque de diversiones"
+    },
+    {
+     "en": "free time",
+     "es": "tiempo libre"
+    }
+   ]
+  },
+  {
+   "id": "comunicacion-a2",
+   "title": "📱 Comunicación y medios · A2",
+   "level": "A2",
+   "pares": [
+    {
+     "en": "message",
+     "es": "mensaje"
+    },
+    {
+     "en": "website",
+     "es": "sitio web"
+    },
+    {
+     "en": "news",
+     "es": "noticias"
+    },
+    {
+     "en": "channel",
+     "es": "canal"
+    },
+    {
+     "en": "cell phone",
+     "es": "celular"
+    },
+    {
+     "en": "phone call",
+     "es": "llamada"
+    },
+    {
+     "en": "internet",
+     "es": "internet"
+    },
+    {
+     "en": "camera",
+     "es": "cámara"
+    },
+    {
+     "en": "computer",
+     "es": "computador"
+    },
+    {
+     "en": "printer",
+     "es": "impresora"
+    },
+    {
+     "en": "battery",
+     "es": "batería"
+    },
+    {
+     "en": "charger",
+     "es": "cargador"
+    },
+    {
+     "en": "headphones",
+     "es": "audífonos"
+    },
+    {
+     "en": "account",
+     "es": "cuenta (de usuario)"
+    },
+    {
+     "en": "upload",
+     "es": "subir (un archivo)"
+    },
+    {
+     "en": "log in",
+     "es": "iniciar sesión"
+    },
+    {
+     "en": "click",
+     "es": "hacer clic"
+    },
+    {
+     "en": "link",
+     "es": "enlace"
+    },
+    {
+     "en": "newspaper",
+     "es": "periódico"
+    },
+    {
+     "en": "magazine",
+     "es": "revista"
+    },
+    {
+     "en": "social media",
+     "es": "redes sociales"
+    },
+    {
+     "en": "delete",
+     "es": "borrar"
+    }
+   ]
+  },
+  {
+   "id": "escuela-a2",
+   "title": "🎓 La escuela · A2",
+   "level": "A2",
+   "pares": [
+    {
+     "en": "subject",
+     "es": "materia"
+    },
+    {
+     "en": "report card",
+     "es": "boletín de notas"
+    },
+    {
+     "en": "university",
+     "es": "universidad"
+    },
+    {
+     "en": "classmate",
+     "es": "compañero de clase"
+    },
+    {
+     "en": "student",
+     "es": "estudiante"
+    },
+    {
+     "en": "principal",
+     "es": "rector"
+    },
+    {
+     "en": "classroom",
+     "es": "salón de clase"
+    },
+    {
+     "en": "textbook",
+     "es": "libro de texto"
+    },
+    {
+     "en": "dictionary",
+     "es": "diccionario"
+    },
+    {
+     "en": "pass an exam",
+     "es": "aprobar un examen"
+    },
+    {
+     "en": "fail an exam",
+     "es": "reprobar un examen"
+    },
+    {
+     "en": "semester",
+     "es": "semestre"
+    },
+    {
+     "en": "graduate",
+     "es": "graduarse"
+    },
+    {
+     "en": "ruler",
+     "es": "regla"
+    },
+    {
+     "en": "eraser",
+     "es": "borrador"
+    },
+    {
+     "en": "pen",
+     "es": "lapicero"
+    },
+    {
+     "en": "math",
+     "es": "matemáticas"
+    },
+    {
+     "en": "history",
+     "es": "historia"
+    },
+    {
+     "en": "science",
+     "es": "ciencias"
+    },
+    {
+     "en": "uniform",
+     "es": "uniforme"
+    },
+    {
+     "en": "vocabulary",
+     "es": "vocabulario"
+    },
+    {
+     "en": "grammar",
+     "es": "gramática"
+    }
+   ]
+  },
+  {
+   "id": "salud2-a2",
+   "title": "💊 Salud · A2",
+   "level": "A2",
+   "pares": [
+    {
+     "en": "headache",
+     "es": "dolor de cabeza"
+    },
+    {
+     "en": "sore throat",
+     "es": "dolor de garganta"
+    },
+    {
+     "en": "emergency",
+     "es": "emergencia"
+    },
+    {
+     "en": "hurt",
+     "es": "doler"
+    },
+    {
+     "en": "patient",
+     "es": "paciente"
+    },
+    {
+     "en": "drugstore",
+     "es": "droguería"
+    },
+    {
+     "en": "medicine",
+     "es": "medicamento"
+    },
+    {
+     "en": "sick",
+     "es": "enfermo"
+    },
+    {
+     "en": "have a cold",
+     "es": "estar resfriado"
+    },
+    {
+     "en": "injury",
+     "es": "lesión"
+    },
+    {
+     "en": "blood",
+     "es": "sangre"
+    },
+    {
+     "en": "health",
+     "es": "salud"
+    },
+    {
+     "en": "healthy",
+     "es": "saludable"
+    },
+    {
+     "en": "exercise",
+     "es": "ejercicio"
+    },
+    {
+     "en": "diet",
+     "es": "dieta"
+    },
+    {
+     "en": "thermometer",
+     "es": "termómetro"
+    },
+    {
+     "en": "check-up",
+     "es": "chequeo médico"
+    },
+    {
+     "en": "allergy",
+     "es": "alergia"
+    },
+    {
+     "en": "bandage",
+     "es": "venda"
+    },
+    {
+     "en": "dizzy",
+     "es": "mareado"
+    },
+    {
+     "en": "sneeze",
+     "es": "estornudar"
+    },
+    {
+     "en": "vomit",
+     "es": "vomitar"
+    }
+   ]
+  },
+  {
+   "id": "personalidad-a2",
+   "title": "😊 Personalidad · A2",
+   "level": "A2",
+   "pares": [
+    {
+     "en": "friendly",
+     "es": "amigable"
+    },
+    {
+     "en": "shy",
+     "es": "tímido"
+    },
+    {
+     "en": "lazy",
+     "es": "perezoso"
+    },
+    {
+     "en": "generous",
+     "es": "generoso"
+    },
+    {
+     "en": "rude",
+     "es": "grosero"
+    },
+    {
+     "en": "polite",
+     "es": "educado"
+    },
+    {
+     "en": "honest",
+     "es": "honesto"
+    },
+    {
+     "en": "impatient",
+     "es": "impaciente"
+    },
+    {
+     "en": "hardworking",
+     "es": "trabajador"
+    },
+    {
+     "en": "funny",
+     "es": "chistoso"
+    },
+    {
+     "en": "serious",
+     "es": "serio"
+    },
+    {
+     "en": "smart",
+     "es": "inteligente"
+    },
+    {
+     "en": "selfish",
+     "es": "egoísta"
+    },
+    {
+     "en": "brave",
+     "es": "valiente"
+    },
+    {
+     "en": "cheerful",
+     "es": "alegre"
+    },
+    {
+     "en": "talkative",
+     "es": "conversador"
+    },
+    {
+     "en": "careful",
+     "es": "cuidadoso"
+    },
+    {
+     "en": "strict",
+     "es": "estricto"
+    },
+    {
+     "en": "creative",
+     "es": "creativo"
+    },
+    {
+     "en": "curious",
+     "es": "curioso"
+    },
+    {
+     "en": "responsible",
+     "es": "responsable"
+    },
+    {
+     "en": "stubborn",
+     "es": "terco"
+    }
+   ]
+  },
+  {
+   "id": "naturaleza-a2",
+   "title": "🌳 Naturaleza y medio ambiente · A2",
+   "level": "A2",
+   "pares": [
+    {
+     "en": "river",
+     "es": "río"
+    },
+    {
+     "en": "mountain",
+     "es": "montaña"
+    },
+    {
+     "en": "beach",
+     "es": "playa"
+    },
+    {
+     "en": "forest",
+     "es": "bosque"
+    },
+    {
+     "en": "desert",
+     "es": "desierto"
+    },
+    {
+     "en": "island",
+     "es": "isla"
+    },
+    {
+     "en": "lake",
+     "es": "lago"
+    },
+    {
+     "en": "ocean",
+     "es": "océano"
+    },
+    {
+     "en": "pollution",
+     "es": "contaminación"
+    },
+    {
+     "en": "recycle",
+     "es": "reciclar"
+    },
+    {
+     "en": "plant",
+     "es": "planta"
+    },
+    {
+     "en": "tree",
+     "es": "árbol"
+    },
+    {
+     "en": "flower",
+     "es": "flor"
+    },
+    {
+     "en": "grass",
+     "es": "pasto"
+    },
+    {
+     "en": "hill",
+     "es": "colina"
+    },
+    {
+     "en": "sky",
+     "es": "cielo"
+    },
+    {
+     "en": "environment",
+     "es": "medio ambiente"
+    },
+    {
+     "en": "waterfall",
+     "es": "cascada"
+    },
+    {
+     "en": "volcano",
+     "es": "volcán"
+    },
+    {
+     "en": "leaf",
+     "es": "hoja (de árbol)"
+    },
+    {
+     "en": "trash",
+     "es": "basura"
+    },
+    {
+     "en": "earthquake",
+     "es": "terremoto"
+    }
+   ]
+  },
+  {
+   "id": "verbos3-a1",
+   "title": "🙋 Más verbos cotidianos · A1",
+   "level": "A1",
+   "pares": [
+    {
+     "en": "send",
+     "es": "enviar"
+    },
+    {
+     "en": "show",
+     "es": "mostrar"
+    },
+    {
+     "en": "laugh",
+     "es": "reír"
+    },
+    {
+     "en": "cry",
+     "es": "llorar"
+    },
+    {
+     "en": "sing",
+     "es": "cantar"
+    },
+    {
+     "en": "smile",
+     "es": "sonreír"
+    },
+    {
+     "en": "win",
+     "es": "ganar (un juego)"
+    },
+    {
+     "en": "dance",
+     "es": "bailar"
+    },
+    {
+     "en": "call",
+     "es": "llamar (por teléfono)"
+    },
+    {
+     "en": "wash",
+     "es": "lavar"
+    },
+    {
+     "en": "give",
+     "es": "dar"
+    },
+    {
+     "en": "put",
+     "es": "poner"
+    },
+    {
+     "en": "find",
+     "es": "encontrar"
+    },
+    {
+     "en": "look for",
+     "es": "buscar"
+    },
+    {
+     "en": "need",
+     "es": "necesitar"
+    },
+    {
+     "en": "want",
+     "es": "querer"
+    },
+    {
+     "en": "know",
+     "es": "saber"
+    },
+    {
+     "en": "think",
+     "es": "pensar"
+    },
+    {
+     "en": "understand",
+     "es": "entender"
+    },
+    {
+     "en": "sit",
+     "es": "sentarse"
+    },
+    {
+     "en": "live",
+     "es": "vivir"
+    },
+    {
+     "en": "see",
+     "es": "ver"
+    },
+    {
+     "en": "lend",
+     "es": "prestar"
+    },
+    {
+     "en": "draw",
+     "es": "dibujar"
+    },
+    {
+     "en": "stop",
+     "es": "parar"
+    }
+   ]
+  },
+  {
+   "id": "verbos3-a2",
+   "title": "🔧 Más verbos útiles · A2",
+   "level": "A2",
+   "pares": [
+    {
+     "en": "borrow",
+     "es": "pedir prestado"
+    },
+    {
+     "en": "arrive",
+     "es": "llegar"
+    },
+    {
+     "en": "follow",
+     "es": "seguir"
+    },
+    {
+     "en": "hope",
+     "es": "esperar (tener esperanza)"
+    },
+    {
+     "en": "invite",
+     "es": "invitar"
+    },
+    {
+     "en": "miss",
+     "es": "extrañar"
+    },
+    {
+     "en": "prefer",
+     "es": "preferir"
+    },
+    {
+     "en": "protect",
+     "es": "proteger"
+    },
+    {
+     "en": "receive",
+     "es": "recibir"
+    },
+    {
+     "en": "repair",
+     "es": "reparar"
+    },
+    {
+     "en": "save",
+     "es": "ahorrar"
+    },
+    {
+     "en": "steal",
+     "es": "robar"
+    },
+    {
+     "en": "worry",
+     "es": "preocuparse"
+    },
+    {
+     "en": "agree",
+     "es": "estar de acuerdo"
+    },
+    {
+     "en": "describe",
+     "es": "describir"
+    },
+    {
+     "en": "discover",
+     "es": "descubrir"
+    },
+    {
+     "en": "prepare",
+     "es": "preparar"
+    },
+    {
+     "en": "celebrate",
+     "es": "celebrar"
+    },
+    {
+     "en": "hide",
+     "es": "esconder"
+    },
+    {
+     "en": "push",
+     "es": "empujar"
+    },
+    {
+     "en": "pull",
+     "es": "jalar"
+    },
+    {
+     "en": "apologize",
+     "es": "pedir perdón"
+    },
+    {
+     "en": "imagine",
+     "es": "imaginar"
+    },
+    {
+     "en": "return",
+     "es": "devolver (algo)"
+    },
+    {
+     "en": "offer",
+     "es": "ofrecer"
+    }
+   ]
+  },
+  {
+   "id": "adjetivos2-a2",
+   "title": "✨ Más adjetivos · A2",
+   "level": "A2",
+   "pares": [
+    {
+     "en": "comfortable",
+     "es": "cómodo"
+    },
+    {
+     "en": "delicious",
+     "es": "delicioso"
+    },
+    {
+     "en": "famous",
+     "es": "famoso"
+    },
+    {
+     "en": "heavy",
+     "es": "pesado"
+    },
+    {
+     "en": "wild",
+     "es": "salvaje"
+    },
+    {
+     "en": "loud",
+     "es": "fuerte (sonido)"
+    },
+    {
+     "en": "strange",
+     "es": "extraño"
+    },
+    {
+     "en": "wet",
+     "es": "mojado"
+    },
+    {
+     "en": "dry",
+     "es": "seco"
+    },
+    {
+     "en": "soft",
+     "es": "suave"
+    },
+    {
+     "en": "hard",
+     "es": "duro"
+    },
+    {
+     "en": "wide",
+     "es": "ancho"
+    },
+    {
+     "en": "narrow",
+     "es": "angosto"
+    },
+    {
+     "en": "deep",
+     "es": "profundo"
+    },
+    {
+     "en": "sharp",
+     "es": "afilado"
+    },
+    {
+     "en": "broken",
+     "es": "roto"
+    },
+    {
+     "en": "perfect",
+     "es": "perfecto"
+    },
+    {
+     "en": "possible",
+     "es": "posible"
+    },
+    {
+     "en": "necessary",
+     "es": "necesario"
+    },
+    {
+     "en": "modern",
+     "es": "moderno"
+    },
+    {
+     "en": "simple",
+     "es": "sencillo"
+    },
+    {
+     "en": "busy",
+     "es": "ocupado"
+    },
+    {
+     "en": "ready",
+     "es": "listo (preparado)"
+    },
+    {
+     "en": "true",
+     "es": "verdadero"
+    },
+    {
+     "en": "alive",
+     "es": "vivo"
+    }
+   ]
+  },
+  {
+   "id": "tiempo2-a2",
+   "title": "⏳ Expresiones de tiempo · A2",
+   "level": "A2",
+   "pares": [
+    {
+     "en": "century",
+     "es": "siglo"
+    },
+    {
+     "en": "decade",
+     "es": "década"
+    },
+    {
+     "en": "midnight",
+     "es": "medianoche"
+    },
+    {
+     "en": "noon",
+     "es": "mediodía"
+    },
+    {
+     "en": "early",
+     "es": "temprano"
+    },
+    {
+     "en": "late",
+     "es": "tarde (con retraso)"
+    },
+    {
+     "en": "soon",
+     "es": "pronto"
+    },
+    {
+     "en": "already",
+     "es": "ya"
+    },
+    {
+     "en": "still",
+     "es": "todavía"
+    },
+    {
+     "en": "ago",
+     "es": "hace (tiempo atrás)"
+    },
+    {
+     "en": "during",
+     "es": "durante"
+    },
+    {
+     "en": "since",
+     "es": "desde"
+    },
+    {
+     "en": "until",
+     "es": "hasta"
+    },
+    {
+     "en": "daily",
+     "es": "diario (cada día)"
+    },
+    {
+     "en": "weekly",
+     "es": "semanal"
+    },
+    {
+     "en": "monthly",
+     "es": "mensual"
+    },
+    {
+     "en": "recently",
+     "es": "recientemente"
+    },
+    {
+     "en": "nowadays",
+     "es": "hoy en día"
+    },
+    {
+     "en": "yearly",
+     "es": "anual"
+    },
+    {
+     "en": "then",
+     "es": "entonces"
+    },
+    {
+     "en": "later",
+     "es": "más tarde"
+    },
+    {
+     "en": "past",
+     "es": "pasado"
+    },
+    {
+     "en": "future",
+     "es": "futuro"
+    },
+    {
+     "en": "moment",
+     "es": "momento"
+    },
+    {
+     "en": "half an hour",
+     "es": "media hora"
+    }
+   ]
+  },
+  {
+   "id": "frecuencia-a1",
+   "title": "🔁 ¿Con qué frecuencia? · A1",
+   "level": "A1",
+   "pares": [
+    {
+     "en": "always",
+     "es": "siempre"
+    },
+    {
+     "en": "usually",
+     "es": "normalmente"
+    },
+    {
+     "en": "often",
+     "es": "a menudo"
+    },
+    {
+     "en": "sometimes",
+     "es": "a veces"
+    },
+    {
+     "en": "hardly ever",
+     "es": "casi nunca"
+    },
+    {
+     "en": "never",
+     "es": "nunca"
+    },
+    {
+     "en": "once",
+     "es": "una vez"
+    },
+    {
+     "en": "twice",
+     "es": "dos veces"
+    },
+    {
+     "en": "three times",
+     "es": "tres veces"
+    },
+    {
+     "en": "four times",
+     "es": "cuatro veces"
+    },
+    {
+     "en": "every day",
+     "es": "todos los días"
+    },
+    {
+     "en": "every night",
+     "es": "todas las noches"
+    },
+    {
+     "en": "every morning",
+     "es": "todas las mañanas"
+    },
+    {
+     "en": "every week",
+     "es": "cada semana"
+    },
+    {
+     "en": "every month",
+     "es": "cada mes"
+    },
+    {
+     "en": "every year",
+     "es": "cada año"
+    },
+    {
+     "en": "every hour",
+     "es": "cada hora"
+    },
+    {
+     "en": "every weekend",
+     "es": "cada fin de semana"
+    },
+    {
+     "en": "every other day",
+     "es": "cada dos días"
+    },
+    {
+     "en": "once a month",
+     "es": "una vez al mes"
+    },
+    {
+     "en": "twice a week",
+     "es": "dos veces por semana"
+    },
+    {
+     "en": "how often",
+     "es": "con qué frecuencia"
+    },
+    {
+     "en": "again",
+     "es": "otra vez"
+    }
+   ]
+  },
+  {
+   "id": "expresiones-a2",
+   "title": "🧩 Expresiones con make, do, take, have, get · A2",
+   "level": "A2",
+   "pares": [
+    {
+     "en": "make a mistake",
+     "es": "cometer un error"
+    },
+    {
+     "en": "make a decision",
+     "es": "tomar una decisión"
+    },
+    {
+     "en": "make friends",
+     "es": "hacer amigos"
+    },
+    {
+     "en": "make noise",
+     "es": "hacer ruido"
+    },
+    {
+     "en": "make the bed",
+     "es": "tender la cama"
+    },
+    {
+     "en": "make a phone call",
+     "es": "hacer una llamada"
+    },
+    {
+     "en": "do homework",
+     "es": "hacer la tarea"
+    },
+    {
+     "en": "do the dishes",
+     "es": "lavar los platos"
+    },
+    {
+     "en": "do the laundry",
+     "es": "lavar la ropa"
+    },
+    {
+     "en": "do me a favor",
+     "es": "hazme un favor"
+    },
+    {
+     "en": "do your best",
+     "es": "dar lo mejor de ti"
+    },
+    {
+     "en": "take a photo",
+     "es": "tomar una foto"
+    },
+    {
+     "en": "take a shower",
+     "es": "ducharse"
+    },
+    {
+     "en": "take a break",
+     "es": "tomar un descanso"
+    },
+    {
+     "en": "take a nap",
+     "es": "tomar una siesta"
+    },
+    {
+     "en": "take a seat",
+     "es": "tomar asiento"
+    },
+    {
+     "en": "have breakfast",
+     "es": "desayunar"
+    },
+    {
+     "en": "have fun",
+     "es": "divertirse"
+    },
+    {
+     "en": "take a look",
+     "es": "echar un vistazo"
+    },
+    {
+     "en": "have a party",
+     "es": "hacer una fiesta"
+    },
+    {
+     "en": "get lost",
+     "es": "perderse"
+    },
+    {
+     "en": "get married",
+     "es": "casarse"
+    },
+    {
+     "en": "get up",
+     "es": "levantarse"
+    },
+    {
+     "en": "get dressed",
+     "es": "vestirse"
+    },
+    {
+     "en": "get better",
+     "es": "mejorarse"
+    }
+   ]
+  },
+  {
+   "id": "materiales-a2",
+   "title": "📏 Materiales, formas y medidas · A2",
+   "level": "A2",
+   "pares": [
+    {
+     "en": "wood",
+     "es": "madera"
+    },
+    {
+     "en": "metal",
+     "es": "metal"
+    },
+    {
+     "en": "plastic",
+     "es": "plástico"
+    },
+    {
+     "en": "paper",
+     "es": "papel"
+    },
+    {
+     "en": "rectangle",
+     "es": "rectángulo"
+    },
+    {
+     "en": "gram",
+     "es": "gramo"
+    },
+    {
+     "en": "kilometer",
+     "es": "kilómetro"
+    },
+    {
+     "en": "iron",
+     "es": "hierro"
+    },
+    {
+     "en": "steel",
+     "es": "acero"
+    },
+    {
+     "en": "rubber",
+     "es": "caucho"
+    },
+    {
+     "en": "cardboard",
+     "es": "cartón"
+    },
+    {
+     "en": "brick",
+     "es": "ladrillo"
+    },
+    {
+     "en": "shape",
+     "es": "forma"
+    },
+    {
+     "en": "circle",
+     "es": "círculo"
+    },
+    {
+     "en": "triangle",
+     "es": "triángulo"
+    },
+    {
+     "en": "round",
+     "es": "redondo"
+    },
+    {
+     "en": "meter",
+     "es": "metro (medida)"
+    },
+    {
+     "en": "centimeter",
+     "es": "centímetro"
+    },
+    {
+     "en": "kilo",
+     "es": "kilo"
+    },
+    {
+     "en": "liter",
+     "es": "litro"
+    },
+    {
+     "en": "weight",
+     "es": "peso (de algo)"
+    },
+    {
+     "en": "inch",
+     "es": "pulgada"
+    },
+    {
+     "en": "mile",
+     "es": "milla"
+    }
+   ]
+  },
+  {
+   "id": "cuerpo2-a2",
+   "title": "🖐️ Partes del cuerpo · A2",
+   "level": "A2",
+   "pares": [
+    {
+     "en": "body",
+     "es": "cuerpo"
+    },
+    {
+     "en": "face",
+     "es": "cara"
+    },
+    {
+     "en": "neck",
+     "es": "cuello"
+    },
+    {
+     "en": "finger",
+     "es": "dedo de la mano"
+    },
+    {
+     "en": "toe",
+     "es": "dedo del pie"
+    },
+    {
+     "en": "nail",
+     "es": "uña"
+    },
+    {
+     "en": "lip",
+     "es": "labio"
+    },
+    {
+     "en": "tongue",
+     "es": "lengua (órgano)"
+    },
+    {
+     "en": "chin",
+     "es": "barbilla"
+    },
+    {
+     "en": "cheek",
+     "es": "mejilla"
+    },
+    {
+     "en": "forehead",
+     "es": "frente (de la cara)"
+    },
+    {
+     "en": "eyebrow",
+     "es": "ceja"
+    },
+    {
+     "en": "eyelash",
+     "es": "pestaña"
+    },
+    {
+     "en": "chest",
+     "es": "pecho"
+    },
+    {
+     "en": "heart",
+     "es": "corazón"
+    },
+    {
+     "en": "brain",
+     "es": "cerebro"
+    },
+    {
+     "en": "bone",
+     "es": "hueso"
+    },
+    {
+     "en": "skin",
+     "es": "piel"
+    },
+    {
+     "en": "elbow",
+     "es": "codo"
+    },
+    {
+     "en": "wrist",
+     "es": "muñeca (de la mano)"
+    },
+    {
+     "en": "ankle",
+     "es": "tobillo"
+    },
+    {
+     "en": "muscle",
+     "es": "músculo"
+    },
+    {
+     "en": "waist",
+     "es": "cintura"
+    }
+   ]
+  },
+  {
+   "id": "familia2-a2",
+   "title": "👪 Familia y relaciones · A2",
+   "level": "A2",
+   "pares": [
+    {
+     "en": "family",
+     "es": "familia"
+    },
+    {
+     "en": "parents",
+     "es": "padres"
+    },
+    {
+     "en": "grandparents",
+     "es": "abuelos"
+    },
+    {
+     "en": "niece",
+     "es": "sobrina"
+    },
+    {
+     "en": "grandson",
+     "es": "nieto"
+    },
+    {
+     "en": "granddaughter",
+     "es": "nieta"
+    },
+    {
+     "en": "boyfriend",
+     "es": "novio"
+    },
+    {
+     "en": "relative",
+     "es": "pariente"
+    },
+    {
+     "en": "twin",
+     "es": "gemelo"
+    },
+    {
+     "en": "baby",
+     "es": "bebé"
+    },
+    {
+     "en": "teenager",
+     "es": "adolescente"
+    },
+    {
+     "en": "father-in-law",
+     "es": "suegro"
+    },
+    {
+     "en": "son-in-law",
+     "es": "yerno"
+    },
+    {
+     "en": "daughter-in-law",
+     "es": "nuera"
+    },
+    {
+     "en": "brother-in-law",
+     "es": "cuñado"
+    },
+    {
+     "en": "sister-in-law",
+     "es": "cuñada"
+    },
+    {
+     "en": "wedding",
+     "es": "boda"
+    },
+    {
+     "en": "bride",
+     "es": "novia (en la boda)"
+    },
+    {
+     "en": "divorced",
+     "es": "divorciado"
+    },
+    {
+     "en": "single",
+     "es": "soltero"
+    },
+    {
+     "en": "married",
+     "es": "casado"
+    },
+    {
+     "en": "stepfather",
+     "es": "padrastro"
+    }
+   ]
+  },
+  {
+   "id": "ciudad3-a2",
+   "title": "🏛️ Lugares y edificios · A2",
+   "level": "A2",
+   "pares": [
+    {
+     "en": "factory",
+     "es": "fábrica"
+    },
+    {
+     "en": "temple",
+     "es": "templo"
+    },
+    {
+     "en": "downtown",
+     "es": "centro de la ciudad"
+    },
+    {
+     "en": "sidewalk",
+     "es": "andén"
+    },
+    {
+     "en": "town",
+     "es": "pueblo"
+    },
+    {
+     "en": "tower",
+     "es": "torre"
+    },
+    {
+     "en": "castle",
+     "es": "castillo"
+    },
+    {
+     "en": "palace",
+     "es": "palacio"
+    },
+    {
+     "en": "gate",
+     "es": "portón"
+    },
+    {
+     "en": "entrance",
+     "es": "entrada (de un edificio)"
+    },
+    {
+     "en": "exit",
+     "es": "salida (de un edificio)"
+    },
+    {
+     "en": "playground",
+     "es": "parque infantil"
+    },
+    {
+     "en": "fountain",
+     "es": "fuente (de agua)"
+    },
+    {
+     "en": "statue",
+     "es": "estatua"
+    },
+    {
+     "en": "coffee shop",
+     "es": "cafetería"
+    },
+    {
+     "en": "bookstore",
+     "es": "librería"
+    },
+    {
+     "en": "cemetery",
+     "es": "cementerio"
+    },
+    {
+     "en": "crosswalk",
+     "es": "paso peatonal"
+    },
+    {
+     "en": "skyscraper",
+     "es": "rascacielos"
+    },
+    {
+     "en": "avenue",
+     "es": "avenida"
+    },
+    {
+     "en": "block",
+     "es": "cuadra"
+    },
+    {
+     "en": "sign",
+     "es": "letrero"
+    },
+    {
+     "en": "address",
+     "es": "dirección (de una casa)"
+    }
+   ]
+  },
+  {
+   "id": "clima2-a2",
+   "title": "⛈️ El clima · A2",
+   "level": "A2",
+   "pares": [
+    {
+     "en": "weather",
+     "es": "tiempo (clima)"
+    },
+    {
+     "en": "thunder",
+     "es": "trueno"
+    },
+    {
+     "en": "lightning",
+     "es": "rayo"
+    },
+    {
+     "en": "thunderstorm",
+     "es": "tormenta eléctrica"
+    },
+    {
+     "en": "temperature",
+     "es": "temperatura"
+    },
+    {
+     "en": "ice",
+     "es": "hielo"
+    },
+    {
+     "en": "forecast",
+     "es": "pronóstico"
+    },
+    {
+     "en": "breeze",
+     "es": "brisa"
+    },
+    {
+     "en": "sunshine",
+     "es": "luz del sol"
+    },
+    {
+     "en": "hurricane",
+     "es": "huracán"
+    },
+    {
+     "en": "flood",
+     "es": "inundación"
+    },
+    {
+     "en": "drought",
+     "es": "sequía"
+    },
+    {
+     "en": "humidity",
+     "es": "humedad"
+    },
+    {
+     "en": "cloudy",
+     "es": "nublado"
+    },
+    {
+     "en": "rainy",
+     "es": "lluvioso"
+    },
+    {
+     "en": "sunny",
+     "es": "soleado"
+    },
+    {
+     "en": "windy",
+     "es": "con mucho viento"
+    },
+    {
+     "en": "foggy",
+     "es": "con niebla"
+    },
+    {
+     "en": "freezing",
+     "es": "helado (mucho frío)"
+    },
+    {
+     "en": "warm",
+     "es": "cálido"
+    },
+    {
+     "en": "cool",
+     "es": "fresco (clima)"
+    },
+    {
+     "en": "mud",
+     "es": "barro"
+    },
+    {
+     "en": "drizzle",
+     "es": "llovizna"
+    }
+   ]
+  },
+  {
+   "id": "comida3-a2",
+   "title": "🍔 En el restaurante · A2",
+   "level": "A2",
+   "pares": [
+    {
+     "en": "food",
+     "es": "comida"
+    },
+    {
+     "en": "restaurant",
+     "es": "restaurante"
+    },
+    {
+     "en": "menu",
+     "es": "menú"
+    },
+    {
+     "en": "waitress",
+     "es": "mesera"
+    },
+    {
+     "en": "dessert",
+     "es": "postre"
+    },
+    {
+     "en": "snack",
+     "es": "refrigerio"
+    },
+    {
+     "en": "bottle",
+     "es": "botella"
+    },
+    {
+     "en": "soup",
+     "es": "sopa"
+    },
+    {
+     "en": "salad",
+     "es": "ensalada"
+    },
+    {
+     "en": "sandwich",
+     "es": "sándwich"
+    },
+    {
+     "en": "burger",
+     "es": "hamburguesa"
+    },
+    {
+     "en": "sausage",
+     "es": "salchicha"
+    },
+    {
+     "en": "beef",
+     "es": "carne de res"
+    },
+    {
+     "en": "butter",
+     "es": "mantequilla"
+    },
+    {
+     "en": "cake",
+     "es": "torta"
+    },
+    {
+     "en": "cookie",
+     "es": "galleta"
+    },
+    {
+     "en": "candy",
+     "es": "dulces"
+    },
+    {
+     "en": "chocolate",
+     "es": "chocolate"
+    },
+    {
+     "en": "ice cream",
+     "es": "helado"
+    },
+    {
+     "en": "juice",
+     "es": "jugo"
+    },
+    {
+     "en": "soda",
+     "es": "gaseosa"
+    },
+    {
+     "en": "beer",
+     "es": "cerveza"
+    },
+    {
+     "en": "wine",
+     "es": "vino"
+    }
+   ]
+  },
+  {
+   "id": "sustantivos-a2",
+   "title": "💡 Sustantivos útiles · A2",
+   "level": "A2",
+   "pares": [
+    {
+     "en": "idea",
+     "es": "idea"
+    },
+    {
+     "en": "reason",
+     "es": "razón (motivo)"
+    },
+    {
+     "en": "advice",
+     "es": "consejo"
+    },
+    {
+     "en": "mistake",
+     "es": "error"
+    },
+    {
+     "en": "plan",
+     "es": "plan"
+    },
+    {
+     "en": "rule",
+     "es": "regla (norma)"
+    },
+    {
+     "en": "choice",
+     "es": "elección"
+    },
+    {
+     "en": "difference",
+     "es": "diferencia"
+    },
+    {
+     "en": "fact",
+     "es": "hecho (dato)"
+    },
+    {
+     "en": "fun",
+     "es": "diversión"
+    },
+    {
+     "en": "luck",
+     "es": "suerte"
+    },
+    {
+     "en": "opinion",
+     "es": "opinión"
+    },
+    {
+     "en": "problem",
+     "es": "problema"
+    },
+    {
+     "en": "thing",
+     "es": "cosa"
+    },
+    {
+     "en": "example",
+     "es": "ejemplo"
+    },
+    {
+     "en": "information",
+     "es": "información"
+    },
+    {
+     "en": "result",
+     "es": "resultado"
+    },
+    {
+     "en": "success",
+     "es": "éxito"
+    },
+    {
+     "en": "memory",
+     "es": "recuerdo"
+    },
+    {
+     "en": "habit",
+     "es": "hábito"
+    },
+    {
+     "en": "skill",
+     "es": "habilidad"
+    },
+    {
+     "en": "truth",
+     "es": "verdad"
+    },
+    {
+     "en": "lie",
+     "es": "mentira"
+    }
+   ]
+  },
+  {
+   "id": "viajes2-a2",
+   "title": "🧳 De viaje · A2",
+   "level": "A2",
+   "pares": [
+    {
+     "en": "cabin",
+     "es": "cabaña"
+    },
+    {
+     "en": "boarding pass",
+     "es": "pase de abordar"
+    },
+    {
+     "en": "cruise",
+     "es": "crucero"
+    },
+    {
+     "en": "visa",
+     "es": "visa"
+    },
+    {
+     "en": "abroad",
+     "es": "en el extranjero"
+    },
+    {
+     "en": "tourist",
+     "es": "turista"
+    },
+    {
+     "en": "map",
+     "es": "mapa"
+    },
+    {
+     "en": "tour guide",
+     "es": "guía turístico"
+    },
+    {
+     "en": "souvenir",
+     "es": "recuerdo (de viaje)"
+    },
+    {
+     "en": "traveler",
+     "es": "viajero"
+    },
+    {
+     "en": "adventure",
+     "es": "aventura"
+    },
+    {
+     "en": "hike",
+     "es": "caminata"
+    },
+    {
+     "en": "monument",
+     "es": "monumento"
+    },
+    {
+     "en": "landscape",
+     "es": "paisaje"
+    },
+    {
+     "en": "countryside",
+     "es": "campo (zona rural)"
+    },
+    {
+     "en": "coast",
+     "es": "costa"
+    },
+    {
+     "en": "tent",
+     "es": "carpa"
+    },
+    {
+     "en": "sunscreen",
+     "es": "bloqueador solar"
+    },
+    {
+     "en": "jet lag",
+     "es": "desfase horario"
+    },
+    {
+     "en": "airline",
+     "es": "aerolínea"
+    },
+    {
+     "en": "land",
+     "es": "aterrizar"
+    },
+    {
+     "en": "pack",
+     "es": "empacar (la maleta)"
+    },
+    {
+     "en": "unpack",
+     "es": "desempacar"
+    },
+    {
+     "en": "explore",
+     "es": "explorar"
+    },
+    {
+     "en": "go sightseeing",
+     "es": "hacer turismo"
+    }
+   ]
+  },
+  {
+   "id": "trabajo3-a2",
+   "title": "👔 El mundo laboral · A2",
+   "level": "A2",
+   "pares": [
+    {
+     "en": "apply for a job",
+     "es": "postularse a un empleo"
+    },
+    {
+     "en": "hire",
+     "es": "contratar"
+    },
+    {
+     "en": "income",
+     "es": "ingresos"
+    },
+    {
+     "en": "retire",
+     "es": "pensionarse (jubilarse)"
+    },
+    {
+     "en": "part-time",
+     "es": "medio tiempo"
+    },
+    {
+     "en": "profit",
+     "es": "ganancia"
+    },
+    {
+     "en": "tool",
+     "es": "herramienta"
+    },
+    {
+     "en": "manager",
+     "es": "gerente"
+    },
+    {
+     "en": "employee",
+     "es": "empleado"
+    },
+    {
+     "en": "employer",
+     "es": "empleador"
+    },
+    {
+     "en": "secretary",
+     "es": "secretario"
+    },
+    {
+     "en": "warehouse",
+     "es": "bodega (almacén)"
+    },
+    {
+     "en": "business",
+     "es": "negocio"
+    },
+    {
+     "en": "career",
+     "es": "carrera profesional"
+    },
+    {
+     "en": "resume",
+     "es": "hoja de vida"
+    },
+    {
+     "en": "industry",
+     "es": "industria"
+    },
+    {
+     "en": "raise",
+     "es": "aumento de sueldo"
+    },
+    {
+     "en": "unemployed",
+     "es": "desempleado"
+    },
+    {
+     "en": "overtime",
+     "es": "horas extra"
+    },
+    {
+     "en": "shift",
+     "es": "turno (de trabajo)"
+    },
+    {
+     "en": "leader",
+     "es": "líder"
+    },
+    {
+     "en": "opportunity",
+     "es": "oportunidad"
+    },
+    {
+     "en": "work from home",
+     "es": "trabajar desde casa"
+    },
+    {
+     "en": "workshop",
+     "es": "taller"
+    },
+    {
+     "en": "calendar",
+     "es": "calendario"
+    }
+   ]
+  },
+  {
+   "id": "verbos4-a2",
+   "title": "🔄 Verbos para avanzar · A2",
+   "level": "A2",
+   "pares": [
+    {
+     "en": "believe",
+     "es": "creer"
+    },
+    {
+     "en": "guess",
+     "es": "adivinar"
+    },
+    {
+     "en": "repeat",
+     "es": "repetir"
+    },
+    {
+     "en": "solve",
+     "es": "resolver"
+    },
+    {
+     "en": "hate",
+     "es": "odiar"
+    },
+    {
+     "en": "enter",
+     "es": "entrar"
+    },
+    {
+     "en": "appear",
+     "es": "aparecer"
+    },
+    {
+     "en": "disappear",
+     "es": "desaparecer"
+    },
+    {
+     "en": "belong",
+     "es": "pertenecer"
+    },
+    {
+     "en": "compare",
+     "es": "comparar"
+    },
+    {
+     "en": "count",
+     "es": "contar (números)"
+    },
+    {
+     "en": "join",
+     "es": "unirse a"
+    },
+    {
+     "en": "mention",
+     "es": "mencionar"
+    },
+    {
+     "en": "notice",
+     "es": "notar"
+    },
+    {
+     "en": "own",
+     "es": "ser dueño de"
+    },
+    {
+     "en": "pick up",
+     "es": "recoger"
+    },
+    {
+     "en": "catch",
+     "es": "atrapar"
+    },
+    {
+     "en": "print",
+     "es": "imprimir"
+    },
+    {
+     "en": "rest",
+     "es": "descansar"
+    },
+    {
+     "en": "shout",
+     "es": "gritar"
+    },
+    {
+     "en": "smell",
+     "es": "oler"
+    },
+    {
+     "en": "touch",
+     "es": "tocar"
+    },
+    {
+     "en": "turn",
+     "es": "girar"
+    },
+    {
+     "en": "greet",
+     "es": "saludar"
+    },
+    {
+     "en": "cross",
+     "es": "cruzar (la calle)"
+    }
+   ]
+  },
+  {
+   "id": "adjetivos3-a1",
+   "title": "🌟 Adjetivos básicos · A1",
+   "level": "A1",
+   "pares": [
+    {
+     "en": "beautiful",
+     "es": "hermoso"
+    },
+    {
+     "en": "rich",
+     "es": "rico (con dinero)"
+    },
+    {
+     "en": "poor",
+     "es": "pobre"
+    },
+    {
+     "en": "wrong",
+     "es": "equivocado"
+    },
+    {
+     "en": "right",
+     "es": "correcto"
+    },
+    {
+     "en": "same",
+     "es": "mismo"
+    },
+    {
+     "en": "different",
+     "es": "diferente"
+    },
+    {
+     "en": "favorite",
+     "es": "favorito"
+    },
+    {
+     "en": "important",
+     "es": "importante"
+    },
+    {
+     "en": "special",
+     "es": "especial"
+    },
+    {
+     "en": "real",
+     "es": "real"
+    },
+    {
+     "en": "terrible",
+     "es": "terrible"
+    },
+    {
+     "en": "long",
+     "es": "largo"
+    },
+    {
+     "en": "nice",
+     "es": "agradable"
+    },
+    {
+     "en": "interesting",
+     "es": "interesante"
+    },
+    {
+     "en": "hungry",
+     "es": "con hambre"
+    },
+    {
+     "en": "thirsty",
+     "es": "con sed"
+    },
+    {
+     "en": "closed",
+     "es": "cerrado"
+    },
+    {
+     "en": "sweet",
+     "es": "dulce"
+    },
+    {
+     "en": "excellent",
+     "es": "excelente"
+    },
+    {
+     "en": "fresh",
+     "es": "fresco"
+    },
+    {
+     "en": "thick",
+     "es": "grueso"
+    },
+    {
+     "en": "crazy",
+     "es": "loco"
+    },
+    {
+     "en": "awake",
+     "es": "despierto"
+    },
+    {
+     "en": "lucky",
+     "es": "afortunado"
+    }
+   ]
+  },
+  {
+   "id": "pronombres-cuantos-a2",
+   "title": "👥 Pronombres y cantidades · A2",
+   "level": "A2",
+   "pares": [
+    {
+     "en": "each",
+     "es": "cada"
+    },
+    {
+     "en": "both",
+     "es": "ambos"
+    },
+    {
+     "en": "either",
+     "es": "cualquiera de los dos"
+    },
+    {
+     "en": "neither",
+     "es": "ninguno de los dos"
+    },
+    {
+     "en": "enough",
+     "es": "suficiente"
+    },
+    {
+     "en": "several",
+     "es": "varios"
+    },
+    {
+     "en": "whole",
+     "es": "entero"
+    },
+    {
+     "en": "a few",
+     "es": "unos pocos"
+    },
+    {
+     "en": "a little",
+     "es": "un poco"
+    },
+    {
+     "en": "many",
+     "es": "muchos"
+    },
+    {
+     "en": "yourself",
+     "es": "tú mismo"
+    },
+    {
+     "en": "more",
+     "es": "más"
+    },
+    {
+     "en": "less",
+     "es": "menos"
+    },
+    {
+     "en": "everything",
+     "es": "todo (todas las cosas)"
+    },
+    {
+     "en": "everyone",
+     "es": "todo el mundo"
+    },
+    {
+     "en": "someone",
+     "es": "alguien"
+    },
+    {
+     "en": "something",
+     "es": "algo"
+    },
+    {
+     "en": "nobody",
+     "es": "nadie"
+    },
+    {
+     "en": "nothing",
+     "es": "nada"
+    },
+    {
+     "en": "everywhere",
+     "es": "en todas partes"
+    },
+    {
+     "en": "somewhere",
+     "es": "en algún lugar"
+    },
+    {
+     "en": "another",
+     "es": "otro"
+    },
+    {
+     "en": "each other",
+     "es": "el uno al otro"
+    },
+    {
+     "en": "myself",
+     "es": "yo mismo"
+    },
+    {
+     "en": "mine",
+     "es": "mío"
+    }
+   ]
+  }
+ ]
+}
