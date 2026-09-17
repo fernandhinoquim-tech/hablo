@@ -334,8 +334,8 @@ object Course {
     var bancos: List<Banco> = emptyList()
         private set
 
-    /** El diagnóstico del Modo Aptis (assets/content/aptis-diagnostico.json; opcional). Ver Aptis.kt. */
-    var diagnostico: Diagnostico? = null
+    /** El Modo Aptis (assets/content/aptis-*.json; sin aptis-pistas.json no hay modo). Ver Aptis.kt. */
+    var aptis: BancoAptis? = null
         private set
 
     var levels: List<Level> = emptyList()
@@ -373,10 +373,12 @@ object Course {
             } catch (e: java.io.FileNotFoundException) {
                 emptyList()
             }
-            diagnostico = try {
-                parseDiagnostico(JSONObject(readAsset(context, "content/aptis-diagnostico.json")))
-            } catch (e: java.io.FileNotFoundException) {
-                null
+            aptis = try {
+                parseBancoAptis { nombre ->
+                    try { readAsset(context, "content/$nombre") } catch (e: java.io.FileNotFoundException) { null }
+                }
+            } catch (e: IllegalArgumentException) {
+                if (e.message?.startsWith("falta aptis-pistas.json") == true) null else throw e
             }
             loaded = true
             Log.i(TAG, "Curso cargado: ${levels.size} niveles, ${allLessons().size} lecciones, ${drills.size} drills, ${scenarios.size} escenarios")

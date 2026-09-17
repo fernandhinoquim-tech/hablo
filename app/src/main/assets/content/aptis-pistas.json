@@ -1,0 +1,18 @@
+{
+ "_comentario": "Reglas de las cinco pistas del Modo Aptis (Fero, 2026-09-16: pista de preparacion de A1 a B2 por destreza, no un test). 'promocion' es la condicion sobre las ULTIMAS N tareas del nivel actual para subir de nivel ('4 de 5' = con 3 opciones, pasar adivinando cae al 5 %). 'ronda' es cuantas tareas trae una sesion de entrenamiento. Los bancos van aparte: aptis-core-gramatica.json y aptis-core-vocabulario.json (Cowork), aptis-diagnostico.json (el simulacro; sus tareas se reciclan en las pistas) y, cuando lleguen, aptis-reading.json, aptis-listening.json, aptis-writing.json y aptis-speaking.json con {\"tareas\": [...]} en el mismo formato que las secciones del simulacro.",
+ "promocion": {
+  "core": "4 de 5",
+  "reading": "4 de 5",
+  "listening": "4 de 5",
+  "writing": "2 de 3",
+  "speaking": "2 de 3"
+ },
+ "ronda": {
+  "core": 10,
+  "reading": 5,
+  "listening": 5,
+  "writing": 1,
+  "speaking": 2
+ },
+ "segundos_por_item_core": 30
+}

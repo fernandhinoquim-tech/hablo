@@ -10,64 +10,128 @@ import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import kotlin.random.Random
 
 /**
- * **Modo Aptis, primer paso: el diagnóstico** (etapa 5). Aptis ESOL General le
+ * **Modo Aptis: la pista de preparación** (etapa 5). Aptis ESOL General le
  * exige a Fero B1 o superior en las CUATRO destrezas: es un piso, no un
- * promedio, así que lo que manda es la más floja. Este diagnóstico
- * (`assets/content/aptis-diagnostico.json`, escrito por Cowork: ~30 minutos,
- * 23 tareas, cinco partes que se hacen POR SEPARADO) estima el nivel de cada
- * destreza y dice cuál es el piso.
+ * promedio, así que lo que manda es la más floja.
  *
- * Lo que no se negocia (pedido de Cowork, 2026-09-16):
- * - En pantalla, siempre: [AVISO]. Prometer una nota exacta sería mentir.
- * - Writing y Speaking los estima la IA contra la rúbrica de cada tarea y
- *   tiene que CITAR una frase del alumno como prueba de cada juicio; una cita
- *   que no aparece textual en lo que escribió o dijo invalida el juicio
- *   ([JuezAptis.citaAparece]).
- * - La salida es una tarjeta por destreza y, arriba en grande, el piso.
+ * Cambio de diseño (Fero, 2026-09-16): no es un test fijo sino **cinco pistas**
+ * (Core, Reading, Listening, Writing, Speaking) que arrancan abajo y suben de
+ * nivel mientras entrenan. Un test de 30 tareas da una foto con margen de
+ * error; una pista graduada mide con cada tarea, y subir rápido ES el
+ * diagnóstico: si ya es B1 leyendo, barre el A2 en una sesión y la pista lo
+ * promueve sola.
+ *
+ * - [PistaAptis]: el banco de tareas de una destreza, por nivel (A1 → B2).
+ * - [Condicion.cumple] es la **regla de promoción**: se sube de nivel al
+ *   cumplirla sobre las últimas N tareas de ese nivel (`aptis-pistas.json`).
+ *   Si las últimas van flojas no se degrada: la ronda siguiente mezcla tareas
+ *   del nivel anterior ([Aptis.flojo], [Aptis.ronda]).
+ * - El tablero ([Aptis.piso]) dice cuál de las cuatro va última: ahí se estudia.
+ * - El **simulacro** completo cronometrado (el antiguo diagnóstico, [Diagnostico])
+ *   se desbloquea cuando las cinco pistas están en B1 o más
+ *   ([Aptis.simulacroDesbloqueado]); ese sí es de una sentada.
+ *
+ * Lo que no se negocia (Cowork, 2026-09-16), se conserva: [AVISO_APTIS] en
+ * pantalla, y la IA cita una frase del alumno como prueba de cada juicio
+ * ([JuezAptis.citaAparece]).
  */
 const val AVISO_APTIS = "Esto es una estimación, no tu nota de Aptis. Sirve para saber por dónde empezar."
 
-/** Nivel estimado. El orden de declaración es el orden real: el piso es el mínimo. */
+/** Nivel de una pista o de una estimación. El orden de declaración es el orden real: el piso es el mínimo. */
 enum class NivelAptis(val etiqueta: String) {
-    BAJO_A2("por debajo de A2"), A2("A2"), B1("B1"), B2("B2");
+    A1("A1"), A2("A2"), B1("B1"), B2("B2");
+
+    val siguiente: NivelAptis? get() = entries.getOrNull(ordinal + 1)
+    val anterior: NivelAptis? get() = entries.getOrNull(ordinal - 1)
 
     companion object {
-        /** Lee lo que devuelve la IA o lo guardado. C1/C2 se reportan como B2: el diagnóstico no distingue más arriba. */
+        /** Lee lo que devuelve la IA, el contenido o lo guardado. Por debajo de A2 es A1; C1/C2 se reportan como B2: la pista no distingue más arriba. */
         fun de(texto: String?): NivelAptis? = when (texto?.trim()?.uppercase(Locale.US)?.replace(" ", "")) {
+            "A1", "<A2", "A0", "BAJO_A2", "PORDEBAJODEA2", "MENOSA2" -> A1
             "A2" -> A2
             "B1" -> B1
             "B2", "C1", "C2" -> B2
-            "<A2", "A1", "A0", "BAJO_A2", "PORDEBAJODEA2", "MENOSA2" -> BAJO_A2
             else -> null
         }
     }
 }
 
 // ---------------------------------------------------------------------------
-// Contenido (aptis-diagnostico.json)
+// Tareas (el contenido: aptis-core-*.json, aptis-diagnostico.json y, cuando lleguen, aptis-<destreza>.json)
 // ---------------------------------------------------------------------------
 
-data class ItemCore(val id: String, val level: String, val text: String, val options: List<String>, val answer: String)
-
-sealed class TareaLectura(val id: String, val level: String, val tipo: String) {
-    class Completar(id: String, level: String, val text: String, val options: List<String>, val answer: String) :
-        TareaLectura(id, level, "completar")
-
-    class Ordenar(id: String, level: String, val instruccion: String, val primera: String, val desordenadas: List<String>, val orden: List<String>) :
-        TareaLectura(id, level, "ordenar")
-
-    class Titulos(id: String, level: String, val instruccion: String, val parrafos: List<String>, val titulos: List<String>, val answer: List<String>) :
-        TareaLectura(id, level, "titulos")
+sealed interface TareaAptis {
+    val id: String
+    /** "A1", "A2", "B1" o "B2" (C1 del banco del Core ya viene convertido a B2). */
+    val level: String
+    val nivel: NivelAptis get() = NivelAptis.de(level) ?: NivelAptis.A1
 }
 
-data class TareaEscucha(val id: String, val tipo: String, val level: String, val audio: String, val pregunta: String, val options: List<String>, val answer: String)
+/**
+ * Un ítem del Core: gramática (`text` con hueco) o vocabulario (`sub` = synonym,
+ * definition, collocation con `prompt`; usage con `text`). `why` se muestra al
+ * corregir, acierte o no (g = 0,73 con explicación contra 0,39 sin ella).
+ */
+data class ItemCore(
+    override val id: String,
+    override val level: String,
+    val text: String,
+    val options: List<String>,
+    val answer: String,
+    val why: String = "",
+    val sub: String = "",
+    val prompt: String = "",
+    val point: String = ""
+) : TareaAptis {
+    /** Lo que se le pregunta, según el subtipo. */
+    val instruccion: String
+        get() = when (sub) {
+            "synonym" -> "¿Cuál significa lo mismo?"
+            "definition" -> "¿A qué palabra corresponde esta definición?"
+            "collocation" -> "Completa la combinación."
+            "usage" -> "Completa la frase."
+            else -> ""
+        }
+    /** El enunciado en pantalla: el texto con hueco, o el prompt del vocabulario. */
+    val enunciado: String get() = (if (text.isNotBlank()) text else prompt).replace("___", "______")
+    /** El enunciado con la respuesta puesta, para la corrección. */
+    val resuelto: String get() = if (text.isNotBlank()) text.replace("___", answer) else if (prompt.contains("___")) prompt.replace("___", answer) else "$prompt → $answer"
+}
 
-data class TareaEscrita(val id: String, val level: String, val palabras: String, val segundos: Int, val promptEn: String, val promptEs: String, val rubrica: List<String>)
+sealed class TareaLectura(override val id: String, override val level: String, val tipo: String, val why: String) : TareaAptis {
+    class Completar(id: String, level: String, val text: String, val options: List<String>, val answer: String, why: String = "") :
+        TareaLectura(id, level, "completar", why)
 
-data class TareaHablada(val id: String, val level: String, val prepSeg: Int, val hablarSeg: Int, val promptEn: String, val promptEs: String, val rubrica: List<String>)
+    class Ordenar(id: String, level: String, val instruccion: String, val primera: String, val desordenadas: List<String>, val orden: List<String>, why: String = "") :
+        TareaLectura(id, level, "ordenar", why)
 
+    class Titulos(id: String, level: String, val instruccion: String, val parrafos: List<String>, val titulos: List<String>, val answer: List<String>, why: String = "") :
+        TareaLectura(id, level, "titulos", why)
+}
+
+data class TareaEscucha(
+    override val id: String, val tipo: String, override val level: String, val audio: String, val pregunta: String,
+    val options: List<String>, val answer: String, val why: String = ""
+) : TareaAptis
+
+data class TareaEscrita(
+    override val id: String, override val level: String, val palabras: String, val segundos: Int,
+    val promptEn: String, val promptEs: String, val rubrica: List<String>
+) : TareaAptis
+
+data class TareaHablada(
+    override val id: String, override val level: String, val prepSeg: Int, val hablarSeg: Int,
+    val promptEn: String, val promptEs: String, val rubrica: List<String>
+) : TareaAptis
+
+fun emojiAptis(id: String): String = when (id) {
+    "core" -> "🧩"; "reading" -> "📖"; "listening" -> "🎧"; "writing" -> "✍️"; "speaking" -> "🎤"; else -> "🎯"
+}
+
+/** Una parte del simulacro (el antiguo diagnóstico): tareas fijas, minutos y reloj. */
 class SeccionAptis(
     val id: String,
     val skill: String,
@@ -86,66 +150,113 @@ class SeccionAptis(
     /** Writing y Speaking: los juzga la IA contra la rúbrica. */
     val porIa: Boolean get() = escritura.isNotEmpty() || habla.isNotEmpty()
     val cuantas: Int get() = core.size + lectura.size + escucha.size + escritura.size + habla.size
-    val emoji: String
-        get() = when (id) {
-            "core" -> "🧩"; "reading" -> "📖"; "listening" -> "🎧"; "writing" -> "✍️"; "speaking" -> "🎤"; else -> "🎯"
-        }
+    val emoji: String get() = emojiAptis(id)
+    val tareas: List<TareaAptis> get() = core + lectura + escucha + escritura + habla
 }
 
+/** El simulacro completo: `aptis-diagnostico.json` tal cual (secciones, reloj, umbrales de estimación). */
 class Diagnostico(val duracionMin: Int, val secciones: List<SeccionAptis>) {
     fun seccion(id: String): SeccionAptis? = secciones.firstOrNull { it.id == id }
     val tareas: Int get() = secciones.sumOf { it.cuantas }
 }
 
-private val NIVELES_ITEM = setOf("A2", "B1", "B2")
+/**
+ * Una pista: todas las tareas de una destreza, de todos los niveles, más su
+ * regla de promoción y el tamaño de la ronda (`aptis-pistas.json`).
+ */
+class PistaAptis(
+    val id: String,
+    val skill: String,
+    val title: String,
+    val tareas: List<TareaAptis>,
+    val promocion: Condicion,
+    val ronda: Int,
+    /** Core: 30 s por ítem, como en el examen (25 min para 50). 0 = sin reloj por ítem. */
+    val segundosPorItem: Int = 0
+) {
+    val porIa: Boolean get() = tareas.any { it is TareaEscrita || it is TareaHablada }
+    val emoji: String get() = emojiAptis(id)
+    fun tarea(id: String): TareaAptis? = tareas.firstOrNull { it.id == id }
+    fun de(nivel: NivelAptis): List<TareaAptis> = tareas.filter { it.nivel == nivel }
+    /** Los niveles que tienen tareas, de abajo arriba. */
+    val niveles: List<NivelAptis> get() = NivelAptis.entries.filter { n -> tareas.any { it.nivel == n } }
+    /** Donde arranca la pista: el nivel más bajo con tareas (A1 cuando Cowork mande A1). */
+    val nivelInicial: NivelAptis get() = niveles.firstOrNull() ?: NivelAptis.A1
+    /** El nivel siguiente CON tareas, o null si ya está arriba de todo. */
+    fun siguienteCon(nivel: NivelAptis): NivelAptis? = niveles.firstOrNull { it > nivel }
+    fun anteriorCon(nivel: NivelAptis): NivelAptis? = niveles.lastOrNull { it < nivel }
+}
 
-/** "4 de 5 en B1": para dar por alcanzado un nivel hace falta acertar [bien] de [de] ítems de [level] (en proporción). */
-data class Condicion(val bien: Int, val de: Int, val level: String) {
+/** Todo el Modo Aptis cargado: las cinco pistas y el simulacro. */
+class BancoAptis(val pistas: List<PistaAptis>, val simulacro: Diagnostico?) {
+    fun pista(id: String): PistaAptis? = pistas.firstOrNull { it.id == id }
+    /** Las cuatro destrezas que Aptis exige en B1: todas menos el Core, que es el desempate. */
+    val cuatro: List<PistaAptis> get() = pistas.filter { it.id != "core" }
+}
+
+private val NIVELES_ITEM = setOf("A1", "A2", "B1", "B2", "C1")
+val PISTAS_APTIS = listOf("core" to "Core", "reading" to "Reading", "listening" to "Listening", "writing" to "Writing", "speaking" to "Speaking")
+private val TITULOS_PISTA = mapOf("core" to "Gramática y vocabulario", "reading" to "Lectura", "listening" to "Escucha", "writing" to "Escritura", "speaking" to "Habla")
+
+/**
+ * "4 de 5" o "4 de 5 en B1": hace falta acertar [bien] de [de] ítems (en
+ * proporción, por si cambia el número). Es la regla de promoción de las pistas
+ * y el umbral de estimación del Core en el simulacro.
+ */
+data class Condicion(val bien: Int, val de: Int, val level: String = "") {
     fun cumple(aciertos: Int, total: Int): Boolean = total > 0 && aciertos * de >= total * bien
 }
 
-private val CONDICION = Regex("(\\d+) de (\\d+) en (A2|B1|B2)")
+private val CONDICION = Regex("(\\d+) de (\\d+)(?: en (A1|A2|B1|B2))?")
+
+/** Lee "N de M[ en nivel]"; revienta si no tiene esa forma. */
+fun parseCondicion(where: String, texto: String): List<Condicion> {
+    val conds = CONDICION.findAll(texto).map { m ->
+        val bien = m.groupValues[1].toInt(); val de = m.groupValues[2].toInt()
+        if (de <= 0 || bien > de) throw IllegalArgumentException("$where: \"${m.value}\" no tiene sentido")
+        Condicion(bien, de, m.groupValues[3])
+    }.toList()
+    if (conds.isEmpty()) throw IllegalArgumentException("$where tiene que decir \"N de M\" (dice \"$texto\")")
+    return conds
+}
 
 /**
- * `estimacion.core` del JSON: por nivel, la lista de condiciones ("4 de 5 en A2 y
- * 4 de 5 en B1"). Los umbrales viven en el contenido (regla dura 4), no aquí;
- * si el bloque falta o no se puede leer, revienta como cualquier otro defecto.
+ * `estimacion.core` del simulacro: por nivel, la lista de condiciones ("4 de 5
+ * en A2 y 4 de 5 en B1"). Los umbrales viven en el contenido (regla dura 4).
  */
 fun parseUmbralesCore(estimacion: JSONObject?): Map<String, List<Condicion>> {
     val core = estimacion?.optJSONObject("core") ?: throw IllegalArgumentException("aptis-diagnostico.json: falta \"estimacion.core\"")
     val out = LinkedHashMap<String, List<Condicion>>()
-    for (nivel in NIVELES_ITEM) {
-        val texto = core.optString(nivel)
-        val conds = CONDICION.findAll(texto).map { m ->
-            val bien = m.groupValues[1].toInt(); val de = m.groupValues[2].toInt()
-            if (de <= 0 || bien > de) throw IllegalArgumentException("aptis-diagnostico.json: estimacion.core.$nivel: \"${m.value}\" no tiene sentido")
-            Condicion(bien, de, m.groupValues[3])
-        }.toList()
-        if (conds.isEmpty()) throw IllegalArgumentException("aptis-diagnostico.json: estimacion.core.$nivel tiene que decir \"N de M en <nivel>\" (dice \"$texto\")")
+    for (nivel in listOf("A2", "B1", "B2")) {
+        val conds = parseCondicion("aptis-diagnostico.json: estimacion.core.$nivel", core.optString(nivel))
+        if (conds.any { it.level.isBlank() }) throw IllegalArgumentException("aptis-diagnostico.json: estimacion.core.$nivel tiene que decir en qué nivel (\"N de M en A2\")")
         out[nivel] = conds
     }
     return out
 }
 
-/** Lee y valida el JSON. Cualquier defecto revienta con la ruta exacta, como el resto del contenido. */
-fun parseDiagnostico(json: JSONObject): Diagnostico {
-    val umbrales = parseUmbralesCore(json.optJSONObject("estimacion"))
-    val secciones = ArrayList<SeccionAptis>()
-    val ids = HashSet<String>()
-    val idsTarea = HashSet<String>()
+private fun jsonStrings(a: JSONArray?): List<String> {
+    if (a == null) return emptyList()
+    val out = ArrayList<String>(a.length())
+    for (i in 0 until a.length()) out.add(a.getString(i))
+    return out
+}
+
+/** Lo que comparten los parsers: ids únicos en todo el Modo Aptis, niveles válidos, opciones sanas. */
+internal class Lector(val idsTarea: HashSet<String>) {
     fun idNuevo(where: String, id: String) {
         if (id.isBlank()) throw IllegalArgumentException("$where: falta \"id\"")
         if (!idsTarea.add(id)) throw IllegalArgumentException("$where: id repetido \"$id\"")
     }
     fun nivel(where: String, o: JSONObject): String {
         val l = o.optString("level")
-        if (l !in NIVELES_ITEM) throw IllegalArgumentException("$where: level \"$l\" no es A2, B1 ni B2")
-        return l
+        if (l !in NIVELES_ITEM) throw IllegalArgumentException("$where: level \"$l\" no es A1, A2, B1 ni B2")
+        return if (l == "C1") "B2" else l
     }
-    fun opciones(where: String, o: JSONObject, campo: String = "options"): List<String> {
-        val opts = jsonStrings(o.optJSONArray(campo))
+    fun opciones(where: String, o: JSONObject): List<String> {
+        val opts = jsonStrings(o.optJSONArray("options"))
         if (opts.size < 2) throw IllegalArgumentException("$where: hacen falta al menos 2 opciones")
-        if (opts.toSet().size != opts.size) throw IllegalArgumentException("$where: opciones repetidas")
+        if (opts.map { it.trim().lowercase(Locale.US) }.toSet().size != opts.size) throw IllegalArgumentException("$where: opciones repetidas")
         return opts
     }
     fun respuesta(where: String, o: JSONObject, opts: List<String>): String {
@@ -157,154 +268,207 @@ fun parseDiagnostico(json: JSONObject): Diagnostico {
         if (text.split("___").size != 2) throw IllegalArgumentException("$where: el texto necesita exactamente un hueco ___")
     }
 
+    fun itemGramatica(where: String, it: JSONObject): ItemCore {
+        idNuevo(where, it.optString("id"))
+        val text = it.optString("text"); hueco(where, text)
+        val opts = opciones(where, it)
+        return ItemCore(it.getString("id"), nivel(where, it), text, opts, respuesta(where, it, opts), it.optString("why"), "", "", it.optString("point"))
+    }
+
+    fun itemVocabulario(where: String, it: JSONObject): ItemCore {
+        idNuevo(where, it.optString("id"))
+        val sub = it.optString("sub")
+        if (sub !in setOf("synonym", "definition", "usage", "collocation")) throw IllegalArgumentException("$where: sub \"$sub\" desconocido")
+        val text = it.optString("text"); val prompt = it.optString("prompt")
+        if (sub == "usage") hueco(where, text) else if (prompt.isBlank()) throw IllegalArgumentException("$where: falta \"prompt\"")
+        val opts = opciones(where, it)
+        if (it.optString("why").isBlank()) throw IllegalArgumentException("$where: falta \"why\" (la explicación en español)")
+        return ItemCore(it.getString("id"), nivel(where, it), if (sub == "usage") text else "", opts, respuesta(where, it, opts), it.optString("why"), sub, prompt)
+    }
+
+    fun lectura(where: String, t: JSONObject): TareaLectura {
+        idNuevo(where, t.optString("id"))
+        val tid = t.getString("id")
+        val lvl = nivel(where, t)
+        val why = t.optString("why")
+        return when (val tipo = t.optString("tipo")) {
+            "completar" -> {
+                val text = t.optString("text"); hueco(where, text)
+                val opts = opciones(where, t)
+                TareaLectura.Completar(tid, lvl, text, opts, respuesta(where, t, opts), why)
+            }
+            "ordenar" -> {
+                val primera = t.optString("primera").ifBlank { throw IllegalArgumentException("$where: falta \"primera\"") }
+                val des = jsonStrings(t.optJSONArray("desordenadas"))
+                val orden = jsonStrings(t.optJSONArray("orden"))
+                if (des.size < 2) throw IllegalArgumentException("$where: hacen falta al menos 2 frases desordenadas")
+                if (des.toSet().size != des.size) throw IllegalArgumentException("$where: frases repetidas")
+                if (orden.sorted() != des.sorted()) throw IllegalArgumentException("$where: \"orden\" no es una permutación de \"desordenadas\"")
+                TareaLectura.Ordenar(tid, lvl, t.optString("instruccion"), primera, des, orden, why)
+            }
+            "titulos" -> {
+                val parrafos = jsonStrings(t.optJSONArray("parrafos"))
+                val titulos = jsonStrings(t.optJSONArray("titulos"))
+                val answer = jsonStrings(t.optJSONArray("answer"))
+                if (parrafos.size < 2) throw IllegalArgumentException("$where: hacen falta al menos 2 párrafos")
+                if (titulos.size <= parrafos.size) throw IllegalArgumentException("$where: tiene que sobrar al menos un título")
+                if (titulos.toSet().size != titulos.size) throw IllegalArgumentException("$where: títulos repetidos")
+                if (answer.size != parrafos.size) throw IllegalArgumentException("$where: \"answer\" necesita un título por párrafo")
+                if (answer.toSet().size != answer.size || answer.any { it !in titulos }) throw IllegalArgumentException("$where: \"answer\" con títulos repetidos o fuera de \"titulos\"")
+                TareaLectura.Titulos(tid, lvl, t.optString("instruccion"), parrafos, titulos, answer, why)
+            }
+            else -> throw IllegalArgumentException("$where: tipo desconocido \"$tipo\"")
+        }
+    }
+
+    fun escucha(where: String, t: JSONObject): TareaEscucha {
+        idNuevo(where, t.optString("id"))
+        val audio = t.optString("audio").ifBlank { throw IllegalArgumentException("$where: falta \"audio\"") }
+        val pregunta = t.optString("pregunta").ifBlank { throw IllegalArgumentException("$where: falta \"pregunta\"") }
+        val opts = opciones(where, t)
+        return TareaEscucha(t.getString("id"), t.optString("tipo"), nivel(where, t), audio, pregunta, opts, respuesta(where, t, opts), t.optString("why"))
+    }
+
+    fun escrita(where: String, t: JSONObject): TareaEscrita {
+        idNuevo(where, t.optString("id"))
+        val seg = t.optInt("segundos", 0)
+        if (seg <= 0) throw IllegalArgumentException("$where: falta \"segundos\"")
+        val rub = jsonStrings(t.optJSONArray("rubrica"))
+        if (rub.isEmpty()) throw IllegalArgumentException("$where: falta la rúbrica")
+        return TareaEscrita(
+            t.getString("id"), nivel(where, t), t.optString("palabras"), seg,
+            t.optString("prompt_en").ifBlank { throw IllegalArgumentException("$where: falta \"prompt_en\"") },
+            t.optString("prompt_es").ifBlank { throw IllegalArgumentException("$where: falta \"prompt_es\"") },
+            rub
+        )
+    }
+
+    fun hablada(where: String, t: JSONObject): TareaHablada {
+        idNuevo(where, t.optString("id"))
+        val hablar = t.optInt("hablar_seg", 0)
+        if (hablar <= 0) throw IllegalArgumentException("$where: falta \"hablar_seg\"")
+        val rub = jsonStrings(t.optJSONArray("rubrica"))
+        if (rub.isEmpty()) throw IllegalArgumentException("$where: falta la rúbrica")
+        return TareaHablada(
+            t.getString("id"), nivel(where, t), t.optInt("prep_seg", 0).coerceAtLeast(0), hablar,
+            t.optString("prompt_en").ifBlank { throw IllegalArgumentException("$where: falta \"prompt_en\"") },
+            t.optString("prompt_es").ifBlank { throw IllegalArgumentException("$where: falta \"prompt_es\"") },
+            rub
+        )
+    }
+
+    /** Las tareas de una destreza en un array ("tareas" o "items"), según la pista. */
+    fun tareasDe(pistaId: String, where: String, arr: JSONArray?): List<TareaAptis> {
+        val out = ArrayList<TareaAptis>()
+        val a = arr ?: JSONArray()
+        for (i in 0 until a.length()) {
+            val t = a.getJSONObject(i)
+            val w = "$where, tarea ${i + 1}"
+            out.add(
+                when (pistaId) {
+                    "core" -> if (t.has("sub")) itemVocabulario(w, t) else itemGramatica(w, t)
+                    "reading" -> lectura(w, t)
+                    "listening" -> escucha(w, t)
+                    "writing" -> escrita(w, t)
+                    "speaking" -> hablada(w, t)
+                    else -> throw IllegalArgumentException("$w: pista desconocida \"$pistaId\"")
+                }
+            )
+        }
+        return out
+    }
+}
+
+/** Lee y valida el simulacro (`aptis-diagnostico.json`). Cualquier defecto revienta con la ruta exacta. */
+fun parseDiagnostico(json: JSONObject): Diagnostico = parseDiagnosticoCon(json, Lector(HashSet()))
+
+internal fun parseDiagnosticoCon(json: JSONObject, lector: Lector): Diagnostico {
+    val umbrales = parseUmbralesCore(json.optJSONObject("estimacion"))
+    val secciones = ArrayList<SeccionAptis>()
+    val ids = HashSet<String>()
     val arr = json.optJSONArray("secciones") ?: throw IllegalArgumentException("aptis-diagnostico.json: falta \"secciones\"")
     for (s in 0 until arr.length()) {
         val o = arr.getJSONObject(s)
         val whereS = "aptis-diagnostico.json, sección ${s + 1}"
         val id = o.optString("id")
         if (id.isBlank() || !ids.add(id)) throw IllegalArgumentException("$whereS: id vacío o repetido")
+        if (PISTAS_APTIS.none { it.first == id }) throw IllegalArgumentException("$whereS: sección desconocida \"$id\"")
         val skill = o.optString("skill").ifBlank { throw IllegalArgumentException("$whereS: falta \"skill\"") }
         val title = o.optString("title").ifBlank { throw IllegalArgumentException("$whereS: falta \"title\"") }
         val minutos = o.optInt("minutos", 0)
         if (minutos <= 0) throw IllegalArgumentException("$whereS: \"minutos\" tiene que ser mayor que 0")
         val instruccion = o.optString("instruccion")
-
-        when (id) {
-            "core" -> {
-                val seg = o.optInt("segundos_por_item", 0)
-                if (seg <= 0) throw IllegalArgumentException("$whereS: falta \"segundos_por_item\"")
-                val items = o.optJSONArray("items") ?: JSONArray()
-                val core = ArrayList<ItemCore>()
-                for (i in 0 until items.length()) {
-                    val it = items.getJSONObject(i)
-                    val where = "$whereS, ítem ${i + 1}"
-                    idNuevo(where, it.optString("id"))
-                    val text = it.optString("text")
-                    hueco(where, text)
-                    val opts = opciones(where, it)
-                    core.add(ItemCore(it.getString("id"), nivel(where, it), text, opts, respuesta(where, it, opts)))
-                }
-                for (l in NIVELES_ITEM) if (core.none { it.level == l }) throw IllegalArgumentException("$whereS: no hay ítems de $l (la estimación los necesita)")
-                secciones.add(SeccionAptis(id, skill, title, minutos, instruccion, segundosPorItem = seg, core = core, umbrales = umbrales))
-            }
-            "reading" -> {
-                val tareas = o.optJSONArray("tareas") ?: JSONArray()
-                val lectura = ArrayList<TareaLectura>()
-                for (i in 0 until tareas.length()) {
-                    val t = tareas.getJSONObject(i)
-                    val where = "$whereS, tarea ${i + 1}"
-                    idNuevo(where, t.optString("id"))
-                    val tid = t.getString("id")
-                    val lvl = nivel(where, t)
-                    when (val tipo = t.optString("tipo")) {
-                        "completar" -> {
-                            val text = t.optString("text"); hueco(where, text)
-                            val opts = opciones(where, t)
-                            lectura.add(TareaLectura.Completar(tid, lvl, text, opts, respuesta(where, t, opts)))
-                        }
-                        "ordenar" -> {
-                            val primera = t.optString("primera").ifBlank { throw IllegalArgumentException("$where: falta \"primera\"") }
-                            val des = jsonStrings(t.optJSONArray("desordenadas"))
-                            val orden = jsonStrings(t.optJSONArray("orden"))
-                            if (des.size < 2) throw IllegalArgumentException("$where: hacen falta al menos 2 frases desordenadas")
-                            if (des.toSet().size != des.size) throw IllegalArgumentException("$where: frases repetidas")
-                            if (orden.sorted() != des.sorted()) throw IllegalArgumentException("$where: \"orden\" no es una permutación de \"desordenadas\"")
-                            lectura.add(TareaLectura.Ordenar(tid, lvl, t.optString("instruccion"), primera, des, orden))
-                        }
-                        "titulos" -> {
-                            val parrafos = jsonStrings(t.optJSONArray("parrafos"))
-                            val titulos = jsonStrings(t.optJSONArray("titulos"))
-                            val answer = jsonStrings(t.optJSONArray("answer"))
-                            if (parrafos.size < 2) throw IllegalArgumentException("$where: hacen falta al menos 2 párrafos")
-                            if (titulos.size <= parrafos.size) throw IllegalArgumentException("$where: tiene que sobrar al menos un título")
-                            if (titulos.toSet().size != titulos.size) throw IllegalArgumentException("$where: títulos repetidos")
-                            if (answer.size != parrafos.size) throw IllegalArgumentException("$where: \"answer\" necesita un título por párrafo")
-                            if (answer.toSet().size != answer.size || answer.any { it !in titulos }) throw IllegalArgumentException("$where: \"answer\" con títulos repetidos o fuera de \"titulos\"")
-                            lectura.add(TareaLectura.Titulos(tid, lvl, t.optString("instruccion"), parrafos, titulos, answer))
-                        }
-                        else -> throw IllegalArgumentException("$where: tipo desconocido \"$tipo\"")
-                    }
-                }
-                if (lectura.isEmpty()) throw IllegalArgumentException("$whereS: sin tareas")
-                secciones.add(SeccionAptis(id, skill, title, minutos, instruccion, lectura = lectura))
-            }
-            "listening" -> {
-                val tareas = o.optJSONArray("tareas") ?: JSONArray()
-                val escucha = ArrayList<TareaEscucha>()
-                for (i in 0 until tareas.length()) {
-                    val t = tareas.getJSONObject(i)
-                    val where = "$whereS, tarea ${i + 1}"
-                    idNuevo(where, t.optString("id"))
-                    val audio = t.optString("audio").ifBlank { throw IllegalArgumentException("$where: falta \"audio\"") }
-                    val pregunta = t.optString("pregunta").ifBlank { throw IllegalArgumentException("$where: falta \"pregunta\"") }
-                    val opts = opciones(where, t)
-                    escucha.add(TareaEscucha(t.getString("id"), t.optString("tipo"), nivel(where, t), audio, pregunta, opts, respuesta(where, t, opts)))
-                }
-                if (escucha.isEmpty()) throw IllegalArgumentException("$whereS: sin tareas")
-                secciones.add(SeccionAptis(id, skill, title, minutos, instruccion, escucha = escucha))
-            }
-            "writing" -> {
-                val tareas = o.optJSONArray("tareas") ?: JSONArray()
-                val escritura = ArrayList<TareaEscrita>()
-                for (i in 0 until tareas.length()) {
-                    val t = tareas.getJSONObject(i)
-                    val where = "$whereS, tarea ${i + 1}"
-                    idNuevo(where, t.optString("id"))
-                    val seg = t.optInt("segundos", 0)
-                    if (seg <= 0) throw IllegalArgumentException("$where: falta \"segundos\"")
-                    val rub = jsonStrings(t.optJSONArray("rubrica"))
-                    if (rub.isEmpty()) throw IllegalArgumentException("$where: falta la rúbrica")
-                    escritura.add(
-                        TareaEscrita(
-                            t.getString("id"), nivel(where, t), t.optString("palabras"), seg,
-                            t.optString("prompt_en").ifBlank { throw IllegalArgumentException("$where: falta \"prompt_en\"") },
-                            t.optString("prompt_es").ifBlank { throw IllegalArgumentException("$where: falta \"prompt_es\"") },
-                            rub
-                        )
-                    )
-                }
-                if (escritura.size < 2) throw IllegalArgumentException("$whereS: la estimación por IA necesita al menos 2 tareas")
-                secciones.add(SeccionAptis(id, skill, title, minutos, instruccion, escritura = escritura))
-            }
-            "speaking" -> {
-                val tareas = o.optJSONArray("tareas") ?: JSONArray()
-                val habla = ArrayList<TareaHablada>()
-                for (i in 0 until tareas.length()) {
-                    val t = tareas.getJSONObject(i)
-                    val where = "$whereS, tarea ${i + 1}"
-                    idNuevo(where, t.optString("id"))
-                    val hablar = t.optInt("hablar_seg", 0)
-                    if (hablar <= 0) throw IllegalArgumentException("$where: falta \"hablar_seg\"")
-                    val rub = jsonStrings(t.optJSONArray("rubrica"))
-                    if (rub.isEmpty()) throw IllegalArgumentException("$where: falta la rúbrica")
-                    habla.add(
-                        TareaHablada(
-                            t.getString("id"), nivel(where, t), t.optInt("prep_seg", 0).coerceAtLeast(0), hablar,
-                            t.optString("prompt_en").ifBlank { throw IllegalArgumentException("$where: falta \"prompt_en\"") },
-                            t.optString("prompt_es").ifBlank { throw IllegalArgumentException("$where: falta \"prompt_es\"") },
-                            rub
-                        )
-                    )
-                }
-                if (habla.size < 2) throw IllegalArgumentException("$whereS: la estimación por IA necesita al menos 2 tareas")
-                secciones.add(SeccionAptis(id, skill, title, minutos, instruccion, habla = habla))
-            }
-            else -> throw IllegalArgumentException("$whereS: sección desconocida \"$id\"")
+        val tareas = lector.tareasDe(id, whereS, o.optJSONArray(if (id == "core") "items" else "tareas"))
+        if (tareas.isEmpty()) throw IllegalArgumentException("$whereS: sin tareas")
+        var seg = 0
+        if (id == "core") {
+            seg = o.optInt("segundos_por_item", 0)
+            if (seg <= 0) throw IllegalArgumentException("$whereS: falta \"segundos_por_item\"")
+            for (l in listOf("A2", "B1", "B2")) if (tareas.none { it.level == l }) throw IllegalArgumentException("$whereS: no hay ítems de $l (la estimación los necesita)")
         }
+        if ((id == "writing" || id == "speaking") && tareas.size < 2) throw IllegalArgumentException("$whereS: la estimación por IA necesita al menos 2 tareas")
+        secciones.add(
+            SeccionAptis(
+                id, skill, title, minutos, instruccion, segundosPorItem = seg,
+                core = tareas.filterIsInstance<ItemCore>(), lectura = tareas.filterIsInstance<TareaLectura>(),
+                escucha = tareas.filterIsInstance<TareaEscucha>(), escritura = tareas.filterIsInstance<TareaEscrita>(),
+                habla = tareas.filterIsInstance<TareaHablada>(), umbrales = umbrales
+            )
+        )
     }
     if (secciones.isEmpty()) throw IllegalArgumentException("aptis-diagnostico.json: sin secciones")
     return Diagnostico(json.optInt("duracion_min", 30), secciones)
 }
 
-private fun jsonStrings(a: JSONArray?): List<String> {
-    if (a == null) return emptyList()
-    val out = ArrayList<String>(a.length())
-    for (i in 0 until a.length()) out.add(a.getString(i))
-    return out
+/**
+ * Arma el Modo Aptis entero a partir de los assets (se le pasa cómo leer cada
+ * uno; null si no existe):
+ * - `aptis-pistas.json` (obligatorio): promoción y tamaño de ronda por pista.
+ * - `aptis-core-gramatica.json` y `aptis-core-vocabulario.json`: el banco del
+ *   Core de Cowork (120 ítems), tal cual sus archivos.
+ * - `aptis-<pista>.json` (opcional, `{"tareas": [...]}`): los bancos de las
+ *   otras cuatro destrezas, cuando Cowork los mande.
+ * - `aptis-diagnostico.json` (opcional): el simulacro; sus tareas se reciclan
+ *   como primeras tareas de sus pistas.
+ */
+fun parseBancoAptis(leer: (String) -> String?): BancoAptis {
+    val config = JSONObject(leer("aptis-pistas.json") ?: throw IllegalArgumentException("falta aptis-pistas.json"))
+    val promocion = config.optJSONObject("promocion") ?: throw IllegalArgumentException("aptis-pistas.json: falta \"promocion\"")
+    val ronda = config.optJSONObject("ronda") ?: throw IllegalArgumentException("aptis-pistas.json: falta \"ronda\"")
+    val lector = Lector(HashSet())
+    val simulacro = leer("aptis-diagnostico.json")?.let { parseDiagnosticoCon(JSONObject(it), lector) }
+    val pistas = ArrayList<PistaAptis>()
+    for ((id, skill) in PISTAS_APTIS) {
+        val tareas = ArrayList<TareaAptis>()
+        if (id == "core") {
+            for (archivo in listOf("aptis-core-gramatica.json", "aptis-core-vocabulario.json")) {
+                val json = leer(archivo)?.let { JSONObject(it) } ?: continue
+                tareas.addAll(lector.tareasDe("core", archivo, json.optJSONArray("items")))
+            }
+        }
+        leer("aptis-$id.json")?.let { JSONObject(it) }?.let { json ->
+            tareas.addAll(lector.tareasDe(id, "aptis-$id.json", json.optJSONArray("tareas") ?: json.optJSONArray("items")))
+        }
+        // Las tareas del simulacro se reciclan en su pista, salvo las que repiten un ítem del banco (mismo enunciado).
+        simulacro?.seccion(id)?.let { sec ->
+            val vistos = tareas.filterIsInstance<ItemCore>().map { it.enunciado.lowercase(Locale.US) }.toHashSet()
+            for (t in sec.tareas) {
+                if (t is ItemCore && !vistos.add(t.enunciado.lowercase(Locale.US))) continue
+                tareas.add(t)
+            }
+        }
+        val cond = parseCondicion("aptis-pistas.json: promocion.$id", promocion.optString(id))
+        if (cond.size != 1 || cond[0].level.isNotBlank()) throw IllegalArgumentException("aptis-pistas.json: promocion.$id tiene que ser una sola condición \"N de M\"")
+        val n = ronda.optInt(id, 0)
+        if (n <= 0) throw IllegalArgumentException("aptis-pistas.json: falta ronda.$id")
+        val seg = if (id == "core") config.optInt("segundos_por_item_core", 30) else 0
+        pistas.add(PistaAptis(id, skill, TITULOS_PISTA[id] ?: skill, tareas, cond[0], n, seg))
+    }
+    return BancoAptis(pistas, simulacro)
 }
 
 // ---------------------------------------------------------------------------
-// Estimación (bloque "estimacion" del JSON)
+// Estimación (el simulacro: bloque "estimacion" del JSON)
 // ---------------------------------------------------------------------------
 
 object EstimacionAptis {
@@ -317,43 +481,36 @@ object EstimacionAptis {
     }
 
     /**
-     * Reading y Listening (`_regla` v2, 2026-09-16): un nivel se da por alcanzado
-     * solo si acierta TODOS sus ítems (Listening: "hacen falta LOS DOS"; Reading:
-     * "A2 necesita los dos", B1 y B2 son una tarea casi imposible de adivinar),
-     * y el estimado es el nivel más alto alcanzado; si ninguno, "por debajo de
-     * A2". Estricto a propósito (`_por_que_estricto`): con 3 opciones se acierta
-     * el 33 % por azar, y a Fero le exigen B1 en las cuatro destrezas, así que
-     * conviene errar por lo bajo.
+     * Reading y Listening del simulacro (`_regla` v2): un nivel se da por
+     * alcanzado solo si acierta TODOS sus ítems, y el estimado es el más alto
+     * alcanzado; si ninguno, A1. Estricto a propósito (`_por_que_estricto`).
+     * Le da igual si la lista viene del simulacro o de práctica acumulada.
      */
     fun porTodos(aciertos: List<Pair<String, Boolean>>): NivelAptis {
-        for (n in listOf(NivelAptis.B2, NivelAptis.B1, NivelAptis.A2)) {
+        for (n in NivelAptis.entries.reversed()) {
             val c = cuenta(aciertos, n.name)
             if (c.total > 0 && c.bien == c.total) return n
         }
-        return NivelAptis.BAJO_A2
+        return NivelAptis.A1
     }
 
     /**
-     * Core: la tabla `estimacion.core` del JSON tal cual ("A2": "4 de 5 en A2",
-     * "B1": "4 de 5 en A2 y 4 de 5 en B1", "B2": "4 de 5 en B1 y 4 de 5 en B2"),
-     * en proporciones para que siga valiendo si cambia el número de ítems: el
-     * nivel es el más alto cuyas condiciones se cumplen todas; si ni A2, "por
-     * debajo de A2". Con 5 ítems y 4 exigidos, pasar adivinando cae al 5 %.
+     * Core del simulacro: la tabla `estimacion.core` del JSON ("4 de 5 en A2 y 4
+     * de 5 en B1"…), en proporciones: el nivel es el más alto cuyas condiciones
+     * se cumplen todas; si ni A2, A1.
      */
     fun core(aciertos: List<Pair<String, Boolean>>, umbrales: Map<String, List<Condicion>>): NivelAptis {
-        for (n in listOf(NivelAptis.B2, NivelAptis.B1, NivelAptis.A2)) {
+        for (n in NivelAptis.entries.reversed()) {
             val conds = umbrales[n.name] ?: continue
             if (conds.all { c -> cuenta(aciertos, c.level).let { c.cumple(it.bien, it.total) } }) return n
         }
-        return NivelAptis.BAJO_A2
+        return NivelAptis.A1
     }
 
     /**
      * Writing y Speaking (`reglas_ia`): la IA da un nivel por tarea y el estimado
-     * es "el más alto alcanzado en DOS tareas": con dos tareas, el menor de los
-     * dos; con tres, el del medio. Con menos de dos juicios válidos no hay
-     * estimación (null): sin prueba el juicio no vale, y sin dos juicios no hay
-     * "alcanzado en dos tareas".
+     * es "el más alto alcanzado en DOS tareas": con dos tareas, el menor; con
+     * tres, el del medio. Con menos de dos juicios válidos no hay estimación.
      */
     fun porIa(niveles: List<NivelAptis>): NivelAptis? {
         if (niveles.size < 2) return null
@@ -362,10 +519,10 @@ object EstimacionAptis {
 }
 
 // ---------------------------------------------------------------------------
-// Resultados guardados (filesDir/aptis.json)
+// Lo guardado (filesDir/aptis.json): las pistas y el simulacro
 // ---------------------------------------------------------------------------
 
-/** Un ítem u opción de Core, Reading o Listening: qué puso y si acertó. */
+/** Un ítem del simulacro (Core, Reading, Listening): qué puso y si acertó. */
 data class AciertoItem(val id: String, val level: String, val puesto: String, val ok: Boolean)
 
 /** Una tarea de Writing o Speaking: lo del alumno y, cuando llega, el juicio de la IA con su prueba. */
@@ -385,24 +542,31 @@ data class JuicioIa(
     val duracion: Int = 0
 ) {
     val valido: Boolean get() = nivel != null && cita.isNotBlank()
+
+    fun aJson(): JSONObject = JSONObject().put("id", id).put("level", level).put("texto", texto).put("segundos", segundos)
+        .put("nivel", nivel?.name ?: "").put("cita", cita).put("razon", razon).put("practica", practica)
+        .put("error", error ?: "").put("duracion", duracion)
+
+    companion object {
+        fun deJson(j: JSONObject): JuicioIa = JuicioIa(
+            j.getString("id"), j.optString("level"), j.optString("texto"), j.optInt("segundos"),
+            NivelAptis.de(j.optString("nivel", "")), j.optString("cita"), j.optString("razon"), j.optString("practica"),
+            j.optString("error").ifBlank { null }, j.optInt("duracion")
+        )
+    }
 }
 
+/** Una parte del simulacro ya hecha. */
 data class ResultadoSeccion(
     val id: String,
     val fecha: String,
     val items: List<AciertoItem> = emptyList(),
     val juicios: List<JuicioIa> = emptyList()
 ) {
-    /**
-     * Si Cowork cambia el contenido (otros ids de tarea), lo guardado ya no
-     * describe esta parte: no vale y hay que repetirla (pasó el 16-09 con la v2
-     * del diagnóstico, que subió el Core de 12 a 15 ítems).
-     */
+    /** Si Cowork cambia el contenido (otros ids), lo guardado ya no describe esta parte: hay que repetirla. */
     fun vigente(seccion: SeccionAptis): Boolean {
         val guardados = (if (seccion.porIa) juicios.map { it.id } else items.map { it.id }).toSet()
-        val esperados = (seccion.core.map { it.id } + seccion.lectura.map { it.id } + seccion.escucha.map { it.id } +
-            seccion.escritura.map { it.id } + seccion.habla.map { it.id }).toSet()
-        return guardados == esperados
+        return guardados == seccion.tareas.map { it.id }.toSet()
     }
 
     /** El nivel que sale de lo guardado; null si a la IA le faltan juicios válidos o si el contenido cambió. */
@@ -416,9 +580,35 @@ data class ResultadoSeccion(
     val pendientesIa: List<JuicioIa> get() = juicios.filter { !it.valido }
 }
 
+/** Un intento en una pista: la tarea, su nivel, si contó como acierto y, en Writing/Speaking, el juicio. */
+data class Intento(
+    val id: String,
+    val level: String,
+    val ok: Boolean,
+    val fecha: String,
+    val puesto: String = "",
+    val juicio: JuicioIa? = null
+)
+
+/**
+ * Lo que pasó al registrar un intento: la pista dio por ALCANZADO un nivel
+ * ([alcanzado]) y, si hay uno más arriba con tareas, pasa a entrenarlo ([a]).
+ */
+data class Promocion(val alcanzado: NivelAptis, val a: NivelAptis?)
+
 class Aptis(private val file: File) {
 
-    private val resultados = HashMap<String, ResultadoSeccion>()
+    /**
+     * Dos niveles por pista, a propósito: [nivel] es el que se ENTRENA (arranca
+     * donde el banco tenga tareas) y [alcanzado] el más alto cuya condición ya
+     * se cumplió (null hasta la primera promoción). El tablero y el piso miran
+     * el alcanzado: si un banco solo trae B1 y B2 (Writing hoy), entrenar B1 no
+     * es haber llegado a B1.
+     */
+    private class EstadoPista(var nivel: NivelAptis?, var alcanzado: NivelAptis?, val historial: ArrayList<Intento>)
+
+    private val pistas = HashMap<String, EstadoPista>()
+    private val simulacro = HashMap<String, ResultadoSeccion>()
     private var cargado = false
     private val dia = SimpleDateFormat("yyyy-MM-dd", Locale.US)
 
@@ -434,9 +624,24 @@ class Aptis(private val file: File) {
         if (!file.exists()) return
         try {
             val root = JSONObject(file.readText())
-            val secs = root.optJSONObject("secciones") ?: return
-            for (id in secs.keys()) {
-                val o = secs.getJSONObject(id)
+            if (root.optInt("version", 0) < 2) {
+                Log.i(TAG, "${file.name} es del diagnóstico viejo; se empieza de cero")
+                return
+            }
+            val ps = root.optJSONObject("pistas") ?: JSONObject()
+            for (id in ps.keys()) {
+                val o = ps.getJSONObject(id)
+                val hist = ArrayList<Intento>()
+                val ha = o.optJSONArray("historial") ?: JSONArray()
+                for (i in 0 until ha.length()) {
+                    val it = ha.getJSONObject(i)
+                    hist.add(Intento(it.getString("id"), it.optString("level"), it.optBoolean("ok"), it.optString("fecha"), it.optString("puesto"), it.optJSONObject("juicio")?.let { j -> JuicioIa.deJson(j) }))
+                }
+                pistas[id] = EstadoPista(NivelAptis.de(o.optString("nivel")), NivelAptis.de(o.optString("alcanzado")), hist)
+            }
+            val ss = root.optJSONObject("simulacro") ?: JSONObject()
+            for (id in ss.keys()) {
+                val o = ss.getJSONObject(id)
                 val items = ArrayList<AciertoItem>()
                 val ia = o.optJSONArray("items") ?: JSONArray()
                 for (i in 0 until ia.length()) {
@@ -445,85 +650,196 @@ class Aptis(private val file: File) {
                 }
                 val juicios = ArrayList<JuicioIa>()
                 val ja = o.optJSONArray("juicios") ?: JSONArray()
-                for (i in 0 until ja.length()) {
-                    val j = ja.getJSONObject(i)
-                    juicios.add(
-                        JuicioIa(
-                            j.getString("id"), j.optString("level"), j.optString("texto"), j.optInt("segundos"),
-                            NivelAptis.de(j.optString("nivel", "")), j.optString("cita"), j.optString("razon"), j.optString("practica"),
-                            j.optString("error").ifBlank { null }, j.optInt("duracion")
-                        )
-                    )
-                }
-                resultados[id] = ResultadoSeccion(id, o.optString("fecha"), items, juicios)
+                for (i in 0 until ja.length()) juicios.add(JuicioIa.deJson(ja.getJSONObject(i)))
+                simulacro[id] = ResultadoSeccion(id, o.optString("fecha"), items, juicios)
             }
         } catch (e: Throwable) {
             Log.e(TAG, "No se pudo leer ${file.name}; se empieza de cero", e)
-            resultados.clear()
+            pistas.clear(); simulacro.clear()
         }
     }
 
     private fun escribir() {
-        val secs = JSONObject()
-        for ((id, r) in resultados) {
+        val ps = JSONObject()
+        for ((id, p) in pistas) {
+            val hist = JSONArray()
+            for (it in p.historial) {
+                val o = JSONObject().put("id", it.id).put("level", it.level).put("ok", it.ok).put("fecha", it.fecha).put("puesto", it.puesto)
+                if (it.juicio != null) o.put("juicio", it.juicio.aJson())
+                hist.put(o)
+            }
+            ps.put(id, JSONObject().put("nivel", p.nivel?.name ?: "").put("alcanzado", p.alcanzado?.name ?: "").put("historial", hist))
+        }
+        val ss = JSONObject()
+        for ((id, r) in simulacro) {
             val items = JSONArray()
             for (it in r.items) items.put(JSONObject().put("id", it.id).put("level", it.level).put("puesto", it.puesto).put("ok", it.ok))
             val juicios = JSONArray()
-            for (j in r.juicios) juicios.put(
-                JSONObject().put("id", j.id).put("level", j.level).put("texto", j.texto).put("segundos", j.segundos)
-                    .put("nivel", j.nivel?.name ?: "").put("cita", j.cita).put("razon", j.razon).put("practica", j.practica)
-                    .put("error", j.error ?: "").put("duracion", j.duracion)
-            )
-            secs.put(id, JSONObject().put("fecha", r.fecha).put("items", items).put("juicios", juicios))
+            for (j in r.juicios) juicios.put(j.aJson())
+            ss.put(id, JSONObject().put("fecha", r.fecha).put("items", items).put("juicios", juicios))
         }
         try {
             file.parentFile?.mkdirs()
-            file.writeText(JSONObject().put("version", 1).put("secciones", secs).toString())
+            file.writeText(JSONObject().put("version", 2).put("pistas", ps).put("simulacro", ss).toString())
         } catch (e: Throwable) {
             Log.e(TAG, "No se pudo guardar ${file.name}", e)
         }
         tick += 1
     }
 
-    fun resultado(id: String): ResultadoSeccion? { cargar(); return resultados[id] }
-
-    fun guardar(r: ResultadoSeccion) { cargar(); resultados[r.id] = r; escribir() }
-
-    fun borrarTodo() { cargar(); resultados.clear(); if (file.exists()) file.delete(); tick += 1 }
-
-    fun hechas(diag: Diagnostico): Int { cargar(); return diag.secciones.count { resultados[it.id] != null } }
-
-    /** Nivel por destreza; null donde falta hacer la parte o la IA no dio pruebas. */
-    fun niveles(diag: Diagnostico): Map<String, NivelAptis?> {
+    private fun estado(pista: PistaAptis): EstadoPista {
         cargar()
-        return diag.secciones.associate { s -> s.id to resultados[s.id]?.nivel(s) }
+        return pistas.getOrPut(pista.id) { EstadoPista(null, null, ArrayList()) }
     }
 
-    fun completo(diag: Diagnostico): Boolean = niveles(diag).values.all { it != null }
+    // --- pistas ---------------------------------------------------------------
 
-    /** Las destrezas más flojas (varias si empatan). Solo tiene sentido con el diagnóstico completo. */
-    fun piso(diag: Diagnostico): List<SeccionAptis> {
-        val n = niveles(diag)
+    /** El nivel en que está entrenando la pista: donde arranca el banco hasta que la promoción la suba. */
+    fun nivel(pista: PistaAptis): NivelAptis {
+        val e = estado(pista)
+        val n = e.nivel ?: return pista.nivelInicial
+        // si el banco perdió ese nivel (contenido cambiado), se entrena el más cercano que exista
+        return if (pista.de(n).isNotEmpty()) n else pista.niveles.lastOrNull { it <= n } ?: pista.nivelInicial
+    }
+
+    /** El nivel más alto que la pista ya dio por alcanzado; null si todavía ninguno. Es lo que mira el tablero. */
+    fun alcanzado(pista: PistaAptis): NivelAptis? = estado(pista).alcanzado
+
+    fun historial(pista: PistaAptis): List<Intento> = estado(pista).historial.toList()
+
+    fun hechas(pista: PistaAptis): Int = estado(pista).historial.size
+
+    /** Los últimos [n] intentos en ese nivel (del más viejo al más nuevo). */
+    fun ultimos(pista: PistaAptis, nivel: NivelAptis, n: Int): List<Intento> =
+        estado(pista).historial.filter { it.level == nivel.name }.takeLast(n)
+
+    /**
+     * Registra un intento y aplica la regla de promoción: con al menos N
+     * intentos en el nivel que se entrena (N = "de" de la condición), si los
+     * últimos N la cumplen, ese nivel queda ALCANZADO y la pista pasa al
+     * siguiente con tareas (si lo hay). Solo sube, nunca baja (para lo flojo
+     * está [flojo]). Devuelve la promoción solo cuando el alcanzado cambia.
+     */
+    fun registrar(pista: PistaAptis, intento: Intento): Promocion? {
+        val e = estado(pista)
+        e.historial.add(intento)
+        while (e.historial.size > MAX_HISTORIAL) e.historial.removeAt(0)
+        val actual = nivel(pista)
+        if (e.nivel == null) e.nivel = actual
+        var promocion: Promocion? = null
+        if (intento.level == actual.name) {
+            val n = pista.promocion.de
+            val ultimos = ultimos(pista, actual, n)
+            if (ultimos.size >= n && pista.promocion.cumple(ultimos.count { it.ok }, ultimos.size)) {
+                val sig = pista.siguienteCon(actual)
+                if (sig != null) e.nivel = sig
+                if (e.alcanzado == null || actual > e.alcanzado!!) {
+                    e.alcanzado = actual
+                    promocion = Promocion(actual, sig)
+                    Log.i(TAG, "${pista.id}: alcanza $actual (${ultimos.count { it.ok }} de ${ultimos.size})" + (sig?.let { ", entrena $it" } ?: ""))
+                }
+            }
+        }
+        escribir()
+        return promocion
+    }
+
+    /** Las últimas N del nivel actual van flojas (menos de la mitad bien): la ronda mezcla el nivel anterior. */
+    fun flojo(pista: PistaAptis): Boolean {
+        val n = pista.promocion.de
+        val u = ultimos(pista, nivel(pista), n)
+        return u.size >= n && u.count { it.ok } * 2 < u.size
+    }
+
+    /** Cuántas veces se ha hecho cada tarea, para servir primero las nunca vistas. */
+    private fun ordenados(pista: PistaAptis, nivel: NivelAptis, rnd: Random): List<TareaAptis> {
+        val hist = estado(pista).historial
+        val ultimaVez = HashMap<String, Int>()
+        hist.forEachIndexed { i, it -> ultimaVez[it.id] = i }
+        val (vistas, nuevas) = pista.de(nivel).partition { it.id in ultimaVez }
+        return nuevas.shuffled(rnd) + vistas.sortedBy { ultimaVez[it.id] }
+    }
+
+    /**
+     * Arma una ronda: tareas del nivel actual, primero las nunca vistas y luego
+     * las más viejas. Si el nivel va flojo, la mitad sale del nivel anterior
+     * (repasar sin degradar). Vacía si el banco no tiene tareas ahí.
+     */
+    fun ronda(pista: PistaAptis, rnd: Random = Random.Default): List<TareaAptis> {
+        val actual = nivel(pista)
+        val principal = ordenados(pista, actual, rnd)
+        val n = pista.ronda
+        val previo = if (flojo(pista)) pista.anteriorCon(actual) else null
+        if (previo == null) return principal.take(n)
+        val apoyo = ordenados(pista, previo, rnd)
+        val out = ArrayList<TareaAptis>()
+        var i = 0; var j = 0
+        while (out.size < n && (i < principal.size || j < apoyo.size)) {
+            if (i < principal.size) out.add(principal[i++])
+            if (out.size < n && j < apoyo.size) out.add(apoyo[j++])
+        }
+        return out
+    }
+
+    /** Nivel alcanzado de todas las pistas (null donde todavía ninguno). */
+    fun niveles(banco: BancoAptis): Map<String, NivelAptis?> = banco.pistas.associate { it.id to alcanzado(it) }
+
+    private fun orden(pista: PistaAptis): Int = alcanzado(pista)?.ordinal ?: -1
+
+    /** Las destrezas más flojas de las CUATRO que Aptis exige (varias si empatan; sin nivel cuenta como lo más bajo). El Core no entra: es el desempate. */
+    fun piso(banco: BancoAptis): List<PistaAptis> {
+        val minimo = banco.cuatro.minOfOrNull { orden(it) } ?: return emptyList()
+        return banco.cuatro.filter { orden(it) == minimo }
+    }
+
+    /** El simulacro completo se abre cuando las cinco pistas han ALCANZADO B1 o más. */
+    fun simulacroDesbloqueado(banco: BancoAptis): Boolean = banco.pistas.all { (alcanzado(it) ?: NivelAptis.A1) >= NivelAptis.B1 && alcanzado(it) != null }
+
+    fun faltanParaSimulacro(banco: BancoAptis): List<PistaAptis> = banco.pistas.filter { alcanzado(it)?.let { n -> n < NivelAptis.B1 } ?: true }
+
+    // --- simulacro ------------------------------------------------------------
+
+    fun resultadoSimulacro(id: String): ResultadoSeccion? { cargar(); return simulacro[id] }
+
+    fun guardarSimulacro(r: ResultadoSeccion) { cargar(); simulacro[r.id] = r; escribir() }
+
+    fun borrarSimulacro() { cargar(); simulacro.clear(); escribir() }
+
+    fun hechasSimulacro(diag: Diagnostico): Int { cargar(); return diag.secciones.count { simulacro[it.id] != null } }
+
+    /** Nivel estimado por parte del simulacro; null donde falta hacerla o la IA no dio pruebas. */
+    fun nivelesSimulacro(diag: Diagnostico): Map<String, NivelAptis?> {
+        cargar()
+        return diag.secciones.associate { s -> s.id to simulacro[s.id]?.nivel(s) }
+    }
+
+    fun simulacroCompleto(diag: Diagnostico): Boolean = nivelesSimulacro(diag).values.all { it != null }
+
+    fun pisoSimulacro(diag: Diagnostico): List<SeccionAptis> {
+        val n = nivelesSimulacro(diag)
         val minimo = n.values.filterNotNull().minOrNull() ?: return emptyList()
         return diag.secciones.filter { n[it.id] == minimo }
     }
 
+    fun borrarTodo() { cargar(); pistas.clear(); simulacro.clear(); if (file.exists()) file.delete(); tick += 1 }
+
     companion object {
         private const val TAG = "HabloAptis"
+        private const val MAX_HISTORIAL = 600
     }
 }
 
 // ---------------------------------------------------------------------------
-// Frases de las tarjetas (Core, Reading, Listening; las de IA vienen del juicio)
+// Frases de las tarjetas del simulacro (Core, Reading, Listening; las de IA vienen del juicio)
 // ---------------------------------------------------------------------------
 
 object TarjetaAptis {
 
     /** "Acertaste 3 de 3 en A2, 2 de 4 en B1 y 1 de 5 en B2." */
     fun justificacion(items: List<AciertoItem>): String {
-        val partes = listOf("A2", "B1", "B2").mapNotNull { l ->
-            val de = items.filter { it.level == l }
-            if (de.isEmpty()) null else "${de.count { it.ok }} de ${de.size} en $l"
+        val partes = NivelAptis.entries.mapNotNull { n ->
+            val de = items.filter { it.level == n.name }
+            if (de.isEmpty()) null else "${de.count { it.ok }} de ${de.size} en ${n.name}"
         }
         if (partes.isEmpty()) return ""
         val texto = if (partes.size == 1) partes[0] else partes.dropLast(1).joinToString(", ") + " y " + partes.last()
@@ -536,7 +852,7 @@ object TarjetaAptis {
             ?: return "Nada que corregir en esta parte: sigue con lo que quede más flojo."
         if (seccion.id == "core") {
             val item = seccion.core.firstOrNull { it.id == fallado.id } ?: return "Repasa la gramática de ${fallado.level}."
-            return "La frase que fallaste más abajo (${item.level}): «${item.text.replace("___", item.answer)}»"
+            return "La frase que fallaste más abajo (${item.level}): «${item.resuelto}»"
         }
         val lectura = seccion.lectura.firstOrNull { it.id == fallado.id }
         if (lectura != null) return when (lectura.tipo) {
@@ -559,7 +875,7 @@ object TarjetaAptis {
 
 object JuezAptis {
 
-    /** Sonnet: es el que mejor juzga y son cinco llamadas por diagnóstico (~$0,02 en total). */
+    /** Sonnet: es el que mejor juzga; una llamada por tarea de Writing o Speaking (~$0,004). */
     const val MODELO = ClaudeLlm.DEFAULT_MODEL
     const val MAX_TOKENS = 600
 
@@ -684,7 +1000,7 @@ Responde SOLO con un JSON así, sin nada antes ni después:
 
     /** Sin texto no hay nada que estimar, y no hace falta llamar a nadie. */
     fun sinTexto(j: JuicioIa): JuicioIa = j.copy(
-        nivel = NivelAptis.BAJO_A2,
+        nivel = NivelAptis.A1,
         cita = "(no hubo texto)",
         razon = if (j.segundos > 0) "No se entendió nada de lo grabado." else "No escribiste ni dijiste nada en esta tarea.",
         practica = "Responde aunque sea con dos frases: en blanco no se puede estimar nada.",
@@ -695,10 +1011,10 @@ Responde SOLO con un JSON así, sin nada antes ni después:
      * Juzga una tarea. Si la cita no aparece en el texto, se le reclama UNA vez;
      * si vuelve a fallar, el juicio queda sin nivel y con el motivo en [JuicioIa.error].
      */
-    fun juzgar(claude: ClaudeLlm, seccion: SeccionAptis, j: JuicioIa, onDone: (JuicioIa) -> Unit) {
+    fun juzgar(claude: ClaudeLlm, tarea: TareaAptis?, j: JuicioIa, onDone: (JuicioIa) -> Unit) {
         if (j.texto.isBlank()) { onDone(sinTexto(j)); return }
-        val escrita = seccion.escritura.firstOrNull { it.id == j.id }
-        val hablada = seccion.habla.firstOrNull { it.id == j.id }
+        val escrita = tarea as? TareaEscrita
+        val hablada = tarea as? TareaHablada
         if (escrita == null && hablada == null) { onDone(j.copy(error = "Tarea desconocida ${j.id}")); return }
         fun prompt(citaMala: String?): String =
             if (escrita != null) promptEscrita(escrita, j.texto, j.segundos, citaMala) else promptHablada(hablada!!, j.texto, j.segundos, citaMala, j.duracion)
@@ -730,12 +1046,12 @@ Responde SOLO con un JSON así, sin nada antes ni después:
         intento(null)
     }
 
-    /** Juzga en fila las tareas pendientes de una sección, avisando cada una. */
+    /** Juzga en fila las tareas pendientes de una parte del simulacro, avisando cada una. */
     fun juzgarPendientes(claude: ClaudeLlm, seccion: SeccionAptis, juicios: List<JuicioIa>, onCada: (List<JuicioIa>) -> Unit, onFin: (List<JuicioIa>) -> Unit) {
         val lista = ArrayList(juicios)
         fun siguiente(i: Int) {
             val idx = (i until lista.size).firstOrNull { !lista[it].valido } ?: run { onFin(lista.toList()); return }
-            juzgar(claude, seccion, lista[idx]) { nuevo ->
+            juzgar(claude, seccion.tareas.firstOrNull { it.id == lista[idx].id }, lista[idx]) { nuevo ->
                 lista[idx] = nuevo
                 onCada(lista.toList())
                 siguiente(idx + 1)

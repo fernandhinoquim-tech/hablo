@@ -52,6 +52,7 @@ fun HomeScreen(
     onAguanta: () -> Unit = {},
     onHistorias: () -> Unit = {},
     /** Etapa 5: el Modo Aptis va como sección aparte (decisión de Fero). */
+    aptis: Aptis? = null,
     onAptis: () -> Unit = {}
 ) {
     val accent = Color(teacher.color)
@@ -336,9 +337,19 @@ fun HomeScreen(
             }
         }
 
-        // --- Etapa 5: Modo Aptis, sección aparte; por ahora solo el diagnóstico -----
-        Course.diagnostico?.let { diag ->
+        // --- Etapa 5: Modo Aptis, sección aparte: la pista de preparación ---------
+        Course.aptis?.let { banco ->
             item {
+                val tick = aptis?.tick ?: 0
+                val subtitulo = remember(tick) {
+                    if (aptis == null || banco.pistas.all { aptis.hechas(it) == 0 }) "Cinco pistas de A1 a B2: entrenas y suben solas; el tablero dice cuál va última"
+                    else if (banco.cuatro.all { aptis.alcanzado(it) == null }) "Aún sin nivel en las cuatro destrezas" + (aptis.alcanzado(banco.pista("core") ?: banco.pistas[0])?.let { " · Core ${it.etiqueta}" } ?: "") + " · sigue entrenando"
+                    else {
+                        val piso = aptis.piso(banco)
+                        "Tu piso: " + piso.joinToString(", ") { it.skill } + " · " +
+                            banco.cuatro.joinToString(" · ") { "${it.skill} ${aptis.alcanzado(it)?.etiqueta ?: "—"}" }
+                    }
+                }
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier
@@ -356,12 +367,8 @@ fun HomeScreen(
                     }
                     Spacer(Modifier.size(14.dp))
                     Column(modifier = Modifier.weight(1f)) {
-                        Text("Modo Aptis · Diagnóstico", style = MaterialTheme.typography.titleMedium)
-                        Text(
-                            "${diag.duracionMin} minutos en ${diag.secciones.size} partes: en qué nivel está cada destreza y cuál es tu piso",
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = InkSoft
-                        )
+                        Text("Modo Aptis · Pista de preparación", style = MaterialTheme.typography.titleMedium)
+                        Text(subtitulo, style = MaterialTheme.typography.bodyMedium, color = InkSoft)
                     }
                     Text("›", style = MaterialTheme.typography.headlineMedium, color = accent)
                 }
@@ -454,7 +461,7 @@ fun HomeScreen(
                 Text("Lo que viene", style = MaterialTheme.typography.titleMedium)
                 Spacer(Modifier.height(6.dp))
                 Text(
-                    "🎯  Modo Aptis: la práctica con el formato del examen (el diagnóstico ya está)\n" +
+                    "🎯  Modo Aptis: los bancos de Reading, Listening, Writing y Speaking (los escribe Cowork)\n" +
                         "🧗  Niveles B1 y B2",
                     style = MaterialTheme.typography.bodyMedium,
                     color = InkSoft

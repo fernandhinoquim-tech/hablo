@@ -356,10 +356,13 @@ Aguanta vistos en pantalla; el mazo arrancó con 59 frases para el 17-09);
 termina cuando Fero pueda abrir la app sin lección pendiente y tener veinte
 minutos de práctica distinta. El `vocabulario.json` de Cowork entró el 16-09
 (714ef91: 41 bancos, 368 parejas). 4) Historias — **código hecho el 16-09** (ver "Etapa 4" abajo).
-5) **Modo Aptis** (abajo) — **primer paso, el diagnóstico, hecho y probado en
-el teléfono el 16-09 (0.9.6; ver "Etapa 5" abajo)**; el resto del modo (los
-bancos del Core que ya están en `contenido-nuevo/aptis/`, la práctica por
-tarea) NO se construye hasta que Fero haga el diagnóstico y se sepa su piso.
+5) **Modo Aptis** (abajo) — **cambio de diseño el 16-09 (Fero): no es un
+diagnóstico, es una PISTA DE PREPARACIÓN de A1 a B2 por destreza que evalúa
+mientras entrena** (0.9.7; ver "Etapa 5" abajo). El diagnóstico que se
+construyó por la mañana quedó como el simulacro completo, que se abre cuando
+las cinco pistas alcanzan B1. Faltan los bancos de Reading, Listening, Writing
+y Speaking (Cowork, en ese orden de rentabilidad: Writing → Reading →
+Listening → Speaking).
 6) B1 y B2 (Cowork), respaldo del progreso, modo oscuro, recalibración del
 audio.
 
@@ -452,97 +455,88 @@ válidas a la vez; **una ronda nunca mezcla bancos** (al mezclar, la garantía
 desaparece). Los bancos van de 3 a 25 parejas: los grandes se parten en
 rondas de hasta 8 del mismo banco (un subconjunto conserva la garantía).
 
-**Etapa 5 (2026-09-16), primer paso: el diagnóstico Aptis, cómo está
-construido.** Contenido de Cowork en `assets/content/aptis-diagnostico.json`
-(**v2 del 16-09: 36 min, 30 tareas**: Core 15 ítems (5 por nivel) · Reading 4
-(2 de A2 + ordenar + títulos) · Listening 6 (2 por nivel) · Writing 2 ·
-Speaking 3; la v1 de 23 tareas se dejaba pasar adivinando el 26 % de las
-veces con 3 opciones; está archivada como `diagnostico-v1.json`. Se valida en
-`checkContent`, en `parseDiagnostico` de `Aptis.kt` y con
-`tools/content/integrar_diagnostico.py`, que también lo archiva). Código:
-`Aptis.kt` (modelo, reglas, resultados, juez) y `ScreenAptis.kt` (portada +
-una parte); tarjeta "🎯 Modo Aptis · Diagnóstico" en el inicio, SECCIÓN
-APARTE del curso. Lo que Cowork pidió como no negociable y cómo quedó:
-- **El aviso en pantalla** (`AVISO_APTIS`: "Esto es una estimación, no tu
-  nota de Aptis. Sirve para saber por dónde empezar.") va en la portada, en
-  la intro y el final de Writing y Speaking, y encima de las tarjetas del
-  resultado.
-- **Cinco partes por separado**, cada una se guarda al terminar en
-  `filesDir/aptis.json` (`Aptis`): se pueden hacer en días distintos y
-  repetir una sola. Core: 30 s por ítem con reloj, pasa sola al vencer y no
-  vuelve atrás (el ítem vencido cuenta como fallado). Reading: completar,
-  ordenar (tocar las frases en orden; quitar una tocándola arriba) y títulos
-  (uno por párrafo, sobra uno). Listening: la profesora lo lee con Piper
-  (`lineasAudio`: los diálogos "MAN:/WOMAN:" se leen como "Man: … / Woman:
-  …"), dos veces máximo, el texto nunca se muestra. Writing: reloj por tarea
-  (180/420 s), al vencer se entrega lo que haya. Speaking: la profesora lee
-  la pregunta, preparación de 0/30/60 s, grabación de 30/60/90 s con
-  **Parakeet** (el que mejor adivina) y **sin corte por silencio** (pensar
-  callado es parte de hablar; `startRecording(cortarSolo = false)`, tope
-  subido a 120 s), sin GOP (`Sound.GENERAL`); se muestra "lo que oyó el
-  dictado" antes de seguir.
-- **La IA juzga con prueba** (`JuezAptis`): una llamada a Claude Sonnet 5 por
-  tarea (`ClaudeLlm.preguntar`, sin streaming, sin razonar, ~$0,02 por
-  diagnóstico), contra la rúbrica de la tarea, y devuelve JSON con `nivel`,
-  `cita`, `razon`, `practica`. **La cita tiene que aparecer textual en lo que
-  el alumno escribió o dijo** (`citaAparece`: sin mayúsculas ni puntuación, ≥
-  3 palabras); si no aparece se le reclama UNA vez y, si repite, el juicio se
-  descarta ("sin evidencia el juicio no vale") y la parte queda "falta
-  estimar" con botón de reintento (los textos se guardan antes de juzgar, así
-  que sin internet no se pierde nada). Sin texto no se llama a nadie: cuenta
-  por debajo de A2. Medido en el PC el 16-09 (`scratchpad/juez_ab.py`, 8
-  textos de A2 a B2, escritos y transcripciones con ruido de dictado):
-  Sonnet dio el nivel esperado 8/8 y la cita apareció textual 8/8 (10,5 k
-  tokens de entrada, 1,5 k de salida en total).
-- **Estimación** (`EstimacionAptis`, con tests), estricta a propósito
-  (`_por_que_estricto` del JSON: a Fero le exigen B1 en las cuatro, así que
-  conviene errar por lo bajo). **Los umbrales del Core viven en el JSON**
-  (`estimacion.core`: "A2": "4 de 5 en A2", "B1": "4 de 5 en A2 y 4 de 5 en
-  B1", "B2": "4 de 5 en B1 y 4 de 5 en B2"; `parseUmbralesCore` los lee como
-  `Condicion(bien, de, nivel)` en proporción, y si el texto no tiene la forma
-  "N de M en <nivel>" la carga revienta): el nivel es el más alto cuyas
-  condiciones se cumplen todas; con 5 ítems y 4 exigidos, pasar adivinando cae
-  al 5 %. Reading y Listening (`porTodos`): un nivel solo se alcanza con TODOS
-  sus ítems bien (Listening 2 de 2; Reading A2 2 de 2, B1 y B2 son una tarea
-  casi imposible de adivinar) y el estimado es el más alto alcanzado. Writing
-  y Speaking: "el más alto alcanzado en dos tareas" = el menor de dos / el del
-  medio de tres; con menos de dos juicios válidos no hay estimación. Si
-  Cowork cambia los ids de las tareas, un resultado guardado deja de valer
-  (`ResultadoSeccion.vigente`: la portada dice "hecha con una versión
-  anterior · repítela").
-- **Salida**: cuando están las cinco, la portada muestra arriba en grande
-  **TU PISO** (la destreza más floja, varias si empatan) con su nivel y una
-  frase ("Aptis pide B1 en las cuatro…"), y una tarjeta por destreza con
-  nivel, la frase que lo justifica (aciertos por nivel, o la cita de la IA
-  con su razón) y UNA cosa que practicar (Core: la frase fallada más abajo;
-  Reading/Listening: el tipo de tarea fallado; IA: su `practica`).
-- Probado en el S25 el 16-09 con adb (`scratchpad/eval/etapa5*.ps1`,
-  capturas en `caps5/`): las cinco partes de punta a punta (v1 y v2), el
-  reloj del Core venciendo, las dos escuchas y "Siguiente" apagado hasta
-  oír, quitar una frase puesta en "ordenar", salir a mitad de una parte (no
-  guarda nada), Writing juzgado y también SIN clave ("sin juicio · No hay
-  clave de Claude en el teléfono" → "Falta estimar" en la portada → con la
-  clave puesta, "Reintentar la estimación de lo que ya hice" juzga sin
-  repetir), Speaking con la voz Zira del PC como alumno (silencio de 1,5 s →
-  "No te entendí" con "Grabar otra vez" y "Seguir sin esta tarea";
-  preparación vencida → graba sola; Parakeet transcribió las tomas), el
-  resultado con el piso arriba, y "Borrar el diagnóstico" con confirmación.
-  El `aptis.json` de prueba se borró del teléfono: Fero empieza limpio.
-  Ojo: en Speaking la duración cuenta (la rúbrica pregunta si mantiene el
-  tiempo): una respuesta de B1 pero de 12 s en la tarea de 90 s salió "por
-  debajo de A2". Es la parte estricta a propósito, no un bug.
-- Trampas: Parakeet inventa muletillas al final de cada ventana en silencio
-  ("Mm-hmm.", "Okay.") y puede pegar palabras ("so make Maybe"). Regla de
-  Cowork: un juicio no puede apoyarse en algo que el alumno no dijo, así que
-  `JuezAptis.sinMuletillas` corta las del FINAL de la transcripción antes de
-  mostrarla y de juzgarla (en medio no se toca: un "okay" ahí puede ser suyo;
-  un "okay" final se pierde aunque fuera suyo). El prompt del juez avisa del
-  resto. Los segundos de voz (`speechSeconds`) quedan por debajo de lo
-  hablado si el audio es flojo; por eso al juez se le dan también los
-  segundos totales de la grabación.
-- **No integrado a propósito**: `contenido-nuevo/aptis/core-*.json` (120
-  ítems) y `COMO-INTEGRAR-APTIS-CORE.md` siguen en la bandeja hasta que Fero
-  tenga su diagnóstico.
+**Etapa 5 (2026-09-16): el Modo Aptis es una PISTA DE PREPARACIÓN, no un
+test.** Pedido de Fero, tarde del 16-09, después de que el diagnóstico de 30
+tareas ya estaba hecho y probado: *un test de 30 tareas da una foto con margen
+de error; una pista graduada mide con cada tarea, y subir rápido de nivel ES
+el diagnóstico* (si ya es B1 leyendo, barre el A2 en una sesión y la pista lo
+promueve; no hay que preguntárselo). Código: `Aptis.kt` (modelo, bancos,
+promoción, lo guardado, el juez) y `ScreenAptis.kt` (tablero, pista,
+simulacro). Tarjeta "🎯 Modo Aptis · Pista de preparación" en el inicio,
+SECCIÓN APARTE del curso. Cómo está construido:
+- **Contenido** (`assets/content/`, todo validado en `checkContent` y en
+  `parseBancoAptis`, con ids únicos entre TODOS los archivos):
+  `aptis-pistas.json` (reglas: `promocion` "N de M" y `ronda` por pista;
+  obligatorio), `aptis-core-gramatica.json` y `aptis-core-vocabulario.json`
+  (los 120 ítems de Cowork tal cual: gramática con `text`/`point`/`why`;
+  vocabulario con `sub` synonym/definition/collocation + `prompt`, o usage +
+  `text`; los 2 de C1 entran como B2), `aptis-diagnostico.json` (el
+  simulacro; sus 30 tareas se reciclan como primeras tareas de sus pistas,
+  salvo las que repiten un ítem del Core con el mismo enunciado) y, cuando
+  Cowork los mande, `aptis-reading.json`, `aptis-listening.json`,
+  `aptis-writing.json`, `aptis-speaking.json` con `{"tareas": [...]}` en el
+  mismo formato que las secciones del simulacro (más `why` opcional, que se
+  muestra al corregir). `tools/content/integrar_diagnostico.py` valida el
+  simulacro; los bancos del Core se copiaron tal cual.
+- **Cinco pistas** (`PistaAptis`: Core, Reading, Listening, Writing,
+  Speaking). Cada una tiene DOS niveles a propósito (`Aptis`): el que se
+  ENTRENA (`nivel`, arranca en el nivel más bajo con tareas: A2 hoy, A1
+  cuando Cowork mande A1) y el ALCANZADO (`alcanzado`, null hasta la primera
+  promoción). El tablero y el piso miran el alcanzado: Writing hoy solo trae
+  B1 y B2, así que entrena B1 desde el arranque, pero entrenar B1 no es haber
+  llegado a B1.
+- **Promoción** = `Condicion.cumple` sobre las ÚLTIMAS N tareas del nivel que
+  se entrena (N = "de" de la condición; "4 de 5" en Core/Reading/Listening,
+  "2 de 3" en Writing/Speaking): ese nivel queda alcanzado y la pista pasa al
+  siguiente con tareas. En Writing y Speaking una tarea cuenta como acierto si
+  el nivel que estimó Claude ≥ el nivel de la tarea. **Nunca baja**: si las
+  últimas N van flojas (menos de la mitad bien, `Aptis.flojo`), la ronda
+  siguiente mezcla la mitad de tareas del nivel anterior (`Aptis.ronda`).
+  Las rondas sirven primero lo nunca visto y luego lo más viejo.
+- **La ronda** (`PistaScreen`): Core con 30 s por ítem como en el examen;
+  después de CADA tarea, corrección con la respuesta y el `why` (g = 0,73 con
+  explicación contra 0,39 sin ella); en Listening se muestra lo que decía el
+  audio y se puede reoír; en Writing/Speaking, el juicio de la IA con su cita
+  y "cuenta como B1 / no llega a B1". Si la IA no responde (sin clave, sin
+  red), la tarea se reintenta o se salta sin contar.
+- **El tablero** (`AptisScreen`): arriba en grande **TU PISO** (la más floja
+  de las CUATRO; el Core no entra: es el desempate, y se dice), una barra
+  por destreza (A1→B2 llena hasta el alcanzado, el nivel que se entrena
+  marcado, B1 con la raya del examen), "últimas N: x bien · hacen falta M",
+  y el simulacro **bloqueado hasta que las cinco hayan alcanzado B1**.
+- **El simulacro** (`SimulacroScreen` + `AptisParteScreen`): el diagnóstico
+  de la mañana, de una sentada, con el reloj (36 min, 30 tareas), sin
+  corrección hasta el final; estima por parte con `EstimacionAptis` (Core
+  con la tabla `estimacion.core` del JSON en proporciones; Reading/Listening
+  exigen todos los ítems del nivel; IA = el nivel alcanzado en dos tareas) y
+  muestra el piso y una tarjeta por destreza. Sus resultados se guardan
+  aparte de las pistas y se invalidan si cambia el contenido
+  (`ResultadoSeccion.vigente`).
+- **Lo guardado**: `filesDir/aptis.json` versión 2 (`pistas` con nivel,
+  alcanzado e historial de hasta 600 intentos, y `simulacro`); un archivo de
+  la versión 1 (el diagnóstico de la mañana) se ignora y se empieza de cero.
+- Lo que no se negocia se conserva: `AVISO_APTIS` en el tablero, en las
+  pistas y partes que estima la IA y en el resultado del simulacro; la IA
+  cita una frase del alumno como prueba (`JuezAptis.citaAparece`, reclamo una
+  vez, descarte si repite; Sonnet 8/8 en el PC el 16-09); las muletillas que
+  Parakeet inventa al final del silencio se cortan antes de juzgar
+  (`sinMuletillas`).
+- Trampas que siguen valiendo: Parakeet inventa "Mm-hmm."/"Okay." en las
+  ventanas en silencio y repite una palabra en el corte de ventana ("in the
+  country. Country."); en Speaking la duración cuenta (la rúbrica lo
+  pregunta): 12 s en una tarea de 90 s sale por debajo de A2, y es estricto a
+  propósito; los segundos de voz quedan por debajo de lo hablado si el audio
+  es flojo, por eso al juez se le dan también los segundos totales.
+- Probado en el S25 el 16-09 (`scratchpad/eval/etapa5h.ps1` y `etapa5i.ps1`,
+  capturas en `caps5/8x-9x`): tablero vacío ("sin empezar"); ronda de Core de
+  10 con corrección y `why` tras cada ítem y la promoción en el quinto
+  ("alcanzas A2 y pasas a B1"); Reading (2 de A2, sin nivel aún); Writing en
+  la pista juzgado por Claude ("✓ Cuenta como B1", cita textual); Speaking
+  con la voz del PC ("✓ Cuenta como A2"); el archivo guarda nivel y alcanzado
+  por pista; "Empezar el Modo Aptis de cero" con confirmación. El teléfono
+  quedó limpio. Con los bancos de hoy Reading, Listening y Speaking tienen 1-2
+  tareas por nivel: la promoción (4 de 5 / 2 de 3) exige repetirlas; se
+  destraba cuando lleguen los bancos de Cowork.
 
 **Modo Aptis (decisión de Fero, 2026-09-15).** Fero va a presentar **Aptis
 ESOL General** (sin fecha aún, sin saber qué nivel le exigen). **El curso por
@@ -571,9 +565,10 @@ pantalla: es una estimación, no la nota real**) y bancos grandes de ítems
 
 ## Estado y plan
 
-**Versión actual: 0.9.6** (2026-09-16: el diagnóstico del Modo Aptis, primer
-paso de la etapa 5; las etapas 2, 3 y 4 ya estaban en el teléfono desde la
-0.9.5; ver "Inventario de lo pedido"). **0.9.1** (2026-09-15: la etapa 1 del diagnóstico). **0.9** (conversación por internet; el motor por defecto pasó a
+**Versión actual: 0.9.7** (2026-09-16: el Modo Aptis como pista de
+preparación por destreza, con el diagnóstico de la mañana convertido en el
+simulacro; las etapas 2, 3 y 4 ya estaban en el teléfono desde la 0.9.5; ver
+"Inventario de lo pedido"). **0.9.1** (2026-09-15: la etapa 1 del diagnóstico). **0.9** (conversación por internet; el motor por defecto pasó a
 Claude API el 2026-09-13, ver "Sesión del 2026-09-13" más abajo). **A1 completo
 el 2026-09-14: 27 lecciones, 207 ejercicios, 27 fichas de teoría** (19
 lecciones nuevas escritas por Claude Cowork siguiendo un sílabo A1 real, más

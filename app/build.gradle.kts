@@ -508,20 +508,66 @@ val checkContent = tasks.register("checkContent") {
             }
         }
 
-        // Diagnostico del Modo Aptis (etapa 5): opcional; si esta, se revisa como parseDiagnostico (Aptis.kt).
+        // Modo Aptis (etapa 5): los ids de tarea son unicos entre TODOS los archivos aptis-*.json (Lector en Aptis.kt).
+        val tareaIds = HashSet<String>()
+        val nivelesItem = setOf("A1", "A2", "B1", "B2", "C1")
+
+        // Las reglas de las pistas: promocion "N de M" y tamano de ronda por pista.
+        val pistasFile = File(contentDir, "aptis-pistas.json")
+        if (pistasFile.exists()) {
+            val cfg = slurper.parse(pistasFile) as Map<*, *>
+            val promo = cfg["promocion"] as? Map<*, *>
+            val ronda = cfg["ronda"] as? Map<*, *>
+            if (promo == null) problems.add("aptis-pistas.json: falta \"promocion\"")
+            if (ronda == null) problems.add("aptis-pistas.json: falta \"ronda\"")
+            for (id in listOf("core", "reading", "listening", "writing", "speaking")) {
+                val texto = promo?.get(id)?.toString().orEmpty()
+                if (!Regex("^\\s*\\d+ de \\d+\\s*$").matches(texto)) problems.add("aptis-pistas.json: promocion.$id tiene que ser \"N de M\" (dice \"$texto\")")
+                if (((ronda?.get(id) as? Number)?.toInt() ?: 0) <= 0) problems.add("aptis-pistas.json: falta ronda.$id")
+            }
+        }
+
+        // El banco del Core de Cowork (dos archivos), como validar_core.py.
+        for (nombre in listOf("aptis-core-gramatica.json", "aptis-core-vocabulario.json")) {
+            val f = File(contentDir, nombre)
+            if (!f.exists()) continue
+            val banco = slurper.parse(f) as Map<*, *>
+            val kind = banco["kind"]?.toString()
+            ((banco["items"] as? List<*>) ?: emptyList<Any>()).forEachIndexed { i, it ->
+                val im = it as Map<*, *>
+                val where = "$nombre, item ${i + 1}"
+                val id = im["id"]?.toString().orEmpty()
+                if (id.isBlank()) problems.add("$where: falta \"id\"") else if (!tareaIds.add(id)) problems.add("$where: id repetido \"$id\"")
+                if (im["level"]?.toString() !in nivelesItem) problems.add("$where: level \"${im["level"]}\" no es A1, A2, B1, B2 ni C1")
+                val opts = (im["options"] as? List<*>)?.map { it.toString() } ?: emptyList()
+                if (opts.size != 3) problems.add("$where: Aptis usa 3 opciones, tiene ${opts.size}")
+                if (opts.map { it.trim().lowercase() }.toSet().size != opts.size) problems.add("$where: opciones repetidas")
+                if (im["answer"]?.toString() !in opts) problems.add("$where: answer fuera de options")
+                if (im["why"]?.toString().isNullOrBlank()) problems.add("$where: falta \"why\" (la explicacion en espanol)")
+                if (kind == "grammar") {
+                    if (im["text"].toString().split("___").size != 2) problems.add("$where: exactamente un hueco ___")
+                    if (im["point"]?.toString().isNullOrBlank()) problems.add("$where: falta \"point\"")
+                } else {
+                    val sub = im["sub"]?.toString()
+                    if (sub !in setOf("synonym", "definition", "usage", "collocation")) problems.add("$where: sub invalido \"$sub\"")
+                    if (sub == "usage" && im["text"].toString().split("___").size != 2) problems.add("$where: usage necesita un hueco ___")
+                    if (sub != "usage" && im["prompt"]?.toString().isNullOrBlank()) problems.add("$where: falta \"prompt\"")
+                }
+            }
+        }
+
+        // Diagnostico = simulacro del Modo Aptis: opcional; si esta, se revisa como parseDiagnostico (Aptis.kt).
         val diagFile = File(contentDir, "aptis-diagnostico.json")
         if (diagFile.exists()) {
             val diag = slurper.parse(diagFile) as Map<*, *>
             val secIds = HashSet<String>()
-            val tareaIds = HashSet<String>()
-            val nivelesItem = setOf("A2", "B1", "B2")
             fun strs(x: Any?): List<String> = (x as? List<*>)?.map { it.toString() } ?: emptyList()
             fun idNuevo(where: String, id: Any?) {
                 val s = id?.toString().orEmpty()
                 if (s.isBlank()) problems.add("$where: falta \"id\"") else if (!tareaIds.add(s)) problems.add("$where: id repetido \"$s\"")
             }
             fun nivel(where: String, o: Map<*, *>) {
-                if (o["level"]?.toString() !in nivelesItem) problems.add("$where: level \"${o["level"]}\" no es A2, B1 ni B2")
+                if (o["level"]?.toString() !in nivelesItem) problems.add("$where: level \"${o["level"]}\" no es A1, A2, B1 ni B2")
             }
             fun opciones(where: String, o: Map<*, *>): List<String> {
                 val opts = strs(o["options"])
@@ -536,7 +582,7 @@ val checkContent = tasks.register("checkContent") {
             // Los umbrales del Core viven en el JSON ("4 de 5 en A2 y 4 de 5 en B1"): tienen que poder leerse.
             val estimacionCore = ((diag["estimacion"] as? Map<*, *>)?.get("core") as? Map<*, *>)
             if (estimacionCore == null) problems.add("aptis-diagnostico.json: falta \"estimacion.core\"")
-            else for (nivel in nivelesItem) {
+            else for (nivel in listOf("A2", "B1", "B2")) {
                 val texto = estimacionCore[nivel]?.toString().orEmpty()
                 if (!Regex("\\d+ de \\d+ en (A2|B1|B2)").containsMatchIn(texto)) problems.add("aptis-diagnostico.json: estimacion.core.$nivel tiene que decir \"N de M en <nivel>\" (dice \"$texto\")")
             }
@@ -559,7 +605,7 @@ val checkContent = tasks.register("checkContent") {
                             idNuevo(where, im["id"]); nivel(where, im); hueco(where, im["text"]); opciones(where, im)
                             niveles.add(im["level"].toString())
                         }
-                        for (l in nivelesItem) if (l !in niveles) problems.add("$whereS: no hay items de $l (la estimacion los necesita)")
+                        for (l in listOf("A2", "B1", "B2")) if (l !in niveles) problems.add("$whereS: no hay items de $l (la estimacion los necesita)")
                     }
                     "reading" -> {
                         val tareas = (o["tareas"] as? List<*>) ?: emptyList<Any>()
@@ -688,8 +734,8 @@ android {
         applicationId = "com.ferolabs.hablo"
         minSdk = 26
         targetSdk = 35
-        versionCode = 15
-        versionName = "0.9.6"
+        versionCode = 16
+        versionName = "0.9.7"
 
         // Solo el procesador del S25 Ultra. De paso el APK deja de llevar las
         // copias de sherpa-onnx y ONNX Runtime para x86/armv7 (~100 MB menos).

@@ -1,0 +1,786 @@
+{
+ "kind": "vocabulary",
+ "_comentario": "Banco de 60 items de vocabulario para el Core de Aptis (el examen presenta 25). Cuatro subtipos oficiales: synonym, definition, usage y collocation. Las colocaciones cargan hacia los errores del hispanohablante. Posiciones barajadas a proposito.",
+ "items": [
+  {
+   "id": "v001",
+   "sub": "synonym",
+   "level": "A2",
+   "prompt": "enormous",
+   "options": [
+    "tiny",
+    "huge",
+    "common"
+   ],
+   "answer": "huge",
+   "why": "Enormous y huge son lo mismo: enorme."
+  },
+  {
+   "id": "v002",
+   "sub": "synonym",
+   "level": "A2",
+   "prompt": "begin",
+   "options": [
+    "stop",
+    "start",
+    "finish"
+   ],
+   "answer": "start",
+   "why": "Begin = start. Empezar."
+  },
+  {
+   "id": "v003",
+   "sub": "synonym",
+   "level": "B1",
+   "prompt": "purchase",
+   "options": [
+    "borrow",
+    "buy",
+    "sell"
+   ],
+   "answer": "buy",
+   "why": "Purchase es 'comprar' en registro formal."
+  },
+  {
+   "id": "v004",
+   "sub": "synonym",
+   "level": "B1",
+   "prompt": "reliable",
+   "options": [
+    "expensive",
+    "unusual",
+    "trustworthy"
+   ],
+   "answer": "trustworthy",
+   "why": "Reliable = de fiar, en quien se puede confiar."
+  },
+  {
+   "id": "v005",
+   "sub": "synonym",
+   "level": "B1",
+   "prompt": "achieve",
+   "options": [
+    "attempt",
+    "abandon",
+    "accomplish"
+   ],
+   "answer": "accomplish",
+   "why": "Achieve y accomplish: lograr."
+  },
+  {
+   "id": "v006",
+   "sub": "synonym",
+   "level": "B1",
+   "prompt": "annoyed",
+   "options": [
+    "delighted",
+    "irritated",
+    "confused"
+   ],
+   "answer": "irritated",
+   "why": "Annoyed = molesto, irritado."
+  },
+  {
+   "id": "v007",
+   "sub": "synonym",
+   "level": "B1",
+   "prompt": "essential",
+   "options": [
+    "necessary",
+    "optional",
+    "occasional"
+   ],
+   "answer": "necessary",
+   "why": "Essential = imprescindible."
+  },
+  {
+   "id": "v008",
+   "sub": "synonym",
+   "level": "B2",
+   "prompt": "reluctant",
+   "options": [
+    "unwilling",
+    "careless",
+    "eager"
+   ],
+   "answer": "unwilling",
+   "why": "Reluctant = que no quiere, que lo hace a regañadientes."
+  },
+  {
+   "id": "v009",
+   "sub": "synonym",
+   "level": "B2",
+   "prompt": "thorough",
+   "options": [
+    "vague",
+    "detailed",
+    "hasty"
+   ],
+   "answer": "detailed",
+   "why": "Thorough = minucioso, hecho a fondo."
+  },
+  {
+   "id": "v010",
+   "sub": "synonym",
+   "level": "B2",
+   "prompt": "feasible",
+   "options": [
+    "costly",
+    "possible",
+    "urgent"
+   ],
+   "answer": "possible",
+   "why": "Feasible = viable, que se puede hacer."
+  },
+  {
+   "id": "v011",
+   "sub": "synonym",
+   "level": "B2",
+   "prompt": "outcome",
+   "options": [
+    "attempt",
+    "reason",
+    "result"
+   ],
+   "answer": "result",
+   "why": "Outcome = el resultado de algo."
+  },
+  {
+   "id": "v012",
+   "sub": "synonym",
+   "level": "B2",
+   "prompt": "significant",
+   "options": [
+    "temporary",
+    "considerable",
+    "minor"
+   ],
+   "answer": "considerable",
+   "why": "Significant = importante en tamaño o efecto, no 'significativo' en el sentido de 'con significado'."
+  },
+  {
+   "id": "v013",
+   "sub": "synonym",
+   "level": "B2",
+   "prompt": "eventually",
+   "options": [
+    "immediately",
+    "finally",
+    "possibly"
+   ],
+   "answer": "finally",
+   "why": "Falso amigo: eventually es 'al final', no 'eventualmente'."
+  },
+  {
+   "id": "v014",
+   "sub": "synonym",
+   "level": "B2",
+   "prompt": "struggle",
+   "options": [
+    "ignore",
+    "thrive",
+    "fight"
+   ],
+   "answer": "fight",
+   "why": "Struggle = batallar, costar trabajo."
+  },
+  {
+   "id": "v015",
+   "sub": "synonym",
+   "level": "B2",
+   "prompt": "emphasise",
+   "options": [
+    "highlight",
+    "postpone",
+    "reduce"
+   ],
+   "answer": "highlight",
+   "why": "Emphasise = subrayar la importancia de algo."
+  },
+  {
+   "id": "v016",
+   "sub": "definition",
+   "level": "A2",
+   "prompt": "the money you pay to live in a flat that is not yours",
+   "options": [
+    "fee",
+    "rent",
+    "salary"
+   ],
+   "answer": "rent",
+   "why": "Rent es el alquiler."
+  },
+  {
+   "id": "v017",
+   "sub": "definition",
+   "level": "A2",
+   "prompt": "a person you work with",
+   "options": [
+    "customer",
+    "colleague",
+    "neighbour"
+   ],
+   "answer": "colleague",
+   "why": "Colleague = compañero de trabajo."
+  },
+  {
+   "id": "v018",
+   "sub": "definition",
+   "level": "B1",
+   "prompt": "a paper that proves you paid for something",
+   "options": [
+    "ticket",
+    "receipt",
+    "bill"
+   ],
+   "answer": "receipt",
+   "why": "Receipt es el comprobante. Bill es la cuenta antes de pagar."
+  },
+  {
+   "id": "v019",
+   "sub": "definition",
+   "level": "B1",
+   "prompt": "the time between two flights on the same journey",
+   "options": [
+    "departure",
+    "stopover",
+    "delay"
+   ],
+   "answer": "stopover",
+   "why": "Stopover es la escala entre dos vuelos. En inglés americano se dice layover."
+  },
+  {
+   "id": "v020",
+   "sub": "definition",
+   "level": "B1",
+   "prompt": "someone who is learning a job from an expert",
+   "options": [
+    "employer",
+    "apprentice",
+    "supervisor"
+   ],
+   "answer": "apprentice",
+   "why": "Apprentice = aprendiz."
+  },
+  {
+   "id": "v021",
+   "sub": "definition",
+   "level": "B1",
+   "prompt": "a short break from work during the day",
+   "options": [
+    "break",
+    "shift",
+    "holiday"
+   ],
+   "answer": "break",
+   "why": "Break es la pausa; holiday son las vacaciones."
+  },
+  {
+   "id": "v022",
+   "sub": "definition",
+   "level": "B1",
+   "prompt": "money you borrow from a bank and pay back over time",
+   "options": [
+    "loan",
+    "deposit",
+    "interest"
+   ],
+   "answer": "loan",
+   "why": "Loan es el préstamo."
+  },
+  {
+   "id": "v023",
+   "sub": "definition",
+   "level": "B2",
+   "prompt": "the final date by which something must be done",
+   "options": [
+    "deadline",
+    "schedule",
+    "agenda"
+   ],
+   "answer": "deadline",
+   "why": "Deadline es la fecha límite."
+  },
+  {
+   "id": "v024",
+   "sub": "definition",
+   "level": "B2",
+   "prompt": "a meeting where someone is asked questions about a job",
+   "options": [
+    "interview",
+    "conference",
+    "appointment"
+   ],
+   "answer": "interview",
+   "why": "Interview es la entrevista."
+  },
+  {
+   "id": "v025",
+   "sub": "definition",
+   "level": "B2",
+   "prompt": "the ability to keep going when things are difficult",
+   "options": [
+    "reluctance",
+    "resignation",
+    "resilience"
+   ],
+   "answer": "resilience",
+   "why": "Resilience = capacidad de aguantar y recuperarse."
+  },
+  {
+   "id": "v026",
+   "sub": "definition",
+   "level": "B2",
+   "prompt": "a possible bad result that you try to avoid",
+   "options": [
+    "routine",
+    "reward",
+    "risk"
+   ],
+   "answer": "risk",
+   "why": "Risk es el riesgo."
+  },
+  {
+   "id": "v027",
+   "sub": "definition",
+   "level": "B2",
+   "prompt": "information given to someone about how well they are doing",
+   "options": [
+    "statement",
+    "forecast",
+    "feedback"
+   ],
+   "answer": "feedback",
+   "why": "Feedback = retroalimentación, comentarios sobre tu desempeño."
+  },
+  {
+   "id": "v028",
+   "sub": "definition",
+   "level": "B2",
+   "prompt": "to make something less severe or less serious",
+   "options": [
+    "ease",
+    "extend",
+    "worsen"
+   ],
+   "answer": "ease",
+   "why": "Ease = aliviar, suavizar."
+  },
+  {
+   "id": "v029",
+   "sub": "definition",
+   "level": "B2",
+   "prompt": "a formal written request for a job or a place",
+   "options": [
+    "application",
+    "reference",
+    "invitation"
+   ],
+   "answer": "application",
+   "why": "Application es la solicitud."
+  },
+  {
+   "id": "v030",
+   "sub": "definition",
+   "level": "B2",
+   "prompt": "happening every year",
+   "options": [
+    "occasional",
+    "monthly",
+    "annual"
+   ],
+   "answer": "annual",
+   "why": "Annual = anual."
+  },
+  {
+   "id": "v031",
+   "sub": "usage",
+   "level": "A2",
+   "text": "She ___ a lot of money in her new job.",
+   "options": [
+    "gains",
+    "wins",
+    "earns"
+   ],
+   "answer": "earns",
+   "why": "El dinero del trabajo se earns. Win es ganar un premio o un partido."
+  },
+  {
+   "id": "v032",
+   "sub": "usage",
+   "level": "A2",
+   "text": "I need to ___ the bus at the next stop.",
+   "options": [
+    "go down",
+    "get off",
+    "get out"
+   ],
+   "answer": "get off",
+   "why": "De un bus o un tren se get off. De un carro, get out."
+  },
+  {
+   "id": "v033",
+   "sub": "usage",
+   "level": "B1",
+   "text": "Sorry I'm late — I ___ the train.",
+   "options": [
+    "missed",
+    "failed",
+    "lost"
+   ],
+   "answer": "missed",
+   "why": "Perder un transporte es miss. Lose es perder un objeto."
+  },
+  {
+   "id": "v034",
+   "sub": "usage",
+   "level": "B1",
+   "text": "Could you ___ me how to get to the station?",
+   "options": [
+    "speak",
+    "say",
+    "tell"
+   ],
+   "answer": "tell",
+   "why": "Tell lleva persona detrás; say no."
+  },
+  {
+   "id": "v035",
+   "sub": "usage",
+   "level": "B1",
+   "text": "He ___ a lot of time on social media.",
+   "options": [
+    "spends",
+    "takes",
+    "passes"
+   ],
+   "answer": "spends",
+   "why": "El tiempo se spends, igual que el dinero."
+  },
+  {
+   "id": "v036",
+   "sub": "usage",
+   "level": "B1",
+   "text": "I'm ___ for my keys, have you seen them?",
+   "options": [
+    "watching",
+    "seeing",
+    "looking"
+   ],
+   "answer": "looking",
+   "why": "Buscar es look for. Watch es mirar algo en movimiento."
+  },
+  {
+   "id": "v037",
+   "sub": "usage",
+   "level": "B1",
+   "text": "The meeting was ___ until next week.",
+   "options": [
+    "postponed",
+    "arranged",
+    "attended"
+   ],
+   "answer": "postponed",
+   "why": "Postpone = aplazar para una fecha posterior. 'Arrange' sería fijarla, no moverla."
+  },
+  {
+   "id": "v038",
+   "sub": "usage",
+   "level": "B1",
+   "text": "She ___ me to apply for the job.",
+   "options": [
+    "suggested",
+    "encouraged",
+    "proposed"
+   ],
+   "answer": "encouraged",
+   "why": "Encourage, persuade y advise van con persona + to + infinitivo. Suggest y propose nunca: 'suggest that she apply'."
+  },
+  {
+   "id": "v039",
+   "sub": "usage",
+   "level": "B2",
+   "text": "We need to ___ the problem before it gets worse.",
+   "options": [
+    "address",
+    "direct",
+    "point"
+   ],
+   "answer": "address",
+   "why": "Address a problem = abordarlo."
+  },
+  {
+   "id": "v040",
+   "sub": "usage",
+   "level": "B2",
+   "text": "The new rules ___ to everyone in the building.",
+   "options": [
+    "adapt",
+    "apply",
+    "attend"
+   ],
+   "answer": "apply",
+   "why": "Apply to = regir para, valer para. 'Adapt to' es adaptarse."
+  },
+  {
+   "id": "v041",
+   "sub": "usage",
+   "level": "B2",
+   "text": "His explanation didn't ___ sense to me.",
+   "options": [
+    "make",
+    "do",
+    "have"
+   ],
+   "answer": "make",
+   "why": "Make sense, siempre con make."
+  },
+  {
+   "id": "v042",
+   "sub": "usage",
+   "level": "B2",
+   "text": "I'd like to ___ your attention to page four.",
+   "options": [
+    "catch",
+    "take",
+    "draw"
+   ],
+   "answer": "draw",
+   "why": "Draw attention to = llamar la atención sobre algo."
+  },
+  {
+   "id": "v043",
+   "sub": "usage",
+   "level": "B2",
+   "text": "The company ___ out a survey last month.",
+   "options": [
+    "brought",
+    "carried",
+    "took"
+   ],
+   "answer": "carried",
+   "why": "Carry out a survey = realizar una encuesta."
+  },
+  {
+   "id": "v044",
+   "sub": "usage",
+   "level": "B2",
+   "text": "She ___ up with a brilliant idea.",
+   "options": [
+    "came",
+    "went",
+    "got"
+   ],
+   "answer": "came",
+   "why": "Come up with = ocurrírsele a uno."
+  },
+  {
+   "id": "v045",
+   "sub": "usage",
+   "level": "B2",
+   "text": "Prices have ___ sharply this year.",
+   "options": [
+    "arisen",
+    "risen",
+    "raised"
+   ],
+   "answer": "risen",
+   "why": "Rise sube solo; raise necesita que alguien suba algo."
+  },
+  {
+   "id": "v046",
+   "sub": "collocation",
+   "level": "A2",
+   "prompt": "___ a decision",
+   "options": [
+    "take",
+    "make",
+    "do"
+   ],
+   "answer": "make",
+   "why": "La decisión se make. En español 'tomar' despista."
+  },
+  {
+   "id": "v047",
+   "sub": "collocation",
+   "level": "A2",
+   "prompt": "___ your homework",
+   "options": [
+    "make",
+    "do",
+    "take"
+   ],
+   "answer": "do",
+   "why": "La tarea se does. Es la pareja del anterior y se confunden."
+  },
+  {
+   "id": "v048",
+   "sub": "collocation",
+   "level": "A2",
+   "prompt": "___ a photo",
+   "options": [
+    "make",
+    "take",
+    "do"
+   ],
+   "answer": "take",
+   "why": "La foto se takes, no se hace."
+  },
+  {
+   "id": "v049",
+   "sub": "collocation",
+   "level": "A2",
+   "prompt": "___ breakfast",
+   "options": [
+    "put",
+    "have",
+    "do"
+   ],
+   "answer": "have",
+   "why": "Las comidas se have: have breakfast, have lunch."
+  },
+  {
+   "id": "v050",
+   "sub": "collocation",
+   "level": "B1",
+   "prompt": "___ a mistake",
+   "options": [
+    "have",
+    "do",
+    "make"
+   ],
+   "answer": "make",
+   "why": "El error se make. 'Do a mistake' delata al hispanohablante."
+  },
+  {
+   "id": "v051",
+   "sub": "collocation",
+   "level": "B1",
+   "prompt": "___ attention",
+   "options": [
+    "put",
+    "make",
+    "pay"
+   ],
+   "answer": "pay",
+   "why": "Pay attention. Ojo: 'poner atención' NO es 'put attention'."
+  },
+  {
+   "id": "v052",
+   "sub": "collocation",
+   "level": "B1",
+   "prompt": "___ a shower",
+   "options": [
+    "take",
+    "make",
+    "do"
+   ],
+   "answer": "take",
+   "why": "Take a shower, o have a shower. Nunca make."
+  },
+  {
+   "id": "v053",
+   "sub": "collocation",
+   "level": "B1",
+   "prompt": "___ progress",
+   "options": [
+    "make",
+    "do",
+    "have"
+   ],
+   "answer": "make",
+   "why": "Make progress: el progreso se crea, por eso make."
+  },
+  {
+   "id": "v054",
+   "sub": "collocation",
+   "level": "B1",
+   "prompt": "___ a risk",
+   "options": [
+    "make",
+    "do",
+    "take"
+   ],
+   "answer": "take",
+   "why": "Take a risk = correr un riesgo."
+  },
+  {
+   "id": "v055",
+   "sub": "collocation",
+   "level": "B1",
+   "prompt": "___ an exam",
+   "options": [
+    "make",
+    "present",
+    "take"
+   ],
+   "answer": "take",
+   "why": "Ojo: 'presentar un examen' es take an exam. Present no se usa así."
+  },
+  {
+   "id": "v056",
+   "sub": "collocation",
+   "level": "B2",
+   "prompt": "___ into account",
+   "options": [
+    "take",
+    "have",
+    "put"
+   ],
+   "answer": "take",
+   "why": "Take into account = tener en cuenta."
+  },
+  {
+   "id": "v057",
+   "sub": "collocation",
+   "level": "B2",
+   "prompt": "___ an effort",
+   "options": [
+    "give",
+    "make",
+    "do"
+   ],
+   "answer": "make",
+   "why": "Make an effort = hacer un esfuerzo."
+  },
+  {
+   "id": "v058",
+   "sub": "collocation",
+   "level": "B2",
+   "prompt": "___ responsibility",
+   "options": [
+    "make",
+    "take",
+    "do"
+   ],
+   "answer": "take",
+   "why": "Take responsibility for something."
+  },
+  {
+   "id": "v059",
+   "sub": "collocation",
+   "level": "B2",
+   "prompt": "___ a difference",
+   "options": [
+    "do",
+    "make",
+    "bring"
+   ],
+   "answer": "make",
+   "why": "Make a difference = marcar la diferencia."
+  },
+  {
+   "id": "v060",
+   "sub": "collocation",
+   "level": "B2",
+   "prompt": "___ research",
+   "options": [
+    "make",
+    "do",
+    "carry"
+   ],
+   "answer": "do",
+   "why": "Do research. Con 'carry' haría falta el out: carry out research. Y research nunca lleva -s."
+  }
+ ]
+}

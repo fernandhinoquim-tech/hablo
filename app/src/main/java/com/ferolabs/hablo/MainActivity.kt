@@ -83,9 +83,10 @@ private sealed class Route {
     /** Etapa 4: historias cortas con retell. */
     data object Historias : Route()
     data class Cuento(val historiaId: String) : Route()
-    /** Etapa 5: el diagnóstico del Modo Aptis (portada) y una de sus partes. */
+    /** Etapa 5: el Modo Aptis (tablero), una pista de entrenamiento y el simulacro completo. */
     data object Aptis : Route()
-    data class AptisParte(val seccionId: String) : Route()
+    data class AptisPista(val pistaId: String) : Route()
+    data object AptisSimulacro : Route()
 }
 
 @Composable
@@ -190,35 +191,37 @@ fun HabloApp(
                             onContrarreloj = { route = Route.Contrarreloj },
                             onAguanta = { llm.release(); route = Route.Aguanta },
                             onHistorias = { llm.release(); route = Route.Historias },
+                            aptis = aptis,
                             onAptis = { llm.release(); route = Route.Aptis }
                         )
                     }
 
                     is Route.Aptis -> {
-                        val diag = Course.diagnostico
+                        val banco = Course.aptis
                         BackHandler { speaker.stop(); route = Route.Home }
-                        if (diag == null) {
+                        if (banco == null) {
                             route = Route.Home
                         } else {
                             AptisScreen(
-                                diag = diag,
+                                banco = banco,
                                 aptis = aptis,
                                 teacher = teacher,
                                 claude = claude,
-                                onParte = { id -> route = Route.AptisParte(id) },
+                                onPista = { id -> llm.release(); route = Route.AptisPista(id) },
+                                onSimulacro = { llm.release(); route = Route.AptisSimulacro },
                                 onBack = { speaker.stop(); route = Route.Home }
                             )
                         }
                     }
 
-                    is Route.AptisParte -> {
-                        val seccion = Course.diagnostico?.seccion(current.seccionId)
+                    is Route.AptisPista -> {
+                        val pista = Course.aptis?.pista(current.pistaId)
                         BackHandler { speaker.stop(); listener.stopRecording(); route = Route.Aptis }
-                        if (seccion == null) {
+                        if (pista == null) {
                             route = Route.Aptis
                         } else {
-                            AptisParteScreen(
-                                seccion = seccion,
+                            PistaScreen(
+                                pista = pista,
                                 aptis = aptis,
                                 teacher = teacher,
                                 speaker = speaker,
@@ -226,8 +229,27 @@ fun HabloApp(
                                 claude = claude,
                                 say = say,
                                 sayQueued = { text -> speaker.speakQueued(text, teacher, speechScale) },
-                                onDone = { speaker.stop(); route = Route.Aptis },
-                                onExit = { speaker.stop(); listener.stopRecording(); route = Route.Aptis }
+                                onBack = { speaker.stop(); listener.stopRecording(); route = Route.Aptis }
+                            )
+                        }
+                    }
+
+                    is Route.AptisSimulacro -> {
+                        val diag = Course.aptis?.simulacro
+                        BackHandler { speaker.stop(); listener.stopRecording(); route = Route.Aptis }
+                        if (diag == null) {
+                            route = Route.Aptis
+                        } else {
+                            SimulacroScreen(
+                                diag = diag,
+                                aptis = aptis,
+                                teacher = teacher,
+                                speaker = speaker,
+                                listener = listener,
+                                claude = claude,
+                                say = say,
+                                sayQueued = { text -> speaker.speakQueued(text, teacher, speechScale) },
+                                onBack = { speaker.stop(); listener.stopRecording(); route = Route.Aptis }
                             )
                         }
                     }
