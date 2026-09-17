@@ -4,6 +4,7 @@ import android.Manifest
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -109,6 +110,10 @@ fun LessonScreen(
     var fichaVista by remember { mutableStateOf(false) }
     var fichaAbierta by remember { mutableStateOf(false) }
     val mostrandoFicha = modo == ModoLeccion.LECCION && lesson.theory.body.isNotBlank() && (!fichaVista || fichaAbierta)
+    // "¿Por qué?" al fallar: la ficha de la lección de la que sale el ejercicio (también en el
+    // repaso y en Aguanta, donde la lección es sintética). Corrección explicada g = 0,73;
+    // sin explicación 0,39 (Rowland 2014): estaba en el plan del 13-09 y no se había construido.
+    var fichaPorQue by remember { mutableStateOf<Lesson?>(null) }
     var gamePlayed by remember { mutableStateOf(false) }
     var gameDone by remember { mutableStateOf(false) }
     val showingGame = pos == gameAt && !gamePlayed
@@ -193,6 +198,11 @@ fun LessonScreen(
             onDone = { fichaVista = true; fichaAbierta = false },
             onBack = { if (fichaVista) fichaAbierta = false else onExit() }
         )
+        return
+    }
+    fichaPorQue?.let { l ->
+        BackHandler { fichaPorQue = null }
+        FichaScreen(lesson = l, accent = accent, primeraVez = false, onDone = { fichaPorQue = null }, onBack = { fichaPorQue = null }, textoBoton = "Volver al ejercicio")
         return
     }
 
@@ -420,6 +430,7 @@ fun LessonScreen(
 
             if (checked && !showingGame) {
                 Spacer(Modifier.height(2.dp))
+                val origen = if (modo == ModoLeccion.LECCION) lesson else Course.lessonOfExercise(ex.id)
                 FeedbackBox(
                     ok = wasCorrect,
                     correctText = correctText(),
@@ -427,7 +438,9 @@ fun LessonScreen(
                     teacher = teacher,
                     tip = ex.tip,
                     speaking = ex is Exercise.SpeakIt || ex is Exercise.Shadow,
-                    onReplay = { say(correctText(), 1f) }
+                    onReplay = { say(correctText(), 1f) },
+                    porQue = if (!wasCorrect && origen != null && origen.theory.body.isNotBlank()) origen else null,
+                    onPorQue = { fichaPorQue = it }
                 )
             }
 
@@ -579,7 +592,9 @@ private fun FeedbackBox(
     tip: String?,
     /** Ejercicio de hablar: no hay "respuesta correcta" que enseñar, la frase ya está en pantalla. */
     speaking: Boolean = false,
-    onReplay: () -> Unit
+    onReplay: () -> Unit,
+    porQue: Lesson? = null,
+    onPorQue: (Lesson) -> Unit = {}
 ) {
     Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
         Column(
@@ -618,6 +633,19 @@ private fun FeedbackBox(
                     "${teacher.name} lo repitió despacio para ti.",
                     style = MaterialTheme.typography.labelMedium,
                     color = InkSoft
+                )
+            }
+            if (porQue != null) {
+                Spacer(Modifier.height(8.dp))
+                Text(
+                    "📖 ¿Por qué?  →  ${porQue.theory.title}",
+                    style = MaterialTheme.typography.labelLarge,
+                    color = Color(0xFF8A5A00),
+                    modifier = Modifier
+                        .background(Color(0xFFFFF6E3), RoundedCornerShape(10.dp))
+                        .border(1.dp, Color(0xFFF0DFB9), RoundedCornerShape(10.dp))
+                        .clickable { onPorQue(porQue) }
+                        .padding(horizontal = 12.dp, vertical = 8.dp)
                 )
             }
         }

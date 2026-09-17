@@ -58,7 +58,8 @@ fun HomeScreen(
     onOido: () -> Unit = {},
     onDictado: () -> Unit = {},
     crucigramas: Crucigramas? = null,
-    onCrucigramas: () -> Unit = {}
+    onCrucigramas: () -> Unit = {},
+    onGramatica: () -> Unit = {}
 ) {
     val accent = Color(teacher.color)
     // Repaso de hoy: qué toca del mazo y cuántos errores propios hay para corregir.
@@ -298,6 +299,36 @@ fun HomeScreen(
                         )
                     }
                 }
+            }
+        }
+
+        // --- Gramática: la biblioteca de fichas (auditoría del 16-09) ----------------
+        item {
+            val fichas = Course.allLessons().count { it.theory.body.isNotBlank() } + Course.referencia.size
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(Color.White, RoundedCornerShape(16.dp))
+                    .border(1.dp, accent.copy(alpha = 0.35f), RoundedCornerShape(16.dp))
+                    .clickable { onGramatica() }
+                    .padding(16.dp)
+            ) {
+                Box(
+                    contentAlignment = Alignment.Center,
+                    modifier = Modifier.size(46.dp).background(Color(teacher.softColor), CircleShape)
+                ) {
+                    Text("📖", style = MaterialTheme.typography.titleLarge)
+                }
+                Spacer(Modifier.size(14.dp))
+                Column(modifier = Modifier.weight(1f)) {
+                    Text("Gramática", style = MaterialTheme.typography.titleMedium)
+                    Text(
+                        "Las $fichas fichas de teoría, para releerlas sin entrar a la lección",
+                        style = MaterialTheme.typography.bodyMedium, color = InkSoft
+                    )
+                }
+                Text("›", style = MaterialTheme.typography.headlineMedium, color = accent)
             }
         }
 

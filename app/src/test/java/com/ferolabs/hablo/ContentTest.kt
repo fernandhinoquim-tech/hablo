@@ -187,4 +187,19 @@ class ContentTest {
     companion object {
         private const val TEORIA_OK = """{"title":"Título","body":"Cuerpo","trap":"Trampa"}"""
     }
+
+    @Test
+    fun `la leccion de un ejercicio sale de su id, tambien envuelto por el cuaderno, y nunca de una historia`() {
+        val lessons = Course.parseCurriculum(realCurriculum()).flatMap { it.units }.flatMap { it.lessons }
+        assertEquals("a1u4l2", Course.lessonOfExercise("a1u4l2e5", lessons)?.id)
+        assertEquals("a1u4l2", Course.lessonOfExercise("fix|a1u4l2e5", lessons)?.id)
+        assertEquals("a2u16l2", Course.lessonOfExercise("a2u16l2e8", lessons)?.id)
+        assertEquals(null, Course.lessonOfExercise("historia:h-a2-01|neighbor", lessons))
+        assertEquals(null, Course.lessonOfExercise("cruci:casa-a1|bed", lessons))
+        // referencia.json: una ficha plana se lee como lección sin ejercicios
+        val ref = Course.parseReferencia(org.json.JSONArray("""[{"id":"irregulares","title":"Verbos irregulares","body":"b","trap":"x"}]"""))
+        assertEquals("ref-irregulares", ref[0].id)
+        assertEquals("Verbos irregulares", ref[0].theory.title)
+        assertTrue(ref[0].exercises.isEmpty())
+    }
 }

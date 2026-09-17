@@ -602,6 +602,18 @@ reloj y sin red:
   cada letra. **Teclado propio de 26 letras + ⌫, no el del sistema** (Cowork
   pedía el del sistema; el propio no tiene autocorrección ni pierde el foco y
   se pudo probar sin el teléfono a mano; se cambia si Fero lo prefiere).
+- **Gramática y «¿Por qué?»** (auditoría del 16-09, "falta 1 y 2"; hecho el
+  17-09). `ScreenGramatica.kt`: tarjeta «📖 Gramática» en el inicio con las
+  88 fichas por nivel y unidad (✓ en las aprobadas) y, arriba, las fichas de
+  REFERENCIA de `assets/content/referencia.json` (opcional; las escribe
+  Cowork: `{"fichas": [{"id", "title", "body", "trap"}]}`, planas, mismas
+  reglas que `theory`; `Course.referencia` las carga como lecciones sin
+  ejercicios para reusar `FichaScreen`). Al fallar un ejercicio, la caja de
+  corrección trae «📖 ¿Por qué? → <título de la ficha>» que abre la ficha de
+  la lección de origen (`Course.lessonOfExercise`: saca `a1u4l2` de
+  `a1u4l2e5` aunque venga envuelto, `fix|a1u4l2e5`; en el repaso y en
+  Aguanta también; nada para historias ni crucigramas). Corrección explicada
+  g = 0,73 contra 0,39 sin ella (Rowland 2014).
 - **Drills**: 30 de Cowork (70 en total). Los de `general` no tienen
   veredicto por fonema y nunca acumulan datos, así que en el sorteo de
   `ScreenPronunciation` llevan peso fijo 1,0 (con el 1,5 de "sin probar"
@@ -740,7 +752,9 @@ pantalla: es una estimación, no la nota real**) y bancos grandes de ítems
 ## Estado y plan
 
 **Versión actual: 0.9.8** (2026-09-17: Oído, dictado de números, crucigramas,
-24 historias y 70 drills; ver "Oído, dictado de números y crucigramas").
+24 historias, 70 drills, las pistas de Aptis Reading/Listening/Speaking, la
+sección Gramática y el botón «¿Por qué?»; ver "Oído, dictado de números y
+crucigramas").
 **0.9.7** (2026-09-16: el Modo Aptis como pista de
 preparación por destreza, con el diagnóstico de la mañana convertido en el
 simulacro; las etapas 2, 3 y 4 ya estaban en el teléfono desde la 0.9.5; ver

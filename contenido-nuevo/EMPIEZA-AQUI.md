@@ -53,22 +53,19 @@ vocabulario (368 parejas) · 12 historias (2 tandas).
 
 ## Lo que falta, en orden
 
-0. **Lo de la auditoría** (`auditoria-a1-a2/auditoria-a1-a2.md`, sección 9):
-   INTEGRADOS por Claude Code: parche, A1 ampliado (43 lecciones), A2
-   ampliado (45), vocabulario ampliado (84 bancos, 1.339 parejas).
-   ESCRITOS y verificados, falta integrar/construir:
-   `historias-nuevas/` (tanda A1 + segunda tanda A2, 12 historias) y
-   `crucigramas/` (103 rejillas + especificación de la pantalla).
-   `oido-dictado-drills/` (16 bloques de pares mínimos, 80 ítems de dictado
-   de números/horas/fechas/precios, 30 drills nuevos) — datos listos, falta
-   construir las pantallas (y una comparación estricta para el dictado).
-   Sigue del plan: biblioteca de Gramática + "¿Por qué?" (solo código).
-   Pistas de Aptis Reading/Listening/Speaking ESCRITAS y verificadas en
-   `aptis-pistas/` (112 tareas + lista de 20 fotos para Fero); falta integrar.
-   B1 ESCRITO y verificado en `b1-nivel/` (15 unidades, 45 lecciones, 540
-   ejercicios), falta integrar. Queda para Cowork: vocabulario B1 (~1.400
-   palabras) y B2 completo (~45 lecciones,
-   mismo método que A1/A2 ampliado: redactores en paralelo + un verificador).
+0. **Estado al 17-09 (tarde), verificado en los assets y el código (0.9.8):**
+   INTEGRADO todo lo de la auditoría: parche, A1 (43 lecciones), A2 (45),
+   vocabulario A1-A2 (84 bancos), 24 historias, 70 drills, pistas de Aptis
+   (Reading 42 · Listening 42 · Speaking 28 · Writing 16), crucigramas (103),
+   Oído (132 pares, 15 descartados por medición: ver
+   `integrado/2026-09-17-oido-dictado-drills/DESCARTES-OIDO.md`), dictado
+   (80, comparación estricta), pantalla de Gramática + "¿Por qué?", soporte
+   de `imagenes` en Speaking.
+   ESCRITO, falta integrar: `b1-nivel/` (45 lecciones, 540 ejercicios) y
+   `vocab-b1/` (40 bancos, 1.000 parejas + 63 crucigramas B1).
+   Pendiente de Fero: las 20 fotos de Speaking.
+   Pendiente de Cowork: B2 completo; repuestos para los 15 pares de Oído
+   descartados (bloques t/d final y u/uu quedaron cortos).
 1. **Pistas de Aptis**: Writing **hecho**
    (`contenido-nuevo/aptis/pista-writing.json`, 16 tareas). Faltan **Reading,
    Listening y Speaking** — mismo formato, ver `validar_pista.py`.

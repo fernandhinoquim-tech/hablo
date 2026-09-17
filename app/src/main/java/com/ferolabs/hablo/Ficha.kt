@@ -38,7 +38,7 @@ import androidx.compose.ui.unit.dp
  * desde el 📖 de la barra durante la lección.
  */
 @Composable
-fun FichaScreen(lesson: Lesson, accent: Color, primeraVez: Boolean, onDone: () -> Unit, onBack: () -> Unit) {
+fun FichaScreen(lesson: Lesson, accent: Color, primeraVez: Boolean, onDone: () -> Unit, onBack: () -> Unit, textoBoton: String = "Volver a la lección") {
     val t = lesson.theory
     Column(modifier = Modifier.fillMaxSize()) {
         TopBar(title = "${lesson.title}  ·  la ficha", onBack = onBack)
@@ -78,13 +78,14 @@ fun FichaScreen(lesson: Lesson, accent: Color, primeraVez: Boolean, onDone: () -
                 }
             }
             Text(
-                "Puedes volver a esta ficha en cualquier momento con el 📖 de arriba.",
+                if (lesson.exercises.isEmpty()) "Todas las fichas están en 📖 Gramática, en el inicio."
+                else "Puedes volver a esta ficha con el 📖 de arriba, y a todas desde 📖 Gramática en el inicio.",
                 style = MaterialTheme.typography.labelMedium,
                 color = InkSoft
             )
         }
         Column(modifier = Modifier.fillMaxWidth().background(Cream).padding(20.dp)) {
-            BigButton(if (primeraVez) "Empezar los ejercicios" else "Volver a la lección", container = accent) { onDone() }
+            BigButton(if (primeraVez) "Empezar los ejercicios" else textoBoton, container = accent) { onDone() }
             if (primeraVez) {
                 Spacer(Modifier.height(8.dp))
                 Text(

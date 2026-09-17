@@ -91,6 +91,8 @@ private sealed class Route {
     data object Oido : Route()
     data object Dictado : Route()
     data object Crucigramas : Route()
+    /** La biblioteca de fichas de teoría (auditoría del 16-09). */
+    data object Gramatica : Route()
     /** Etapa 5: el Modo Aptis (tablero), una pista de entrenamiento y el simulacro completo. */
     data object Aptis : Route()
     data class AptisPista(val pistaId: String) : Route()
@@ -205,7 +207,8 @@ fun HabloApp(
                             onOido = { llm.release(); route = Route.Oido },
                             onDictado = { route = Route.Dictado },
                             crucigramas = crucigramas,
-                            onCrucigramas = { route = Route.Crucigramas }
+                            onCrucigramas = { route = Route.Crucigramas },
+                            onGramatica = { route = Route.Gramatica }
                         )
                     }
 
@@ -278,6 +281,11 @@ fun HabloApp(
                             speechScale = speechScale,
                             onBack = { speaker.stop(); listener.stopRecording(); progressTick += 1; route = Route.Home }
                         )
+                    }
+
+                    is Route.Gramatica -> {
+                        BackHandler { route = Route.Home }
+                        GramaticaScreen(teacher = teacher, store = store, onBack = { route = Route.Home })
                     }
 
                     is Route.Crucigramas -> {

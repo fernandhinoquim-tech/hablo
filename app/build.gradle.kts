@@ -582,6 +582,21 @@ val checkContent = tasks.register("checkContent") {
             }
         }
 
+        // Fichas de referencia de la seccion Gramatica (opcional; las escribe Cowork): title, body y trap no vacios, ids unicos.
+        val refFile = File(contentDir, "referencia.json")
+        if (refFile.exists()) {
+            val ref = slurper.parse(refFile) as Map<*, *>
+            val rIds = HashSet<String>()
+            ((ref["fichas"] as? List<*>) ?: run { problems.add("referencia.json: falta \"fichas\""); emptyList<Any>() }).forEachIndexed { i, f ->
+                val o = f as Map<*, *>
+                val where = "referencia.json, ficha ${i + 1}"
+                for (key in listOf("id", "title", "body", "trap")) {
+                    if (o[key] == null || o[key].toString().isBlank()) problems.add("$where: falta \"$key\"")
+                }
+                if (o["id"] != null && !rIds.add(o["id"].toString())) problems.add("$where: id repetido")
+            }
+        }
+
         // Crucigramas (Cowork, 17-09): como validar_cruci.py. Cada uno sale de UN banco y la pista es el "es" del banco.
         val cruciFile = File(contentDir, "crucigramas.json")
         if (cruciFile.exists()) {

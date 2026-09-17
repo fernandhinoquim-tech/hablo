@@ -416,6 +416,14 @@ object Course {
     var crucigramas: List<Crucigrama> = emptyList()
         private set
 
+    /**
+     * Fichas de REFERENCIA de la sección Gramática (assets/content/referencia.json;
+     * opcional; las escribe Cowork: verbos irregulares, pronombres, números y
+     * fechas, in/on/at). Van como lecciones sin ejercicios para reusar FichaScreen.
+     */
+    var referencia: List<Lesson> = emptyList()
+        private set
+
     /** El Modo Aptis (assets/content/aptis-*.json; sin aptis-pistas.json no hay modo). Ver Aptis.kt. */
     var aptis: BancoAptis? = null
         private set
@@ -467,6 +475,11 @@ object Course {
             }
             crucigramas = try {
                 parseCrucigramas(JSONObject(readAsset(context, "content/crucigramas.json")).getJSONArray("crucigramas"))
+            } catch (e: java.io.FileNotFoundException) {
+                emptyList()
+            }
+            referencia = try {
+                parseReferencia(JSONObject(readAsset(context, "content/referencia.json")).getJSONArray("fichas"))
             } catch (e: java.io.FileNotFoundException) {
                 emptyList()
             }
@@ -962,6 +975,29 @@ object Course {
 
     fun exerciseById(id: String): Exercise? =
         allLessons().asSequence().flatMap { it.exercises.asSequence() }.firstOrNull { it.id == id }
+
+    /**
+     * La lección de la que sale un ejercicio, por su id (`a1u4l2e5` → `a1u4l2`),
+     * también cuando el id viene envuelto por el mazo o el cuaderno
+     * (`fix|a1u4l2e5`). Null para lo que no nace de una lección (historias,
+     * crucigramas). Es lo que abre el botón "¿Por qué?" al fallar.
+     */
+    fun lessonOfExercise(exerciseId: String, lessons: List<Lesson> = allLessons()): Lesson? {
+        val m = Regex("([a-z]\\d+u\\d+l\\d+)e\\d+").find(exerciseId) ?: return null
+        return lessons.firstOrNull { it.id == m.groupValues[1] }
+    }
+
+    /** referencia.json: fichas sueltas y planas {id, title, body, trap}, mismas reglas que la teoría de una lección. */
+    fun parseReferencia(arr: JSONArray): List<Lesson> {
+        val ids = HashSet<String>()
+        return (0 until arr.length()).map { i ->
+            val o = arr.getJSONObject(i)
+            val where = "referencia.json, ficha ${i + 1}"
+            val id = req(o, "id", where)
+            if (!ids.add(id)) throw IllegalArgumentException("$where: id repetido \"$id\"")
+            Lesson("ref-$id", req(o, "title", where), parseTheory(o, where), emptyList())
+        }
+    }
 
     fun scenarioById(id: String): Scenario? =
         if (id == Scenario.LIBRE.id) Scenario.LIBRE else scenarios.firstOrNull { it.id == id }
