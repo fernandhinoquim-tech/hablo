@@ -32,6 +32,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -66,11 +67,11 @@ fun OidoScreen(
 ) {
     val accent = Color(teacher.color)
     var bloque by remember { mutableStateOf<BloqueOido?>(null) }
-    var tick by remember { mutableStateOf(0) }
+    var tick by remember { mutableIntStateOf(0) }
 
     // El modelo de fonemas solo hace falta al final de un bloque (el "hablar");
     // se suelta al salir de la pantalla: ~400 MB que no deben quedarse.
-    DisposableEffect(Unit) { onDispose { listener.releaseSounds(); speaker.stop() } }
+    DisposableEffect(Unit) { onDispose { listener.stopRecording(); listener.releaseSounds(); speaker.stop() } }
 
     val actual = bloque
     // El "atrás" del sistema dentro de un bloque vuelve a la lista, no al inicio.
@@ -106,7 +107,7 @@ fun OidoScreen(
                     }
                     items(delNivel, key = { it.id }) { b ->
                         val res = remember(tick) { store.oidoResultado(b.id) }
-                        val bien = res != null && res.first * 100 >= res.second * 80
+                        val bien = res != null && (res.first * 100 >= res.second * 80)
                         Row(
                             verticalAlignment = Alignment.CenterVertically,
                             modifier = Modifier
@@ -174,10 +175,10 @@ private fun BloqueOidoScreen(
     // Para cada par, al azar, cuál de las dos suena.
     val suena = remember { orden.map { if (kotlin.random.Random.nextBoolean()) it.a else it.b } }
     var fase by remember { mutableStateOf(FaseOido.INTRO) }
-    var pos by remember { mutableStateOf(0) }
+    var pos by remember { mutableIntStateOf(0) }
     var toque by remember { mutableStateOf<Toque?>(null) }
     val toques = remember { ArrayList<Toque>() }
-    var escuchas by remember { mutableStateOf(0) }
+    var escuchas by remember { mutableIntStateOf(0) }
 
     // El "hablar" final: como un drill de pronunciación, con el jurado del sonido del bloque.
     var result by remember { mutableStateOf<PronunciationResult?>(null) }

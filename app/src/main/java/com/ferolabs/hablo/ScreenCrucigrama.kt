@@ -26,6 +26,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -34,6 +36,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -65,12 +68,12 @@ fun CrucigramasScreen(
 ) {
     val accent = Color(teacher.color)
     var abierto by remember { mutableStateOf<Crucigrama?>(null) }
-    var tick by remember { mutableStateOf(0) }
+    var tick by remember { mutableIntStateOf(0) }
     DisposableEffect(Unit) { onDispose { speaker.stop() } }
     // Con 166 rejillas (B1, 17-09) cada nivel se pliega: abiertos los niveles con algo empezado
     // o hecho y, si no hay nada, A1.
     var niveles by remember {
-        val tocados = Course.crucigramas.filter { crucigramas.estado(it.id).let { e -> e.hecho || e.letras.isNotEmpty() } }.map { it.level }.toSet()
+        val tocados = Course.crucigramas.asSequence().filter { crucigramas.estado(it.id).let { e -> e.hecho || e.letras.isNotEmpty() } }.mapTo(HashSet()) { it.level }
         mutableStateOf(tocados.ifEmpty { setOf("A1") })
     }
 
@@ -192,8 +195,9 @@ private fun CrucigramaScreen(
         for (p in cruci.palabras) {
             if (nuevo.correcta(p) && dichas.add(p.en)) { say(p.en, 1f); acertada = true }
         }
-        if (acertada && palabra != null && nuevo.correcta(palabra!!)) {
-            val sig = siguientePendiente(nuevo, palabra)
+        val actual = palabra
+        if (acertada && actual != null && nuevo.correcta(actual)) {
+            val sig = siguientePendiente(nuevo, actual)
             if (sig != null) { palabra = sig; cursor = sig.celdas.firstOrNull { nuevo.letra(it) == null } ?: sig.celdas[0] }
         }
         if (nuevo.resuelto(cruci) && !nuevo.hecho) {
@@ -358,7 +362,13 @@ private fun Ayuda(texto: String, accent: Color, modifier: Modifier, onClick: () 
     }
 }
 
-/** La rejilla: casillas blancas con letra y número, oscuras el resto; la palabra seleccionada resaltada. */
+/**
+ * La rejilla: casillas blancas con letra y número, oscuras el resto; la palabra
+ * seleccionada resaltada. Cada casilla es un [CeldaCruci] con parámetros
+ * primitivos y su `key`: al teclear una letra cambia `estado`, pero Compose
+ * solo recompone las casillas cuyos parámetros cambiaron (la del cursor, la
+ * nueva letra y, si una palabra se completó, sus casillas), no las 100.
+ */
 @Composable
 private fun Rejilla(
     cruci: Crucigrama,
@@ -368,6 +378,14 @@ private fun Rejilla(
     accent: Color,
     onTocar: (Celda) -> Unit
 ) {
+    // Estado por casilla, calculado una vez por recomposición de la rejilla (no por casilla).
+    val correctas = HashSet<Celda>()
+    val malCompletas = HashSet<Celda>()
+    for (p in cruci.palabras) {
+        if (estado.correcta(p)) correctas.addAll(p.celdas)
+        else if (estado.completa(p)) malCompletas.addAll(p.celdas)
+    }
+    val enPalabra = palabra?.celdas?.toSet() ?: emptySet()
     BoxWithConstraints(modifier = Modifier.fillMaxWidth()) {
         val hueco = 2.dp
         val lado = ((maxWidth - hueco * (cruci.columnas - 1)) / cruci.columnas).coerceAtMost(40.dp)
@@ -377,46 +395,69 @@ private fun Rejilla(
                 Row(horizontalArrangement = Arrangement.spacedBy(hueco)) {
                     for (c in 0 until cruci.columnas) {
                         val celda = Celda(f, c)
-                        val blanca = celda in cruci.solucion
-                        if (!blanca) {
+                        if (celda !in cruci.solucion) {
                             Box(modifier = Modifier.size(lado).background(Ink.copy(alpha = 0.85f), RoundedCornerShape(3.dp)))
                             continue
                         }
-                        val letra = estado.letra(celda)
-                        val enPalabra = palabra != null && celda in palabra.celdas
-                        val correcta = cruci.palabrasEn(celda).any { estado.correcta(it) }
-                        val malCompleta = !correcta && cruci.palabrasEn(celda).any { estado.completa(it) && !estado.correcta(it) }
-                        val fondo = when {
-                            celda == cursor -> accent.copy(alpha = 0.35f)
-                            enPalabra -> accent.copy(alpha = 0.15f)
-                            correcta -> GoodGreenSoft
-                            malCompleta -> BadRedSoft
-                            else -> Color.White
-                        }
-                        Box(
-                            modifier = Modifier
-                                .size(lado)
-                                .background(fondo, RoundedCornerShape(3.dp))
-                                .border(if (celda == cursor) 2.dp else 1.dp, if (celda == cursor) accent else Line, RoundedCornerShape(3.dp))
-                                .clickable { onTocar(celda) }
-                        ) {
-                            cruci.numeroEn[celda]?.let { n ->
-                                Text(n.toString(), fontSize = 8.sp, color = InkSoft, modifier = Modifier.align(Alignment.TopStart).padding(start = 2.dp))
-                            }
-                            if (letra != null) {
-                                Text(
-                                    letra.uppercaseChar().toString(),
-                                    fontSize = (lado.value * 0.5f).sp,
-                                    fontWeight = FontWeight.Bold,
-                                    color = if (correcta) GoodGreen else Ink,
-                                    textAlign = TextAlign.Center,
-                                    modifier = Modifier.align(Alignment.Center)
-                                )
-                            }
+                        key(celda.clave) {
+                            CeldaCruci(
+                                lado = lado,
+                                letra = estado.letra(celda),
+                                numero = cruci.numeroEn[celda],
+                                esCursor = celda == cursor,
+                                enPalabra = celda in enPalabra,
+                                correcta = celda in correctas,
+                                malCompleta = celda in malCompletas && celda !in correctas,
+                                accent = accent,
+                                onTocar = { onTocar(celda) }
+                            )
                         }
                     }
                 }
             }
+        }
+    }
+}
+
+/** Una casilla blanca. Solo parámetros primitivos: si ninguno cambia, Compose se la salta. */
+@Composable
+private fun CeldaCruci(
+    lado: Dp,
+    letra: Char?,
+    numero: Int?,
+    esCursor: Boolean,
+    enPalabra: Boolean,
+    correcta: Boolean,
+    malCompleta: Boolean,
+    accent: Color,
+    onTocar: () -> Unit
+) {
+    val fondo = when {
+        esCursor -> accent.copy(alpha = 0.35f)
+        enPalabra -> accent.copy(alpha = 0.15f)
+        correcta -> GoodGreenSoft
+        malCompleta -> BadRedSoft
+        else -> Color.White
+    }
+    Box(
+        modifier = Modifier
+            .size(lado)
+            .background(fondo, RoundedCornerShape(3.dp))
+            .border(if (esCursor) 2.dp else 1.dp, if (esCursor) accent else Line, RoundedCornerShape(3.dp))
+            .clickable { onTocar() }
+    ) {
+        if (numero != null) {
+            Text(numero.toString(), fontSize = 8.sp, color = InkSoft, modifier = Modifier.align(Alignment.TopStart).padding(start = 2.dp))
+        }
+        if (letra != null) {
+            Text(
+                letra.uppercaseChar().toString(),
+                fontSize = (lado.value * 0.5f).sp,
+                fontWeight = FontWeight.Bold,
+                color = if (correcta) GoodGreen else Ink,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.align(Alignment.Center)
+            )
         }
     }
 }

@@ -46,7 +46,7 @@ data class Crucigrama(
         for (p in palabras) p.celdas.forEachIndexed { i, c -> m[c] = p.en[i].lowercaseChar() }
     }
     /** Número que va en la esquina de una casilla de inicio. */
-    val numeroEn: Map<Celda, Int> = palabras.associate { Celda(it.fila, it.col) to it.numero }
+    val numeroEn: Map<Celda, Int> = palabras.associateBy({ Celda(it.fila, it.col) }, { it.numero })
 
     /** Las palabras (una o dos) que pasan por una casilla. */
     fun palabrasEn(c: Celda): List<PalabraCruci> = palabras.filter { c in it.celdas }
@@ -78,7 +78,10 @@ data class EstadoCruci(
     fun letra(c: Celda): Char? = letras[c.clave]
 
     /** ¿Están todas las casillas de la palabra escritas y bien? */
-    fun correcta(p: PalabraCruci): Boolean = p.celdas.withIndex().all { (i, c) -> letra(c) == p.en[i].lowercaseChar() }
+    fun correcta(p: PalabraCruci): Boolean {
+        for (i in p.celdas.indices) if (letra(p.celdas[i]) != p.en[i].lowercaseChar()) return false
+        return true
+    }
 
     /** ¿Están todas escritas (bien o mal)? */
     fun completa(p: PalabraCruci): Boolean = p.celdas.all { letra(it) != null }

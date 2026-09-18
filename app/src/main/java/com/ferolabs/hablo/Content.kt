@@ -161,12 +161,6 @@ sealed class Exercise {
     ) : Exercise()
 
     /**
-     * Pares mínimos: suena UNA palabra y se identifica cuál fue (ship/sheep).
-     * Identificar (g = 0,95) rinde casi el doble que "¿son iguales?" (g = 0,57),
-     * Uchihara, Karas & Thomson 2025. La corrección es exacta: la app sabe
-     * qué palabra sintetizó. [sentence] es opcional, para oírla en contexto.
-     */
-    /**
      * "Corrige tu propio error" (etapa 3): una frase que ÉL escribió mal en el
      * cuaderno, semanas atrás, devuelta para que la arregle. Nunca viene del
      * JSON: la arma Repaso.kt desde progreso.json. Solo errores reales.
@@ -184,6 +178,12 @@ sealed class Exercise {
         override val tip: String? = null
     ) : Exercise()
 
+    /**
+     * Pares mínimos: suena UNA palabra y se identifica cuál fue (ship/sheep).
+     * Identificar (g = 0,95) rinde casi el doble que "¿son iguales?" (g = 0,57),
+     * Uchihara, Karas & Thomson 2025. La corrección es exacta: la app sabe
+     * qué palabra sintetizó. [sentence] es opcional, para oírla en contexto.
+     */
     data class MinimalPair(
         override val id: String,
         val options: List<String>,
@@ -518,7 +518,7 @@ object Course {
             val to = arr.getJSONObject(t)
             val whereT = "historias.json, tanda ${t + 1}"
             val ha = to.optJSONArray("historias") ?: throw IllegalArgumentException("$whereT: falta \"historias\"")
-            if (ha.length() < 3 || ha.length() > 12) throw IllegalArgumentException("$whereT: ${ha.length()} historias (el efecto máximo está entre 3 y 12)")
+            if (ha.length() !in 3..12) throw IllegalArgumentException("$whereT: ${ha.length()} historias (el efecto máximo está entre 3 y 12)")
             val historias = (0 until ha.length()).map { i ->
                 val o = ha.getJSONObject(i)
                 val where = "$whereT, historia ${i + 1}"
@@ -680,7 +680,7 @@ object Course {
                     if (sb.length >= 2) corridas.add("${sb}@${c.clave}${if (h) "H" else "V"}")
                 }
             }
-            val esperadas = palabras.map { "${it.en.lowercase()}@${it.fila},${it.col}${it.dir}" }.toSet()
+            val esperadas = palabras.mapTo(HashSet()) { "${it.en.lowercase()}@${it.fila},${it.col}${it.dir}" }
             if (corridas != esperadas) throw IllegalArgumentException("$where: hay corridas que no son palabras (fantasmas) o palabras que no forman corrida: ${(corridas - esperadas) + (esperadas - corridas)}")
             cruci
         }

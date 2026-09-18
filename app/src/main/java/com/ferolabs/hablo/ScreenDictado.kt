@@ -27,6 +27,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -66,7 +67,7 @@ fun DictadoScreen(
 ) {
     val accent = Color(teacher.color)
     var tipo by remember { mutableStateOf<String?>(null) }   // "" = mezclado
-    var tick by remember { mutableStateOf(0) }
+    var tick by remember { mutableIntStateOf(0) }
     DisposableEffect(Unit) { onDispose { speaker.stop() } }
 
     val elegido = tipo
@@ -155,13 +156,13 @@ private fun RondaDictado(
     fun vozDe(it: ItemDictado): Teacher =
         if (it.tipo == "deletreo" && teacher.id == "grace") TEACHERS.first { t -> t.id == "sophie" } else teacher
     fun say(it: ItemDictado) = speaker.speak(it.audio, vozDe(it), speechScale)
-    var pos by remember { mutableStateOf(0) }
+    var pos by remember { mutableIntStateOf(0) }
     var escrito by remember { mutableStateOf("") }
-    var elegida by remember { mutableStateOf(-1) }
+    var elegida by remember { mutableIntStateOf(-1) }
     var checked by remember { mutableStateOf(false) }
     var correcto by remember { mutableStateOf(false) }
-    var escuchas by remember { mutableStateOf(0) }
-    var bien by remember { mutableStateOf(0) }
+    var escuchas by remember { mutableIntStateOf(0) }
+    var bien by remember { mutableIntStateOf(0) }
     val item = items.getOrNull(pos)
 
     // Al llegar a un ítem suena una vez sola; la segunda la pide el alumno (dos como en el examen).

@@ -623,7 +623,9 @@ reloj y sin red:
   verde, Piper la dice y se pasa a la siguiente; completa y mal → marca
   suave. Ayudas «Una letra» y «Oírla» (la palabra deja de contar como "sin
   ayuda" y al terminar entra al mazo como `cruci:<banco>|<en>`). Se guarda a
-  cada letra. **Teclado propio de 26 letras + ⌫, no el del sistema** (Cowork
+  cada letra. La rejilla pinta cada casilla con `CeldaCruci` (parámetros
+  primitivos + `key`): al teclear solo se recomponen las casillas que
+  cambian, no las 100. **Teclado propio de 26 letras + ⌫, no el del sistema** (Cowork
   pedía el del sistema; el propio no tiene autocorrección ni pierde el foco y
   se pudo probar sin el teléfono a mano; se cambia si Fero lo prefiere).
 - **Gramática y «¿Por qué?»** (auditoría del 16-09, "falta 1 y 2"; hecho el
