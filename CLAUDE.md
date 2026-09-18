@@ -559,7 +559,16 @@ en B1 "I'd" es "I had" en el tercer condicional y el past perfect; se prueban
 las dos lecturas POR OCURRENCIA ("If I'd known, I'd have left" = had +
 would) y `acepta` da por buena la respuesta si algún par de variantes
 coincide; "'d have" solo es would (así "I had have left" no cuela); solo tras
-sujeto, como el resto de [AMBIGUAS]. (2) `CONTRACCIONES` suma must've /
+sujeto. **Y `'s` = is O has** (18-09, revisión de Gemini): con el present
+perfect y "have got" de B1, "She has got a sister" se comparaba contra "she
+is got" y fallaba; ahora `'s` bifurca igual que `'d` (is/has por
+ocurrencia), y delante de been/got/gotten solo es has (así "she is got" no
+cuela). `igualaContracciones` (habla) cierra cualquiera de las dos lecturas a
+la contracción del modelo. Lo que NO se hizo de esa revisión: aceptar
+"dont"/"cant"/"ive" sin apóstrofo (en los 41 fallos del cuaderno de Fero no
+hay ni uno así, y la corrección ya dice "Casi: es «don't», no «dont»"), y
+cambiar contenido de B1 por gusto (por ejemplo "absolutely starving" es
+inglés normal); sí entraron 5 `accept` "…sorry for the wait" en b1u14l2e7. (2) `CONTRACCIONES` suma must've /
 should've / would've / could've / might've / hadn't / hasn't / haven't (también
 en `checkContent` y `validar2.py`); eso dejó 214 `accept` de B1 como
 duplicados exactos y `tools/content/dedupe_accept.py --aplicar` los quitó

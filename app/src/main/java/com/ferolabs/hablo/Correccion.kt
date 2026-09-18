@@ -29,23 +29,30 @@ object Correccion {
     )
 
     /**
-     * Contracciones AMBIGUAS que solo se igualan con sujeto delante: 's = is y
-     * 'd = would o had únicamente tras pronombre, wh- o there/here/that, nunca
-     * tras un nombre ("my brother's car" no se toca). Solo valen para ACEPTAR
-     * una respuesta; el diagnóstico y el chequeo de duplicados usan
+     * Contracciones AMBIGUAS que solo se igualan con sujeto delante: 's = is o
+     * has y 'd = would o had únicamente tras pronombre, wh- o there/here/that,
+     * nunca tras un nombre ("my brother's car" no se toca). Solo valen para
+     * ACEPTAR una respuesta; el diagnóstico y el chequeo de duplicados usan
      * [sueltaEstricta]. Hallazgo de la revisión del 2026-09-16: el mazo pedía
      * "What's your name?" en "escribir" y marcaba mal "What is your name?" (24
-     * frases del curso). Trade-off asumido: "he is got" pasaría por "he's got".
+     * frases del curso).
      * **'d = would Y had (B1, 17-09):** en el tercer condicional y el past
-     * perfect "I'd" es "I had" ("If I'd known", "I'd already left"); [variantes]
+     * perfect "I'd" es "I had" ("If I'd known", "I'd already left"). **'s = is Y
+     * has (18-09):** con el present perfect y "have got" de B1, "She's got a
+     * sister" / "He's been here" son has, y con la lectura fija de is "She has
+     * got a sister" se comparaba contra "she is got" y fallaba. [variantes]
      * prueba las dos expansiones POR OCURRENCIA ("If I'd known, I'd have left" =
-     * had + would) y [acepta] da por buena la respuesta si alguna coincide.
+     * had + would; "It's late and she's gone" = is + has) y [acepta] da por
+     * buena la respuesta si alguna coincide. Lo que sigue fijo: "'d have" solo
+     * es would y "'s been / 's got" solo es has, así "I had have left" y "she is
+     * got" no cuelan.
      */
     private val SUJETOS = listOf("i", "you", "he", "she", "it", "we", "they", "what", "who", "where", "when", "how", "why", "that", "there", "here")
-    private val AMBIGUAS: List<Pair<String, String>> =
-        SUJETOS.filter { it != "i" }.map { "$it's" to "$it is" }
+    private val CON_S = SUJETOS.filter { it != "i" }.map { "$it's" }
     private val CON_D = SUJETOS.map { "$it'd" }
-    private const val MAX_D = 4   // 2^4 variantes como mucho; más 'd en una frase no existe en el curso
+    private const val MAX_BIF = 4   // 2^4 variantes como mucho; más 's/'d ambiguas en una frase no existe en el curso
+    /** Tras 's, estas palabras solo caben con has. */
+    private val SOLO_HAS = setOf("been", "got", "gotten")
 
     private val UNIDADES = listOf(
         "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
@@ -110,35 +117,42 @@ object Correccion {
         return t.trim()
     }
 
-    /** Como [sueltaEstricta], y además iguala 's = is y 'd = would tras sujeto ([AMBIGUAS]). Para ACEPTAR. */
+    /** La lectura por defecto de una ficha ambigua: 's → is (o has delante de been/got), 'd → would. */
+    private fun lecturaFija(ficha: String, siguiente: String?): String = when {
+        ficha in CON_S -> ficha.dropLast(2) + (if (siguiente in SOLO_HAS) " has" else " is")
+        ficha in CON_D -> ficha.dropLast(2) + " would"
+        else -> ficha
+    }
+
+    /** Como [sueltaEstricta], y además la lectura por defecto de 's (is) y 'd (would) tras sujeto. Para ACEPTAR, ver [variantes]. */
     fun suelta(text: String): String {
-        var t = " " + sueltaEstricta(text) + " "
-        for ((corta, larga) in AMBIGUAS) t = t.replace(" $corta ", " $larga ")
-        for (corta in CON_D) t = t.replace(" $corta ", " ${corta.dropLast(2)} would ")
-        return t.trim()
+        val fichas = sueltaEstricta(text).split(" ").filter { it.isNotEmpty() }
+        return fichas.indices.joinToString(" ") { lecturaFija(fichas[it], fichas.getOrNull(it + 1)) }
     }
 
     /**
-     * Todas las lecturas de un texto: [suelta] y, si lleva 'd tras sujeto, cada
-     * combinación de would/had por ocurrencia (hasta [MAX_D]). Para comparar dos
-     * textos se mira si sus conjuntos se cruzan.
+     * Todas las lecturas de un texto: [suelta] y, si lleva 's o 'd tras sujeto,
+     * cada combinación is/has y would/had por ocurrencia (hasta [MAX_BIF]
+     * bifurcaciones). Para comparar dos textos se mira si sus conjuntos se cruzan.
      */
     fun variantes(text: String): Set<String> {
-        var base = " " + sueltaEstricta(text) + " "
-        for ((corta, larga) in AMBIGUAS) base = base.replace(" $corta ", " $larga ")
-        val fichas = base.trim().split(" ").filter { it.isNotEmpty() }
-        // "'d have" solo puede ser would ("I'd have left"): así "I had have left" no cuela.
-        val posiciones = fichas.indices.filter { fichas[it] in CON_D && fichas.getOrNull(it + 1) != "have" }.take(MAX_D)
+        val fichas = sueltaEstricta(text).split(" ").filter { it.isNotEmpty() }
+        // Bifurcan: 'd salvo delante de "have" (solo would) y 's salvo delante de been/got (solo has).
+        val posiciones = fichas.indices.filter {
+            (fichas[it] in CON_D && fichas.getOrNull(it + 1) != "have") ||
+                (fichas[it] in CON_S && fichas.getOrNull(it + 1) !in SOLO_HAS)
+        }.take(MAX_BIF)
         if (posiciones.isEmpty()) return setOf(suelta(text))
         val out = LinkedHashSet<String>()
         for (mascara in 0 until (1 shl posiciones.size)) {
             val f = fichas.toMutableList()
             posiciones.forEachIndexed { k, pos ->
                 val sujeto = fichas[pos].dropLast(2)
-                f[pos] = sujeto + " " + (if (mascara and (1 shl k) != 0) "had" else "would")
+                val segunda = mascara and (1 shl k) != 0
+                f[pos] = sujeto + " " + if (fichas[pos] in CON_D) (if (segunda) "had" else "would") else (if (segunda) "has" else "is")
             }
-            // los 'd que quedaron sin elegir (delante de "have", o más de MAX_D) son would
-            out.add(f.joinToString(" ") { if (it in CON_D) it.dropLast(2) + " would" else it })
+            // lo que quedó sin elegir (delante de have/been/got, o más de MAX_BIF) toma su lectura fija
+            out.add(f.indices.joinToString(" ") { lecturaFija(f[it], f.getOrNull(it + 1)) })
         }
         return out
     }
@@ -161,9 +175,17 @@ object Correccion {
     fun igualaContracciones(modelo: String, text: String): String {
         val m = " " + fichas(modelo) + " "
         var t = " " + fichas(text) + " "
-        for ((corta, larga) in CONTRACCIONES + AMBIGUAS + CON_D.map { it to it.dropLast(2) + " would" }) {
+        for ((corta, larga) in CONTRACCIONES) {
             if (m.contains(" $corta ")) t = t.replace(" $larga ", " $corta ")
             else if (m.contains(" $larga ")) t = t.replace(" $corta ", " $larga ")
+        }
+        // 's y 'd: si el modelo las lleva, cualquiera de sus dos lecturas se cierra a la contracción;
+        // si el modelo va largo, la contracción se abre a la lectura que use el modelo.
+        for (corta in CON_S + CON_D) {
+            val sujeto = corta.dropLast(2)
+            val largas = if (corta in CON_S) listOf("$sujeto is", "$sujeto has") else listOf("$sujeto would", "$sujeto had")
+            if (m.contains(" $corta ")) for (l in largas) t = t.replace(" $l ", " $corta ")
+            else largas.firstOrNull { m.contains(" $it ") }?.let { l -> t = t.replace(" $corta ", " $l ") }
         }
         return t.trim()
     }

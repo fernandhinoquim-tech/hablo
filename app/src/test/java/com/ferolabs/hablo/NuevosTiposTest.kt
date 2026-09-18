@@ -258,4 +258,30 @@ class NuevosTiposTest {
         assertTrue(Correccion.acepta("She hadn't seen it", "She had not seen it", emptyList()))
         assertEquals("i should have called", Correccion.sueltaEstricta("I should've called"))
     }
+
+    @Test
+    fun `la 's vale como is y como has, por ocurrencia, y delante de been o got solo es has`() {
+        // has got y present perfect (B1): con la lectura fija de is fallaban
+        assertTrue(Correccion.acepta("She has got a sister", "She's got a sister", emptyList()))
+        assertTrue(Correccion.acepta("She's got a sister", "She has got a sister", emptyList()))
+        assertTrue(Correccion.acepta("He has been here", "He's been here", emptyList()))
+        assertTrue(Correccion.acepta("He has finished", "He's finished", emptyList()))
+        assertTrue(Correccion.acepta("He's finished", "He has finished", emptyList()))
+        // lo de siempre sigue: 's = is
+        assertTrue(Correccion.acepta("What is your name?", "What's your name?", emptyList()))
+        assertTrue(Correccion.acepta("It's late", "It is late", emptyList()))
+        // dos en una frase, una de cada
+        assertTrue(Correccion.acepta("It is late and she has gone", "It's late and she's gone", emptyList()))
+        // pero "she is got" y "she is been" no cuelan
+        assertFalse(Correccion.acepta("She is got a sister", "She's got a sister", emptyList()))
+        assertFalse(Correccion.acepta("He is been here", "He's been here", emptyList()))
+        // tras un nombre no se toca
+        assertFalse(Correccion.acepta("my brother is car", "my brother's car", emptyList()))
+        assertEquals(setOf("she has got a sister"), Correccion.variantes("She's got a sister"))
+        assertEquals(2, Correccion.variantes("He's finished").size)
+        // el habla: se iguala a lo que dice el modelo
+        assertEquals("she's got a sister", Correccion.igualaContracciones("She's got a sister", "she has got a sister"))
+        assertEquals("what is your name", Correccion.igualaContracciones("What is your name", "what's your name"))
+        assertEquals("he has finished", Correccion.igualaContracciones("He has finished", "he's finished"))
+    }
 }
