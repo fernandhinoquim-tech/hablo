@@ -62,6 +62,12 @@ fun ContrarrelojScreen(
         propio + Course.bancos
     }
     var banco by remember { mutableStateOf<Banco?>(null) }
+    // Con 124 bancos (B1, 17-09) cada nivel se pliega: abiertos "Frases de tus lecciones", los
+    // niveles donde ya hay alguna marca y, si no hay ninguna, A1.
+    var abiertos by remember {
+        val conMarca = bancos.filter { mazo.marcas(it.id).isNotEmpty() }.map { it.level }.toSet()
+        mutableStateOf(setOf("") + conMarca.ifEmpty { setOf("A1") })
+    }
 
     val actual = banco
     if (actual == null) {
@@ -96,16 +102,26 @@ fun ContrarrelojScreen(
                 for ((nivel, titulo) in grupos) {
                     val delNivel = bancos.filter { it.level == nivel }
                     if (delNivel.isEmpty()) continue
+                    val abierto = nivel in abiertos
                     if (titulo.isNotBlank()) item(key = "nivel-$nivel") {
                         val conMarca = delNivel.count { mazo.marcas(it.id).isNotEmpty() }
-                        Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(top = 8.dp)) {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clickable { abiertos = if (abierto) abiertos - nivel else abiertos + nivel }
+                                .padding(top = 8.dp, bottom = 4.dp)
+                        ) {
                             Pill(titulo, accent, Color(teacher.softColor))
                             Spacer(Modifier.size(10.dp))
                             Text("${delNivel.size} bancos", style = MaterialTheme.typography.titleMedium)
                             Spacer(Modifier.weight(1f))
                             Text("$conMarca con marca", style = MaterialTheme.typography.labelLarge, color = InkSoft)
+                            Spacer(Modifier.size(8.dp))
+                            Text(if (abierto) "⌄" else "›", style = MaterialTheme.typography.titleLarge, color = accent)
                         }
                     }
+                    if (!abierto) continue
                     items(delNivel, key = { it.id }) { b ->
                         val marcas = mazo.marcas(b.id)
                         val mejor = marcas.minByOrNull { it.porPareja }

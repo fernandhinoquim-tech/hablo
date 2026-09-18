@@ -21,21 +21,31 @@ object Correccion {
         "i'll" to "i will", "you'll" to "you will", "he'll" to "he will", "she'll" to "she will",
         "it'll" to "it will", "we'll" to "we will", "they'll" to "they will",
         "i've" to "i have", "you've" to "you have", "we've" to "we have", "they've" to "they have",
-        "let's" to "let us"
+        "let's" to "let us",
+        // B1 (17-09): los modales del pasado y los negativos de have que faltaban.
+        "must've" to "must have", "should've" to "should have", "would've" to "would have",
+        "could've" to "could have", "might've" to "might have",
+        "hadn't" to "had not", "hasn't" to "has not", "haven't" to "have not"
     )
 
     /**
      * Contracciones AMBIGUAS que solo se igualan con sujeto delante: 's = is y
-     * 'd = would únicamente tras pronombre, wh- o there/here/that, nunca tras
-     * un nombre ("my brother's car" no se toca). Solo valen para ACEPTAR una
-     * respuesta; el diagnóstico y el chequeo de duplicados usan [sueltaEstricta].
-     * Hallazgo de la revisión del 2026-09-16: el mazo pedía "What's your name?"
-     * en "escribir" y marcaba mal "What is your name?" (24 frases del curso).
-     * Trade-off asumido: "he is got" pasaría por "he's got"; lo escribe nadie.
+     * 'd = would o had únicamente tras pronombre, wh- o there/here/that, nunca
+     * tras un nombre ("my brother's car" no se toca). Solo valen para ACEPTAR
+     * una respuesta; el diagnóstico y el chequeo de duplicados usan
+     * [sueltaEstricta]. Hallazgo de la revisión del 2026-09-16: el mazo pedía
+     * "What's your name?" en "escribir" y marcaba mal "What is your name?" (24
+     * frases del curso). Trade-off asumido: "he is got" pasaría por "he's got".
+     * **'d = would Y had (B1, 17-09):** en el tercer condicional y el past
+     * perfect "I'd" es "I had" ("If I'd known", "I'd already left"); [variantes]
+     * prueba las dos expansiones POR OCURRENCIA ("If I'd known, I'd have left" =
+     * had + would) y [acepta] da por buena la respuesta si alguna coincide.
      */
     private val SUJETOS = listOf("i", "you", "he", "she", "it", "we", "they", "what", "who", "where", "when", "how", "why", "that", "there", "here")
     private val AMBIGUAS: List<Pair<String, String>> =
-        SUJETOS.filter { it != "i" }.map { "$it's" to "$it is" } + SUJETOS.map { "$it'd" to "$it would" }
+        SUJETOS.filter { it != "i" }.map { "$it's" to "$it is" }
+    private val CON_D = SUJETOS.map { "$it'd" }
+    private const val MAX_D = 4   // 2^4 variantes como mucho; más 'd en una frase no existe en el curso
 
     private val UNIDADES = listOf(
         "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
@@ -104,7 +114,40 @@ object Correccion {
     fun suelta(text: String): String {
         var t = " " + sueltaEstricta(text) + " "
         for ((corta, larga) in AMBIGUAS) t = t.replace(" $corta ", " $larga ")
+        for (corta in CON_D) t = t.replace(" $corta ", " ${corta.dropLast(2)} would ")
         return t.trim()
+    }
+
+    /**
+     * Todas las lecturas de un texto: [suelta] y, si lleva 'd tras sujeto, cada
+     * combinación de would/had por ocurrencia (hasta [MAX_D]). Para comparar dos
+     * textos se mira si sus conjuntos se cruzan.
+     */
+    fun variantes(text: String): Set<String> {
+        var base = " " + sueltaEstricta(text) + " "
+        for ((corta, larga) in AMBIGUAS) base = base.replace(" $corta ", " $larga ")
+        val fichas = base.trim().split(" ").filter { it.isNotEmpty() }
+        // "'d have" solo puede ser would ("I'd have left"): así "I had have left" no cuela.
+        val posiciones = fichas.indices.filter { fichas[it] in CON_D && fichas.getOrNull(it + 1) != "have" }.take(MAX_D)
+        if (posiciones.isEmpty()) return setOf(suelta(text))
+        val out = LinkedHashSet<String>()
+        for (mascara in 0 until (1 shl posiciones.size)) {
+            val f = fichas.toMutableList()
+            posiciones.forEachIndexed { k, pos ->
+                val sujeto = fichas[pos].dropLast(2)
+                f[pos] = sujeto + " " + (if (mascara and (1 shl k) != 0) "had" else "would")
+            }
+            // los 'd que quedaron sin elegir (delante de "have", o más de MAX_D) son would
+            out.add(f.joinToString(" ") { if (it in CON_D) it.dropLast(2) + " would" else it })
+        }
+        return out
+    }
+
+    /** ¿Dos textos son la misma respuesta, con 'd leído como would o had donde haga falta? */
+    fun mismaRespuesta(a: String, b: String): Boolean {
+        val va = variantes(a)
+        if (va.size == 1) return va.first() in variantes(b)
+        return variantes(b).any { it in va }
     }
 
     /**
@@ -118,7 +161,7 @@ object Correccion {
     fun igualaContracciones(modelo: String, text: String): String {
         val m = " " + fichas(modelo) + " "
         var t = " " + fichas(text) + " "
-        for ((corta, larga) in CONTRACCIONES + AMBIGUAS) {
+        for ((corta, larga) in CONTRACCIONES + AMBIGUAS + CON_D.map { it to it.dropLast(2) + " would" }) {
             if (m.contains(" $corta ")) t = t.replace(" $larga ", " $corta ")
             else if (m.contains(" $larga ")) t = t.replace(" $corta ", " $larga ")
         }
@@ -160,11 +203,12 @@ object Correccion {
         return g == dictado(answer) || accept.any { g == dictado(it) }
     }
 
-    /** ¿La respuesta dada vale? Contra la esperada o cualquiera de las alternativas. */
+    /** ¿La respuesta dada vale? Contra la esperada o cualquiera de las alternativas (hasta 143 en B1: se calcula una vez la del alumno). */
     fun acepta(given: String, answer: String, accept: List<String>): Boolean {
-        val g = suelta(given)
-        if (g.isBlank()) return false
-        return g == suelta(answer) || accept.any { g == suelta(it) }
+        val vg = variantes(given)
+        if (vg.first().isBlank()) return false
+        fun cruza(x: String): Boolean { val vx = variantes(x); return vg.any { it in vx } }
+        return cruza(answer) || accept.any { cruza(it) }
     }
 
     /**

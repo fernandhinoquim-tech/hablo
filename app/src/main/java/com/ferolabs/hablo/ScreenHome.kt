@@ -102,7 +102,9 @@ fun HomeScreen(
 
     // Qué unidades están abiertas: ver desbloqueadas() (la cadena admite una unidad
     // nueva intercalada sin cerrar lo que ya estaba abierto).
-    val unlocked = remember(refreshKey) { desbloqueadas(units) { scores[it] ?: 0 } }
+    // La primera unidad de cada nivel siempre está abierta (B1, 17-09: el Modo Aptis pide B1 y
+    // Fero puede entrar sin terminar A2); dentro del nivel sigue la cadena.
+    val unlocked = remember(refreshKey) { desbloqueadas(units, { scores[it] ?: 0 }, levels.mapNotNull { it.units.firstOrNull()?.id }.toSet()) }
 
     var expanded by remember(refreshKey) {
         mutableStateOf(units.firstOrNull { u -> u.lessons.any { (scores[it.id] ?: 0) < 60 } }?.id)
@@ -589,15 +591,19 @@ fun HomeScreen(
  * que sigue a una nueva sin empezar también. En la práctica la cadena deja
  * DOS unidades abiertas por delante (la siguiente y la que le sigue), así la
  * nueva y la vieja se hacen en paralelo; una cadena de dos sin empezar cierra.
+ * (e) La primera unidad de cada nivel ([primeras]) está siempre abierta: desde
+ * el B1 (17-09) se puede empezar un nivel sin terminar el anterior, porque el
+ * Modo Aptis pide B1; dentro del nivel la cadena sigue igual.
  */
-fun desbloqueadas(units: List<CourseUnit>, score: (String) -> Int): Set<String> {
+fun desbloqueadas(units: List<CourseUnit>, score: (String) -> Int, primeras: Set<String> = emptySet()): Set<String> {
     val out = HashSet<String>()
     fun aprobada(u: CourseUnit) = u.lessons.all { score(it.id) >= 60 }
     fun tocada(u: CourseUnit) = u.lessons.any { score(it.id) > 0 }
     for ((i, u) in units.withIndex()) {
         val prev = units.getOrNull(i - 1)
         val prev2 = units.getOrNull(i - 2)
-        val abierta = i == 0 || tocada(u) || (prev != null && aprobada(prev)) ||
+        // (e) la primera unidad de un nivel se abre a mano: B1 sin terminar A2 (el Modo Aptis pide B1).
+        val abierta = i == 0 || u.id in primeras || tocada(u) || (prev != null && aprobada(prev)) ||
             (prev != null && prev.id in out && prev2 != null && aprobada(prev2))
         if (abierta) out.add(u.id)
     }

@@ -404,7 +404,7 @@ escenarios · corrección en español · informe descargable · cuaderno de erro
 | 9 | Crucigramas | **hecho el 17-09**: 103 rejillas de Cowork (34 A1, 69 A2), `Crucigrama.kt` + `ScreenCrucigrama.kt`; ver "Oído, dictado y crucigramas" |
 | 10 | Repaso espaciado (mazo) | **hecho el 16-09**: `Mazo.kt`, Leitner 1/3/7/16/35 + escalera elegir→armar→escribir→oír y escribir→decir |
 | 11 | Pantalla de Oído (pares mínimos) | **hecho el 17-09**: 16 bloques de Cowork (`oido.json`), `ScreenOido.kt`; y el **dictado de números** (`dictado.json`, 80 ítems, `ScreenDictado.kt`) con comparación estricta; ver "Oído, dictado y crucigramas" |
-| 12 | Contenido B1 y B2 | no existe |
+| 12 | Contenido B1 y B2 | **B1 hecho el 17-09** (Cowork: 15 unidades, 45 lecciones, 540 ejercicios, 70 % producción; ver "Nivel B1"); B2 no existe |
 | 13 | Escritura con motor de reglas (Fase 4) | no existe |
 | 14 | Respaldo del progreso y modo oscuro (Fase 6) | no existe |
 | 15 | Recalibrar audio al llegar a ~100 grabaciones | pendiente con condición |
@@ -545,6 +545,30 @@ sinónimos ni dos españoles equivalentes, así que nunca hay dos respuestas
 válidas a la vez; **una ronda nunca mezcla bancos** (al mezclar, la garantía
 desaparece). Los bancos van de 3 a 25 parejas: los grandes se parten en
 rondas de hasta 8 del mismo banco (un subconjunto conserva la garantía).
+
+**Nivel B1 (2026-09-17, Cowork, `contenido-nuevo/integrado/2026-09-17-b1-nivel/`):
+15 unidades, 45 lecciones, 540 ejercicios (12 por lección, 70 % cloze/write;
+Core Inventory B1 + English File Intermediate), con `anexar_nivel.py`.
+Total: **3 niveles, 46 unidades, 133 lecciones, 1.639 ejercicios.** Con el
+vocabulario B1 (`…/2026-09-17-vocab-b1/`: 40 bancos de 25 parejas,
+`anexar_vocabulario.py`) son **124 bancos, 2.339 parejas** (≈ 2.400 palabras
+distintas A1-B1; English Profile da ~2.950 para B1: 81 %), y 63 crucigramas
+B1 (`tools/content/anexar_crucigramas.py`): **166 crucigramas**. Cambios de
+código que pidió Cowork: (1) **`'d` = would O had** (`Correccion.variantes`):
+en B1 "I'd" es "I had" en el tercer condicional y el past perfect; se prueban
+las dos lecturas POR OCURRENCIA ("If I'd known, I'd have left" = had +
+would) y `acepta` da por buena la respuesta si algún par de variantes
+coincide; "'d have" solo es would (así "I had have left" no cuela); solo tras
+sujeto, como el resto de [AMBIGUAS]. (2) `CONTRACCIONES` suma must've /
+should've / would've / could've / might've / hadn't / hasn't / haven't (también
+en `checkContent` y `validar2.py`); eso dejó 214 `accept` de B1 como
+duplicados exactos y `tools/content/dedupe_accept.py --aplicar` los quitó
+(conserva el primero de cada forma; es idempotente). (3) **La primera unidad
+de cada nivel está siempre abierta** (`desbloqueadas(units, score,
+primeras)`; test en `DesbloqueoTest`): Fero puede empezar B1 sin terminar A2
+porque el Modo Aptis pide B1; dentro del nivel la cadena sigue igual. (4) Las
+listas del contrarreloj (124 bancos) y de crucigramas (166) se pliegan por
+nivel: abiertos los niveles con marca o algo empezado, si no A1.
 
 **Oído, dictado de números y crucigramas (2026-09-17; datos de Cowork en
 `contenido-nuevo/integrado/2026-09-17-oido-dictado-drills/` y
@@ -751,10 +775,11 @@ pantalla: es una estimación, no la nota real**) y bancos grandes de ítems
 
 ## Estado y plan
 
-**Versión actual: 0.9.8** (2026-09-17: Oído, dictado de números, crucigramas,
-24 historias, 70 drills, las pistas de Aptis Reading/Listening/Speaking, la
-sección Gramática y el botón «¿Por qué?»; ver "Oído, dictado de números y
-crucigramas").
+**Versión actual: 0.9.9** (2026-09-17/18: el nivel B1 con su vocabulario y
+crucigramas; ver "Nivel B1"). **0.9.8** (2026-09-17: Oído, dictado de
+números, crucigramas, 24 historias, 70 drills, las pistas de Aptis
+Reading/Listening/Speaking, la sección Gramática y el botón «¿Por qué?»; ver
+"Oído, dictado de números y crucigramas").
 **0.9.7** (2026-09-16: el Modo Aptis como pista de
 preparación por destreza, con el diagnóstico de la mañana convertido en el
 simulacro; las etapas 2, 3 y 4 ya estaban en el teléfono desde la 0.9.5; ver

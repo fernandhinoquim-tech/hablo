@@ -236,4 +236,26 @@ class NuevosTiposTest {
         fail("debía reventar y no lo hizo: $ejercicio")
         return ""
     }
+
+    @Test
+    fun `la 'd vale como would y como had, por ocurrencia, y los modales del pasado se expanden`() {
+        // tercer condicional: 'd = had en la condicional y would en la principal
+        assertTrue(Correccion.acepta("If I had known, I would have left", "If I'd known, I'd have left", emptyList()))
+        assertTrue(Correccion.acepta("If I'd known, I'd have left", "If I had known, I would have left", emptyList()))
+        assertTrue(Correccion.acepta("I'd already left", "I had already left", emptyList()))
+        assertTrue(Correccion.acepta("I'd like a coffee", "I would like a coffee", emptyList()))
+        // pero no cualquier cosa: la otra lectura sigue siendo otra frase
+        assertFalse(Correccion.acepta("I would already left", "I had already left", emptyList()))
+        assertFalse(Correccion.acepta("If I had known, I had have left", "If I'd known, I'd have left", emptyList()))
+        // tras un nombre no se toca ("my brother'd" no existe)
+        assertEquals(setOf("i had"), Correccion.variantes("I'd").let { it.filter { v -> v.contains("had") }.toSet() })
+        assertEquals(2, Correccion.variantes("I'd").size)
+        assertEquals(2, Correccion.variantes("If I'd known, I'd have left").size)   // "'d have" solo es would
+        assertEquals(4, Correccion.variantes("She'd said she'd go").size)
+        // contracciones nuevas
+        assertTrue(Correccion.acepta("Someone must've taken my umbrella", "Someone must have taken my umbrella", emptyList()))
+        assertTrue(Correccion.acepta("I haven't finished", "I have not finished", emptyList()))
+        assertTrue(Correccion.acepta("She hadn't seen it", "She had not seen it", emptyList()))
+        assertEquals("i should have called", Correccion.sueltaEstricta("I should've called"))
+    }
 }

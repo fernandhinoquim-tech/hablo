@@ -12,7 +12,10 @@ CONTR=[("i'm","i am"),("you're","you are"),("we're","we are"),("they're","they a
  ("i'll","i will"),("you'll","you will"),("he'll","he will"),("she'll","she will"),
  ("it'll","it will"),("we'll","we will"),("they'll","they will"),
  ("i've","i have"),("you've","you have"),("we've","we have"),("they've","they have"),
- ("let's","let us")]
+ ("let's","let us"),
+ ("must've","must have"),("should've","should have"),("would've","would have"),
+ ("could've","could have"),("might've","might have"),
+ ("hadn't","had not"),("hasn't","has not"),("haven't","have not")]
 
 UNIDADES=["zero","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve",
  "thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen"]

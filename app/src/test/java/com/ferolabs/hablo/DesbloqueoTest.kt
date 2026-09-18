@@ -61,6 +61,22 @@ class DesbloqueoTest {
     }
 
     @Test
+    fun `la primera unidad de cada nivel se abre sin terminar el anterior, y la cadena sigue dentro del nivel`() {
+        val a2 = listOf(unidad("a2u1", "a2u1l1"), unidad("a2u2", "a2u2l1"), unidad("a2u3", "a2u3l1"))
+        val b1 = listOf(unidad("b1u1", "b1u1l1"), unidad("b1u2", "b1u2l1"), unidad("b1u3", "b1u3l1"))
+        val todas = units + a2 + b1
+        val primeras = setOf("a1u1", "a2u1", "b1u1")
+        val sinNada = desbloqueadas(todas, { 0 }, primeras)
+        assertEquals(setOf("a1u1", "a2u1", "b1u1"), sinNada)
+        // aprobar b1u1 abre b1u2 y, dos por delante, b1u3; A2 sigue cerrado salvo su primera
+        val conB1 = desbloqueadas(todas, { if (it == "b1u1l1") 80 else 0 }, primeras)
+        assertTrue("b1u2" in conB1 && "b1u3" in conB1)
+        assertFalse("a2u2" in conB1)
+        // sin `primeras` (la regla vieja) B1 sigue cerrado
+        assertFalse("b1u1" in desbloqueadas(todas, { 0 }))
+    }
+
+    @Test
     fun `un numero pegado a un mes es una fecha y no se pasa a letras`() {
         assertEquals("may 3", Correccion.fichas("May 3"))
         assertEquals("i have three cats", Correccion.fichas("I have 3 cats"))

@@ -5944,6 +5944,4286 @@
           "es": "mío"
         }
       ]
+    },
+    {
+      "id": "trabajo2-b1",
+      "title": "💼 Trabajo y carrera · B1",
+      "level": "B1",
+      "pares": [
+        {
+          "en": "staff",
+          "es": "personal (de una empresa)"
+        },
+        {
+          "en": "department",
+          "es": "departamento (de una empresa)"
+        },
+        {
+          "en": "director",
+          "es": "director"
+        },
+        {
+          "en": "assistant",
+          "es": "asistente"
+        },
+        {
+          "en": "supervisor",
+          "es": "supervisor"
+        },
+        {
+          "en": "intern",
+          "es": "practicante"
+        },
+        {
+          "en": "internship",
+          "es": "pasantía"
+        },
+        {
+          "en": "applicant",
+          "es": "aspirante (a un empleo)"
+        },
+        {
+          "en": "vacancy",
+          "es": "vacante"
+        },
+        {
+          "en": "workplace",
+          "es": "lugar de trabajo"
+        },
+        {
+          "en": "responsibility",
+          "es": "responsabilidad"
+        },
+        {
+          "en": "agenda",
+          "es": "orden del día"
+        },
+        {
+          "en": "presentation",
+          "es": "presentación"
+        },
+        {
+          "en": "fire",
+          "es": "despedir (del trabajo)"
+        },
+        {
+          "en": "quit",
+          "es": "renunciar"
+        },
+        {
+          "en": "retirement",
+          "es": "jubilación"
+        },
+        {
+          "en": "unemployment",
+          "es": "desempleo"
+        },
+        {
+          "en": "union",
+          "es": "sindicato"
+        },
+        {
+          "en": "strike",
+          "es": "huelga"
+        },
+        {
+          "en": "negotiate",
+          "es": "negociar"
+        },
+        {
+          "en": "achievement",
+          "es": "logro"
+        },
+        {
+          "en": "objective",
+          "es": "objetivo"
+        },
+        {
+          "en": "full-time",
+          "es": "tiempo completo"
+        },
+        {
+          "en": "management",
+          "es": "gestión (administración)"
+        },
+        {
+          "en": "promote",
+          "es": "ascender (a alguien)"
+        }
+      ]
+    },
+    {
+      "id": "negocios-b1",
+      "title": "🏢 Negocios y comercio · B1",
+      "level": "B1",
+      "pares": [
+        {
+          "en": "trade",
+          "es": "comercio"
+        },
+        {
+          "en": "loss",
+          "es": "pérdida"
+        },
+        {
+          "en": "sponsor",
+          "es": "patrocinador"
+        },
+        {
+          "en": "product",
+          "es": "producto"
+        },
+        {
+          "en": "sales",
+          "es": "ventas"
+        },
+        {
+          "en": "advertising",
+          "es": "publicidad"
+        },
+        {
+          "en": "marketing",
+          "es": "mercadeo"
+        },
+        {
+          "en": "competitor",
+          "es": "competidor"
+        },
+        {
+          "en": "consumer",
+          "es": "consumidor"
+        },
+        {
+          "en": "order",
+          "es": "pedido (de un cliente)"
+        },
+        {
+          "en": "agreement",
+          "es": "acuerdo"
+        },
+        {
+          "en": "business partner",
+          "es": "socio"
+        },
+        {
+          "en": "stock market",
+          "es": "bolsa de valores"
+        },
+        {
+          "en": "entrepreneur",
+          "es": "emprendedor"
+        },
+        {
+          "en": "retail",
+          "es": "venta al por menor"
+        },
+        {
+          "en": "wholesale",
+          "es": "venta al por mayor"
+        },
+        {
+          "en": "merchant",
+          "es": "comerciante"
+        },
+        {
+          "en": "headquarters",
+          "es": "sede principal"
+        },
+        {
+          "en": "complaint",
+          "es": "queja"
+        },
+        {
+          "en": "warranty",
+          "es": "garantía"
+        },
+        {
+          "en": "quality",
+          "es": "calidad"
+        },
+        {
+          "en": "launch",
+          "es": "lanzar (un producto)"
+        },
+        {
+          "en": "manufacture",
+          "es": "fabricar"
+        },
+        {
+          "en": "demand",
+          "es": "demanda (del mercado)"
+        },
+        {
+          "en": "supply",
+          "es": "oferta (del mercado)"
+        }
+      ]
+    },
+    {
+      "id": "dinero2-b1",
+      "title": "💰 Economía y banca · B1",
+      "level": "B1",
+      "pares": [
+        {
+          "en": "economy",
+          "es": "economía"
+        },
+        {
+          "en": "inflation",
+          "es": "inflación"
+        },
+        {
+          "en": "interest",
+          "es": "intereses (del banco)"
+        },
+        {
+          "en": "mortgage",
+          "es": "hipoteca"
+        },
+        {
+          "en": "credit",
+          "es": "crédito"
+        },
+        {
+          "en": "debit card",
+          "es": "tarjeta débito"
+        },
+        {
+          "en": "balance",
+          "es": "saldo"
+        },
+        {
+          "en": "currency",
+          "es": "moneda (de un país)"
+        },
+        {
+          "en": "exchange rate",
+          "es": "tasa de cambio"
+        },
+        {
+          "en": "invest",
+          "es": "invertir"
+        },
+        {
+          "en": "investment",
+          "es": "inversión"
+        },
+        {
+          "en": "pension",
+          "es": "pensión"
+        },
+        {
+          "en": "fee",
+          "es": "comisión (cobro)"
+        },
+        {
+          "en": "utility bill",
+          "es": "recibo de servicios públicos"
+        },
+        {
+          "en": "cost of living",
+          "es": "costo de vida"
+        },
+        {
+          "en": "wealth",
+          "es": "riqueza"
+        },
+        {
+          "en": "poverty",
+          "es": "pobreza"
+        },
+        {
+          "en": "expense",
+          "es": "gasto"
+        },
+        {
+          "en": "taxpayer",
+          "es": "contribuyente"
+        },
+        {
+          "en": "income tax",
+          "es": "impuesto sobre la renta"
+        },
+        {
+          "en": "checking account",
+          "es": "cuenta corriente"
+        },
+        {
+          "en": "savings account",
+          "es": "cuenta de ahorros"
+        },
+        {
+          "en": "bankrupt",
+          "es": "en quiebra"
+        },
+        {
+          "en": "minimum wage",
+          "es": "salario mínimo"
+        },
+        {
+          "en": "installment",
+          "es": "cuota (pago)"
+        }
+      ]
+    },
+    {
+      "id": "estudio2-b1",
+      "title": "🎓 Educación y universidad · B1",
+      "level": "B1",
+      "pares": [
+        {
+          "en": "education",
+          "es": "educación"
+        },
+        {
+          "en": "professor",
+          "es": "profesor universitario"
+        },
+        {
+          "en": "lecture",
+          "es": "clase magistral"
+        },
+        {
+          "en": "tuition",
+          "es": "matrícula (costo)"
+        },
+        {
+          "en": "enroll",
+          "es": "matricularse"
+        },
+        {
+          "en": "bachelor's degree",
+          "es": "título de pregrado"
+        },
+        {
+          "en": "master's degree",
+          "es": "maestría"
+        },
+        {
+          "en": "doctorate",
+          "es": "doctorado"
+        },
+        {
+          "en": "thesis",
+          "es": "tesis"
+        },
+        {
+          "en": "essay",
+          "es": "ensayo (escrito)"
+        },
+        {
+          "en": "assignment",
+          "es": "trabajo escolar"
+        },
+        {
+          "en": "researcher",
+          "es": "investigador"
+        },
+        {
+          "en": "campus",
+          "es": "campus"
+        },
+        {
+          "en": "data",
+          "es": "datos"
+        },
+        {
+          "en": "dormitory",
+          "es": "residencia estudiantil"
+        },
+        {
+          "en": "freshman",
+          "es": "estudiante de primer año"
+        },
+        {
+          "en": "graduation",
+          "es": "ceremonia de grado"
+        },
+        {
+          "en": "diploma",
+          "es": "diploma"
+        },
+        {
+          "en": "certificate",
+          "es": "certificado"
+        },
+        {
+          "en": "course",
+          "es": "curso"
+        },
+        {
+          "en": "memorize",
+          "es": "memorizar"
+        },
+        {
+          "en": "cheat",
+          "es": "hacer trampa"
+        },
+        {
+          "en": "take notes",
+          "es": "tomar apuntes"
+        },
+        {
+          "en": "tutor",
+          "es": "tutor"
+        },
+        {
+          "en": "topic",
+          "es": "tema"
+        }
+      ]
+    },
+    {
+      "id": "ciencia-b1",
+      "title": "🔬 Ciencia y tecnología · B1",
+      "level": "B1",
+      "pares": [
+        {
+          "en": "experiment",
+          "es": "experimento"
+        },
+        {
+          "en": "laboratory",
+          "es": "laboratorio"
+        },
+        {
+          "en": "discovery",
+          "es": "descubrimiento"
+        },
+        {
+          "en": "invention",
+          "es": "invento"
+        },
+        {
+          "en": "invent",
+          "es": "inventar"
+        },
+        {
+          "en": "theory",
+          "es": "teoría"
+        },
+        {
+          "en": "universe",
+          "es": "universo"
+        },
+        {
+          "en": "technology",
+          "es": "tecnología"
+        },
+        {
+          "en": "device",
+          "es": "dispositivo"
+        },
+        {
+          "en": "robot",
+          "es": "robot"
+        },
+        {
+          "en": "chemistry",
+          "es": "química"
+        },
+        {
+          "en": "physics",
+          "es": "física"
+        },
+        {
+          "en": "biology",
+          "es": "biología"
+        },
+        {
+          "en": "microscope",
+          "es": "microscopio"
+        },
+        {
+          "en": "telescope",
+          "es": "telescopio"
+        },
+        {
+          "en": "planet",
+          "es": "planeta"
+        },
+        {
+          "en": "outer space",
+          "es": "espacio exterior"
+        },
+        {
+          "en": "gravity",
+          "es": "gravedad"
+        },
+        {
+          "en": "atom",
+          "es": "átomo"
+        },
+        {
+          "en": "cell",
+          "es": "célula"
+        },
+        {
+          "en": "gene",
+          "es": "gen"
+        },
+        {
+          "en": "measure",
+          "es": "medir"
+        },
+        {
+          "en": "satellite",
+          "es": "satélite"
+        },
+        {
+          "en": "engineering",
+          "es": "ingeniería"
+        },
+        {
+          "en": "oxygen",
+          "es": "oxígeno"
+        }
+      ]
+    },
+    {
+      "id": "salud3-b1",
+      "title": "🏥 Medicina y hospital · B1",
+      "level": "B1",
+      "pares": [
+        {
+          "en": "cancer",
+          "es": "cáncer"
+        },
+        {
+          "en": "diabetes",
+          "es": "diabetes"
+        },
+        {
+          "en": "heart attack",
+          "es": "infarto"
+        },
+        {
+          "en": "symptom",
+          "es": "síntoma"
+        },
+        {
+          "en": "surgery",
+          "es": "cirugía"
+        },
+        {
+          "en": "surgeon",
+          "es": "cirujano"
+        },
+        {
+          "en": "ambulance",
+          "es": "ambulancia"
+        },
+        {
+          "en": "emergency room",
+          "es": "sala de urgencias"
+        },
+        {
+          "en": "virus",
+          "es": "virus"
+        },
+        {
+          "en": "vaccine",
+          "es": "vacuna"
+        },
+        {
+          "en": "injection",
+          "es": "inyección"
+        },
+        {
+          "en": "infection",
+          "es": "infección"
+        },
+        {
+          "en": "diagnosis",
+          "es": "diagnóstico"
+        },
+        {
+          "en": "recover",
+          "es": "recuperarse"
+        },
+        {
+          "en": "painkiller",
+          "es": "analgésico"
+        },
+        {
+          "en": "antibiotic",
+          "es": "antibiótico"
+        },
+        {
+          "en": "x-ray",
+          "es": "radiografía"
+        },
+        {
+          "en": "blood pressure",
+          "es": "presión arterial"
+        },
+        {
+          "en": "specialist",
+          "es": "especialista"
+        },
+        {
+          "en": "cure",
+          "es": "cura"
+        },
+        {
+          "en": "health insurance",
+          "es": "seguro médico"
+        },
+        {
+          "en": "depression",
+          "es": "depresión"
+        },
+        {
+          "en": "wheelchair",
+          "es": "silla de ruedas"
+        },
+        {
+          "en": "asthma",
+          "es": "asma"
+        },
+        {
+          "en": "stitches",
+          "es": "puntos (de sutura)"
+        }
+      ]
+    },
+    {
+      "id": "cuerpo3-b1",
+      "title": "🧍 Acciones y estados del cuerpo · B1",
+      "level": "B1",
+      "pares": [
+        {
+          "en": "swallow",
+          "es": "tragar"
+        },
+        {
+          "en": "sweat",
+          "es": "sudar"
+        },
+        {
+          "en": "bleed",
+          "es": "sangrar"
+        },
+        {
+          "en": "shiver",
+          "es": "temblar (de frío)"
+        },
+        {
+          "en": "yawn",
+          "es": "bostezar"
+        },
+        {
+          "en": "blink",
+          "es": "parpadear"
+        },
+        {
+          "en": "chew",
+          "es": "masticar"
+        },
+        {
+          "en": "faint",
+          "es": "desmayarse"
+        },
+        {
+          "en": "bruise",
+          "es": "moretón"
+        },
+        {
+          "en": "scar",
+          "es": "cicatriz"
+        },
+        {
+          "en": "burn",
+          "es": "quemadura"
+        },
+        {
+          "en": "swollen",
+          "es": "hinchado"
+        },
+        {
+          "en": "itch",
+          "es": "picar (la piel)"
+        },
+        {
+          "en": "scratch",
+          "es": "rascarse"
+        },
+        {
+          "en": "snore",
+          "es": "roncar"
+        },
+        {
+          "en": "stretch",
+          "es": "estirarse"
+        },
+        {
+          "en": "exhausted",
+          "es": "agotado (muy cansado)"
+        },
+        {
+          "en": "pale",
+          "es": "pálido"
+        },
+        {
+          "en": "injured",
+          "es": "herido"
+        },
+        {
+          "en": "blind",
+          "es": "ciego"
+        },
+        {
+          "en": "deaf",
+          "es": "sordo"
+        },
+        {
+          "en": "pregnant",
+          "es": "embarazada"
+        },
+        {
+          "en": "hiccups",
+          "es": "hipo"
+        },
+        {
+          "en": "fall asleep",
+          "es": "quedarse dormido"
+        },
+        {
+          "en": "nod",
+          "es": "asentir con la cabeza"
+        }
+      ]
+    },
+    {
+      "id": "medioambiente-b1",
+      "title": "🌍 Medio ambiente y energía · B1",
+      "level": "B1",
+      "pares": [
+        {
+          "en": "climate change",
+          "es": "cambio climático"
+        },
+        {
+          "en": "global warming",
+          "es": "calentamiento global"
+        },
+        {
+          "en": "greenhouse effect",
+          "es": "efecto invernadero"
+        },
+        {
+          "en": "carbon dioxide",
+          "es": "dióxido de carbono"
+        },
+        {
+          "en": "energy",
+          "es": "energía"
+        },
+        {
+          "en": "solar panel",
+          "es": "panel solar"
+        },
+        {
+          "en": "natural resources",
+          "es": "recursos naturales"
+        },
+        {
+          "en": "fuel",
+          "es": "combustible"
+        },
+        {
+          "en": "coal",
+          "es": "carbón"
+        },
+        {
+          "en": "petroleum",
+          "es": "petróleo"
+        },
+        {
+          "en": "electricity",
+          "es": "electricidad"
+        },
+        {
+          "en": "waste",
+          "es": "desechos"
+        },
+        {
+          "en": "landfill",
+          "es": "relleno sanitario"
+        },
+        {
+          "en": "compost",
+          "es": "abono orgánico"
+        },
+        {
+          "en": "recycling bin",
+          "es": "caneca de reciclaje"
+        },
+        {
+          "en": "extinction",
+          "es": "extinción"
+        },
+        {
+          "en": "endangered species",
+          "es": "especie en peligro"
+        },
+        {
+          "en": "deforestation",
+          "es": "deforestación"
+        },
+        {
+          "en": "ozone layer",
+          "es": "capa de ozono"
+        },
+        {
+          "en": "emissions",
+          "es": "emisiones"
+        },
+        {
+          "en": "sustainable",
+          "es": "sostenible"
+        },
+        {
+          "en": "renewable",
+          "es": "renovable"
+        },
+        {
+          "en": "reuse",
+          "es": "reutilizar"
+        },
+        {
+          "en": "pollute",
+          "es": "contaminar"
+        },
+        {
+          "en": "toxic",
+          "es": "tóxico"
+        }
+      ]
+    },
+    {
+      "id": "naturaleza2-b1",
+      "title": "🌿 Paisajes y vida silvestre · B1",
+      "level": "B1",
+      "pares": [
+        {
+          "en": "valley",
+          "es": "valle"
+        },
+        {
+          "en": "cliff",
+          "es": "acantilado"
+        },
+        {
+          "en": "cave",
+          "es": "cueva"
+        },
+        {
+          "en": "jungle",
+          "es": "selva"
+        },
+        {
+          "en": "swamp",
+          "es": "pantano"
+        },
+        {
+          "en": "wildlife",
+          "es": "fauna silvestre"
+        },
+        {
+          "en": "ecosystem",
+          "es": "ecosistema"
+        },
+        {
+          "en": "root",
+          "es": "raíz"
+        },
+        {
+          "en": "seed",
+          "es": "semilla"
+        },
+        {
+          "en": "bush",
+          "es": "arbusto"
+        },
+        {
+          "en": "palm tree",
+          "es": "palmera"
+        },
+        {
+          "en": "wave",
+          "es": "ola"
+        },
+        {
+          "en": "tide",
+          "es": "marea"
+        },
+        {
+          "en": "tornado",
+          "es": "tornado"
+        },
+        {
+          "en": "landslide",
+          "es": "deslizamiento de tierra"
+        },
+        {
+          "en": "wildfire",
+          "es": "incendio forestal"
+        },
+        {
+          "en": "hail",
+          "es": "granizo"
+        },
+        {
+          "en": "eagle",
+          "es": "águila"
+        },
+        {
+          "en": "wolf",
+          "es": "lobo"
+        },
+        {
+          "en": "deer",
+          "es": "venado"
+        },
+        {
+          "en": "owl",
+          "es": "búho"
+        },
+        {
+          "en": "nest",
+          "es": "nido"
+        },
+        {
+          "en": "feather",
+          "es": "pluma (de ave)"
+        },
+        {
+          "en": "soil",
+          "es": "suelo (tierra)"
+        },
+        {
+          "en": "peak",
+          "es": "cima"
+        }
+      ]
+    },
+    {
+      "id": "ciudad4-b1",
+      "title": "🏙️ Vida urbana y vivienda · B1",
+      "level": "B1",
+      "pares": [
+        {
+          "en": "suburbs",
+          "es": "las afueras"
+        },
+        {
+          "en": "citizen",
+          "es": "ciudadano"
+        },
+        {
+          "en": "population",
+          "es": "población"
+        },
+        {
+          "en": "housing",
+          "es": "vivienda"
+        },
+        {
+          "en": "landlord",
+          "es": "arrendador"
+        },
+        {
+          "en": "tenant",
+          "es": "inquilino"
+        },
+        {
+          "en": "lease",
+          "es": "contrato de arriendo"
+        },
+        {
+          "en": "homeless",
+          "es": "sin hogar"
+        },
+        {
+          "en": "public transportation",
+          "es": "transporte público"
+        },
+        {
+          "en": "roundabout",
+          "es": "glorieta"
+        },
+        {
+          "en": "intersection",
+          "es": "cruce (de calles)"
+        },
+        {
+          "en": "tunnel",
+          "es": "túnel"
+        },
+        {
+          "en": "traffic jam",
+          "es": "trancón"
+        },
+        {
+          "en": "speed bump",
+          "es": "reductor de velocidad"
+        },
+        {
+          "en": "pedestrian",
+          "es": "peatón"
+        },
+        {
+          "en": "garbage truck",
+          "es": "camión de la basura"
+        },
+        {
+          "en": "street vendor",
+          "es": "vendedor ambulante"
+        },
+        {
+          "en": "drinking water",
+          "es": "agua potable"
+        },
+        {
+          "en": "power outage",
+          "es": "apagón"
+        },
+        {
+          "en": "mayor",
+          "es": "alcalde"
+        },
+        {
+          "en": "construction site",
+          "es": "obra en construcción"
+        },
+        {
+          "en": "bike lane",
+          "es": "ciclorruta"
+        },
+        {
+          "en": "commute",
+          "es": "desplazarse al trabajo"
+        },
+        {
+          "en": "nightlife",
+          "es": "vida nocturna"
+        },
+        {
+          "en": "real estate",
+          "es": "finca raíz"
+        }
+      ]
+    },
+    {
+      "id": "medios-b1",
+      "title": "📰 Medios · B1",
+      "level": "B1",
+      "pares": [
+        {
+          "en": "headline",
+          "es": "titular"
+        },
+        {
+          "en": "article",
+          "es": "artículo"
+        },
+        {
+          "en": "journalist",
+          "es": "periodista"
+        },
+        {
+          "en": "commercial",
+          "es": "comercial (de TV)"
+        },
+        {
+          "en": "audience",
+          "es": "audiencia (público)"
+        },
+        {
+          "en": "broadcast",
+          "es": "transmitir (por radio o TV)"
+        },
+        {
+          "en": "on the air",
+          "es": "al aire"
+        },
+        {
+          "en": "documentary",
+          "es": "documental"
+        },
+        {
+          "en": "episode",
+          "es": "episodio"
+        },
+        {
+          "en": "the media",
+          "es": "los medios de comunicación"
+        },
+        {
+          "en": "host",
+          "es": "presentador"
+        },
+        {
+          "en": "editor",
+          "es": "editor"
+        },
+        {
+          "en": "press",
+          "es": "la prensa"
+        },
+        {
+          "en": "post",
+          "es": "publicación (en redes)"
+        },
+        {
+          "en": "comment",
+          "es": "comentario"
+        },
+        {
+          "en": "follower",
+          "es": "seguidor"
+        },
+        {
+          "en": "subscribe",
+          "es": "suscribirse"
+        },
+        {
+          "en": "fake news",
+          "es": "noticias falsas"
+        },
+        {
+          "en": "source",
+          "es": "fuente (de información)"
+        },
+        {
+          "en": "celebrity",
+          "es": "celebridad"
+        },
+        {
+          "en": "radio station",
+          "es": "emisora"
+        },
+        {
+          "en": "TV show",
+          "es": "programa de televisión"
+        },
+        {
+          "en": "publish",
+          "es": "publicar"
+        },
+        {
+          "en": "search engine",
+          "es": "buscador"
+        },
+        {
+          "en": "online",
+          "es": "en línea"
+        }
+      ]
+    },
+    {
+      "id": "tecnologia2-b1",
+      "title": "💻 Tecnología · B1",
+      "level": "B1",
+      "pares": [
+        {
+          "en": "laptop",
+          "es": "portátil"
+        },
+        {
+          "en": "tablet",
+          "es": "tableta"
+        },
+        {
+          "en": "gadget",
+          "es": "aparato"
+        },
+        {
+          "en": "install",
+          "es": "instalar"
+        },
+        {
+          "en": "save a file",
+          "es": "guardar un archivo"
+        },
+        {
+          "en": "attach",
+          "es": "adjuntar"
+        },
+        {
+          "en": "browser",
+          "es": "navegador"
+        },
+        {
+          "en": "user",
+          "es": "usuario"
+        },
+        {
+          "en": "wireless",
+          "es": "inalámbrico"
+        },
+        {
+          "en": "touch screen",
+          "es": "pantalla táctil"
+        },
+        {
+          "en": "speaker",
+          "es": "parlante"
+        },
+        {
+          "en": "plug in",
+          "es": "enchufar"
+        },
+        {
+          "en": "power button",
+          "es": "botón de encendido"
+        },
+        {
+          "en": "copy and paste",
+          "es": "copiar y pegar"
+        },
+        {
+          "en": "restart",
+          "es": "reiniciar"
+        },
+        {
+          "en": "crash",
+          "es": "bloquearse (el computador)"
+        },
+        {
+          "en": "spam",
+          "es": "correo basura"
+        },
+        {
+          "en": "backup",
+          "es": "copia de seguridad"
+        },
+        {
+          "en": "hard drive",
+          "es": "disco duro"
+        },
+        {
+          "en": "scroll",
+          "es": "desplazarse (en la pantalla)"
+        },
+        {
+          "en": "type",
+          "es": "escribir en el teclado"
+        },
+        {
+          "en": "settings",
+          "es": "configuración"
+        },
+        {
+          "en": "charge",
+          "es": "cargar (la batería)"
+        },
+        {
+          "en": "video call",
+          "es": "videollamada"
+        },
+        {
+          "en": "software",
+          "es": "software"
+        }
+      ]
+    },
+    {
+      "id": "sociedad-b1",
+      "title": "🏛️ Sociedad · B1",
+      "level": "B1",
+      "pares": [
+        {
+          "en": "community",
+          "es": "comunidad"
+        },
+        {
+          "en": "society",
+          "es": "sociedad"
+        },
+        {
+          "en": "democracy",
+          "es": "democracia"
+        },
+        {
+          "en": "government",
+          "es": "gobierno"
+        },
+        {
+          "en": "volunteer",
+          "es": "voluntario"
+        },
+        {
+          "en": "charity",
+          "es": "organización benéfica"
+        },
+        {
+          "en": "diversity",
+          "es": "diversidad"
+        },
+        {
+          "en": "tradition",
+          "es": "tradición"
+        },
+        {
+          "en": "discrimination",
+          "es": "discriminación"
+        },
+        {
+          "en": "vote",
+          "es": "votar"
+        },
+        {
+          "en": "election",
+          "es": "elecciones"
+        },
+        {
+          "en": "orphan",
+          "es": "huérfano"
+        },
+        {
+          "en": "ceremony",
+          "es": "ceremonia"
+        },
+        {
+          "en": "donation",
+          "es": "donación"
+        },
+        {
+          "en": "equality",
+          "es": "igualdad"
+        },
+        {
+          "en": "respect",
+          "es": "respeto"
+        },
+        {
+          "en": "immigrant",
+          "es": "inmigrante"
+        },
+        {
+          "en": "religion",
+          "es": "religión"
+        },
+        {
+          "en": "generation",
+          "es": "generación"
+        },
+        {
+          "en": "social security",
+          "es": "seguridad social"
+        },
+        {
+          "en": "middle class",
+          "es": "clase media"
+        },
+        {
+          "en": "senior citizen",
+          "es": "adulto mayor"
+        },
+        {
+          "en": "minority",
+          "es": "minoría"
+        },
+        {
+          "en": "birth certificate",
+          "es": "registro civil de nacimiento"
+        },
+        {
+          "en": "member",
+          "es": "miembro"
+        }
+      ]
+    },
+    {
+      "id": "ley-b1",
+      "title": "⚖️ Ley y seguridad · B1",
+      "level": "B1",
+      "pares": [
+        {
+          "en": "law",
+          "es": "ley"
+        },
+        {
+          "en": "crime",
+          "es": "delito"
+        },
+        {
+          "en": "criminal",
+          "es": "delincuente"
+        },
+        {
+          "en": "thief",
+          "es": "ladrón"
+        },
+        {
+          "en": "robbery",
+          "es": "robo"
+        },
+        {
+          "en": "court",
+          "es": "tribunal"
+        },
+        {
+          "en": "judge",
+          "es": "juez"
+        },
+        {
+          "en": "jury",
+          "es": "jurado"
+        },
+        {
+          "en": "witness",
+          "es": "testigo"
+        },
+        {
+          "en": "victim",
+          "es": "víctima"
+        },
+        {
+          "en": "evidence",
+          "es": "pruebas (evidencia)"
+        },
+        {
+          "en": "guilty",
+          "es": "culpable"
+        },
+        {
+          "en": "innocent",
+          "es": "inocente"
+        },
+        {
+          "en": "arrest",
+          "es": "arrestar"
+        },
+        {
+          "en": "fine",
+          "es": "multa"
+        },
+        {
+          "en": "rights",
+          "es": "derechos"
+        },
+        {
+          "en": "illegal",
+          "es": "ilegal"
+        },
+        {
+          "en": "security guard",
+          "es": "guardia de seguridad"
+        },
+        {
+          "en": "lock",
+          "es": "cerradura"
+        },
+        {
+          "en": "alarm",
+          "es": "alarma"
+        },
+        {
+          "en": "report a crime",
+          "es": "denunciar un delito"
+        },
+        {
+          "en": "trial",
+          "es": "juicio"
+        },
+        {
+          "en": "punishment",
+          "es": "castigo"
+        },
+        {
+          "en": "safety",
+          "es": "seguridad (protección)"
+        },
+        {
+          "en": "accident",
+          "es": "accidente"
+        }
+      ]
+    },
+    {
+      "id": "cultura-b1",
+      "title": "🎭 Cultura · B1",
+      "level": "B1",
+      "pares": [
+        {
+          "en": "culture",
+          "es": "cultura"
+        },
+        {
+          "en": "art",
+          "es": "arte"
+        },
+        {
+          "en": "artist",
+          "es": "artista"
+        },
+        {
+          "en": "exhibition",
+          "es": "exposición"
+        },
+        {
+          "en": "gallery",
+          "es": "galería"
+        },
+        {
+          "en": "sculpture",
+          "es": "escultura"
+        },
+        {
+          "en": "portrait",
+          "es": "retrato"
+        },
+        {
+          "en": "poem",
+          "es": "poema"
+        },
+        {
+          "en": "poet",
+          "es": "poeta"
+        },
+        {
+          "en": "applause",
+          "es": "aplausos"
+        },
+        {
+          "en": "character",
+          "es": "personaje"
+        },
+        {
+          "en": "plot",
+          "es": "trama"
+        },
+        {
+          "en": "chapter",
+          "es": "capítulo"
+        },
+        {
+          "en": "literature",
+          "es": "literatura"
+        },
+        {
+          "en": "stage",
+          "es": "escenario"
+        },
+        {
+          "en": "performance",
+          "es": "función (espectáculo)"
+        },
+        {
+          "en": "play",
+          "es": "obra de teatro"
+        },
+        {
+          "en": "orchestra",
+          "es": "orquesta"
+        },
+        {
+          "en": "instrument",
+          "es": "instrumento musical"
+        },
+        {
+          "en": "lyrics",
+          "es": "letra (de una canción)"
+        },
+        {
+          "en": "album",
+          "es": "álbum"
+        },
+        {
+          "en": "rehearsal",
+          "es": "ensayo (de teatro)"
+        },
+        {
+          "en": "classical music",
+          "es": "música clásica"
+        },
+        {
+          "en": "masterpiece",
+          "es": "obra maestra"
+        },
+        {
+          "en": "fairy tale",
+          "es": "cuento de hadas"
+        }
+      ]
+    },
+    {
+      "id": "deporte2-b1",
+      "title": "🏋️ Deporte · B1",
+      "level": "B1",
+      "pares": [
+        {
+          "en": "swimming pool",
+          "es": "piscina"
+        },
+        {
+          "en": "tournament",
+          "es": "torneo"
+        },
+        {
+          "en": "league",
+          "es": "liga"
+        },
+        {
+          "en": "opponent",
+          "es": "rival"
+        },
+        {
+          "en": "athlete",
+          "es": "atleta"
+        },
+        {
+          "en": "equipment",
+          "es": "implementos deportivos"
+        },
+        {
+          "en": "helmet",
+          "es": "casco"
+        },
+        {
+          "en": "racket",
+          "es": "raqueta"
+        },
+        {
+          "en": "net",
+          "es": "red (de tenis)"
+        },
+        {
+          "en": "workout",
+          "es": "rutina de ejercicio"
+        },
+        {
+          "en": "warm up",
+          "es": "calentar (antes del ejercicio)"
+        },
+        {
+          "en": "goalkeeper",
+          "es": "arquero"
+        },
+        {
+          "en": "lift weights",
+          "es": "levantar pesas"
+        },
+        {
+          "en": "jog",
+          "es": "trotar"
+        },
+        {
+          "en": "fitness",
+          "es": "buena forma física"
+        },
+        {
+          "en": "boxing",
+          "es": "boxeo"
+        },
+        {
+          "en": "skiing",
+          "es": "esquí"
+        },
+        {
+          "en": "surfing",
+          "es": "surf"
+        },
+        {
+          "en": "beat",
+          "es": "vencer (a un rival)"
+        },
+        {
+          "en": "trophy",
+          "es": "trofeo"
+        },
+        {
+          "en": "winner",
+          "es": "ganador"
+        },
+        {
+          "en": "loser",
+          "es": "perdedor"
+        },
+        {
+          "en": "compete",
+          "es": "competir"
+        },
+        {
+          "en": "kick",
+          "es": "patear"
+        },
+        {
+          "en": "throw",
+          "es": "lanzar (una pelota)"
+        }
+      ]
+    },
+    {
+      "id": "viajes3-b1",
+      "title": "🧳 Viajes · B1",
+      "level": "B1",
+      "pares": [
+        {
+          "en": "tourism",
+          "es": "turismo"
+        },
+        {
+          "en": "guidebook",
+          "es": "guía de viaje"
+        },
+        {
+          "en": "itinerary",
+          "es": "itinerario"
+        },
+        {
+          "en": "resort",
+          "es": "complejo turístico"
+        },
+        {
+          "en": "bed and breakfast",
+          "es": "hostal con desayuno"
+        },
+        {
+          "en": "baggage claim",
+          "es": "reclamo de equipaje"
+        },
+        {
+          "en": "travel agency",
+          "es": "agencia de viajes"
+        },
+        {
+          "en": "destination",
+          "es": "destino"
+        },
+        {
+          "en": "journey",
+          "es": "trayecto"
+        },
+        {
+          "en": "lost luggage",
+          "es": "equipaje perdido"
+        },
+        {
+          "en": "miss a flight",
+          "es": "perder un vuelo"
+        },
+        {
+          "en": "cancellation",
+          "es": "cancelación"
+        },
+        {
+          "en": "delayed",
+          "es": "retrasado"
+        },
+        {
+          "en": "crowded",
+          "es": "lleno de gente"
+        },
+        {
+          "en": "rent a car",
+          "es": "alquilar un carro"
+        },
+        {
+          "en": "carry-on",
+          "es": "equipaje de mano"
+        },
+        {
+          "en": "time zone",
+          "es": "zona horaria"
+        },
+        {
+          "en": "backpacker",
+          "es": "mochilero"
+        },
+        {
+          "en": "campsite",
+          "es": "zona de camping"
+        },
+        {
+          "en": "guided tour",
+          "es": "visita guiada"
+        },
+        {
+          "en": "seasick",
+          "es": "mareado en barco"
+        },
+        {
+          "en": "ferry",
+          "es": "ferri"
+        },
+        {
+          "en": "harbor",
+          "es": "puerto"
+        },
+        {
+          "en": "pickpocket",
+          "es": "carterista"
+        },
+        {
+          "en": "lost and found",
+          "es": "objetos perdidos"
+        }
+      ]
+    },
+    {
+      "id": "casa3-b1",
+      "title": "🔧 Vivienda y reparaciones · B1",
+      "level": "B1",
+      "pares": [
+        {
+          "en": "tile",
+          "es": "baldosa"
+        },
+        {
+          "en": "smoke detector",
+          "es": "detector de humo"
+        },
+        {
+          "en": "light switch",
+          "es": "interruptor"
+        },
+        {
+          "en": "security deposit",
+          "es": "depósito de garantía"
+        },
+        {
+          "en": "utilities",
+          "es": "servicios públicos"
+        },
+        {
+          "en": "wallpaper",
+          "es": "papel de colgadura"
+        },
+        {
+          "en": "roommate",
+          "es": "compañero de apartamento"
+        },
+        {
+          "en": "leak",
+          "es": "gotera"
+        },
+        {
+          "en": "paint",
+          "es": "pintar"
+        },
+        {
+          "en": "hammer",
+          "es": "martillo"
+        },
+        {
+          "en": "screwdriver",
+          "es": "destornillador"
+        },
+        {
+          "en": "drill",
+          "es": "taladro"
+        },
+        {
+          "en": "ladder",
+          "es": "escalera de mano"
+        },
+        {
+          "en": "pipe",
+          "es": "tubería"
+        },
+        {
+          "en": "heating",
+          "es": "calefacción"
+        },
+        {
+          "en": "bookcase",
+          "es": "estantería"
+        },
+        {
+          "en": "mattress",
+          "es": "colchón"
+        },
+        {
+          "en": "cushion",
+          "es": "cojín"
+        },
+        {
+          "en": "sink",
+          "es": "lavamanos"
+        },
+        {
+          "en": "toilet",
+          "es": "inodoro"
+        },
+        {
+          "en": "balcony",
+          "es": "balcón"
+        },
+        {
+          "en": "roof",
+          "es": "tejado"
+        },
+        {
+          "en": "furnished",
+          "es": "amoblado"
+        },
+        {
+          "en": "electrician",
+          "es": "electricista"
+        },
+        {
+          "en": "doorbell",
+          "es": "timbre"
+        }
+      ]
+    },
+    {
+      "id": "compras2-b1",
+      "title": "🛍️ Compras · B1",
+      "level": "B1",
+      "pares": [
+        {
+          "en": "purchase",
+          "es": "compra"
+        },
+        {
+          "en": "return policy",
+          "es": "política de devolución"
+        },
+        {
+          "en": "store window",
+          "es": "vitrina"
+        },
+        {
+          "en": "damaged",
+          "es": "dañado"
+        },
+        {
+          "en": "out of stock",
+          "es": "sin existencias"
+        },
+        {
+          "en": "customer service",
+          "es": "servicio al cliente"
+        },
+        {
+          "en": "deal",
+          "es": "oferta"
+        },
+        {
+          "en": "coupon",
+          "es": "cupón"
+        },
+        {
+          "en": "vending machine",
+          "es": "máquina expendedora"
+        },
+        {
+          "en": "overpriced",
+          "es": "demasiado caro"
+        },
+        {
+          "en": "second-hand",
+          "es": "de segunda mano"
+        },
+        {
+          "en": "online shopping",
+          "es": "compras por internet"
+        },
+        {
+          "en": "department store",
+          "es": "almacén de cadena"
+        },
+        {
+          "en": "shipping",
+          "es": "envío"
+        },
+        {
+          "en": "payment",
+          "es": "pago"
+        },
+        {
+          "en": "haggle",
+          "es": "regatear"
+        },
+        {
+          "en": "wrap",
+          "es": "envolver"
+        },
+        {
+          "en": "gift card",
+          "es": "tarjeta de regalo"
+        },
+        {
+          "en": "catalog",
+          "es": "catálogo"
+        },
+        {
+          "en": "loyalty card",
+          "es": "tarjeta de puntos"
+        },
+        {
+          "en": "shop around",
+          "es": "comparar precios"
+        },
+        {
+          "en": "expiration date",
+          "es": "fecha de vencimiento"
+        },
+        {
+          "en": "label",
+          "es": "etiqueta"
+        },
+        {
+          "en": "counter",
+          "es": "mostrador"
+        },
+        {
+          "en": "cashier",
+          "es": "cajero"
+        }
+      ]
+    },
+    {
+      "id": "comida4-b1",
+      "title": "🍳 Cocina y nutrición · B1",
+      "level": "B1",
+      "pares": [
+        {
+          "en": "roast",
+          "es": "asar (al horno)"
+        },
+        {
+          "en": "steam",
+          "es": "cocinar al vapor"
+        },
+        {
+          "en": "stir",
+          "es": "revolver"
+        },
+        {
+          "en": "melt",
+          "es": "derretir"
+        },
+        {
+          "en": "spicy",
+          "es": "picante"
+        },
+        {
+          "en": "salty",
+          "es": "salado"
+        },
+        {
+          "en": "sour",
+          "es": "ácido (agrio)"
+        },
+        {
+          "en": "bitter",
+          "es": "amargo"
+        },
+        {
+          "en": "raw",
+          "es": "crudo"
+        },
+        {
+          "en": "fried",
+          "es": "frito"
+        },
+        {
+          "en": "protein",
+          "es": "proteína"
+        },
+        {
+          "en": "vitamin",
+          "es": "vitamina"
+        },
+        {
+          "en": "calories",
+          "es": "calorías"
+        },
+        {
+          "en": "fat",
+          "es": "grasa"
+        },
+        {
+          "en": "vegetarian",
+          "es": "vegetariano"
+        },
+        {
+          "en": "ingredient",
+          "es": "ingrediente"
+        },
+        {
+          "en": "portion",
+          "es": "porción"
+        },
+        {
+          "en": "appetizer",
+          "es": "entrada (plato)"
+        },
+        {
+          "en": "main course",
+          "es": "plato fuerte"
+        },
+        {
+          "en": "side dish",
+          "es": "acompañamiento"
+        },
+        {
+          "en": "to go",
+          "es": "para llevar"
+        },
+        {
+          "en": "nutrition",
+          "es": "nutrición"
+        },
+        {
+          "en": "seafood",
+          "es": "mariscos"
+        },
+        {
+          "en": "spice",
+          "es": "especia"
+        },
+        {
+          "en": "sauce",
+          "es": "salsa"
+        }
+      ]
+    },
+    {
+      "id": "verbos5-b1",
+      "title": "🏃 Verbos 5 · B1",
+      "level": "B1",
+      "pares": [
+        {
+          "en": "admit",
+          "es": "admitir"
+        },
+        {
+          "en": "convince",
+          "es": "convencer"
+        },
+        {
+          "en": "provide",
+          "es": "proporcionar"
+        },
+        {
+          "en": "require",
+          "es": "requerir"
+        },
+        {
+          "en": "encourage",
+          "es": "animar (a alguien)"
+        },
+        {
+          "en": "develop",
+          "es": "desarrollar"
+        },
+        {
+          "en": "doubt",
+          "es": "dudar"
+        },
+        {
+          "en": "warn",
+          "es": "advertir"
+        },
+        {
+          "en": "claim",
+          "es": "afirmar"
+        },
+        {
+          "en": "prove",
+          "es": "demostrar"
+        },
+        {
+          "en": "announce",
+          "es": "anunciar"
+        },
+        {
+          "en": "identify",
+          "es": "identificar"
+        },
+        {
+          "en": "contain",
+          "es": "contener"
+        },
+        {
+          "en": "rely on",
+          "es": "confiar en"
+        },
+        {
+          "en": "succeed",
+          "es": "tener éxito"
+        },
+        {
+          "en": "remove",
+          "es": "quitar"
+        },
+        {
+          "en": "argue",
+          "es": "discutir"
+        },
+        {
+          "en": "arrange",
+          "es": "organizar"
+        },
+        {
+          "en": "attend",
+          "es": "asistir a"
+        },
+        {
+          "en": "blame",
+          "es": "culpar"
+        },
+        {
+          "en": "consider",
+          "es": "considerar"
+        },
+        {
+          "en": "deliver",
+          "es": "entregar"
+        },
+        {
+          "en": "deserve",
+          "es": "merecer"
+        },
+        {
+          "en": "destroy",
+          "es": "destruir"
+        },
+        {
+          "en": "bother",
+          "es": "molestar"
+        }
+      ]
+    },
+    {
+      "id": "verbos6-b1",
+      "title": "🏃 Verbos 6 · B1",
+      "level": "B1",
+      "pares": [
+        {
+          "en": "recognize",
+          "es": "reconocer"
+        },
+        {
+          "en": "persuade",
+          "es": "persuadir"
+        },
+        {
+          "en": "suffer",
+          "es": "sufrir"
+        },
+        {
+          "en": "support",
+          "es": "apoyar"
+        },
+        {
+          "en": "expand",
+          "es": "ampliar"
+        },
+        {
+          "en": "wonder",
+          "es": "preguntarse"
+        },
+        {
+          "en": "threaten",
+          "es": "amenazar"
+        },
+        {
+          "en": "insist",
+          "es": "insistir"
+        },
+        {
+          "en": "confirm",
+          "es": "confirmar"
+        },
+        {
+          "en": "calculate",
+          "es": "calcular"
+        },
+        {
+          "en": "include",
+          "es": "incluir"
+        },
+        {
+          "en": "depend",
+          "es": "depender de"
+        },
+        {
+          "en": "manage",
+          "es": "administrar"
+        },
+        {
+          "en": "divide",
+          "es": "dividir"
+        },
+        {
+          "en": "deny",
+          "es": "negar"
+        },
+        {
+          "en": "express",
+          "es": "expresar"
+        },
+        {
+          "en": "ignore",
+          "es": "ignorar"
+        },
+        {
+          "en": "influence",
+          "es": "influir en"
+        },
+        {
+          "en": "prevent",
+          "es": "impedir"
+        },
+        {
+          "en": "recommend",
+          "es": "recomendar"
+        },
+        {
+          "en": "replace",
+          "es": "reemplazar"
+        },
+        {
+          "en": "forgive",
+          "es": "perdonar"
+        },
+        {
+          "en": "punish",
+          "es": "castigar"
+        },
+        {
+          "en": "rush",
+          "es": "apurarse"
+        },
+        {
+          "en": "adapt",
+          "es": "adaptarse"
+        }
+      ]
+    },
+    {
+      "id": "verbos7-b1",
+      "title": "🏃 Verbos 7 · B1",
+      "level": "B1",
+      "pares": [
+        {
+          "en": "involve",
+          "es": "implicar"
+        },
+        {
+          "en": "predict",
+          "es": "predecir"
+        },
+        {
+          "en": "reveal",
+          "es": "revelar"
+        },
+        {
+          "en": "satisfy",
+          "es": "satisfacer"
+        },
+        {
+          "en": "survive",
+          "es": "sobrevivir"
+        },
+        {
+          "en": "establish",
+          "es": "establecer"
+        },
+        {
+          "en": "pretend",
+          "es": "fingir"
+        },
+        {
+          "en": "rescue",
+          "es": "rescatar"
+        },
+        {
+          "en": "remind",
+          "es": "recordarle (algo a alguien)"
+        },
+        {
+          "en": "intend",
+          "es": "tener la intención de"
+        },
+        {
+          "en": "obey",
+          "es": "obedecer"
+        },
+        {
+          "en": "attract",
+          "es": "atraer"
+        },
+        {
+          "en": "investigate",
+          "es": "investigar"
+        },
+        {
+          "en": "react",
+          "es": "reaccionar"
+        },
+        {
+          "en": "behave",
+          "es": "comportarse"
+        },
+        {
+          "en": "exist",
+          "es": "existir"
+        },
+        {
+          "en": "regret",
+          "es": "arrepentirse de"
+        },
+        {
+          "en": "admire",
+          "es": "admirar"
+        },
+        {
+          "en": "hang",
+          "es": "colgar (un cuadro)"
+        },
+        {
+          "en": "shake",
+          "es": "sacudir"
+        },
+        {
+          "en": "escape",
+          "es": "escapar"
+        },
+        {
+          "en": "connect",
+          "es": "conectar"
+        },
+        {
+          "en": "hesitate",
+          "es": "titubear"
+        },
+        {
+          "en": "lack",
+          "es": "carecer de"
+        },
+        {
+          "en": "whisper",
+          "es": "susurrar"
+        }
+      ]
+    },
+    {
+      "id": "phrasal-b1",
+      "title": "🔗 Phrasal verbs · B1",
+      "level": "B1",
+      "pares": [
+        {
+          "en": "run out of",
+          "es": "quedarse sin"
+        },
+        {
+          "en": "come up with",
+          "es": "idear"
+        },
+        {
+          "en": "put off",
+          "es": "aplazar"
+        },
+        {
+          "en": "deal with",
+          "es": "encargarse de"
+        },
+        {
+          "en": "figure out",
+          "es": "descifrar"
+        },
+        {
+          "en": "set up",
+          "es": "montar (un negocio)"
+        },
+        {
+          "en": "carry on",
+          "es": "continuar"
+        },
+        {
+          "en": "give up",
+          "es": "rendirse"
+        },
+        {
+          "en": "get along with",
+          "es": "llevarse bien con"
+        },
+        {
+          "en": "break up",
+          "es": "terminar (una relación)"
+        },
+        {
+          "en": "bring up",
+          "es": "sacar (un tema)"
+        },
+        {
+          "en": "turn down",
+          "es": "bajar (el volumen)"
+        },
+        {
+          "en": "find out",
+          "es": "averiguar"
+        },
+        {
+          "en": "show up",
+          "es": "aparecerse"
+        },
+        {
+          "en": "catch up",
+          "es": "ponerse al día"
+        },
+        {
+          "en": "let down",
+          "es": "decepcionar"
+        },
+        {
+          "en": "look forward to",
+          "es": "tener muchas ganas de"
+        },
+        {
+          "en": "give away",
+          "es": "regalar"
+        },
+        {
+          "en": "take over",
+          "es": "tomar el control"
+        },
+        {
+          "en": "work out",
+          "es": "hacer ejercicio"
+        },
+        {
+          "en": "put up with",
+          "es": "aguantar"
+        },
+        {
+          "en": "get over",
+          "es": "superar"
+        },
+        {
+          "en": "sign up",
+          "es": "inscribirse"
+        },
+        {
+          "en": "point out",
+          "es": "señalar"
+        },
+        {
+          "en": "run into",
+          "es": "toparse con"
+        }
+      ]
+    },
+    {
+      "id": "phrasal2-b1",
+      "title": "🔗 Phrasal verbs 2 · B1",
+      "level": "B1",
+      "pares": [
+        {
+          "en": "look after",
+          "es": "cuidar a"
+        },
+        {
+          "en": "calm down",
+          "es": "calmarse"
+        },
+        {
+          "en": "grow up",
+          "es": "criarse"
+        },
+        {
+          "en": "look up",
+          "es": "buscar (en el diccionario)"
+        },
+        {
+          "en": "write down",
+          "es": "anotar"
+        },
+        {
+          "en": "get rid of",
+          "es": "deshacerse de"
+        },
+        {
+          "en": "turn around",
+          "es": "darse la vuelta"
+        },
+        {
+          "en": "hang up",
+          "es": "colgar (el teléfono)"
+        },
+        {
+          "en": "blow up",
+          "es": "explotar"
+        },
+        {
+          "en": "break down",
+          "es": "dañarse (una máquina)"
+        },
+        {
+          "en": "give in",
+          "es": "ceder"
+        },
+        {
+          "en": "hold on",
+          "es": "esperar un momento"
+        },
+        {
+          "en": "hang out",
+          "es": "pasar el rato"
+        },
+        {
+          "en": "make up",
+          "es": "inventarse (una historia)"
+        },
+        {
+          "en": "pass away",
+          "es": "fallecer"
+        },
+        {
+          "en": "put out",
+          "es": "apagar (un fuego)"
+        },
+        {
+          "en": "take up",
+          "es": "empezar (un pasatiempo)"
+        },
+        {
+          "en": "turn into",
+          "es": "convertirse en"
+        },
+        {
+          "en": "cut down on",
+          "es": "reducir el consumo de"
+        },
+        {
+          "en": "come across",
+          "es": "dar con (algo)"
+        },
+        {
+          "en": "drop out",
+          "es": "abandonar los estudios"
+        },
+        {
+          "en": "fall apart",
+          "es": "desmoronarse"
+        },
+        {
+          "en": "run away",
+          "es": "huir"
+        },
+        {
+          "en": "show off",
+          "es": "presumir"
+        },
+        {
+          "en": "stand out",
+          "es": "destacarse"
+        }
+      ]
+    },
+    {
+      "id": "phrasal3-b1",
+      "title": "🔗 Phrasal verbs 3 · B1",
+      "level": "B1",
+      "pares": [
+        {
+          "en": "stay up",
+          "es": "trasnochar"
+        },
+        {
+          "en": "think over",
+          "es": "pensarlo bien"
+        },
+        {
+          "en": "go over",
+          "es": "repasar"
+        },
+        {
+          "en": "put away",
+          "es": "guardar (en su lugar)"
+        },
+        {
+          "en": "put together",
+          "es": "armar"
+        },
+        {
+          "en": "fall behind",
+          "es": "atrasarse"
+        },
+        {
+          "en": "back up",
+          "es": "respaldar"
+        },
+        {
+          "en": "count on",
+          "es": "contar con"
+        },
+        {
+          "en": "cheer up",
+          "es": "animarse"
+        },
+        {
+          "en": "sort out",
+          "es": "solucionar"
+        },
+        {
+          "en": "hand in",
+          "es": "entregar (una tarea)"
+        },
+        {
+          "en": "come over",
+          "es": "venir de visita"
+        },
+        {
+          "en": "go through",
+          "es": "atravesar (una situación difícil)"
+        },
+        {
+          "en": "end up",
+          "es": "terminar (en)"
+        },
+        {
+          "en": "keep up with",
+          "es": "seguir el ritmo de"
+        },
+        {
+          "en": "look down on",
+          "es": "menospreciar"
+        },
+        {
+          "en": "carry out",
+          "es": "llevar a cabo"
+        },
+        {
+          "en": "come down with",
+          "es": "enfermarse de"
+        },
+        {
+          "en": "get together",
+          "es": "reunirse"
+        },
+        {
+          "en": "settle down",
+          "es": "sentar cabeza"
+        },
+        {
+          "en": "take back",
+          "es": "retractarse"
+        },
+        {
+          "en": "go off",
+          "es": "sonar (una alarma)"
+        },
+        {
+          "en": "take off",
+          "es": "despegar (un avión)"
+        },
+        {
+          "en": "get back",
+          "es": "regresar"
+        },
+        {
+          "en": "look out",
+          "es": "tener cuidado"
+        }
+      ]
+    },
+    {
+      "id": "colocaciones-b1",
+      "title": "🧩 Colocaciones · B1",
+      "level": "B1",
+      "pares": [
+        {
+          "en": "make progress",
+          "es": "progresar"
+        },
+        {
+          "en": "take a risk",
+          "es": "arriesgarse"
+        },
+        {
+          "en": "pay attention",
+          "es": "prestar atención"
+        },
+        {
+          "en": "keep in touch",
+          "es": "mantenerse en contacto"
+        },
+        {
+          "en": "save time",
+          "es": "ahorrar tiempo"
+        },
+        {
+          "en": "raise money",
+          "es": "recaudar dinero"
+        },
+        {
+          "en": "catch a cold",
+          "es": "resfriarse"
+        },
+        {
+          "en": "break a promise",
+          "es": "romper una promesa"
+        },
+        {
+          "en": "keep a secret",
+          "es": "guardar un secreto"
+        },
+        {
+          "en": "make an effort",
+          "es": "esforzarse"
+        },
+        {
+          "en": "make sense",
+          "es": "tener sentido"
+        },
+        {
+          "en": "take part",
+          "es": "participar"
+        },
+        {
+          "en": "take place",
+          "es": "tener lugar"
+        },
+        {
+          "en": "take advantage",
+          "es": "aprovechar"
+        },
+        {
+          "en": "give advice",
+          "es": "dar consejos"
+        },
+        {
+          "en": "waste time",
+          "es": "perder el tiempo"
+        },
+        {
+          "en": "tell the truth",
+          "es": "decir la verdad"
+        },
+        {
+          "en": "make a complaint",
+          "es": "poner una queja"
+        },
+        {
+          "en": "make an appointment",
+          "es": "pedir una cita"
+        },
+        {
+          "en": "change your mind",
+          "es": "cambiar de opinión"
+        },
+        {
+          "en": "lose your temper",
+          "es": "perder los estribos"
+        },
+        {
+          "en": "make a living",
+          "es": "ganarse la vida"
+        },
+        {
+          "en": "reach an agreement",
+          "es": "llegar a un acuerdo"
+        },
+        {
+          "en": "fall in love",
+          "es": "enamorarse"
+        },
+        {
+          "en": "take responsibility",
+          "es": "asumir la responsabilidad"
+        }
+      ]
+    },
+    {
+      "id": "colocaciones2-b1",
+      "title": "🧩 Colocaciones 2 · B1",
+      "level": "B1",
+      "pares": [
+        {
+          "en": "make a suggestion",
+          "es": "hacer una sugerencia"
+        },
+        {
+          "en": "make an excuse",
+          "es": "poner una excusa"
+        },
+        {
+          "en": "make a speech",
+          "es": "dar un discurso"
+        },
+        {
+          "en": "make a wish",
+          "es": "pedir un deseo"
+        },
+        {
+          "en": "make fun of",
+          "es": "burlarse de"
+        },
+        {
+          "en": "do damage",
+          "es": "causar daños"
+        },
+        {
+          "en": "do business",
+          "es": "hacer negocios"
+        },
+        {
+          "en": "take turns",
+          "es": "turnarse"
+        },
+        {
+          "en": "take action",
+          "es": "tomar medidas"
+        },
+        {
+          "en": "make a difference",
+          "es": "marcar la diferencia"
+        },
+        {
+          "en": "have trouble",
+          "es": "tener problemas"
+        },
+        {
+          "en": "keep an eye on",
+          "es": "vigilar"
+        },
+        {
+          "en": "keep quiet",
+          "es": "quedarse callado"
+        },
+        {
+          "en": "pay a visit",
+          "es": "hacer una visita"
+        },
+        {
+          "en": "save a life",
+          "es": "salvar una vida"
+        },
+        {
+          "en": "break the ice",
+          "es": "romper el hielo"
+        },
+        {
+          "en": "catch fire",
+          "es": "prenderse fuego"
+        },
+        {
+          "en": "tell a story",
+          "es": "contar una historia"
+        },
+        {
+          "en": "lose control",
+          "es": "perder el control"
+        },
+        {
+          "en": "set a goal",
+          "es": "fijar una meta"
+        },
+        {
+          "en": "come true",
+          "es": "hacerse realidad"
+        },
+        {
+          "en": "get the chance",
+          "es": "tener la oportunidad"
+        },
+        {
+          "en": "give permission",
+          "es": "dar permiso"
+        },
+        {
+          "en": "keep in mind",
+          "es": "tener presente"
+        },
+        {
+          "en": "make a list",
+          "es": "hacer una lista"
+        }
+      ]
+    },
+    {
+      "id": "colocaciones3-b1",
+      "title": "🧩 Colocaciones 3 · B1",
+      "level": "B1",
+      "pares": [
+        {
+          "en": "make money",
+          "es": "ganar dinero"
+        },
+        {
+          "en": "make room",
+          "es": "hacer espacio"
+        },
+        {
+          "en": "make up your mind",
+          "es": "decidirse"
+        },
+        {
+          "en": "do research",
+          "es": "hacer una investigación"
+        },
+        {
+          "en": "take care",
+          "es": "cuidarse"
+        },
+        {
+          "en": "take into account",
+          "es": "tener en cuenta"
+        },
+        {
+          "en": "take it easy",
+          "es": "tomárselo con calma"
+        },
+        {
+          "en": "have an argument",
+          "es": "tener una discusión"
+        },
+        {
+          "en": "have an accident",
+          "es": "tener un accidente"
+        },
+        {
+          "en": "keep your word",
+          "es": "cumplir tu palabra"
+        },
+        {
+          "en": "keep a diary",
+          "es": "llevar un diario"
+        },
+        {
+          "en": "pay a compliment",
+          "es": "hacer un cumplido"
+        },
+        {
+          "en": "spend time",
+          "es": "pasar tiempo"
+        },
+        {
+          "en": "break the news",
+          "es": "dar la noticia"
+        },
+        {
+          "en": "catch your breath",
+          "es": "recuperar el aliento"
+        },
+        {
+          "en": "tell a joke",
+          "es": "contar un chiste"
+        },
+        {
+          "en": "lose hope",
+          "es": "perder la esperanza"
+        },
+        {
+          "en": "set an example",
+          "es": "dar el ejemplo"
+        },
+        {
+          "en": "come to an end",
+          "es": "llegar a su fin"
+        },
+        {
+          "en": "go wrong",
+          "es": "salir mal"
+        },
+        {
+          "en": "get in trouble",
+          "es": "meterse en problemas"
+        },
+        {
+          "en": "give someone a hand",
+          "es": "echar una mano"
+        },
+        {
+          "en": "face a problem",
+          "es": "enfrentar un problema"
+        },
+        {
+          "en": "play a role",
+          "es": "desempeñar un papel"
+        },
+        {
+          "en": "make an impression",
+          "es": "causar una impresión"
+        }
+      ]
+    },
+    {
+      "id": "colocaciones4-b1",
+      "title": "🧩 Colocaciones 4 · B1",
+      "level": "B1",
+      "pares": [
+        {
+          "en": "take a chance",
+          "es": "probar suerte"
+        },
+        {
+          "en": "take charge",
+          "es": "hacerse cargo"
+        },
+        {
+          "en": "have a baby",
+          "es": "tener un bebé"
+        },
+        {
+          "en": "keep calm",
+          "es": "mantener la calma"
+        },
+        {
+          "en": "stay in shape",
+          "es": "mantenerse en forma"
+        },
+        {
+          "en": "pay the price",
+          "es": "pagar las consecuencias"
+        },
+        {
+          "en": "save space",
+          "es": "ahorrar espacio"
+        },
+        {
+          "en": "break a habit",
+          "es": "dejar un hábito"
+        },
+        {
+          "en": "catch someone's attention",
+          "es": "llamar la atención"
+        },
+        {
+          "en": "tell a lie",
+          "es": "decir una mentira"
+        },
+        {
+          "en": "tell the difference",
+          "es": "notar la diferencia"
+        },
+        {
+          "en": "lose touch",
+          "es": "perder el contacto"
+        },
+        {
+          "en": "lose interest",
+          "es": "perder el interés"
+        },
+        {
+          "en": "get to know",
+          "es": "llegar a conocer"
+        },
+        {
+          "en": "get the joke",
+          "es": "entender el chiste"
+        },
+        {
+          "en": "reach a goal",
+          "es": "alcanzar una meta"
+        },
+        {
+          "en": "follow advice",
+          "es": "seguir un consejo"
+        },
+        {
+          "en": "ask a favor",
+          "es": "pedir un favor"
+        },
+        {
+          "en": "come to a conclusion",
+          "es": "llegar a una conclusión"
+        },
+        {
+          "en": "make a promise",
+          "es": "hacer una promesa"
+        },
+        {
+          "en": "make a mess",
+          "es": "hacer un desorden"
+        },
+        {
+          "en": "do well",
+          "es": "irle bien (a alguien)"
+        },
+        {
+          "en": "play a joke",
+          "es": "hacer una broma"
+        },
+        {
+          "en": "take a deep breath",
+          "es": "respirar hondo"
+        },
+        {
+          "en": "change the subject",
+          "es": "cambiar de tema"
+        }
+      ]
+    },
+    {
+      "id": "adjetivos4-b1",
+      "title": "🧩 Adjetivos 4 · B1",
+      "level": "B1",
+      "pares": [
+        {
+          "en": "accurate",
+          "es": "preciso"
+        },
+        {
+          "en": "anxious",
+          "es": "ansioso"
+        },
+        {
+          "en": "available",
+          "es": "disponible"
+        },
+        {
+          "en": "aware",
+          "es": "consciente"
+        },
+        {
+          "en": "basic",
+          "es": "básico"
+        },
+        {
+          "en": "efficient",
+          "es": "eficiente"
+        },
+        {
+          "en": "fair",
+          "es": "justo"
+        },
+        {
+          "en": "familiar",
+          "es": "conocido"
+        },
+        {
+          "en": "flexible",
+          "es": "flexible"
+        },
+        {
+          "en": "gradual",
+          "es": "gradual"
+        },
+        {
+          "en": "ideal",
+          "es": "ideal"
+        },
+        {
+          "en": "independent",
+          "es": "independiente"
+        },
+        {
+          "en": "logical",
+          "es": "lógico"
+        },
+        {
+          "en": "loyal",
+          "es": "leal"
+        },
+        {
+          "en": "obvious",
+          "es": "obvio"
+        },
+        {
+          "en": "official",
+          "es": "oficial"
+        },
+        {
+          "en": "original",
+          "es": "original"
+        },
+        {
+          "en": "permanent",
+          "es": "permanente"
+        },
+        {
+          "en": "physical",
+          "es": "físico"
+        },
+        {
+          "en": "positive",
+          "es": "positivo"
+        },
+        {
+          "en": "practical",
+          "es": "práctico"
+        },
+        {
+          "en": "previous",
+          "es": "anterior"
+        },
+        {
+          "en": "private",
+          "es": "privado"
+        },
+        {
+          "en": "rare",
+          "es": "raro (poco común)"
+        },
+        {
+          "en": "reasonable",
+          "es": "razonable"
+        }
+      ]
+    },
+    {
+      "id": "adjetivos5-b1",
+      "title": "🧩 Adjetivos 5 · B1",
+      "level": "B1",
+      "pares": [
+        {
+          "en": "recent",
+          "es": "reciente"
+        },
+        {
+          "en": "visible",
+          "es": "visible"
+        },
+        {
+          "en": "relaxed",
+          "es": "relajado"
+        },
+        {
+          "en": "rough",
+          "es": "áspero"
+        },
+        {
+          "en": "silly",
+          "es": "tonto"
+        },
+        {
+          "en": "similar",
+          "es": "parecido"
+        },
+        {
+          "en": "smooth",
+          "es": "liso (superficie)"
+        },
+        {
+          "en": "specific",
+          "es": "específico"
+        },
+        {
+          "en": "suitable",
+          "es": "adecuado"
+        },
+        {
+          "en": "temporary",
+          "es": "temporal"
+        },
+        {
+          "en": "typical",
+          "es": "típico"
+        },
+        {
+          "en": "unusual",
+          "es": "inusual"
+        },
+        {
+          "en": "valuable",
+          "es": "valioso"
+        },
+        {
+          "en": "various",
+          "es": "diversos"
+        },
+        {
+          "en": "equal",
+          "es": "igual"
+        },
+        {
+          "en": "false",
+          "es": "falso"
+        },
+        {
+          "en": "formal",
+          "es": "formal"
+        },
+        {
+          "en": "urgent",
+          "es": "urgente"
+        },
+        {
+          "en": "likely",
+          "es": "probable"
+        },
+        {
+          "en": "negative",
+          "es": "negativo"
+        },
+        {
+          "en": "powerful",
+          "es": "poderoso"
+        },
+        {
+          "en": "pure",
+          "es": "puro"
+        },
+        {
+          "en": "sensible",
+          "es": "sensato"
+        },
+        {
+          "en": "traditional",
+          "es": "tradicional"
+        },
+        {
+          "en": "national",
+          "es": "nacional"
+        }
+      ]
+    },
+    {
+      "id": "extremos-b1",
+      "title": "😱 Adjetivos extremos · B1",
+      "level": "B1",
+      "pares": [
+        {
+          "en": "unforgettable",
+          "es": "inolvidable"
+        },
+        {
+          "en": "furious",
+          "es": "furioso"
+        },
+        {
+          "en": "fascinating",
+          "es": "fascinante"
+        },
+        {
+          "en": "delighted",
+          "es": "encantado"
+        },
+        {
+          "en": "terrified",
+          "es": "aterrorizado"
+        },
+        {
+          "en": "enormous",
+          "es": "enorme"
+        },
+        {
+          "en": "tiny",
+          "es": "diminuto"
+        },
+        {
+          "en": "unbearable",
+          "es": "insoportable"
+        },
+        {
+          "en": "boiling",
+          "es": "hirviendo"
+        },
+        {
+          "en": "filthy",
+          "es": "mugroso"
+        },
+        {
+          "en": "starving",
+          "es": "muerto de hambre"
+        },
+        {
+          "en": "wonderful",
+          "es": "maravilloso"
+        },
+        {
+          "en": "spotless",
+          "es": "impecable"
+        },
+        {
+          "en": "hilarious",
+          "es": "divertidísimo"
+        },
+        {
+          "en": "astonished",
+          "es": "asombrado"
+        },
+        {
+          "en": "gorgeous",
+          "es": "precioso"
+        },
+        {
+          "en": "awful",
+          "es": "pésimo"
+        },
+        {
+          "en": "devastated",
+          "es": "destrozado"
+        },
+        {
+          "en": "vital",
+          "es": "vital"
+        },
+        {
+          "en": "ancient",
+          "es": "antiquísimo"
+        },
+        {
+          "en": "packed",
+          "es": "repleto"
+        },
+        {
+          "en": "soaked",
+          "es": "empapado"
+        },
+        {
+          "en": "ridiculous",
+          "es": "ridículo"
+        },
+        {
+          "en": "deafening",
+          "es": "ensordecedor"
+        },
+        {
+          "en": "priceless",
+          "es": "invaluable"
+        }
+      ]
+    },
+    {
+      "id": "sentimientos2-b1",
+      "title": "💭 Sentimientos 2 · B1",
+      "level": "B1",
+      "pares": [
+        {
+          "en": "anger",
+          "es": "ira"
+        },
+        {
+          "en": "fear",
+          "es": "miedo"
+        },
+        {
+          "en": "happiness",
+          "es": "felicidad"
+        },
+        {
+          "en": "sadness",
+          "es": "tristeza"
+        },
+        {
+          "en": "pride",
+          "es": "orgullo"
+        },
+        {
+          "en": "shame",
+          "es": "vergüenza"
+        },
+        {
+          "en": "guilt",
+          "es": "culpa"
+        },
+        {
+          "en": "disappointment",
+          "es": "decepción"
+        },
+        {
+          "en": "envy",
+          "es": "envidia"
+        },
+        {
+          "en": "stress",
+          "es": "estrés"
+        },
+        {
+          "en": "anxiety",
+          "es": "ansiedad"
+        },
+        {
+          "en": "loneliness",
+          "es": "soledad"
+        },
+        {
+          "en": "confidence",
+          "es": "confianza en sí mismo"
+        },
+        {
+          "en": "satisfaction",
+          "es": "satisfacción"
+        },
+        {
+          "en": "frustration",
+          "es": "frustración"
+        },
+        {
+          "en": "excitement",
+          "es": "entusiasmo"
+        },
+        {
+          "en": "relief",
+          "es": "alivio"
+        },
+        {
+          "en": "feeling",
+          "es": "sentimiento"
+        },
+        {
+          "en": "mood",
+          "es": "estado de ánimo"
+        },
+        {
+          "en": "curiosity",
+          "es": "curiosidad"
+        },
+        {
+          "en": "sympathy",
+          "es": "compasión"
+        },
+        {
+          "en": "upset",
+          "es": "disgustado"
+        },
+        {
+          "en": "homesick",
+          "es": "con nostalgia de casa"
+        },
+        {
+          "en": "hatred",
+          "es": "odio"
+        },
+        {
+          "en": "hopeful",
+          "es": "esperanzado"
+        }
+      ]
+    },
+    {
+      "id": "personalidad2-b1",
+      "title": "🧑 Personalidad 2 · B1",
+      "level": "B1",
+      "pares": [
+        {
+          "en": "ambitious",
+          "es": "ambicioso"
+        },
+        {
+          "en": "sensitive",
+          "es": "sensible"
+        },
+        {
+          "en": "arrogant",
+          "es": "arrogante"
+        },
+        {
+          "en": "modest",
+          "es": "modesto"
+        },
+        {
+          "en": "stingy",
+          "es": "tacaño"
+        },
+        {
+          "en": "cautious",
+          "es": "cauteloso"
+        },
+        {
+          "en": "bossy",
+          "es": "mandón"
+        },
+        {
+          "en": "easygoing",
+          "es": "despreocupado"
+        },
+        {
+          "en": "mature",
+          "es": "maduro"
+        },
+        {
+          "en": "moody",
+          "es": "temperamental"
+        },
+        {
+          "en": "optimistic",
+          "es": "optimista"
+        },
+        {
+          "en": "pessimistic",
+          "es": "pesimista"
+        },
+        {
+          "en": "reserved",
+          "es": "reservado"
+        },
+        {
+          "en": "outgoing",
+          "es": "extrovertido"
+        },
+        {
+          "en": "punctual",
+          "es": "puntual"
+        },
+        {
+          "en": "organized",
+          "es": "organizado"
+        },
+        {
+          "en": "messy",
+          "es": "desordenado"
+        },
+        {
+          "en": "determined",
+          "es": "decidido"
+        },
+        {
+          "en": "sincere",
+          "es": "sincero"
+        },
+        {
+          "en": "tolerant",
+          "es": "tolerante"
+        },
+        {
+          "en": "cruel",
+          "es": "cruel"
+        },
+        {
+          "en": "charming",
+          "es": "encantador"
+        },
+        {
+          "en": "wise",
+          "es": "sabio"
+        },
+        {
+          "en": "thoughtful",
+          "es": "considerado"
+        },
+        {
+          "en": "clumsy",
+          "es": "torpe"
+        }
+      ]
+    },
+    {
+      "id": "relaciones-b1",
+      "title": "💞 Relaciones · B1",
+      "level": "B1",
+      "pares": [
+        {
+          "en": "childhood friend",
+          "es": "amigo de la infancia"
+        },
+        {
+          "en": "argument",
+          "es": "discusión"
+        },
+        {
+          "en": "trust",
+          "es": "confianza"
+        },
+        {
+          "en": "groom",
+          "es": "novio (en la boda)"
+        },
+        {
+          "en": "flirt",
+          "es": "coquetear"
+        },
+        {
+          "en": "engagement",
+          "es": "compromiso (de boda)"
+        },
+        {
+          "en": "relationship",
+          "es": "relación"
+        },
+        {
+          "en": "marriage",
+          "es": "matrimonio"
+        },
+        {
+          "en": "divorce",
+          "es": "divorcio"
+        },
+        {
+          "en": "friendship",
+          "es": "amistad"
+        },
+        {
+          "en": "blind date",
+          "es": "cita a ciegas"
+        },
+        {
+          "en": "propose",
+          "es": "pedir matrimonio"
+        },
+        {
+          "en": "cheat on",
+          "es": "ser infiel a"
+        },
+        {
+          "en": "wedding ring",
+          "es": "anillo de bodas"
+        },
+        {
+          "en": "reunion",
+          "es": "reencuentro"
+        },
+        {
+          "en": "go out with",
+          "es": "salir con"
+        },
+        {
+          "en": "honeymoon",
+          "es": "luna de miel"
+        },
+        {
+          "en": "anniversary",
+          "es": "aniversario"
+        },
+        {
+          "en": "jealousy",
+          "es": "celos"
+        },
+        {
+          "en": "gossip",
+          "es": "chisme"
+        },
+        {
+          "en": "hug",
+          "es": "abrazo"
+        },
+        {
+          "en": "godmother",
+          "es": "madrina"
+        },
+        {
+          "en": "hold hands",
+          "es": "tomarse de la mano"
+        },
+        {
+          "en": "widow",
+          "es": "viuda"
+        },
+        {
+          "en": "acquaintance",
+          "es": "un conocido"
+        }
+      ]
+    },
+    {
+      "id": "adverbios-b1",
+      "title": "⚡ Adverbios · B1",
+      "level": "B1",
+      "pares": [
+        {
+          "en": "actually",
+          "es": "en realidad"
+        },
+        {
+          "en": "apparently",
+          "es": "al parecer"
+        },
+        {
+          "en": "basically",
+          "es": "básicamente"
+        },
+        {
+          "en": "certainly",
+          "es": "sin duda"
+        },
+        {
+          "en": "completely",
+          "es": "completamente"
+        },
+        {
+          "en": "currently",
+          "es": "actualmente"
+        },
+        {
+          "en": "directly",
+          "es": "directamente"
+        },
+        {
+          "en": "eventually",
+          "es": "con el tiempo"
+        },
+        {
+          "en": "fairly",
+          "es": "bastante"
+        },
+        {
+          "en": "frequently",
+          "es": "frecuentemente"
+        },
+        {
+          "en": "gradually",
+          "es": "gradualmente"
+        },
+        {
+          "en": "immediately",
+          "es": "inmediatamente"
+        },
+        {
+          "en": "mainly",
+          "es": "principalmente"
+        },
+        {
+          "en": "nearly",
+          "es": "casi"
+        },
+        {
+          "en": "obviously",
+          "es": "obviamente"
+        },
+        {
+          "en": "possibly",
+          "es": "posiblemente"
+        },
+        {
+          "en": "rarely",
+          "es": "rara vez"
+        },
+        {
+          "en": "seriously",
+          "es": "en serio"
+        },
+        {
+          "en": "suddenly",
+          "es": "de repente"
+        },
+        {
+          "en": "unfortunately",
+          "es": "desafortunadamente"
+        },
+        {
+          "en": "especially",
+          "es": "especialmente"
+        },
+        {
+          "en": "exactly",
+          "es": "exactamente"
+        },
+        {
+          "en": "hopefully",
+          "es": "ojalá"
+        },
+        {
+          "en": "slightly",
+          "es": "ligeramente"
+        },
+        {
+          "en": "extremely",
+          "es": "extremadamente"
+        }
+      ]
+    },
+    {
+      "id": "conectores-b1",
+      "title": "🔗 Conectores · B1",
+      "level": "B1",
+      "pares": [
+        {
+          "en": "although",
+          "es": "aunque"
+        },
+        {
+          "en": "despite",
+          "es": "a pesar de"
+        },
+        {
+          "en": "whereas",
+          "es": "mientras que"
+        },
+        {
+          "en": "therefore",
+          "es": "por lo tanto"
+        },
+        {
+          "en": "however",
+          "es": "sin embargo"
+        },
+        {
+          "en": "in addition",
+          "es": "además"
+        },
+        {
+          "en": "meanwhile",
+          "es": "mientras tanto"
+        },
+        {
+          "en": "otherwise",
+          "es": "de lo contrario"
+        },
+        {
+          "en": "unless",
+          "es": "a menos que"
+        },
+        {
+          "en": "as long as",
+          "es": "siempre y cuando"
+        },
+        {
+          "en": "in case",
+          "es": "por si acaso"
+        },
+        {
+          "en": "due to",
+          "es": "debido a"
+        },
+        {
+          "en": "on the other hand",
+          "es": "por otro lado"
+        },
+        {
+          "en": "instead of",
+          "es": "en vez de"
+        },
+        {
+          "en": "apart from",
+          "es": "aparte de"
+        },
+        {
+          "en": "according to",
+          "es": "según"
+        },
+        {
+          "en": "in other words",
+          "es": "en otras palabras"
+        },
+        {
+          "en": "as soon as",
+          "es": "tan pronto como"
+        },
+        {
+          "en": "such as",
+          "es": "tales como"
+        },
+        {
+          "en": "in fact",
+          "es": "de hecho"
+        },
+        {
+          "en": "compared to",
+          "es": "comparado con"
+        },
+        {
+          "en": "in order to",
+          "es": "con el fin de"
+        },
+        {
+          "en": "first of all",
+          "es": "en primer lugar"
+        },
+        {
+          "en": "in conclusion",
+          "es": "en conclusión"
+        },
+        {
+          "en": "as if",
+          "es": "como si"
+        }
+      ]
+    },
+    {
+      "id": "abstractos-b1",
+      "title": "💡 Abstractos · B1",
+      "level": "B1",
+      "pares": [
+        {
+          "en": "advantage",
+          "es": "ventaja"
+        },
+        {
+          "en": "disadvantage",
+          "es": "desventaja"
+        },
+        {
+          "en": "attitude",
+          "es": "actitud"
+        },
+        {
+          "en": "behavior",
+          "es": "comportamiento"
+        },
+        {
+          "en": "belief",
+          "es": "creencia"
+        },
+        {
+          "en": "condition",
+          "es": "condición"
+        },
+        {
+          "en": "consequence",
+          "es": "consecuencia"
+        },
+        {
+          "en": "decision",
+          "es": "decisión"
+        },
+        {
+          "en": "patience",
+          "es": "paciencia"
+        },
+        {
+          "en": "justice",
+          "es": "justicia"
+        },
+        {
+          "en": "method",
+          "es": "método"
+        },
+        {
+          "en": "purpose",
+          "es": "propósito"
+        },
+        {
+          "en": "priority",
+          "es": "prioridad"
+        },
+        {
+          "en": "situation",
+          "es": "situación"
+        },
+        {
+          "en": "solution",
+          "es": "solución"
+        },
+        {
+          "en": "failure",
+          "es": "fracaso"
+        },
+        {
+          "en": "freedom",
+          "es": "libertad"
+        },
+        {
+          "en": "possibility",
+          "es": "posibilidad"
+        },
+        {
+          "en": "importance",
+          "es": "importancia"
+        },
+        {
+          "en": "courage",
+          "es": "valentía"
+        },
+        {
+          "en": "risk",
+          "es": "riesgo"
+        },
+        {
+          "en": "challenge",
+          "es": "reto"
+        },
+        {
+          "en": "principle",
+          "es": "principio (moral)"
+        },
+        {
+          "en": "cause",
+          "es": "causa"
+        },
+        {
+          "en": "aspect",
+          "es": "aspecto"
+        }
+      ]
+    },
+    {
+      "id": "tiempo3-b1",
+      "title": "⏳ Tiempo 3 · B1",
+      "level": "B1",
+      "pares": [
+        {
+          "en": "period",
+          "es": "período"
+        },
+        {
+          "en": "in a while",
+          "es": "dentro de un rato"
+        },
+        {
+          "en": "lately",
+          "es": "últimamente"
+        },
+        {
+          "en": "sooner or later",
+          "es": "tarde o temprano"
+        },
+        {
+          "en": "millennium",
+          "es": "milenio"
+        },
+        {
+          "en": "in advance",
+          "es": "por adelantado"
+        },
+        {
+          "en": "on time",
+          "es": "a la hora"
+        },
+        {
+          "en": "in time",
+          "es": "con tiempo suficiente"
+        },
+        {
+          "en": "forever",
+          "es": "para siempre"
+        },
+        {
+          "en": "from now on",
+          "es": "de ahora en adelante"
+        },
+        {
+          "en": "so far",
+          "es": "hasta ahora"
+        },
+        {
+          "en": "by the time",
+          "es": "para cuando"
+        },
+        {
+          "en": "the day after tomorrow",
+          "es": "pasado mañana"
+        },
+        {
+          "en": "the day before yesterday",
+          "es": "anteayer"
+        },
+        {
+          "en": "the other day",
+          "es": "el otro día"
+        },
+        {
+          "en": "at last",
+          "es": "por fin"
+        },
+        {
+          "en": "at first",
+          "es": "al principio"
+        },
+        {
+          "en": "afterwards",
+          "es": "después"
+        },
+        {
+          "en": "overnight",
+          "es": "de la noche a la mañana"
+        },
+        {
+          "en": "lifetime",
+          "es": "vida entera"
+        },
+        {
+          "en": "weekday",
+          "es": "día entre semana"
+        },
+        {
+          "en": "leap year",
+          "es": "año bisiesto"
+        },
+        {
+          "en": "for ages",
+          "es": "durante mucho tiempo"
+        },
+        {
+          "en": "duration",
+          "es": "duración"
+        },
+        {
+          "en": "at the last minute",
+          "es": "a última hora"
+        }
+      ]
     }
   ]
 }

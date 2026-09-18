@@ -67,6 +67,12 @@ fun CrucigramasScreen(
     var abierto by remember { mutableStateOf<Crucigrama?>(null) }
     var tick by remember { mutableStateOf(0) }
     DisposableEffect(Unit) { onDispose { speaker.stop() } }
+    // Con 166 rejillas (B1, 17-09) cada nivel se pliega: abiertos los niveles con algo empezado
+    // o hecho y, si no hay nada, A1.
+    var niveles by remember {
+        val tocados = Course.crucigramas.filter { crucigramas.estado(it.id).let { e -> e.hecho || e.letras.isNotEmpty() } }.map { it.level }.toSet()
+        mutableStateOf(tocados.ifEmpty { setOf("A1") })
+    }
 
     val actual = abierto
     // El "atrás" del sistema dentro de un crucigrama vuelve a la lista, no al inicio.
@@ -85,16 +91,26 @@ fun CrucigramasScreen(
                 for (nivel in listOf("A1", "A2", "B1", "B2")) {
                     val delNivel = Course.crucigramas.filter { it.level == nivel }
                     if (delNivel.isEmpty()) continue
+                    val plegado = nivel !in niveles
                     item(key = "nivel-$nivel") {
                         val hechos = remember(tick) { delNivel.count { crucigramas.estado(it.id).hecho } }
-                        Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(top = 8.dp)) {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clickable { niveles = if (plegado) niveles + nivel else niveles - nivel }
+                                .padding(top = 8.dp, bottom = 4.dp)
+                        ) {
                             Pill(nivel, accent, Color(teacher.softColor))
                             Spacer(Modifier.size(10.dp))
                             Text("${delNivel.size} crucigramas", style = MaterialTheme.typography.titleMedium)
                             Spacer(Modifier.weight(1f))
                             Text("$hechos hechos", style = MaterialTheme.typography.labelLarge, color = InkSoft)
+                            Spacer(Modifier.size(8.dp))
+                            Text(if (plegado) "›" else "⌄", style = MaterialTheme.typography.titleLarge, color = accent)
                         }
                     }
+                    if (plegado) continue
                     items(delNivel, key = { it.id }) { c ->
                         val e = remember(tick) { crucigramas.estado(c.id) }
                         val empezado = !e.hecho && e.letras.isNotEmpty()
