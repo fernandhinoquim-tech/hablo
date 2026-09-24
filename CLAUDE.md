@@ -408,7 +408,7 @@ escenarios · corrección en español · informe descargable · cuaderno de erro
 | 11 | Pantalla de Oído (pares mínimos) | **hecho el 17-09**: 16 bloques de Cowork (`oido.json`), `ScreenOido.kt`; y el **dictado de números** (`dictado.json`, 80 ítems, `ScreenDictado.kt`) con comparación estricta; ver "Oído, dictado y crucigramas" |
 | 12 | Contenido B1 y B2 | **B1 hecho el 17-09** (Cowork: 15 unidades, 45 lecciones, 540 ejercicios, 70 % producción; ver "Nivel B1"); **B2 hecho el 24-09** (ver "Nivel B2") |
 | 13 | Escritura con motor de reglas (Fase 4) | no existe |
-| 14 | Respaldo del progreso y modo oscuro (Fase 6) | **respaldo: código hecho el 24-09** (ver "Respaldo del progreso"); falta probarlo en el teléfono. Modo oscuro no existe |
+| 14 | Respaldo del progreso y modo oscuro (Fase 6) | **respaldo hecho y probado en el S25 el 24-09** (ver "Respaldo del progreso"). Modo oscuro no existe |
 | 15 | Recalibrar audio al llegar a ~100 grabaciones | pendiente con condición |
 
 **Etapas, una a la vez (no se abre la siguiente hasta que la anterior esté en
@@ -798,7 +798,7 @@ llama a `Activity.recreate()` (el mazo, el cuaderno y lo demás tienen copias
 en memoria). **Trampa:** tras reinstalar, Android deja de considerar esas
 copias "de la app" y la lista sale vacía; hay que abrirlas con el selector
 de archivos del sistema ("Buscar el archivo en el teléfono…", que arranca en
-Download/Hablo). Tests en `RespaldoTest.kt`. Aparte, y desde antes: el
+Download/Hablo). Tests en `RespaldoTest.kt`. **Probado en el S25 el 24-09:** la copia del día salió al mandar la app al fondo (26 preferencias y los 5 archivos idénticos a una copia hecha por `run-as`, sin rastro de claves ni grabaciones); la lista mostró "11 lecciones aprobadas · 1.155 puntos · 57 frases"; el selector abrió directo en Download/Hablo; recuperar guardó `hablo-antes-de-recuperar-…`, reinició y dejó los archivos idénticos byte a byte. Aparte, y desde antes: el
 manifiesto deja que el respaldo de Google del teléfono copie las
 preferencias (`data_extraction_rules.xml`), lo hace el sistema, no la app.
 
