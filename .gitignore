@@ -29,5 +29,8 @@ app/src/main/assets/gop/*.onnx
 app/src/main/cpp/llama.cpp/
 app/.cxx/
 
+# Fotos originales de Speaking (Gemini, ~60 MB): van convertidas a assets/images/speaking con tools/content/fotos_speaking.py
+fotos-speaking/
+
 # Claves de API: nunca al repo (la de Gemini vive fuera, en la carpeta Hablo-modelos del PC)
 *.key

@@ -68,12 +68,13 @@ class AptisTest {
         assertEquals("50 + 120-150", (writing.tarea("w4-01") as TareaEscrita).palabras)
         val prompt = JuezAptis.promptEscrita(w1, "Fernando, Bogota, Rice, Four, Saturday", 60)
         assertTrue(prompt, prompt.contains("MENSAJES A LOS QUE RESPONDE") && prompt.contains("1. What's your first name?") && prompt.contains("Parte 1"))
-        // Speaking: las 28 de Cowork (4 partes) más las 3 del simulacro; las de foto traen su descripción y aún sin imagen
+        // Speaking: las 28 de Cowork (4 partes) más las 3 del simulacro; las de foto traen su descripción y, desde el 24-09, sus fotos (parte 3: dos)
         val speaking = b.pista("speaking")!!
         assertEquals(31, speaking.tareas.size)
         val s9 = speaking.tarea("s-009") as TareaHablada
         assertTrue(s9.foto.startsWith("A family of four"))
-        assertTrue(s9.imagenes.isEmpty())
+        assertEquals(listOf("images/speaking/s-009.webp"), s9.imagenes)
+        assertEquals(listOf("images/speaking/s-017_1.webp", "images/speaking/s-017_2.webp"), (speaking.tarea("s-017") as TareaHablada).imagenes)
         assertEquals("Parte 2 · describir una foto", s9.parte)
         assertTrue(JuezAptis.promptHablada(s9, "we eat rice at home", 20).contains("LA FOTO"))
         assertEquals(Condicion(2, 3), b.pista("writing")!!.promocion)

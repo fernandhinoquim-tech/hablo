@@ -373,6 +373,15 @@ cambiar `prep()` en `bench.py` igual.
   y el JSON no parsea (pasó el 17-09 con `aptis.json`; se restauró
   convirtiendo a UTF-8). Respaldar con `[IO.File]::WriteAllText(..., UTF8
   sin BOM)` o `adb pull` del propio archivo, nunca con `>`.
+- **Git Bash reescribe las rutas del teléfono:** `adb push x /data/local/tmp/`
+  termina en `C:/Program Files/Git/data/...` y falla. En Git Bash, `export
+  MSYS_NO_PATHCONV=1` antes de cualquier `adb` con rutas `/data` o `/sdcard`.
+  Y en PowerShell, un comando con `rm` dentro de `adb shell` junto a `cmd /c`
+  lo bloquea el filtro de seguridad (lo lee como borrar `/c`): separarlos.
+- **Probar algo del Modo Aptis sin tocar el progreso de Fero:** `am
+  force-stop` (no dispara `onStop` ni la copia automática), copiar
+  `files/aptis.json` al PC con `run-as … cat`, sembrar, probar, `force-stop`
+  y devolver el original con `run-as cp`, comprobando con `cmp`.
 - **live/leave (a1u4l1e12) NO está roto en la app.** El par solo reproduce
   la respuesta ("The word is leave."), que Piper dice bien con las 4 voces;
   "live" (heterónimo, Piper lo lee /laɪv/) nunca suena. El fallo de Fero
@@ -711,7 +720,19 @@ SECCIÓN APARTE del curso. Cómo está construido:
   Fero genere las 20 fotos con Gemini (`FOTOS-PARA-GENERAR.md`), `"imagenes":
   ["images/speaking/s-009.webp"]` (dos en la parte 3): `FotosSpeaking` las
   pinta desde assets y `checkContent` exige que existan, .webp/.jpg y ≤ 400
-  KB. Reading parte 3 (opiniones) no tiene tipo en la app; Cowork escribe el
+  KB. **Las 20 fotos entraron el 24-09** (Fero, Gemini): las convierte y
+  conecta `tools/content/fotos_speaking.py [carpeta]` (1280 px, WebP calidad
+  82, 70-273 KB, 2,7 MB en total; escribe `"imagenes"` tras `"foto"` sin
+  tocar el resto del JSON; idempotente). La ruta es `images/speaking/…`
+  (la que exigen `checkContent` y `Aptis.kt`), no `speaking/…` como decía
+  el COMO-INTEGRAR de Cowork. Los originales (`fotos-speaking/`, ~60 MB)
+  están en `.gitignore`. Revisadas a ojo antes: sin texto legible (solo
+  borrones en el letrero del bus, un póster y una pantalla) y manos y caras
+  normales; s-021_1 parece la plaza de Praga (el prompt pedía lugares no
+  reconocibles; no estorba). Vistas en el S25 sembrando Speaking en B2 y
+  devolviendo `aptis.json` idéntico: una foto a lo ancho (s-016) y el par
+  lado a lado con "Photo 1 / Photo 2" (s-020).
+  Reading parte 3 (opiniones) no tiene tipo en la app; Cowork escribe el
   banco si se construye. `checkContent` avisa (no falla) si un nivel tiene
   menos tareas que las que pide la promoción (Writing A1 trae 2).
 - **Cinco pistas** (`PistaAptis`: Core, Reading, Listening, Writing,
