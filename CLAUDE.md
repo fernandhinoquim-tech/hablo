@@ -223,8 +223,10 @@ suena a "fruit" y "home" que suena a "hand": es la voz menos fiable, ya
 sabido); a1u9l2e3 "I'll help you" / "I help you" se distinguen en las cuatro
 (el /l/ sale en 3 de 4 según el modelo de fonemas); **a2u8l1e2 "1920": Piper
 NO lo lee "nineteen twenty"**: Sophie y Mia dicen "nineteen hundred twenty" y
-a Emma los dos reconocedores le oyen "1902" (para Cowork: escribirlo en
-letras, "nineteen twenty", en audio/answer/options); a2u6l3e9 "live" salió
+a Emma los dos reconocedores le oyen "1902" (**arreglado el 2026-09-24**
+con el parche de Cowork `contenido-nuevo/integrado/2026-09-24-parche-1920/`:
+"nineteen twenty" en letras en audio/answer/options, y el tip enseña cómo se
+dicen los años; **regla: los años en ejercicios de audio van en letras**); a2u6l3e9 "live" salió
 /laɪv/ en 3 de 4 voces → como autorizó Cowork, el texto pasó a "Most of my
 friends are from here."; a2u2l3e8 "I have just gotten home." con `h` se oye
 bien (Grace no). Los cuatro pares mínimos "cuya frase delata la respuesta"
@@ -415,10 +417,7 @@ el teléfono y Fero la haya usado; si aparece un bug, se vuelve a la 1):**
 diagnóstico + leyendas viejas) — **código hecho el 15-09 (0.9.1, commits
 ffd49bf…7d0c47c: cloze, números, accept, puntaje de hablar, cuaderno e
 informe, pares con frase, textos, prompt); termina cuando Fero la use una
-semana sin que lo corrija mal.** Quedan para Cowork los `accept` que no
-entraron en su parche (a2u6l3e5 "in general", a2u9l1e5 "she'd", a1u1l3e9,
-a2u1l3e5, a2u9l2e4) y para revisar el tip de a1u4l1e10 ("English con
-mayúscula" contradice "no te preocupes por mayúsculas"). 2) La profesora que se acuerda —
+semana sin que lo corrija mal.** 2) La profesora que se acuerda —
 **código hecho el 16-09**: "Hablar de todo" (`Scenario.LIBRE`, prompt
 `buildFreePrompt` con la ficha de `Memoria`: 12 datos / 15 errores / 60
 palabras / 400 tokens; los errores se anotan gratis desde `CORRECCIÓN:` en

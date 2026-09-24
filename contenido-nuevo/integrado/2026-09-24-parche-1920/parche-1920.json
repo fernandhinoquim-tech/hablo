@@ -1,0 +1,13 @@
+{
+  "_comentario": "Lo unico que quedaba pendiente de Cowork. a2u8l1e2 tenia el ano en cifras y Piper no lo lee como un ano: Sophie y Mia dicen 'nineteen hundred twenty' y con Emma los reconocedores oyen '1902'. Escrito en letras, las cuatro voces lo dicen bien Y ademas ensena como se dicen los anos en ingles, que es justo lo que mide Aptis Listening parte 1.",
+  "a2u8l1e2": {
+    "audio": "This house was built in nineteen twenty.",
+    "options": [
+      "This house is built in nineteen twenty.",
+      "This house was built in nineteen twenty.",
+      "This house built in nineteen twenty."
+    ],
+    "answer": "This house was built in nineteen twenty.",
+    "tip": "Los años se dicen en dos mitades: 1920 es «nineteen twenty», no «one thousand nine hundred twenty». Y aquí va la pasiva: was + built."
+  }
+}
