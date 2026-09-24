@@ -291,6 +291,97 @@
           ],
           "answer": "currently",
           "why": "El presente continuo (is reviewing) describe algo que pasa ahora: 'currently'. 'Recently' va con pasado o present perfect, y 'eventually' significa 'al final', no 'actualmente' (falso amigo)."
+        },
+        {
+          "id": "r-043",
+          "level": "B1",
+          "tipo": "completar",
+          "text": "Hi Jess, the doctor says my blood sugar is a bit high, so I'm trying to cut ___ on biscuits and fizzy drinks.",
+          "options": [
+            "down",
+            "off",
+            "out"
+          ],
+          "answer": "down",
+          "why": "'Cut down on' = reducir el consumo de algo. 'Cut off' es cortar o desconectar y 'cut out' no lleva 'on'. 'Biscuits' es británico ('cookies' en EE. UU.)."
+        },
+        {
+          "id": "r-044",
+          "level": "B1",
+          "tipo": "completar",
+          "text": "Dear customer, if you are not happy with your purchase, you can return it within 30 days and we will give you a full ___.",
+          "options": [
+            "refund",
+            "receipt",
+            "discount"
+          ],
+          "answer": "refund",
+          "why": "Al devolver un producto te devuelven el dinero: 'a full refund'. El 'receipt' es el recibo de la compra, y un descuento no tiene sentido después de comprar."
+        },
+        {
+          "id": "r-045",
+          "level": "B1",
+          "tipo": "completar",
+          "text": "Hi Anna, we're going on holiday tomorrow for two weeks. Would you mind ___ our plants while we're away? Thanks, Mia",
+          "options": [
+            "watering",
+            "to water",
+            "water"
+          ],
+          "answer": "watering",
+          "why": "Después de 'Would you mind' el verbo va en -ing: 'Would you mind watering...?'. 'Holiday' es británico; en EE. UU. se dice 'vacation'."
+        },
+        {
+          "id": "r-046",
+          "level": "B1",
+          "tipo": "completar",
+          "text": "Hi Dad, my laptop switched itself off again during my online class. It's the third time it ___ this week!",
+          "options": [
+            "has happened",
+            "happened",
+            "is happening"
+          ],
+          "answer": "has happened",
+          "why": "Tras 'It's the first/second/third time' se usa present perfect: 'it has happened'. El pasado simple o el presente continuo no siguen esa regla."
+        },
+        {
+          "id": "r-047",
+          "level": "B1",
+          "tipo": "completar",
+          "text": "Hi Tom, I left my wallet at home. Could you ___ me £20 until Friday? I'll pay you back, I promise!",
+          "options": [
+            "lend",
+            "borrow",
+            "owe"
+          ],
+          "answer": "lend",
+          "why": "'Lend' = prestar (dar); 'borrow' = pedir prestado (recibir). Como Tom le da el dinero, es 'lend me'. 'Owe' es deber dinero."
+        },
+        {
+          "id": "r-048",
+          "level": "B1",
+          "tipo": "completar",
+          "text": "Dear Mr Patel, I am writing to ___ for the position of sales assistant which was advertised on your website last week.",
+          "options": [
+            "apply",
+            "hire",
+            "employ"
+          ],
+          "answer": "apply",
+          "why": "Quien busca trabajo 'applies for a position' (solicita el puesto). 'Hire' y 'employ' los hace la empresa, no el candidato, y no van con 'for'."
+        },
+        {
+          "id": "r-049",
+          "level": "B1",
+          "tipo": "completar",
+          "text": "NOTICE TO RESIDENTS: From 1 March, you must ___ your food waste from other rubbish and put it in the brown bin.",
+          "options": [
+            "separate",
+            "collect",
+            "prevent"
+          ],
+          "answer": "separate",
+          "why": "'Separate X from Y' = separar una cosa de otra. 'Prevent... from' exige verbo en -ing, y 'collect' no encaja con 'from other rubbish'. 'Rubbish' es británico ('trash' o 'garbage' en EE. UU.)."
         }
       ]
     },
@@ -563,6 +654,116 @@
             "Within a year, complaints had fallen by half, and the woman who started it all was invited to join a customer advisory panel."
           ],
           "why": "'The woman' es la clienta; 'her claim' remite a su queja; 'Not one of them' son los cinco compañeros; 'As a result' y 'Within a year' marcan consecuencia y tiempo."
+        },
+        {
+          "id": "r-050",
+          "level": "B1",
+          "tipo": "ordenar",
+          "instruccion": "Pon las frases en orden. La primera ya está puesta.",
+          "primera": "Two years ago, my doctor told me I needed to get more exercise.",
+          "desordenadas": [
+            "Last month, the two of us finished our first half marathon together.",
+            "At first, I ignored his advice, because I had never enjoyed sport at school.",
+            "Little by little, though, we managed to run further without stopping.",
+            "However, one day my neighbour Sara invited me to go running with her twice a week.",
+            "Our first run lasted only ten minutes, and I was completely exhausted at the end of it."
+          ],
+          "orden": [
+            "At first, I ignored his advice, because I had never enjoyed sport at school.",
+            "However, one day my neighbour Sara invited me to go running with her twice a week.",
+            "Our first run lasted only ten minutes, and I was completely exhausted at the end of it.",
+            "Little by little, though, we managed to run further without stopping.",
+            "Last month, the two of us finished our first half marathon together."
+          ],
+          "why": "'His advice' es el consejo del médico; 'However' contrasta con ignorarlo; 'Our first run' exige la invitación de Sara, y 'though' contrasta con el agotamiento. 'Neighbour' es la grafía británica de 'neighbor'."
+        },
+        {
+          "id": "r-051",
+          "level": "B1",
+          "tipo": "ordenar",
+          "instruccion": "Pon las frases en orden. La primera ya está puesta.",
+          "primera": "Last year, on the way to my sister's wedding in Madrid, I had a terrible surprise at the airport.",
+          "desordenadas": [
+            "He found it on the kitchen table, exactly where I had left it that morning.",
+            "Luckily, he was able to bring it to the airport by taxi in less than forty minutes.",
+            "I called my husband, who was still at home, and asked him to look for it.",
+            "I got on the plane just in time, and since then I have checked my bag twice before every trip.",
+            "When I got to the check-in desk, I realised that my passport was not in my bag."
+          ],
+          "orden": [
+            "When I got to the check-in desk, I realised that my passport was not in my bag.",
+            "I called my husband, who was still at home, and asked him to look for it.",
+            "He found it on the kitchen table, exactly where I had left it that morning.",
+            "Luckily, he was able to bring it to the airport by taxi in less than forty minutes.",
+            "I got on the plane just in time, and since then I have checked my bag twice before every trip."
+          ],
+          "why": "La sorpresa es no tener el pasaporte; 'it' remite a 'my passport' y 'He' al marido. 'Luckily' solo tiene sentido cuando ya lo encontró. 'Realised' es británico ('realized' en EE. UU.)."
+        },
+        {
+          "id": "r-052",
+          "level": "B1",
+          "tipo": "ordenar",
+          "instruccion": "Pon las frases en orden. La primera ya está puesta.",
+          "primera": "Setting up your new wireless printer takes only a few minutes.",
+          "desordenadas": [
+            "After that, the screen will show a list of wifi networks, so select yours and type in the password.",
+            "When it is on, a message will appear on the small screen asking you to choose a language.",
+            "First, take the printer out of the box and remove all the orange tape.",
+            "Next, connect it to the power supply and switch it on.",
+            "Once the printer is connected, you can print a test page from your phone or computer."
+          ],
+          "orden": [
+            "First, take the printer out of the box and remove all the orange tape.",
+            "Next, connect it to the power supply and switch it on.",
+            "When it is on, a message will appear on the small screen asking you to choose a language.",
+            "After that, the screen will show a list of wifi networks, so select yours and type in the password.",
+            "Once the printer is connected, you can print a test page from your phone or computer."
+          ],
+          "why": "Además de First, Next, After that, fíjate en 'When it is on' (tras encenderla) y en 'the screen', que remite a 'the small screen'. Solo se conecta a la red después de elegir el idioma."
+        },
+        {
+          "id": "r-053",
+          "level": "B1",
+          "tipo": "ordenar",
+          "instruccion": "Pon las frases en orden. La primera ya está puesta.",
+          "primera": "When my grandmother died, she left me something I will always treasure.",
+          "desordenadas": [
+            "Some of the pages were so dirty with flour and oil that they were difficult to read.",
+            "Even so, I decided to try to make every dish in it, one each weekend.",
+            "It was an old notebook full of the recipes she had cooked for our family for fifty years.",
+            "Now, after a year of practice, my children say my soup is almost as good as their great-grandmother's.",
+            "The first one I tried was her famous chicken soup, but it tasted nothing like hers."
+          ],
+          "orden": [
+            "It was an old notebook full of the recipes she had cooked for our family for fifty years.",
+            "Some of the pages were so dirty with flour and oil that they were difficult to read.",
+            "Even so, I decided to try to make every dish in it, one each weekend.",
+            "The first one I tried was her famous chicken soup, but it tasted nothing like hers.",
+            "Now, after a year of practice, my children say my soup is almost as good as their great-grandmother's."
+          ],
+          "why": "'It' remite a 'something'; 'the pages' al cuaderno; 'Even so' (aun así) contrasta con lo difícil de leer, y 'The first one' es el primer plato que probó."
+        },
+        {
+          "id": "r-054",
+          "level": "B1",
+          "tipo": "ordenar",
+          "instruccion": "Pon las frases en orden. La primera ya está puesta.",
+          "primera": "Moving from a small town to London was the biggest change of my life.",
+          "desordenadas": [
+            "To meet people, I joined a language exchange group that met in a café near my flat.",
+            "There I met Oliver, a teacher who wanted to practise his Spanish.",
+            "Thanks to that group, London now feels like home.",
+            "He introduced me to his friends, and soon I was going out with them every weekend.",
+            "In my town, I knew almost everyone, but in the city I didn't know a single person."
+          ],
+          "orden": [
+            "In my town, I knew almost everyone, but in the city I didn't know a single person.",
+            "To meet people, I joined a language exchange group that met in a café near my flat.",
+            "There I met Oliver, a teacher who wanted to practise his Spanish.",
+            "He introduced me to his friends, and soon I was going out with them every weekend.",
+            "Thanks to that group, London now feels like home."
+          ],
+          "why": "'There' es el café del grupo, 'He' es Oliver y 'that group' cierra el texto. 'Flat' y 'practise' son británicos ('apartment' y 'practice' en EE. UU.)."
         }
       ]
     },
@@ -773,6 +974,127 @@
             "Unexpected breakthroughs"
           ],
           "why": "'Scale' (escala) corresponde a 'Covering more ground'; 'concerns about accuracy' a '¿se puede confiar en los datos?'. Sobra 'Funding problems for universities': el dinero nunca se menciona. 'Neighbourhood' es la grafía británica de 'neighborhood'."
+        },
+        {
+          "id": "r-055",
+          "level": "B1",
+          "tipo": "titulos",
+          "instruccion": "Cada párrafo lleva un título. Sobra uno.",
+          "parrafos": [
+            "Most of us take our phones to bed without thinking about it. A recent survey found that seven out of ten adults check their messages in the last half hour before they go to sleep, and many of them look at their screens again if they wake up during the night.",
+            "The light from phone screens tells the brain that it is still daytime. As a result, the body produces less of the hormone that makes us feel sleepy, so people who use their phones late at night often take longer to fall asleep and wake up feeling tired, even after a full night in bed.",
+            "Fortunately, there are simple ways to break the habit, and none of them cost much. Sleep experts suggest charging your phone in another room, buying a traditional alarm clock and replacing screen time with a paper book or some quiet music during the last hour of the day. Most people notice a difference within a week."
+          ],
+          "titulos": [
+            "A very common habit",
+            "Why screens keep us awake",
+            "Tiredness at work",
+            "Easy changes to make"
+          ],
+          "answer": [
+            "A very common habit",
+            "Why screens keep us awake",
+            "Easy changes to make"
+          ],
+          "why": "El párrafo 2 explica la causa (la luz engaña al cerebro) y el 3 da soluciones. Sobra 'Tiredness at work': el texto dice que la gente se despierta cansada, pero nunca habla del trabajo."
+        },
+        {
+          "id": "r-056",
+          "level": "B1",
+          "tipo": "titulos",
+          "instruccion": "Cada párrafo lleva un título. Sobra uno.",
+          "parrafos": [
+            "When I decided to save for a trip to Japan, I started by writing down everything I spent for a month. I was shocked to discover that I was paying almost eighty pounds a month for coffees and sandwiches that I bought on my way to work, which was more than I paid for gas and electricity.",
+            "So I made some changes. I started making my lunch at home the night before and drinking the free coffee in the office kitchen instead of going to a café. I also cancelled two streaming services that I hardly ever watched, and I stopped buying clothes online when I was bored in the evenings. Every pound I saved went straight into a separate bank account.",
+            "It wasn't always easy, especially when my friends invited me out for expensive meals or weekends away. I didn't want to lose them, but I didn't want to give up my dream either. Sometimes I said no, and sometimes I suggested a picnic in the park instead, which was cheaper and often more fun.",
+            "After fourteen months, I finally had enough money for the flights, a rail pass and three weeks of travel. The trip was wonderful, and every temple, meal and train journey felt even better because I had worked so hard for it. I still keep many of my new habits today."
+          ],
+          "titulos": [
+            "Finding out where the money went",
+            "Cutting costs",
+            "Earning extra money",
+            "The hardest part",
+            "Worth the effort"
+          ],
+          "answer": [
+            "Finding out where the money went",
+            "Cutting costs",
+            "The hardest part",
+            "Worth the effort"
+          ],
+          "why": "'It wasn't always easy' es la clave del párrafo 3 ('The hardest part'). Sobra 'Earning extra money': ahorra gastando menos, no ganando más. 'Pounds' son libras esterlinas y 'cancelled' con doble l es británico ('canceled' en EE. UU.)."
+        },
+        {
+          "id": "r-057",
+          "level": "B1",
+          "tipo": "titulos",
+          "instruccion": "Cada párrafo lleva un título. Sobra uno.",
+          "parrafos": [
+            "Every spring, our diving club organises a clean-up of Silver Bay beach. Last Saturday, more than sixty volunteers of all ages spent the morning collecting litter from the sand and the rocks, and some of our members even dived to remove old fishing nets from the sea floor. The weather was cold and windy, but nobody went home early.",
+            "The results were worrying. In just four hours, we filled over two hundred bags, far more than last year. As well as the usual plastic bottles and cans, volunteers found a shopping trolley, several car tyres, a broken bicycle and thousands of cigarette ends. Sadly, most of it had been left behind by visitors on sunny days.",
+            "This kind of rubbish is not only ugly. Birds and fish often mistake small pieces of plastic for food, and animals can get caught in old nets and die. Once plastic is in the sea, it can take hundreds of years to break down. Last year, a young seal was found on this beach with a plastic bag around its neck.",
+            "If you would like to join us next year, you don't need any special equipment or experience: we provide gloves, bags and a free lunch, and children are welcome if they come with an adult. You can also help every day by taking your litter home and using fewer single-use plastics."
+          ],
+          "titulos": [
+            "A morning's work",
+            "Learning to dive",
+            "An alarming amount of rubbish",
+            "A danger to wildlife",
+            "How you can get involved"
+          ],
+          "answer": [
+            "A morning's work",
+            "An alarming amount of rubbish",
+            "A danger to wildlife",
+            "How you can get involved"
+          ],
+          "why": "Trampa: 'Learning to dive' usa una palabra del texto (dived), pero ningún párrafo trata de aprender a bucear. 'Rubbish' = 'trash', 'trolley' = 'shopping cart' y 'tyres' = 'tires' en EE. UU."
+        },
+        {
+          "id": "r-058",
+          "level": "B1",
+          "tipo": "titulos",
+          "instruccion": "Cada párrafo lleva un título. Sobra uno.",
+          "parrafos": [
+            "Since June, the empty square outside the old train station has come alive every Friday evening. From six until eleven, around thirty stalls sell food from all over the world, from Korean pancakes to Colombian arepas. There are also long tables where strangers sit and eat together, and a local band plays until late.",
+            "The market was the idea of two young chefs who couldn't afford to open a restaurant. Renting a stall costs much less, so it gives new cooks the chance to test their recipes and build a group of loyal customers before taking a bigger risk. Several of the first stallholders now have restaurants of their own.",
+            "Not everyone is happy, however. Some people who live near the square complain about the noise and the smell of cooking late at night, and a few local restaurant owners say that the market is taking customers away from them. The council has promised to look at the situation again in the autumn."
+          ],
+          "titulos": [
+            "A new place to eat on Fridays",
+            "The best dishes to try",
+            "A cheaper way to start",
+            "Not a success for everyone"
+          ],
+          "answer": [
+            "A new place to eat on Fridays",
+            "A cheaper way to start",
+            "Not a success for everyone"
+          ],
+          "why": "El párrafo 1 menciona platos, pero solo para describir el mercado, no para recomendarlos: por eso sobra 'The best dishes to try'. 'Not everyone is happy' corresponde a 'Not a success for everyone'. 'Autumn' es británico ('fall' en EE. UU.)."
+        },
+        {
+          "id": "r-059",
+          "level": "B1",
+          "tipo": "titulos",
+          "instruccion": "Cada párrafo lleva un título. Sobra uno.",
+          "parrafos": [
+            "Ten years ago, most supermarkets had long rows of cashiers. Today, in many stores, customers scan and pay for their shopping themselves at self-service machines, and in some small shops in city centres there is no cashier at all. The change has happened so quickly that many young shoppers have never known anything different.",
+            "For supermarkets, the attraction is clear. One member of staff can watch six or eight machines at the same time, which means that a shop can stay open for longer without paying for more workers. Over a year, a large store can save a great deal of money on wages in this way.",
+            "Shoppers have mixed feelings. Younger people often say the machines are faster, especially when they only need a few items. Older customers, on the other hand, complain that the machines often stop working and that they miss chatting to a real person. Some of them even choose a different shop for this reason."
+          ],
+          "titulos": [
+            "A big change in how we shop",
+            "Saving money for the shops",
+            "Problems with stealing",
+            "Different views from customers"
+          ],
+          "answer": [
+            "A big change in how we shop",
+            "Saving money for the shops",
+            "Different views from customers"
+          ],
+          "why": "El párrafo 2 explica que la tienda no paga más empleados (ahorro); el 3 contrasta a jóvenes y mayores ('mixed feelings'). Sobra 'Problems with stealing': los robos no se mencionan. 'City centres' es británico ('downtown' en EE. UU.)."
         }
       ]
     }

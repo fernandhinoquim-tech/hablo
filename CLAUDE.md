@@ -373,6 +373,11 @@ cambiar `prep()` en `bench.py` igual.
   y el JSON no parsea (pasó el 17-09 con `aptis.json`; se restauró
   convirtiendo a UTF-8). Respaldar con `[IO.File]::WriteAllText(..., UTF8
   sin BOM)` o `adb pull` del propio archivo, nunca con `>`.
+- **Los tests leen el contenido real, y Gradle no lo sabía:** con solo un
+  JSON cambiado, `testDebugUnitTest` salía "al día" sin correr y un fallo
+  (AptisTest esperaba 46 tareas y había 63) pasaba callado. Desde el 24-09
+  `testOptions.unitTests.all` declara `src/main/assets/content` e `images`
+  como entradas. Si un test nuevo lee otra carpeta, declararla igual.
 - **Git Bash reescribe las rutas del teléfono:** `adb push x /data/local/tmp/`
   termina en `C:/Program Files/Git/data/...` y falla. En Git Bash, `export
   MSYS_NO_PATHCONV=1` antes de cualquier `adb` con rutas `/data` o `/sdcard`.
@@ -732,6 +737,18 @@ SECCIÓN APARTE del curso. Cómo está construido:
   reconocibles; no estorba). Vistas en el S25 sembrando Speaking en B2 y
   devolviendo `aptis.json` idéntico: una foto a lo ancho (s-016) y el par
   lado a lado con "Photo 1 / Photo 2" (s-020).
+  **B1 a fondo (24-09, Cowork, `contenido-nuevo/integrado/2026-09-24-aptis-b1/`):**
+  B1 es el umbral del examen y había 6 tareas en Writing, 10 en Speaking y
+  13 en Reading/Listening; la promoción ("4 de 5", "2 de 3") las habría
+  repetido en pocas sesiones y medido memoria. Ahora hay ≥ 30 por destreza
+  (Writing 42, Speaking 53, Reading 63, Listening 69 tareas en total con el
+  simulacro; `AptisTest` exige ≥ 30 B1). Los cuatro archivos de Cowork son
+  los actuales con tareas añadidas al final de cada parte (comprobado id
+  por id: ninguna existente cambió). Al copiarlos encima se pierden las
+  `"imagenes"` (Cowork partió de una copia anterior): hay que volver a correr
+  `fotos_speaking.py`, que ahora avisa y sigue si faltan fotos. s-035…s-044
+  (partes 2 y 3) esperan 15 fotos más de Fero (`PROMPT-GEMINI-FOTOS-2.md`);
+  mientras, `prompt_es` describe la foto.
   Reading parte 3 (opiniones) no tiene tipo en la app; Cowork escribe el
   banco si se construye. `checkContent` avisa (no falla) si un nivel tiene
   menos tareas que las que pide la promoción (Writing A1 trae 2).

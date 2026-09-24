@@ -7,7 +7,9 @@ Entrada: una carpeta con las fotos que generó Fero con Gemini (por defecto
 `s-017_2.png` para la parte 3 (comparar dos). Vale .png, .jpg, .jpeg o .webp.
 
 Para cada tarea de `aptis-speaking.json` que trae "foto":
-  1. busca su foto (o sus dos fotos) en la carpeta; si falta una, se para;
+  1. busca su foto (o sus dos fotos) en la carpeta; si falta alguna, la tarea
+     se queda sin "imagenes" (funciona igual: `prompt_es` describe la foto) y
+     al final se listan las que faltan;
   2. la reduce a 1280 px de ancho (en el teléfono se ve a lo ancho de la
      pantalla, ~1330 px; más no se nota) y la guarda como WebP en
      app/src/main/assets/images/speaking/, bajando la calidad hasta que pese
@@ -72,17 +74,21 @@ def main(carpeta):
     datos = json.load(io.open(JSON, encoding="utf-8"))
     os.makedirs(DEST, exist_ok=True)
     total = 0
+    faltan = []
     for parte in datos["partes"]:
         comparar = parte["aptis"].startswith("Parte 3")
         for i, t in enumerate(parte["tareas"]):
             if not t.get("foto"):
                 continue
             nombres = [t["id"] + "_1", t["id"] + "_2"] if comparar else [t["id"]]
+            origenes = [buscar(carpeta, n) for n in nombres]
+            if None in origenes:
+                # Sin todas sus fotos la tarea no lleva "imagenes" (una de dos no vale en la parte 3).
+                faltan += [n for n, o in zip(nombres, origenes) if o is None]
+                parte["tareas"][i] = {k: v for k, v in t.items() if k != "imagenes"}
+                continue
             rutas = []
-            for n in nombres:
-                origen = buscar(carpeta, n)
-                if origen is None:
-                    sys.exit(f"falta la foto {n} ({' / '.join(n + e for e in EXTS)}) en {carpeta}")
+            for n, origen in zip(nombres, origenes):
                 size, calidad, peso = convertir(origen, os.path.join(DEST, n + ".webp"))
                 print(f"{n:9} {os.path.basename(origen):14} -> {n}.webp {size[0]}x{size[1]} calidad {calidad} · {peso // 1024} KB")
                 rutas.append(f"images/speaking/{n}.webp")
@@ -92,6 +98,8 @@ def main(carpeta):
     texto = json.dumps(datos, ensure_ascii=False, indent=2)
     io.open(JSON, "w", encoding="utf-8", newline="\n").write(texto)
     print(f"ok: {total} fotos en assets/images/speaking/ y aptis-speaking.json conectado")
+    if faltan:
+        print(f"faltan {len(faltan)} fotos (esas tareas siguen sin imagen): {' '.join(faltan)}")
 
 
 if __name__ == "__main__":

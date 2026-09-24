@@ -976,6 +976,13 @@ android {
     // Para los tests de JVM: android.util.Log devuelve 0 en vez de reventar con "Stub!".
     testOptions {
         unitTests.isReturnDefaultValues = true
+        // Varios tests leen el contenido REAL (src/main/assets/content, las fotos de
+        // Speaking): sin declararlo, Gradle los daba por "al día" cuando solo cambiaba
+        // un JSON y un fallo de contenido pasaba callado (24-09, pistas de Aptis B1).
+        unitTests.all {
+            it.inputs.dir("src/main/assets/content")
+            it.inputs.dir("src/main/assets/images").optional()
+        }
     }
 
     ndkVersion = "27.2.12479018"
