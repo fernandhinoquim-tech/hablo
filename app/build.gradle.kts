@@ -541,7 +541,8 @@ val checkContent = tasks.register("checkContent") {
                 checkSound(o, where)
                 glosarioPalabras.add(where to o["hablar"].toString())
                 val pares = (o["pares"] as? List<*>) ?: emptyList<Any>()
-                if (pares.size < 4 || pares.size > 10) problems.add("$where: ${pares.size} pares (se pidio 6-10; minimo 4 mientras Cowork repone los descartados por oir_oido.py)")
+                // 6-10 pedido; minimo 5 porque u/uu no tiene mas pares comunes que pasen oir_oido.py (24-09)
+                if (pares.size < 5 || pares.size > 10) problems.add("$where: ${pares.size} pares (se pidio 6-10; minimo 5: u/uu no tiene mas pares comunes)")
                 val vistos = HashSet<String>()
                 pares.forEachIndexed { j, p ->
                     val pm = p as? Map<*, *>

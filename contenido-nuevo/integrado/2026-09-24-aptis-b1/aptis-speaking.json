@@ -1,0 +1,810 @@
+{
+  "partes": [
+    {
+      "id": "parte1",
+      "aptis": "Parte 1 · preguntas personales",
+      "title": "Preguntas personales",
+      "descripcion": "En el examen real respondes a tres preguntas cortas sobre ti (familia, rutina, gustos, trabajo). Tienes 30 segundos por pregunta y no hay tiempo de preparación. Contesta directamente, añade dos o tres datos concretos y sigue hablando hasta que se acabe el tiempo.",
+      "tareas": [
+        {
+          "id": "s-001",
+          "level": "A1",
+          "prep_seg": 0,
+          "hablar_seg": 30,
+          "prompt_en": "Tell me about your family.",
+          "prompt_es": "Háblame de tu familia: quiénes son, cuántos son, cómo se llaman o a qué se dedican.",
+          "rubrica": [
+            "¿Responde a la pregunta con información personal real (al menos dos datos concretos)?",
+            "¿Usa frases simples completas (sujeto + verbo), aunque tenga errores básicos?",
+            "¿Usa vocabulario básico adecuado al tema, de modo que el mensaje se entiende al leer la transcripción?",
+            "¿Dice al menos tres frases (unas 25 palabras) en vez de contestar con una sola palabra?"
+          ],
+          "why": "Da datos simples y concretos: «I have two brothers. My mother is a teacher.» Recuerda «have» para la familia, no «there are»."
+        },
+        {
+          "id": "s-002",
+          "level": "A1",
+          "prep_seg": 0,
+          "hablar_seg": 30,
+          "prompt_en": "What is your favourite food?",
+          "prompt_es": "¿Cuál es tu comida favorita? Di qué es y cuándo la comes.",
+          "rubrica": [
+            "¿Responde a la pregunta con información personal real (al menos dos datos concretos)?",
+            "¿Usa frases simples completas (sujeto + verbo), aunque tenga errores básicos?",
+            "¿Usa vocabulario básico adecuado al tema, de modo que el mensaje se entiende al leer la transcripción?",
+            "¿Dice al menos tres frases (unas 25 palabras) en vez de contestar con una sola palabra?"
+          ],
+          "why": "Aptis usa inglés británico: «favourite» se escribe con u (en EE. UU. «favorite»). Añade un segundo dato: «I eat it on Sundays»."
+        },
+        {
+          "id": "s-003",
+          "level": "A1",
+          "prep_seg": 0,
+          "hablar_seg": 30,
+          "prompt_en": "What do you do in the morning?",
+          "prompt_es": "¿Qué haces por la mañana? Describe tu rutina: a qué hora te levantas, qué desayunas, etc.",
+          "rubrica": [
+            "¿Responde a la pregunta con información personal real (al menos dos datos concretos)?",
+            "¿Usa frases simples completas (sujeto + verbo), aunque tenga errores básicos?",
+            "¿Usa vocabulario básico adecuado al tema, de modo que el mensaje se entiende al leer la transcripción?",
+            "¿Dice al menos tres frases (unas 25 palabras) en vez de contestar con una sola palabra?"
+          ],
+          "why": "Usa presente simple con horas: «I get up at six o'clock. I have breakfast at home.» Ojo con la -s en tercera persona si hablas de otros."
+        },
+        {
+          "id": "s-004",
+          "level": "A2",
+          "prep_seg": 0,
+          "hablar_seg": 30,
+          "prompt_en": "What do you usually do at the weekend?",
+          "prompt_es": "¿Qué sueles hacer el fin de semana? Cuenta dos o tres actividades.",
+          "rubrica": [
+            "¿Responde a la pregunta con varios datos concretos sobre su vida?",
+            "¿Une las ideas con conectores sencillos (and, but, because, then)?",
+            "¿Usa correctamente el presente simple (y expresiones de frecuencia como usually o sometimes cuando vienen al caso)?",
+            "¿Dice al menos cuatro frases (unas 40 palabras), sin quedarse en una respuesta de una línea?"
+          ],
+          "why": "«At the weekend» es británico; en EE. UU. se dice «on the weekend». Usa frecuencia: «I usually…, sometimes I…»."
+        },
+        {
+          "id": "s-005",
+          "level": "A2",
+          "prep_seg": 0,
+          "hablar_seg": 30,
+          "prompt_en": "Tell me about your job or your studies.",
+          "prompt_es": "Háblame de tu trabajo o de tus estudios: qué haces, dónde y si te gusta.",
+          "rubrica": [
+            "¿Responde a la pregunta con varios datos concretos sobre su vida?",
+            "¿Une las ideas con conectores sencillos (and, but, because, then)?",
+            "¿Usa correctamente el presente simple (y expresiones de frecuencia como usually o sometimes cuando vienen al caso)?",
+            "¿Dice al menos cuatro frases (unas 40 palabras), sin quedarse en una respuesta de una línea?"
+          ],
+          "why": "Estructura rápida: qué haces + dónde + qué te gusta y por qué («I like it because…»). Di «I work as a…», no «I work of…»."
+        },
+        {
+          "id": "s-006",
+          "level": "A2",
+          "prep_seg": 0,
+          "hablar_seg": 30,
+          "prompt_en": "Tell me about the town or city where you live.",
+          "prompt_es": "Háblame del pueblo o ciudad donde vives: cómo es, qué hay y qué te gusta.",
+          "rubrica": [
+            "¿Responde a la pregunta con varios datos concretos sobre su vida?",
+            "¿Une las ideas con conectores sencillos (and, but, because, then)?",
+            "¿Usa correctamente el presente simple (y expresiones de frecuencia como usually o sometimes cuando vienen al caso)?",
+            "¿Dice al menos cuatro frases (unas 40 palabras), sin quedarse en una respuesta de una línea?"
+          ],
+          "why": "Usa «there is / there are» y adjetivos: «It's a big city. There are a lot of parks.» Da una opinión breve al final."
+        },
+        {
+          "id": "s-007",
+          "level": "B1",
+          "prep_seg": 0,
+          "hablar_seg": 30,
+          "prompt_en": "Tell me about a friend who is important to you.",
+          "prompt_es": "Háblame de un amigo o amiga importante para ti: cómo se conocieron y por qué es importante.",
+          "rubrica": [
+            "¿Responde a la pregunta y da al menos una razón o detalle que desarrolla la respuesta?",
+            "¿Usa los tiempos pasados u otras estructuras necesarias con errores que no impiden entender?",
+            "¿Tiene vocabulario suficiente para el tema y conecta las ideas (because, so, when, after that)?",
+            "¿Da una respuesta desarrollada (unas 50 palabras o más), sin frases abandonadas que corten el hilo?"
+          ],
+          "why": "En B1 no basta describir: explica el porqué y usa el pasado para contar cómo se conocieron («We met at work five years ago»)."
+        },
+        {
+          "id": "s-008",
+          "level": "B1",
+          "prep_seg": 0,
+          "hablar_seg": 30,
+          "prompt_en": "What did you do on your last holiday?",
+          "prompt_es": "¿Qué hiciste en tus últimas vacaciones? Cuenta adónde fuiste y qué hiciste.",
+          "rubrica": [
+            "¿Responde a la pregunta y da al menos una razón o detalle que desarrolla la respuesta?",
+            "¿Usa los tiempos pasados u otras estructuras necesarias con errores que no impiden entender?",
+            "¿Tiene vocabulario suficiente para el tema y conecta las ideas (because, so, when, after that)?",
+            "¿Da una respuesta desarrollada (unas 50 palabras o más), sin frases abandonadas que corten el hilo?"
+          ],
+          "why": "«Holiday» es británico para «vacaciones» (en EE. UU. «vacation»). Cuenta en pasado simple y cierra con una valoración: «It was amazing because…»."
+        },
+        {
+          "id": "s-029",
+          "level": "B1",
+          "prep_seg": 0,
+          "hablar_seg": 30,
+          "prompt_en": "Tell me about your neighbours. Do you get on well with them?",
+          "prompt_es": "Háblame de tus vecinos: quiénes son, cómo es tu relación con ellos y si te llevas bien.",
+          "rubrica": [
+            "¿Dice quiénes son sus vecinos y cómo es la relación, con al menos dos datos concretos?",
+            "¿Añade una razón o un ejemplo (because, for example, once) que desarrolla la respuesta?",
+            "¿Usa el presente simple para describir la relación (y el pasado si cuenta un ejemplo), con errores que no impiden entender?",
+            "¿Da una respuesta desarrollada de unas 50 palabras o más, con las ideas enlazadas (and, but, because, so) y sin frases abandonadas?"
+          ],
+          "why": "«Neighbours» y «get on with» son británicos (en EE. UU. «neighbors» y «get along with»). Da un ejemplo concreto: «Last month my neighbour helped me with…»."
+        },
+        {
+          "id": "s-030",
+          "level": "B1",
+          "prep_seg": 0,
+          "hablar_seg": 30,
+          "prompt_en": "What do you do to stay healthy?",
+          "prompt_es": "¿Qué haces para mantenerte sano? Habla de comida, ejercicio, descanso u otros hábitos.",
+          "rubrica": [
+            "¿Menciona al menos dos hábitos concretos relacionados con la salud (comida, ejercicio, descanso)?",
+            "¿Explica por qué lo hace o qué efecto tiene (because, so, it helps me…)?",
+            "¿Usa presente simple con expresiones de frecuencia (usually, twice a week, never) o estructuras como try to / I should, con errores que no impiden entender?",
+            "¿Da una respuesta desarrollada de unas 50 palabras o más, con las ideas enlazadas (and, but, because, so) y sin frases abandonadas?"
+          ],
+          "why": "Usa frecuencia y «try to»: «I try to walk every day, but I don't always sleep enough». Admitir un mal hábito con «but» alarga la respuesta de forma natural."
+        },
+        {
+          "id": "s-031",
+          "level": "B1",
+          "prep_seg": 0,
+          "hablar_seg": 30,
+          "prompt_en": "What kind of music do you enjoy? Has your taste in music changed since you were younger?",
+          "prompt_es": "¿Qué tipo de música te gusta? ¿Ha cambiado tu gusto musical desde que eras más joven?",
+          "rubrica": [
+            "¿Dice qué música le gusta y responde si su gusto ha cambiado?",
+            "¿Da al menos un detalle o razón (cuándo la escucha, cómo le hace sentir, un estilo o grupo concreto)?",
+            "¿Contrasta pasado y presente (used to, when I was…, but now…) con errores que no impiden entender?",
+            "¿Da una respuesta desarrollada de unas 50 palabras o más, con las ideas enlazadas (and, but, because, so) y sin frases abandonadas?"
+          ],
+          "why": "Contrasta pasado y presente: «When I was a teenager I used to listen to…, but now I prefer…». «Used to» es la clave para los hábitos del pasado."
+        },
+        {
+          "id": "s-032",
+          "level": "B1",
+          "prep_seg": 0,
+          "hablar_seg": 30,
+          "prompt_en": "Tell me about the first job you ever had.",
+          "prompt_es": "Háblame del primer trabajo que tuviste: qué hacías, dónde y qué aprendiste.",
+          "rubrica": [
+            "¿Dice qué trabajo era y da al menos dos detalles (dónde, qué hacía, cuándo, con quién)?",
+            "¿Añade una valoración o algo que aprendió, con una razón?",
+            "¿Usa el pasado simple de forma consistente (worked, had to, was, learned), con errores que no impiden entender?",
+            "¿Da una respuesta desarrollada de unas 50 palabras o más, con las ideas enlazadas (and, but, because, so) y sin frases abandonadas?"
+          ],
+          "why": "Todo va en pasado: «My first job was… I worked… I had to…». Cierra con una valoración: «It was hard, but I learned a lot»."
+        },
+        {
+          "id": "s-033",
+          "level": "B1",
+          "prep_seg": 0,
+          "hablar_seg": 30,
+          "prompt_en": "Are you good at saving money? Why or why not?",
+          "prompt_es": "¿Eres bueno para ahorrar dinero? ¿Por qué sí o por qué no? Di en qué gastas y cómo ahorras.",
+          "rubrica": [
+            "¿Responde claramente si ahorra o no y menciona en qué gasta o cómo ahorra?",
+            "¿Justifica la respuesta con una razón o un ejemplo concreto de su vida?",
+            "¿Usa correctamente vocabulario del dinero (save, spend … on, cost, cheap, expensive), con errores que no impiden entender?",
+            "¿Da una respuesta desarrollada de unas 50 palabras o más, con las ideas enlazadas (and, but, because, so) y sin frases abandonadas?"
+          ],
+          "why": "«Save» es ahorrar y «spend» es gastar; se dice «spend money on something», no «in». Da un ejemplo real: «I spend too much on…, so now I…»."
+        },
+        {
+          "id": "s-034",
+          "level": "B1",
+          "prep_seg": 0,
+          "hablar_seg": 30,
+          "prompt_en": "What are your plans for next year?",
+          "prompt_es": "¿Qué planes tienes para el próximo año? Di qué quieres hacer y por qué.",
+          "rubrica": [
+            "¿Menciona al menos dos planes o deseos concretos para el próximo año?",
+            "¿Explica por qué quiere hacer al menos uno de ellos?",
+            "¿Usa formas de futuro (going to, will, I'd like to, I hope to, presente continuo) con errores que no impiden entender?",
+            "¿Da una respuesta desarrollada de unas 50 palabras o más, con las ideas enlazadas (and, but, because, so) y sin frases abandonadas?"
+          ],
+          "why": "Varía las formas de futuro: «I'm going to…», «I'd like to…», «I hope to…». Explica el motivo de al menos un plan con «because»."
+        }
+      ]
+    },
+    {
+      "id": "parte2",
+      "aptis": "Parte 2 · describir una foto",
+      "title": "Describir una foto",
+      "descripcion": "En el examen real ves una foto y respondes a tres preguntas: primero la describes (quiénes aparecen, dónde están, qué hacen) y después contestas dos preguntas relacionadas sobre tu experiencia u opinión. Tienes 45 segundos y no hay preparación. Usa «there is/are» y el presente continuo para la foto, y da razones en las otras respuestas.",
+      "tareas": [
+        {
+          "id": "s-009",
+          "level": "A2",
+          "prep_seg": 0,
+          "hablar_seg": 45,
+          "prompt_en": "Describe this photo. What do you usually have for dinner? Do you prefer eating at home or in a restaurant? Why?",
+          "prompt_es": "Foto: una familia cenando junta en la mesa de la cocina. Describe la foto; luego di qué sueles cenar y si prefieres comer en casa o en un restaurante, y por qué.",
+          "rubrica": [
+            "¿Describe la foto diciendo quiénes aparecen, dónde están y qué hacen (there is/are, presente continuo)?",
+            "¿Responde también a las dos preguntas personales, aunque sea con frases sencillas?",
+            "¿Usa vocabulario básico del tema y frases unidas con and, but o because?",
+            "¿Dice unas 50 palabras o más en total, no solo palabras sueltas?"
+          ],
+          "why": "Describe con «there is/are» y presente continuo («They are eating…»). Luego responde a las dos preguntas, aunque sea con frases cortas.",
+          "foto": "A family of four (two parents and two children) eating dinner together at a wooden kitchen table at home in the evening, plates of rice, vegetables and chicken, everyone smiling and talking, warm light."
+        },
+        {
+          "id": "s-010",
+          "level": "A2",
+          "prep_seg": 0,
+          "hablar_seg": 45,
+          "prompt_en": "Describe this photo. Where do you usually buy your food? What food do you buy every week?",
+          "prompt_es": "Foto: gente comprando fruta y verdura en un mercado al aire libre. Describe la foto; luego di dónde compras normalmente la comida y qué compras cada semana.",
+          "rubrica": [
+            "¿Describe la foto diciendo quiénes aparecen, dónde están y qué hacen (there is/are, presente continuo)?",
+            "¿Responde también a las dos preguntas personales, aunque sea con frases sencillas?",
+            "¿Usa vocabulario básico del tema y frases unidas con and, but o because?",
+            "¿Dice unas 50 palabras o más en total, no solo palabras sueltas?"
+          ],
+          "why": "Vocabulario útil: «market, stall, fruit, vegetables, seller, customer». En Aptis a veces verás «shop» (británico) en lugar de «store» (americano).",
+          "foto": "An outdoor street market on a sunny morning: a woman buying oranges and bananas from a smiling fruit seller at a colourful stall, other shoppers with bags walking in the background."
+        },
+        {
+          "id": "s-011",
+          "level": "A2",
+          "prep_seg": 0,
+          "hablar_seg": 45,
+          "prompt_en": "Describe this photo. What sports do you like? What did you do in your free time when you were a child?",
+          "prompt_es": "Foto: niños jugando al fútbol en un parque. Describe la foto; luego di qué deportes te gustan y qué hacías en tu tiempo libre cuando eras niño.",
+          "rubrica": [
+            "¿Describe la foto diciendo quiénes aparecen, dónde están y qué hacen (there is/are, presente continuo)?",
+            "¿Responde también a las dos preguntas personales, aunque sea con frases sencillas?",
+            "¿Usa vocabulario básico del tema y frases unidas con and, but o because?",
+            "¿Dice unas 50 palabras o más en total, no solo palabras sueltas?"
+          ],
+          "why": "La última pregunta es en pasado: «When I was a child, I played…». Los británicos dicen «football»; en EE. UU. es «soccer».",
+          "foto": "A group of children playing football on the grass in a public park on a sunny afternoon, one child kicking the ball, trees and a few parents watching in the background."
+        },
+        {
+          "id": "s-012",
+          "level": "B1",
+          "prep_seg": 0,
+          "hablar_seg": 45,
+          "prompt_en": "Describe this photo. How do you usually travel to work or to your place of study? What is public transport like in your city?",
+          "prompt_es": "Foto: personas esperando el autobús bajo la lluvia en una parada. Describe la foto; luego di cómo vas normalmente al trabajo o a estudiar y cómo es el transporte público en tu ciudad.",
+          "rubrica": [
+            "¿Describe la foto con detalle (personas, lugar, acciones, ambiente) y además responde a las dos preguntas?",
+            "¿Justifica al menos una respuesta con una razón o un ejemplo de su vida?",
+            "¿Usa presente continuo para la foto y otros tiempos (pasado, presente simple) según la pregunta, con errores que no impiden entender?",
+            "¿Produce un discurso continuo de unas 70 palabras o más, conectando ideas (because, so, for example, also)?"
+          ],
+          "why": "Describe también el ambiente («It looks cold and wet»). En inglés británico la fila de espera es «queue» (EE. UU. «line»): «People are queuing for the bus».",
+          "foto": "Several adults with umbrellas and raincoats waiting at a city bus stop on a rainy grey morning, a bus approaching in the distance, wet street reflecting the lights."
+        },
+        {
+          "id": "s-013",
+          "level": "B1",
+          "prep_seg": 0,
+          "hablar_seg": 45,
+          "prompt_en": "Describe this photo. Tell me about something new you have learned recently. Do you prefer studying alone or with other people? Why?",
+          "prompt_es": "Foto: una mujer joven estudiando con un portátil y libros en una biblioteca. Describe la foto; luego cuenta algo nuevo que hayas aprendido hace poco y di si prefieres estudiar solo o con otras personas, y por qué.",
+          "rubrica": [
+            "¿Describe la foto con detalle (personas, lugar, acciones, ambiente) y además responde a las dos preguntas?",
+            "¿Justifica al menos una respuesta con una razón o un ejemplo de su vida?",
+            "¿Usa presente continuo para la foto y otros tiempos (pasado, presente simple) según la pregunta, con errores que no impiden entender?",
+            "¿Produce un discurso continuo de unas 70 palabras o más, conectando ideas (because, so, for example, also)?"
+          ],
+          "why": "La segunda pregunta pide presente perfecto: «Recently I have learned to…». Para la preferencia, da una razón clara con «because» y un ejemplo.",
+          "foto": "A young woman sitting at a table in a quiet public library, studying with an open laptop, notebooks and a pile of books, writing notes, shelves of books behind her."
+        },
+        {
+          "id": "s-014",
+          "level": "B1",
+          "prep_seg": 0,
+          "hablar_seg": 45,
+          "prompt_en": "Describe this photo. Tell me about a time you cooked for other people. Why do people enjoy sharing meals with friends?",
+          "prompt_es": "Foto: un grupo de amigos cocinando juntos en una cocina. Describe la foto; luego cuenta una vez que cocinaste para otras personas y explica por qué a la gente le gusta compartir comidas con amigos.",
+          "rubrica": [
+            "¿Describe la foto con detalle (personas, lugar, acciones, ambiente) y además responde a las dos preguntas?",
+            "¿Justifica al menos una respuesta con una razón o un ejemplo de su vida?",
+            "¿Usa presente continuo para la foto y otros tiempos (pasado, presente simple) según la pregunta, con errores que no impiden entender?",
+            "¿Produce un discurso continuo de unas 70 palabras o más, conectando ideas (because, so, for example, also)?"
+          ],
+          "why": "Mezcla tiempos: presente continuo para la foto, pasado para tu experiencia («Last year I cooked…») y presente simple para la opinión.",
+          "foto": "Four young adult friends cooking together in a home kitchen, one chopping vegetables, one stirring a pot on the stove, two laughing while setting the table, relaxed atmosphere."
+        },
+        {
+          "id": "s-015",
+          "level": "B2",
+          "prep_seg": 0,
+          "hablar_seg": 45,
+          "prompt_en": "Describe this photo. How much time do you spend on your phone every day? Do you think mobile phones bring people closer together or push them apart?",
+          "prompt_es": "Foto: una calle concurrida donde casi todas las personas miran su móvil mientras caminan. Describe la foto; luego di cuánto tiempo pasas con el móvil al día y opina si los móviles acercan o alejan a las personas.",
+          "rubrica": [
+            "¿Describe la foto con precisión y especula sobre ella (they might be…, it looks like…) antes de responder a las dos preguntas?",
+            "¿Da una opinión clara y bien argumentada, con razones y ejemplos, en la última pregunta?",
+            "¿Usa un rango amplio de vocabulario y estructuras (presente perfecto, condicionales, modales) con buen control gramatical?",
+            "¿Produce unas 90 palabras o más, organizadas con conectores variados (however, on the other hand, as a result)?"
+          ],
+          "why": "En B2 especula sobre la foto («They might be checking messages») y da una opinión matizada. «Mobile phone» es británico; en EE. UU. se dice «cell phone».",
+          "foto": "A busy city pavement at midday with many pedestrians walking while looking down at their smartphones, one person nearly bumping into another, shops blurred in the background."
+        },
+        {
+          "id": "s-016",
+          "level": "B2",
+          "prep_seg": 0,
+          "hablar_seg": 45,
+          "prompt_en": "Describe this photo. Tell me about a skill that an older person taught you. How important is it for young and old people to spend time together?",
+          "prompt_es": "Foto: un hombre mayor enseñando a un niño a reparar una bicicleta. Describe la foto; luego cuenta una habilidad que te enseñó una persona mayor y opina sobre la importancia de que jóvenes y mayores pasen tiempo juntos.",
+          "rubrica": [
+            "¿Describe la foto con precisión y especula sobre ella (they might be…, it looks like…) antes de responder a las dos preguntas?",
+            "¿Da una opinión clara y bien argumentada, con razones y ejemplos, en la última pregunta?",
+            "¿Usa un rango amplio de vocabulario y estructuras (presente perfecto, condicionales, modales) con buen control gramatical?",
+            "¿Produce unas 90 palabras o más, organizadas con conectores variados (however, on the other hand, as a result)?"
+          ],
+          "why": "Especula sobre la relación («He's probably his grandfather») y desarrolla la opinión con ventajas para ambos lados y un ejemplo personal.",
+          "foto": "An elderly man and a boy of about ten kneeling on the ground in a garden, repairing a bicycle wheel together, the man pointing at the chain and the boy holding a small tool, sunny day."
+        },
+        {
+          "id": "s-035",
+          "level": "B1",
+          "prep_seg": 0,
+          "hablar_seg": 45,
+          "prompt_en": "Describe this photo. Have you ever had a pet? Why do so many people like having animals at home?",
+          "prompt_es": "Foto: una mujer paseando a dos perros por un parque. Describe la foto; luego di si has tenido alguna mascota y explica por qué a tanta gente le gusta tener animales en casa.",
+          "rubrica": [
+            "¿Describe la foto (quién aparece, dónde está, qué hace) y además dice si ha tenido mascota y explica por qué la gente tiene animales?",
+            "¿Da al menos dos razones por las que la gente tiene animales (company, exercise, children, etc.)?",
+            "¿Usa presente continuo para la foto (is walking, is carrying) y otros tiempos según cada pregunta, con errores que no impiden entender?",
+            "¿Produce un discurso continuo de unas 70 palabras o más, conectando ideas (because, also, for example, so)?"
+          ],
+          "why": "«Have you ever had…?» se contesta en pasado si dices cuándo: «Yes, I had a cat when I was a child». En la opinión da dos razones: company, exercise.",
+          "foto": "A woman in her thirties walking two dogs along a path in a green park in the morning, one dog carrying a stick in its mouth, a jogger passing in the background."
+        },
+        {
+          "id": "s-036",
+          "level": "B1",
+          "prep_seg": 0,
+          "hablar_seg": 45,
+          "prompt_en": "Describe this photo. Tell me about a time you moved to a new home. What is the most important thing when you choose a new home?",
+          "prompt_es": "Foto: una pareja joven llevando cajas de cartón a un apartamento nuevo y vacío. Describe la foto; luego cuenta una vez que te mudaste de casa y di qué es lo más importante al elegir una casa nueva.",
+          "rubrica": [
+            "¿Describe la foto (quién aparece, dónde está, qué hace) y además cuenta una mudanza concreta y dice qué es lo más importante al elegir casa?",
+            "¿Justifica lo más importante al elegir casa con una razón (price, location, space, neighbours…)?",
+            "¿Usa presente continuo para la foto (are carrying, are moving) y otros tiempos según cada pregunta, con errores que no impiden entender?",
+            "¿Produce un discurso continuo de unas 70 palabras o más, conectando ideas (because, also, for example, so)?"
+          ],
+          "why": "«Flat» y «move house» son británicos (en EE. UU. «apartment» y «move»). Narra la mudanza en pasado simple y opina con «The most important thing is… because…».",
+          "foto": "A young couple carrying cardboard boxes into an empty new apartment, a sofa wrapped in plastic by the door, bright daylight coming through a large window."
+        },
+        {
+          "id": "s-037",
+          "level": "B1",
+          "prep_seg": 0,
+          "hablar_seg": 45,
+          "prompt_en": "Describe this photo. When did you last go to the doctor? What do people in your country usually do when they feel ill?",
+          "prompt_es": "Foto: una médica examinando a un hombre mayor en un consultorio. Describe la foto; luego cuenta cuándo fuiste al médico por última vez y qué hace normalmente la gente en tu país cuando se siente enferma.",
+          "rubrica": [
+            "¿Describe la foto (quién aparece, dónde está, qué hace) y además dice cuándo fue al médico por última vez y qué hace la gente de su país cuando está enferma?",
+            "¿Da algún detalle o ejemplo concreto (por qué fue, remedios caseros, farmacia, quedarse en casa)?",
+            "¿Usa presente continuo para la foto (is listening, is sitting) y otros tiempos según cada pregunta, con errores que no impiden entender?",
+            "¿Produce un discurso continuo de unas 70 palabras o más, conectando ideas (because, also, for example, so)?"
+          ],
+          "why": "«Ill» es británico para «enfermo» (en EE. UU. «sick»). «When did you last…?» pide pasado simple, no presente perfecto: «I went last March because…».",
+          "foto": "A friendly female doctor listening to an older man's chest with a stethoscope in a bright clinic room, the man sitting on the edge of an examination bed."
+        },
+        {
+          "id": "s-038",
+          "level": "B1",
+          "prep_seg": 0,
+          "hablar_seg": 45,
+          "prompt_en": "Describe this photo. How do you keep in touch with relatives who are far away? Is it easy for older people to learn new technology? Why or why not?",
+          "prompt_es": "Foto: una señora mayor saludando por videollamada desde una tableta, sentada en su sofá. Describe la foto; luego di cómo mantienes el contacto con familiares que están lejos y si es fácil para las personas mayores aprender nueva tecnología, y por qué.",
+          "rubrica": [
+            "¿Describe la foto (quién aparece, dónde está, qué hace) y además explica cómo mantiene el contacto con familiares lejanos y opina sobre las personas mayores y la tecnología?",
+            "¿Justifica su opinión sobre las personas mayores y la tecnología con una razón o un ejemplo (un abuelo, un vecino…)?",
+            "¿Usa presente continuo para la foto (is smiling, is waving, is talking) y otros tiempos según cada pregunta, con errores que no impiden entender?",
+            "¿Produce un discurso continuo de unas 70 palabras o más, conectando ideas (because, also, for example, so)?"
+          ],
+          "why": "«Keep in touch» significa «mantener el contacto». Para la opinión matiza: «It depends. Some older people…, but others…».",
+          "foto": "An older woman sitting on a sofa at home, smiling and waving at a tablet during a video call, a cup of tea on a small table beside her."
+        },
+        {
+          "id": "s-039",
+          "level": "B1",
+          "prep_seg": 0,
+          "hablar_seg": 45,
+          "prompt_en": "Describe this photo. What is the weather usually like where you are from? What do you like doing when it is very hot?",
+          "prompt_es": "Foto: niños y adultos refrescándose en una fuente de una plaza en un día de mucho calor. Describe la foto; luego di cómo es normalmente el clima en tu región y qué te gusta hacer cuando hace mucho calor.",
+          "rubrica": [
+            "¿Describe la foto (quién aparece, dónde está, qué hace) y además describe el clima de su región y dice qué le gusta hacer cuando hace calor?",
+            "¿Da al menos un detalle concreto del clima (estaciones, lluvia, temperaturas) o una razón para lo que hace con calor?",
+            "¿Usa presente continuo para la foto (are playing, are sitting) y otros tiempos según cada pregunta, con errores que no impiden entender?",
+            "¿Produce un discurso continuo de unas 70 palabras o más, conectando ideas (because, also, for example, so)?"
+          ],
+          "why": "El clima se describe con «it»: «It's usually warm and it rains a lot in April». No digas «it makes hot» (calco de «hace calor»): di «it's hot».",
+          "foto": "Children and adults cooling down at a public water fountain in a city square on a very hot summer afternoon, some people sitting in the shade of trees eating ice creams."
+        }
+      ]
+    },
+    {
+      "id": "parte3",
+      "aptis": "Parte 3 · comparar dos fotos",
+      "title": "Comparar dos fotos",
+      "descripcion": "En el examen real ves dos fotos sobre el mismo tema y respondes a preguntas: describir y comparar las fotos, y luego dar tu preferencia u opinión sobre el tema. Tienes 45 segundos y no hay preparación. Compara (both, but, while, more… than) en lugar de describir cada foto por separado, y justifica tu opinión.",
+      "tareas": [
+        {
+          "id": "s-017",
+          "level": "B1",
+          "prep_seg": 0,
+          "hablar_seg": 45,
+          "prompt_en": "Tell me what you see in the two photos. Would you prefer to work at home or in an office? Why? Why do some people find it difficult to work from home?",
+          "prompt_es": "Foto 1: una persona trabajando con su portátil en casa, en el salón. Foto 2: compañeros trabajando juntos en una oficina. Describe y compara las dos fotos, di si preferirías trabajar en casa o en una oficina y por qué, y explica por qué a algunas personas les cuesta trabajar desde casa.",
+          "rubrica": [
+            "¿Describe las dos fotos y señala al menos dos semejanzas o diferencias claras entre ellas?",
+            "¿Responde a las otras dos preguntas y justifica su preferencia con razones?",
+            "¿Usa estructuras de comparación (more … than, better, both, while, but) con errores que no impiden entender?",
+            "¿Produce un discurso continuo de unas 70 palabras o más, conectando las ideas con claridad?"
+          ],
+          "why": "No describas cada foto por separado: compara con «In photo 1…, but in photo 2…» y «both». Para preferencias usa «I'd prefer… because…».",
+          "foto": "Photo 1: A man working alone on a laptop at a small table in his living room at home, wearing casual clothes, a cup of coffee and a cat nearby. Photo 2: A group of colleagues working at desks in a bright open-plan office, two of them talking and looking at a computer screen together."
+        },
+        {
+          "id": "s-018",
+          "level": "B1",
+          "prep_seg": 0,
+          "hablar_seg": 45,
+          "prompt_en": "Tell me what you see in the two photos. Which is a better way to get to work, by bicycle or by car? Why? What problems does traffic cause in cities?",
+          "prompt_es": "Foto 1: una mujer yendo en bicicleta por un carril bici. Foto 2: un hombre en su coche en medio de un atasco. Describe y compara las dos fotos, di qué forma de ir al trabajo es mejor y por qué, y explica qué problemas causa el tráfico en las ciudades.",
+          "rubrica": [
+            "¿Describe las dos fotos y señala al menos dos semejanzas o diferencias claras entre ellas?",
+            "¿Responde a las otras dos preguntas y justifica su preferencia con razones?",
+            "¿Usa estructuras de comparación (more … than, better, both, while, but) con errores que no impiden entender?",
+            "¿Produce un discurso continuo de unas 70 palabras o más, conectando las ideas con claridad?"
+          ],
+          "why": "Usa comparativos: «cheaper, healthier, faster, more comfortable than». Para los problemas del tráfico: «pollution, noise, stress, it takes a long time».",
+          "foto": "Photo 1: A woman in office clothes riding a bicycle along a cycle lane in a city on a sunny morning, with a backpack. Photo 2: A tired-looking man sitting in his car in a long traffic jam on a city road, many cars around him."
+        },
+        {
+          "id": "s-019",
+          "level": "B1",
+          "prep_seg": 0,
+          "hablar_seg": 45,
+          "prompt_en": "Tell me what you see in the two photos. Do you prefer shopping online or in a shop? Why? How has shopping changed in your country in recent years?",
+          "prompt_es": "Foto 1: una persona comprando por internet desde el sofá con su móvil. Foto 2: una clienta hablando con un vendedor en una pequeña tienda de barrio. Describe y compara las dos fotos, di si prefieres comprar por internet o en una tienda y por qué, y explica cómo han cambiado las compras en tu país.",
+          "rubrica": [
+            "¿Describe las dos fotos y señala al menos dos semejanzas o diferencias claras entre ellas?",
+            "¿Responde a las otras dos preguntas y justifica su preferencia con razones?",
+            "¿Usa estructuras de comparación (more … than, better, both, while, but) con errores que no impiden entender?",
+            "¿Produce un discurso continuo de unas 70 palabras o más, conectando las ideas con claridad?"
+          ],
+          "why": "La última pregunta pide presente perfecto: «Shopping has changed a lot… More people have started…». «Shop» es británico (EE. UU. «store»).",
+          "foto": "Photo 1: A young man sitting on a sofa at home buying something on his smartphone, delivery boxes on the floor beside him. Photo 2: A woman in a small neighbourhood clothes shop talking with a friendly shop assistant who is showing her a jacket."
+        },
+        {
+          "id": "s-020",
+          "level": "B2",
+          "prep_seg": 0,
+          "hablar_seg": 45,
+          "prompt_en": "Tell me what you see in the two photos. What are the advantages and disadvantages of learning in a classroom and learning online? Which do you think will be more common in the future, and why?",
+          "prompt_es": "Foto 1: estudiantes adultos en un aula con un profesor frente a la pizarra. Foto 2: una persona sola en casa siguiendo una clase en línea por videollamada. Describe y compara las dos fotos, explica ventajas y desventajas de aprender en un aula y en línea, y di qué será más común en el futuro y por qué.",
+          "rubrica": [
+            "¿Compara las dos fotos de forma organizada (semejanzas y diferencias), en lugar de describir cada una por separado?",
+            "¿Responde a las dos preguntas con una opinión desarrollada y matizada, con razones y ejemplos?",
+            "¿Usa lenguaje de comparación y especulación variado (whereas, compared to, it seems that, might) con buen control gramatical?",
+            "¿Produce unas 90 palabras o más y organiza su respuesta con conectores (on the one hand, however, overall)?"
+          ],
+          "why": "Organiza la comparación: «On the one hand, classroom learning…; on the other hand, online courses…». Para el futuro usa «I think… will…» o «is likely to».",
+          "foto": "Photo 1: A group of adult students sitting at desks in a classroom, listening to a teacher who is pointing at a whiteboard with a simple drawing and no writing, some raising their hands. Photo 2: A woman sitting alone at a desk at home, wearing headphones and watching an online class on her laptop, taking notes."
+        },
+        {
+          "id": "s-021",
+          "level": "B2",
+          "prep_seg": 0,
+          "hablar_seg": 45,
+          "prompt_en": "Tell me what you see in the two photos. Which kind of holiday would you choose, and why? Why do you think some people prefer to avoid busy tourist places?",
+          "prompt_es": "Foto 1: turistas en una plaza muy concurrida de una gran ciudad. Foto 2: una pareja acampando junto a un lago en el campo, sin nadie más alrededor. Describe y compara las dos fotos, di qué tipo de vacaciones elegirías y por qué, y explica por qué algunas personas prefieren evitar los lugares turísticos concurridos.",
+          "rubrica": [
+            "¿Compara las dos fotos de forma organizada (semejanzas y diferencias), en lugar de describir cada una por separado?",
+            "¿Responde a las dos preguntas con una opinión desarrollada y matizada, con razones y ejemplos?",
+            "¿Usa lenguaje de comparación y especulación variado (whereas, compared to, it seems that, might) con buen control gramatical?",
+            "¿Produce unas 90 palabras o más y organiza su respuesta con conectores (on the one hand, however, overall)?"
+          ],
+          "why": "Usa lenguaje de contraste: «whereas, while, compared to». «Holiday» es la palabra británica para «vacaciones» (en EE. UU. «vacation»).",
+          "foto": "Photo 1: A crowded square in a big city full of tourists taking photos, historic buildings and street cafés around them, sunny summer day. Photo 2: A couple sitting outside a small tent next to a quiet lake surrounded by mountains and forest, making coffee on a camping stove, nobody else around."
+        },
+        {
+          "id": "s-022",
+          "level": "B2",
+          "prep_seg": 0,
+          "hablar_seg": 45,
+          "prompt_en": "Tell me what you see in the two photos. How do people in your country usually celebrate birthdays? Is it better to celebrate special occasions with a big party or in a quiet way? Why?",
+          "prompt_es": "Foto 1: una gran fiesta de cumpleaños con muchos invitados, música y globos. Foto 2: dos personas celebrando tranquilamente con una cena en casa y una pequeña tarta. Describe y compara las dos fotos, explica cómo se celebran normalmente los cumpleaños en tu país y opina si es mejor celebrar con una gran fiesta o de forma tranquila.",
+          "rubrica": [
+            "¿Compara las dos fotos de forma organizada (semejanzas y diferencias), en lugar de describir cada una por separado?",
+            "¿Responde a las dos preguntas con una opinión desarrollada y matizada, con razones y ejemplos?",
+            "¿Usa lenguaje de comparación y especulación variado (whereas, compared to, it seems that, might) con buen control gramatical?",
+            "¿Produce unas 90 palabras o más y organiza su respuesta con conectores (on the one hand, however, overall)?"
+          ],
+          "why": "Especula sobre las fotos («It seems to be a family celebration») y matiza tu opinión: «It depends on…», «personally, I'd rather…».",
+          "foto": "Photo 1: A lively birthday party in a garden with many guests of different ages, balloons, a long table with food, people dancing to music. Photo 2: Two people sitting at a small table at home having a quiet dinner by candlelight, with a small birthday cake with one candle."
+        },
+        {
+          "id": "s-040",
+          "level": "B1",
+          "prep_seg": 0,
+          "hablar_seg": 45,
+          "prompt_en": "Tell me what you see in the two photos. Which kind of place would you choose for a meal with friends? Why? Why is street food popular in many countries?",
+          "prompt_es": "Foto 1: amigos comiendo de pie junto a un puesto de comida callejera por la noche. Foto 2: una pareja en un restaurante elegante y tranquilo. Describe y compara las dos fotos, di qué tipo de lugar elegirías para comer con amigos y por qué, y explica por qué la comida callejera es popular en muchos países.",
+          "rubrica": [
+            "¿Describe las dos fotos y señala al menos dos semejanzas o diferencias claras (lugar, personas, ambiente)?",
+            "¿Dice qué lugar elegiría para comer con amigos y lo justifica con al menos una razón y responde también a la tercera pregunta?",
+            "¿Usa estructuras de comparación (cheaper, noisier, more formal than, both, while) con errores que no impiden entender?",
+            "¿Produce un discurso continuo de unas 70 palabras o más, enlazando las ideas (because, so, while, also)?"
+          ],
+          "why": "Contrasta con «while»: «Photo 1 is noisy and informal, while photo 2 is quiet and elegant». Adjetivos cortos con -er (cheaper) y largos con more (more comfortable).",
+          "foto": "Photo 1: Several friends standing around a busy street food stall at night, a cook frying food on a hot grill, people eating from paper plates. Photo 2: A couple sitting at a table in a quiet, elegant restaurant with white tablecloths, a waiter pouring water into their glasses."
+        },
+        {
+          "id": "s-041",
+          "level": "B1",
+          "prep_seg": 0,
+          "hablar_seg": 45,
+          "prompt_en": "Tell me what you see in the two photos. Would you prefer to grow up in a big city or in the countryside? Why? What do people miss when they move from a village to a city?",
+          "prompt_es": "Foto 1: una calle muy concurrida de una gran ciudad con edificios altos y tráfico. Foto 2: un pueblo pequeño y tranquilo en el campo, con colinas verdes y vacas. Describe y compara las dos fotos, di si preferirías crecer en una ciudad grande o en el campo y por qué, y explica qué extraña la gente cuando se muda de un pueblo a una ciudad.",
+          "rubrica": [
+            "¿Describe las dos fotos y señala al menos dos semejanzas o diferencias claras (lugar, personas, ambiente)?",
+            "¿Dice dónde preferiría crecer (ciudad o campo) y lo justifica con al menos una razón y responde también a la tercera pregunta?",
+            "¿Usa estructuras de comparación (quieter, safer, more exciting than, both, but) con errores que no impiden entender?",
+            "¿Produce un discurso continuo de unas 70 palabras o más, enlazando las ideas (because, so, while, also)?"
+          ],
+          "why": "«Countryside» es «el campo» (no «camp», que es un campamento). Para la preferencia usa «I'd prefer to… because…» y comparativos: «quieter, safer, more exciting».",
+          "foto": "Photo 1: A busy city street with tall apartment buildings, heavy traffic and many people crossing the road at a pedestrian crossing. Photo 2: A small quiet village in the countryside with a few houses, green hills and a farmer walking with some cows along a path."
+        },
+        {
+          "id": "s-042",
+          "level": "B1",
+          "prep_seg": 0,
+          "hablar_seg": 45,
+          "prompt_en": "Tell me what you see in the two photos. Which of these activities do you think is better for teenagers? Why? What hobby would you like to try in the future?",
+          "prompt_es": "Foto 1: un adolescente jugando a un videojuego en el sofá de su cuarto. Foto 2: una adolescente leyendo un libro en un banco de un jardín. Describe y compara las dos fotos, di qué actividad crees que es mejor para los adolescentes y por qué, y cuenta qué pasatiempo te gustaría probar en el futuro.",
+          "rubrica": [
+            "¿Describe las dos fotos y señala al menos dos semejanzas o diferencias claras (lugar, personas, ambiente)?",
+            "¿Dice qué actividad es mejor para los adolescentes y lo justifica con al menos una razón y responde también a la tercera pregunta?",
+            "¿Usa estructuras de comparación (both, while, more relaxing than, better for) con errores que no impiden entender?",
+            "¿Produce un discurso continuo de unas 70 palabras o más, enlazando las ideas (because, so, while, also)?"
+          ],
+          "why": "Compara con «both» y «while»: «Both teenagers are relaxing, while one is inside and the other is outside». Para el futuro usa «I'd like to try…» o «I'm thinking of + -ing».",
+          "foto": "Photo 1: A teenage boy sitting on the sofa in his bedroom playing a video game with a controller, the screen glowing in a dark room. Photo 2: A teenage girl sitting on a bench in a sunny garden reading a book, a glass of juice beside her."
+        },
+        {
+          "id": "s-043",
+          "level": "B1",
+          "prep_seg": 0,
+          "hablar_seg": 45,
+          "prompt_en": "Tell me what you see in the two photos. Do you prefer to pay in cash or with your card or phone? Why? What problems can people have if they do not carry any cash?",
+          "prompt_es": "Foto 1: un señor mayor pagando con monedas y billetes en una pequeña tienda de barrio. Foto 2: una mujer joven pagando un café con el celular en un datáfono. Describe y compara las dos fotos, di si prefieres pagar en efectivo o con tarjeta o celular y por qué, y explica qué problemas puede tener la gente si no lleva nada de efectivo.",
+          "rubrica": [
+            "¿Describe las dos fotos y señala al menos dos semejanzas o diferencias claras (lugar, personas, ambiente)?",
+            "¿Dice cómo prefiere pagar y lo justifica con al menos una razón (seguridad, rapidez, control del gasto) y responde también a la tercera pregunta?",
+            "¿Usa estructuras de comparación (faster, safer, easier than, both, whereas/while) con errores que no impiden entender?",
+            "¿Produce un discurso continuo de unas 70 palabras o más, enlazando las ideas (because, so, while, also)?"
+          ],
+          "why": "Se dice «pay in cash» pero «pay by card» o «with my phone». «Change» es el cambio o las vueltas: «The shopkeeper is giving him his change».",
+          "foto": "Photo 1: An older man paying with coins and paper money at the counter of a small neighbourhood shop, the shopkeeper giving him his change. Photo 2: A young woman paying for a coffee by holding her smartphone near a card machine at a café counter."
+        },
+        {
+          "id": "s-044",
+          "level": "B1",
+          "prep_seg": 0,
+          "hablar_seg": 45,
+          "prompt_en": "Tell me what you see in the two photos. Which of these jobs would you prefer to do? Why? What are the good and bad things about working outdoors?",
+          "prompt_es": "Foto 1: un jardinero cortando un seto en un parque en un día soleado. Foto 2: una mujer con auriculares atendiendo llamadas en un centro de atención al cliente. Describe y compara las dos fotos, di cuál de los dos trabajos preferirías y por qué, y explica lo bueno y lo malo de trabajar al aire libre.",
+          "rubrica": [
+            "¿Describe las dos fotos y señala al menos dos semejanzas o diferencias claras (lugar, personas, ambiente)?",
+            "¿Dice qué trabajo preferiría y lo justifica con al menos una razón y responde también a la tercera pregunta?",
+            "¿Usa estructuras de comparación (I'd rather … than, more stressful than, while, both) con errores que no impiden entender?",
+            "¿Produce un discurso continuo de unas 70 palabras o más, enlazando las ideas (because, so, while, also)?"
+          ],
+          "why": "Compara condiciones concretas: «The gardener works outdoors, while the woman sits at a desk all day». Para preferir usa «I'd rather… than…» (sin «to»).",
+          "foto": "Photo 1: A gardener in work clothes cutting a hedge in a public park on a sunny day. Photo 2: A young woman wearing a headset sitting at a desk in a call centre, talking to a customer and looking at her computer screen, many similar desks around her."
+        }
+      ]
+    },
+    {
+      "id": "parte4",
+      "aptis": "Parte 4 · tema abstracto",
+      "title": "Hablar sobre un tema",
+      "descripcion": "En el examen real recibes tres preguntas relacionadas sobre un tema: la primera sobre tu experiencia personal y las otras piden tu opinión. Tienes un minuto para preparar (toma notas breves) y dos minutos para hablar sin interrupción. Responde a las tres preguntas en orden, desarrolla con ejemplos y usa conectores para mantener el discurso los dos minutos.",
+      "tareas": [
+        {
+          "id": "s-023",
+          "level": "B1",
+          "prep_seg": 60,
+          "hablar_seg": 120,
+          "prompt_en": "Tell me about a time when you helped someone. How did you feel afterwards? Why is it important to help other people?",
+          "prompt_es": "Cuéntame una ocasión en la que ayudaste a alguien. ¿Cómo te sentiste después? ¿Por qué es importante ayudar a los demás?",
+          "rubrica": [
+            "¿Responde a las tres preguntas: cuenta una experiencia concreta y da su opinión con razones?",
+            "¿Narra la experiencia con tiempos pasados (simple y continuo) de forma comprensible y en orden (first, then, in the end)?",
+            "¿Tiene vocabulario suficiente para el tema y enlaza las ideas (because, so, but, for example)?",
+            "¿Produce un discurso extenso (unas 150 palabras o más) que cubre las tres preguntas?"
+          ],
+          "why": "Usa el minuto de preparación para anotar palabras clave de cada pregunta. Cuenta la historia en orden (first, then, in the end) y termina con tu opinión."
+        },
+        {
+          "id": "s-024",
+          "level": "B1",
+          "prep_seg": 60,
+          "hablar_seg": 120,
+          "prompt_en": "Tell me about something difficult that you achieved. How did you prepare for it? Why do some people give up when things become difficult?",
+          "prompt_es": "Cuéntame algo difícil que lograste. ¿Cómo te preparaste? ¿Por qué algunas personas se rinden cuando las cosas se ponen difíciles?",
+          "rubrica": [
+            "¿Responde a las tres preguntas: cuenta una experiencia concreta y da su opinión con razones?",
+            "¿Narra la experiencia con tiempos pasados (simple y continuo) de forma comprensible y en orden (first, then, in the end)?",
+            "¿Tiene vocabulario suficiente para el tema y enlaza las ideas (because, so, but, for example)?",
+            "¿Produce un discurso extenso (unas 150 palabras o más) que cubre las tres preguntas?"
+          ],
+          "why": "«Achieve» significa «lograr», no «archivar». Para la preparación usa pasado: «I practised every day…» («practise» es la forma británica del verbo; en EE. UU. «practice»)."
+        },
+        {
+          "id": "s-025",
+          "level": "B2",
+          "prep_seg": 60,
+          "hablar_seg": 120,
+          "prompt_en": "Tell me about a time when you had to adapt to a big change in your life. What was the most difficult part? Do you think people find it easier to deal with change when they are young or when they are older? Why?",
+          "prompt_es": "Cuéntame una vez en la que tuviste que adaptarte a un gran cambio en tu vida. ¿Qué fue lo más difícil? ¿Crees que es más fácil afrontar los cambios de joven o de mayor? ¿Por qué?",
+          "rubrica": [
+            "¿Responde a las tres preguntas con una experiencia detallada y una opinión argumentada con ejemplos y matices?",
+            "¿Usa un rango amplio de estructuras (pasados narrativos, presente perfecto, condicionales, pasiva) con buen control y errores que no confunden?",
+            "¿Organiza un discurso coherente con conectores variados (however, on the other hand, as a result, overall)?",
+            "¿Produce un discurso extenso (unas 200 palabras o más) sin repeticiones excesivas ni frases abandonadas?"
+          ],
+          "why": "En B2 no basta contar: analiza («What made it hard was…») y compara las dos posiciones antes de decidir. Usa «get used to + -ing» para hablar de adaptarse."
+        },
+        {
+          "id": "s-026",
+          "level": "B2",
+          "prep_seg": 60,
+          "hablar_seg": 120,
+          "prompt_en": "Tell me about something you do to help protect the environment. Why do many people not do more for the environment? Should protecting the environment be the responsibility of individuals or governments? Why?",
+          "prompt_es": "Cuéntame algo que haces para proteger el medio ambiente. ¿Por qué mucha gente no hace más por el medio ambiente? ¿Proteger el medio ambiente debería ser responsabilidad de las personas o de los gobiernos? ¿Por qué?",
+          "rubrica": [
+            "¿Responde a las tres preguntas con una experiencia detallada y una opinión argumentada con ejemplos y matices?",
+            "¿Usa un rango amplio de estructuras (pasados narrativos, presente perfecto, condicionales, pasiva) con buen control y errores que no confunden?",
+            "¿Organiza un discurso coherente con conectores variados (however, on the other hand, as a result, overall)?",
+            "¿Produce un discurso extenso (unas 200 palabras o más) sin repeticiones excesivas ni frases abandonadas?"
+          ],
+          "why": "Vocabulario útil: «recycle, waste, reduce plastic, public transport, pollution». Para la última pregunta, una respuesta equilibrada («both…, but…») suena más B2."
+        },
+        {
+          "id": "s-027",
+          "level": "B2",
+          "prep_seg": 60,
+          "hablar_seg": 120,
+          "prompt_en": "Tell me about a time when speaking another language was useful or difficult for you. How did you deal with the situation? Do you think everyone should learn a second language? Why or why not?",
+          "prompt_es": "Cuéntame una vez en la que hablar otro idioma te resultó útil o difícil. ¿Cómo manejaste la situación? ¿Crees que todo el mundo debería aprender un segundo idioma? ¿Por qué sí o por qué no?",
+          "rubrica": [
+            "¿Responde a las tres preguntas con una experiencia detallada y una opinión argumentada con ejemplos y matices?",
+            "¿Usa un rango amplio de estructuras (pasados narrativos, presente perfecto, condicionales, pasiva) con buen control y errores que no confunden?",
+            "¿Organiza un discurso coherente con conectores variados (however, on the other hand, as a result, overall)?",
+            "¿Produce un discurso extenso (unas 200 palabras o más) sin repeticiones excesivas ni frases abandonadas?"
+          ],
+          "why": "Buena ocasión para usar tu propia experiencia con el inglés. Usa pasado continuo para el contexto («I was travelling when…») y un condicional para la opinión («If everyone spoke…»)."
+        },
+        {
+          "id": "s-028",
+          "level": "B2",
+          "prep_seg": 60,
+          "hablar_seg": 120,
+          "prompt_en": "Tell me about a person you know who you think is successful. Why do you think this person is successful? Is money the most important sign of success? Why or why not?",
+          "prompt_es": "Háblame de una persona que conoces y que consideras exitosa. ¿Por qué crees que tiene éxito? ¿Es el dinero la señal más importante del éxito? ¿Por qué sí o por qué no?",
+          "rubrica": [
+            "¿Responde a las tres preguntas con una experiencia detallada y una opinión argumentada con ejemplos y matices?",
+            "¿Usa un rango amplio de estructuras (pasados narrativos, presente perfecto, condicionales, pasiva) con buen control y errores que no confunden?",
+            "¿Organiza un discurso coherente con conectores variados (however, on the other hand, as a result, overall)?",
+            "¿Produce un discurso extenso (unas 200 palabras o más) sin repeticiones excesivas ni frases abandonadas?"
+          ],
+          "why": "Define primero qué entiendes por éxito y apóyalo con el ejemplo de esa persona. Para contrastar: «Although money is important, …»."
+        },
+        {
+          "id": "s-045",
+          "level": "B1",
+          "prep_seg": 60,
+          "hablar_seg": 120,
+          "prompt_en": "Tell me about a piece of technology that you find very useful. How has it changed your daily routine? Do you think people depend too much on technology? Why?",
+          "prompt_es": "Háblame de un aparato o tecnología que te resulte muy útil. ¿Cómo ha cambiado tu rutina diaria? ¿Crees que la gente depende demasiado de la tecnología? ¿Por qué?",
+          "rubrica": [
+            "¿Responde a las tres preguntas: nombra una tecnología concreta, explica cómo ha cambiado su rutina y da su opinión sobre la dependencia?",
+            "¿Contrasta antes y ahora (before, now, it has changed, since then) con tiempos adecuados, de forma comprensible y con errores que no impiden entender?",
+            "¿Da su opinión (I think, in my opinion) con al menos una razón y un ejemplo (because, for example)?",
+            "¿Produce un discurso extenso (unas 150 palabras o más) que cubre las tres preguntas, sin quedarse en respuestas de una línea?"
+          ],
+          "why": "«Depend on» lleva «on», no «of» (calco de «depender de»). Para el cambio usa presente perfecto: «It has made my life easier»."
+        },
+        {
+          "id": "s-046",
+          "level": "B1",
+          "prep_seg": 60,
+          "hablar_seg": 120,
+          "prompt_en": "Tell me about a festival or celebration in your town or region. What do people do during it? Why are traditions important for a community?",
+          "prompt_es": "Háblame de una fiesta o celebración de tu pueblo o región. ¿Qué hace la gente durante esa fiesta? ¿Por qué son importantes las tradiciones para una comunidad?",
+          "rubrica": [
+            "¿Responde a las tres preguntas: describe una fiesta concreta, explica qué hace la gente y opina sobre la importancia de las tradiciones?",
+            "¿Usa el presente simple para las costumbres (people dance, they wear…) y, si cuenta un recuerdo, el pasado, de forma comprensible y ordenada (first, then, after that, in the end)?",
+            "¿Explica por qué son importantes las tradiciones con al menos dos razones o un ejemplo (because, for example, also)?",
+            "¿Produce un discurso extenso (unas 150 palabras o más) que cubre las tres preguntas, sin quedarse en respuestas de una línea?"
+          ],
+          "why": "Para costumbres usa presente simple con «people»: «Every August people dance in the streets». La tercera pregunta pide opinión con razones, no más descripción."
+        },
+        {
+          "id": "s-047",
+          "level": "B1",
+          "prep_seg": 60,
+          "hablar_seg": 120,
+          "prompt_en": "Tell me about a time when you felt very stressed. What did you do to feel better? Why do you think so many people feel stressed at work today?",
+          "prompt_es": "Cuéntame una ocasión en la que te sentiste muy estresado. ¿Qué hiciste para sentirte mejor? ¿Por qué crees que tanta gente se siente estresada en el trabajo hoy en día?",
+          "rubrica": [
+            "¿Responde a las tres preguntas: cuenta una situación concreta de estrés, explica qué hizo para sentirse mejor y da razones del estrés laboral?",
+            "¿Narra la situación en pasado (I was, I had to, I decided to, I felt), de forma comprensible y ordenada (first, then, after that, in the end)?",
+            "¿Da al menos dos causas del estrés en el trabajo con ejemplos o razones (because, for example, too much, not enough)?",
+            "¿Produce un discurso extenso (unas 150 palabras o más) que cubre las tres preguntas, sin quedarse en respuestas de una línea?"
+          ],
+          "why": "«Stressed» describe a la persona y «stressful» a lo que causa estrés: «I was stressed because my job was very stressful». No digas «I was stressful»."
+        },
+        {
+          "id": "s-048",
+          "level": "B1",
+          "prep_seg": 60,
+          "hablar_seg": 120,
+          "prompt_en": "Tell me about a teacher who you remember well. Why do you remember this teacher? What makes a good teacher?",
+          "prompt_es": "Háblame de un profesor o profesora a quien recuerdes bien. ¿Por qué lo recuerdas? ¿Qué hace que alguien sea un buen profesor?",
+          "rubrica": [
+            "¿Responde a las tres preguntas: describe a un profesor concreto, explica por qué lo recuerda y dice qué hace bueno a un profesor?",
+            "¿Usa el pasado (simple o used to) para lo que hacía el profesor (she used to, he always explained), de forma comprensible y con errores que no impiden entender?",
+            "¿Nombra al menos dos cualidades de un buen profesor (patient, fair, funny…) y apoya al menos una con una razón o ejemplo?",
+            "¿Produce un discurso extenso (unas 150 palabras o más) que cubre las tres preguntas, sin quedarse en respuestas de una línea?"
+          ],
+          "why": "Usa «used to» para lo que el profesor hacía habitualmente: «She used to tell us stories». En la última pregunta da cualidades con ejemplos, no solo una lista de adjetivos."
+        },
+        {
+          "id": "s-049",
+          "level": "B1",
+          "prep_seg": 60,
+          "hablar_seg": 120,
+          "prompt_en": "Tell me about a place you visited that surprised you. What was different from what you expected? Why do people enjoy visiting other countries?",
+          "prompt_es": "Háblame de un lugar que visitaste y que te sorprendió. ¿Qué fue diferente de lo que esperabas? ¿Por qué a la gente le gusta visitar otros países?",
+          "rubrica": [
+            "¿Responde a las tres preguntas: nombra un lugar concreto, explica qué le sorprendió frente a lo que esperaba y da razones por las que la gente viaja?",
+            "¿Narra la visita en pasado y contrasta expectativa y realidad (I thought it would be…, but actually…), de forma comprensible y ordenada (first, then, after that, in the end)?",
+            "¿Da al menos dos razones por las que la gente visita otros países (culture, food, people, relax…), con un ejemplo?",
+            "¿Produce un discurso extenso (unas 150 palabras o más) que cubre las tres preguntas, sin quedarse en respuestas de una línea?"
+          ],
+          "why": "Contrasta expectativa y realidad: «I thought it would be…, but actually it was…». Ojo: «actually» significa «en realidad», no «actualmente» (que es «currently»)."
+        },
+        {
+          "id": "s-050",
+          "level": "B1",
+          "prep_seg": 60,
+          "hablar_seg": 120,
+          "prompt_en": "Tell me about something you bought that you later regretted. Why did you buy it? Why do people often buy things that they do not really need?",
+          "prompt_es": "Cuéntame algo que compraste y de lo que después te arrepentiste. ¿Por qué lo compraste? ¿Por qué la gente compra a menudo cosas que no necesita de verdad?",
+          "rubrica": [
+            "¿Responde a las tres preguntas: nombra una compra concreta, explica por qué la hizo y da razones por las que la gente compra cosas innecesarias?",
+            "¿Narra la compra en pasado simple (I bought, I thought, it cost) y dice qué pasó después, de forma comprensible y ordenada (first, then, after that, in the end)?",
+            "¿Da al menos dos razones por las que la gente compra de más (advertising, sales, feeling bored or sad…), con un ejemplo?",
+            "¿Produce un discurso extenso (unas 150 palabras o más) que cubre las tres preguntas, sin quedarse en respuestas de una línea?"
+          ],
+          "why": "«Regret» significa «arrepentirse de»: «I regretted buying it» (con -ing). Cierra la historia con lo que aprendiste: «Now I always think twice before I buy something»."
+        }
+      ]
+    }
+  ]
+}

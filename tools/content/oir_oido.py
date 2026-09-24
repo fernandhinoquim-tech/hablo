@@ -164,7 +164,27 @@ def main():
                 "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"]
     DECENAS = {20: "twenty", 30: "thirty", 40: "forty", 50: "fifty", 60: "sixty", 70: "seventy", 80: "eighty", 90: "ninety"}
 
+    # Ordinales (24-09): Parakeet escribe "thirteenth" como "13th" y, tras un mes, como
+    # "June 13" (así se escriben las fechas en inglés). Se comparan por el NÚMERO: "13th",
+    # "13" y "thirteenth" son lo mismo, y siguen distintos de "30th"/"thirtieth", que es
+    # el contraste del bloque. Sin esto se descartaban 13th/30th y 14th/40th con las
+    # cuatro voces bien oídas.
+    ORDINAL = {"first": "one", "second": "two", "third": "three", "fifth": "five", "eighth": "eight",
+               "ninth": "nine", "twelfth": "twelve"}
+
+    def cardinal(w):
+        if w in ORDINAL:
+            return ORDINAL[w]
+        if w.endswith("ieth") and w[:-4] + "y" in DECENAS.values():
+            return w[:-4] + "y"
+        if w.endswith("th") and w[:-2] in UNIDADES:
+            return w[:-2]
+        return w
+
     def en_letras(tok):
+        m = re.fullmatch(r"(\d+)(st|nd|rd|th)", tok)
+        if m:
+            tok = m.group(1)
         if not tok.isdigit() or int(tok) > 100:
             return [tok]
         n = int(tok)
@@ -175,7 +195,7 @@ def main():
         return [DECENAS[n - n % 10]] + ([UNIDADES[n % 10]] if n % 10 else [])
 
     def suena_igual(w1, w2):
-        if w1 == w2:
+        if w1 == w2 or cardinal(w1) == cardinal(w2):
             return True
         p1 = {tuple(re.sub(r"\d", "", ph) for ph in pr) for pr in CMU.get(w1, [])}
         p2 = {tuple(re.sub(r"\d", "", ph) for ph in pr) for pr in CMU.get(w2, [])}

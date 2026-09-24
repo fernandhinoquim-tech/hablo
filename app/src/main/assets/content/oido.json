@@ -109,6 +109,16 @@
      "a": "bat",
      "b": "vat",
      "frase": "Now we say ___ again."
+    },
+    {
+     "a": "marble",
+     "b": "marvel",
+     "frase": "Mark ___ with your pencil."
+    },
+    {
+     "a": "bolt",
+     "b": "volt",
+     "frase": "Underline ___ with your pen."
     }
    ]
   },
@@ -267,6 +277,11 @@
      "a": "breathe",
      "b": "breed",
      "frase": "Try to say ___ and listen."
+    },
+    {
+     "a": "breathing",
+     "b": "breeding",
+     "frase": "I think ___ comes next."
     }
    ]
   },
@@ -384,6 +399,11 @@
      "a": "cab",
      "b": "cub",
      "frase": "Now I say ___ again."
+    },
+    {
+     "a": "ankle",
+     "b": "uncle",
+     "frase": "Please write ___ for me."
     }
    ]
   },
@@ -451,12 +471,42 @@
      "a": "sat",
      "b": "sad",
      "frase": "You will hear ___ five times."
+    },
+    {
+     "a": "set",
+     "b": "said",
+     "frase": "You can hear ___ clearly now."
+    },
+    {
+     "a": "mat",
+     "b": "mad",
+     "frase": "Circle ___ five times."
+    },
+    {
+     "a": "kit",
+     "b": "kid",
+     "frase": "The teacher wrote ___ here."
+    },
+    {
+     "a": "cart",
+     "b": "card",
+     "frase": "Please spell ___ for me."
+    },
+    {
+     "a": "hurt",
+     "b": "heard",
+     "frase": "I think ___ comes next."
+    },
+    {
+     "a": "sight",
+     "b": "side",
+     "frase": "Repeat ___ very slowly, please."
     }
    ]
   },
   {
    "id": "oido-final-consonante",
-   "title": "car / card",
+   "title": "no / note",
    "level": "A2",
    "contraste": "con consonante final · sin ella",
    "explicacion": "En español pocas palabras terminan en consonantes como /d/, /t/ o /f/, y es fácil no oírlas. En inglés esa última consonante cambia la palabra: car no es card. Escucha con atención el final de la palabra, justo antes de la siguiente.",
@@ -507,12 +557,17 @@
      "a": "law",
      "b": "lawn",
      "frase": "Please say ___ out loud."
+    },
+    {
+     "a": "no",
+     "b": "note",
+     "frase": "Mark ___ with your pencil."
     }
    ]
   },
   {
    "id": "oido-ed",
-   "title": "play / played",
+   "title": "start / started",
    "level": "A2",
    "contraste": "sin -ed · con -ed",
    "explicacion": "La terminación -ed del pasado suena /d/, /t/ o /ɪd/ según la palabra. Muchas veces es solo una consonante corta pegada al final (walked suena como «wokt»), así que se oye poco. Solo después de t o d se oye una sílaba extra, como en wanted.",
@@ -563,6 +618,11 @@
      "a": "work",
      "b": "worked",
      "frase": "Please say ___ out loud."
+    },
+    {
+     "a": "start",
+     "b": "started",
+     "frase": "Please write ___ for me."
     }
    ]
   },
@@ -619,6 +679,11 @@
      "a": "sip",
      "b": "zip",
      "frase": "I will say ___ again."
+    },
+    {
+     "a": "fussy",
+     "b": "fuzzy",
+     "frase": "Mark ___ with your pencil."
     }
    ]
   },
@@ -833,6 +898,16 @@
      "a": "nineteen",
      "b": "ninety",
      "frase": "I said ___ again."
+    },
+    {
+     "a": "thirteenth",
+     "b": "thirtieth",
+     "frase": "It happened on June ___ last year."
+    },
+    {
+     "a": "fourteenth",
+     "b": "fortieth",
+     "frase": "It was her ___ birthday party."
     }
    ]
   }

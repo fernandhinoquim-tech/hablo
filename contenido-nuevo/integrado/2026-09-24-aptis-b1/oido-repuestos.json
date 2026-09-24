@@ -1,0 +1,172 @@
+{
+ "candidatos": {
+  "oido-final-t-d": [
+   {
+    "a": "cart",
+    "b": "card",
+    "frase": "Please spell ___ for me."
+   },
+   {
+    "a": "hurt",
+    "b": "heard",
+    "frase": "I think ___ comes next."
+   },
+   {
+    "a": "late",
+    "b": "laid",
+    "frase": "Mark ___ with your pencil."
+   },
+   {
+    "a": "sight",
+    "b": "side",
+    "frase": "Repeat ___ very slowly, please."
+   },
+   {
+    "a": "tight",
+    "b": "tied",
+    "frase": "We practice ___ many times."
+   },
+   {
+    "a": "great",
+    "b": "grade",
+    "frase": "Underline ___ with your pen."
+   },
+   {
+    "a": "set",
+    "b": "said",
+    "frase": "You can hear ___ clearly now."
+   },
+   {
+    "a": "mat",
+    "b": "mad",
+    "frase": "Circle ___ five times."
+   },
+   {
+    "a": "brought",
+    "b": "broad",
+    "frase": "Did you hear ___ before?"
+   },
+   {
+    "a": "bright",
+    "b": "bride",
+    "frase": "She wrote ___ by mistake."
+   },
+   {
+    "a": "hit",
+    "b": "hid",
+    "frase": "Please check ___ before class."
+   },
+   {
+    "a": "kit",
+    "b": "kid",
+    "frase": "The teacher wrote ___ here."
+   }
+  ],
+  "oido-u-uu": [
+   {
+    "a": "pulls",
+    "b": "pools",
+    "frase": "I think ___ comes next."
+   }
+  ],
+  "oido-dh-d": [
+   {
+    "a": "breathing",
+    "b": "breeding",
+    "frase": "I think ___ comes next."
+   }
+  ],
+  "oido-numeros": [
+   {
+    "a": "thirteenth",
+    "b": "thirtieth",
+    "frase": "It happened on June ___ last year."
+   },
+   {
+    "a": "fourteenth",
+    "b": "fortieth",
+    "frase": "It was her ___ birthday party."
+   }
+  ],
+  "oido-b-v": [
+   {
+    "a": "berry",
+    "b": "very",
+    "frase": "Please write ___ for me."
+   },
+   {
+    "a": "marble",
+    "b": "marvel",
+    "frase": "Mark ___ with your pencil."
+   },
+   {
+    "a": "bolt",
+    "b": "volt",
+    "frase": "Underline ___ with your pen."
+   },
+   {
+    "a": "carb",
+    "b": "carve",
+    "frase": "I think ___ comes next."
+   }
+  ],
+  "oido-final-consonante": [
+   {
+    "a": "no",
+    "b": "note",
+    "frase": "Mark ___ with your pencil."
+   },
+   {
+    "a": "way",
+    "b": "wait",
+    "frase": "Underline ___ with your pen."
+   },
+   {
+    "a": "say",
+    "b": "safe",
+    "frase": "I think ___ comes next."
+   }
+  ],
+  "oido-ed": [
+   {
+    "a": "start",
+    "b": "started",
+    "frase": "Please write ___ for me."
+   },
+   {
+    "a": "help",
+    "b": "helped",
+    "frase": "Mark ___ with your pencil."
+   },
+   {
+    "a": "open",
+    "b": "opened",
+    "frase": "I think ___ comes next."
+   }
+  ],
+  "oido-ae-uh": [
+   {
+    "a": "ankle",
+    "b": "uncle",
+    "frase": "Please write ___ for me."
+   },
+   {
+    "a": "crash",
+    "b": "crush",
+    "frase": "Mark ___ with your pencil."
+   }
+  ],
+  "oido-s-z": [
+   {
+    "a": "fussy",
+    "b": "fuzzy",
+    "frase": "Mark ___ with your pencil."
+   },
+   {
+    "a": "face",
+    "b": "phase",
+    "frase": "I think ___ comes next."
+   }
+  ]
+ }
+}

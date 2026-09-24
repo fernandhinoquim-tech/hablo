@@ -1,0 +1,918 @@
+{
+  "partes": [
+    {
+      "id": "parte1",
+      "aptis": "Parte 1 · datos concretos",
+      "title": "Mensajes y anuncios: datos concretos",
+      "descripcion": "En el examen escuchas mensajes de voz y anuncios cortos y eliges el dato exacto: una hora, un precio, un lugar o un número. Lee la pregunta antes de escuchar y cuidado: suelen mencionar varios números o lugares, pero solo uno responde a la pregunta.",
+      "tareas": [
+        {
+          "id": "l-001",
+          "tipo": "dato",
+          "level": "A1",
+          "audio": "Hi Tom, it's Sarah. The party is on Saturday, at my flat. Please don't come at six, because I'm at work until then. The party starts at seven. See you on Saturday!",
+          "pregunta": "¿A qué hora empieza la fiesta?",
+          "options": [
+            "A las 7:00",
+            "A las 6:00",
+            "A las 8:00"
+          ],
+          "answer": "A las 7:00",
+          "why": "Sarah dice \"The party starts at seven\"; las seis es la hora en que termina de trabajar. \"Flat\" es británico; en inglés americano se dice \"apartment\"."
+        },
+        {
+          "id": "l-002",
+          "tipo": "dato",
+          "level": "A1",
+          "audio": "Good morning, shoppers. Today apples are cheap! A bag of apples is only two pounds. Bananas are one pound fifty. Thank you for shopping with us.",
+          "pregunta": "¿Cuánto cuesta una bolsa de manzanas?",
+          "options": [
+            "£1,50",
+            "£2",
+            "£2,50"
+          ],
+          "answer": "£2",
+          "why": "\"A bag of apples is only two pounds\". Una libra cincuenta es el precio de los plátanos: es la trampa."
+        },
+        {
+          "id": "l-003",
+          "tipo": "dato",
+          "level": "A1",
+          "audio": "Hello, this is a message for Anna. Your English class is not in room four today. It is in room nine, on the first floor. Thank you.",
+          "pregunta": "¿En qué aula es la clase de Anna hoy?",
+          "options": [
+            "En el aula 4",
+            "En el aula 5",
+            "En el aula 9"
+          ],
+          "answer": "En el aula 9",
+          "why": "Hoy la clase no es en el aula cuatro sino en la nueve. Ojo: en Gran Bretaña \"first floor\" es el primer piso sobre la planta baja (en EE. UU. sería \"second floor\")."
+        },
+        {
+          "id": "l-004",
+          "tipo": "dato",
+          "level": "A1",
+          "audio": "Hi Mum, it's Leo. I can't visit you on Tuesday, because I have to work. Can I come on Thursday? I'm free all day. Bye!",
+          "pregunta": "¿Qué día quiere visitar Leo a su mamá?",
+          "options": [
+            "El martes",
+            "El viernes",
+            "El jueves"
+          ],
+          "answer": "El jueves",
+          "why": "Leo no puede el martes (\"Tuesday\") porque trabaja; propone el jueves (\"Thursday\"). \"Mum\" es británico; en EE. UU. es \"Mom\"."
+        },
+        {
+          "id": "l-005",
+          "tipo": "dato",
+          "level": "A1",
+          "audio": "Hello, this is a message from Doctor Green's surgery. Please call us back on oh one two three, four five six, seven eight nine. Thank you.",
+          "pregunta": "¿A qué número tiene que llamar?",
+          "options": [
+            "0123 456 789",
+            "0132 456 789",
+            "0123 456 798"
+          ],
+          "answer": "0123 456 789",
+          "why": "Los números se dicen uno por uno y \"oh\" significa cero. \"Surgery\" en inglés británico es el consultorio del médico (en EE. UU. \"doctor's office\")."
+        },
+        {
+          "id": "l-006",
+          "tipo": "dato",
+          "level": "A1",
+          "audio": "Attention, please. The train to Oxford leaves from platform three at ten fifteen. Platform three, ten fifteen. Thank you.",
+          "pregunta": "¿De qué andén sale el tren?",
+          "options": [
+            "Del andén 3",
+            "Del andén 2",
+            "Del andén 10"
+          ],
+          "answer": "Del andén 3",
+          "why": "\"Platform three\" es el andén; diez (\"ten fifteen\") es parte de la hora de salida, no el andén. En EE. UU. se suele decir \"track\" en vez de \"platform\"."
+        },
+        {
+          "id": "l-007",
+          "tipo": "dato",
+          "level": "A2",
+          "audio": "Thank you for calling the Regal Cinema. Tonight's film, The Long Road, starts at twenty to nine. Tickets are nine pounds for adults and six pounds for children. Popcorn is five pounds.",
+          "pregunta": "¿Cuánto cuesta la entrada para un niño?",
+          "options": [
+            "£6",
+            "£5",
+            "£9"
+          ],
+          "answer": "£6",
+          "why": "\"Six pounds for children\". Nueve libras es la entrada de adulto y cinco las palomitas. \"Cinema\" es británico; en EE. UU. se dice \"movie theater\"."
+        },
+        {
+          "id": "l-008",
+          "tipo": "dato",
+          "level": "A2",
+          "audio": "Hi Daniel, it's Mark from the office. The meeting tomorrow was at half past nine, but the manager can't come until eleven. So we're meeting at quarter to twelve now, in the small room. Sorry about the change!",
+          "pregunta": "¿A qué hora es ahora la reunión?",
+          "options": [
+            "A las 9:30",
+            "A las 11:00",
+            "A las 11:45"
+          ],
+          "answer": "A las 11:45",
+          "why": "\"Quarter to twelve\" = las doce menos cuarto (11:45). Las 9:30 era la hora anterior y a las 11:00 solo llega el jefe."
+        },
+        {
+          "id": "l-009",
+          "tipo": "dato",
+          "level": "A2",
+          "audio": "Hi Kate, it's Jo. About Sunday: we can't meet at the park, because it's going to rain. Let's meet at the café next to the library instead. You know, the one opposite the bank. See you there!",
+          "pregunta": "¿Dónde van a encontrarse Kate y Jo?",
+          "options": [
+            "En el parque",
+            "En el café junto a la biblioteca",
+            "En el banco"
+          ],
+          "answer": "En el café junto a la biblioteca",
+          "why": "Jo cambia el parque por el café \"next to the library\". El banco solo sirve de referencia: el café está enfrente (\"opposite\")."
+        },
+        {
+          "id": "l-010",
+          "tipo": "dato",
+          "level": "A2",
+          "audio": "We are sorry to announce that the twelve twenty service to Manchester is delayed by twenty-five minutes. This train will now leave at twelve forty-five from platform six.",
+          "pregunta": "¿A qué hora sale ahora el tren a Manchester?",
+          "options": [
+            "A las 12:20",
+            "A las 12:25",
+            "A las 12:45"
+          ],
+          "answer": "A las 12:45",
+          "why": "El tren de las 12:20 tiene 25 minutos de retraso, así que sale a las 12:45 (\"twelve forty-five\"). En los anuncios británicos \"service\" significa el tren o el bus de ese horario."
+        },
+        {
+          "id": "l-011",
+          "tipo": "dato",
+          "level": "A2",
+          "audio": "Hello, this is a message from Fit Life Gym. Your membership ends on the fifteenth of March. If you renew before the tenth, it costs only thirty pounds a month, not thirty-five. Call us or come to reception.",
+          "pregunta": "¿Cuánto cuesta al mes si renueva antes del día 10?",
+          "options": [
+            "£15",
+            "£35",
+            "£30"
+          ],
+          "answer": "£30",
+          "why": "Antes del día diez cuesta treinta libras; treinta y cinco es el precio normal y quince es la fecha en que termina la membresía."
+        },
+        {
+          "id": "l-012",
+          "tipo": "dato",
+          "level": "A2",
+          "audio": "Hello, this is Rosa's Restaurant. I'm calling about your booking for Friday. You asked for a table for six at eight o'clock, but we're full at that time. We can give you the same table at half past eight or at nine. Please call us back to let us know.",
+          "pregunta": "¿Qué horas le ofrece el restaurante?",
+          "options": [
+            "Las 8:30 o las 9:00",
+            "Las 8:00 o las 8:30",
+            "Las 9:00 o las 9:30"
+          ],
+          "answer": "Las 8:30 o las 9:00",
+          "why": "A las ocho está lleno; ofrecen \"half past eight or nine\". El seis es el número de personas. \"Booking\" es británico; en EE. UU. se dice más \"reservation\"."
+        },
+        {
+          "id": "l-013",
+          "tipo": "dato",
+          "level": "B1",
+          "audio": "Good afternoon, visitors. Please note that the museum will close at half past five today, thirty minutes earlier than usual, because of a private event. The café on the ground floor will stop serving at a quarter to five. The gift shop, however, will stay open until the museum closes. We apologise for any inconvenience.",
+          "pregunta": "¿Hasta qué hora está abierta hoy la tienda de regalos?",
+          "options": [
+            "Hasta las 4:45",
+            "Hasta las 5:30",
+            "Hasta las 6:00"
+          ],
+          "answer": "Hasta las 5:30",
+          "why": "La tienda abre \"until the museum closes\", y hoy el museo cierra a las cinco y media. Las 4:45 es la hora del café y las 6:00 el cierre habitual. \"Apologise\" es la ortografía británica (EE. UU.: \"apologize\")."
+        },
+        {
+          "id": "l-014",
+          "tipo": "dato",
+          "level": "B1",
+          "audio": "Hi, it's Emma from the travel agency, about your trip to Edinburgh. The hotel you wanted costs a hundred and twenty pounds a night, which is well over your budget. I've found another one, a bit further from the centre, for ninety-five pounds, and breakfast is included, so I'd go for that. There's also a hostel at forty pounds, but you said you wanted a private bathroom, so I don't think it's right for you. Let me know what you think.",
+          "pregunta": "¿Cuánto cuesta por noche el alojamiento que Emma recomienda?",
+          "options": [
+            "£40",
+            "£120",
+            "£95"
+          ],
+          "answer": "£95",
+          "why": "Emma dice \"I'd go for that\" del hotel de noventa y cinco libras. El de ciento veinte es muy caro y el hostal no tiene baño privado. \"Centre\" es británico (EE. UU.: \"center\")."
+        },
+        {
+          "id": "l-043",
+          "tipo": "dato",
+          "level": "B1",
+          "audio": "Hi, it's Gary, the plumber, about your boiler. I was going to come on Wednesday morning at nine, but I've got an emergency job, so I can't make it. I could do Wednesday afternoon at two, but your neighbour told me you're out then. So let's say Thursday at eleven, unless I hear from you. The job should take about two hours. Thanks.",
+          "pregunta": "Si no le devuelves la llamada, ¿cuándo irá el plomero?",
+          "options": [
+            "El miércoles a las 9:00",
+            "El jueves a las 11:00",
+            "El miércoles a las 2:00"
+          ],
+          "answer": "El jueves a las 11:00",
+          "why": "Las nueve se cancelan por la urgencia y las dos no te vienen bien; \"let's say Thursday at eleven, unless I hear from you\" es la cita final. \"Neighbour\" es británico (EE. UU.: \"neighbor\")."
+        },
+        {
+          "id": "l-044",
+          "tipo": "dato",
+          "level": "B1",
+          "audio": "Attention, please. This is an announcement for passengers travelling to Dublin on the five fifteen flight. Your flight will no longer leave from gate twelve, as shown on your boarding pass. Instead, it will leave from gate twenty, which was being used by the flight to Paris. Passengers for Paris should now go to gate fifteen. Boarding for Dublin will start at twenty to five, so please make your way there now.",
+          "pregunta": "¿Desde qué puerta sale el vuelo a Dublín?",
+          "options": [
+            "Puerta 12",
+            "Puerta 15",
+            "Puerta 20"
+          ],
+          "answer": "Puerta 20",
+          "why": "La doce es la de la tarjeta de embarque, que ya no vale, y la quince es ahora la del vuelo a París; Dublín sale por la veinte. \"Travelling\" con dos eles es británico (EE. UU.: \"traveling\")."
+        },
+        {
+          "id": "l-045",
+          "tipo": "dato",
+          "level": "B1",
+          "audio": "Hi Marta, it's Jess. Good news, I've got the tickets for the concert! They were forty-five pounds each, but I used my student discount, so I only paid thirty-eight each. The train is another twelve pounds return, so that's fifty pounds in total. Just give me the ticket money when you see me tomorrow, and you can pay for the train on the day.",
+          "pregunta": "¿Cuánto tiene que darle Marta a Jess mañana?",
+          "options": [
+            "£38",
+            "£45",
+            "£50"
+          ],
+          "answer": "£38",
+          "why": "Mañana solo paga \"the ticket money\": treinta y ocho con el descuento. Cuarenta y cinco era el precio sin descuento y cincuenta es el total con el tren, que paga otro día. \"Return\" es tiquete de ida y vuelta (EE. UU.: \"round trip\")."
+        },
+        {
+          "id": "l-046",
+          "tipo": "dato",
+          "level": "B1",
+          "audio": "Good morning, customers, and welcome to our summer sale. Women's clothes are on the first floor, with up to fifty per cent off. Men's clothes are normally on the second floor, but we're painting the walls there this week, so you'll find them one floor up, next to the sports department. Children's shoes can be found in the basement, next to the café.",
+          "pregunta": "¿En qué piso está esta semana la ropa de hombre?",
+          "options": [
+            "En el primer piso",
+            "En el segundo piso",
+            "En el tercer piso"
+          ],
+          "answer": "En el tercer piso",
+          "why": "\"Normally on the second floor\" es la trampa: esta semana están \"one floor up\", un piso más arriba, o sea, en el tercero. Ojo: en el Reino Unido \"first floor\" es el piso que está encima de la planta baja (en EE. UU. y en Colombia sería el segundo)."
+        },
+        {
+          "id": "l-047",
+          "tipo": "dato",
+          "level": "B1",
+          "audio": "Hello, this is Mike from Parkside Garage, about your car. We've found the problem with the brakes. The new part should arrive tomorrow, Tuesday, but we can't fit it until Wednesday because we're fully booked. So your car will be ready to collect on Wednesday any time after four. We're open until six. The total cost will be two hundred and ten pounds.",
+          "pregunta": "¿Cuándo puedes recoger el carro?",
+          "options": [
+            "El martes por la tarde",
+            "El miércoles después de las 4:00",
+            "El miércoles antes de las 4:00"
+          ],
+          "answer": "El miércoles después de las 4:00",
+          "why": "El martes llega la pieza, pero la ponen el miércoles: \"ready to collect on Wednesday any time after four\"; las seis es la hora de cierre. En británico \"garage\" también es el taller mecánico (EE. UU.: \"auto shop\")."
+        },
+        {
+          "id": "l-048",
+          "tipo": "dato",
+          "level": "B1",
+          "audio": "Thank you for calling Riverside Leisure Centre. The swimming pool is open from seven in the morning until nine at night, Monday to Friday. Adult swimming lessons are on Tuesday and Thursday evenings at half past seven, but I'm afraid the Tuesday group is now full. At weekends, the pool is for families only until twelve, and there are no lessons.",
+          "pregunta": "¿Qué día puede inscribirse un adulto a clases de natación?",
+          "options": [
+            "El martes",
+            "El jueves",
+            "El sábado"
+          ],
+          "answer": "El jueves",
+          "why": "Hay clases martes y jueves, pero \"the Tuesday group is now full\", y los fines de semana no hay clases. \"Centre\" es británico (EE. UU.: \"center\")."
+        }
+      ]
+    },
+    {
+      "id": "parte2",
+      "aptis": "Parte 2 · qué dice cada persona",
+      "title": "Monólogos: la idea principal",
+      "descripcion": "Escuchas a una persona hablar de un tema y eliges su idea principal o la razón que da. No te quedes con la primera palabra que coincida: presta atención a \"but\", \"the main reason\" o \"that wasn't it\", que suelen indicar lo que la persona realmente quiere decir.",
+      "tareas": [
+        {
+          "id": "l-015",
+          "tipo": "dato",
+          "level": "A2",
+          "audio": "I walk to work every day. It's only twenty minutes from my house. I have a car, but parking in the city centre is really expensive, so I leave it at home. That's the main reason. Walking is good exercise too, of course.",
+          "pregunta": "¿Cuál es la razón principal por la que va a pie al trabajo?",
+          "options": [
+            "Porque no tiene coche",
+            "Porque aparcar en el centro es caro",
+            "Porque su médico se lo dijo"
+          ],
+          "answer": "Porque aparcar en el centro es caro",
+          "why": "Dice \"That's the main reason\" justo después de hablar del precio del parking. Sí tiene coche (\"I have a car\")."
+        },
+        {
+          "id": "l-016",
+          "tipo": "dato",
+          "level": "A2",
+          "audio": "My favourite day of the week is Sunday. On Saturdays I work in a shop, so I'm always tired. But on Sundays I get up late, and I cook a big lunch for my family. We all sit together and talk for hours. That's the best part for me.",
+          "pregunta": "¿Qué es lo que más le gusta del domingo?",
+          "options": [
+            "Levantarse tarde",
+            "No ir a trabajar a la tienda",
+            "Comer y conversar con su familia"
+          ],
+          "answer": "Comer y conversar con su familia",
+          "why": "\"That's the best part\" se refiere a sentarse juntos a hablar. Levantarse tarde también lo menciona, pero no dice que sea lo mejor. \"Favourite\" es la ortografía británica (EE. UU.: \"favorite\")."
+        },
+        {
+          "id": "l-017",
+          "tipo": "dato",
+          "level": "A2",
+          "audio": "I started learning the guitar last year. It wasn't for my job, and it wasn't for school. My grandfather played the guitar, and when he died, he left me his old one. I wanted to play his songs, so I started lessons.",
+          "pregunta": "¿Por qué empezó a aprender guitarra?",
+          "options": [
+            "Para tocar las canciones de su abuelo",
+            "Porque lo necesitaba para su trabajo",
+            "Porque se lo pedían en la escuela"
+          ],
+          "answer": "Para tocar las canciones de su abuelo",
+          "why": "\"I wanted to play his songs\": quería tocar las canciones de su abuelo. Niega explícitamente el trabajo y la escuela."
+        },
+        {
+          "id": "l-018",
+          "tipo": "dato",
+          "level": "B1",
+          "audio": "People often ask me why I moved from London to a small village. Everyone thinks it was for the cheaper houses, and yes, houses are cheaper here, but that wasn't it. I was working from home anyway, and I realised I was spending my whole day indoors. Here I can go for a walk in the countryside at lunchtime. Being close to nature was what I really needed.",
+          "pregunta": "¿Cuál fue la verdadera razón de su mudanza?",
+          "options": [
+            "Que las casas son más baratas",
+            "Que consiguió trabajo en el pueblo",
+            "Querer estar cerca de la naturaleza"
+          ],
+          "answer": "Querer estar cerca de la naturaleza",
+          "why": "Trampa típica: menciona las casas baratas pero dice \"that wasn't it\". La razón real: \"Being close to nature was what I really needed\". Ya trabajaba desde casa."
+        },
+        {
+          "id": "l-019",
+          "tipo": "dato",
+          "level": "B1",
+          "audio": "I've been a nurse for fifteen years. The pay isn't great, and the night shifts can be really hard, especially in winter. But when a patient who arrived very ill walks out of the hospital smiling, I remember why I do this job. That feeling is worth more than any salary.",
+          "pregunta": "¿Qué quiere decir sobre su trabajo de enfermería?",
+          "options": [
+            "Que ayudar a los pacientes compensa las dificultades",
+            "Que el sueldo es lo más importante",
+            "Que quiere dejar los turnos de noche"
+          ],
+          "answer": "Que ayudar a los pacientes compensa las dificultades",
+          "why": "Reconoce los problemas (sueldo, turnos), pero con \"But...\" llega a su idea principal: esa satisfacción \"is worth more than any salary\"."
+        },
+        {
+          "id": "l-020",
+          "tipo": "dato",
+          "level": "B1",
+          "audio": "Our town decided to close the main street to cars at weekends. At first, some shop owners were worried that they'd lose customers. In fact, the opposite happened. Families now come to walk around, children play safely, and the cafés have put tables outside. Most shops say they're selling more than before.",
+          "pregunta": "¿Cuál es la idea principal?",
+          "options": [
+            "Los comerciantes temen perder clientes",
+            "Cerrar la calle a los coches ha beneficiado al comercio",
+            "Los niños ya no pueden jugar en la calle"
+          ],
+          "answer": "Cerrar la calle a los coches ha beneficiado al comercio",
+          "why": "La preocupación de los comerciantes era solo al principio; \"the opposite happened\" y ahora venden más. \"At weekends\" es británico (EE. UU.: \"on weekends\")."
+        },
+        {
+          "id": "l-021",
+          "tipo": "dato",
+          "level": "B1",
+          "audio": "I used to buy a new phone every year, as soon as a new model came out. I don't do that anymore. It isn't really about the money. I read an article about how much rubbish old phones create, and how the materials are taken from the ground. Now I keep my phone until it actually stops working.",
+          "pregunta": "¿Por qué ya no compra un teléfono cada año?",
+          "options": [
+            "Porque ahora tiene menos dinero",
+            "Porque no le gustan los modelos nuevos",
+            "Por el impacto en el medio ambiente"
+          ],
+          "answer": "Por el impacto en el medio ambiente",
+          "why": "Descarta el dinero (\"It isn't really about the money\") y habla de la basura y los materiales: es por el medio ambiente. \"Rubbish\" es británico (EE. UU.: \"trash\" o \"garbage\")."
+        },
+        {
+          "id": "l-022",
+          "tipo": "dato",
+          "level": "B2",
+          "audio": "When I set up my bakery, I assumed the hardest part would be the long hours, getting up at four every morning. Surprisingly, I got used to that within a few weeks. What nearly made me give up was the paperwork: taxes, health inspections, licences. Nobody warns you that running a small business means spending half your time as an accountant rather than doing what you love.",
+          "pregunta": "¿Qué fue lo más difícil de abrir la panadería?",
+          "options": [
+            "Levantarse muy temprano",
+            "La burocracia y el papeleo",
+            "Conseguir clientes"
+          ],
+          "answer": "La burocracia y el papeleo",
+          "why": "Esperaba que madrugar fuera lo peor, pero dice que se acostumbró (\"got used to that\"). Lo que casi la hace rendirse fue \"the paperwork\". \"Licence\" es la ortografía británica del sustantivo (EE. UU.: \"license\")."
+        },
+        {
+          "id": "l-023",
+          "tipo": "dato",
+          "level": "B2",
+          "audio": "There's a widespread belief that teenagers today don't read. My experience as a school librarian suggests otherwise. What's changed is not whether they read, but what they read and how. They'll get through long fantasy series on their phones, or follow online discussions for hours. If we only count printed novels from the school reading list, of course the numbers look bad. The problem lies in how we measure reading, not in the young people themselves.",
+          "pregunta": "¿Cuál es la idea principal de quien habla?",
+          "options": [
+            "El problema está en cómo se mide la lectura",
+            "Los adolescentes de hoy ya no leen",
+            "Los jóvenes deberían leer más novelas impresas"
+          ],
+          "answer": "El problema está en cómo se mide la lectura",
+          "why": "Menciona la creencia de que no leen solo para rechazarla (\"suggests otherwise\"). Su conclusión: \"The problem lies in how we measure reading\"."
+        },
+        {
+          "id": "l-024",
+          "tipo": "dato",
+          "level": "B2",
+          "audio": "I turned down a promotion last month, and my colleagues thought I'd lost my mind. The salary was considerably higher, and the title would have looked great on my CV. But the role involved travelling abroad almost every week, and with two young children, I simply wasn't prepared to miss that stage of their lives. Money can be earned later; those years can't be repeated.",
+          "pregunta": "¿Por qué rechazó el ascenso?",
+          "options": [
+            "Porque el sueldo no era suficientemente alto",
+            "Porque no quería perderse la infancia de sus hijos",
+            "Porque sus compañeros se lo aconsejaron"
+          ],
+          "answer": "Porque no quería perderse la infancia de sus hijos",
+          "why": "El sueldo era mucho mayor y sus compañeros no lo entendieron; la razón es no perderse \"that stage of their lives\". \"CV\" es británico (EE. UU.: \"résumé\")."
+        },
+        {
+          "id": "l-049",
+          "tipo": "dato",
+          "level": "B1",
+          "audio": "Last spring I got an allotment, a small piece of land where you can grow your own vegetables. My friends think I did it to save money on food, but by the time you buy seeds and tools, it isn't much cheaper than the supermarket. And it isn't really about healthy eating either, although the tomatoes taste amazing. What I really needed was a reason to get away from screens. I work with computers all day, and a couple of hours with my hands in the soil really clears my head.",
+          "pregunta": "¿Por qué empezó a cultivar un huerto?",
+          "options": [
+            "Para ahorrar dinero en comida",
+            "Para comer de forma más sana",
+            "Para desconectarse de las pantallas"
+          ],
+          "answer": "Para desconectarse de las pantallas",
+          "why": "Descarta el dinero (\"it isn't much cheaper\") y la comida sana (\"not really about healthy eating\"); la clave es \"What I really needed\". \"Allotment\" es un huerto municipal británico (EE. UU.: \"community garden\")."
+        },
+        {
+          "id": "l-050",
+          "tipo": "dato",
+          "level": "B1",
+          "audio": "Last summer I planned the first street party on our road. Honestly, it was a lot of work. We had to ask the council for permission, a few neighbours complained about the noise, and it rained all afternoon. But that's not what I remember. What matters is what happened afterwards. People who had been next door to each other for years started saying hello, sharing tools and looking after each other's pets. That's why I want to do it again every year.",
+          "pregunta": "¿Qué quiere destacar sobre la fiesta de la calle?",
+          "options": [
+            "Que organizarla dio demasiado trabajo",
+            "Que ayudó a que los vecinos se conocieran",
+            "Que la lluvia la estropeó"
+          ],
+          "answer": "Que ayudó a que los vecinos se conocieran",
+          "why": "El trabajo y la lluvia son reales, pero \"that's not what I remember\"; lo importante es que los vecinos empezaron a saludarse y ayudarse. \"Neighbours\" es la ortografía británica (EE. UU.: \"neighbors\")."
+        },
+        {
+          "id": "l-051",
+          "tipo": "dato",
+          "level": "B1",
+          "audio": "Almost everything I wear now comes from charity shops. People assume I do it to save money, and yes, it's cheaper, but that isn't why I started. It isn't mainly for the planet either, although I'm glad it helps. The truth is I got bored of seeing everyone in the same clothes from the same big shops. In a charity shop, I find unusual things that nobody else has, and I love that.",
+          "pregunta": "¿Cuál es la razón principal por la que compra ropa de segunda mano?",
+          "options": [
+            "Tener un estilo propio y diferente",
+            "Ahorrar dinero",
+            "Proteger el medio ambiente"
+          ],
+          "answer": "Tener un estilo propio y diferente",
+          "why": "Admite que es más barato y que ayuda al planeta, pero dice que no es por eso; la razón es \"The truth is\": quiere ropa que nadie más tiene. \"Charity shop\" es británico (EE. UU.: \"thrift store\")."
+        },
+        {
+          "id": "l-052",
+          "tipo": "dato",
+          "level": "B1",
+          "audio": "For the last three years, I've spent all my holidays here in Britain. My friends think it's because flights are so expensive now, or because I'm scared of flying. Actually, I love planes! The real reason is that one day I realised I didn't know my own country at all. I'd been to Rome three times, but I'd never seen the Scottish mountains or the beaches in Wales. Now I'm trying to fix that.",
+          "pregunta": "¿Por qué pasa las vacaciones en su propio país?",
+          "options": [
+            "Porque los vuelos son muy caros",
+            "Porque quiere conocer mejor su país",
+            "Porque le da miedo volar"
+          ],
+          "answer": "Porque quiere conocer mejor su país",
+          "why": "Los vuelos caros y el miedo a volar son lo que piensan sus amigos, y \"I love planes\" descarta el miedo. La clave es \"The real reason\". \"Holidays\" es británico (EE. UU.: \"vacation\")."
+        },
+        {
+          "id": "l-053",
+          "tipo": "dato",
+          "level": "B1",
+          "audio": "I only learned to cook when I was thirty-five. Before that, I lived on takeaways and ready meals. My friend Tom was sure I was doing it to impress a new girlfriend, which made me laugh. And it wasn't about money, although I do spend less now. The main reason was a visit to the doctor. She told me my blood pressure was too high and that I was eating far too much salt. So cooking my own food was the obvious answer.",
+          "pregunta": "¿Por qué aprendió a cocinar?",
+          "options": [
+            "Para impresionar a una novia",
+            "Para gastar menos dinero",
+            "Para cuidar su salud"
+          ],
+          "answer": "Para cuidar su salud",
+          "why": "La novia es la idea de su amigo Tom y el dinero lo descarta (\"it wasn't about money\"); \"The main reason\" es la presión alta. \"Takeaway\" es británico (EE. UU.: \"takeout\")."
+        }
+      ]
+    },
+    {
+      "id": "parte3",
+      "aptis": "Parte 3 · él, ella o los dos",
+      "title": "Conversaciones: él, ella o los dos",
+      "descripcion": "Escuchas una conversación entre un hombre y una mujer y decides quién expresa una opinión: él, ella o los dos. Fíjate en expresiones de acuerdo (\"I agree\", \"you're right\") y de desacuerdo (\"I see your point, but...\"). A veces coinciden en una cosa y discrepan en otra.",
+      "tareas": [
+        {
+          "id": "l-025",
+          "tipo": "quien",
+          "level": "A2",
+          "audio": "MAN: What shall we do on Saturday? WOMAN: I'd love to go to the beach. It's going to be hot and sunny. MAN: Hmm, I don't really like the beach. It's always so busy. I'd prefer to stay at home and watch a film. WOMAN: OK. Maybe I'll go with my sister, then.",
+          "pregunta": "¿Quién quiere ir a la playa el sábado?",
+          "options": [
+            "El hombre",
+            "La mujer",
+            "Los dos"
+          ],
+          "answer": "La mujer",
+          "why": "Solo la mujer quiere ir (\"I'd love to go to the beach\"); el hombre prefiere quedarse en casa. \"Shall we\" y \"film\" son británicos (EE. UU.: \"should we\", \"movie\")."
+        },
+        {
+          "id": "l-026",
+          "tipo": "quien",
+          "level": "A2",
+          "audio": "WOMAN: Did you try the new Italian restaurant on King Street? MAN: Yes, I went on Friday. The pizza was nice, but it was very expensive. WOMAN: I agree. I paid twenty pounds for some pasta! The food is good, but it's too expensive for me. MAN: For me too. I won't go there often.",
+          "pregunta": "¿Quién piensa que el restaurante nuevo es caro?",
+          "options": [
+            "El hombre",
+            "La mujer",
+            "Los dos"
+          ],
+          "answer": "Los dos",
+          "why": "Él dice \"it was very expensive\" y ella \"I agree... too expensive for me\". Cuando uno dice \"I agree\" o \"me too\", la respuesta suele ser \"Los dos\"."
+        },
+        {
+          "id": "l-027",
+          "tipo": "quien",
+          "level": "B1",
+          "audio": "WOMAN: So, now the company lets us choose, are you going to work from home or come into the office? MAN: Home, definitely. I save an hour and a half on the train every day, and I can concentrate much better without people chatting around me. WOMAN: I see your point, but I tried it last year and I felt really lonely. I need to see my colleagues, so I'll be in the office every day. MAN: Well, maybe I'll come in on Fridays to say hello to everyone.",
+          "pregunta": "¿Quién prefiere trabajar desde casa?",
+          "options": [
+            "El hombre",
+            "La mujer",
+            "Los dos"
+          ],
+          "answer": "El hombre",
+          "why": "El hombre dice \"Home, definitely\". La mujer se sintió sola y irá a la oficina todos los días. Que él vaya algún viernes no cambia su preferencia."
+        },
+        {
+          "id": "l-028",
+          "tipo": "quien",
+          "level": "B1",
+          "audio": "MAN: Sophie keeps asking for a mobile phone. She's only ten. I really think she's too young. WOMAN: I used to think that too, but she walks to school on her own now. I'd feel much safer if she could call us. MAN: She could borrow mine on those days. I just worry she'll spend all day on it. WOMAN: We can set limits. Honestly, I think it's time.",
+          "pregunta": "¿Quién cree que Sophie ya debería tener móvil?",
+          "options": [
+            "El hombre",
+            "La mujer",
+            "Los dos"
+          ],
+          "answer": "La mujer",
+          "why": "La mujer \"used to think that too\" (antes pensaba lo mismo), pero ahora dice \"I think it's time\". El hombre sigue creyendo que es muy pequeña. \"Mobile phone\" es británico (EE. UU.: \"cell phone\")."
+        },
+        {
+          "id": "l-029",
+          "tipo": "quien",
+          "level": "B1",
+          "audio": "WOMAN: So, what did you think of the film? MAN: The actors were brilliant, but honestly, three hours was far too long. I nearly fell asleep in the middle. WOMAN: Really? I thought the acting was a bit weak, actually. But you're right about the length. They could have cut at least forty minutes. MAN: Exactly. The story would have been much stronger.",
+          "pregunta": "¿Quién piensa que la película era demasiado larga?",
+          "options": [
+            "El hombre",
+            "La mujer",
+            "Los dos"
+          ],
+          "answer": "Los dos",
+          "why": "No están de acuerdo sobre los actores, pero sí sobre la duración: ella dice \"you're right about the length\". La pregunta es solo sobre la duración."
+        },
+        {
+          "id": "l-030",
+          "tipo": "quien",
+          "level": "B1",
+          "audio": "MAN: Our car is getting old. I've been reading about electric cars, and I think it's time we bought one. They're much cheaper to run. WOMAN: But they cost so much more to buy. And where would we charge it? We haven't got a garage. MAN: There are charging points at the supermarket, and the government gives you some money back. WOMAN: I'm still not convinced. I'd rather get a second-hand petrol car.",
+          "pregunta": "¿Quién está a favor de comprar un coche eléctrico?",
+          "options": [
+            "El hombre",
+            "La mujer",
+            "Los dos"
+          ],
+          "answer": "El hombre",
+          "why": "El hombre propone comprarlo; la mujer \"is still not convinced\" y prefiere uno de gasolina. \"Petrol\" y \"haven't got\" son británicos (EE. UU.: \"gas\", \"don't have\")."
+        },
+        {
+          "id": "l-031",
+          "tipo": "quien",
+          "level": "B2",
+          "audio": "MAN: Did you see that the school is doubling the number of exams next year? WOMAN: I did, and frankly, I think it's a mistake. An exam just shows how a student performs on one particular morning, under pressure. Some of the brightest kids I teach go completely blank. MAN: I'm not so sure. Everyone feels the same pressure, so exams are still the fairest way to see what students have really learned. Coursework can be copied, and teachers' opinions aren't always fair. WOMAN: Then assess them in a variety of ways, rather than putting everything on a few tests.",
+          "pregunta": "¿Quién piensa que los exámenes no muestran bien lo que sabe un estudiante?",
+          "options": [
+            "El hombre",
+            "La mujer",
+            "Los dos"
+          ],
+          "answer": "La mujer",
+          "why": "Ella critica los exámenes (\"one particular morning, under pressure\"). Él responde \"I'm not so sure\" y defiende que los exámenes son \"the fairest way to see what students have really learned\"."
+        },
+        {
+          "id": "l-032",
+          "tipo": "quien",
+          "level": "B2",
+          "audio": "WOMAN: I've just booked flights to Lisbon for thirty pounds. Isn't that amazing? MAN: It's great for your wallet, but I can't help thinking flights shouldn't be that cheap. The environmental cost isn't reflected in the price at all. WOMAN: Maybe, but if prices went up, only wealthy people could afford to travel. Is that fair? MAN: Then tax frequent flyers more heavily, not the family that flies once a year. But overall, yes, I'd make flying more expensive.",
+          "pregunta": "¿Quién opina que volar debería ser más caro?",
+          "options": [
+            "El hombre",
+            "La mujer",
+            "Los dos"
+          ],
+          "answer": "El hombre",
+          "why": "Él lo dice claramente: \"I'd make flying more expensive\". Ella responde \"Maybe, but...\", que no es acuerdo: le preocupa que solo los ricos puedan viajar."
+        },
+        {
+          "id": "l-033",
+          "tipo": "quien",
+          "level": "B2",
+          "audio": "MAN: The council is finally discussing the new cycling plan. WOMAN: About time. Every time I cycle to work, I feel like I'm risking my life. We desperately need proper, separate bike lanes. MAN: I don't cycle myself, but I completely agree. If more people felt safe on a bike, there'd be less traffic for those of us who have to drive. WOMAN: I doubt they'll ever agree on the budget, though. MAN: Oh, I'm more optimistic about that.",
+          "pregunta": "¿Quién cree que la ciudad necesita más carriles bici?",
+          "options": [
+            "El hombre",
+            "La mujer",
+            "Los dos"
+          ],
+          "answer": "Los dos",
+          "why": "Aunque él no va en bici, dice \"I completely agree\" (por sus propios motivos: menos tráfico). Solo discrepan sobre el presupuesto. \"The council\" es el ayuntamiento local en Gran Bretaña."
+        },
+        {
+          "id": "l-034",
+          "tipo": "quien",
+          "level": "B2",
+          "audio": "MAN: My nephew's just been accepted on an exchange programme in Japan. WOMAN: Lucky him. I had the chance to spend a year in Germany when I was at university, and I turned it down because I didn't want to leave my friends. I still regret it, to be honest. MAN: Really? I did a term in Spain, and while it was fun, I don't think it changed my life as much as people claim. I'd have been fine without it. WOMAN: Well, I often wonder how different things would have been.",
+          "pregunta": "¿Quién se arrepiente de no haber estudiado en el extranjero?",
+          "options": [
+            "El hombre",
+            "La mujer",
+            "Los dos"
+          ],
+          "answer": "La mujer",
+          "why": "La mujer rechazó la oportunidad y dice \"I still regret it\". El hombre sí estudió fuera (\"a term in Spain\") y no se arrepiente de nada. \"Programme\" es la ortografía británica (EE. UU.: \"program\")."
+        },
+        {
+          "id": "l-054",
+          "tipo": "quien",
+          "level": "B1",
+          "audio": "MAN: The kids have been asking for a dog again. I think we should finally get one. WOMAN: I know they want one, but we both work full-time. Who's going to walk it at six in the morning when it's raining? We just don't have the time. MAN: The kids are old enough to help now, and I could take it out before work. WOMAN: You say that now. I still think it's too much for us at the moment.",
+          "pregunta": "¿Quién piensa que no tienen tiempo para cuidar un perro?",
+          "options": [
+            "El hombre",
+            "La mujer",
+            "Los dos"
+          ],
+          "answer": "La mujer",
+          "why": "Ella dice \"We just don't have the time\" y lo repite al final. Él cree que los niños ayudarán y que él puede sacarlo antes del trabajo."
+        },
+        {
+          "id": "l-055",
+          "tipo": "quien",
+          "level": "B1",
+          "audio": "WOMAN: Did you see the flat on Bridge Street? It's really near the station. MAN: I did. The location is perfect, but eight hundred pounds a month for two bedrooms? That's far too much. WOMAN: I know, I thought exactly the same when I saw the price. But I loved the balcony. MAN: Really? I didn't think the balcony was anything special.",
+          "pregunta": "¿Quién piensa que el arriendo del apartamento es demasiado caro?",
+          "options": [
+            "El hombre",
+            "La mujer",
+            "Los dos"
+          ],
+          "answer": "Los dos",
+          "why": "Él dice \"far too much\" y ella \"I thought exactly the same\": coinciden en el precio, aunque no en el balcón. \"Flat\" es británico (EE. UU.: \"apartment\")."
+        },
+        {
+          "id": "l-056",
+          "tipo": "quien",
+          "level": "B1",
+          "audio": "WOMAN: I've started ordering all my food online. It arrives at the door, and I save a whole hour every Saturday. MAN: I tried that once, but I'm not doing it again. They sent me soft tomatoes and bananas that were still green. I like to go to the market and choose the fruit and vegetables myself. WOMAN: I used to feel the same, but honestly, the quality has got much better lately.",
+          "pregunta": "¿Quién prefiere elegir la comida en persona?",
+          "options": [
+            "El hombre",
+            "La mujer",
+            "Los dos"
+          ],
+          "answer": "El hombre",
+          "why": "Él dice \"I like to go to the market and choose... myself\". Ella antes pensaba igual (\"I used to feel the same\"), pero ya no: ahora lo pide todo por internet."
+        },
+        {
+          "id": "l-057",
+          "tipo": "quien",
+          "level": "B1",
+          "audio": "MAN: I've been learning Italian with an app for six months now. I do a lesson every day on the bus. WOMAN: Apps are great for vocabulary, but I don't think you can learn to speak a language with them. You need a real teacher to correct you. MAN: I'm not so sure. The app has speaking exercises, and I think my speaking has improved a lot. WOMAN: Well, try ordering a meal when you go to Rome, and then tell me.",
+          "pregunta": "¿Quién piensa que una aplicación no basta para aprender a hablar un idioma?",
+          "options": [
+            "El hombre",
+            "La mujer",
+            "Los dos"
+          ],
+          "answer": "La mujer",
+          "why": "Ella dice \"I don't think you can learn to speak a language with them\". Él no está de acuerdo (\"I'm not so sure\") y cree que ha mejorado mucho."
+        },
+        {
+          "id": "l-058",
+          "tipo": "quien",
+          "level": "B1",
+          "audio": "WOMAN: So, what did you think of the festival? The bands were amazing, weren't they? MAN: Some of them were good, but there were far too many people. I couldn't see the stage at all. WOMAN: Yes, it was really crowded. I agree they sold too many tickets. But the food was great. MAN: Was it? I thought it was overpriced and not very tasty.",
+          "pregunta": "¿Quién piensa que había demasiada gente en el festival?",
+          "options": [
+            "El hombre",
+            "La mujer",
+            "Los dos"
+          ],
+          "answer": "Los dos",
+          "why": "Él dice \"far too many people\" y ella responde \"it was really crowded. I agree\". No coinciden en la comida, pero la pregunta es solo sobre la gente."
+        }
+      ]
+    },
+    {
+      "id": "parte4",
+      "aptis": "Parte 4 · opinión y actitud",
+      "title": "Monólogos y entrevistas: opinión y actitud",
+      "descripcion": "Escuchas un monólogo o una entrevista más largos y eliges la opinión o actitud de quien habla. Las opciones incorrectas suelen ser ideas que sí se mencionan, pero que son de otras personas o que el hablante rechaza. Busca frases como \"personally\", \"I don't share it\" o \"I'm now convinced\".",
+      "tareas": [
+        {
+          "id": "l-035",
+          "tipo": "dato",
+          "level": "B1",
+          "audio": "I run a small clothes shop, and lots of people told me I had to be on every social media app to survive. So I tried. I posted photos every day, made videos, and answered messages late at night. Some shop owners say it brings them loads of new customers. Honestly, in my case, it didn't. Most of my customers live nearby, and they come because a friend recommended us. Now I only post once a week, and I spend that time talking to people in the shop. For a business like mine, I think personal contact matters far more than being online.",
+          "pregunta": "¿Qué opina sobre las redes sociales para su tienda?",
+          "options": [
+            "Son imprescindibles para sobrevivir",
+            "Le trajeron muchos clientes nuevos",
+            "Son menos importantes que el trato personal"
+          ],
+          "answer": "Son menos importantes que el trato personal",
+          "why": "\"Imprescindibles\" es lo que le decían otros, y los clientes nuevos es lo que dicen otros comerciantes (\"in my case, it didn't\"). Su opinión: \"personal contact matters far more\"."
+        },
+        {
+          "id": "l-036",
+          "tipo": "dato",
+          "level": "B1",
+          "audio": "WOMAN: You've been running marathons for ten years. How do you feel about running with music? MAN: Well, a lot of runners say music helps them go faster, and there's some research that supports that. But personally, I find it takes me away from the experience. I like hearing my breathing and my feet on the road. And in a race, you need to hear what's happening around you. So I never use headphones, and I'd advise beginners to try without them first.",
+          "pregunta": "¿Cuál es la actitud del corredor hacia correr con música?",
+          "options": [
+            "Prefiere correr sin música",
+            "Cree que la música le ayuda a correr más rápido",
+            "Piensa que está prohibida en las carreras"
+          ],
+          "answer": "Prefiere correr sin música",
+          "why": "Que la música ayuda a ir más rápido es lo que dicen otros corredores. Con \"But personally...\" da su opinión: \"I never use headphones\". No dice que esté prohibida."
+        },
+        {
+          "id": "l-037",
+          "tipo": "dato",
+          "level": "B1",
+          "audio": "My parents were worried when I decided to study cooking instead of going to university. They thought it was a job with no future. I understand why they felt that way. The hours are long, and at the beginning the pay is low. But I've never been happier. I wake up every morning excited about work, and I learn something new every single day. For me, that's more important than having a degree.",
+          "pregunta": "¿Cómo se siente respecto a su decisión?",
+          "options": [
+            "Arrepentido porque gana poco",
+            "Contento y seguro de haber elegido bien",
+            "Preocupado, igual que sus padres"
+          ],
+          "answer": "Contento y seguro de haber elegido bien",
+          "why": "La preocupación es de sus padres y reconoce el sueldo bajo, pero dice \"I've never been happier\". Entender a alguien (\"I understand why\") no es compartir su opinión."
+        },
+        {
+          "id": "l-038",
+          "tipo": "dato",
+          "level": "B2",
+          "audio": "MAN: Do you think machine translation will replace people like you? WOMAN: That's the question everyone asks. Some of my colleagues are genuinely frightened, and I understand why, since prices for simple jobs have fallen. But I'm not particularly worried. The machines are excellent for getting a quick idea of what a text says, and I use them myself. What they can't do reliably is judge tone, humour, or what a client really wants to say to a specific audience. I think the job will change rather than disappear, and translators who learn to work with these tools will be fine.",
+          "pregunta": "¿Cuál es la actitud de la traductora ante la traducción automática?",
+          "options": [
+            "Tiene miedo de perder su empleo",
+            "Tranquila: la ve como una herramienta que cambiará su trabajo",
+            "Cree que las máquinas no sirven para nada"
+          ],
+          "answer": "Tranquila: la ve como una herramienta que cambiará su trabajo",
+          "why": "El miedo es de sus colegas; ella dice \"I'm not particularly worried\" y usa las máquinas (\"excellent for...\"), así que tampoco cree que sean inútiles. \"Humour\" es británico (EE. UU.: \"humor\")."
+        },
+        {
+          "id": "l-039",
+          "tipo": "dato",
+          "level": "B2",
+          "audio": "I grew up in a small fishing town that's now one of the most popular holiday spots on the coast. People assume locals like me must hate the tourists, and I do know some who complain constantly about the crowds and the rents. But I'd be lying if I said I felt the same. Without visitors, half the shops would have closed years ago, and my own children wouldn't have summer jobs. What I would like is for the council to control holiday flats more strictly, so that young families can still afford to live here. So it's not tourism I object to; it's the lack of planning.",
+          "pregunta": "¿Qué opina sobre el turismo en su pueblo?",
+          "options": [
+            "Odia a los turistas por las multitudes",
+            "Cree que no ha traído beneficios económicos",
+            "Lo valora, pero pide que se regule mejor"
+          ],
+          "answer": "Lo valora, pero pide que se regule mejor",
+          "why": "Las quejas son de otros vecinos (\"I'd be lying if I said I felt the same\"). Reconoce beneficios y concluye: \"it's not tourism I object to; it's the lack of planning\". \"Holiday flats\" es británico (EE. UU.: \"vacation rentals\")."
+        },
+        {
+          "id": "l-040",
+          "tipo": "dato",
+          "level": "B2",
+          "audio": "WOMAN: Your company tried a four-day week last year. Was it a success? MAN: It depends who you ask. The staff loved it, obviously, and sick days went down noticeably. Our clients were less enthusiastic at first, because they couldn't reach us on Fridays, but we solved that with a rota. As for me, I'll admit I had my doubts at the start. I expected productivity to fall. It didn't. If anything, people wasted less time in meetings. So yes, I'm now convinced it works for us, although I wouldn't say it suits every type of business.",
+          "pregunta": "¿Cuál es ahora la opinión del hombre sobre la semana de cuatro días?",
+          "options": [
+            "Está convencido de que funciona en su empresa, aunque no en todas",
+            "Sigue siendo escéptico",
+            "Cree que los clientes nunca la aceptarán"
+          ],
+          "answer": "Está convencido de que funciona en su empresa, aunque no en todas",
+          "why": "Tenía dudas \"at the start\", pero ahora \"I'm now convinced it works for us\", con un matiz. El problema con los clientes se resolvió. \"Rota\" (turnos) es británico (EE. UU.: \"schedule\")."
+        },
+        {
+          "id": "l-041",
+          "tipo": "dato",
+          "level": "B2",
+          "audio": "As a football coach for under-twelves, I'm often asked whether competition is bad for young children. Some parents would like us to stop keeping scores altogether, so that nobody feels like a loser. I respect that concern, but I don't share it. Children know perfectly well who won, whether we write it down or not. Learning to lose, and to win without showing off, is part of growing up. What I do think is harmful is adults on the touchline shouting at the kids as if it were a professional match. That's the pressure I'd get rid of, not the scores.",
+          "pregunta": "¿Qué piensa el entrenador sobre la competición en el deporte infantil?",
+          "options": [
+            "Habría que dejar de contar los goles",
+            "Es sana; lo dañino es la presión de los adultos",
+            "Los niños no se dan cuenta de quién gana"
+          ],
+          "answer": "Es sana; lo dañino es la presión de los adultos",
+          "why": "No contar los goles es la idea de algunos padres (\"I respect that concern, but I don't share it\"). Él dice lo contrario de la opción tres: los niños saben quién gana. \"Football\" es británico (EE. UU.: \"soccer\")."
+        },
+        {
+          "id": "l-042",
+          "tipo": "dato",
+          "level": "B2",
+          "audio": "MAN: You've written a book about living without a car in a big city. Are you trying to convince everyone to sell theirs? WOMAN: Not at all, and I think that's a common misreading. For people in rural areas, or people with mobility problems, a car can be essential, and I'd never criticise them. My argument is narrower. In a city with decent public transport, owning a car is often a habit rather than a need. Most city cars sit parked almost all day. When I sold mine, I expected to feel restricted. Instead, I felt oddly free: less stress, more walking, more money. But I'm careful not to tell other people how to live.",
+          "pregunta": "¿Cuál es la postura de la autora?",
+          "options": [
+            "Todo el mundo debería vender su coche",
+            "Vender su coche la hizo sentirse limitada",
+            "En una ciudad con buen transporte público, el coche suele ser un hábito, no una necesidad"
+          ],
+          "answer": "En una ciudad con buen transporte público, el coche suele ser un hábito, no una necesidad",
+          "why": "Rechaza la primera interpretación (\"Not at all\"). Esperaba sentirse limitada, pero \"Instead, I felt oddly free\". Su tesis: \"a habit rather than a need\". \"Public transport\" es británico (EE. UU.: \"public transportation\")."
+        },
+        {
+          "id": "l-059",
+          "tipo": "dato",
+          "level": "B1",
+          "audio": "WOMAN: You run a repair café every Saturday. Why did you start it? MAN: Well, people sometimes think I'm against new technology. I'm not, I love my new laptop! And it isn't a business, because the repairs are free. What really annoys me is how many things end up in the bin when they only need a small repair, like a loose wire or a new button. Most people could learn to fix them in half an hour.",
+          "pregunta": "¿Qué es lo que más le molesta?",
+          "options": [
+            "Que la gente tire cosas fáciles de arreglar",
+            "La tecnología moderna",
+            "Que la gente no pague por las reparaciones"
+          ],
+          "answer": "Que la gente tire cosas fáciles de arreglar",
+          "why": "Rechaza estar contra la tecnología (\"I'm not\") y dice que las reparaciones son gratis; su queja es \"What really annoys me\". \"Bin\" es británico (EE. UU.: \"trash can\")."
+        },
+        {
+          "id": "l-060",
+          "tipo": "dato",
+          "level": "B1",
+          "audio": "MAN: You share a house with your parents and your children. How do you find it? WOMAN: My friends often say they could never do it, because you have no privacy. And it's true, there's always someone in the kitchen, and the bathroom is never free! But my parents collect the kids from school, we cook together, and the children really know their grandparents. For me, the advantages are much bigger than the problems.",
+          "pregunta": "¿Cómo se siente viviendo con sus padres y sus hijos?",
+          "options": [
+            "Agobiada por la falta de espacio",
+            "Contenta: las ventajas pesan más que los problemas",
+            "Con ganas de mudarse pronto"
+          ],
+          "answer": "Contenta: las ventajas pesan más que los problemas",
+          "why": "Admite la falta de intimidad (\"it's true\"), pero su conclusión es \"the advantages are much bigger than the problems\". Que no podrían hacerlo lo dicen sus amigos."
+        },
+        {
+          "id": "l-061",
+          "tipo": "dato",
+          "level": "B1",
+          "audio": "WOMAN: A new bar has opened on your street. Some neighbours want the council to shut it. What's your view? MAN: I understand them. It can get noisy, especially on Fridays. But I don't agree that it should shut. The street was dead before, and now it feels safer at night because there are people around. I just think it should stop serving at midnight, so that the rest of us can sleep.",
+          "pregunta": "¿Qué opina del nuevo bar?",
+          "options": [
+            "Que deberían cerrarlo",
+            "Que no hace ningún ruido",
+            "Que está bien si deja de servir a medianoche"
+          ],
+          "answer": "Que está bien si deja de servir a medianoche",
+          "why": "Cerrarlo es lo que piden otros vecinos (\"I don't agree that it should shut\"), y sí reconoce el ruido. Su postura: que siga, pero \"stop serving at midnight\"."
+        },
+        {
+          "id": "l-062",
+          "tipo": "dato",
+          "level": "B1",
+          "audio": "MAN: Is breakfast really the most important meal of the day? WOMAN: That's what we were all told as children, but I don't think there's much proof of it. Some people say skipping breakfast helps you lose weight, and I'm not convinced by that either. In my experience, what matters is what you eat during the whole day. If you're not hungry in the morning, it's fine to wait until lunch, as long as you eat well.",
+          "pregunta": "¿Qué opina la mujer sobre saltarse el desayuno?",
+          "options": [
+            "Que no pasa nada si comes bien el resto del día",
+            "Que es la comida más importante del día",
+            "Que ayuda a adelgazar"
+          ],
+          "answer": "Que no pasa nada si comes bien el resto del día",
+          "why": "Rechaza las dos ideas populares (\"not much proof\", \"I'm not convinced\"). Su opinión: \"what matters is what you eat during the whole day\"."
+        },
+        {
+          "id": "l-063",
+          "tipo": "dato",
+          "level": "B1",
+          "audio": "For years I refused to pay by card. I didn't trust it, and I liked to see exactly how much money was in my wallet. My son kept telling me that cash would disappear in a few years. I still think he's wrong about that. But during the pandemic I had to start paying by card, and now I find it much easier. I pay by card almost everywhere, although I always keep a little cash for the market and the local bakery.",
+          "pregunta": "¿Cuál es su actitud actual hacia el pago con tarjeta?",
+          "options": [
+            "Sigue desconfiando de las tarjetas",
+            "Prefiere la tarjeta, pero cree que el efectivo sigue siendo útil",
+            "Cree que el efectivo desaparecerá pronto"
+          ],
+          "answer": "Prefiere la tarjeta, pero cree que el efectivo sigue siendo útil",
+          "why": "La desconfianza era antes (\"For years\"), y que el efectivo desaparecerá lo dice su hijo (\"he's wrong\"). Ahora paga casi siempre con tarjeta, pero guarda algo de efectivo."
+        }
+      ]
+    }
+  ]
+}

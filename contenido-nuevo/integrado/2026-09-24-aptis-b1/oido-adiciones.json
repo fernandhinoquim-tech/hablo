@@ -1,0 +1,99 @@
+{
+ "pares": {
+  "oido-final-t-d": [
+   {
+    "a": "set",
+    "b": "said",
+    "frase": "You can hear ___ clearly now."
+   },
+   {
+    "a": "mat",
+    "b": "mad",
+    "frase": "Circle ___ five times."
+   },
+   {
+    "a": "kit",
+    "b": "kid",
+    "frase": "The teacher wrote ___ here."
+   },
+   {
+    "a": "cart",
+    "b": "card",
+    "frase": "Please spell ___ for me."
+   },
+   {
+    "a": "hurt",
+    "b": "heard",
+    "frase": "I think ___ comes next."
+   },
+   {
+    "a": "sight",
+    "b": "side",
+    "frase": "Repeat ___ very slowly, please."
+   }
+  ],
+  "oido-dh-d": [
+   {
+    "a": "breathing",
+    "b": "breeding",
+    "frase": "I think ___ comes next."
+   }
+  ],
+  "oido-numeros": [
+   {
+    "a": "thirteenth",
+    "b": "thirtieth",
+    "frase": "It happened on June ___ last year."
+   },
+   {
+    "a": "fourteenth",
+    "b": "fortieth",
+    "frase": "It was her ___ birthday party."
+   }
+  ],
+  "oido-b-v": [
+   {
+    "a": "marble",
+    "b": "marvel",
+    "frase": "Mark ___ with your pencil."
+   },
+   {
+    "a": "bolt",
+    "b": "volt",
+    "frase": "Underline ___ with your pen."
+   }
+  ],
+  "oido-final-consonante": [
+   {
+    "a": "no",
+    "b": "note",
+    "frase": "Mark ___ with your pencil."
+   }
+  ],
+  "oido-ed": [
+   {
+    "a": "start",
+    "b": "started",
+    "frase": "Please write ___ for me."
+   }
+  ],
+  "oido-ae-uh": [
+   {
+    "a": "ankle",
+    "b": "uncle",
+    "frase": "Please write ___ for me."
+   }
+  ],
+  "oido-s-z": [
+   {
+    "a": "fussy",
+    "b": "fuzzy",
+    "frase": "Mark ___ with your pencil."
+   }
+  ]
+ },
+ "titulos": {
+  "oido-final-consonante": "no / note",
+  "oido-ed": "start / started"
+ }
+}

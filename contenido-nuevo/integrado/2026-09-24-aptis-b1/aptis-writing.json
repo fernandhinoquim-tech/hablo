@@ -1,0 +1,755 @@
+{
+ "_comentario": "Pista de WRITING del Modo Aptis (0 a B2). Cuatro partes, las mismas del examen. Cada tarea la corrige la IA contra su 'rubrica': un criterio por linea, todos en pregunta, para que el juicio sea comprobable. LA IA TIENE QUE CITAR UNA FRASE DEL ALUMNO como prueba de cada criterio; sin evidencia el juicio no vale. Y la pantalla dice siempre que es una estimacion, no la nota de Aptis. La parte 4 vale 30 de los 50 minutos del examen: es donde mas nota se mueve por hora.",
+ "skill": "Writing",
+ "partes": [
+  {
+   "id": "parte1",
+   "aptis": "Parte 1 · una palabra",
+   "title": "Contestar con una palabra",
+   "descripcion": "Cinco mensajes cortos de un club o un curso. Se contesta cada uno con UNA palabra. Aquí manda comunicar, no la gramática.",
+   "tareas": [
+    {
+     "id": "w1-01",
+     "level": "A1",
+     "segundos": 180,
+     "promptEn": "You have joined a cooking club. Answer the five messages from other members with one word each.",
+     "promptEs": "Entraste a un club de cocina. Contesta los cinco mensajes con una sola palabra.",
+     "rubrica": [
+      "¿Contestó las cinco?",
+      "¿Cada respuesta es una sola palabra?",
+      "¿La palabra responde de verdad a la pregunta?"
+     ],
+     "mensajes": [
+      "What's your first name?",
+      "Which city are you from?",
+      "What's your favourite food?",
+      "How many people are in your family?",
+      "Which day can you come?"
+     ]
+    },
+    {
+     "id": "w1-02",
+     "level": "A1",
+     "segundos": 180,
+     "promptEn": "You signed up for an English course. Answer the five questions with one word each.",
+     "promptEs": "Te inscribiste a un curso de inglés. Contesta las cinco preguntas con una sola palabra.",
+     "rubrica": [
+      "¿Contestó las cinco?",
+      "¿Cada respuesta es una sola palabra?",
+      "¿Escribió los números y días en inglés?"
+     ],
+     "mensajes": [
+      "What's your surname?",
+      "What's your job?",
+      "How old are you?",
+      "Which level are you: beginner or intermediate?",
+      "What time do you prefer: morning or evening?"
+     ]
+    },
+    {
+     "id": "w1-03",
+     "level": "A2",
+     "segundos": 180,
+     "promptEn": "You joined a running group. Answer the five messages with one word each.",
+     "promptEs": "Entraste a un grupo de running. Contesta los cinco mensajes con una sola palabra.",
+     "rubrica": [
+      "¿Contestó las cinco?",
+      "¿Cada respuesta es una sola palabra?",
+      "¿Entendió preguntas con 'how often' y 'how far'?"
+     ],
+     "mensajes": [
+      "How often do you run?",
+      "How far can you run?",
+      "Do you prefer mornings or evenings?",
+      "Which park do you use?",
+      "Have you run a race before?"
+     ]
+    },
+    {
+     "id": "w1-04",
+     "level": "A2",
+     "segundos": 180,
+     "promptEn": "You are booking a hotel room. Answer the five questions with one word each.",
+     "promptEs": "Estás reservando un hotel. Contesta las cinco preguntas con una sola palabra.",
+     "rubrica": [
+      "¿Contestó las cinco?",
+      "¿Cada respuesta es una sola palabra?",
+      "¿Usó bien las fechas y los números?"
+     ],
+     "mensajes": [
+      "How many nights?",
+      "How many guests?",
+      "Which month are you coming?",
+      "Do you need breakfast?",
+      "Smoking or non-smoking?"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "parte2",
+   "aptis": "Parte 2 · 20-30 palabras",
+   "title": "Un texto corto",
+   "palabras": true,
+   "descripcion": "Un texto de 20 a 30 palabras sobre un tema concreto. Aquí SÍ se mira la gramática, la puntuación y la ortografía.",
+   "tareas": [
+    {
+     "id": "w2-01",
+     "level": "A2",
+     "segundos": 420,
+     "promptEn": "Tell the club about yourself: your name, where you live and what you do.",
+     "promptEs": "Cuéntale al club quién eres: tu nombre, dónde vives y a qué te dedicas.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿Da las tres cosas: nombre, ciudad y ocupación?",
+      "¿Usa 'I'm a ...' con artículo en la profesión?"
+     ],
+     "palabras": "20-30"
+    },
+    {
+     "id": "w2-02",
+     "level": "A2",
+     "segundos": 420,
+     "promptEn": "Describe your usual weekend in a few sentences.",
+     "promptEs": "Describe cómo es tu fin de semana normal, en unas pocas frases.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿Presente simple bien formado?",
+      "¿Usa al menos un adverbio de frecuencia?"
+     ],
+     "palabras": "20-30"
+    },
+    {
+     "id": "w2-03",
+     "level": "B1",
+     "segundos": 420,
+     "promptEn": "Write about a place you would recommend to a visitor, and say why.",
+     "promptEs": "Escribe sobre un sitio que le recomendarías a alguien de visita, y por qué.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿Recomienda Y justifica, no solo describe?",
+      "¿Usa 'because', 'so' o algún conector?"
+     ],
+     "palabras": "20-30"
+    },
+    {
+     "id": "w2-04",
+     "level": "B1",
+     "segundos": 420,
+     "promptEn": "Write about something you learned recently and how you learned it.",
+     "promptEs": "Escribe sobre algo que aprendiste hace poco y cómo lo aprendiste.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿Usa pasado simple o present perfect correctamente?",
+      "¿Cuenta el cómo, no solo el qué?"
+     ],
+     "palabras": "20-30"
+    },
+    {
+     "id": "w2-05",
+     "level": "B1",
+     "segundos": 420,
+     "promptEn": "Tell the group how you like to relax after a busy day, and why it helps you.",
+     "promptEs": "Cuéntale al grupo cómo te gusta relajarte después de un día pesado, y por qué te sirve.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿Explica por qué le ayuda, no solo qué hace?",
+      "¿Usa 'when' o 'after' para situar la acción?"
+     ],
+     "palabras": "20-30",
+     "why": "La trampa es hacer una lista de actividades; en B1 cuenta el porqué ('because it helps me forget about work'). Con 20-30 palabras cabe una actividad bien explicada, no cinco."
+    },
+    {
+     "id": "w2-06",
+     "level": "B1",
+     "segundos": 420,
+     "promptEn": "Write about a person in your family you admire, and explain why.",
+     "promptEs": "Escribe sobre alguien de tu familia a quien admiras, y explica por qué.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿Da una razón concreta o un ejemplo de lo que hace esa persona?",
+      "¿Usa bien 'he/she' y el posesivo 'his/her'?"
+     ],
+     "palabras": "20-30",
+     "why": "El error típico de hispanohablante es 'his' para una mujer (en español 'su' sirve para los dos); el posesivo concuerda con el dueño: 'my aunt and her job'."
+    },
+    {
+     "id": "w2-07",
+     "level": "B1",
+     "segundos": 420,
+     "promptEn": "Describe the best holiday you have ever had.",
+     "promptEs": "Describe las mejores vacaciones que has tenido.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿Usa el pasado simple para contar lo que pasó?",
+      "¿Dice dónde fue y qué lo hizo especial?"
+     ],
+     "palabras": "20-30",
+     "why": "En inglés británico 'holiday' son las vacaciones (en EE. UU. 'vacation'); 'the best ... I have ever had' ya está en la consigna, pero lo que pasó se cuenta en pasado simple: 'we went', 'we stayed'."
+    },
+    {
+     "id": "w2-08",
+     "level": "B1",
+     "segundos": 420,
+     "promptEn": "Write about a piece of technology you use every day and how it helps you.",
+     "promptEs": "Escribe sobre un aparato o una app que usas cada día y cómo te ayuda.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿Explica cómo le ayuda con un ejemplo de su día?",
+      "¿Usa 'to' + verbo para la finalidad (I use it to...)?"
+     ],
+     "palabras": "20-30",
+     "why": "La clave es 'I use it to + verbo', no 'for + verbo' ('for check my email' es error). Si es el móvil, en Reino Unido es 'mobile' y en EE. UU. 'cell phone'."
+    },
+    {
+     "id": "w2-09",
+     "level": "B1",
+     "segundos": 420,
+     "promptEn": "Write about your favourite dish: what it is and when you usually eat it.",
+     "promptEs": "Escribe sobre tu plato favorito: cuál es y cuándo sueles comerlo.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿Contesta las dos cosas: qué plato y cuándo lo come?",
+      "¿Explica el plato para alguien que no lo conoce?"
+     ],
+     "palabras": "20-30",
+     "why": "Si el plato es colombiano (ajiaco, bandeja paisa), el lector no lo conoce: una frase de descripción ('a soup with chicken and potatoes') vale más que el nombre. 'Favourite' es la ortografía británica de 'favorite'."
+    },
+    {
+     "id": "w2-10",
+     "level": "B1",
+     "segundos": 420,
+     "promptEn": "Describe your neighbourhood: one thing you like and one thing you would change.",
+     "promptEs": "Describe tu barrio: una cosa que te gusta y una que cambiarías.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿Da las dos cosas, lo bueno y lo que cambiaría?",
+      "¿Usa 'would' o 'I'd like' para lo que cambiaría?"
+     ],
+     "palabras": "20-30",
+     "why": "Lo que cambiarías es hipotético: 'I would add more trees', no 'I change'. 'Neighbourhood' es británico; en EE. UU. se escribe 'neighborhood'."
+    },
+    {
+     "id": "w2-11",
+     "level": "B1",
+     "segundos": 420,
+     "promptEn": "Write about something you are saving money for and how you are saving.",
+     "promptEs": "Escribe sobre algo para lo que estás ahorrando y cómo lo haces.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿Usa el presente continuo para el plan en curso (I'm saving)?",
+      "¿Explica el cómo, no solo el qué?"
+     ],
+     "palabras": "20-30",
+     "why": "Es algo que está pasando ahora, así que va en presente continuo: 'I'm saving for a car'. Con verbo se usa 'to': 'I'm saving to buy a car'; 'save money to a car' es error."
+    },
+    {
+     "id": "w2-12",
+     "level": "B1",
+     "segundos": 420,
+     "promptEn": "Write about your job or your studies: what you enjoy most and what is difficult.",
+     "promptEs": "Escribe sobre tu trabajo o tus estudios: lo que más disfrutas y lo que te cuesta.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿Contrasta lo bueno y lo difícil con 'but' o 'however'?",
+      "¿Usa 'enjoy' + verbo en -ing?"
+     ],
+     "palabras": "20-30",
+     "why": "'Enjoy' va con -ing: 'I enjoy helping customers', nunca 'enjoy to help'. El contraste entre las dos partes es lo que convierte la lista en texto B1."
+    }
+   ]
+  },
+  {
+   "id": "parte3",
+   "aptis": "Parte 3 · tres respuestas",
+   "title": "Conversación escrita",
+   "palabras": true,
+   "descripcion": "Tres personas escriben en un grupo y hay que contestarle a cada una con 30 a 40 palabras. Las respuestas deben enlazarse entre sí, como una conversación de verdad.",
+   "tareas": [
+    {
+     "id": "w3-01",
+     "level": "B1",
+     "segundos": 600,
+     "promptEn": "Three members of your sports club are discussing the schedule. Reply to each one.",
+     "promptEs": "Tres miembros de tu club deportivo discuten el horario. Contéstale a cada uno.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿Las tres respuestas se enlazan entre sí?",
+      "¿Responde a lo que cada uno dijo, no lo mismo tres veces?"
+     ],
+     "palabras": "30-40 cada una",
+     "mensajes": [
+      "I think Saturday morning is too early. Anyone else?",
+      "I can only come on weekdays because of work.",
+      "Could we try two different times and see what works?"
+     ]
+    },
+    {
+     "id": "w3-02",
+     "level": "B1",
+     "segundos": 600,
+     "promptEn": "Three colleagues are planning a farewell for someone leaving. Reply to each one.",
+     "promptEs": "Tres compañeros organizan una despedida para alguien que se va. Contéstale a cada uno.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿Aporta algo distinto en cada respuesta?",
+      "¿Registro informal pero cuidado?"
+     ],
+     "palabras": "30-40 cada una",
+     "mensajes": [
+      "Should we do lunch or something after work?",
+      "I can collect the money if someone else buys the gift.",
+      "Does anyone know what she actually likes?"
+     ]
+    },
+    {
+     "id": "w3-03",
+     "level": "B2",
+     "segundos": 600,
+     "promptEn": "Three neighbours disagree about a shared parking space. Reply to each one.",
+     "promptEs": "Tres vecinos no se ponen de acuerdo sobre un parqueadero común. Contéstale a cada uno.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿Discrepa sin sonar agresivo?",
+      "¿Usa fórmulas de concesión (I see your point, that said)?",
+      "¿Propone algo, no solo opina?"
+     ],
+     "palabras": "30-40 cada una",
+     "mensajes": [
+      "The space should go to whoever arrives first, simple.",
+      "That's unfair to those of us who work nights.",
+      "Honestly, I think we should pay for a second space."
+     ]
+    },
+    {
+     "id": "w3-04",
+     "level": "B2",
+     "segundos": 600,
+     "promptEn": "Three people in an online course are discussing whether the final project should be in groups. Reply to each one.",
+     "promptEs": "Tres personas de un curso en línea discuten si el trabajo final debe ser en grupo. Contéstale a cada uno.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿Toma postura y la sostiene en las tres?",
+      "¿Reconoce el argumento contrario al menos una vez?"
+     ],
+     "palabras": "30-40 cada una",
+     "mensajes": [
+      "Group work is always unfair, someone does nothing.",
+      "But working alone doesn't prepare you for a real job.",
+      "Could it be optional? Let people choose."
+     ]
+    },
+    {
+     "id": "w3-05",
+     "level": "B1",
+     "segundos": 600,
+     "promptEn": "You have joined a book club. Three members write to you in the group chat. Reply to each one.",
+     "promptEs": "Entraste a un club de lectura. Tres miembros te escriben en el chat del grupo. Contéstale a cada uno.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿Da razones en cada respuesta, no solo 'yes' o 'no'?",
+      "¿Propone un día y un lugar concretos en la tercera?"
+     ],
+     "palabras": "30-40 cada una",
+     "mensajes": [
+      "Welcome! What kind of books do you enjoy, and why?",
+      "Do you prefer paper books or reading on a screen?",
+      "We meet once a month. Which day and place would be best for you?"
+     ],
+     "why": "Cada mensaje pide algo distinto: gusto + razón, preferencia comparada y una propuesta. Para comparar usa 'I prefer X to Y because...' o 'X is more comfortable than Y'."
+    },
+    {
+     "id": "w3-06",
+     "level": "B1",
+     "segundos": 600,
+     "promptEn": "You are a new member of a photography club. Three members write to you. Reply to each one.",
+     "promptEs": "Eres miembro nuevo de un club de fotografía. Tres miembros te escriben. Contéstale a cada uno.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿Cuenta la experiencia de la segunda en pasado?",
+      "¿Sugiere un lugar y explica por qué es bueno para fotos?"
+     ],
+     "palabras": "30-40 cada una",
+     "mensajes": [
+      "Hi! What do you usually take photos of?",
+      "Tell us about the best photo you have ever taken.",
+      "We're planning a day trip to take photos. Where should we go?"
+     ],
+     "why": "La segunda pregunta es una historia: pasado simple ('I took it in Cartagena at sunset'). La tercera pide una sugerencia: 'We could go to...' o 'Why don't we go to...?'."
+    },
+    {
+     "id": "w3-07",
+     "level": "B1",
+     "segundos": 600,
+     "promptEn": "You joined a cycling group on social media. Three people write to you. Reply to each one.",
+     "promptEs": "Entraste a un grupo de ciclismo en redes sociales. Tres personas te escriben. Contéstale a cada una.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿Da su opinión sobre la seguridad con al menos un ejemplo?",
+      "¿Contesta las dos partes de la tercera pregunta?"
+     ],
+     "palabras": "30-40 cada una",
+     "mensajes": [
+      "How do you usually get to work or school?",
+      "Do you think our city is safe for cyclists?",
+      "We're planning a Sunday ride. How far can you cycle, and where would you like to go?"
+     ],
+     "why": "La tercera tiene dos preguntas en una (distancia y destino) y es fácil contestar solo una. Para distancia: 'I can cycle about 30 kilometres'; 'kilometres' es la forma británica de 'kilometers'."
+    },
+    {
+     "id": "w3-08",
+     "level": "B1",
+     "segundos": 600,
+     "promptEn": "You are in an online travel group. Three members write to you. Reply to each one.",
+     "promptEs": "Estás en un grupo de viajes en línea. Tres miembros te escriben. Contéstale a cada uno.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿Explica por qué se lleva lo que se lleva en la primera y da un motivo claro de su preferencia en la segunda?",
+      "¿Da recomendaciones con 'should' o 'you must'?"
+     ],
+     "palabras": "30-40 cada una",
+     "mensajes": [
+      "What do you always take with you when you travel, and why?",
+      "Do you prefer travelling alone or with other people?",
+      "I'm visiting your country next month. What should I definitely see?"
+     ],
+     "why": "Cada mensaje pide algo distinto: objeto + razón, preferencia ('I prefer travelling with friends because...') y una recomendación ('You should visit..., because...'). 'Travelling' es la ortografía británica de 'traveling'."
+    },
+    {
+     "id": "w3-09",
+     "level": "B1",
+     "segundos": 600,
+     "promptEn": "You joined an online group about healthy living. Three members write to you. Reply to each one.",
+     "promptEs": "Entraste a un grupo en línea sobre vida sana. Tres miembros te escriben. Contéstale a cada uno.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿Usa 'used to' o comparativos para hablar del cambio?",
+      "¿Da una opinión con razón en la tercera?"
+     ],
+     "palabras": "30-40 cada una",
+     "mensajes": [
+      "How has the way you eat changed in the last few years?",
+      "What's a healthy meal you can cook quickly?",
+      "Some people say eating healthily is too expensive. What do you think?"
+     ],
+     "why": "Para el cambio sirve 'I used to eat..., but now I...'. La tercera pide opinión: tomar postura ('I don't agree, because...') puntúa más que decir 'it depends' sin más."
+    },
+    {
+     "id": "w3-10",
+     "level": "B1",
+     "segundos": 600,
+     "promptEn": "You joined a language exchange group. Three members write to you. Reply to each one.",
+     "promptEs": "Entraste a un grupo de intercambio de idiomas. Tres miembros te escriben. Contéstale a cada uno.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿Explica un motivo real para aprender inglés?",
+      "¿Propone temas concretos en la tercera?"
+     ],
+     "palabras": "30-40 cada una",
+     "mensajes": [
+      "Why are you learning English?",
+      "What do you find most difficult about English?",
+      "We're meeting in a café next week. What should we talk about?"
+     ],
+     "why": "Cuidado con 'find it difficult to + verbo' ('I find it difficult to understand phrasal verbs'). No repitas la misma idea en las tres: motivo, dificultad y propuesta son tres cosas distintas."
+    },
+    {
+     "id": "w3-11",
+     "level": "B1",
+     "segundos": 600,
+     "promptEn": "You are a member of a film club. Three members write to you. Reply to each one.",
+     "promptEs": "Eres miembro de un club de cine. Tres miembros te escriben. Contéstale a cada uno.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿Compara cine y casa con ventajas concretas?",
+      "¿Cuenta la película de la tercera sin quedarse solo en el título?"
+     ],
+     "palabras": "30-40 cada una",
+     "mensajes": [
+      "What kind of films do you like, and why?",
+      "Do you prefer watching films at the cinema or at home?",
+      "Tell us about a film you saw recently. Would you recommend it?"
+     ],
+     "why": "En británico 'film' y 'cinema' equivalen al americano 'movie' y 'movie theater'. La tercera tiene dos partes: contar la película Y decir si la recomiendas."
+    },
+    {
+     "id": "w3-12",
+     "level": "B1",
+     "segundos": 600,
+     "promptEn": "You joined a local volunteer group. Three members write to you. Reply to each one.",
+     "promptEs": "Entraste a un grupo local de voluntariado. Tres miembros te escriben. Contéstale a cada uno.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿Elige una actividad y explica por qué?",
+      "¿Menciona una habilidad o experiencia concreta?"
+     ],
+     "palabras": "30-40 cada una",
+     "mensajes": [
+      "Hi! Why did you want to join our volunteer group?",
+      "Which would you like to help with: the food bank, the park clean-up or reading to children?",
+      "What skills or experience can you bring to the group?"
+     ],
+     "why": "En la segunda hay que elegir UNA opción y justificarla ('I'd like to help with... because...'). En la tercera, un dato concreto ('I have worked in a shop, so...') vale más que 'I'm very friendly'."
+    }
+   ]
+  },
+  {
+   "id": "parte4",
+   "aptis": "Parte 4 · dos correos",
+   "title": "Informal y formal",
+   "palabras": true,
+   "descripcion": "La tarea más pesada: 30 de los 50 minutos. Un correo informal a un amigo (50 palabras) y uno formal a alguien que no conoces (120-150). Los dos reaccionan al mismo cambio.",
+   "tareas": [
+    {
+     "id": "w4-01",
+     "level": "B1",
+     "segundos": 1800,
+     "promptEn": "Your gym is closing its swimming pool for six months. Write to a friend who goes with you, and a formal email to the manager.",
+     "promptEs": "Tu gimnasio cierra la piscina seis meses. Escríbele a un amigo que va contigo, y un correo formal al gerente.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿El informal suena informal y el formal, formal?",
+      "¿El formal abre y cierra como un correo de verdad?",
+      "¿Pide algo concreto, no solo se queja?",
+      "¿Usa conectores (however, therefore)?"
+     ],
+     "palabras": "50 + 120-150"
+    },
+    {
+     "id": "w4-02",
+     "level": "B1",
+     "segundos": 1800,
+     "promptEn": "Your English course is changing from evenings to Saturday mornings. Write to a classmate, and a formal email to the school.",
+     "promptEs": "Tu curso de inglés se pasa de las tardes a los sábados por la mañana. Escríbele a un compañero, y un correo formal a la escuela.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿Los dos correos reaccionan al MISMO cambio?",
+      "¿El formal explica cómo le afecta con un dato concreto?",
+      "¿Nada de abreviaturas ni jerga en el formal?"
+     ],
+     "palabras": "50 + 120-150"
+    },
+    {
+     "id": "w4-03",
+     "level": "B2",
+     "segundos": 1800,
+     "promptEn": "Your building is raising the monthly fee by thirty percent with one month's notice. Write to a neighbour, and a formal email to the administrator.",
+     "promptEs": "Tu edificio sube la cuota un treinta por ciento avisando con un mes. Escríbele a un vecino, y un correo formal al administrador.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿El formal cuestiona el procedimiento, no solo el monto?",
+      "¿Usa condicional o pasiva para suavizar la queja?",
+      "¿Cierra pidiendo una acción con plazo?"
+     ],
+     "palabras": "50 + 120-150"
+    },
+    {
+     "id": "w4-04",
+     "level": "B2",
+     "segundos": 1800,
+     "promptEn": "A conference you paid for has been moved online with no refund offered. Write to a colleague who also registered, and a formal email to the organisers.",
+     "promptEs": "Un congreso que pagaste pasó a ser virtual y no ofrecen devolución. Escríbele a un colega que también se inscribió, y un correo formal a los organizadores.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿Distingue lo que le molesta de lo que pide?",
+      "¿Menciona lo que esperaba y lo que recibió?",
+      "¿Ofrece una alternativa aceptable, no solo el reembolso?"
+     ],
+     "palabras": "50 + 120-150"
+    },
+    {
+     "id": "w4-05",
+     "level": "B1",
+     "segundos": 1800,
+     "promptEn": "Your local library is going to close at weekends from next month. Write a short message to a friend who studies there with you, and a formal email to the library manager.",
+     "promptEs": "Tu biblioteca local va a cerrar los fines de semana a partir del mes que viene. Escríbele un mensaje corto a un amigo que estudia allí contigo, y un correo formal al director de la biblioteca.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿El formal explica por qué el fin de semana es importante para él?",
+      "¿Propone una alternativa (otro horario, otro día)?",
+      "¿El formal abre y cierra con fórmulas que concuerdan (Dear Sir or Madam → Yours faithfully; Dear Mr/Ms + apellido → Yours sincerely)?"
+     ],
+     "palabras": "50 + 120-150",
+     "why": "Con 'Dear Sir or Madam' se cierra con 'Yours faithfully'; con nombre ('Dear Ms Smith'), 'Yours sincerely'. Quejarse sin proponer nada se queda en A2: B1 pide una sugerencia."
+    },
+    {
+     "id": "w4-06",
+     "level": "B1",
+     "segundos": 1800,
+     "promptEn": "The airline has cancelled your flight to visit a friend abroad and moved you to a flight two days later. Write a short message to your friend, and a formal email to the airline.",
+     "promptEs": "La aerolínea canceló tu vuelo para visitar a un amigo en el extranjero y te pasó a un vuelo dos días después. Escríbele un mensaje corto a tu amigo, y un correo formal a la aerolínea.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿El mensaje al amigo explica el cambio de planes con naturalidad?",
+      "¿El formal da datos concretos (fecha, número de vuelo)?",
+      "¿Pide algo claro: reembolso, otro vuelo o compensación?"
+     ],
+     "palabras": "50 + 120-150",
+     "why": "El formal necesita datos verificables ('flight IB123 on 12 May') y una petición concreta; 'I would like to request...' suena formal, 'I want' no."
+    },
+    {
+     "id": "w4-07",
+     "level": "B1",
+     "segundos": 1800,
+     "promptEn": "You ordered a birthday present for a friend online, but it arrived broken the day before the party. Write a short message to your friend to say the present will be late, and a formal email to the online shop.",
+     "promptEs": "Pediste por internet un regalo de cumpleaños para un amigo, pero llegó roto el día antes de la fiesta. Escríbele un mensaje corto a tu amigo para decirle que el regalo llegará tarde, y un correo formal a la tienda en línea.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿El mensaje al amigo es cálido y explica que el regalo llegará tarde (sin tono de queja)?",
+      "¿El formal describe el problema y el número de pedido?",
+      "¿Pide una solución concreta con plazo?"
+     ],
+     "palabras": "50 + 120-150",
+     "why": "Son dos lectores con necesidades distintas: al amigo le importa la fiesta, a la tienda el pedido. 'Shop' es británico ('store' en EE. UU.); 'order number' es el dato clave del formal."
+    },
+    {
+     "id": "w4-08",
+     "level": "B1",
+     "segundos": 1800,
+     "promptEn": "A music festival you have tickets for has changed its dates, and you cannot go on the new ones. Write a short message to the friend who is going with you, and a formal email to the organisers.",
+     "promptEs": "Un festival de música para el que tienes entradas cambió de fechas y no puedes ir en las nuevas. Escríbele un mensaje corto al amigo que va contigo, y un correo formal a los organizadores.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿Explica en el formal por qué no puede ir en las nuevas fechas?",
+      "¿Pide reembolso o cambio con cortesía (I would be grateful if...)?",
+      "¿Usa conectores (however, as a result)?"
+     ],
+     "palabras": "50 + 120-150",
+     "why": "'I would be grateful if you could...' es la fórmula B1 de petición formal. 'Organisers' es la ortografía británica de 'organizers'; las dos valen si eres coherente."
+    },
+    {
+     "id": "w4-09",
+     "level": "B1",
+     "segundos": 1800,
+     "promptEn": "Your company is moving its office to the other side of the city, and your journey to work will be much longer. Write a short message to a colleague who is also your friend, and a formal email to the Human Resources manager.",
+     "promptEs": "Tu empresa se muda al otro lado de la ciudad y tu trayecto al trabajo será mucho más largo. Escríbele un mensaje corto a un compañero que también es tu amigo, y un correo formal al jefe de Recursos Humanos.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿El formal cuantifica el problema (minutos, dinero)?",
+      "¿Propone una solución (horario flexible, teletrabajo)?",
+      "¿Mantiene un tono profesional sin quejarse de más?"
+     ],
+     "palabras": "50 + 120-150",
+     "why": "Un dato concreto ('my journey will go from 20 minutes to over an hour') convence más que 'it is very far'. 'Journey' o 'commute' es el trayecto; el británico dice 'journey to work'."
+    },
+    {
+     "id": "w4-10",
+     "level": "B1",
+     "segundos": 1800,
+     "promptEn": "The city council plans to turn the park near your flat into a car park. Write a short message to a neighbour who is your friend, and a formal email to the council.",
+     "promptEs": "La alcaldía quiere convertir el parque cerca de tu apartamento en un parqueadero. Escríbele un mensaje corto a un vecino amigo tuyo, y un correo formal a la alcaldía.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿Da al menos dos razones para conservar el parque?",
+      "¿El informal propone hacer algo juntos?",
+      "¿El formal cierra pidiendo una acción concreta?"
+     ],
+     "palabras": "50 + 120-150",
+     "why": "'Flat' es el británico de 'apartment' y 'car park' el de 'parking lot'. Enumerar razones con 'Firstly... In addition...' ordena el formal y es justo lo que mira la rúbrica B1."
+    },
+    {
+     "id": "w4-11",
+     "level": "B1",
+     "segundos": 1800,
+     "promptEn": "Your health centre will only accept appointments online from next month; you can no longer book by phone. Write a short message to a friend who uses the same centre, and a formal email to the centre manager.",
+     "promptEs": "Tu centro de salud solo aceptará citas por internet desde el mes que viene; ya no se podrá pedir por teléfono. Escríbele un mensaje corto a un amigo que va al mismo centro, y un correo formal al director del centro.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿El formal menciona a quién perjudica el cambio (mayores, gente sin internet)?",
+      "¿Reconoce alguna ventaja antes de pedir el cambio?",
+      "¿El informal suena natural (Hi, guess what, see you)?"
+     ],
+     "palabras": "50 + 120-150",
+     "why": "Reconocer una ventaja ('I understand that online booking saves time; however...') hace la queja más convincente. 'Book an appointment' es pedir cita; en británico, 'health centre' o 'GP surgery' es el consultorio del médico."
+    },
+    {
+     "id": "w4-12",
+     "level": "B1",
+     "segundos": 1800,
+     "promptEn": "The restaurant below your flat has started playing live music until 2 a.m. every weekend. Write a short message to a friend telling them about it, and a formal email to the restaurant owner.",
+     "promptEs": "El restaurante debajo de tu apartamento empezó a poner música en vivo hasta las 2 de la madrugada todos los fines de semana. Escríbele un mensaje corto a un amigo contándoselo, y un correo formal al dueño del restaurante.",
+     "rubrica": [
+      "¿Contesta todo lo que se le pide?",
+      "¿Se entiende sin releer?",
+      "¿Las frases están completas y enlazadas?",
+      "¿El formal es firme pero educado, sin amenazas?",
+      "¿Describe el efecto concreto (no puede dormir, trabaja temprano)?",
+      "¿Propone una hora límite o una solución intermedia?"
+     ],
+     "palabras": "50 + 120-150",
+     "why": "En el informal puedes exagerar y bromear; en el formal no: 'I am writing to inform you that...' y una propuesta ('Could the music finish at 11 p.m.?'). 'Flat' = 'apartment' en EE. UU."
+    }
+   ]
+  }
+ ]
+}

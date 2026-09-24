@@ -639,6 +639,19 @@ reloj y sin red:
   (78/147), casi todo por su propio oído: oye la d final como t (ride→ɹaɪt 4
   de 4), b/v como ð, y las vocales de Grace mal; con los dos jueces quedan
   los descartes de verdad (ver el informe a Cowork en el commit).
+  **Repuestos (24-09, `contenido-nuevo/integrado/2026-09-24-aptis-b1/`):**
+  de 30 candidatos de Cowork pasaron 23 (`oido-medicion*.txt`); entraron 15
+  con `tools/content/anexar_oido.py` (añade pares YA medidos, tope 10 por
+  bloque, cambia títulos). En t/d final pasaron 9 para 6 huecos: primero los
+  4/4, luego los 3/4 en el orden de Cowork. Títulos nuevos: "no / note" y
+  "start / started" (car/card y play/played se habían descartado). u/uu se
+  queda en 5 (no hay más pares comunes; pulls/pools no pasó) y j/dʒ en 7:
+  no se fusionan porque cada bloque es UN contraste con su explicación y su
+  frase de cierre; `checkContent` pide 5-10. **El juez fallaba con los
+  ordinales:** Parakeet escribe "13th" y, tras un mes, "June 13"; ahora
+  `oir_oido.py` compara por el número (13th = 13 = thirteenth, distinto de
+  thirtieth) y 13th/30th y 14th/40th pasan (antes 1/4, ahora 4/4 y 3/4;
+  con Grace "fortieth" sí suena "fourteenth").
 - **Dictado de números** (`ScreenDictado.kt`, `dictado.json`: 80 ítems, 7
   tipos, modos `escribir`/`elegir`; el `audio` va en palabras). Tarea literal
   de Aptis Listening parte 1: hasta DOS escuchas, después el texto del audio
