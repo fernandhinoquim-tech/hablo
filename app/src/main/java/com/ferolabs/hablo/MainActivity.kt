@@ -58,6 +58,9 @@ class MainActivity : ComponentActivity() {
 
     override fun onStop() {
         speaker?.stop()
+        // Copia del día en Descargas › Hablo (sobrevive a desinstalar la app).
+        val respaldo = Respaldo(this)
+        Thread { respaldo.automatico() }.start()
         super.onStop()
     }
 

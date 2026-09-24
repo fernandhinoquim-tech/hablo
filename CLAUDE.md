@@ -408,7 +408,7 @@ escenarios · corrección en español · informe descargable · cuaderno de erro
 | 11 | Pantalla de Oído (pares mínimos) | **hecho el 17-09**: 16 bloques de Cowork (`oido.json`), `ScreenOido.kt`; y el **dictado de números** (`dictado.json`, 80 ítems, `ScreenDictado.kt`) con comparación estricta; ver "Oído, dictado y crucigramas" |
 | 12 | Contenido B1 y B2 | **B1 hecho el 17-09** (Cowork: 15 unidades, 45 lecciones, 540 ejercicios, 70 % producción; ver "Nivel B1"); B2 no existe |
 | 13 | Escritura con motor de reglas (Fase 4) | no existe |
-| 14 | Respaldo del progreso y modo oscuro (Fase 6) | no existe |
+| 14 | Respaldo del progreso y modo oscuro (Fase 6) | **respaldo: código hecho el 24-09** (ver "Respaldo del progreso"); falta probarlo en el teléfono. Modo oscuro no existe |
 | 15 | Recalibrar audio al llegar a ~100 grabaciones | pendiente con condición |
 
 **Etapas, una a la vez (no se abre la siguiente hasta que la anterior esté en
@@ -757,6 +757,28 @@ SECCIÓN APARTE del curso. Cómo está construido:
   avisa "van flojas: mezcla A2" y la ronda alterna B1/A2/B1/A2; con las cinco
   en B1 el simulacro se abre, encadena Core → "Siguiente parte: Reading" y,
   al salir y volver, retoma en la parte pendiente.
+
+**Respaldo del progreso (2026-09-24, `Respaldo.kt`, tarjeta en Ajustes).**
+Un respaldo es UN JSON (`RespaldoDatos`: `formato`, `version`, `app`,
+`fecha`, `prefs` con tipo por clave, `archivos` con el texto de
+`progreso.json`, `mazo.json`, `aptis.json`, `crucigramas.json` y
+`memoria/perfil.json`; `null` = no existía y al recuperar se borra; una clave
+ausente no se toca). **Nunca entran grabaciones, modelos ni claves.** Va a
+**Descargas › Hablo** por MediaStore, que Android NO borra al desinstalar
+(documentación oficial "Access media files from shared storage"). Tres
+momentos: al salir de la app (`MainActivity.onStop`, como mucho cada 10 min,
+un archivo por día `hablo-auto-<día>.json`, quedan 7); antes de "Borrar todo"
+y antes de recuperar (`hablo-antes-de-…`, quedan 5; si no se puede guardar,
+no se borra ni se recupera nada); y a mano con "Guardar una copia y enviarla"
+(menú de compartir: Drive, WhatsApp). Recuperar muestra "lo de ahora" contra
+"lo del respaldo" (lecciones aprobadas, puntos, frases del mazo), escribe y
+llama a `Activity.recreate()` (el mazo, el cuaderno y lo demás tienen copias
+en memoria). **Trampa:** tras reinstalar, Android deja de considerar esas
+copias "de la app" y la lista sale vacía; hay que abrirlas con el selector
+de archivos del sistema ("Buscar el archivo en el teléfono…", que arranca en
+Download/Hablo). Tests en `RespaldoTest.kt`. Aparte, y desde antes: el
+manifiesto deja que el respaldo de Google del teléfono copie las
+preferencias (`data_extraction_rules.xml`), lo hace el sistema, no la app.
 
 **Modo Aptis (decisión de Fero, 2026-09-15).** Fero va a presentar **Aptis
 ESOL General** (sin fecha aún, sin saber qué nivel le exigen). **El curso por

@@ -1,5 +1,18 @@
 package com.ferolabs.hablo
 
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
+import android.provider.DocumentsContract
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.platform.LocalContext
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import org.json.JSONObject
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -53,6 +66,7 @@ fun SettingsScreen(
     val accent = Color(teacher.color)
     var speed by remember { mutableStateOf(store.speechScale) }
     var confirmReset by remember { mutableStateOf(false) }
+    var resetAviso by remember { mutableStateOf("") }
     var showFaces by remember { mutableStateOf(store.showFaces) }
     var engine by remember { mutableStateOf(engineId) }
     val context = androidx.compose.ui.platform.LocalContext.current
@@ -273,6 +287,8 @@ fun SettingsScreen(
                 )
             }
 
+            RespaldoCard(teacher = teacher)
+
             SettingsCard {
                 Text("Tu progreso", style = MaterialTheme.typography.labelMedium, color = InkSoft)
                 Spacer(Modifier.height(8.dp))
@@ -281,6 +297,10 @@ fun SettingsScreen(
                     style = MaterialTheme.typography.bodyLarge
                 )
                 Spacer(Modifier.height(12.dp))
+                if (resetAviso.isNotBlank()) {
+                    Text(resetAviso, style = MaterialTheme.typography.labelMedium, color = BadRed)
+                    Spacer(Modifier.height(8.dp))
+                }
                 if (!confirmReset) {
                     Text(
                         "Borrar todo mi progreso",
@@ -294,7 +314,8 @@ fun SettingsScreen(
                     )
                 } else {
                     Text(
-                        "¿Seguro? Esto no se puede deshacer.",
+                        "¿Seguro? Antes guardo una copia en Descargas › Hablo, por si te arrepientes " +
+                            "(se recupera en «Respaldo de tu progreso»).",
                         style = MaterialTheme.typography.bodyMedium,
                         color = BadRed
                     )
@@ -302,6 +323,12 @@ fun SettingsScreen(
                     Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                         Box(modifier = Modifier.weight(1f)) {
                             BigButton("Sí, borrar", container = BadRed) {
+                                // Sin copia de seguridad no se borra nada.
+                                if (!Respaldo(context).guardarSeguridad("borrar")) {
+                                    confirmReset = false
+                                    resetAviso = "No pude guardar la copia de seguridad, así que no borré nada."
+                                    return@BigButton
+                                }
                                 progreso.borrarTodo()
                                 memoria.borrar()
                                 mazo.borrarTodo()
@@ -417,6 +444,199 @@ fun SettingsScreen(
         }
     }
 }
+
+/**
+ * Respaldo del progreso (2026-09-24): la copia automática del día, una copia
+ * a mano para enviarla fuera del teléfono, y recuperar (de la lista o con el
+ * selector de archivos, que es la única vía tras reinstalar). Ver `Respaldo.kt`.
+ */
+@Composable
+private fun RespaldoCard(teacher: Teacher) {
+    val accent = Color(teacher.color)
+    val context = LocalContext.current
+    val respaldo = remember { Respaldo(context) }
+    val scope = rememberCoroutineScope()
+    var tick by remember { mutableStateOf(0) }
+    var aviso by remember { mutableStateOf("") }
+    var abierta by remember { mutableStateOf(false) }
+    var trabajando by remember { mutableStateOf(false) }
+    var ultima by remember { mutableStateOf<String?>(null) }
+    var copias by remember { mutableStateOf<List<Pair<Respaldo.Copia, RespaldoDatos.Resumen?>>>(emptyList()) }
+    /** El respaldo elegido, esperando el "sí": (json, su resumen, lo que hay ahora). */
+    var pendiente by remember { mutableStateOf<Triple<JSONObject, RespaldoDatos.Resumen, RespaldoDatos.Resumen>?>(null) }
+
+    LaunchedEffect(tick, abierta) {
+        val (u, lista) = withContext(Dispatchers.IO) {
+            val todas = respaldo.copias()
+            val u = todas.firstOrNull()?.let { fechaCopia(it.modificado) }
+            val lista = if (abierta) todas.take(15).map { c ->
+                c to respaldo.leer(c.uri)?.takeIf { RespaldoDatos.validar(it) == null }?.let { RespaldoDatos.resumen(it) }
+            } else emptyList()
+            u to lista
+        }
+        ultima = u
+        copias = lista
+    }
+
+    fun elegir(json: JSONObject?) {
+        if (json == null) { aviso = "No pude abrir ese archivo."; return }
+        RespaldoDatos.validar(json)?.let { aviso = it; return }
+        scope.launch {
+            val ahora = withContext(Dispatchers.IO) { RespaldoDatos.resumen(respaldo.armar()) }
+            pendiente = Triple(json, RespaldoDatos.resumen(json), ahora)
+            aviso = ""
+        }
+    }
+
+    val selector = rememberLauncherForActivityResult(AbrirRespaldo()) { uri ->
+        if (uri != null) scope.launch { elegir(withContext(Dispatchers.IO) { respaldo.leer(uri) }) }
+    }
+
+    SettingsCard {
+        Text("Respaldo de tu progreso", style = MaterialTheme.typography.labelMedium, color = InkSoft)
+        Spacer(Modifier.height(6.dp))
+        Text(
+            "Cada día que usas Hablo, al salir se guarda sola una copia en Descargas › Hablo " +
+                "(quedan las 7 últimas). Esa carpeta no se borra si desinstalas la app. Para " +
+                "cambiar de celular, guarda una copia y envíatela a Drive o por WhatsApp.",
+            style = MaterialTheme.typography.bodyMedium,
+            color = Ink
+        )
+        Spacer(Modifier.height(6.dp))
+        Text(
+            ultima?.let { "Última copia: $it" } ?: "Todavía no hay copias: la primera se guarda al salir de la app.",
+            style = MaterialTheme.typography.labelMedium,
+            color = InkSoft
+        )
+        Spacer(Modifier.height(12.dp))
+        BigButton("Guardar una copia y enviarla", enabled = !trabajando, container = accent) {
+            trabajando = true
+            scope.launch {
+                val uri = withContext(Dispatchers.IO) { respaldo.guardarManual() }
+                trabajando = false
+                tick += 1
+                if (uri == null) aviso = "No se pudo guardar la copia."
+                else {
+                    aviso = "Guardada en Descargas › Hablo. Elige dónde enviarla."
+                    respaldo.compartir(context, uri)
+                }
+            }
+        }
+        Spacer(Modifier.height(10.dp))
+        BigButton(if (abierta) "Ocultar los respaldos" else "Recuperar un respaldo", container = InkSoft) {
+            abierta = !abierta
+            pendiente = null
+            aviso = ""
+        }
+
+        if (abierta && pendiente == null) {
+            Spacer(Modifier.height(10.dp))
+            if (copias.isEmpty()) {
+                Text("No encuentro copias guardadas por esta instalación.", style = MaterialTheme.typography.bodyMedium, color = InkSoft)
+            }
+            copias.forEach { (c, r) ->
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable(enabled = r != null && !trabajando) {
+                            scope.launch { elegir(withContext(Dispatchers.IO) { respaldo.leer(c.uri) }) }
+                        }
+                        .padding(vertical = 8.dp)
+                ) {
+                    Text("${tipoCopia(c.nombre)} · ${fechaCopia(c.modificado)}", style = MaterialTheme.typography.bodyLarge, color = Ink)
+                    Text(r?.texto() ?: "No se puede leer", style = MaterialTheme.typography.labelMedium, color = if (r != null) InkSoft else BadRed)
+                }
+            }
+            Spacer(Modifier.height(8.dp))
+            Text(
+                "Buscar el archivo en el teléfono…",
+                style = MaterialTheme.typography.labelLarge,
+                color = accent,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable { selector.launch(arrayOf("*/*")) }
+                    .padding(vertical = 8.dp)
+            )
+            Text(
+                "Si reinstalaste la app o vienes de otro celular, tus copias no salen en la lista: " +
+                    "toca aquí arriba, entra a Descargas › Hablo (o a donde la enviaste) y elige el " +
+                    "archivo hablo-….json más nuevo.",
+                style = MaterialTheme.typography.labelMedium,
+                color = InkSoft
+            )
+        }
+
+        pendiente?.let { (json, r, ahora) ->
+            Spacer(Modifier.height(12.dp))
+            Text(
+                "Vas a cambiar lo que tienes ahora (${ahora.texto()}) por el respaldo del " +
+                    "${fechaTexto(r.fecha)} (${r.texto()}).",
+                style = MaterialTheme.typography.bodyMedium,
+                color = Ink
+            )
+            Spacer(Modifier.height(4.dp))
+            Text(
+                "Antes guardo una copia de lo de ahora, por si te arrepientes. La app se reinicia al terminar.",
+                style = MaterialTheme.typography.labelMedium,
+                color = InkSoft
+            )
+            Spacer(Modifier.height(8.dp))
+            Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                Box(modifier = Modifier.weight(1f)) {
+                    BigButton("Sí, recuperar", enabled = !trabajando, container = accent) {
+                        trabajando = true
+                        scope.launch {
+                            val error = withContext(Dispatchers.IO) { respaldo.recuperar(json) }
+                            trabajando = false
+                            if (error != null) {
+                                aviso = error
+                                pendiente = null
+                            } else {
+                                // El mazo, el cuaderno y lo demás tienen copias en memoria: se recargan.
+                                (context as? Activity)?.recreate()
+                            }
+                        }
+                    }
+                }
+                Box(modifier = Modifier.weight(1f)) {
+                    BigButton("Cancelar", container = InkSoft) { pendiente = null }
+                }
+            }
+        }
+
+        if (aviso.isNotBlank()) {
+            Spacer(Modifier.height(8.dp))
+            Text(aviso, style = MaterialTheme.typography.labelMedium, color = InkSoft)
+        }
+    }
+}
+
+/** Abre el selector de archivos del sistema empezando, si se puede, en Descargas › Hablo. */
+private class AbrirRespaldo : ActivityResultContracts.OpenDocument() {
+    override fun createIntent(context: Context, input: Array<String>): Intent =
+        super.createIntent(context, input).apply {
+            putExtra(
+                DocumentsContract.EXTRA_INITIAL_URI,
+                DocumentsContract.buildDocumentUri("com.android.externalstorage.documents", "primary:Download/Hablo")
+            )
+        }
+}
+
+private fun tipoCopia(nombre: String): String = when {
+    nombre.startsWith(Respaldo.PREFIJO_AUTO) -> "Copia del día"
+    nombre.startsWith(Respaldo.PREFIJO_ANTES + "borrar") -> "Antes de borrar todo"
+    nombre.startsWith(Respaldo.PREFIJO_ANTES + "recuperar") -> "Antes de recuperar"
+    else -> "Copia que guardaste"
+}
+
+private fun fechaCopia(ms: Long): String =
+    java.text.SimpleDateFormat("d MMM yyyy, HH:mm", java.util.Locale("es")).format(java.util.Date(ms))
+
+/** "2026-09-24 15:30" → "24 sept 2026, 15:30". */
+private fun fechaTexto(fecha: String): String = try {
+    val d = java.text.SimpleDateFormat("yyyy-MM-dd HH:mm", java.util.Locale.US).parse(fecha)
+    if (d == null) fecha else fechaCopia(d.time)
+} catch (e: Throwable) { fecha }
 
 @Composable
 private fun SettingsCard(content: @Composable () -> Unit) {

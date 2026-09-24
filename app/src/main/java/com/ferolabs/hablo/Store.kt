@@ -10,7 +10,7 @@ class Store(context: Context) {
     val context: Context = context.applicationContext
 
     private val prefs = this.context
-        .getSharedPreferences("hablo_progress", Context.MODE_PRIVATE)
+        .getSharedPreferences(PREFS, Context.MODE_PRIVATE)
 
     init {
         // Contadores del mapa de sonidos anteriores a la calibracion vigente:
@@ -149,6 +149,8 @@ class Store(context: Context) {
     }
 
     companion object {
+        /** El archivo de preferencias; `Respaldo` lo copia entero. */
+        const val PREFS = "hablo_progress"
         const val ENGINE_LOCAL = "local"
         const val ENGINE_GEMINI = "gemini"
         /** Epoca de los contadores de sonidos: 2 = MIN_PRECISION 0,50 del 2026-09-13 (commit c4ee744). */
