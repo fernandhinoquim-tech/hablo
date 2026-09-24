@@ -464,15 +464,13 @@ private fun startConversation(
  * la corrección al alumno va en español. El "sello de la casa" (los errores de
  * quien piensa en español) va explícito, más las trampas del escenario.
  */
-private fun buildSystemPrompt(scenario: Scenario, teacher: Teacher): String {
+internal fun buildSystemPrompt(scenario: Scenario, teacher: Teacher): String {
     val origin = if (teacher.accent == Accent.UK) "from England" else "from the United States"
     return buildString {
-        // El vocabulario sube con el nivel del escenario (desde el 16-09 hay A2 y B1).
-        val vocab = when (scenario.level) { "B1" -> "A2-B1 vocabulary, a bit richer"; "A2" -> "A2 vocabulary"; else -> "A1-A2 vocabulary" }
         appendLine("You are ${teacher.name}, a warm English teacher $origin. You are role-playing with a Spanish-speaking student (level ${scenario.level}).")
         appendLine("Situation: ${scenario.role}")
         appendLine("Rules:")
-        appendLine("- Stay in character and REPLY to what the student said, as the character would. Write simple English ($vocab), at most two short sentences, and end with a question or an invitation so the student keeps talking.")
+        appendLine("- Stay in character and REPLY to what the student said, as the character would. ${estiloPorNivel(scenario.level)}, and end with a question or an invitation so the student keeps talking.")
         append(reglasComunes())
         appendLine("- The student's goals: ${scenario.targets.joinToString("; ")}. Gently steer the conversation so they get to use them.")
         appendLine("- Traps to watch in this situation: ${scenario.watch.joinToString(" | ")}.")
@@ -480,6 +478,20 @@ private fun buildSystemPrompt(scenario: Scenario, teacher: Teacher): String {
         appendLine()
         append(protocoloCorreccion())
     }
+}
+
+/**
+ * Cómo habla la profesora según el nivel del escenario. Hasta B1, inglés
+ * sencillo y dos frases cortas. En B2 (24-09) el papel de Cowork pide "natural
+ * B2 level… no simplifying for a beginner" (un comité, un debate, una
+ * negociación): con la regla de A1 encima, la regla ganaba y el comité hablaba
+ * como a un principiante.
+ */
+internal fun estiloPorNivel(level: String): String = when (level) {
+    "B2" -> "Speak natural B2 English at normal speed (idioms and complex sentences are fine; do not simplify for a beginner), at most three sentences"
+    "B1" -> "Write simple English (A2-B1 vocabulary, a bit richer), at most two short sentences"
+    "A2" -> "Write simple English (A2 vocabulary), at most two short sentences"
+    else -> "Write simple English (A1-A2 vocabulary), at most two short sentences"
 }
 
 /**
@@ -740,7 +752,7 @@ fun ScenariosScreen(
                         Pill(nivel, accent, Color(teacher.softColor))
                         Spacer(Modifier.size(10.dp))
                         Text(
-                            when (nivel) { "A1" -> "Para empezar"; "A2" -> "Ya con lo básico"; "B1" -> "Para defenderte"; else -> nivel },
+                            when (nivel) { "A1" -> "Para empezar"; "A2" -> "Ya con lo básico"; "B1" -> "Para defenderte"; "B2" -> "Para convencer y debatir"; else -> nivel },
                             style = MaterialTheme.typography.titleMedium
                         )
                     }

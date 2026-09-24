@@ -1,0 +1,304 @@
+{
+ "scenarios": [
+  {
+   "id": "negociar_b2",
+   "title": "Negociar un aumento o un plazo",
+   "emoji": "💼",
+   "level": "B2",
+   "goalEs": "Negocia con tu jefa un aumento de sueldo o más tiempo para un proyecto. Justifica con datos, propón alternativas y cierra un acuerdo concreto.",
+   "role": "You are the learner's manager at a mid-sized company. The learner wants either a raise or a deadline extension (let them choose; if unclear, ask). Budgets are tight this year, so start by resisting: mention limited budget, fairness to the rest of the team, or the client's expectations. Ask for concrete evidence of their results and exactly what they want. Push them to propose alternatives (partial raise, review in six months, extra resources instead of time, a reduced scope). Only agree when they justify it clearly and offer something in return, and make them state the final agreement explicitly. Keep your language at a natural B2 level: normal speed, some idioms, no simplifying for a beginner. Be realistic and challenge the learner politely; don't give in too easily, but reward good arguments.",
+   "opening": "Thanks for coming in. You said there was something you wanted to discuss — I've got about fifteen minutes, so what's on your mind?",
+   "targets": [
+    "I'd like to discuss ...",
+    "Given that I've taken on ...",
+    "Would you be open to ...?",
+    "What if we ... instead?",
+    "I could live with that, provided that ...",
+    "So, just to confirm, we've agreed that ..."
+   ],
+   "watch": [
+    "'I want more salary' → 'I'd like to discuss a raise'",
+    "'Salary' es el sueldo fijo; el aumento es 'a raise', no 'a rise' en inglés americano",
+    "'I have been working here since five years' → 'for five years'",
+    "'Postpone the deadline in two weeks' → 'push the deadline back by two weeks'",
+    "'Actually' no es 'actualmente' sino 'en realidad'; actualmente = 'currently'"
+   ],
+   "help": [
+    {
+     "en": "I'd like to discuss my compensation.",
+     "es": "Suave y profesional; 'compensation' incluye sueldo y beneficios."
+    },
+    {
+     "en": "Given that I've taken on ... , I think a raise is fair.",
+     "es": "Justifica con hechos antes de pedir."
+    },
+    {
+     "en": "Would you be open to reviewing it in six months?",
+     "es": "Propón una alternativa sin rendirte."
+    },
+    {
+     "en": "What if we reduced the scope instead?",
+     "es": "Ofrece una salida para un plazo imposible."
+    },
+    {
+     "en": "I could live with that, provided that ...",
+     "es": "Aceptas con condición: 'provided that' = siempre que."
+    },
+    {
+     "en": "So, just to confirm, we've agreed that ...",
+     "es": "Cierra la negociación dejando todo claro."
+    }
+   ]
+  },
+  {
+   "id": "defender_investigacion",
+   "title": "Presentar tu investigación a un comité",
+   "emoji": "🎓",
+   "level": "B2",
+   "goalEs": "Explica tu investigación doctoral a un comité que no es experto y responde una pregunta difícil sin ponerte a la defensiva.",
+   "role": "You chair a funding committee made up of non-experts (an economist, a lawyer, a retired engineer). The learner is presenting their doctoral research to ask for continued support. First ask them for a two-minute summary in plain language. Interrupt when they use jargon and ask what it means. Then ask one genuinely tough question: why this matters to ordinary people, what happens if the results are negative, or how they know their sample is representative. Follow up once if the answer is vague. Stay respectful but skeptical, and at the end tell them honestly what convinced you and what didn't. Keep your language at a natural B2 level: normal speed, some idioms, no simplifying for a beginner. Be realistic and challenge the learner politely; don't give in too easily, but reward good arguments.",
+   "opening": "Good afternoon, and thank you for coming. Most of us on this committee aren't specialists, so could you start by telling us, in plain English, what your research is about?",
+   "targets": [
+    "In a nutshell, my research ...",
+    "What this means in practice is ...",
+    "That's a fair question.",
+    "The evidence so far suggests ...",
+    "One limitation is ..., which is why ...",
+    "If the results turn out to be negative, ..."
+   ],
+   "watch": [
+    "'My investigation' → 'my research' ('investigation' es de policía)",
+    "'Researches' no existe como plural: 'my research', 'my studies'",
+    "'Make a research' → 'do research' / 'carry out research'",
+    "'Depend of' → 'depend on'",
+    "'Let me explain you' → 'Let me explain' / 'explain it to you'"
+   ],
+   "help": [
+    {
+     "en": "In a nutshell, my research looks at ...",
+     "es": "Resumen breve: el comité lo agradece."
+    },
+    {
+     "en": "What this means in practice is ...",
+     "es": "Traduce lo técnico a consecuencias reales."
+    },
+    {
+     "en": "That's a fair question.",
+     "es": "Ganas tiempo y muestras que no te pones a la defensiva."
+    },
+    {
+     "en": "The evidence so far suggests ...",
+     "es": "'Suggests' es más prudente y más creíble que 'proves'."
+    },
+    {
+     "en": "One limitation is ..., which is why ...",
+     "es": "Reconocer una limitación da credibilidad."
+    },
+    {
+     "en": "Even if the results are negative, we'll still learn ...",
+     "es": "Respuesta a la pregunta difícil: el valor del resultado negativo."
+    }
+   ]
+  },
+  {
+   "id": "reclamo_escalado",
+   "title": "Un reclamo que llega al supervisor",
+   "emoji": "📞",
+   "level": "B2",
+   "goalEs": "Llama a una empresa por un cobro que no reconoces. El agente no te resuelve y tienes que pedir, con firmeza y cortesía, hablar con un supervisor.",
+   "role": "Play two roles in sequence. First, you are a customer service agent at an internet provider. The learner is calling about being charged twice for the same month and having been promised a refund that never arrived. Follow the script: ask for the account number, verify details, and offer only standard answers (it can take up to 30 days, there's nothing you can do). Don't escalate until the learner asks clearly and politely for a supervisor. Then say 'One moment, please' and become the supervisor: apologetic but careful, ask them to summarize the case, and offer a partial solution first (a credit on the next bill). Only agree to a full refund plus a written confirmation if the learner insists firmly and gives dates and reference numbers. Keep your language at a natural B2 level: normal speed, some idioms, no simplifying for a beginner. Be realistic and challenge the learner politely; don't give in too easily, but reward good arguments.",
+   "opening": "Thank you for calling Skyline Internet, my name is Jordan. Can I start with the account number, please?",
+   "targets": [
+    "I've been charged twice for ...",
+    "I was told that ... , but ...",
+    "I'm afraid that's not acceptable.",
+    "I'd like to speak to a supervisor, please.",
+    "Could you put that in writing?",
+    "What exactly are you going to do, and by when?"
+   ],
+   "watch": [
+    "'They charged me two times' → 'They charged me twice'",
+    "'I want to talk with your boss' → 'I'd like to speak to a supervisor'",
+    "'Reclamation' no es reclamo → 'complaint'",
+    "'Return my money' → 'refund me' / 'issue a refund'",
+    "'Since three weeks' → 'for three weeks' / 'three weeks ago'"
+   ],
+   "help": [
+    {
+     "en": "I've been charged twice for the same month.",
+     "es": "Presenta el problema en una frase clara."
+    },
+    {
+     "en": "I was told I'd get a refund, but it never arrived.",
+     "es": "Estilo indirecto: lo que te prometieron antes."
+    },
+    {
+     "en": "I understand it's not your fault, but ...",
+     "es": "Firmeza sin agredir al agente."
+    },
+    {
+     "en": "I'd like to speak to a supervisor, please.",
+     "es": "La frase estándar para escalar."
+    },
+    {
+     "en": "Could you give me a reference number?",
+     "es": "Siempre pide número de caso."
+    },
+    {
+     "en": "Could you confirm that in writing?",
+     "es": "Que quede por escrito: 'in writing'."
+    }
+   ]
+  },
+  {
+   "id": "debate_b2",
+   "title": "Debatir con un colega que no piensa igual",
+   "emoji": "🗣️",
+   "level": "B2",
+   "goalEs": "Debate con un colega sobre el trabajo remoto o el uso de la IA en el trabajo. Defiende tu postura, concede lo razonable y rebate con argumentos.",
+   "role": "You are the learner's colleague over coffee. Ask which topic they prefer: remote work or using AI tools at work. Then take the opposite side of whatever they believe, firmly but in a friendly way. Use concrete arguments (for remote work: productivity data, commuting, focus; against: isolation, mentoring juniors, company culture; for AI: speed, routine tasks; against: errors, privacy, deskilling). Interrupt now and then like a real person, ask for examples, and point out weak arguments. Concede a point only when the learner makes a good one, and at the end try to find partial agreement. Keep your language at a natural B2 level: normal speed, some idioms, no simplifying for a beginner. Be realistic and challenge the learner politely; don't give in too easily, but reward good arguments.",
+   "opening": "Can I ask you something? Everyone in the office is talking about remote work and these new AI tools. Where do you stand on either of them? Fair warning: I'll probably disagree.",
+   "targets": [
+    "I see your point, but ...",
+    "That may be true, but it doesn't mean ...",
+    "To be fair, ...",
+    "What evidence is there that ...?",
+    "I'd go so far as to say ...",
+    "Let's agree to disagree on ..."
+   ],
+   "watch": [
+    "'I am agree' → 'I agree' (agree es verbo, sin 'am')",
+    "'In my opinion, I think' es redundante → usa solo uno",
+    "'Discuss about' → 'discuss' sin 'about'",
+    "'The people is' → 'people are' (people es plural)",
+    "'Actually' ≠ actualmente: 'nowadays' / 'currently'"
+   ],
+   "help": [
+    {
+     "en": "I see your point, but ...",
+     "es": "Reconoces antes de rebatir; suena razonable."
+    },
+    {
+     "en": "That may be true, but it doesn't mean ...",
+     "es": "Aceptas el dato y niegas la conclusión."
+    },
+    {
+     "en": "To be fair, you're right about ...",
+     "es": "Conceder un punto te da credibilidad."
+    },
+    {
+     "en": "Do you have an example of that?",
+     "es": "Pide evidencia en vez de repetir tu opinión."
+    },
+    {
+     "en": "If companies hadn't tried it, we'd still believe ...",
+     "es": "Condicional mixto: pasado irreal → presente."
+    },
+    {
+     "en": "Let's agree to disagree on that one.",
+     "es": "Cierra con elegancia cuando no hay acuerdo."
+    }
+   ]
+  },
+  {
+   "id": "conflicto_vecino",
+   "title": "Resolver un conflicto con el vecino",
+   "emoji": "🏠",
+   "level": "B2",
+   "goalEs": "Habla con tu vecino sobre un problema que se repite: ruido, una gotera o la basura. Expón el problema con diplomacia y llega a un acuerdo.",
+   "role": "You are the learner's neighbor in an apartment building. The learner is coming to talk about a recurring problem (let them explain: noise late at night, water leaking from your bathroom, trash left in the hallway, etc.). React naturally: at first a bit surprised and defensive ('Nobody has ever complained before', 'You make noise too'). Don't accept blame immediately. If the learner stays calm, uses specific examples and proposes a solution, gradually become cooperative and negotiate the details (quiet hours, who pays for the plumber, a schedule). If they are aggressive, become colder. End with a specific agreement. Keep your language at a natural B2 level: normal speed, some idioms, no simplifying for a beginner. Be realistic and challenge the learner politely; don't give in too easily, but reward good arguments.",
+   "opening": "Oh, hi! You're from 4B, right? Is everything okay?",
+   "targets": [
+    "I hope this isn't a bad time, but ...",
+    "I'm not sure if you're aware, but ...",
+    "It's been happening for ...",
+    "Would it be possible to ...?",
+    "How about we ...?",
+    "I'd really appreciate it if ..."
+   ],
+   "watch": [
+    "'You make too much noise' suena a acusación → 'I'm not sure if you're aware, but...'",
+    "'Molest' significa abusar sexualmente; molestar es 'bother' / 'disturb'",
+    "'Since two weeks' → 'for two weeks'",
+    "'Would you mind to lower...' → 'Would you mind lowering...'",
+    "'Do noise' → 'make noise'"
+   ],
+   "help": [
+    {
+     "en": "I hope this isn't a bad time, but ...",
+     "es": "Abre con cortesía antes del problema."
+    },
+    {
+     "en": "I'm not sure if you're aware, but ...",
+     "es": "Presentas el problema sin acusar."
+    },
+    {
+     "en": "It's been happening for about two weeks.",
+     "es": "Present perfect continuous para algo que sigue."
+    },
+    {
+     "en": "Would you mind keeping it down after ten?",
+     "es": "'Would you mind' + -ing, nunca + to."
+    },
+    {
+     "en": "How about we split the cost of the plumber?",
+     "es": "Propuesta concreta para cerrar."
+    },
+    {
+     "en": "I'd really appreciate it if ...",
+     "es": "Petición firme pero amable."
+    }
+   ]
+  },
+  {
+   "id": "networking_academico",
+   "title": "Networking en un congreso académico",
+   "emoji": "🤝",
+   "level": "B2",
+   "goalEs": "En la pausa de café de un congreso, haz small talk con un investigador que no conoces, explica tu doctorado en pocas frases y consigue un contacto o una colaboración.",
+   "role": "You are an established researcher (associate professor at a US university) during the coffee break at an international conference. Start with small talk: the last talk, the city, the conference, travel. Then ask what the learner works on. Be interested but busy: ask sharp follow-up questions (what's new about it, methods, who else works on it) and mention your own project briefly. If the learner explains clearly and shows interest in your work, offer to exchange emails or suggest they present at your group's seminar. If they ramble, politely try to wrap up the conversation. Include natural small-talk moves (compliments on a question they asked, jokes about the coffee). Keep your language at a natural B2 level: normal speed, some idioms, no simplifying for a beginner. Be realistic and challenge the learner politely; don't give in too easily, but reward good arguments.",
+   "opening": "That was quite a talk, wasn't it? I'm not sure I agreed with half of it. Are you presenting at the conference too?",
+   "targets": [
+    "What did you make of ...?",
+    "I'm in the ... year of my PhD, working on ...",
+    "What's new about it is ...",
+    "That sounds really relevant to ...",
+    "Would you mind if I emailed you ...?",
+    "It was great talking to you."
+   ],
+   "watch": [
+    "'I'm studying a doctorate' → 'I'm doing a PhD'",
+    "'My thesis director' → 'my advisor' (EE. UU.) o 'my supervisor'",
+    "'Assist to the conference' → 'attend the conference' (assist = ayudar)",
+    "'Congress' es el parlamento de EE. UU.; congreso académico = 'conference'",
+    "'Nice to meet you' al despedirse → 'It was nice meeting you'"
+   ],
+   "help": [
+    {
+     "en": "What did you make of the keynote?",
+     "es": "Small talk natural: pide opinión sobre la charla."
+    },
+    {
+     "en": "I'm in the third year of my PhD, working on ...",
+     "es": "Presentación académica corta."
+    },
+    {
+     "en": "What's new about it is ...",
+     "es": "Lo que un experto quiere saber: la novedad."
+    },
+    {
+     "en": "That sounds really relevant to what I'm doing.",
+     "es": "Conecta su trabajo con el tuyo."
+    },
+    {
+     "en": "Would you mind if I emailed you about it?",
+     "es": "Pide el contacto sin presionar."
+    },
+    {
+     "en": "It was great talking to you. Enjoy the rest of the conference!",
+     "es": "Despedida para cerrar bien."
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,455 @@
+{
+ "tandas": [
+  {
+   "id": "tanda-5",
+   "level": "B2",
+   "title": "Historias B2",
+   "historias": [
+    {
+     "id": "h-b2-01",
+     "level": "B2",
+     "title": "The Numbers That Didn't Add Up",
+     "titleEs": "Los números que no cuadraban",
+     "text": [
+      "Lucia had been analyzing the same data set for almost two years when she noticed something strange.",
+      "Several results from her supervisor's most famous paper could not be reproduced, no matter what she tried.",
+      "Having checked everything three times, she finally found the problem: a column had been copied twice by mistake.",
+      "When she showed him the error, her supervisor said it was minor and asked her to keep it quiet.",
+      "He reminded her that her scholarship depended on his funding and that her defense was only six months away.",
+      "If she had noticed the mistake a year earlier, she would be in a much stronger position now.",
+      "For two weeks she barely slept, writing and deleting the same email to the ethics committee again and again.",
+      "In the end, she sent it on a Monday morning, before she had time to change her mind.",
+      "The paper was withdrawn in March, and her supervisor stopped answering her messages.",
+      "Last week a student from another university thanked her; he had been about to build his whole thesis on those numbers."
+     ],
+     "glosario": [
+      {
+       "en": "reproduced",
+       "es": "replicado (un resultado científico)"
+      },
+      {
+       "en": "scholarship",
+       "es": "beca"
+      },
+      {
+       "en": "ethics committee",
+       "es": "comité de ética"
+      },
+      {
+       "en": "withdrawn",
+       "es": "retirado (un artículo publicado)"
+      }
+     ],
+     "preguntas": [
+      {
+       "q": "What was wrong with the data?",
+       "options": [
+        "A column had been copied twice",
+        "The experiments had been invented",
+        "Some files had been deleted"
+       ],
+       "answer": "A column had been copied twice"
+      },
+      {
+       "q": "What did her supervisor ask her to do?",
+       "options": [
+        "Keep the mistake quiet",
+        "Write to the ethics committee",
+        "Repeat all the experiments"
+       ],
+       "answer": "Keep the mistake quiet"
+      },
+      {
+       "q": "Why was the student from another university grateful?",
+       "options": [
+        "He almost used the wrong numbers in his thesis",
+        "Lucia had helped him get a scholarship",
+        "He had found the same mistake first"
+       ],
+       "answer": "He almost used the wrong numbers in his thesis"
+      }
+     ],
+     "retell": {
+      "prompt_es": "Cuenta la historia en pasado; usa 'had been analyzing' (past perfect continuous) y la pasiva ('was withdrawn').",
+      "pistas": [
+       "two years · something strange · a column copied twice",
+       "her supervisor · keep it quiet · her scholarship",
+       "the ethics committee · withdrawn · a student thanked her"
+      ]
+     },
+     "trap": "'Had been analyzing' dice cuánto llevaba haciendo algo cuando pasó otra cosa; no digas 'she was analyzing since two years'."
+    },
+    {
+     "id": "h-b2-02",
+     "level": "B2",
+     "title": "The Counteroffer",
+     "titleEs": "La contraoferta",
+     "text": [
+      "Mateo had been working as an engineer at a small firm in Bogota for six years without a single raise.",
+      "When a company in Denver offered him a job, he was told that he had only a week to decide.",
+      "He mentioned the offer to his boss, expecting nothing more than polite congratulations and a farewell lunch.",
+      "Instead, she asked him to wait, and the next morning he was offered a salary almost twice as high.",
+      "She also promised that the company would finally pay for the English course he had been requesting for years.",
+      "Flattered and confused, Mateo spent the whole weekend making lists of reasons to stay and reasons to leave.",
+      "His wife said that if they really valued him, they would have paid him properly a long time ago.",
+      "His mother, on the other hand, told him that a bird in the hand was worth two in Denver.",
+      "He accepted the counteroffer, and for eight months everything seemed absolutely perfect.",
+      "Then the firm was sold, and the first job the new owners decided to cut was his."
+     ],
+     "glosario": [
+      {
+       "en": "raise",
+       "es": "aumento de sueldo"
+      },
+      {
+       "en": "farewell",
+       "es": "despedida"
+      },
+      {
+       "en": "flattered",
+       "es": "halagado"
+      },
+      {
+       "en": "valued",
+       "es": "valoraban"
+      }
+     ],
+     "preguntas": [
+      {
+       "q": "How long had Mateo been working without a raise?",
+       "options": [
+        "Six years",
+        "Two years",
+        "Eight months"
+       ],
+       "answer": "Six years"
+      },
+      {
+       "q": "What did his wife think?",
+       "options": [
+        "The company should have paid him better before",
+        "He should move to Denver immediately",
+        "His boss was being generous"
+       ],
+       "answer": "The company should have paid him better before"
+      },
+      {
+       "q": "What happened after the firm was sold?",
+       "options": [
+        "He lost his job",
+        "He got another raise",
+        "He moved to Denver"
+       ],
+       "answer": "He lost his job"
+      }
+     ],
+     "retell": {
+      "prompt_es": "Cuenta la historia en pasado y reporta en estilo indirecto lo que dijeron su jefa, su esposa y su mamá ('she said that...').",
+      "pistas": [
+       "six years · no raise · an offer in Denver",
+       "his boss · twice as high · the English course",
+       "his wife · his mother · the firm was sold"
+      ]
+     },
+     "trap": "En estilo indirecto 'will' pasa a 'would': 'she promised the company would pay', no 'will pay'. Y aumento de sueldo es 'raise', no 'rise'."
+    },
+    {
+     "id": "h-b2-03",
+     "level": "B2",
+     "title": "The Wrong Portland",
+     "titleEs": "El Portland equivocado",
+     "text": [
+      "Having booked the cheapest flight she could find, Valeria felt very proud of herself until the plane landed.",
+      "She had been planning the trip to visit her cousin in Portland, Oregon, for almost four months.",
+      "The airport, however, was in Portland, Maine, nearly three thousand miles away on the other side of the country.",
+      "At the information desk, she was told that this happened more often than most people would like to admit.",
+      "Her cousin laughed so hard on the phone that she had to hang up and call back later.",
+      "If Valeria had read the confirmation email carefully, she would have been eating salmon in Oregon that night.",
+      "Instead, she was sitting in a small hotel by the ocean, eating lobster and wondering what to do next.",
+      "The next morning, a woman she had met at breakfast offered her a ride along the coast.",
+      "They spent three days visiting lighthouses and talking about everything from divorce to their favorite recipes.",
+      "Valeria never made it to Oregon that year, but she has been back to Maine twice since then."
+     ],
+     "glosario": [
+      {
+       "en": "booked",
+       "es": "reservado (reservar)"
+      },
+      {
+       "en": "confirmation",
+       "es": "confirmación"
+      },
+      {
+       "en": "offered her a ride",
+       "es": "le ofreció llevarla en carro"
+      },
+      {
+       "en": "lighthouses",
+       "es": "faros"
+      }
+     ],
+     "preguntas": [
+      {
+       "q": "Where did Valeria want to go?",
+       "options": [
+        "Portland, Oregon",
+        "Portland, Maine",
+        "Her cousin's hotel"
+       ],
+       "answer": "Portland, Oregon"
+      },
+      {
+       "q": "Why did the mistake happen?",
+       "options": [
+        "She did not read the confirmation carefully",
+        "The airline changed her flight",
+        "Her cousin gave her the wrong city"
+       ],
+       "answer": "She did not read the confirmation carefully"
+      },
+      {
+       "q": "What shows that the mistake turned out well?",
+       "options": [
+        "She has returned to Maine twice",
+        "She got all her money back",
+        "Her cousin moved to Maine"
+       ],
+       "answer": "She has returned to Maine twice"
+      }
+     ],
+     "retell": {
+      "prompt_es": "Cuenta el viaje en pasado e incluye una frase con condicional en pasado ('If she had read..., she would have been...').",
+      "pistas": [
+       "the cheapest flight · her cousin · Portland, Oregon",
+       "Portland, Maine · the information desk · her cousin laughed",
+       "a woman at breakfast · lighthouses · back twice"
+      ]
+     },
+     "trap": "'Offer someone a ride' es ofrecer llevarlo en carro; 'carry' es cargar algo o a alguien en los brazos."
+    },
+    {
+     "id": "h-b2-04",
+     "level": "B2",
+     "title": "The Family Meeting",
+     "titleEs": "La reunión familiar",
+     "text": [
+      "After their mother had fallen twice in one month, the three siblings were called to a family meeting.",
+      "Rosa, the oldest, had been visiting her every weekend and felt it was time for someone else to help.",
+      "Her brother suggested a nursing home, arguing that professionals would take better care of her than any of them.",
+      "Her sister, who lived abroad, offered to pay for everything but said she could not possibly move back.",
+      "Nobody had asked their mother what she wanted, which, looking back, was the strangest part of the evening.",
+      "When they finally did, she calmly announced that she had already made her own arrangements.",
+      "She had been secretly talking to her neighbor, a widower, who was also tired of living alone.",
+      "They had decided to share his ground-floor apartment and hire a nurse to come three times a week.",
+      "Her children were shocked, and her son asked whether this arrangement was even legal.",
+      "Their mother replied that she was eighty-one, not dead, and poured everyone another cup of coffee."
+     ],
+     "glosario": [
+      {
+       "en": "siblings",
+       "es": "hermanos (hermanos y hermanas)"
+      },
+      {
+       "en": "nursing home",
+       "es": "hogar de ancianos"
+      },
+      {
+       "en": "widower",
+       "es": "viudo"
+      },
+      {
+       "en": "arrangements",
+       "es": "planes, arreglos"
+      }
+     ],
+     "preguntas": [
+      {
+       "q": "Why was the family meeting called?",
+       "options": [
+        "Their mother had fallen twice",
+        "Rosa was moving abroad",
+        "The neighbor had complained"
+       ],
+       "answer": "Their mother had fallen twice"
+      },
+      {
+       "q": "What did the brother suggest?",
+       "options": [
+        "A nursing home",
+        "Moving in with their mother",
+        "Selling the apartment"
+       ],
+       "answer": "A nursing home"
+      },
+      {
+       "q": "Who had their mother been talking to?",
+       "options": [
+        "Her neighbor",
+        "Her daughter abroad",
+        "A lawyer"
+       ],
+       "answer": "Her neighbor"
+      }
+     ],
+     "retell": {
+      "prompt_es": "Cuenta la historia en pasado y reporta en estilo indirecto lo que propuso cada hijo y lo que respondió la mamá.",
+      "pistas": [
+       "fallen twice · a family meeting · Rosa",
+       "a nursing home · her sister abroad · nobody asked her",
+       "her neighbor · share his apartment · eighty-one, not dead"
+      ]
+     },
+     "trap": "'Siblings' incluye hermanos y hermanas; 'brothers' son solo hombres. 'Widower' es viudo y 'widow', viuda."
+    },
+    {
+     "id": "h-b2-05",
+     "level": "B2",
+     "title": "The Report Nobody Read",
+     "titleEs": "El informe que nadie leyó",
+     "text": [
+      "For months, Diego's team had been using an AI tool to write the monthly reports for their clients.",
+      "The reports were generated in minutes, signed off by one of the team, and sent out without anyone reading them closely.",
+      "One morning a client called, furious, asking why his company had been described as a small bakery in Ohio.",
+      "His company was, in fact, a large logistics firm that had never sold a single loaf of bread.",
+      "Diego was asked to explain how such an obvious error had gotten through three levels of review.",
+      "Looking at the file, he realized that he himself had approved it on a busy Friday afternoon.",
+      "He could easily have blamed the software, and his manager seemed to be hoping that he would.",
+      "Instead, he admitted that he had signed a document he had not read and apologized to the client personally.",
+      "The client was surprisingly calm and said that honesty was rarer than good software these days.",
+      "Diego kept the account, but he still wonders whether he would have confessed if nobody had been watching."
+     ],
+     "glosario": [
+      {
+       "en": "furious",
+       "es": "furioso"
+      },
+      {
+       "en": "logistics",
+       "es": "logística"
+      },
+      {
+       "en": "blamed",
+       "es": "culpado, echado la culpa"
+      },
+      {
+       "en": "apologized",
+       "es": "se disculpó"
+      }
+     ],
+     "preguntas": [
+      {
+       "q": "What was wrong with the report?",
+       "options": [
+        "It described the client as a bakery",
+        "It was sent a month late",
+        "It had the wrong prices"
+       ],
+       "answer": "It described the client as a bakery"
+      },
+      {
+       "q": "Who had approved the report?",
+       "options": [
+        "Diego",
+        "The client",
+        "The AI tool"
+       ],
+       "answer": "Diego"
+      },
+      {
+       "q": "What does Diego still ask himself?",
+       "options": [
+        "Whether he would have told the truth without witnesses",
+        "Whether he should stop using AI",
+        "Whether the client will leave"
+       ],
+       "answer": "Whether he would have told the truth without witnesses"
+      }
+     ],
+     "retell": {
+      "prompt_es": "Cuenta la historia en pasado y usa la voz pasiva al menos dos veces ('the reports were checked', 'he was asked').",
+      "pistas": [
+       "an AI tool · the monthly reports",
+       "a furious client · a small bakery · three levels of review",
+       "he had approved it · he apologized · he still wonders"
+      ]
+     },
+     "trap": "'Blame' va sin 'to': 'blame the software (for the error)'. 'Apologize' lleva 'to' para la persona y 'for' para la falta: 'apologize to the client for the error'."
+    },
+    {
+     "id": "h-b2-06",
+     "level": "B2",
+     "title": "The Tree Between Two Houses",
+     "titleEs": "El árbol entre dos casas",
+     "text": [
+      "The old oak tree had been growing between the two houses long before either family moved in.",
+      "Every fall its leaves blocked the gutters next door, and every fall the neighbor, Mr. Harris, complained to Carolina.",
+      "This year he sent her a letter from a lawyer, claiming that the tree was damaging his roof.",
+      "Carolina, having grown up with that tree, refused to even consider cutting it down.",
+      "A surveyor was hired to settle the question of whose property the tree was actually on.",
+      "The result surprised everyone: the trunk stood almost entirely on his side of the line.",
+      "Legally, the tree belonged to him, and so, she was told, did the decision.",
+      "Carolina expected to hear a chainsaw the following morning, but nothing happened for weeks.",
+      "Then a note appeared under her door saying that he had cleaned his gutters and would keep the tree.",
+      "She still does not know whether he had changed his mind or had simply been enjoying the fight."
+     ],
+     "glosario": [
+      {
+       "en": "gutters",
+       "es": "canaletas del techo"
+      },
+      {
+       "en": "surveyor",
+       "es": "agrimensor"
+      },
+      {
+       "en": "trunk",
+       "es": "tronco"
+      },
+      {
+       "en": "chainsaw",
+       "es": "motosierra"
+      }
+     ],
+     "preguntas": [
+      {
+       "q": "What did the lawyer's letter claim?",
+       "options": [
+        "The tree was damaging the roof",
+        "The tree was blocking the view",
+        "Carolina's house was too close"
+       ],
+       "answer": "The tree was damaging the roof"
+      },
+      {
+       "q": "What did the surveyor discover?",
+       "options": [
+        "The tree was on the neighbor's side",
+        "The tree was on Carolina's side",
+        "The tree was exactly on the line"
+       ],
+       "answer": "The tree was on the neighbor's side"
+      },
+      {
+       "q": "What did the neighbor finally decide?",
+       "options": [
+        "To keep the tree",
+        "To cut the tree down",
+        "To sell his house"
+       ],
+       "answer": "To keep the tree"
+      }
+     ],
+     "retell": {
+      "prompt_es": "Cuenta el conflicto en pasado y termina con tu opinión: ¿por qué crees que el vecino cambió de idea?",
+      "pistas": [
+       "an old oak tree · the gutters · Mr. Harris complained",
+       "a lawyer · a surveyor · his side of the line",
+       "a note · keep the tree · enjoying the fight"
+      ]
+     },
+     "trap": "'Whose' pregunta de quién es algo ('whose property'); suena igual que 'who's' (who is), pero no es lo mismo."
+    }
+   ]
+  }
+ ]
+}

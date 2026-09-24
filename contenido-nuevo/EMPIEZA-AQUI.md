@@ -64,7 +64,10 @@ vocabulario (368 parejas) · 12 historias (2 tandas).
    ESCRITO, falta integrar: `b1-nivel/` (45 lecciones, 540 ejercicios) y
    `vocab-b1/` (40 bancos, 1.000 parejas + 63 crucigramas B1).
    Pendiente de Fero: las 20 fotos de Speaking.
-   Pendiente de Cowork: B2 completo; repuestos para los 15 pares de Oído
+   B2 COMPLETO escrito y verificado (24-09) en `contenido-nuevo/b2-completo/`
+   (45 lecciones, 1.000 parejas, 44 crucigramas, 6 historias, 6 escenarios);
+   INTEGRADO el 24-09 (0.9.10), archivado en `integrado/2026-09-24-b2-completo/`. Prompt de las fotos para Gemini: `contenido-nuevo/fotos-gemini/`.
+   Pendiente de Cowork: repuestos para los 15 pares de Oído
    descartados (bloques t/d final y u/uu quedaron cortos).
 1. **Pistas de Aptis**: Writing **hecho**
    (`contenido-nuevo/aptis/pista-writing.json`, 16 tareas). Faltan **Reading,

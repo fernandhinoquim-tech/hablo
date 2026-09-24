@@ -406,7 +406,7 @@ escenarios · corrección en español · informe descargable · cuaderno de erro
 | 9 | Crucigramas | **hecho el 17-09**: 103 rejillas de Cowork (34 A1, 69 A2), `Crucigrama.kt` + `ScreenCrucigrama.kt`; ver "Oído, dictado y crucigramas" |
 | 10 | Repaso espaciado (mazo) | **hecho el 16-09**: `Mazo.kt`, Leitner 1/3/7/16/35 + escalera elegir→armar→escribir→oír y escribir→decir |
 | 11 | Pantalla de Oído (pares mínimos) | **hecho el 17-09**: 16 bloques de Cowork (`oido.json`), `ScreenOido.kt`; y el **dictado de números** (`dictado.json`, 80 ítems, `ScreenDictado.kt`) con comparación estricta; ver "Oído, dictado y crucigramas" |
-| 12 | Contenido B1 y B2 | **B1 hecho el 17-09** (Cowork: 15 unidades, 45 lecciones, 540 ejercicios, 70 % producción; ver "Nivel B1"); B2 no existe |
+| 12 | Contenido B1 y B2 | **B1 hecho el 17-09** (Cowork: 15 unidades, 45 lecciones, 540 ejercicios, 70 % producción; ver "Nivel B1"); **B2 hecho el 24-09** (ver "Nivel B2") |
 | 13 | Escritura con motor de reglas (Fase 4) | no existe |
 | 14 | Respaldo del progreso y modo oscuro (Fase 6) | **respaldo: código hecho el 24-09** (ver "Respaldo del progreso"); falta probarlo en el teléfono. Modo oscuro no existe |
 | 15 | Recalibrar audio al llegar a ~100 grabaciones | pendiente con condición |
@@ -577,6 +577,28 @@ primeras)`; test en `DesbloqueoTest`): Fero puede empezar B1 sin terminar A2
 porque el Modo Aptis pide B1; dentro del nivel la cadena sigue igual. (4) Las
 listas del contrarreloj (124 bancos) y de crucigramas (166) se pliegan por
 nivel: abiertos los niveles con marca o algo empezado, si no A1.
+
+**Nivel B2 (2026-09-24, Cowork, `contenido-nuevo/integrado/2026-09-24-b2-completo/`,
+0.9.10):** 15 unidades, 45 lecciones, 540 ejercicios (Core Inventory B2,
+English File Upper-intermediate, Cambridge B2 First; b2u15 es inglés
+académico para el doctorado de Fero), 40 bancos (1.000 parejas), 44
+crucigramas, una tanda de 6 historias (tanda-5) y 6 escenarios B2, con
+`anexar_nivel.py`, `anexar_vocabulario.py`, `anexar_crucigramas.py` (DESPUÉS
+del vocabulario), `anexar_historias.py` y `anexar_escenarios.py`. Totales:
+**4 niveles, 61 unidades, 178 lecciones, 2.179 ejercicios · 164 bancos, 3.339
+parejas · 210 crucigramas · 30 historias · 23 escenarios**. B2 trae 6.074
+`accept` (hasta 559 en uno): `RendimientoTest` mide con el curso real que
+cargar el curso (211 ms en el PC, en el hilo principal) y corregir el peor
+ejercicio (6,9 ms, a2u16l2e8) sigan en milisegundos; no hizo falta recortar.
+La primera unidad de B2 está abierta desde el inicio, como la de B1.
+**Estilo por nivel en la conversación (`estiloPorNivel`):** hasta B1,
+"simple English… at most two short sentences"; en B2, "natural B2 English…
+do not simplify… at most three sentences". Antes la regla fija pedía A1-A2
+también en B2 y contradecía el papel de Cowork ("no simplifying for a
+beginner"). A/B con la API (`tools/asr-bench/prompt_ab_b2.py`, lee los prompts que deja `PromptNivelTest`, 3 escenarios B2, 7 turnos
+× 2 corridas): Sonnet 5 pasó de 12/14 a 13/14 decisiones de corrección
+correctas y de 37 a 49 palabras por respuesta; Haiku 4.5 de 12/14 a 14/14 y
+de 52 a 59. `PromptNivelTest` deja los prompts B2 en `app/build/prompts/`.
 
 **Oído, dictado de números y crucigramas (2026-09-17; datos de Cowork en
 `contenido-nuevo/integrado/2026-09-17-oido-dictado-drills/` y
@@ -807,8 +829,9 @@ pantalla: es una estimación, no la nota real**) y bancos grandes de ítems
 
 ## Estado y plan
 
-**Versión actual: 0.9.9** (2026-09-17/18: el nivel B1 con su vocabulario y
-crucigramas; ver "Nivel B1"). **0.9.8** (2026-09-17: Oído, dictado de
+**Versión actual: 0.9.10** (2026-09-24: el nivel B2 completo y el respaldo
+del progreso; ver "Nivel B2" y "Respaldo del progreso"). **0.9.9**
+(2026-09-17/18: el nivel B1 con su vocabulario y crucigramas; ver "Nivel B1"). **0.9.8** (2026-09-17: Oído, dictado de
 números, crucigramas, 24 historias, 70 drills, las pistas de Aptis
 Reading/Listening/Speaking, la sección Gramática y el botón «¿Por qué?»; ver
 "Oído, dictado de números y crucigramas").

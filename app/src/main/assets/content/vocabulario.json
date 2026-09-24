@@ -10224,6 +10224,4286 @@
           "es": "a última hora"
         }
       ]
+    },
+    {
+      "id": "trabajo4-b2",
+      "title": "💼 Desarrollo profesional · B2",
+      "level": "B2",
+      "pares": [
+        {
+          "en": "recruitment",
+          "es": "reclutamiento"
+        },
+        {
+          "en": "workforce",
+          "es": "fuerza laboral"
+        },
+        {
+          "en": "payroll",
+          "es": "nómina"
+        },
+        {
+          "en": "probation",
+          "es": "período de prueba"
+        },
+        {
+          "en": "severance pay",
+          "es": "indemnización por despido"
+        },
+        {
+          "en": "layoff",
+          "es": "recorte de personal"
+        },
+        {
+          "en": "temporary contract",
+          "es": "contrato temporal"
+        },
+        {
+          "en": "benefits",
+          "es": "prestaciones"
+        },
+        {
+          "en": "performance review",
+          "es": "evaluación de desempeño"
+        },
+        {
+          "en": "mentor",
+          "es": "mentor"
+        },
+        {
+          "en": "headhunter",
+          "es": "cazatalentos"
+        },
+        {
+          "en": "workload",
+          "es": "carga de trabajo"
+        },
+        {
+          "en": "freelancer",
+          "es": "trabajador independiente"
+        },
+        {
+          "en": "expertise",
+          "es": "experticia"
+        },
+        {
+          "en": "seniority",
+          "es": "antigüedad"
+        },
+        {
+          "en": "turnover",
+          "es": "rotación de personal"
+        },
+        {
+          "en": "networking",
+          "es": "establecer contactos"
+        },
+        {
+          "en": "remote work",
+          "es": "trabajo remoto"
+        },
+        {
+          "en": "supervise",
+          "es": "supervisar"
+        },
+        {
+          "en": "career path",
+          "es": "trayectoria profesional"
+        },
+        {
+          "en": "job security",
+          "es": "estabilidad laboral"
+        },
+        {
+          "en": "work-life balance",
+          "es": "equilibrio entre vida y trabajo"
+        },
+        {
+          "en": "reference letter",
+          "es": "carta de recomendación"
+        },
+        {
+          "en": "sick leave",
+          "es": "incapacidad médica"
+        },
+        {
+          "en": "maternity leave",
+          "es": "licencia de maternidad"
+        }
+      ]
+    },
+    {
+      "id": "negocios2-b2",
+      "title": "📈 Estrategia y mercados · B2",
+      "level": "B2",
+      "pares": [
+        {
+          "en": "strategy",
+          "es": "estrategia"
+        },
+        {
+          "en": "market share",
+          "es": "participación de mercado"
+        },
+        {
+          "en": "merger",
+          "es": "fusión"
+        },
+        {
+          "en": "acquisition",
+          "es": "adquisición"
+        },
+        {
+          "en": "stakeholder",
+          "es": "parte interesada"
+        },
+        {
+          "en": "shareholder",
+          "es": "accionista"
+        },
+        {
+          "en": "revenue",
+          "es": "ingresos (de una empresa)"
+        },
+        {
+          "en": "profit margin",
+          "es": "margen de ganancia"
+        },
+        {
+          "en": "supply chain",
+          "es": "cadena de suministro"
+        },
+        {
+          "en": "outsourcing",
+          "es": "tercerización"
+        },
+        {
+          "en": "branding",
+          "es": "gestión de marca"
+        },
+        {
+          "en": "target market",
+          "es": "mercado objetivo"
+        },
+        {
+          "en": "startup",
+          "es": "empresa emergente"
+        },
+        {
+          "en": "venture capital",
+          "es": "capital de riesgo"
+        },
+        {
+          "en": "asset",
+          "es": "activo"
+        },
+        {
+          "en": "liability",
+          "es": "pasivo"
+        },
+        {
+          "en": "cash flow",
+          "es": "flujo de caja"
+        },
+        {
+          "en": "benchmark",
+          "es": "punto de referencia"
+        },
+        {
+          "en": "franchise",
+          "es": "franquicia"
+        },
+        {
+          "en": "partnership",
+          "es": "sociedad comercial"
+        },
+        {
+          "en": "bankruptcy",
+          "es": "quiebra"
+        },
+        {
+          "en": "feasibility",
+          "es": "viabilidad"
+        },
+        {
+          "en": "subsidiary",
+          "es": "filial"
+        },
+        {
+          "en": "monopoly",
+          "es": "monopolio"
+        },
+        {
+          "en": "niche",
+          "es": "nicho"
+        }
+      ]
+    },
+    {
+      "id": "economia-b2",
+      "title": "📊 Economía · B2",
+      "level": "B2",
+      "pares": [
+        {
+          "en": "privatization",
+          "es": "privatización"
+        },
+        {
+          "en": "recession",
+          "es": "recesión"
+        },
+        {
+          "en": "economic growth",
+          "es": "crecimiento económico"
+        },
+        {
+          "en": "interest rate",
+          "es": "tasa de interés"
+        },
+        {
+          "en": "gross domestic product",
+          "es": "producto interno bruto"
+        },
+        {
+          "en": "investor",
+          "es": "inversionista"
+        },
+        {
+          "en": "bond",
+          "es": "bono"
+        },
+        {
+          "en": "dividend",
+          "es": "dividendo"
+        },
+        {
+          "en": "deficit",
+          "es": "déficit"
+        },
+        {
+          "en": "surplus",
+          "es": "superávit"
+        },
+        {
+          "en": "tariff",
+          "es": "arancel"
+        },
+        {
+          "en": "subsidy",
+          "es": "subsidio"
+        },
+        {
+          "en": "purchasing power",
+          "es": "poder adquisitivo"
+        },
+        {
+          "en": "supply and demand",
+          "es": "oferta y demanda"
+        },
+        {
+          "en": "foreign currency",
+          "es": "divisa"
+        },
+        {
+          "en": "austerity",
+          "es": "austeridad"
+        },
+        {
+          "en": "prosperity",
+          "es": "prosperidad"
+        },
+        {
+          "en": "standard of living",
+          "es": "nivel de vida"
+        },
+        {
+          "en": "consumption",
+          "es": "consumo"
+        },
+        {
+          "en": "boom",
+          "es": "auge"
+        },
+        {
+          "en": "poverty line",
+          "es": "línea de pobreza"
+        },
+        {
+          "en": "stagnation",
+          "es": "estancamiento"
+        },
+        {
+          "en": "public spending",
+          "es": "gasto público"
+        },
+        {
+          "en": "trade balance",
+          "es": "balanza comercial"
+        },
+        {
+          "en": "free trade",
+          "es": "libre comercio"
+        }
+      ]
+    },
+    {
+      "id": "investigacion-b2",
+      "title": "🔎 Investigación académica · B2",
+      "level": "B2",
+      "pares": [
+        {
+          "en": "case study",
+          "es": "estudio de caso"
+        },
+        {
+          "en": "hypothesis",
+          "es": "hipótesis"
+        },
+        {
+          "en": "methodology",
+          "es": "metodología"
+        },
+        {
+          "en": "sample",
+          "es": "muestra"
+        },
+        {
+          "en": "findings",
+          "es": "hallazgos"
+        },
+        {
+          "en": "peer review",
+          "es": "revisión por pares"
+        },
+        {
+          "en": "journal",
+          "es": "revista científica"
+        },
+        {
+          "en": "data collection",
+          "es": "recolección de datos"
+        },
+        {
+          "en": "citation",
+          "es": "cita bibliográfica"
+        },
+        {
+          "en": "bibliography",
+          "es": "bibliografía"
+        },
+        {
+          "en": "dissertation",
+          "es": "tesis doctoral"
+        },
+        {
+          "en": "scholar",
+          "es": "académico"
+        },
+        {
+          "en": "fieldwork",
+          "es": "trabajo de campo"
+        },
+        {
+          "en": "questionnaire",
+          "es": "cuestionario"
+        },
+        {
+          "en": "plagiarism",
+          "es": "plagio"
+        },
+        {
+          "en": "footnote",
+          "es": "nota al pie"
+        },
+        {
+          "en": "assumption",
+          "es": "suposición"
+        },
+        {
+          "en": "correlation",
+          "es": "correlación"
+        },
+        {
+          "en": "bias",
+          "es": "sesgo"
+        },
+        {
+          "en": "reliability",
+          "es": "confiabilidad"
+        },
+        {
+          "en": "theoretical framework",
+          "es": "marco teórico"
+        },
+        {
+          "en": "literature review",
+          "es": "revisión de literatura"
+        },
+        {
+          "en": "research grant",
+          "es": "beca de investigación"
+        },
+        {
+          "en": "symposium",
+          "es": "simposio"
+        },
+        {
+          "en": "quantitative",
+          "es": "cuantitativo"
+        }
+      ]
+    },
+    {
+      "id": "ciencia2-b2",
+      "title": "🧪 Ciencia avanzada · B2",
+      "level": "B2",
+      "pares": [
+        {
+          "en": "molecule",
+          "es": "molécula"
+        },
+        {
+          "en": "particle",
+          "es": "partícula"
+        },
+        {
+          "en": "genetics",
+          "es": "genética"
+        },
+        {
+          "en": "organism",
+          "es": "organismo"
+        },
+        {
+          "en": "evolution",
+          "es": "evolución"
+        },
+        {
+          "en": "radiation",
+          "es": "radiación"
+        },
+        {
+          "en": "artificial intelligence",
+          "es": "inteligencia artificial"
+        },
+        {
+          "en": "algorithm",
+          "es": "algoritmo"
+        },
+        {
+          "en": "robotics",
+          "es": "robótica"
+        },
+        {
+          "en": "spacecraft",
+          "es": "nave espacial"
+        },
+        {
+          "en": "orbit",
+          "es": "órbita"
+        },
+        {
+          "en": "black hole",
+          "es": "agujero negro"
+        },
+        {
+          "en": "breakthrough",
+          "es": "avance científico"
+        },
+        {
+          "en": "prototype",
+          "es": "prototipo"
+        },
+        {
+          "en": "circuit",
+          "es": "circuito"
+        },
+        {
+          "en": "laser",
+          "es": "láser"
+        },
+        {
+          "en": "virtual reality",
+          "es": "realidad virtual"
+        },
+        {
+          "en": "bacteria",
+          "es": "bacterias"
+        },
+        {
+          "en": "mutation",
+          "es": "mutación"
+        },
+        {
+          "en": "cloning",
+          "es": "clonación"
+        },
+        {
+          "en": "fossil",
+          "es": "fósil"
+        },
+        {
+          "en": "magnetic field",
+          "es": "campo magnético"
+        },
+        {
+          "en": "chromosome",
+          "es": "cromosoma"
+        },
+        {
+          "en": "innovation",
+          "es": "innovación"
+        },
+        {
+          "en": "hydrogen",
+          "es": "hidrógeno"
+        }
+      ]
+    },
+    {
+      "id": "salud4-b2",
+      "title": "🩺 Salud y psicología · B2",
+      "level": "B2",
+      "pares": [
+        {
+          "en": "rehabilitation",
+          "es": "rehabilitación"
+        },
+        {
+          "en": "chronic disease",
+          "es": "enfermedad crónica"
+        },
+        {
+          "en": "therapy",
+          "es": "terapia"
+        },
+        {
+          "en": "psychologist",
+          "es": "psicólogo"
+        },
+        {
+          "en": "psychiatrist",
+          "es": "psiquiatra"
+        },
+        {
+          "en": "addiction",
+          "es": "adicción"
+        },
+        {
+          "en": "disorder",
+          "es": "trastorno"
+        },
+        {
+          "en": "outbreak",
+          "es": "brote"
+        },
+        {
+          "en": "epidemic",
+          "es": "epidemia"
+        },
+        {
+          "en": "immune system",
+          "es": "sistema inmunológico"
+        },
+        {
+          "en": "obesity",
+          "es": "obesidad"
+        },
+        {
+          "en": "side effect",
+          "es": "efecto secundario"
+        },
+        {
+          "en": "transplant",
+          "es": "trasplante"
+        },
+        {
+          "en": "stroke",
+          "es": "derrame cerebral"
+        },
+        {
+          "en": "well-being",
+          "es": "bienestar"
+        },
+        {
+          "en": "mental health",
+          "es": "salud mental"
+        },
+        {
+          "en": "self-esteem",
+          "es": "autoestima"
+        },
+        {
+          "en": "disability",
+          "es": "discapacidad"
+        },
+        {
+          "en": "caregiver",
+          "es": "cuidador"
+        },
+        {
+          "en": "life expectancy",
+          "es": "esperanza de vida"
+        },
+        {
+          "en": "public health",
+          "es": "salud pública"
+        },
+        {
+          "en": "insomnia",
+          "es": "insomnio"
+        },
+        {
+          "en": "burnout",
+          "es": "agotamiento laboral"
+        },
+        {
+          "en": "vaccination",
+          "es": "vacunación"
+        },
+        {
+          "en": "trauma",
+          "es": "trauma"
+        }
+      ]
+    },
+    {
+      "id": "medioambiente2-b2",
+      "title": "♻️ Sostenibilidad y clima · B2",
+      "level": "B2",
+      "pares": [
+        {
+          "en": "energy efficiency",
+          "es": "eficiencia energética"
+        },
+        {
+          "en": "sustainability",
+          "es": "sostenibilidad"
+        },
+        {
+          "en": "greenhouse gas",
+          "es": "gas de efecto invernadero"
+        },
+        {
+          "en": "carbon footprint",
+          "es": "huella de carbono"
+        },
+        {
+          "en": "fossil fuel",
+          "es": "combustible fósil"
+        },
+        {
+          "en": "biodiversity",
+          "es": "biodiversidad"
+        },
+        {
+          "en": "conservation",
+          "es": "conservación"
+        },
+        {
+          "en": "habitat",
+          "es": "hábitat"
+        },
+        {
+          "en": "wind farm",
+          "es": "parque eólico"
+        },
+        {
+          "en": "scarcity",
+          "es": "escasez"
+        },
+        {
+          "en": "pesticide",
+          "es": "pesticida"
+        },
+        {
+          "en": "sea level",
+          "es": "nivel del mar"
+        },
+        {
+          "en": "glacier",
+          "es": "glaciar"
+        },
+        {
+          "en": "carbon tax",
+          "es": "impuesto al carbono"
+        },
+        {
+          "en": "pollutant",
+          "es": "contaminante"
+        },
+        {
+          "en": "climate policy",
+          "es": "política climática"
+        },
+        {
+          "en": "carbon neutral",
+          "es": "carbono neutral"
+        },
+        {
+          "en": "reforestation",
+          "es": "reforestación"
+        },
+        {
+          "en": "overfishing",
+          "es": "sobrepesca"
+        },
+        {
+          "en": "acid rain",
+          "es": "lluvia ácida"
+        },
+        {
+          "en": "erosion",
+          "es": "erosión"
+        },
+        {
+          "en": "water supply",
+          "es": "abastecimiento de agua"
+        },
+        {
+          "en": "dam",
+          "es": "represa"
+        },
+        {
+          "en": "sewage",
+          "es": "aguas residuales"
+        },
+        {
+          "en": "toxic waste",
+          "es": "residuos tóxicos"
+        }
+      ]
+    },
+    {
+      "id": "ciudad5-b2",
+      "title": "🏗️ Urbanismo y vivienda · B2",
+      "level": "B2",
+      "pares": [
+        {
+          "en": "urban planning",
+          "es": "planificación urbana"
+        },
+        {
+          "en": "infrastructure",
+          "es": "infraestructura"
+        },
+        {
+          "en": "zoning",
+          "es": "zonificación"
+        },
+        {
+          "en": "outskirts",
+          "es": "afueras"
+        },
+        {
+          "en": "urban sprawl",
+          "es": "expansión urbana"
+        },
+        {
+          "en": "housing market",
+          "es": "mercado inmobiliario"
+        },
+        {
+          "en": "down payment",
+          "es": "cuota inicial"
+        },
+        {
+          "en": "property tax",
+          "es": "impuesto predial"
+        },
+        {
+          "en": "affordable housing",
+          "es": "vivienda asequible"
+        },
+        {
+          "en": "slum",
+          "es": "barrio marginal"
+        },
+        {
+          "en": "gated community",
+          "es": "conjunto cerrado"
+        },
+        {
+          "en": "power grid",
+          "es": "red eléctrica"
+        },
+        {
+          "en": "renovation",
+          "es": "remodelación"
+        },
+        {
+          "en": "overcrowding",
+          "es": "hacinamiento"
+        },
+        {
+          "en": "population density",
+          "es": "densidad de población"
+        },
+        {
+          "en": "green space",
+          "es": "zona verde"
+        },
+        {
+          "en": "municipality",
+          "es": "municipio"
+        },
+        {
+          "en": "city council",
+          "es": "concejo municipal"
+        },
+        {
+          "en": "eviction",
+          "es": "desalojo"
+        },
+        {
+          "en": "homeowner",
+          "es": "propietario de vivienda"
+        },
+        {
+          "en": "traffic congestion",
+          "es": "congestión vehicular"
+        },
+        {
+          "en": "overpass",
+          "es": "puente vehicular"
+        },
+        {
+          "en": "high-rise",
+          "es": "edificio de gran altura"
+        },
+        {
+          "en": "housing shortage",
+          "es": "déficit de vivienda"
+        },
+        {
+          "en": "rent control",
+          "es": "control de arriendos"
+        }
+      ]
+    },
+    {
+      "id": "ley2-b2",
+      "title": "⚖️ Sistema legal y derechos · B2",
+      "level": "B2",
+      "pares": [
+        {
+          "en": "ban",
+          "es": "prohibición"
+        },
+        {
+          "en": "regulation",
+          "es": "regulación"
+        },
+        {
+          "en": "lawsuit",
+          "es": "demanda judicial"
+        },
+        {
+          "en": "plaintiff",
+          "es": "demandante"
+        },
+        {
+          "en": "defendant",
+          "es": "acusado"
+        },
+        {
+          "en": "verdict",
+          "es": "veredicto"
+        },
+        {
+          "en": "testimony",
+          "es": "testimonio"
+        },
+        {
+          "en": "appeal",
+          "es": "apelación"
+        },
+        {
+          "en": "human rights",
+          "es": "derechos humanos"
+        },
+        {
+          "en": "civil rights",
+          "es": "derechos civiles"
+        },
+        {
+          "en": "freedom of speech",
+          "es": "libertad de expresión"
+        },
+        {
+          "en": "privacy",
+          "es": "privacidad"
+        },
+        {
+          "en": "compliance",
+          "es": "cumplimiento normativo"
+        },
+        {
+          "en": "legislation",
+          "es": "legislación"
+        },
+        {
+          "en": "constitution",
+          "es": "constitución"
+        },
+        {
+          "en": "amendment",
+          "es": "enmienda"
+        },
+        {
+          "en": "settlement",
+          "es": "acuerdo extrajudicial"
+        },
+        {
+          "en": "copyright",
+          "es": "derechos de autor"
+        },
+        {
+          "en": "patent",
+          "es": "patente"
+        },
+        {
+          "en": "breach of contract",
+          "es": "incumplimiento de contrato"
+        },
+        {
+          "en": "loophole",
+          "es": "vacío legal"
+        },
+        {
+          "en": "prosecutor",
+          "es": "fiscal"
+        },
+        {
+          "en": "custody",
+          "es": "custodia"
+        },
+        {
+          "en": "inheritance",
+          "es": "herencia"
+        },
+        {
+          "en": "enforce",
+          "es": "hacer cumplir"
+        }
+      ]
+    },
+    {
+      "id": "politica-b2",
+      "title": "🗳️ Gobierno e instituciones · B2",
+      "level": "B2",
+      "pares": [
+        {
+          "en": "voter",
+          "es": "votante"
+        },
+        {
+          "en": "ballot",
+          "es": "tarjetón"
+        },
+        {
+          "en": "election campaign",
+          "es": "campaña electoral"
+        },
+        {
+          "en": "public policy",
+          "es": "política pública"
+        },
+        {
+          "en": "congress",
+          "es": "congreso"
+        },
+        {
+          "en": "senate",
+          "es": "senado"
+        },
+        {
+          "en": "senator",
+          "es": "senador"
+        },
+        {
+          "en": "bill",
+          "es": "proyecto de ley"
+        },
+        {
+          "en": "referendum",
+          "es": "referendo"
+        },
+        {
+          "en": "governor",
+          "es": "gobernador"
+        },
+        {
+          "en": "cabinet",
+          "es": "gabinete"
+        },
+        {
+          "en": "minister",
+          "es": "ministro"
+        },
+        {
+          "en": "ministry",
+          "es": "ministerio"
+        },
+        {
+          "en": "opposition",
+          "es": "oposición"
+        },
+        {
+          "en": "coalition",
+          "es": "coalición"
+        },
+        {
+          "en": "majority",
+          "es": "mayoría"
+        },
+        {
+          "en": "turnout",
+          "es": "participación electoral"
+        },
+        {
+          "en": "poll",
+          "es": "sondeo"
+        },
+        {
+          "en": "term of office",
+          "es": "mandato"
+        },
+        {
+          "en": "citizenship",
+          "es": "ciudadanía"
+        },
+        {
+          "en": "bureaucracy",
+          "es": "burocracia"
+        },
+        {
+          "en": "spokesperson",
+          "es": "vocero"
+        },
+        {
+          "en": "diplomat",
+          "es": "diplomático"
+        },
+        {
+          "en": "treaty",
+          "es": "tratado"
+        },
+        {
+          "en": "sovereignty",
+          "es": "soberanía"
+        }
+      ]
+    },
+    {
+      "id": "medios2-b2",
+      "title": "📰 Medios y comunicación · B2",
+      "level": "B2",
+      "pares": [
+        {
+          "en": "journalism",
+          "es": "periodismo"
+        },
+        {
+          "en": "editorial",
+          "es": "editorial (artículo de opinión)"
+        },
+        {
+          "en": "correspondent",
+          "es": "corresponsal"
+        },
+        {
+          "en": "commentator",
+          "es": "comentarista"
+        },
+        {
+          "en": "tabloid",
+          "es": "prensa sensacionalista"
+        },
+        {
+          "en": "caption",
+          "es": "pie de foto"
+        },
+        {
+          "en": "viewer",
+          "es": "televidente"
+        },
+        {
+          "en": "listener",
+          "es": "oyente"
+        },
+        {
+          "en": "censorship",
+          "es": "censura"
+        },
+        {
+          "en": "coverage",
+          "es": "cobertura (informativa)"
+        },
+        {
+          "en": "freedom of the press",
+          "es": "libertad de prensa"
+        },
+        {
+          "en": "scoop",
+          "es": "primicia"
+        },
+        {
+          "en": "newsroom",
+          "es": "sala de redacción"
+        },
+        {
+          "en": "subscriber",
+          "es": "suscriptor"
+        },
+        {
+          "en": "podcast",
+          "es": "pódcast"
+        },
+        {
+          "en": "go viral",
+          "es": "volverse viral"
+        },
+        {
+          "en": "press release",
+          "es": "comunicado de prensa"
+        },
+        {
+          "en": "news anchor",
+          "es": "presentador de noticias"
+        },
+        {
+          "en": "press conference",
+          "es": "rueda de prensa"
+        },
+        {
+          "en": "misinformation",
+          "es": "desinformación"
+        },
+        {
+          "en": "circulation",
+          "es": "tiraje"
+        },
+        {
+          "en": "obituary",
+          "es": "obituario"
+        },
+        {
+          "en": "quote",
+          "es": "cita textual"
+        },
+        {
+          "en": "fact-checking",
+          "es": "verificación de datos"
+        },
+        {
+          "en": "breaking news",
+          "es": "noticia de última hora"
+        }
+      ]
+    },
+    {
+      "id": "tecnologia3-b2",
+      "title": "💻 Vida digital y tecnología · B2",
+      "level": "B2",
+      "pares": [
+        {
+          "en": "tech support",
+          "es": "soporte técnico"
+        },
+        {
+          "en": "software update",
+          "es": "actualización de software"
+        },
+        {
+          "en": "database",
+          "es": "base de datos"
+        },
+        {
+          "en": "encryption",
+          "es": "cifrado"
+        },
+        {
+          "en": "firewall",
+          "es": "cortafuegos"
+        },
+        {
+          "en": "antivirus",
+          "es": "antivirus"
+        },
+        {
+          "en": "bandwidth",
+          "es": "ancho de banda"
+        },
+        {
+          "en": "browse",
+          "es": "navegar (por internet)"
+        },
+        {
+          "en": "bookmark",
+          "es": "marcador (de página web)"
+        },
+        {
+          "en": "spreadsheet",
+          "es": "hoja de cálculo"
+        },
+        {
+          "en": "processor",
+          "es": "procesador"
+        },
+        {
+          "en": "programmer",
+          "es": "programador"
+        },
+        {
+          "en": "data breach",
+          "es": "filtración de datos"
+        },
+        {
+          "en": "identity theft",
+          "es": "robo de identidad"
+        },
+        {
+          "en": "two-factor authentication",
+          "es": "verificación en dos pasos"
+        },
+        {
+          "en": "surveillance",
+          "es": "vigilancia"
+        },
+        {
+          "en": "automation",
+          "es": "automatización"
+        },
+        {
+          "en": "disconnect",
+          "es": "desconectarse"
+        },
+        {
+          "en": "malware",
+          "es": "software malicioso"
+        },
+        {
+          "en": "cloud storage",
+          "es": "almacenamiento en la nube"
+        },
+        {
+          "en": "glitch",
+          "es": "falla técnica"
+        },
+        {
+          "en": "screenshot",
+          "es": "captura de pantalla"
+        },
+        {
+          "en": "user-friendly",
+          "es": "fácil de usar"
+        },
+        {
+          "en": "screen time",
+          "es": "tiempo frente a la pantalla"
+        },
+        {
+          "en": "hacker",
+          "es": "pirata informático"
+        }
+      ]
+    },
+    {
+      "id": "sociedad2-b2",
+      "title": "🤝 Sociedad · B2",
+      "level": "B2",
+      "pares": [
+        {
+          "en": "inequality",
+          "es": "desigualdad"
+        },
+        {
+          "en": "migration",
+          "es": "migración"
+        },
+        {
+          "en": "refugee",
+          "es": "refugiado"
+        },
+        {
+          "en": "asylum",
+          "es": "asilo"
+        },
+        {
+          "en": "prejudice",
+          "es": "prejuicio"
+        },
+        {
+          "en": "racism",
+          "es": "racismo"
+        },
+        {
+          "en": "sexism",
+          "es": "sexismo"
+        },
+        {
+          "en": "stereotype",
+          "es": "estereotipo"
+        },
+        {
+          "en": "welfare",
+          "es": "asistencia social"
+        },
+        {
+          "en": "nonprofit",
+          "es": "organización sin ánimo de lucro"
+        },
+        {
+          "en": "homelessness",
+          "es": "falta de vivienda"
+        },
+        {
+          "en": "social mobility",
+          "es": "movilidad social"
+        },
+        {
+          "en": "ethnic group",
+          "es": "grupo étnico"
+        },
+        {
+          "en": "social exclusion",
+          "es": "exclusión social"
+        },
+        {
+          "en": "integration",
+          "es": "integración"
+        },
+        {
+          "en": "social worker",
+          "es": "trabajador social"
+        },
+        {
+          "en": "donate",
+          "es": "donar"
+        },
+        {
+          "en": "fundraiser",
+          "es": "recaudación de fondos"
+        },
+        {
+          "en": "petition",
+          "es": "recolección de firmas"
+        },
+        {
+          "en": "volunteer work",
+          "es": "voluntariado"
+        },
+        {
+          "en": "gender equality",
+          "es": "igualdad de género"
+        },
+        {
+          "en": "aging population",
+          "es": "envejecimiento de la población"
+        },
+        {
+          "en": "civil society",
+          "es": "sociedad civil"
+        },
+        {
+          "en": "needy",
+          "es": "necesitado"
+        },
+        {
+          "en": "displaced person",
+          "es": "desplazado"
+        }
+      ]
+    },
+    {
+      "id": "educacion-b2",
+      "title": "🎓 Educación · B2",
+      "level": "B2",
+      "pares": [
+        {
+          "en": "curriculum",
+          "es": "plan de estudios"
+        },
+        {
+          "en": "syllabus",
+          "es": "programa del curso"
+        },
+        {
+          "en": "assessment",
+          "es": "evaluación"
+        },
+        {
+          "en": "transcript",
+          "es": "certificado de notas"
+        },
+        {
+          "en": "student loan",
+          "es": "crédito educativo"
+        },
+        {
+          "en": "enrollment",
+          "es": "inscripción"
+        },
+        {
+          "en": "undergraduate",
+          "es": "estudiante de pregrado"
+        },
+        {
+          "en": "graduate student",
+          "es": "estudiante de posgrado"
+        },
+        {
+          "en": "boarding school",
+          "es": "internado"
+        },
+        {
+          "en": "faculty",
+          "es": "profesorado"
+        },
+        {
+          "en": "seminar",
+          "es": "seminario"
+        },
+        {
+          "en": "public school",
+          "es": "colegio público"
+        },
+        {
+          "en": "grade point average",
+          "es": "promedio de notas"
+        },
+        {
+          "en": "alumni",
+          "es": "egresados"
+        },
+        {
+          "en": "attendance",
+          "es": "asistencia (a clase)"
+        },
+        {
+          "en": "compulsory",
+          "es": "obligatorio"
+        },
+        {
+          "en": "literacy",
+          "es": "alfabetización"
+        },
+        {
+          "en": "dropout",
+          "es": "desertor escolar"
+        },
+        {
+          "en": "lecturer",
+          "es": "profesor de cátedra"
+        },
+        {
+          "en": "quiz",
+          "es": "prueba corta"
+        },
+        {
+          "en": "multiple choice",
+          "es": "selección múltiple"
+        },
+        {
+          "en": "cram",
+          "es": "estudiar a última hora"
+        },
+        {
+          "en": "field trip",
+          "es": "salida pedagógica"
+        },
+        {
+          "en": "major",
+          "es": "carrera (especialidad universitaria)"
+        },
+        {
+          "en": "tutoring",
+          "es": "tutoría"
+        }
+      ]
+    },
+    {
+      "id": "cultura2-b2",
+      "title": "🎭 Cultura y espectáculo · B2",
+      "level": "B2",
+      "pares": [
+        {
+          "en": "heritage",
+          "es": "patrimonio"
+        },
+        {
+          "en": "critic",
+          "es": "crítico"
+        },
+        {
+          "en": "cast",
+          "es": "elenco"
+        },
+        {
+          "en": "sculptor",
+          "es": "escultor"
+        },
+        {
+          "en": "playwright",
+          "es": "dramaturgo"
+        },
+        {
+          "en": "screenplay",
+          "es": "guion de cine"
+        },
+        {
+          "en": "premiere",
+          "es": "estreno"
+        },
+        {
+          "en": "box office",
+          "es": "taquilla (recaudación)"
+        },
+        {
+          "en": "sequel",
+          "es": "secuela"
+        },
+        {
+          "en": "soundtrack",
+          "es": "banda sonora"
+        },
+        {
+          "en": "genre",
+          "es": "género (artístico)"
+        },
+        {
+          "en": "audition",
+          "es": "audición (prueba)"
+        },
+        {
+          "en": "stage fright",
+          "es": "miedo escénico"
+        },
+        {
+          "en": "standing ovation",
+          "es": "ovación de pie"
+        },
+        {
+          "en": "curator",
+          "es": "curador"
+        },
+        {
+          "en": "folklore",
+          "es": "folclor"
+        },
+        {
+          "en": "blockbuster",
+          "es": "éxito taquillero"
+        },
+        {
+          "en": "subtitle",
+          "es": "subtítulo"
+        },
+        {
+          "en": "choreography",
+          "es": "coreografía"
+        },
+        {
+          "en": "spoiler",
+          "es": "revelación de la trama"
+        },
+        {
+          "en": "entertainment industry",
+          "es": "industria del entretenimiento"
+        },
+        {
+          "en": "royalties",
+          "es": "regalías"
+        },
+        {
+          "en": "fame",
+          "es": "fama"
+        },
+        {
+          "en": "underrated",
+          "es": "subestimado"
+        },
+        {
+          "en": "overrated",
+          "es": "sobrevalorado"
+        }
+      ]
+    },
+    {
+      "id": "viajes4-b2",
+      "title": "🧳 Viajes y hospitalidad · B2",
+      "level": "B2",
+      "pares": [
+        {
+          "en": "day trip",
+          "es": "paseo de un día"
+        },
+        {
+          "en": "lodging",
+          "es": "hospedaje"
+        },
+        {
+          "en": "hospitality",
+          "es": "hotelería"
+        },
+        {
+          "en": "concierge",
+          "es": "conserje (de hotel)"
+        },
+        {
+          "en": "red-eye",
+          "es": "vuelo nocturno"
+        },
+        {
+          "en": "travel advisory",
+          "es": "alerta de viaje"
+        },
+        {
+          "en": "getaway",
+          "es": "escapada"
+        },
+        {
+          "en": "tourist trap",
+          "es": "trampa para turistas"
+        },
+        {
+          "en": "sightseeing",
+          "es": "recorrido turístico"
+        },
+        {
+          "en": "landmark",
+          "es": "lugar emblemático"
+        },
+        {
+          "en": "all-inclusive",
+          "es": "todo incluido"
+        },
+        {
+          "en": "travel light",
+          "es": "viajar ligero de equipaje"
+        },
+        {
+          "en": "picturesque",
+          "es": "pintoresco"
+        },
+        {
+          "en": "breathtaking",
+          "es": "que quita el aliento"
+        },
+        {
+          "en": "complimentary",
+          "es": "de cortesía (gratis)"
+        },
+        {
+          "en": "housekeeping",
+          "es": "servicio de limpieza (hotel)"
+        },
+        {
+          "en": "fully booked",
+          "es": "sin disponibilidad"
+        },
+        {
+          "en": "amenities",
+          "es": "comodidades (del hotel)"
+        },
+        {
+          "en": "currency exchange",
+          "es": "casa de cambio"
+        },
+        {
+          "en": "peak season",
+          "es": "temporada alta"
+        },
+        {
+          "en": "off-season",
+          "es": "temporada baja"
+        },
+        {
+          "en": "connecting flight",
+          "es": "vuelo de conexión"
+        },
+        {
+          "en": "overbooked",
+          "es": "sobrevendido"
+        },
+        {
+          "en": "guesthouse",
+          "es": "casa de huéspedes"
+        },
+        {
+          "en": "late checkout",
+          "es": "salida tardía"
+        }
+      ]
+    },
+    {
+      "id": "relaciones2-b2",
+      "title": "💞 Relaciones · B2",
+      "level": "B2",
+      "pares": [
+        {
+          "en": "confide in",
+          "es": "contarle secretos a"
+        },
+        {
+          "en": "companionship",
+          "es": "compañía"
+        },
+        {
+          "en": "hit it off",
+          "es": "congeniar"
+        },
+        {
+          "en": "breakup",
+          "es": "ruptura (amorosa)"
+        },
+        {
+          "en": "reconcile",
+          "es": "reconciliarse"
+        },
+        {
+          "en": "betray",
+          "es": "traicionar"
+        },
+        {
+          "en": "soul mate",
+          "es": "alma gemela"
+        },
+        {
+          "en": "crush",
+          "es": "amor platónico"
+        },
+        {
+          "en": "fall out",
+          "es": "pelearse"
+        },
+        {
+          "en": "get over someone",
+          "es": "superar a alguien"
+        },
+        {
+          "en": "peer pressure",
+          "es": "presión de grupo"
+        },
+        {
+          "en": "socialize",
+          "es": "socializar"
+        },
+        {
+          "en": "small talk",
+          "es": "charla trivial"
+        },
+        {
+          "en": "eye contact",
+          "es": "contacto visual"
+        },
+        {
+          "en": "body language",
+          "es": "lenguaje corporal"
+        },
+        {
+          "en": "grudge",
+          "es": "rencor"
+        },
+        {
+          "en": "spouse",
+          "es": "cónyuge"
+        },
+        {
+          "en": "in-laws",
+          "es": "familia política"
+        },
+        {
+          "en": "upbringing",
+          "es": "crianza"
+        },
+        {
+          "en": "mutual",
+          "es": "mutuo"
+        },
+        {
+          "en": "commitment",
+          "es": "compromiso (en una relación)"
+        },
+        {
+          "en": "long-distance relationship",
+          "es": "relación a distancia"
+        },
+        {
+          "en": "courtesy",
+          "es": "cortesía"
+        },
+        {
+          "en": "drift apart",
+          "es": "distanciarse"
+        },
+        {
+          "en": "look up to",
+          "es": "admirar (a alguien)"
+        }
+      ]
+    },
+    {
+      "id": "emociones-b2",
+      "title": "🌧️ Emociones · B2",
+      "level": "B2",
+      "pares": [
+        {
+          "en": "grief",
+          "es": "duelo"
+        },
+        {
+          "en": "anguish",
+          "es": "angustia"
+        },
+        {
+          "en": "dread",
+          "es": "pavor"
+        },
+        {
+          "en": "resentment",
+          "es": "resentimiento"
+        },
+        {
+          "en": "contentment",
+          "es": "plenitud"
+        },
+        {
+          "en": "admiration",
+          "es": "admiración"
+        },
+        {
+          "en": "awe",
+          "es": "sobrecogimiento"
+        },
+        {
+          "en": "remorse",
+          "es": "remordimiento"
+        },
+        {
+          "en": "humiliation",
+          "es": "humillación"
+        },
+        {
+          "en": "despair",
+          "es": "desesperación"
+        },
+        {
+          "en": "gratitude",
+          "es": "gratitud"
+        },
+        {
+          "en": "irritation",
+          "es": "irritación"
+        },
+        {
+          "en": "indifference",
+          "es": "indiferencia"
+        },
+        {
+          "en": "yearning",
+          "es": "anhelo"
+        },
+        {
+          "en": "nostalgia",
+          "es": "nostalgia"
+        },
+        {
+          "en": "overwhelmed",
+          "es": "abrumado"
+        },
+        {
+          "en": "heartbroken",
+          "es": "con el corazón roto"
+        },
+        {
+          "en": "melancholy",
+          "es": "melancolía"
+        },
+        {
+          "en": "moved",
+          "es": "conmovido"
+        },
+        {
+          "en": "disillusioned",
+          "es": "desilusionado"
+        },
+        {
+          "en": "self-conscious",
+          "es": "cohibido"
+        },
+        {
+          "en": "empathy",
+          "es": "empatía"
+        },
+        {
+          "en": "restless",
+          "es": "inquieto"
+        },
+        {
+          "en": "bitterness",
+          "es": "amargura"
+        },
+        {
+          "en": "tenderness",
+          "es": "ternura"
+        }
+      ]
+    },
+    {
+      "id": "personalidad3-b2",
+      "title": "🧠 Personalidad · B2",
+      "level": "B2",
+      "pares": [
+        {
+          "en": "assertive",
+          "es": "asertivo"
+        },
+        {
+          "en": "conceited",
+          "es": "engreído"
+        },
+        {
+          "en": "witty",
+          "es": "ingenioso"
+        },
+        {
+          "en": "picky",
+          "es": "quisquilloso"
+        },
+        {
+          "en": "frugal",
+          "es": "ahorrativo"
+        },
+        {
+          "en": "reckless",
+          "es": "imprudente"
+        },
+        {
+          "en": "diligent",
+          "es": "diligente"
+        },
+        {
+          "en": "impulsive",
+          "es": "impulsivo"
+        },
+        {
+          "en": "resilient",
+          "es": "resiliente"
+        },
+        {
+          "en": "narcissistic",
+          "es": "narcisista"
+        },
+        {
+          "en": "adventurous",
+          "es": "aventurero"
+        },
+        {
+          "en": "adaptable",
+          "es": "adaptable"
+        },
+        {
+          "en": "selfless",
+          "es": "desinteresado"
+        },
+        {
+          "en": "spiteful",
+          "es": "rencoroso"
+        },
+        {
+          "en": "sassy",
+          "es": "contestón"
+        },
+        {
+          "en": "gullible",
+          "es": "crédulo"
+        },
+        {
+          "en": "meticulous",
+          "es": "meticuloso"
+        },
+        {
+          "en": "sloppy",
+          "es": "descuidado"
+        },
+        {
+          "en": "charismatic",
+          "es": "carismático"
+        },
+        {
+          "en": "eccentric",
+          "es": "excéntrico"
+        },
+        {
+          "en": "down to earth",
+          "es": "con los pies en la tierra"
+        },
+        {
+          "en": "open-minded",
+          "es": "de mente abierta"
+        },
+        {
+          "en": "hot-tempered",
+          "es": "de mal genio"
+        },
+        {
+          "en": "nosy",
+          "es": "entrometido"
+        },
+        {
+          "en": "straightforward",
+          "es": "directo (franco)"
+        }
+      ]
+    },
+    {
+      "id": "consumo-b2",
+      "title": "🛒 Consumo · B2",
+      "level": "B2",
+      "pares": [
+        {
+          "en": "consumer rights",
+          "es": "derechos del consumidor"
+        },
+        {
+          "en": "retailer",
+          "es": "minorista"
+        },
+        {
+          "en": "wholesaler",
+          "es": "mayorista"
+        },
+        {
+          "en": "refurbished",
+          "es": "reacondicionado"
+        },
+        {
+          "en": "brand loyalty",
+          "es": "lealtad a la marca"
+        },
+        {
+          "en": "target audience",
+          "es": "público objetivo"
+        },
+        {
+          "en": "word of mouth",
+          "es": "voz a voz"
+        },
+        {
+          "en": "merchandise",
+          "es": "mercancía"
+        },
+        {
+          "en": "shoplifting",
+          "es": "robo en tiendas"
+        },
+        {
+          "en": "impulse buy",
+          "es": "compra impulsiva"
+        },
+        {
+          "en": "flash sale",
+          "es": "venta relámpago"
+        },
+        {
+          "en": "promo code",
+          "es": "código de descuento"
+        },
+        {
+          "en": "rewards program",
+          "es": "programa de recompensas"
+        },
+        {
+          "en": "wish list",
+          "es": "lista de deseos"
+        },
+        {
+          "en": "product placement",
+          "es": "publicidad por emplazamiento"
+        },
+        {
+          "en": "layaway",
+          "es": "plan separe"
+        },
+        {
+          "en": "markup",
+          "es": "sobreprecio"
+        },
+        {
+          "en": "affordable",
+          "es": "asequible"
+        },
+        {
+          "en": "subscription",
+          "es": "suscripción"
+        },
+        {
+          "en": "product review",
+          "es": "reseña de producto"
+        },
+        {
+          "en": "consumerism",
+          "es": "consumismo"
+        },
+        {
+          "en": "consumer goods",
+          "es": "bienes de consumo"
+        },
+        {
+          "en": "counterfeit",
+          "es": "falsificado"
+        },
+        {
+          "en": "window shopping",
+          "es": "mirar vitrinas"
+        },
+        {
+          "en": "trade in",
+          "es": "entregar como parte de pago"
+        }
+      ]
+    },
+    {
+      "id": "verbos8-b2",
+      "title": "⚙️ Verbos 8 · B2",
+      "level": "B2",
+      "pares": [
+        {
+          "en": "acknowledge",
+          "es": "reconocer (un error)"
+        },
+        {
+          "en": "allocate",
+          "es": "asignar (recursos)"
+        },
+        {
+          "en": "anticipate",
+          "es": "prever"
+        },
+        {
+          "en": "assess",
+          "es": "evaluar"
+        },
+        {
+          "en": "assume",
+          "es": "suponer"
+        },
+        {
+          "en": "clarify",
+          "es": "aclarar"
+        },
+        {
+          "en": "compensate",
+          "es": "compensar"
+        },
+        {
+          "en": "constitute",
+          "es": "constituir"
+        },
+        {
+          "en": "contribute",
+          "es": "contribuir"
+        },
+        {
+          "en": "convey",
+          "es": "transmitir (una idea)"
+        },
+        {
+          "en": "derive",
+          "es": "derivar"
+        },
+        {
+          "en": "emphasize",
+          "es": "enfatizar"
+        },
+        {
+          "en": "ensure",
+          "es": "garantizar"
+        },
+        {
+          "en": "exceed",
+          "es": "exceder"
+        },
+        {
+          "en": "facilitate",
+          "es": "facilitar"
+        },
+        {
+          "en": "implement",
+          "es": "implementar"
+        },
+        {
+          "en": "imply",
+          "es": "dar a entender"
+        },
+        {
+          "en": "justify",
+          "es": "justificar"
+        },
+        {
+          "en": "maintain",
+          "es": "mantener (en buen estado)"
+        },
+        {
+          "en": "modify",
+          "es": "modificar"
+        },
+        {
+          "en": "neglect",
+          "es": "descuidar"
+        },
+        {
+          "en": "overcome",
+          "es": "vencer (un obstáculo)"
+        },
+        {
+          "en": "pursue",
+          "es": "perseguir (una meta)"
+        },
+        {
+          "en": "undermine",
+          "es": "socavar"
+        },
+        {
+          "en": "dismiss",
+          "es": "desestimar (una idea)"
+        }
+      ]
+    },
+    {
+      "id": "verbos9-b2",
+      "title": "⚙️ Verbos 9 · B2",
+      "level": "B2",
+      "pares": [
+        {
+          "en": "concede",
+          "es": "conceder (en una discusión)"
+        },
+        {
+          "en": "highlight",
+          "es": "resaltar"
+        },
+        {
+          "en": "enhance",
+          "es": "potenciar"
+        },
+        {
+          "en": "retain",
+          "es": "retener"
+        },
+        {
+          "en": "sustain",
+          "es": "sostener"
+        },
+        {
+          "en": "acquire",
+          "es": "adquirir"
+        },
+        {
+          "en": "adjust",
+          "es": "ajustar"
+        },
+        {
+          "en": "comply",
+          "es": "cumplir con (una norma)"
+        },
+        {
+          "en": "deduce",
+          "es": "deducir"
+        },
+        {
+          "en": "deprive",
+          "es": "privar"
+        },
+        {
+          "en": "determine",
+          "es": "determinar"
+        },
+        {
+          "en": "diminish",
+          "es": "disminuir"
+        },
+        {
+          "en": "disclose",
+          "es": "divulgar"
+        },
+        {
+          "en": "discourage",
+          "es": "desanimar"
+        },
+        {
+          "en": "distinguish",
+          "es": "distinguir"
+        },
+        {
+          "en": "distribute",
+          "es": "distribuir"
+        },
+        {
+          "en": "eliminate",
+          "es": "eliminar"
+        },
+        {
+          "en": "emerge",
+          "es": "surgir"
+        },
+        {
+          "en": "endure",
+          "es": "sobrellevar"
+        },
+        {
+          "en": "exaggerate",
+          "es": "exagerar"
+        },
+        {
+          "en": "exclude",
+          "es": "excluir"
+        },
+        {
+          "en": "generate",
+          "es": "generar"
+        },
+        {
+          "en": "grant",
+          "es": "otorgar"
+        },
+        {
+          "en": "illustrate",
+          "es": "ilustrar"
+        },
+        {
+          "en": "inherit",
+          "es": "heredar"
+        }
+      ]
+    },
+    {
+      "id": "verbos10-b2",
+      "title": "⚙️ Verbos 10 · B2",
+      "level": "B2",
+      "pares": [
+        {
+          "en": "comprise",
+          "es": "estar compuesto de"
+        },
+        {
+          "en": "reinforce",
+          "es": "reforzar"
+        },
+        {
+          "en": "expose",
+          "es": "exponer"
+        },
+        {
+          "en": "undergo",
+          "es": "someterse a"
+        },
+        {
+          "en": "indicate",
+          "es": "indicar"
+        },
+        {
+          "en": "inspire",
+          "es": "inspirar"
+        },
+        {
+          "en": "interpret",
+          "es": "interpretar"
+        },
+        {
+          "en": "oblige",
+          "es": "obligar"
+        },
+        {
+          "en": "occupy",
+          "es": "ocupar"
+        },
+        {
+          "en": "oppose",
+          "es": "oponerse a"
+        },
+        {
+          "en": "overlook",
+          "es": "pasar por alto"
+        },
+        {
+          "en": "persist",
+          "es": "persistir"
+        },
+        {
+          "en": "possess",
+          "es": "poseer"
+        },
+        {
+          "en": "prohibit",
+          "es": "prohibir (formal)"
+        },
+        {
+          "en": "restore",
+          "es": "restaurar"
+        },
+        {
+          "en": "restrict",
+          "es": "restringir"
+        },
+        {
+          "en": "precede",
+          "es": "preceder"
+        },
+        {
+          "en": "reverse",
+          "es": "revertir"
+        },
+        {
+          "en": "specify",
+          "es": "especificar"
+        },
+        {
+          "en": "stimulate",
+          "es": "estimular"
+        },
+        {
+          "en": "substitute",
+          "es": "sustituir"
+        },
+        {
+          "en": "summarize",
+          "es": "resumir"
+        },
+        {
+          "en": "tolerate",
+          "es": "tolerar"
+        },
+        {
+          "en": "transform",
+          "es": "transformar"
+        },
+        {
+          "en": "verify",
+          "es": "verificar"
+        }
+      ]
+    },
+    {
+      "id": "phrasal4-b2",
+      "title": "🧩 Phrasal verbs 4 · B2",
+      "level": "B2",
+      "pares": [
+        {
+          "en": "face up to",
+          "es": "afrontar"
+        },
+        {
+          "en": "get away with",
+          "es": "salirse con la suya"
+        },
+        {
+          "en": "bring about",
+          "es": "provocar"
+        },
+        {
+          "en": "rule out",
+          "es": "descartar"
+        },
+        {
+          "en": "turn out",
+          "es": "resultar"
+        },
+        {
+          "en": "call off",
+          "es": "suspender (un evento)"
+        },
+        {
+          "en": "draw up",
+          "es": "redactar"
+        },
+        {
+          "en": "fall through",
+          "es": "venirse abajo (un plan)"
+        },
+        {
+          "en": "lay off",
+          "es": "despedir (por recorte)"
+        },
+        {
+          "en": "phase out",
+          "es": "eliminar gradualmente"
+        },
+        {
+          "en": "account for",
+          "es": "dar razón de"
+        },
+        {
+          "en": "back out",
+          "es": "echarse atrás"
+        },
+        {
+          "en": "brush up on",
+          "es": "refrescar (un conocimiento)"
+        },
+        {
+          "en": "catch on",
+          "es": "ponerse de moda"
+        },
+        {
+          "en": "come down to",
+          "es": "reducirse a"
+        },
+        {
+          "en": "do without",
+          "es": "prescindir de"
+        },
+        {
+          "en": "drop off",
+          "es": "dejar (a alguien en un lugar)"
+        },
+        {
+          "en": "fall out with",
+          "es": "pelearse con"
+        },
+        {
+          "en": "fill in for",
+          "es": "suplir a"
+        },
+        {
+          "en": "get across",
+          "es": "hacer entender"
+        },
+        {
+          "en": "get by",
+          "es": "arreglárselas"
+        },
+        {
+          "en": "hold back",
+          "es": "contenerse"
+        },
+        {
+          "en": "live up to",
+          "es": "estar a la altura de"
+        },
+        {
+          "en": "go ahead",
+          "es": "seguir adelante"
+        },
+        {
+          "en": "own up to",
+          "es": "confesar"
+        }
+      ]
+    },
+    {
+      "id": "phrasal5-b2",
+      "title": "🧩 Phrasal verbs 5 · B2",
+      "level": "B2",
+      "pares": [
+        {
+          "en": "come up against",
+          "es": "enfrentarse a (un obstáculo)"
+        },
+        {
+          "en": "leave out",
+          "es": "omitir"
+        },
+        {
+          "en": "look into",
+          "es": "examinar (un asunto)"
+        },
+        {
+          "en": "pass up",
+          "es": "dejar pasar (una oportunidad)"
+        },
+        {
+          "en": "pull off",
+          "es": "sacar adelante (algo difícil)"
+        },
+        {
+          "en": "put forward",
+          "es": "proponer"
+        },
+        {
+          "en": "run over",
+          "es": "atropellar"
+        },
+        {
+          "en": "set off",
+          "es": "emprender (un viaje)"
+        },
+        {
+          "en": "stand for",
+          "es": "representar (unas siglas)"
+        },
+        {
+          "en": "step down",
+          "es": "renunciar (a un cargo)"
+        },
+        {
+          "en": "take in",
+          "es": "asimilar (información)"
+        },
+        {
+          "en": "take on",
+          "es": "asumir (un trabajo)"
+        },
+        {
+          "en": "wear off",
+          "es": "pasarse (el efecto)"
+        },
+        {
+          "en": "wear out",
+          "es": "desgastar"
+        },
+        {
+          "en": "narrow down",
+          "es": "reducir (opciones)"
+        },
+        {
+          "en": "call for",
+          "es": "exigir"
+        },
+        {
+          "en": "crack down on",
+          "es": "tomar medidas contra"
+        },
+        {
+          "en": "get around to",
+          "es": "sacar tiempo para"
+        },
+        {
+          "en": "chalk up to",
+          "es": "atribuir a"
+        },
+        {
+          "en": "mess up",
+          "es": "arruinar"
+        },
+        {
+          "en": "play down",
+          "es": "restar importancia a"
+        },
+        {
+          "en": "stick to",
+          "es": "ceñirse a"
+        },
+        {
+          "en": "give off",
+          "es": "emitir (olor, calor)"
+        },
+        {
+          "en": "make up for",
+          "es": "recuperar (el tiempo perdido)"
+        },
+        {
+          "en": "iron out",
+          "es": "limar (diferencias)"
+        }
+      ]
+    },
+    {
+      "id": "colocaciones5-b2",
+      "title": "🔗 Colocaciones 5 · B2",
+      "level": "B2",
+      "pares": [
+        {
+          "en": "meet a deadline",
+          "es": "cumplir un plazo"
+        },
+        {
+          "en": "draw a conclusion",
+          "es": "sacar una conclusión"
+        },
+        {
+          "en": "raise awareness",
+          "es": "crear conciencia"
+        },
+        {
+          "en": "set a record",
+          "es": "establecer un récord"
+        },
+        {
+          "en": "run a business",
+          "es": "dirigir un negocio"
+        },
+        {
+          "en": "make an exception",
+          "es": "hacer una excepción"
+        },
+        {
+          "en": "hold a meeting",
+          "es": "celebrar una reunión"
+        },
+        {
+          "en": "give a presentation",
+          "es": "hacer una presentación"
+        },
+        {
+          "en": "strike a balance",
+          "es": "encontrar el equilibrio"
+        },
+        {
+          "en": "pose a threat",
+          "es": "representar una amenaza"
+        },
+        {
+          "en": "gain experience",
+          "es": "adquirir experiencia"
+        },
+        {
+          "en": "address an issue",
+          "es": "abordar un tema"
+        },
+        {
+          "en": "meet the requirements",
+          "es": "cumplir los requisitos"
+        },
+        {
+          "en": "raise a question",
+          "es": "plantear una pregunta"
+        },
+        {
+          "en": "seek advice",
+          "es": "pedir consejo"
+        },
+        {
+          "en": "face the consequences",
+          "es": "asumir las consecuencias"
+        },
+        {
+          "en": "bridge the gap",
+          "es": "cerrar la brecha"
+        },
+        {
+          "en": "draw attention to",
+          "es": "llamar la atención sobre"
+        },
+        {
+          "en": "take the lead",
+          "es": "tomar la delantera"
+        },
+        {
+          "en": "set a budget",
+          "es": "fijar un presupuesto"
+        },
+        {
+          "en": "cause concern",
+          "es": "causar preocupación"
+        },
+        {
+          "en": "run a risk",
+          "es": "correr un riesgo"
+        },
+        {
+          "en": "make a fortune",
+          "es": "hacer una fortuna"
+        },
+        {
+          "en": "launch a campaign",
+          "es": "lanzar una campaña"
+        },
+        {
+          "en": "do harm",
+          "es": "hacer daño"
+        }
+      ]
+    },
+    {
+      "id": "colocaciones6-b2",
+      "title": "🔗 Colocaciones 6 · B2",
+      "level": "B2",
+      "pares": [
+        {
+          "en": "heavy traffic",
+          "es": "mucho tráfico"
+        },
+        {
+          "en": "highly recommended",
+          "es": "muy recomendado"
+        },
+        {
+          "en": "deeply concerned",
+          "es": "profundamente preocupado"
+        },
+        {
+          "en": "bitterly disappointed",
+          "es": "amargamente decepcionado"
+        },
+        {
+          "en": "heavy rain",
+          "es": "lluvia fuerte"
+        },
+        {
+          "en": "strong coffee",
+          "es": "café cargado"
+        },
+        {
+          "en": "fully aware",
+          "es": "plenamente consciente"
+        },
+        {
+          "en": "widely known",
+          "es": "ampliamente conocido"
+        },
+        {
+          "en": "highly unlikely",
+          "es": "muy poco probable"
+        },
+        {
+          "en": "vast majority",
+          "es": "gran mayoría"
+        },
+        {
+          "en": "sharp increase",
+          "es": "fuerte aumento"
+        },
+        {
+          "en": "slight change",
+          "es": "ligero cambio"
+        },
+        {
+          "en": "sound advice",
+          "es": "buen consejo"
+        },
+        {
+          "en": "key factor",
+          "es": "factor clave"
+        },
+        {
+          "en": "heavy smoker",
+          "es": "fumador empedernido"
+        },
+        {
+          "en": "tough decision",
+          "es": "decisión difícil"
+        },
+        {
+          "en": "golden opportunity",
+          "es": "oportunidad de oro"
+        },
+        {
+          "en": "utterly ridiculous",
+          "es": "absolutamente ridículo"
+        },
+        {
+          "en": "strongly disagree",
+          "es": "estar totalmente en desacuerdo"
+        },
+        {
+          "en": "firmly believe",
+          "es": "creer firmemente"
+        },
+        {
+          "en": "sincerely apologize",
+          "es": "disculparse sinceramente"
+        },
+        {
+          "en": "deeply regret",
+          "es": "lamentar profundamente"
+        },
+        {
+          "en": "closely related",
+          "es": "estrechamente relacionado"
+        },
+        {
+          "en": "entirely different",
+          "es": "completamente diferente"
+        },
+        {
+          "en": "highly skilled",
+          "es": "altamente calificado"
+        }
+      ]
+    },
+    {
+      "id": "idioms-b2",
+      "title": "💬 Modismos · B2",
+      "level": "B2",
+      "pares": [
+        {
+          "en": "a piece of cake",
+          "es": "pan comido"
+        },
+        {
+          "en": "on the same page",
+          "es": "en la misma sintonía"
+        },
+        {
+          "en": "hit the nail on the head",
+          "es": "dar en el clavo"
+        },
+        {
+          "en": "cost an arm and a leg",
+          "es": "costar un ojo de la cara"
+        },
+        {
+          "en": "once in a blue moon",
+          "es": "cada muerte de obispo"
+        },
+        {
+          "en": "spill the beans",
+          "es": "irse de la lengua"
+        },
+        {
+          "en": "under the weather",
+          "es": "indispuesto"
+        },
+        {
+          "en": "kill two birds with one stone",
+          "es": "matar dos pájaros de un tiro"
+        },
+        {
+          "en": "the last straw",
+          "es": "la gota que rebosó la copa"
+        },
+        {
+          "en": "beat around the bush",
+          "es": "andarse con rodeos"
+        },
+        {
+          "en": "a blessing in disguise",
+          "es": "no hay mal que por bien no venga"
+        },
+        {
+          "en": "call it a day",
+          "es": "dar por terminada la jornada"
+        },
+        {
+          "en": "get cold feet",
+          "es": "acobardarse"
+        },
+        {
+          "en": "pull someone's leg",
+          "es": "tomarle el pelo a alguien"
+        },
+        {
+          "en": "by the skin of your teeth",
+          "es": "por un pelo"
+        },
+        {
+          "en": "on the fence",
+          "es": "indeciso"
+        },
+        {
+          "en": "play it by ear",
+          "es": "improvisar sobre la marcha"
+        },
+        {
+          "en": "the ball is in your court",
+          "es": "la pelota está en tu cancha"
+        },
+        {
+          "en": "burn the midnight oil",
+          "es": "quemarse las pestañas"
+        },
+        {
+          "en": "in the long run",
+          "es": "a la larga"
+        },
+        {
+          "en": "out of the blue",
+          "es": "de la nada"
+        },
+        {
+          "en": "speak of the devil",
+          "es": "hablando del rey de Roma"
+        },
+        {
+          "en": "through thick and thin",
+          "es": "en las buenas y en las malas"
+        },
+        {
+          "en": "rain cats and dogs",
+          "es": "llover a cántaros"
+        },
+        {
+          "en": "when pigs fly",
+          "es": "cuando las ranas críen pelo"
+        }
+      ]
+    },
+    {
+      "id": "formacion-b2",
+      "title": "🧱 Formación de palabras · B2",
+      "level": "B2",
+      "pares": [
+        {
+          "en": "fearless",
+          "es": "intrépido"
+        },
+        {
+          "en": "accuracy",
+          "es": "exactitud"
+        },
+        {
+          "en": "availability",
+          "es": "disponibilidad"
+        },
+        {
+          "en": "efficiency",
+          "es": "eficiencia"
+        },
+        {
+          "en": "flexibility",
+          "es": "flexibilidad"
+        },
+        {
+          "en": "awareness",
+          "es": "toma de conciencia"
+        },
+        {
+          "en": "weakness",
+          "es": "debilidad"
+        },
+        {
+          "en": "enjoyment",
+          "es": "disfrute"
+        },
+        {
+          "en": "leadership",
+          "es": "liderazgo"
+        },
+        {
+          "en": "lengthen",
+          "es": "alargar"
+        },
+        {
+          "en": "irreplaceable",
+          "es": "insustituible"
+        },
+        {
+          "en": "predictable",
+          "es": "predecible"
+        },
+        {
+          "en": "noticeable",
+          "es": "perceptible"
+        },
+        {
+          "en": "misunderstanding",
+          "es": "malentendido"
+        },
+        {
+          "en": "disapproval",
+          "es": "desaprobación"
+        },
+        {
+          "en": "strengthen",
+          "es": "fortalecer"
+        },
+        {
+          "en": "widen",
+          "es": "ensanchar"
+        },
+        {
+          "en": "shorten",
+          "es": "acortar"
+        },
+        {
+          "en": "modernize",
+          "es": "modernizar"
+        },
+        {
+          "en": "prioritize",
+          "es": "priorizar"
+        },
+        {
+          "en": "simplify",
+          "es": "simplificar"
+        },
+        {
+          "en": "clarity",
+          "es": "claridad"
+        },
+        {
+          "en": "reluctant",
+          "es": "reacio"
+        },
+        {
+          "en": "harmless",
+          "es": "inofensivo"
+        },
+        {
+          "en": "meaningful",
+          "es": "significativo"
+        }
+      ]
+    },
+    {
+      "id": "formal-b2",
+      "title": "🎩 Registro formal · B2",
+      "level": "B2",
+      "pares": [
+        {
+          "en": "obtain",
+          "es": "obtener"
+        },
+        {
+          "en": "request",
+          "es": "solicitar"
+        },
+        {
+          "en": "assist",
+          "es": "prestar ayuda (formal)"
+        },
+        {
+          "en": "commence",
+          "es": "dar comienzo (formal)"
+        },
+        {
+          "en": "inquire",
+          "es": "informarse (formal)"
+        },
+        {
+          "en": "beverage",
+          "es": "bebida (formal)"
+        },
+        {
+          "en": "sufficient",
+          "es": "suficiente (formal)"
+        },
+        {
+          "en": "prior to",
+          "es": "antes de (formal)"
+        },
+        {
+          "en": "subsequently",
+          "es": "posteriormente"
+        },
+        {
+          "en": "terminate",
+          "es": "poner fin a"
+        },
+        {
+          "en": "reside",
+          "es": "residir"
+        },
+        {
+          "en": "endeavor",
+          "es": "procurar"
+        },
+        {
+          "en": "consequently",
+          "es": "en consecuencia"
+        },
+        {
+          "en": "nevertheless",
+          "es": "no obstante"
+        },
+        {
+          "en": "furthermore",
+          "es": "asimismo"
+        },
+        {
+          "en": "additional",
+          "es": "adicional"
+        },
+        {
+          "en": "regarding",
+          "es": "con respecto a"
+        },
+        {
+          "en": "approximately",
+          "es": "aproximadamente"
+        },
+        {
+          "en": "numerous",
+          "es": "numerosos"
+        },
+        {
+          "en": "notify",
+          "es": "notificar"
+        },
+        {
+          "en": "depart",
+          "es": "partir (formal)"
+        },
+        {
+          "en": "proceed",
+          "es": "proceder"
+        },
+        {
+          "en": "comprehend",
+          "es": "comprender (formal)"
+        },
+        {
+          "en": "utilize",
+          "es": "utilizar (formal)"
+        },
+        {
+          "en": "forward",
+          "es": "remitir (un documento)"
+        }
+      ]
+    },
+    {
+      "id": "adjetivos6-b2",
+      "title": "🔎 Adjetivos 6 · B2",
+      "level": "B2",
+      "pares": [
+        {
+          "en": "adequate",
+          "es": "suficiente (adecuado)"
+        },
+        {
+          "en": "ambiguous",
+          "es": "ambiguo"
+        },
+        {
+          "en": "apparent",
+          "es": "aparente"
+        },
+        {
+          "en": "arbitrary",
+          "es": "arbitrario"
+        },
+        {
+          "en": "compatible",
+          "es": "compatible"
+        },
+        {
+          "en": "comprehensive",
+          "es": "integral (completo)"
+        },
+        {
+          "en": "considerable",
+          "es": "considerable"
+        },
+        {
+          "en": "consistent",
+          "es": "coherente"
+        },
+        {
+          "en": "controversial",
+          "es": "polémico"
+        },
+        {
+          "en": "crucial",
+          "es": "crucial"
+        },
+        {
+          "en": "valid",
+          "es": "válido"
+        },
+        {
+          "en": "distinct",
+          "es": "bien diferenciado"
+        },
+        {
+          "en": "diverse",
+          "es": "variado"
+        },
+        {
+          "en": "explicit",
+          "es": "explícito"
+        },
+        {
+          "en": "feasible",
+          "es": "factible"
+        },
+        {
+          "en": "genuine",
+          "es": "genuino"
+        },
+        {
+          "en": "inevitable",
+          "es": "inevitable"
+        },
+        {
+          "en": "insufficient",
+          "es": "insuficiente"
+        },
+        {
+          "en": "notable",
+          "es": "notable"
+        },
+        {
+          "en": "plausible",
+          "es": "verosímil"
+        },
+        {
+          "en": "relevant",
+          "es": "pertinente"
+        },
+        {
+          "en": "subjective",
+          "es": "subjetivo"
+        },
+        {
+          "en": "rigorous",
+          "es": "riguroso"
+        },
+        {
+          "en": "absurd",
+          "es": "absurdo"
+        },
+        {
+          "en": "brief",
+          "es": "breve"
+        }
+      ]
+    },
+    {
+      "id": "adjetivos7-b2",
+      "title": "🧩 Adjetivos 7 · B2",
+      "level": "B2",
+      "pares": [
+        {
+          "en": "prominent",
+          "es": "destacado"
+        },
+        {
+          "en": "subtle",
+          "es": "sutil"
+        },
+        {
+          "en": "substantial",
+          "es": "sustancial"
+        },
+        {
+          "en": "tedious",
+          "es": "tedioso"
+        },
+        {
+          "en": "thorough",
+          "es": "minucioso"
+        },
+        {
+          "en": "viable",
+          "es": "viable"
+        },
+        {
+          "en": "vulnerable",
+          "es": "vulnerable"
+        },
+        {
+          "en": "accessible",
+          "es": "accesible"
+        },
+        {
+          "en": "adverse",
+          "es": "adverso"
+        },
+        {
+          "en": "concise",
+          "es": "conciso"
+        },
+        {
+          "en": "credible",
+          "es": "creíble"
+        },
+        {
+          "en": "decisive",
+          "es": "decisivo"
+        },
+        {
+          "en": "drastic",
+          "es": "drástico"
+        },
+        {
+          "en": "excessive",
+          "es": "excesivo"
+        },
+        {
+          "en": "fragile",
+          "es": "frágil"
+        },
+        {
+          "en": "hostile",
+          "es": "hostil"
+        },
+        {
+          "en": "inherent",
+          "es": "inherente"
+        },
+        {
+          "en": "unprecedented",
+          "es": "sin precedentes"
+        },
+        {
+          "en": "vague",
+          "es": "impreciso"
+        },
+        {
+          "en": "obsolete",
+          "es": "obsoleto"
+        },
+        {
+          "en": "overwhelming",
+          "es": "abrumador"
+        },
+        {
+          "en": "persistent",
+          "es": "persistente"
+        },
+        {
+          "en": "sophisticated",
+          "es": "sofisticado"
+        },
+        {
+          "en": "spontaneous",
+          "es": "espontáneo"
+        },
+        {
+          "en": "transparent",
+          "es": "transparente"
+        }
+      ]
+    },
+    {
+      "id": "adverbios2-b2",
+      "title": "⚡ Adverbios 2 · B2",
+      "level": "B2",
+      "pares": [
+        {
+          "en": "arguably",
+          "es": "podría decirse que"
+        },
+        {
+          "en": "ideally",
+          "es": "idealmente"
+        },
+        {
+          "en": "deliberately",
+          "es": "a propósito"
+        },
+        {
+          "en": "essentially",
+          "es": "en esencia"
+        },
+        {
+          "en": "explicitly",
+          "es": "explícitamente"
+        },
+        {
+          "en": "inevitably",
+          "es": "inevitablemente"
+        },
+        {
+          "en": "merely",
+          "es": "meramente"
+        },
+        {
+          "en": "overly",
+          "es": "excesivamente"
+        },
+        {
+          "en": "presumably",
+          "es": "es de suponer que"
+        },
+        {
+          "en": "primarily",
+          "es": "primordialmente"
+        },
+        {
+          "en": "relatively",
+          "es": "relativamente"
+        },
+        {
+          "en": "partially",
+          "es": "parcialmente"
+        },
+        {
+          "en": "significantly",
+          "es": "significativamente"
+        },
+        {
+          "en": "seemingly",
+          "es": "aparentemente"
+        },
+        {
+          "en": "thereby",
+          "es": "de ese modo"
+        },
+        {
+          "en": "ultimately",
+          "es": "en última instancia"
+        },
+        {
+          "en": "virtually",
+          "es": "prácticamente"
+        },
+        {
+          "en": "increasingly",
+          "es": "cada vez más"
+        },
+        {
+          "en": "largely",
+          "es": "en gran parte"
+        },
+        {
+          "en": "respectively",
+          "es": "respectivamente"
+        },
+        {
+          "en": "thoroughly",
+          "es": "a fondo"
+        },
+        {
+          "en": "undoubtedly",
+          "es": "indudablemente"
+        },
+        {
+          "en": "widely",
+          "es": "ampliamente"
+        },
+        {
+          "en": "literally",
+          "es": "literalmente"
+        },
+        {
+          "en": "precisely",
+          "es": "precisamente"
+        }
+      ]
+    },
+    {
+      "id": "conectores2-b2",
+      "title": "🔗 Conectores 2 · B2",
+      "level": "B2",
+      "pares": [
+        {
+          "en": "rather than",
+          "es": "en lugar de"
+        },
+        {
+          "en": "provided that",
+          "es": "con tal de que"
+        },
+        {
+          "en": "on the contrary",
+          "es": "al contrario"
+        },
+        {
+          "en": "hence",
+          "es": "de ahí que"
+        },
+        {
+          "en": "thus",
+          "es": "así (de este modo)"
+        },
+        {
+          "en": "given that",
+          "es": "dado que"
+        },
+        {
+          "en": "in light of",
+          "es": "a la luz de"
+        },
+        {
+          "en": "in terms of",
+          "es": "en cuanto a"
+        },
+        {
+          "en": "as opposed to",
+          "es": "a diferencia de"
+        },
+        {
+          "en": "on the grounds that",
+          "es": "alegando que"
+        },
+        {
+          "en": "so as to",
+          "es": "a fin de"
+        },
+        {
+          "en": "moreover",
+          "es": "es más"
+        },
+        {
+          "en": "for the sake of",
+          "es": "por el bien de"
+        },
+        {
+          "en": "on behalf of",
+          "es": "en nombre de"
+        },
+        {
+          "en": "by means of",
+          "es": "por medio de"
+        },
+        {
+          "en": "in the event that",
+          "es": "en caso de que"
+        },
+        {
+          "en": "even if",
+          "es": "aun si"
+        },
+        {
+          "en": "whether or not",
+          "es": "sea o no"
+        },
+        {
+          "en": "likewise",
+          "es": "del mismo modo"
+        },
+        {
+          "en": "that is to say",
+          "es": "es decir"
+        },
+        {
+          "en": "all in all",
+          "es": "en resumidas cuentas"
+        },
+        {
+          "en": "namely",
+          "es": "a saber"
+        },
+        {
+          "en": "as well as",
+          "es": "así como"
+        },
+        {
+          "en": "not to mention",
+          "es": "por no mencionar"
+        },
+        {
+          "en": "in the sense that",
+          "es": "en el sentido de que"
+        }
+      ]
+    },
+    {
+      "id": "abstractos2-b2",
+      "title": "💭 Conceptos abstractos 2 · B2",
+      "level": "B2",
+      "pares": [
+        {
+          "en": "trade-off",
+          "es": "sacrificio (entre dos opciones)"
+        },
+        {
+          "en": "ethics",
+          "es": "ética"
+        },
+        {
+          "en": "legacy",
+          "es": "legado"
+        },
+        {
+          "en": "wisdom",
+          "es": "sabiduría"
+        },
+        {
+          "en": "concern",
+          "es": "inquietud"
+        },
+        {
+          "en": "consensus",
+          "es": "consenso"
+        },
+        {
+          "en": "criterion",
+          "es": "criterio"
+        },
+        {
+          "en": "dilemma",
+          "es": "dilema"
+        },
+        {
+          "en": "drawback",
+          "es": "inconveniente"
+        },
+        {
+          "en": "emphasis",
+          "es": "énfasis"
+        },
+        {
+          "en": "framework",
+          "es": "marco (de referencia)"
+        },
+        {
+          "en": "implication",
+          "es": "implicación"
+        },
+        {
+          "en": "insight",
+          "es": "comprensión profunda"
+        },
+        {
+          "en": "integrity",
+          "es": "integridad"
+        },
+        {
+          "en": "motivation",
+          "es": "motivación"
+        },
+        {
+          "en": "outcome",
+          "es": "resultado (final)"
+        },
+        {
+          "en": "perception",
+          "es": "percepción"
+        },
+        {
+          "en": "perspective",
+          "es": "perspectiva"
+        },
+        {
+          "en": "rationale",
+          "es": "fundamento"
+        },
+        {
+          "en": "scope",
+          "es": "alcance"
+        },
+        {
+          "en": "tendency",
+          "es": "tendencia"
+        },
+        {
+          "en": "threat",
+          "es": "amenaza"
+        },
+        {
+          "en": "notion",
+          "es": "noción"
+        },
+        {
+          "en": "accountability",
+          "es": "rendición de cuentas"
+        },
+        {
+          "en": "dignity",
+          "es": "dignidad"
+        }
+      ]
+    },
+    {
+      "id": "academico-b2",
+      "title": "🎓 Escritura académica · B2",
+      "level": "B2",
+      "pares": [
+        {
+          "en": "thesis statement",
+          "es": "tesis central (de un ensayo)"
+        },
+        {
+          "en": "appendix",
+          "es": "apéndice"
+        },
+        {
+          "en": "cite",
+          "es": "citar (una fuente)"
+        },
+        {
+          "en": "draft",
+          "es": "borrador (de un texto)"
+        },
+        {
+          "en": "research question",
+          "es": "pregunta de investigación"
+        },
+        {
+          "en": "data analysis",
+          "es": "análisis de datos"
+        },
+        {
+          "en": "word count",
+          "es": "número de palabras"
+        },
+        {
+          "en": "rubric",
+          "es": "rúbrica"
+        },
+        {
+          "en": "proofread",
+          "es": "corregir (un texto)"
+        },
+        {
+          "en": "acknowledgments",
+          "es": "agradecimientos"
+        },
+        {
+          "en": "variable",
+          "es": "variable"
+        },
+        {
+          "en": "trend",
+          "es": "tendencia (en los datos)"
+        },
+        {
+          "en": "quotation marks",
+          "es": "comillas"
+        },
+        {
+          "en": "bullet point",
+          "es": "viñeta"
+        },
+        {
+          "en": "pie chart",
+          "es": "gráfico circular"
+        },
+        {
+          "en": "margin of error",
+          "es": "margen de error"
+        },
+        {
+          "en": "outline",
+          "es": "esquema"
+        },
+        {
+          "en": "focus group",
+          "es": "grupo focal"
+        },
+        {
+          "en": "respondent",
+          "es": "encuestado"
+        },
+        {
+          "en": "critical thinking",
+          "es": "pensamiento crítico"
+        },
+        {
+          "en": "control group",
+          "es": "grupo de control"
+        },
+        {
+          "en": "table of contents",
+          "es": "índice (de contenido)"
+        },
+        {
+          "en": "paraphrase",
+          "es": "paráfrasis"
+        },
+        {
+          "en": "qualitative",
+          "es": "cualitativo"
+        },
+        {
+          "en": "heading",
+          "es": "encabezado (de sección)"
+        }
+      ]
+    },
+    {
+      "id": "falsos-amigos-b2",
+      "title": "🎭 Falsos amigos · B2",
+      "level": "B2",
+      "pares": [
+        {
+          "en": "congested",
+          "es": "constipado"
+        },
+        {
+          "en": "reading",
+          "es": "lectura"
+        },
+        {
+          "en": "disgust",
+          "es": "asco"
+        },
+        {
+          "en": "current",
+          "es": "actual"
+        },
+        {
+          "en": "coincidence",
+          "es": "casualidad"
+        },
+        {
+          "en": "casualty",
+          "es": "víctima (de un accidente)"
+        },
+        {
+          "en": "deception",
+          "es": "engaño"
+        },
+        {
+          "en": "cliche",
+          "es": "lugar común"
+        },
+        {
+          "en": "embarrassing",
+          "es": "embarazoso"
+        },
+        {
+          "en": "incident",
+          "es": "suceso"
+        },
+        {
+          "en": "displeasure",
+          "es": "disgusto"
+        },
+        {
+          "en": "aim to",
+          "es": "pretender"
+        },
+        {
+          "en": "costume",
+          "es": "disfraz"
+        },
+        {
+          "en": "indeed",
+          "es": "efectivamente"
+        },
+        {
+          "en": "likable",
+          "es": "simpático"
+        },
+        {
+          "en": "well-known",
+          "es": "notorio"
+        },
+        {
+          "en": "planner",
+          "es": "agenda (libreta)"
+        },
+        {
+          "en": "law firm",
+          "es": "bufete"
+        },
+        {
+          "en": "quarrel",
+          "es": "discusión (pelea)"
+        },
+        {
+          "en": "constipated",
+          "es": "estreñido"
+        },
+        {
+          "en": "jam",
+          "es": "mermelada"
+        },
+        {
+          "en": "understanding",
+          "es": "comprensivo"
+        },
+        {
+          "en": "trillion",
+          "es": "billón"
+        },
+        {
+          "en": "educated",
+          "es": "culto"
+        },
+        {
+          "en": "nuisance",
+          "es": "molestia"
+        }
+      ]
+    },
+    {
+      "id": "tiempo4-b2",
+      "title": "⏳ Tiempo y secuencia · avanzado · B2",
+      "level": "B2",
+      "pares": [
+        {
+          "en": "beforehand",
+          "es": "de antemano"
+        },
+        {
+          "en": "simultaneously",
+          "es": "simultáneamente"
+        },
+        {
+          "en": "in due course",
+          "es": "a su debido tiempo"
+        },
+        {
+          "en": "for the time being",
+          "es": "por el momento"
+        },
+        {
+          "en": "at the latest",
+          "es": "a más tardar"
+        },
+        {
+          "en": "at the earliest",
+          "es": "como muy pronto"
+        },
+        {
+          "en": "thereafter",
+          "es": "a partir de entonces"
+        },
+        {
+          "en": "in the meantime",
+          "es": "entretanto"
+        },
+        {
+          "en": "shortly",
+          "es": "en breve"
+        },
+        {
+          "en": "instantly",
+          "es": "al instante"
+        },
+        {
+          "en": "overdue",
+          "es": "vencido (atrasado)"
+        },
+        {
+          "en": "ongoing",
+          "es": "en curso"
+        },
+        {
+          "en": "timeline",
+          "es": "cronograma"
+        },
+        {
+          "en": "in the short term",
+          "es": "a corto plazo"
+        },
+        {
+          "en": "once in a while",
+          "es": "de vez en cuando"
+        },
+        {
+          "en": "timely",
+          "es": "oportuno"
+        },
+        {
+          "en": "up to date",
+          "es": "al día"
+        },
+        {
+          "en": "outdated",
+          "es": "anticuado"
+        },
+        {
+          "en": "on a regular basis",
+          "es": "con regularidad"
+        },
+        {
+          "en": "in the nick of time",
+          "es": "justo a tiempo"
+        },
+        {
+          "en": "time and again",
+          "es": "una y otra vez"
+        },
+        {
+          "en": "all along",
+          "es": "todo el tiempo (desde el inicio)"
+        },
+        {
+          "en": "interval",
+          "es": "intervalo"
+        },
+        {
+          "en": "chronological",
+          "es": "cronológico"
+        },
+        {
+          "en": "for good",
+          "es": "definitivamente"
+        }
+      ]
+    },
+    {
+      "id": "cantidad-b2",
+      "title": "⚖️ Cantidad y grado · B2",
+      "level": "B2",
+      "pares": [
+        {
+          "en": "a great deal",
+          "es": "una gran cantidad"
+        },
+        {
+          "en": "at most",
+          "es": "como máximo"
+        },
+        {
+          "en": "the bulk of",
+          "es": "la mayor parte de"
+        },
+        {
+          "en": "a fraction",
+          "es": "una fracción"
+        },
+        {
+          "en": "a handful",
+          "es": "un puñado"
+        },
+        {
+          "en": "marginal",
+          "es": "marginal"
+        },
+        {
+          "en": "abundance",
+          "es": "abundancia"
+        },
+        {
+          "en": "scarce",
+          "es": "escaso"
+        },
+        {
+          "en": "excess",
+          "es": "exceso"
+        },
+        {
+          "en": "on average",
+          "es": "en promedio"
+        },
+        {
+          "en": "negligible",
+          "es": "insignificante"
+        },
+        {
+          "en": "vast",
+          "es": "vasto"
+        },
+        {
+          "en": "countless",
+          "es": "incontables"
+        },
+        {
+          "en": "somewhat",
+          "es": "un tanto"
+        },
+        {
+          "en": "twice as much",
+          "es": "el doble"
+        },
+        {
+          "en": "a minority",
+          "es": "una minoría"
+        },
+        {
+          "en": "per capita",
+          "es": "por habitante"
+        },
+        {
+          "en": "proportion",
+          "es": "proporción"
+        },
+        {
+          "en": "a wide range of",
+          "es": "una amplia gama de"
+        },
+        {
+          "en": "a series of",
+          "es": "una serie de"
+        },
+        {
+          "en": "a trace of",
+          "es": "un rastro de"
+        },
+        {
+          "en": "the remainder",
+          "es": "el resto"
+        },
+        {
+          "en": "a substantial increase",
+          "es": "un aumento considerable"
+        },
+        {
+          "en": "a steep decline",
+          "es": "una fuerte caída"
+        },
+        {
+          "en": "infinite",
+          "es": "infinito"
+        }
+      ]
+    },
+    {
+      "id": "emocion-expresiones-b2",
+      "title": "🗣️ Opinión y actitud · B2",
+      "level": "B2",
+      "pares": [
+        {
+          "en": "to my mind",
+          "es": "a mi parecer"
+        },
+        {
+          "en": "frankly",
+          "es": "francamente"
+        },
+        {
+          "en": "admittedly",
+          "es": "hay que reconocer que"
+        },
+        {
+          "en": "needless to say",
+          "es": "sobra decir que"
+        },
+        {
+          "en": "by and large",
+          "es": "en líneas generales"
+        },
+        {
+          "en": "in hindsight",
+          "es": "en retrospectiva"
+        },
+        {
+          "en": "to be fair",
+          "es": "para ser justos"
+        },
+        {
+          "en": "on second thought",
+          "es": "pensándolo bien"
+        },
+        {
+          "en": "for what it's worth",
+          "es": "por si sirve de algo"
+        },
+        {
+          "en": "strictly speaking",
+          "es": "en sentido estricto"
+        },
+        {
+          "en": "all things considered",
+          "es": "teniendo todo en cuenta"
+        },
+        {
+          "en": "to some extent",
+          "es": "hasta cierto punto"
+        },
+        {
+          "en": "if anything",
+          "es": "en todo caso"
+        },
+        {
+          "en": "I'm inclined to think",
+          "es": "me inclino a pensar"
+        },
+        {
+          "en": "mixed feelings",
+          "es": "sentimientos encontrados"
+        },
+        {
+          "en": "fair enough",
+          "es": "me parece razonable"
+        },
+        {
+          "en": "a matter of opinion",
+          "es": "cuestión de opiniones"
+        },
+        {
+          "en": "to my surprise",
+          "es": "para mi sorpresa"
+        },
+        {
+          "en": "thankfully",
+          "es": "menos mal"
+        },
+        {
+          "en": "understandably",
+          "es": "comprensiblemente"
+        },
+        {
+          "en": "ironically",
+          "es": "irónicamente"
+        },
+        {
+          "en": "I couldn't agree more",
+          "es": "estoy totalmente de acuerdo"
+        },
+        {
+          "en": "I beg to differ",
+          "es": "me permito discrepar"
+        },
+        {
+          "en": "that's beside the point",
+          "es": "eso no viene al caso"
+        },
+        {
+          "en": "believe it or not",
+          "es": "aunque no lo creas"
+        }
+      ]
     }
   ]
 }

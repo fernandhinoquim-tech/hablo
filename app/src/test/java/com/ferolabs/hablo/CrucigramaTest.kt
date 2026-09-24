@@ -75,11 +75,11 @@ class CrucigramaTest {
     }
 
     @Test
-    fun `el crucigramas json del repo carga con sus 166 rejillas y las pistas son las del banco`() {
+    fun `el crucigramas json del repo carga con sus 210 rejillas y las pistas son las del banco`() {
         val f = File("src/main/assets/content/crucigramas.json")
         assertTrue("falta " + f.absolutePath, f.exists())
         val lista = Course.parseCrucigramas(JSONObject(f.readText()).getJSONArray("crucigramas"))
-        assertEquals(166, lista.size)
+        assertEquals(210, lista.size)
         assertTrue(lista.all { it.palabras.size in 5..8 && it.filas <= 10 && it.columnas <= 10 })
         val bancos = Course.parseBancos(JSONObject(File("src/main/assets/content/vocabulario.json").readText()).getJSONArray("bancos"))
             .associateBy { it.id }
