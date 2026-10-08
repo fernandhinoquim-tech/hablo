@@ -967,6 +967,17 @@ comprobado en el código, varios medidos).** Lo arreglado, por si vuelve:
 - **Lo que NO se hizo** (decisión o costo): no hay botón para saltar los
   ejercicios de hablar en las lecciones (si no puede hablar, sale con ←);
   el dictado de números no pone primero lo fallado (se corrigió el texto).
+- **Probado en el S25 el 08-10** (progreso de Fero copiado antes con
+  `scratchpad/foto_estado.sh` y devuelto byte a byte después): la racha se ve
+  en 0 al abrir (estaba rota desde el 17-09 y antes seguía diciendo 2); el
+  repaso completo hasta el resultado guarda los puntos AL LLEGAR a la pantalla
+  del resultado (1155 → 1230) y el gesto atrás no los pierde (inicio: racha 1,
+  "Hoy ✓"); el 📖 a mitad de lección + gesto atrás vuelve al ejercicio (antes
+  sacaba de la lección); sin cierres de la app en el log. **Lo que no se puede
+  probar por adb:** un ejercicio de hablar (la supresión de ruido del teléfono
+  no deja que el micrófono oiga la voz de Piper del propio teléfono) ni el
+  enunciado en español del repaso (no está expuesto a accesibilidad: invisible
+  para uiautomator y para TalkBack).
 
 **0.9.10** (2026-09-24: el nivel B2 completo y el respaldo
 del progreso; ver "Nivel B2" y "Respaldo del progreso"). **0.9.9**
