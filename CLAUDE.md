@@ -906,6 +906,17 @@ pantalla: es una estimación, no la nota real**) y bancos grandes de ítems
 **Versión actual: 0.9.11** (2026-10-08: Reading parte 3 de Aptis y la
 revisión completa antes de que Fero empiece a estudiar; ver abajo).
 
+**EL EXAMEN APTIS DE FERO ES HACIA EL 28-10-2026** (dato de Cowork, 08-10).
+Core ampliado ese día (`contenido-nuevo/integrado/2026-10-08-aptis-core-ampliado/`):
+160 + 160 ítems (gramática g061-g160, vocabulario v061-v160; los 60 de cada
+banco idénticos, comprobado por id), Core de la pista = 335 con el simulacro.
+**El simulacro está siempre abierto** (antes, solo con las cinco pistas en
+B1): mientras no lleguen, la tarjeta dice "hazlo ahora como diagnóstico… te
+dice tu piso"; plan de Cowork: hacerlo los días 1, 10 y 17. Cuaderno de Fero
+limpiado ese día a pedido suyo ("borra"): fuera las 22 respuestas de prueba del
+16-09 (traducir al azar del repaso automatizado), "zzz" y el falso error
+"drink" de a1u4l3e9 (fallo del hueco arreglado en la 0.9.1): de 41 a 17.
+
 **Revisión completa del 08-10 (cuatro revisores por área; cada hallazgo
 comprobado en el código, varios medidos).** Lo arreglado, por si vuelve:
 - Lecciones: el resultado se guarda AL LLEGAR a la pantalla de resultado

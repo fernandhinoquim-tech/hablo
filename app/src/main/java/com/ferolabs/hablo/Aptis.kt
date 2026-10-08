@@ -879,7 +879,7 @@ class Aptis(private val file: File) {
         return banco.cuatro.filter { orden(it) == minimo }
     }
 
-    /** El simulacro completo se abre cuando las cinco pistas han ALCANZADO B1 o más. */
+    /** Las cinco pistas han ALCANZADO B1 o más. Desde el 08-10 ya no bloquea el simulacro (siempre abierto, como diagnóstico): solo cambia su texto. */
     fun simulacroDesbloqueado(banco: BancoAptis): Boolean = banco.pistas.all { (alcanzado(it) ?: NivelAptis.A1) >= NivelAptis.B1 && alcanzado(it) != null }
 
     fun faltanParaSimulacro(banco: BancoAptis): List<PistaAptis> = banco.pistas.filter { alcanzado(it)?.let { n -> n < NivelAptis.B1 } ?: true }

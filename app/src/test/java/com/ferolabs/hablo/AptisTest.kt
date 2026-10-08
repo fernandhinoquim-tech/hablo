@@ -35,14 +35,14 @@ class AptisTest {
         val b = banco()
         assertEquals(listOf("core", "reading", "listening", "writing", "speaking"), b.pistas.map { it.id })
         val core = b.pista("core")!!
-        assertTrue("core: ${core.tareas.size}", core.tareas.size in 121..135)   // 120 + los 15 del simulacro menos los repetidos
+        assertTrue("core: ${core.tareas.size}", core.tareas.size in 321..335)   // 320 (08-10: 100 + 100 nuevos) + los 15 del simulacro menos los repetidos
         assertTrue(core.tareas.all { it is ItemCore })
         assertEquals(30, core.segundosPorItem)
         assertEquals(Condicion(4, 5), core.promocion)
         assertEquals(10, core.ronda)
         // el vocabulario viene con subtipo y prompt; la gramática con hueco y point
         val vocab = core.tareas.filterIsInstance<ItemCore>().filter { it.sub.isNotBlank() }
-        assertEquals(60, vocab.size)
+        assertEquals(160, vocab.size)   // 60 + 100 del 08-10
         assertEquals(setOf("synonym", "definition", "usage", "collocation"), vocab.map { it.sub }.toSet())
         assertTrue(vocab.filter { it.sub != "usage" }.all { it.prompt.isNotBlank() && it.text.isBlank() })
         assertTrue(core.tareas.filterIsInstance<ItemCore>().filter { it.sub.isBlank() }.all { it.text.contains("___") })

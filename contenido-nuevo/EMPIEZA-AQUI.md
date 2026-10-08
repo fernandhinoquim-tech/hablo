@@ -47,6 +47,8 @@ App Android para que **Fero** (colombiano, 40 años, doctorando, **no programa**
 
 - `aptis-niveles` ya entró (08-10, `integrado/2026-09-28-aptis-niveles/`): Writing 60 · Speaking 63 · Reading 67 · Listening 73.
 - **`contenido-nuevo/aptis-reading-parte3/`** (08-10): Reading parte 3 (opiniones), la única parte del examen que faltaba. 18 tareas (A2 4 · B1 10 · B2 4) con cita textual por pregunta. Necesita el tipo nuevo `opiniones` en `Aptis.kt`, `checkContent` y `ScreenAptis.kt`; la especificación está en su `COMO-INTEGRAR.md`.
+- **`contenido-nuevo/aptis-core-ampliado/`** (08-10): Core de 120 a 320 ítems (gramática y vocabulario 160 cada uno, sobre todo B1) y el pedido de abrir el simulacro ya, como diagnóstico. Va ANTES que Reading parte 3: es copiar dos archivos.
+- **Fero tiene el examen en 20 días (≈ 28-10-2026)** y necesita B1 en las cuatro. El plan día por día está en la guía.
 - Guía para Fero «Aptis B1 parte por parte» (doc en claude.ai, 08-10): formato oficial del Core y las 4 destrezas parte por parte, ejemplos resueltos, respuestas modelo B1, plan diario y los enlaces a las prácticas oficiales del British Council.
 
 ## Pendiente (en orden de valor)

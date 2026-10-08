@@ -241,7 +241,9 @@ fun AptisScreen(
                 }
             }
 
-            // El simulacro completo, de una sentada, solo con las cinco en B1.
+            // El simulacro completo, de una sentada. Siempre abierto desde el 08-10 (Cowork: el
+            // examen es hacia el 28-10 y no hay tiempo de esperar a las cinco en B1): antes de eso
+            // sirve de diagnóstico; [desbloqueado] (las cinco en B1) solo cambia el texto.
             banco.simulacro?.let { diag ->
                 val faltan = aptis.faltanParaSimulacro(banco)
                 val completo = remember(tick) { aptis.simulacroCompleto(diag) }
@@ -250,19 +252,24 @@ fun AptisScreen(
                     verticalArrangement = Arrangement.spacedBy(6.dp),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .background(if (desbloqueado) Color.White else Color(0xFFF6F2ED), RoundedCornerShape(16.dp))
-                        .border(1.dp, if (desbloqueado) accent.copy(alpha = 0.5f) else Line, RoundedCornerShape(16.dp))
-                        .clickable(enabled = desbloqueado) { onSimulacro() }
+                        .background(Color.White, RoundedCornerShape(16.dp))
+                        .border(1.dp, accent.copy(alpha = 0.5f), RoundedCornerShape(16.dp))
+                        .clickable { onSimulacro() }
                         .padding(16.dp)
                 ) {
-                    Text(if (desbloqueado) "⏱ Simulacro completo" else "🔒 Simulacro completo", style = MaterialTheme.typography.titleMedium, color = if (desbloqueado) Ink else InkSoft)
+                    Text(if (desbloqueado) "⏱ Simulacro completo" else "⏱ Simulacro", style = MaterialTheme.typography.titleMedium, color = Ink)
                     Text(
                         when {
-                            !desbloqueado -> "Se abre cuando las cinco pistas hayan alcanzado B1 o más. Te falta: " + juntar(faltan.map { "${it.skill} (${etiquetaNivel(aptis.alcanzado(it))})" }) + "."
                             completo -> "Último simulacro: piso " + juntar(pisoSim.map { it.skill }) + " · " + (pisoSim.firstOrNull()?.let { aptis.nivelesSimulacro(diag)[it.id]?.etiqueta } ?: "") + ". Toca para verlo o repetirlo."
+                            !desbloqueado -> "Hazlo ahora como diagnóstico: estima tu nivel en cada destreza y te dice tu piso. Repítelo cuando las cinco lleguen a B1."
                             else -> "${diag.duracionMin} minutos, ${diag.tareas} tareas, con el reloj de verdad y de una sentada."
                         },
                         style = MaterialTheme.typography.bodyMedium, color = InkSoft
+                    )
+                    if (!desbloqueado) Text(
+                        "${diag.duracionMin} minutos, ${diag.tareas} tareas, de una sentada. Todavía sin B1: " +
+                            juntar(faltan.map { "${it.skill} (${etiquetaNivel(aptis.alcanzado(it))})" }) + ".",
+                        style = MaterialTheme.typography.labelMedium, color = InkSoft
                     )
                 }
             }
