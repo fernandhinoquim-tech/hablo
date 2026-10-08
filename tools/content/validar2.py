@@ -15,7 +15,8 @@ CONTR=[("i'm","i am"),("you're","you are"),("we're","we are"),("they're","they a
  ("let's","let us"),
  ("must've","must have"),("should've","should have"),("would've","would have"),
  ("could've","could have"),("might've","might have"),
- ("hadn't","had not"),("hasn't","has not"),("haven't","have not")]
+ ("hadn't","had not"),("hasn't","has not"),("haven't","have not"),
+ ("mustn't","must not"),("needn't","need not")]
 
 UNIDADES=["zero","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve",
  "thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen"]

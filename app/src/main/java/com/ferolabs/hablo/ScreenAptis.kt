@@ -315,7 +315,9 @@ fun PistaScreen(
     val nivelActual = remember(aptis.tick) { aptis.nivel(pista) }
     val alcanzado = remember(aptis.tick) { aptis.alcanzado(pista) }
     val disponibles = remember(aptis.tick) { pista.de(aptis.nivel(pista)).size }
-    val mezcla = remember(aptis.tick) { aptis.flojo(pista) }
+    // Solo se mezcla si hay nivel anterior con tareas y la ronda trae más de una (Writing trae una):
+    // antes decía "mezcla tareas de A1" en el propio A1, o "mezcla  para afianzar" sin nivel (08-10).
+    val mezcla = remember(aptis.tick) { aptis.flojo(pista) && pista.anteriorCon(aptis.nivel(pista)) != null && pista.ronda >= 2 }
 
     fun armar() {
         cola = aptis.ronda(pista)
@@ -323,6 +325,9 @@ fun PistaScreen(
         hechos.clear()
         actual = null
         juicioFallido = null
+        // El aviso de "alcanzas X" es de la ronda en que pasó; antes reaparecía en las siguientes (08-10).
+        promocion = null
+        promocionEn = -1
         fase = if (cola.isEmpty()) FasePista.FIN else FasePista.TAREA
     }
 
@@ -345,7 +350,9 @@ fun PistaScreen(
         val t = cola[idx]
         JuezAptis.juzgar(claude, t, j) { r ->
             main.post {
-                if (r.valido) registrar(Intento(r.id, r.level, r.nivel!! >= t.nivel, aptis.hoy(), "", r))
+                // En blanco no aprueba nunca: el juicio de "sin texto" vale A1 (para el simulacro),
+                // y en la pista una tarea A1 vacía contaba como acierto y podía subir de nivel (08-10).
+                if (r.valido) registrar(Intento(r.id, r.level, r.texto.isNotBlank() && r.cita != "(no hubo texto)" && r.nivel!! >= t.nivel, aptis.hoy(), "", r))
                 else { juicioFallido = r; actual = null; fase = FasePista.CORRECCION }
             }
         }
@@ -408,7 +415,7 @@ fun PistaScreen(
                     Text(
                         when (pista.id) {
                             "core" -> "Ronda de ${pista.ronda}: un ítem, tres opciones, 30 segundos cada uno, como en el examen. Después de cada uno ves la corrección y el porqué."
-                            "reading" -> "Ronda de ${pista.ronda} tareas de lectura: completar, ordenar frases y poner títulos. Después de cada una ves la corrección."
+                            "reading" -> "Ronda de ${pista.ronda} tareas de lectura: completar, ordenar frases, decir quién opina qué y poner títulos. Después de cada una ves la corrección."
                             "listening" -> "Ronda de ${pista.ronda}: ${teacher.name} lee cada audio (hasta dos veces) y respondes en español. Después de cada una ves lo que decía."
                             "writing" -> "Escribes en inglés con reloj y Claude estima el nivel citando una frase tuya. Cuenta como acierto si llega al nivel de la tarea."
                             else -> "${teacher.name} te lee la pregunta, preparas si toca y hablas hasta que se acabe el reloj. Claude estima el nivel de lo que dices (no cómo suena) citando una frase tuya."
@@ -544,7 +551,7 @@ private fun CorreccionAptis(t: TareaAptis, intento: Intento?, fallido: JuicioIa?
             if (t.why.isNotBlank()) Tarjeta { Text("POR QUÉ", style = MaterialTheme.typography.labelMedium, color = AvisoTinta); Text(t.why, style = MaterialTheme.typography.bodyMedium, color = Ink) }
         }
         is TareaLectura.Titulos -> {
-            Text(if (ok) "✓ Los tres títulos" else "✗ Los títulos eran estos", style = MaterialTheme.typography.headlineSmall, color = if (ok) GoodGreen else BadRed)
+            Text(if (ok) "✓ Los ${t.parrafos.size} títulos" else "✗ Los títulos eran estos", style = MaterialTheme.typography.headlineSmall, color = if (ok) GoodGreen else BadRed)
             t.parrafos.forEachIndexed { i, p ->
                 Tarjeta {
                     Text(t.answer[i], style = MaterialTheme.typography.titleMedium, color = Ink)

@@ -98,7 +98,8 @@ class Mazo(private val file: File) {
             }
             aguantaMarca = json.optInt("aguanta", 0)
         } catch (e: Throwable) {
-            Log.e(TAG, "mazo.json ilegible; se empieza de cero", e)
+            Log.e(TAG, "mazo.json ilegible; se aparta como .roto y se empieza de cero", e)
+            file.apartarRoto()
         }
     }
 
@@ -128,7 +129,7 @@ class Mazo(private val file: File) {
                 })
                 .put("aguanta", aguantaMarca)
             file.parentFile?.mkdirs()
-            file.writeText(json.toString())
+            file.escribirSeguro(json.toString())
         } catch (e: Throwable) {
             Log.e(TAG, "no se pudo guardar el mazo", e)
         }

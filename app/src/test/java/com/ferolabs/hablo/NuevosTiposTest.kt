@@ -16,6 +16,14 @@ class NuevosTiposTest {
     // ------------------------------------------------------------ parseo
 
     @Test
+    fun `el diagnostico ve el articulo que falta aunque la respuesta lleve 's y mustn't vale por must not (08-10)`() {
+        assertEquals("Te faltó la palabra «a».", Correccion.diagnostico("That is fair point.", "That's a fair point."))
+        assertTrue(Correccion.acepta("You must not be late.", "You mustn't be late.", emptyList()))
+        assertTrue(Correccion.acepta("You need not come.", "You needn't come.", emptyList()))
+        assertFalse(Correccion.acepta("You must be late.", "You mustn't be late.", emptyList()))
+    }
+
+    @Test
     fun `write bien formado carga con sus alternativas`() {
         val ex = uno("""{"id":"t1l1e1","type":"write","es":"Ella trabaja en un hospital.","answer":"She works in a hospital.","accept":["She works at a hospital."]}""")
         val w = ex as Exercise.WriteIt

@@ -903,7 +903,61 @@ pantalla: es una estimación, no la nota real**) y bancos grandes de ítems
 
 ## Estado y plan
 
-**Versión actual: 0.9.10** (2026-09-24: el nivel B2 completo y el respaldo
+**Versión actual: 0.9.11** (2026-10-08: Reading parte 3 de Aptis y la
+revisión completa antes de que Fero empiece a estudiar; ver abajo).
+
+**Revisión completa del 08-10 (cuatro revisores por área; cada hallazgo
+comprobado en el código, varios medidos).** Lo arreglado, por si vuelve:
+- Lecciones: el resultado se guarda AL LLEGAR a la pantalla de resultado
+  (`LaunchedEffect` + `onFinish` solo guarda; el botón y el gesto atrás solo
+  salen): antes el gesto atrás perdía nota, XP, racha y frases del mazo (en
+  repaso y Aguanta también). El gesto atrás con la ficha 📖 abierta la cierra
+  (antes sacaba de la lección). `bank` y el desplazamiento se calculan antes
+  de los `return` tempranos (Compose suelta lo recordado tras un return: las
+  fichas de "armar" se rebarajaban al volver del 📖). Antes de grabar se calla
+  a la profesora (`callar`), también en Oído, Historias y Pronunciación.
+- Habla: `numerosDichos`/`hablado` en `Pronunciation.kt`: Moonshine escribe
+  "$12.50", "13:30", "21st", "50,000", "1920"; ahora se cambia por la forma
+  hablada SOLO si todas sus palabras están en la frase pedida (si no, queda la
+  cifra: "925" por "I'm twenty-five" sigue reprobando). a1u14l1e3 estaba en
+  16 % con las cuatro voces y no se podía pasar.
+- Corrección: `mustn't`/`needn't` en `CONTRACCIONES` (y en checkContent,
+  `validar2.py` y el `grader.py` de Cowork; 16 `accept` de B2 quedaron
+  duplicados y se quitaron con `dedupe_accept.py`). `diagnostico` compara
+  también las lecturas largas de 's/'d ("That is fair point" → "Te faltó la
+  palabra «a»"). "Corrige tu propio error" muestra el español y salta lo que
+  hoy ya se acepta. El mazo no pone de señuelo una frase que el ítem acepta.
+  `Repaso` memoriza las formas normalizadas (Aguanta era cuadrático).
+- Racha: `Store.marcarEstudio()` desde cualquier actividad (`Progreso.alAnotar`,
+  `Aptis.alRegistrar`, contrarreloj); la racha mostrada es 0 si se saltó un día.
+- Archivos de progreso: `escribirSeguro` (tmp + rename) y `apartarRoto` en
+  progreso, mazo, memoria, Aptis y crucigramas (`Archivos.kt`).
+- Respaldo: `podar` ordena por la fecha del nombre y nunca borra la copia
+  recién hecha (con 5 "antes-de-recuperar" se borraba la de "antes-de-borrar").
+- Informe: nivel y "aprobadas" con ≥ 60; "raspando" 60-79. Memoria: un error
+  repetido pasa al final (antes salía primero el que más se repite).
+- Conversación: turnos de hasta 45 s (antes 12); una respuesta vacía no entra
+  al historial (la API rechaza los turnos siguientes); lo que va antes de
+  CORRECCIÓN: en la misma línea es inglés y las líneas en español siguientes
+  son corrección; no se manda nada si ya se salió; `ClaudeLlm.stop()` cierra
+  la conexión. IA del teléfono: los pedidos se ENCOLAN (antes se perdían si
+  estaba ocupada y la burbuja quedaba en "…"), al llenarse la memoria se
+  quitan los turnos más viejos (nunca el sistema), N_CTX 4096, y un fallo
+  llega a la pantalla. **Ojo: el 08-10 el teléfono de Fero tenía elegida la
+  IA del teléfono, no Claude** (`conversation_engine=local`).
+- Aptis: en blanco nunca aprueba (antes una tarea A1 vacía subía de nivel);
+  el aviso de promoción no reaparece en rondas siguientes; "mezcla" solo si
+  de verdad se mezcla. Oído guarda el resultado al terminar los pares; el
+  bloque bus/buzz pasó a `general` (su frase no tiene la s de "es").
+  Crucigramas: al reabrir, empieza en la primera palabra sin resolver.
+  Contrarreloj: el gesto atrás vuelve a la lista. Textos viejos fuera ("Lo
+  que viene" del inicio; Ajustes y el pie dicen que Aptis Writing/Speaking
+  van a Claude).
+- **Lo que NO se hizo** (decisión o costo): no hay botón para saltar los
+  ejercicios de hablar en las lecciones (si no puede hablar, sale con ←);
+  el dictado de números no pone primero lo fallado (se corrigió el texto).
+
+**0.9.10** (2026-09-24: el nivel B2 completo y el respaldo
 del progreso; ver "Nivel B2" y "Respaldo del progreso"). **0.9.9**
 (2026-09-17/18: el nivel B1 con su vocabulario y crucigramas; ver "Nivel B1"). **0.9.8** (2026-09-17: Oído, dictado de
 números, crucigramas, 24 historias, 70 drills, las pistas de Aptis

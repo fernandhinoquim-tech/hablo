@@ -155,6 +155,9 @@ fun HistoriaScreen(
     DisposableEffect(Unit) { onDispose { speaker.stop(); listener.stopRecording() } }
 
     fun grabar() {
+        // Si la profesora sigue leyendo la historia, el micrófono la oye a ella y su lectura
+        // contaba como tu retell (08-10).
+        speaker.stop()
         listener.startRecording(target = historia.texto, sound = Sound.GENERAL, maxSeconds = 20) { r ->
             when (r) {
                 is ListenResult.Heard -> {

@@ -186,8 +186,15 @@ fun ConversationScreen(
             messages = history.toList(),
             onToken = onToken
         ) { error ->
-            if (error == null || partial.any { it.isLetterOrDigit() }) {
+            if (partial.any { it.isLetterOrDigit() }) {
                 finish()
+            } else if (error == null) {
+                // Terminó sin decir nada (rechazo, filtro de seguridad, memoria llena del
+                // local): no se guarda un turno vacío, que la API rechaza en los turnos
+                // siguientes (08-10). Se le pide que lo repita.
+                bubbles.removeAt(idx)
+                if (history.lastOrNull()?.first == "user") history.removeAt(history.size - 1)
+                if (!cerrada.get()) engineNote = "${motor.label} no respondió. Dilo otra vez, quizá con otras palabras."
             } else if (motor !== local && local.usable()) {
                 // El de internet no dijo nada: el resto de la charla sigue en el teléfono.
                 bubbles.removeAt(idx)
@@ -205,7 +212,10 @@ fun ConversationScreen(
 
     fun send(text: String) {
         val clean = text.trim()
-        if (clean.isEmpty() || engineBusy || !ready) return
+        // Si ya salió de la pantalla (el dictado terminó después), no se manda: era una
+        // respuesta pagada que nadie iba a leer (08-10). Se mira el motor en vivo, no lo
+        // capturado al pintar: con la voz el cierre llega después.
+        if (cerrada.get() || clean.isEmpty() || actual.busy || engineBusy || !ready) return
         notHeard = null
         draft = ""
         bubbles.add(Bubble(fromTeacher = false, text = clean))
@@ -215,7 +225,9 @@ fun ConversationScreen(
     }
 
     fun listen() {
-        listener.startRecording(target = "", sound = Sound.GENERAL, conversation = true) { r ->
+        // Hasta 45 s por turno: con 12 (lo de una frase de lección) se cortaba a media
+        // respuesta en B1/B2 sin avisar. Al callarse 1,1 s se corta solo igual (08-10).
+        listener.startRecording(target = "", sound = Sound.GENERAL, conversation = true, maxSeconds = 45) { r ->
             when (r) {
                 is ListenResult.Heard -> send(r.text)
                 is ListenResult.NotHeard -> notHeard = r.reason
@@ -618,18 +630,34 @@ private fun splitReply(raw: String): Pair<String, String?> {
     val lines = stripThinking(raw).lines()
     val corrections = ArrayList<String>()
     val english = StringBuilder()
+    fun ingles(t: String) {
+        if (t.isEmpty()) return
+        if (english.isNotEmpty()) english.append(' ')
+        english.append(t)
+    }
+    var enCorreccion = false
     for (line in lines) {
         val t = line.trim()
         val idx = t.indexOf(CORRECTION_MARK, ignoreCase = true)
-        if (idx >= 0) {
-            corrections.add(t.substring(idx + CORRECTION_MARK.length).trim())
-        } else if (t.isNotEmpty()) {
-            if (english.isNotEmpty()) english.append(' ')
-            english.append(t)
+        when {
+            idx >= 0 -> {
+                // Lo que va antes del marcador en la misma línea es inglés (antes se perdía
+                // de la burbuja aunque ya se había leído en voz alta, 08-10).
+                ingles(t.substring(0, idx).trim())
+                corrections.add(t.substring(idx + CORRECTION_MARK.length).trim())
+                enCorreccion = true
+            }
+            // Una corrección de varias líneas sigue siendo español: no se lee con la voz
+            // inglesa. Se corta en la primera línea en blanco (la respuesta ya terminó).
+            enCorreccion && t.isNotEmpty() && !esIngles(t) -> corrections.add(t)
+            else -> { if (t.isEmpty()) enCorreccion = false; ingles(t) }
         }
     }
     return english.toString().trim() to corrections.joinToString(" ").ifBlank { null }
 }
+
+/** Heurística tosca: una línea con letras del español (tildes, ñ, ¿, ¡) no es la parte en inglés. */
+private fun esIngles(t: String): Boolean = t.none { it in "áéíóúñÁÉÍÓÚÑ¿¡" }
 
 /** Mientras llega el texto: lo mismo, pero la línea en curso todavía puede ser una corrección a medias. */
 private fun visibleEnglish(partial: String): String = splitReply(partial).first

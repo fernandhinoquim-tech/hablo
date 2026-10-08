@@ -18,6 +18,26 @@ class HablaTest {
     private fun malas(r: PronunciationResult) = r.words.count { it.score == WordScore.MAL }
 
     @Test
+    fun `los numeros que el dictado escribe con signos cuentan como bien dichos (08-10)`() {
+        // Piper → Moonshine con las cuatro voces (revisión del 08-10): antes 16 %, 0 % y 60 %.
+        assertEquals(100, score("It's twelve dollars and fifty cents.", "It's \$12.50.").percent)   // a1u14l1e3
+        assertEquals(100, score("Thirteen, thirty. Fifteen, fifty.", "13:30 15:50").percent)        // a1u10l2e14
+        assertEquals(100, score("My birthday is on June twenty-first.", "My birthday is on June 21st.").percent)
+        assertEquals(100, score("The house was built in nineteen twenty.", "The house was built in 1920.").percent)
+        assertEquals(100, score("It costs fifty thousand pesos.", "It costs 50,000 pesos.").percent)
+        assertEquals(100, score("I get up at seven o'clock.", "I get up at 7:00.").percent)
+        assertEquals(100, score("It's fifty percent.", "It's 50%.").percent)
+        // La frase pedida con cifras (el "decir" del mazo) también vale en las dos direcciones.
+        assertEquals(100, score("The train leaves at 12:50.", "The train leaves at 12:50.").percent)
+        assertEquals(100, score("The train leaves at 12:50.", "The train leaves at twelve fifty.").percent)
+        // Y un número MAL dicho sigue saliendo mal: no se regala.
+        assertTrue(score("It's twelve dollars and fifty cents.", "It's \$15.50.").words.any { it.score != WordScore.BIEN })
+        assertTrue(score("Thirteen, thirty.", "30:13").percent < 100)
+        // La fecha con cifras tras un mes sigue igual ("May 3" se queda en cifras).
+        assertEquals(100, score("My birthday is May 3.", "My birthday is May 3.").percent)
+    }
+
+    @Test
     fun `twenty-five en cifras cuenta como bien dicho y el chip muestra la palabra del ejercicio`() {
         val r = score("I'm twenty-five years old.", "I'm 25 years old")   // 20260913-011111
         assertEquals(100, r.percent)

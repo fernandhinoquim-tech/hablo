@@ -58,8 +58,9 @@ class Store(context: Context) {
         get() = prefs.getInt("xp", 0)
         private set(value) = prefs.edit().putInt("xp", value).apply()
 
+    /** La racha. Si se saltó más de un día ya está rota, aunque no se haya vuelto a estudiar (08-10: seguía mostrando la vieja). */
     var streak: Int
-        get() = prefs.getInt("streak", 0)
+        get() = if (todayKey() - prefs.getInt("last_day", 0) > 1) 0 else prefs.getInt("streak", 0)
         private set(value) = prefs.edit().putInt("streak", value).apply()
 
     /** Mejor puntaje obtenido en una lección, de 0 a 100. */
@@ -82,6 +83,13 @@ class Store(context: Context) {
         return (millis / 86_400_000L).toInt()
     }
 
+    /**
+     * Cuenta el día para la racha. Lo llama cualquier práctica (lección, repaso, Aptis, Oído,
+     * conversación, historias, crucigramas, contrarreloj…): antes solo las lecciones, y un día
+     * entero de Aptis dejaba "Hoy — pendiente" y rompía la racha (08-10).
+     */
+    fun marcarEstudio() = touchStreak()
+
     /** Actualiza la racha: +1 si es un día nuevo consecutivo, reinicia si se saltó días. */
     private fun touchStreak() {
         val today = todayKey()
@@ -90,7 +98,7 @@ class Store(context: Context) {
 
         val newStreak = when {
             last == 0 -> 1
-            today - last == 1 -> streak + 1
+            today - last == 1 -> prefs.getInt("streak", 0) + 1
             else -> 1
         }
         prefs.edit()

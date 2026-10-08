@@ -69,6 +69,8 @@ fun ContrarrelojScreen(
         mutableStateOf(setOf("") + conMarca.ifEmpty { setOf("A1") })
     }
 
+    // Dentro de una ronda, el gesto atrás vuelve a la lista de temas (antes iba al inicio).
+    androidx.activity.compose.BackHandler(enabled = banco != null) { banco = null }
     val actual = banco
     if (actual == null) {
         Column(modifier = Modifier.fillMaxSize()) {
@@ -151,11 +153,11 @@ fun ContrarrelojScreen(
         return
     }
 
-    Sesion(banco = actual, accent = accent, mazo = mazo, onBack = { banco = null })
+    Sesion(banco = actual, accent = accent, mazo = mazo, store = store, onBack = { banco = null })
 }
 
 @Composable
-private fun Sesion(banco: Banco, accent: Color, mazo: Mazo, onBack: () -> Unit) {
+private fun Sesion(banco: Banco, accent: Color, mazo: Mazo, store: Store, onBack: () -> Unit) {
     // La cola: todas las parejas barajadas; las falladas vuelven al final.
     val cola = remember(banco.id) { java.util.ArrayDeque(banco.pares.shuffled()) }
     var ronda by remember(banco.id) { mutableStateOf(1) }
@@ -192,6 +194,7 @@ private fun Sesion(banco: Banco, accent: Color, mazo: Mazo, onBack: () -> Unit) 
                     segundosTotal += segundos
                     ultima = Mazo.Marca(mazo.hoy(), segundos, actual.size)
                     mejor = mazo.registrarMarca(banco.id, segundos, actual.size)
+                    store.marcarEstudio()   // cuenta para la racha (08-10)
                     // Lo fallado vuelve: al final de la cola, para otra ronda.
                     val deVuelta = fallidas.mapNotNull { actual.getOrNull(it) }
                     volvieron += deVuelta.size

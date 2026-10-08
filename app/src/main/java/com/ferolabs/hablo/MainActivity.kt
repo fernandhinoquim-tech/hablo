@@ -47,6 +47,9 @@ class MainActivity : ComponentActivity() {
         val aptis = Aptis(java.io.File(filesDir, "aptis.json"))
         // Los crucigramas a medias y terminados (17-09), al lado del mazo.
         val crucigramas = Crucigramas(java.io.File(filesDir, "crucigramas.json"))
+        // Toda práctica cuenta para la racha y el "Hoy", no solo las lecciones (08-10).
+        prog.alAnotar = { store.marcarEstudio() }
+        aptis.alRegistrar = { prog.anotarActividad(Progreso.Actividad.EJERCICIO) }
         Course.load(this)
         // Si el contenido cambió (parche de Cowork), el mazo toma en/es del curso por id.
         mazo.refrescar { Course.exerciseById(it) }
@@ -364,6 +367,7 @@ fun HabloApp(
                                 lastSpokenSeconds = { speaker.lastSpokenSeconds },
                                 showFace = store.showFaces,
                                 say = say,
+                                callar = { speaker.stop() },
                                 modo = ModoLeccion.REPASO,
                                 onAnswered = { ex, ok, primero ->
                                     // Solo el primer intento mueve el mazo; repetirlo hasta acertar no lo infla.
@@ -371,11 +375,10 @@ fun HabloApp(
                                     if (ex is Exercise.FixIt) mazo.registrarCorreccion(Repaso.claveDe(ex), ok)
                                     else mazo.registrar(ex.id, ok)
                                 },
+                                // Se llama al llegar al resultado (no al salir): solo guarda.
                                 onFinish = { _, correct ->
                                     store.recordLesson(Repaso.ID_REPASO, 0, correct * 5)   // XP, sin nota
                                     progressTick += 1
-                                    speaker.stop(); listener.stopRecording()
-                                    route = Route.Home
                                 },
                                 onExit = { speaker.stop(); listener.stopRecording(); progressTick += 1; route = Route.Home }
                             )
@@ -400,6 +403,7 @@ fun HabloApp(
                                 lastSpokenSeconds = { speaker.lastSpokenSeconds },
                                 showFace = store.showFaces,
                                 say = say,
+                                callar = { speaker.stop() },
                                 modo = ModoLeccion.AGUANTA,
                                 maxErrores = 3,
                                 marca = marca,
@@ -407,8 +411,6 @@ fun HabloApp(
                                     mazo.registrarAguanta(correct)
                                     store.recordLesson(Repaso.ID_AGUANTA, 0, correct * 5)
                                     progressTick += 1
-                                    speaker.stop(); listener.stopRecording()
-                                    route = Route.Home
                                 },
                                 onExit = { speaker.stop(); listener.stopRecording(); route = Route.Home }
                             )
@@ -450,15 +452,14 @@ fun HabloApp(
                                 lastSpokenSeconds = { speaker.lastSpokenSeconds },
                                 showFace = store.showFaces,
                                 say = say,
+                                callar = { speaker.stop() },
                                 adivinanzas = adivinanzas,
+                                // Se llama al llegar al resultado (no al salir): solo guarda.
                                 onFinish = { score, correct ->
                                     store.recordLesson(lesson.id, score, correct * 10)
                                     // Lección aprobada: sus frases entran al mazo y vuelven mañana.
                                     if (score >= 60) mazo.alimentar(lesson)
                                     progressTick += 1
-                                    speaker.stop()
-                                    listener.stopRecording()
-                                    route = Route.Home
                                 },
                                 onExit = {
                                     speaker.stop()

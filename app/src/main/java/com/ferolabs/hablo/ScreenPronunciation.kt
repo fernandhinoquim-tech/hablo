@@ -165,6 +165,8 @@ fun PronunciationScreen(
             listener.stopRecording()
             return
         }
+        // Con la profesora todavía hablando (la 🔊 lenta), su voz correcta entraba al juicio del sonido (08-10).
+        speaker.stop()
         result = null
         report = null
         notHeard = null
@@ -421,10 +423,14 @@ fun PronunciationScreen(
                 .background(Cream)
                 .padding(20.dp)
         ) {
+            // Apagado mientras graba o analiza: si no, el resultado de esta frase caía debajo de
+            // la siguiente y el micrófono seguía abierto (08-10).
             BigButton(
                 text = if (result == null) "Saltar esta frase" else "Siguiente frase",
+                enabled = !listener.recording && !listener.thinking,
                 container = accent
             ) {
+                speaker.stop()
                 index = pickNext(index)
                 result = null
                 report = null

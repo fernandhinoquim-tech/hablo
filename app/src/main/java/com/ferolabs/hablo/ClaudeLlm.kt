@@ -69,8 +69,18 @@ class ClaudeLlm(context: Context) : ChatEngine {
         null
     }
 
+    /** La petición en curso, para poder cortarla de verdad al salir. */
+    @Volatile
+    private var conexion: HttpURLConnection? = null
+
+    /**
+     * Corta la respuesta en curso. Antes solo se miraba entre línea y línea del stream: con la
+     * red caída seguía esperando hasta 75 s, "ocupado", y la charla siguiente abría con el
+     * micrófono apagado (08-10). Ahora se cierra la conexión (en otro hilo: puede tocar la red).
+     */
     override fun stop() {
         cancelled = true
+        conexion?.let { c -> Thread { try { c.disconnect() } catch (_: Throwable) {} }.start() }
     }
 
     override fun chat(
@@ -162,6 +172,8 @@ class ClaudeLlm(context: Context) : ChatEngine {
             setRequestProperty("x-api-key", key)
             setRequestProperty("anthropic-version", ANTHROPIC_VERSION)
         }
+        conexion = conn
+        if (cancelled) { conn.disconnect(); return "cancelada" }
         conn.outputStream.use { it.write(body.toString().toByteArray(Charsets.UTF_8)) }
         val code = conn.responseCode
         if (code != 200) {

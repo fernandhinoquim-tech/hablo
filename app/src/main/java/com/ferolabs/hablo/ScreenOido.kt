@@ -198,9 +198,15 @@ private fun BloqueOidoScreen(
             escuchas = 1
             di(par.con(palabraQueSuena))
         }
-        if (fase == FaseOido.HABLAR) listener.prepareSounds()
+        if (fase == FaseOido.HABLAR) {
+            listener.prepareSounds()
+            // El resultado de oído se guarda al terminar los pares, no en el botón "Listo":
+            // con el gesto atrás, o si el micrófono no oía la frase final, se perdía (08-10).
+            store.registrarOido(bloque.id, toques.count { it.bien }, toques.size)
+        }
     }
 
+    var descartado by remember { mutableStateOf(false) }
     fun listen() {
         listener.startRecording(bloque.hablar, bloque.sound) { r ->
             when (r) {
@@ -208,6 +214,7 @@ private fun BloqueOidoScreen(
                     val res = scorePronunciation(bloque.hablar, r.text)
                     result = res
                     report = r.report?.fiable(res)
+                    descartado = r.report != null && report == null
                     notHeard = null
                     dicho = true
                     progreso.anotarIntento(bloque.hablar, bloque.sound, report)
@@ -221,7 +228,9 @@ private fun BloqueOidoScreen(
     val permiso = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { ok -> if (ok) listen() }
     fun grabar() {
         if (listener.recording) { listener.stopRecording(); return }
-        result = null; report = null; notHeard = null; showHeard = false
+        // Si la profesora sigue hablando, el micrófono la oye a ella (08-10).
+        speaker.stop()
+        result = null; report = null; notHeard = null; showHeard = false; descartado = false
         if (listener.hasMicPermission()) listen() else permiso.launch(Manifest.permission.RECORD_AUDIO)
     }
 
@@ -378,7 +387,8 @@ private fun BloqueOidoScreen(
                     result?.let { r ->
                         if (report == null && bloque.sound != Sound.GENERAL) {
                             Text(
-                                listener.sounds.unavailableReason
+                                if (descartado) "El sonido no se pudo juzgar: el dictado no entendió la palabra que lo lleva. Intenta otra vez."
+                                else listener.sounds.unavailableReason
                                     ?: "El sonido \"${bloque.sound.labelEs}\" todavía no tiene evaluación por fonema calibrada: aquí solo se mira si se te entendió.",
                                 style = MaterialTheme.typography.labelMedium, color = InkSoft
                             )
@@ -405,7 +415,7 @@ private fun BloqueOidoScreen(
                         if (!showHeard) Text("Ver lo que oyó el dictado →", style = MaterialTheme.typography.labelMedium, color = accent, modifier = Modifier.clickable { showHeard = true })
                         else Text("El dictado oyó: \"${r.heard}\"", style = MaterialTheme.typography.labelMedium, color = InkSoft)
                     }
-                    if (dicho) BigButton("Terminar el bloque", container = accent) { fase = FaseOido.FIN }
+                    if (dicho) BigButton("Terminar el bloque", container = accent) { listener.stopRecording(); speaker.stop(); fase = FaseOido.FIN }
                     else Text(
                         "El bloque termina cuando lo digas (una vez basta, no hay nota).",
                         style = MaterialTheme.typography.labelMedium, color = InkSoft
@@ -435,7 +445,7 @@ private fun BloqueOidoScreen(
                             style = MaterialTheme.typography.bodyMedium, color = InkSoft
                         )
                     }
-                    BigButton("Listo", container = accent) { terminar() }
+                    BigButton("Listo", container = accent) { listener.stopRecording(); speaker.stop(); terminar() }
                 }
             }
         }

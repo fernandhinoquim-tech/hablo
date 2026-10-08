@@ -113,7 +113,8 @@ class Crucigramas(private val file: File) {
                 estados[id] = EstadoCruci(letras, ayuda, o.optBoolean("hecho"), o.optInt("sinAyuda"), o.optString("fecha"))
             }
         } catch (e: Throwable) {
-            Log.e(TAG, "crucigramas.json ilegible; se ignora", e)
+            Log.e(TAG, "crucigramas.json ilegible; se aparta como .roto", e)
+            file.apartarRoto()
         }
     }
 
@@ -127,7 +128,7 @@ class Crucigramas(private val file: File) {
                     .put("ayuda", JSONArray().also { a -> e.conAyuda.forEach { a.put(it) } })
                     .put("hecho", e.hecho).put("sinAyuda", e.sinAyuda).put("fecha", e.fecha))
             }
-            file.writeText(JSONObject().put("v", 1).put("c", c).toString())
+            file.escribirSeguro(JSONObject().put("v", 1).put("c", c).toString())
         } catch (e: Throwable) {
             Log.e(TAG, "no se pudo guardar crucigramas.json", e)
         }

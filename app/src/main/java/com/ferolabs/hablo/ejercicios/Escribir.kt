@@ -123,6 +123,12 @@ fun CorrigeTuError(
     onTyped: (String) -> Unit
 ) {
     Text("Corrige tu propio error", style = MaterialTheme.typography.titleLarge)
+    // Qué se pedía: sin esto, con un sujeto o una palabra equivocada no había cómo saber qué arreglar (08-10).
+    if (ex.es.isNotBlank()) Text(
+        "\"${ex.es}\"",
+        style = MaterialTheme.typography.titleMedium,
+        color = Ink
+    )
     Text(
         "Esto lo escribiste tú el ${Repaso.fechaLarga(ex.fecha)}:",
         style = MaterialTheme.typography.bodyMedium,

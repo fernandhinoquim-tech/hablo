@@ -12,7 +12,8 @@ CONTR=[("i'm","i am"),("you're","you are"),("we're","we are"),("they're","they a
  ("i've","i have"),("you've","you have"),("we've","we have"),("they've","they have"),
  ("let's","let us"),
  ("must've","must have"),("should've","should have"),("would've","would have"),("could've","could have"),("might've","might have"),
- ("hadn't","had not"),("hasn't","has not"),("haven't","have not")]
+ ("hadn't","had not"),("hasn't","has not"),("haven't","have not"),
+ ("mustn't","must not"),("needn't","need not")]
 SUJ=["i","you","he","she","it","we","they","what","who","where","when","how","why","that","there","here"]
 AMB=[(f"{s}'s",f"{s} is") for s in SUJ if s!="i"]+[(f"{s}'d",f"{s} would") for s in SUJ]
 UN=["zero","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen"]

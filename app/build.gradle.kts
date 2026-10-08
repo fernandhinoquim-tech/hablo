@@ -333,7 +333,8 @@ val checkContent = tasks.register("checkContent") {
                             // B1 (17-09): modales del pasado y negativos de have, como en Correccion.kt
                             "must've" to "must have", "should've" to "should have", "would've" to "would have",
                             "could've" to "could have", "might've" to "might have",
-                            "hadn't" to "had not", "hasn't" to "has not", "haven't" to "have not")
+                            "hadn't" to "had not", "hasn't" to "has not", "haven't" to "have not",
+                            "mustn't" to "must not", "needn't" to "need not")
                         // Numeros como Correccion.kt: "8" = "eight", "twenty five" = "twenty-five".
                         val unidades = listOf("zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
                             "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen")
@@ -1010,8 +1011,8 @@ android {
         applicationId = "com.ferolabs.hablo"
         minSdk = 26
         targetSdk = 35
-        versionCode = 19
-        versionName = "0.9.10"
+        versionCode = 20
+        versionName = "0.9.11"
 
         // Solo el procesador del S25 Ultra. De paso el APK deja de llevar las
         // copias de sherpa-onnx y ONNX Runtime para x86/armv7 (~100 MB menos).

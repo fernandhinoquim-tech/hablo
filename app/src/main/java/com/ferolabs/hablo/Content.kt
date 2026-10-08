@@ -175,7 +175,9 @@ sealed class Exercise {
         val accept: List<String> = emptyList(),
         /** Si el ejercicio original era un hueco: la frase con ___, para mostrarla y aceptar solo el hueco. */
         val hueco: Cloze? = null,
-        override val tip: String? = null
+        override val tip: String? = null,
+        /** Lo que se pedía, en español (08-10): sin esto un sujeto o una palabra equivocada no se podían arreglar. */
+        val es: String = ""
     ) : Exercise()
 
     /**

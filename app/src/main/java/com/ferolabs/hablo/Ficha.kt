@@ -77,9 +77,10 @@ fun FichaScreen(lesson: Lesson, accent: Color, primeraVez: Boolean, onDone: () -
                     Text(markdownLite(t.trap), style = MaterialTheme.typography.bodyLarge, color = Color(0xFF4A3A12))
                 }
             }
+            // El 📖 de la barra solo existe dentro de una lección, al abrirla (08-10).
             Text(
-                if (lesson.exercises.isEmpty()) "Todas las fichas están en 📖 Gramática, en el inicio."
-                else "Puedes volver a esta ficha con el 📖 de arriba, y a todas desde 📖 Gramática en el inicio.",
+                if (primeraVez) "Puedes volver a esta ficha con el 📖 de arriba, y a todas desde 📖 Gramática en el inicio."
+                else "Todas las fichas están en 📖 Gramática, en el inicio.",
                 style = MaterialTheme.typography.labelMedium,
                 color = InkSoft
             )

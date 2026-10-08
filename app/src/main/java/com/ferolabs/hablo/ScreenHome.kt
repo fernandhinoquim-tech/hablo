@@ -560,20 +560,12 @@ fun HomeScreen(
                     .border(1.dp, Line, RoundedCornerShape(14.dp))
                     .padding(16.dp)
             ) {
-                // Solo lo que de verdad falta (etapas 2 y 3 del plan): lo que ya existe o
-                // se descartó no se promete.
-                Text("Lo que viene", style = MaterialTheme.typography.titleMedium)
-                Spacer(Modifier.height(6.dp))
-                Text(
-                    "🎯  Modo Aptis: los bancos de Reading, Listening, Writing y Speaking (los escribe Cowork)\n" +
-                        "🧗  Niveles B1 y B2",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = InkSoft
-                )
-                Spacer(Modifier.height(6.dp))
+                // "Lo que viene" prometía los bancos de Aptis y B1/B2, que ya están (08-10):
+                // aquí solo va lo que es verdad hoy.
                 Text(
                     "Versión $appVersion · ${Course.levels.size} niveles · ${Course.allLessons().size} lecciones · " +
-                        "sin internet, salvo la conversación con Claude o Gemini",
+                        "sin internet, salvo la conversación con Claude o Gemini y la corrección de Writing y " +
+                        "Speaking del Modo Aptis, que hace Claude (solo va el texto, nunca tu voz)",
                     style = MaterialTheme.typography.labelMedium,
                     color = InkSoft
                 )

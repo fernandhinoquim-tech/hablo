@@ -201,7 +201,7 @@ private fun RondaDictado(
                 )
                 Text(
                     if (bien == items.size) "Todo. Prueba otro tipo, o el mezclado."
-                    else "Lo que fallaste quedó en tu cuaderno y vuelve a salir primero la próxima ronda.",
+                    else "Lo que fallaste quedó en tu cuaderno y vuelve a salir: lo que todavía no te ha salido bien va antes que lo que ya acertaste.",
                     style = MaterialTheme.typography.bodyMedium, color = InkSoft
                 )
                 BigButton("Listo", container = accent) { onDone() }

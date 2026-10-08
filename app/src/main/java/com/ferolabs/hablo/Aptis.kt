@@ -736,7 +736,8 @@ class Aptis(private val file: File) {
                 simulacro[id] = ResultadoSeccion(id, o.optString("fecha"), items, juicios)
             }
         } catch (e: Throwable) {
-            Log.e(TAG, "No se pudo leer ${file.name}; se empieza de cero", e)
+            Log.e(TAG, "No se pudo leer ${file.name}; se aparta como .roto y se empieza de cero", e)
+            file.apartarRoto()
             pistas.clear(); simulacro.clear()
         }
     }
@@ -762,7 +763,7 @@ class Aptis(private val file: File) {
         }
         try {
             file.parentFile?.mkdirs()
-            file.writeText(JSONObject().put("version", 2).put("pistas", ps).put("simulacro", ss).toString())
+            file.escribirSeguro(JSONObject().put("version", 2).put("pistas", ps).put("simulacro", ss).toString())
         } catch (e: Throwable) {
             Log.e(TAG, "No se pudo guardar ${file.name}", e)
         }
@@ -802,7 +803,11 @@ class Aptis(private val file: File) {
      * siguiente con tareas (si lo hay). Solo sube, nunca baja (para lo flojo
      * está [flojo]). Devuelve la promoción solo cuando el alcanzado cambia.
      */
+    /** Lo avisa cada tarea registrada (MainActivity: cuenta en el diario y en la racha, 08-10). */
+    var alRegistrar: (() -> Unit)? = null
+
     fun registrar(pista: PistaAptis, intento: Intento): Promocion? {
+        alRegistrar?.invoke()
         val e = estado(pista)
         e.historial.add(intento)
         while (e.historial.size > MAX_HISTORIAL) e.historial.removeAt(0)

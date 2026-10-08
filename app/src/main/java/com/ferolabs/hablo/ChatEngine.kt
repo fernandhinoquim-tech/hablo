@@ -89,7 +89,9 @@ class LocalEngine(private val llm: Llm) : ChatEngine {
         llm.chat(
             messages = listOf("system" to system) + messages,
             onToken = onToken,
-            onDone = { onDone(null) }
+            // Sin tokens procesados ni generados fue un fallo: la pantalla tiene que saberlo
+            // (antes recibía null y guardaba un turno vacío, 08-10).
+            onDone = { st -> onDone(if (st.promptTokens == 0 && st.genTokens == 0) llm.status.ifBlank { "La IA del teléfono no respondió" } else null) }
         )
     }
 

@@ -64,6 +64,8 @@ fun LessonScreen(
     say: (String, Float) -> Unit,
     onFinish: (score: Int, correct: Int) -> Unit,
     onExit: () -> Unit,
+    /** Calla a la profesora antes de grabar: si no, el micrófono la oye a ella (08-10). */
+    callar: () -> Unit = {},
     /** Lección del curso, repaso del mazo o "Aguanta" (etapa 3). */
     modo: ModoLeccion = ModoLeccion.LECCION,
     /** Cada respuesta comprobada: el ejercicio, si acertó y si era el primer intento de la sesión. */
@@ -172,8 +174,28 @@ fun LessonScreen(
         if (granted && target.isNotBlank()) listen(target, speakSound)
     }
 
+    // El ejercicio, las fichas de "arma la frase" y el desplazamiento se calculan ANTES de los
+    // return de la ficha y del resultado: Compose suelta lo recordado después de un return
+    // temprano, y al volver del 📖 o del «¿Por qué?» las fichas se barajaban otra vez (las
+    // ya tocadas cambiaban de palabra) (08-10).
+    val ex = lesson.exercises[index]
+    val bank = remember(pos) {
+        when (ex) {
+            is Exercise.BuildSentence ->
+                (ex.answer.split(" ") + ex.extraWords).shuffled()
+            else -> emptyList()
+        }
+    }
+    // Cada ejercicio empieza arriba: tras leer una corrección larga, el siguiente abría desplazado.
+    val scroll = remember(pos) { androidx.compose.foundation.ScrollState(0) }
+
     if (finished) {
         val score = if (total == 0) 0 else (correctCount * 100) / total
+        // Se guarda AL TERMINAR, no al tocar el botón (08-10): con el gesto atrás o cerrando
+        // la app desde esta pantalla se perdían la nota, los puntos, la racha y las frases
+        // del mazo. El botón y el gesto atrás solo salen.
+        LaunchedEffect(Unit) { onFinish(score, correctCount) }
+        BackHandler { onExit() }
         ResultsScreen(
             lesson = lesson,
             teacher = teacher,
@@ -185,12 +207,15 @@ fun LessonScreen(
             say = say,
             modo = modo,
             marca = marca,
-            onDone = { onFinish(score, correctCount) }
+            onDone = { onExit() }
         )
         return
     }
 
     if (!adivinando && mostrandoFicha) {
+        // Releyendo la ficha con el 📖 a mitad de lección, el gesto atrás cierra la ficha;
+        // antes caía en el de MainActivity y sacaba de la lección perdiendo lo hecho (08-10).
+        BackHandler(enabled = fichaVista && fichaAbierta) { fichaAbierta = false }
         FichaScreen(
             lesson = lesson,
             accent = accent,
@@ -221,16 +246,6 @@ fun LessonScreen(
             onExit = onExit
         )
         return
-    }
-
-    val ex = lesson.exercises[index]
-
-    val bank = remember(pos) {
-        when (ex) {
-            is Exercise.BuildSentence ->
-                (ex.answer.split(" ") + ex.extraWords).shuffled()
-            else -> emptyList()
-        }
     }
 
     // Al entrar a un ejercicio de escucha, la profesora dice la frase sola.
@@ -372,7 +387,7 @@ fun LessonScreen(
             verticalArrangement = Arrangement.spacedBy(14.dp),
             modifier = Modifier
                 .weight(1f)
-                .verticalScroll(rememberScrollState())
+                .verticalScroll(scroll)
                 .padding(20.dp)
         ) {
             if (showingGame) {
@@ -390,6 +405,7 @@ fun LessonScreen(
                         if (listener.recording) {
                             listener.stopRecording()
                         } else if (listener.hasMicPermission()) {
+                            callar()
                             speakResult = null
                             speakReport = null
                             speakNotHeard = null
@@ -413,6 +429,7 @@ fun LessonScreen(
                         if (listener.recording) {
                             listener.stopRecording()
                         } else if (listener.hasMicPermission()) {
+                            callar()
                             speakResult = null
                             speakReport = null
                             speakNotHeard = null

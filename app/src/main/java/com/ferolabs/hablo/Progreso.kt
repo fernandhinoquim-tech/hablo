@@ -100,7 +100,8 @@ class Progreso(context: Context) {
             }
         } catch (e: Throwable) {
             // Un archivo roto no puede tumbar la app ni borrar el resto: se empieza de cero.
-            Log.e(TAG, "progreso.json ilegible; se ignora", e)
+            Log.e(TAG, "progreso.json ilegible; se aparta como .roto", e)
+            file.apartarRoto()
         }
     }
 
@@ -136,7 +137,7 @@ class Progreso(context: Context) {
                 .put("diario", JSONObject().also { d ->
                     diario.forEach { (fecha, c) -> d.put(fecha, JSONArray().also { a -> c.forEach { a.put(it) } }) }
                 })
-            file.writeText(json.toString())
+            file.escribirSeguro(json.toString())
         } catch (e: Throwable) {
             Log.e(TAG, "no se pudo guardar el progreso", e)
         }
@@ -179,9 +180,13 @@ class Progreso(context: Context) {
         guardar()
     }
 
+    /** Lo avisa cada actividad anotada; MainActivity lo usa para la racha (Store.marcarEstudio). */
+    var alAnotar: (() -> Unit)? = null
+
     /** Suma uno al contador del día. Se llama en cada ejercicio, intento, turno o lección. */
     @Synchronized
     fun anotarActividad(que: Actividad) {
+        alAnotar?.invoke()
         cargar()
         val hoy = hoy()
         val fila = diario.getOrPut(hoy) { IntArray(4) }
@@ -225,9 +230,10 @@ class Progreso(context: Context) {
         val fecha = SimpleDateFormat("d 'de' MMMM 'de' yyyy", Locale("es", "CO")).format(Date())
         val desde = intentos.firstOrNull()?.fecha ?: fallos.firstOrNull()?.fecha ?: hoy()
 
-        // El nivel se calcula: el más alto con alguna lección aprobada (antes decía "A1" fijo).
+        // El nivel se calcula: el más alto con alguna lección APROBADA (>= 60). Con > 0 bastaba
+        // abrir una lección de B2 y sacar 10 para que el informe dijera "estoy en B2" (08-10).
         val nivelActual = Course.levels.lastOrNull { lv ->
-            lv.units.any { u -> u.lessons.any { store.bestScore(it.id) > 0 } }
+            lv.units.any { u -> u.lessons.any { store.bestScore(it.id) >= 60 } }
         } ?: Course.levels.firstOrNull()
 
         b.appendLine("# Mi práctica de inglés — informe de Hablo")
@@ -244,22 +250,22 @@ class Progreso(context: Context) {
         b.appendLine()
         val totales = IntArray(4)
         diario.values.forEach { fila -> for (i in 0 until 4) totales[i] += fila[i] }
-        val hechas = Course.allLessons().filter { store.bestScore(it.id) > 0 }
-        val pendientes = Course.allLessons().filter { store.bestScore(it.id) == 0 }
+        val hechas = Course.allLessons().filter { store.bestScore(it.id) >= 60 }
+        val pendientes = Course.allLessons().filter { store.bestScore(it.id) < 60 }
         b.appendLine("- Días que he practicado: **${diario.size}**" +
             (if (diario.isNotEmpty()) " (del ${diario.keys.first()} al ${diario.keys.last()})" else ""))
         b.appendLine("- Racha actual: ${racha(store.streak).removePrefix("racha de ")} · ${store.xp} puntos")
-        b.appendLine("- Lecciones hechas: **${hechas.size} de ${Course.allLessons().size}** (" +
+        b.appendLine("- Lecciones aprobadas: **${hechas.size} de ${Course.allLessons().size}** (" +
             Course.levels.joinToString(" · ") { lv ->
                 val todas = lv.units.flatMap { it.lessons }
-                "${lv.id}: ${todas.count { store.bestScore(it.id) > 0 }} de ${todas.size}"
+                "${lv.id}: ${todas.count { store.bestScore(it.id) >= 60 }} de ${todas.size}"
             } + ")")
         b.appendLine("- Ejercicios respondidos: ${totales[Actividad.EJERCICIO.ordinal]} · " +
             "frases dichas en voz alta: ${totales[Actividad.INTENTO.ordinal]} · " +
             "turnos de conversación: ${totales[Actividad.TURNO.ordinal]}")
         b.appendLine()
 
-        if (hechas.isNotEmpty()) {
+        if (Course.allLessons().any { store.bestScore(it.id) > 0 }) {
             b.appendLine("| Nivel | Lección | Mi mejor puntaje |")
             b.appendLine("|---|---|---:|")
             for (lv in Course.levels) for (u in lv.units) for (l in u.lessons) {
@@ -269,7 +275,7 @@ class Progreso(context: Context) {
         }
         // Solo lo que sigue en el nivel en curso: 45 títulos seguidos no los lee nadie.
         val siguientes = (nivelActual?.units?.flatMap { it.lessons } ?: pendientes)
-            .filter { store.bestScore(it.id) == 0 }
+            .filter { store.bestScore(it.id) < 60 }
         if (siguientes.isNotEmpty()) {
             b.appendLine("Lo que me falta de ${nivelActual?.id ?: "este nivel"} (${siguientes.size} lecciones); " +
                 "las próximas: " + siguientes.take(5).joinToString(", ") { it.title } + ".")
@@ -431,7 +437,7 @@ class Progreso(context: Context) {
             out.add("Frases que ya fallé dos veces o más y quiero dejar limpias: ${frasesDuras.joinToString(" · ") { "\"$it\"" }}.")
         }
 
-        val flojas = Course.allLessons().filter { store.bestScore(it.id) in 1..79 }
+        val flojas = Course.allLessons().filter { store.bestScore(it.id) in 60..79 }
         if (flojas.isNotEmpty()) {
             out.add("Lecciones que aprobé raspando (menos de 80): ${flojas.joinToString(", ") { it.title }}. Pregúntame lo de esas lecciones en frases nuevas.")
         }

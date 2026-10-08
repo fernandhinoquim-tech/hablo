@@ -25,7 +25,9 @@ object Correccion {
         // B1 (17-09): los modales del pasado y los negativos de have que faltaban.
         "must've" to "must have", "should've" to "should have", "would've" to "would have",
         "could've" to "could have", "might've" to "might have",
-        "hadn't" to "had not", "hasn't" to "has not", "haven't" to "have not"
+        "hadn't" to "had not", "hasn't" to "has not", "haven't" to "have not",
+        // B2 (08-10): las de obligación que faltaban; "you must not" se marcaba mal contra "mustn't".
+        "mustn't" to "must not", "needn't" to "need not"
     )
 
     /**
@@ -272,11 +274,21 @@ object Correccion {
      * muestra entonces solo la respuesta correcta).
      */
     fun diagnostico(given: String, answer: String, accept: List<String> = emptyList()): String? {
-        val g = sueltaEstricta(given).split(" ").filter { it.isNotEmpty() }
-        if (g.isEmpty()) return null
-        val candidatas = listOf(answer) + accept
-        val e = candidatas.map { sueltaEstricta(it).split(" ").filter { w -> w.isNotEmpty() } }
-            .minByOrNull { distancia(g, it) } ?: return null
+        fun fichasDe(s: String) = s.split(" ").filter { it.isNotEmpty() }
+        // Se comparan también las lecturas largas de 's/'d (08-10): con solo la forma estricta,
+        // "That is fair point" contra "That's a fair point" daba "Dos cosas: te faltó la -'s… y
+        // casi: es «a», no «is»" en vez de "Te faltó la palabra «a»" (el error del artículo, el
+        // de la casa). Ante empate gana la forma tal cual se escribió (va primero).
+        val formasG = (listOf(sueltaEstricta(given)) + variantes(given)).distinct().map(::fichasDe)
+        if (formasG.first().isEmpty()) return null
+        val candidatas = (listOf(answer) + accept).flatMap { listOf(sueltaEstricta(it)) + variantes(it) }.distinct().map(::fichasDe)
+        var g = formasG.first()
+        var e: List<String> = candidatas.firstOrNull() ?: return null
+        var mejor = Int.MAX_VALUE
+        for (fg in formasG) for (fe in candidatas) {
+            val d = distancia(fg, fe)
+            if (d < mejor) { mejor = d; g = fg; e = fe }
+        }
         if (g == e) return null
 
         // Mismas palabras en otro orden.

@@ -41,6 +41,29 @@ class MemoriaTest {
     }
 
     @Test
+    fun `el error que se repite no es el primero en salir cuando se llena la lista`() {
+        val (m, _) = nueva()
+        m.anotarError("Dijiste \"my sister is doctor\"; falta el artículo: \"is a doctor\".")
+        for (i in 1..14) m.anotarError("Dijiste \"error número $i\"; era otra cosa.")
+        // Se repite el primero: pasa al final (el más reciente) y suma.
+        m.anotarError("Dijiste \"my sister is doctor\" otra vez; es \"is a doctor\".")
+        m.anotarError("Dijiste \"error nuevo\"; era otra cosa.")
+        assertEquals(Memoria.MAX_ERRORES, m.errores.size)
+        assertEquals(2, m.errores.first { it.texto.contains("sister") }.veces)   // sigue ahí (08-10)
+        assertTrue(m.errores.none { it.texto.contains("número 1\"") })   // salió el más viejo de verdad
+    }
+
+    @Test
+    fun `un perfil roto se aparta como roto y no se pisa`() {
+        val (m, f) = nueva()
+        f.writeText("{esto no es json")
+        m.anotarError("Dijiste \"he work\"; es \"he works\".")
+        assertTrue(File(f.parentFile, f.name + ".roto").exists())
+        assertEquals(1, m.errores.size)
+        File(f.parentFile, f.name + ".roto").delete()
+    }
+
+    @Test
     fun `el resumen se recorta a 60 palabras y el bloque del prompt cabe en 400 tokens`() {
         val (m, _) = nueva()
         val largo = (1..200).joinToString(" ") { "palabra$it" }

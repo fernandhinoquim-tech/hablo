@@ -19,12 +19,19 @@ object Repaso {
     // ------------------------------------------------------------ el mazo
 
     /** El ejercicio de un ítem en su escalón. [otros] dan opciones y señuelos; [original] las alternativas válidas. */
+    // Formas normalizadas memorizadas: armar Aguanta (hasta 60 ítems contra todo el mazo) las
+    // recalculaba miles de veces en el hilo de la pantalla; con un mazo de 600 tardaba ~1 s en el PC (08-10).
+    private val cacheSe = HashMap<String, String>()
+    private val cacheNe = HashMap<String, String>()
+    private fun se(s: String): String = synchronized(cacheSe) { cacheSe.getOrPut(s) { Correccion.sueltaEstricta(s) } }
+    private fun ne(s: String): String = synchronized(cacheNe) { cacheNe.getOrPut(s) { normalizeAnswer(s) } }
+
     fun ejercicioDe(item: Mazo.Item, otros: List<Mazo.Item>, original: Exercise?, rnd: Random = Random.Default): Exercise {
-        val enClave = Correccion.sueltaEstricta(item.en)
+        val enClave = se(item.en)
         val esClave = normalizeAnswer(item.es)
         // Otro ítem con el MISMO español ("Trabajo en un banco." → "I work at a bank" / "I work in a bank."):
         // su inglés también vale, y nunca sirve de señuelo.
-        val gemelos = otros.filter { it.id != item.id && normalizeAnswer(it.es) == esClave && Correccion.sueltaEstricta(it.en) != enClave }
+        val gemelos = otros.filter { it.id != item.id && ne(it.es) == esClave && se(it.en) != enClave }
         // Las alternativas del ejercicio original valgan de donde vengan: translate y build
         // también las traen (auditoría del 16-09: sin ellas el mazo marcaba mal "I'm 25").
         val accept = (when (original) {
@@ -34,9 +41,9 @@ object Repaso {
             is Exercise.BuildSentence -> original.accept
             is Exercise.TypeWhatYouHear -> original.accept
             else -> emptyList()
-        } + gemelos.map { it.en }).distinctBy { Correccion.sueltaEstricta(it) }.filter { Correccion.sueltaEstricta(it) != enClave }
+        } + gemelos.map { it.en }).distinctBy { se(it) }.filter { se(it) != enClave }
         val ajenos = otros.filter {
-            it.id != item.id && Correccion.sueltaEstricta(it.en) != enClave && normalizeAnswer(it.es) != esClave
+            it.id != item.id && se(it.en) != enClave && ne(it.es) != esClave
         }
         // Una palabra suelta (glosario de una historia) no se "arma": del elegir pasa a escribir.
         val escalon = if (item.escalon == 1 && !item.en.trim().contains(' ')) 2 else item.escalon
@@ -51,16 +58,18 @@ object Repaso {
                     is Exercise.TranslateChoose -> original.options
                     is Exercise.ListenChoose -> original.options
                     else -> emptyList()
-                }.filter { Correccion.sueltaEstricta(it) != enClave }.distinctBy { Correccion.sueltaEstricta(it) }
-                val senuelos = if (propios.size >= 2) propios.take(3) else {
+                }.filter { se(it) != enClave }.distinctBy { se(it) }
+                // Un señuelo que el propio ejercicio acepta como bueno no es señuelo: con él había
+                // dos opciones correctas y se marcaba mal una de ellas (08-10).
+                val senuelos = (if (propios.size >= 2) propios.take(3) else {
                     val palabras = palabrasDe(item.en)
                     // Los que comparten más palabras primero; si nadie comparte nada, los de
                     // largo parecido para no quedarse sin opciones.
                     val parecidos = ajenos.map { it to compartidas(palabras, palabrasDe(it.en)) }
                         .sortedWith(compareByDescending<Pair<Mazo.Item, Int>> { it.second }.thenBy { kotlin.math.abs(it.first.en.length - item.en.length) })
                         .map { it.first.en }
-                    (propios + parecidos).distinctBy { Correccion.sueltaEstricta(it) }.take(2)
-                }
+                    (propios + parecidos.filter { !Correccion.acepta(it, item.en, accept) }).distinctBy { se(it) }.take(2)
+                }).filter { !Correccion.acepta(it, item.en, accept) }
                 if (senuelos.size < 1) Exercise.WriteIt(item.id, item.es, item.en, accept)
                 else Exercise.TranslateChoose(item.id, item.es, (senuelos + item.en).shuffled(rnd), item.en)
             }
@@ -83,7 +92,7 @@ object Repaso {
 
     /** Palabras con contenido de una frase (sin artículos, pronombres ni auxiliares). */
     private fun palabrasDe(en: String): Set<String> =
-        Correccion.sueltaEstricta(en).split(" ").filter { it.isNotBlank() && it !in VACIAS }.toSet()
+        se(en).split(" ").filter { it.isNotBlank() && it !in VACIAS }.toSet()
 
     private fun compartidas(a: Set<String>, b: Set<String>): Int = a.count { it in b }
 
@@ -110,15 +119,27 @@ object Repaso {
             // Si el ejercicio cambió de contenido después del fallo (parche de la auditoría del
             // 16-09), el error viejo ya no corresponde a lo que se pregunta ahora: se salta.
             if (orig != null && !coincideCorrecta(orig, f.correcta)) continue
+            // Si con las alternativas de HOY ya vale (un parche añadió su forma al accept), no
+            // era error: antes se comparaba sin el accept, y en un hueco la palabra contra la
+            // frase entera, así que volvía como "error" algo bien escrito (08-10).
+            val yaVale = when (orig) {
+                is Exercise.Cloze -> Correccion.aceptaHueco(f.tuya, orig.before, orig.after, orig.answer, orig.accept)
+                is Exercise.WriteIt -> Correccion.acepta(f.tuya, orig.answer, orig.accept)
+                is Exercise.TypeWhatYouHear -> Correccion.acepta(f.tuya, orig.audio, orig.accept)
+                is Exercise.BuildSentence -> Correccion.acepta(f.tuya, orig.answer, orig.accept)
+                is Exercise.TranslateChoose -> Correccion.acepta(f.tuya, orig.answer, orig.accept)
+                else -> false
+            }
+            if (yaVale) continue
             val fix = when (orig) {
                 is Exercise.Cloze -> Exercise.FixIt(
                     id = "fix|$clave", tuya = f.tuya.trim(), fecha = f.fecha, answer = orig.answer,
-                    accept = orig.accept, hueco = orig, tip = orig.tip
+                    accept = orig.accept, hueco = orig, tip = orig.tip, es = orig.es
                 )
-                is Exercise.WriteIt -> Exercise.FixIt("fix|$clave", f.tuya.trim(), f.fecha, orig.answer, orig.accept, tip = orig.tip)
-                is Exercise.TypeWhatYouHear -> Exercise.FixIt("fix|$clave", f.tuya.trim(), f.fecha, orig.audio, orig.accept, tip = orig.tip)
-                is Exercise.BuildSentence -> Exercise.FixIt("fix|$clave", f.tuya.trim(), f.fecha, orig.answer, orig.accept, tip = orig.tip)
-                is Exercise.TranslateChoose -> Exercise.FixIt("fix|$clave", f.tuya.trim(), f.fecha, orig.answer, orig.accept, tip = orig.tip)
+                is Exercise.WriteIt -> Exercise.FixIt("fix|$clave", f.tuya.trim(), f.fecha, orig.answer, orig.accept, tip = orig.tip, es = orig.es)
+                is Exercise.TypeWhatYouHear -> Exercise.FixIt("fix|$clave", f.tuya.trim(), f.fecha, orig.audio, orig.accept, tip = orig.tip, es = orig.meaningEs)
+                is Exercise.BuildSentence -> Exercise.FixIt("fix|$clave", f.tuya.trim(), f.fecha, orig.answer, orig.accept, tip = orig.tip, es = orig.es)
+                is Exercise.TranslateChoose -> Exercise.FixIt("fix|$clave", f.tuya.trim(), f.fecha, orig.answer, orig.accept, tip = orig.tip, es = orig.es)
                 else -> Exercise.FixIt("fix|$clave", f.tuya.trim(), f.fecha, f.correcta)
             }
             out.add(fix)

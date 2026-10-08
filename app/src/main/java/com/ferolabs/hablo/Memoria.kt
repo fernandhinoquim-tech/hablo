@@ -52,7 +52,8 @@ class Memoria(private val file: File) {
         try {
             aplicar(JSONObject(file.readText()), reemplazarErrores = true)
         } catch (e: Throwable) {
-            Log.e(TAG, "perfil.json ilegible; se empieza de cero", e)
+            Log.e(TAG, "perfil.json ilegible; se aparta como .roto y se empieza de cero", e)
+            file.apartarRoto()
         }
     }
 
@@ -89,7 +90,7 @@ class Memoria(private val file: File) {
     fun guardar() {
         try {
             file.parentFile?.mkdirs()
-            file.writeText(toJson().toString())
+            file.escribirSeguro(toJson().toString())
         } catch (e: Throwable) {
             Log.e(TAG, "no se pudo guardar la ficha", e)
         }
@@ -118,7 +119,10 @@ class Memoria(private val file: File) {
         val lista = ArrayList(errores)
         val i = lista.indexOfFirst { claveError(it.texto) == clave }
         if (i >= 0) {
-            lista[i] = Error(limpio, lista[i].veces + 1, hoy())
+            // Repetido: pasa al final (el más reciente). Antes se quedaba en su sitio y, al
+            // llenarse la lista, salía primero justo el error que más se repite (08-10).
+            val viejo = lista.removeAt(i)
+            lista.add(Error(limpio, viejo.veces + 1, hoy()))
         } else {
             lista.add(Error(limpio, 1, hoy()))
         }

@@ -425,8 +425,9 @@ fun SettingsScreen(
                 Spacer(Modifier.height(8.dp))
                 Text(
                     "Las lecciones, la pronunciación y tu progreso viven solo en este celular, sin internet. " +
-                        "La única excepción es la conversación: si arriba eliges Claude o Gemini, sale por " +
-                        "internet solo el texto de la charla (nunca tu voz); con la IA del teléfono, nada sale.",
+                        "Hay dos excepciones, y en las dos sale solo texto, nunca tu voz: la conversación, si " +
+                        "arriba eliges Claude o Gemini (con la IA del teléfono no sale nada), y la corrección de " +
+                        "Writing y Speaking del Modo Aptis, que siempre la hace Claude.",
                     style = MaterialTheme.typography.bodyMedium,
                     color = InkSoft
                 )

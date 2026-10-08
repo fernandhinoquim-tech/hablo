@@ -99,7 +99,7 @@ class Respaldo(context: Context) {
             val dia = SimpleDateFormat("yyyy-MM-dd", Locale.US).format(Date())
             guardar("$PREFIJO_AUTO$dia.json", json.toString(), sobrescribir = true) ?: return
             prefs.edit().putLong(K_AUTO, ahora).apply()
-            podar(PREFIJO_AUTO, 7)
+            podar(PREFIJO_AUTO, 7, recien = "$PREFIJO_AUTO$dia.json")
         } catch (e: Throwable) {
             Log.e(TAG, "respaldo automático falló", e)
         }
@@ -113,8 +113,9 @@ class Respaldo(context: Context) {
         val json = armar()
         if (!RespaldoDatos.hayAlgo(json)) return true
         val sello = SimpleDateFormat("yyyy-MM-dd-HHmmss", Locale.US).format(Date())
-        val ok = guardar("${PREFIJO_ANTES}$motivo-$sello.json", json.toString(), sobrescribir = false) != null
-        if (ok) podar(PREFIJO_ANTES, 5)
+        val nombre = "${PREFIJO_ANTES}$motivo-$sello.json"
+        val ok = guardar(nombre, json.toString(), sobrescribir = false) != null
+        if (ok) podar(PREFIJO_ANTES, 5, recien = nombre)
         return ok
     }
 
@@ -160,9 +161,17 @@ class Respaldo(context: Context) {
         null
     }
 
-    /** Deja solo las [cuantas] copias más nuevas con ese prefijo. */
-    private fun podar(prefijo: String, cuantas: Int) {
-        val viejas = copias().filter { it.nombre.startsWith(prefijo) }.sortedByDescending { it.nombre }.drop(cuantas)
+    /**
+     * Deja solo las [cuantas] copias más nuevas con ese prefijo, sin tocar nunca [recien]. Se
+     * ordena por la FECHA del nombre, no por el nombre: "antes-de-recuperar-…" va siempre
+     * después de "antes-de-borrar-…" en orden alfabético, y con cinco de recuperar se borraba la
+     * copia que se acababa de hacer antes de "Borrar todo" (08-10).
+     */
+    private fun podar(prefijo: String, cuantas: Int, recien: String? = null) {
+        val fecha = Regex("\\d{4}-\\d{2}-\\d{2}(-\\d{4,6})?")
+        val viejas = copias().filter { it.nombre.startsWith(prefijo) && it.nombre != recien }
+            .sortedByDescending { fecha.find(it.nombre)?.value ?: "" }
+            .drop(if (recien != null) cuantas - 1 else cuantas)
         for (c in viejas) try {
             if (c.uri.scheme == "file") File(c.uri.path ?: continue).delete()
             else app.contentResolver.delete(c.uri, null, null)

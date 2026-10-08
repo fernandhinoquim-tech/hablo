@@ -85,6 +85,23 @@ class MazoTest {
     }
 
     @Test
+    fun `corrige tu propio error trae el espanol y no devuelve lo que hoy ya se acepta (08-10)`() {
+        val m = nuevo()
+        val escribir = Exercise.WriteIt("w1", "No debes llegar tarde.", "You mustn't be late.", listOf("You can't be late."))
+        val hueco = Exercise.Cloze("c1", "She ___ in a hospital.", "works", "Ella trabaja en un hospital.")
+        val buscar: (String) -> Exercise? = { id -> listOf(escribir, hueco).firstOrNull { it.id == id } }
+        val fallos = listOf(
+            Progreso.Fallo("2026-09-12", "x", "escribir", "You must not be late.", "You mustn't be late.", "w1"),   // ya vale: mustn't = must not
+            Progreso.Fallo("2026-09-12", "x", "completar", "works", "She works in a hospital.", "c1"),             // el hueco solo, bien escrito
+            Progreso.Fallo("2026-09-13", "x", "escribir", "You don't be late.", "You mustn't be late.", "w1")     // este sí es error
+        )
+        val fixes = Repaso.propiosErrores(fallos, m, "2026-09-16", buscar = buscar)
+        assertEquals(1, fixes.size)
+        assertEquals("You don't be late.", fixes[0].tuya)
+        assertEquals("No debes llegar tarde.", fixes[0].es)
+    }
+
+    @Test
     fun `corrige tu propio error solo con escritos de dias anteriores y se retira a las dos`() {
         val m = nuevo()
         val hoy = "2026-09-16"

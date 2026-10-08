@@ -31,6 +31,23 @@ class Llm(context: Context) {
     var busy by mutableStateOf(false)
         private set
 
+    /**
+     * Trabajos en la cola del hilo del modelo. Antes, un pedido que llegaba con el modelo
+     * ocupado (p. ej. el primer turno mientras procesaba el prompt de sistema, o al pasar a
+     * la IA del teléfono a mitad de charla) se descartaba en silencio y la burbuja quedaba en
+     * "…" para siempre (08-10). Ahora se encola: el hilo es uno solo y va en orden.
+     */
+    private val pendientes = java.util.concurrent.atomic.AtomicInteger(0)
+    private fun encolar(trabajo: () -> Unit) {
+        pendientes.incrementAndGet(); busy = true
+        worker.execute {
+            try { trabajo() } finally { busy = pendientes.decrementAndGet() > 0 }
+        }
+    }
+
+    /** Turnos viejos que ya no caben en la memoria del modelo (se quitan los primeros, nunca el sistema). */
+    private var recorte = 0
+
     var status by mutableStateOf("")
         private set
 
@@ -79,24 +96,25 @@ class Llm(context: Context) {
         )
 
     /** Empieza una conversación: borra la memoria y procesa el prompt de sistema + apertura, antes de que el alumno hable. */
-    fun startConversation(messages: List<Pair<String, String>>, onDone: () -> Unit = {}) {
-        if (!loaded || busy) return
-        busy = true
-        worker.execute {
+    fun startConversation(messages: List<Pair<String, String>>, onDone: (Boolean) -> Unit = {}) {
+        if (!loaded) { onDone(false); return }
+        encolar {
+            var ok = false
             try {
                 nativeReset()
                 formattedSoFar = ""
+                recorte = 0
                 val formatted = template(messages, false)
                 val t0 = System.currentTimeMillis()
                 val n = nativeFeed(formatted)
-                formattedSoFar = formatted
-                status = "listo: $n tokens de contexto en ${System.currentTimeMillis() - t0} ms"
+                // Si no cupo, la memoria queda vacía: el primer turno lo reprocesa (y recorta) todo.
+                if (n >= 0) { formattedSoFar = formatted; ok = true }
+                status = if (ok) "listo: $n tokens de contexto en ${System.currentTimeMillis() - t0} ms" else "el inicio no cupo ($n)"
                 Log.i(TAG, status)
             } catch (e: Throwable) {
                 Log.e(TAG, "No se pudo preparar la conversación", e)
             } finally {
-                busy = false
-                onDone()
+                onDone(ok)
             }
         }
     }
@@ -112,11 +130,12 @@ class Llm(context: Context) {
         onToken: (String) -> Unit,
         onDone: (Stats) -> Unit
     ) {
-        if (!loaded || busy) return
-        busy = true
-        worker.execute {
+        if (!loaded) { status = "La IA del teléfono no está cargada"; onDone(Stats(0, 0, 0, 0)); return }
+        encolar {
             try {
-                val formatted = template(messages, true)
+                // El sistema siempre; de la charla, lo que quepa (sin los [recorte] turnos más viejos).
+                fun ventana() = messages.take(1) + messages.drop(1).drop(recorte)
+                var formatted = template(ventana(), true)
                 // Lo nuevo = lo que la plantilla agrega después de lo ya procesado.
                 // Si no es un prefijo (p. ej. se recortó el historial), se reprocesa todo.
                 val delta = if (formatted.startsWith(formattedSoFar)) formatted.substring(formattedSoFar.length) else {
@@ -124,15 +143,21 @@ class Llm(context: Context) {
                 }
                 val t0 = System.currentTimeMillis()
                 var nPrompt = nativeFeed(delta)
-                if (nPrompt < 0) {
-                    // no cabe: se empieza de nuevo con lo que hay
+                // No cabe: se quitan los dos turnos más viejos y se reprocesa, hasta que quepa.
+                // Antes se reprocesaba igual de largo, fallaba otra vez y la profesora se callaba;
+                // y el turno siguiente salía sin el prompt de sistema (08-10).
+                while (nPrompt < 0 && messages.size - 1 - recorte > 2) {
+                    recorte += 2
+                    formatted = template(ventana(), true)
                     nativeReset()
                     nPrompt = nativeFeed(formatted)
-                    if (nPrompt < 0) {
-                        status = "No se pudo procesar el prompt ($nPrompt)"
-                        onDone(Stats(0, 0, 0, 0))
-                        return@execute
-                    }
+                    Log.w(TAG, "memoria llena: se quitan los turnos más viejos (recorte $recorte)")
+                }
+                if (nPrompt < 0) {
+                    nativeReset(); formattedSoFar = ""
+                    status = "No cupo en la memoria de la IA del teléfono ($nPrompt)"
+                    onDone(Stats(0, 0, 0, 0))
+                    return@encolar
                 }
                 val t1 = System.currentTimeMillis()
                 var nGen = 0
@@ -179,8 +204,6 @@ class Llm(context: Context) {
                 Log.e(TAG, "Falló la generación", e)
                 status = "Falló: ${e.javaClass.simpleName} ${e.message}"
                 onDone(Stats(0, 0, 0, 0))
-            } finally {
-                busy = false
             }
         }
     }
@@ -225,7 +248,12 @@ class Llm(context: Context) {
     companion object {
         private const val TAG = "HabloLlm"
         const val MODEL_NAME = "Qwen3-8B-Q4_K_M.gguf"
-        private const val N_CTX = 2048
+        /**
+         * 4096 desde el 08-10: el prompt de sistema creció a ~1.000-1.300 tokens (más ~400 de
+         * memoria en la charla libre) y con 2048 la memoria se llenaba a los 5-9 turnos.
+         * KV de Qwen3 8B ≈ 147 KB por token: ~600 MB (antes ~300).
+         */
+        private const val N_CTX = 4096
         private const val MAX_NEW_TOKENS = 256
         private const val FALLBACK_REPLY = "Sorry, I didn't catch that. Could you say it again, please?"
     }

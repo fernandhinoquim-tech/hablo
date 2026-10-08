@@ -171,10 +171,16 @@ private fun CrucigramaScreen(
 ) {
     val accent = Color(teacher.color)
     var estado by remember { mutableStateOf(crucigramas.estado(cruci.id)) }
-    var palabra by remember { mutableStateOf<PalabraCruci?>(cruci.palabras.minByOrNull { it.numero }) }
-    var cursor by remember { mutableStateOf<Celda?>(palabra?.celdas?.firstOrNull()) }
-    /** Palabras que ya se dijeron en voz alta al completarse bien (para no repetirlas a cada letra). */
-    val dichas = remember { HashSet<String>() }
+    // Al reabrir uno a medias se empieza en la primera palabra SIN resolver, en su primera
+    // casilla vacía. Antes se abría en la 1, casi siempre ya resuelta y bloqueada: el teclado
+    // no escribía nada hasta tocar otra palabra (08-10).
+    var palabra by remember {
+        val orden = cruci.palabras.sortedWith(compareBy({ it.numero }, { !it.horizontal }))
+        mutableStateOf<PalabraCruci?>(orden.firstOrNull { !estado.correcta(it) } ?: orden.firstOrNull())
+    }
+    var cursor by remember { mutableStateOf<Celda?>(palabra?.let { p -> p.celdas.firstOrNull { estado.letra(it) == null } ?: p.celdas.firstOrNull() }) }
+    /** Palabras que ya se dijeron en voz alta al completarse bien (para no repetirlas a cada letra). Las ya resueltas no se vuelven a decir al reabrir. */
+    val dichas = remember { HashSet<String>().apply { cruci.palabras.filter { estado.correcta(it) }.forEach { add(it.en) } } }
     var terminado by remember { mutableStateOf(estado.hecho) }
 
     fun guardar(nuevo: EstadoCruci) {
