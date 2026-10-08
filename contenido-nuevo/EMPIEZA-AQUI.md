@@ -1,108 +1,102 @@
-# Hablo — traspaso al 17-09-2026. Lee esto primero.
+# Hablo — traspaso para Cowork al 28-09-2026. Lee esto primero.
 
-App Android para que **Fero** (colombiano, 40 años, doctorando, **no programa**)
-aprenda inglés. Meta real: **Aptis ESOL General**, que le exige **B1 o superior
-en las CUATRO destrezas** — es un **piso, no un promedio**, así que lo que manda
-es su destreza más floja. Él quiere llegar a B2. **No hay fecha de examen aún.**
+App Android para que **Fero** (colombiano, 40 años, doctorando, **no programa**) aprenda inglés.
+
+- **Meta real:** **Aptis ESOL General**, que exige **B1 o superior en las CUATRO destrezas**. Es un piso, no un promedio: manda la destreza más floja.
+- Él quiere llegar a B2. **No hay fecha de examen.**
+- Escríbele siempre **en español**, corto y con clics exactos. Fero no corre comandos ni lee errores de programación.
 
 ## Reparto del trabajo
 
-- **Claude Code** (su PC, Android Studio): todo el Kotlin, compilar, instalar
-  por `adb`, probar en el teléfono.
-- **Claude en Cowork** (este chat): el **contenido** —lecciones, escenarios,
-  bancos, historias, pistas de Aptis—, **investigar antes de decidir**, y
-  **revisar lo que hace Claude Code**.
-- **Fero**: mensajero entre los dos, y el que prueba la app.
+- **Claude Code**, en su PC con Android Studio: todo el Kotlin. Compila, instala por `adb`, prueba en el Samsung S25 y hace commit y push.
+- **Cowork** (tú): el **contenido** (lecciones, vocabulario, historias, escenarios, pistas de Aptis, datos de actividades), **investigar antes de decidir** y **revisar lo que hace Claude Code**.
+- **Fero**: lleva los mensajes entre los dos, prueba la app y genera las fotos con Gemini.
 
-Fero no corre comandos ni lee stack traces. Se le dan clics exactos.
+**Cómo se entrega:**
+1. Cowork escribe en `contenido-nuevo/<carpeta>/`, con los archivos y un `COMO-INTEGRAR.md`.
+2. Claude Code lo integra y lo mueve a `contenido-nuevo/integrado/<fecha>-<nombre>/`.
+3. Cowork le da a Fero un mensaje listo para pegar en Claude Code.
 
-## Qué leer, en orden
+## Qué leer
 
-1. **`CLAUDE.md`** del repo `fernandhinoquim-tech/hablo` — inventario de todo
-   lo pedido, etapas, trampas ya pisadas. **Es la fuente de verdad.**
-2. **`contenido-nuevo/plan-por-etapas.md`** — las 6 etapas y quién hace qué.
-3. **`contenido-nuevo/actividades-nuevas.md`** — 17 actividades evaluadas con
-   la cifra que las respalda, y las descartadas con su razón.
+1. **`CLAUDE.md`** (en la raíz del repo): reglas duras, arquitectura, trampas ya pisadas, inventario y estado. **Es la fuente de verdad.**
+2. Este archivo.
+3. `contenido-nuevo/herramientas-cowork/LEEME.md`: los validadores de Cowork. **Úsalos, no los reescribas.**
+4. Si hace falta más contexto:
+   - `contenido-nuevo/auditoria-a1-a2/auditoria-a1-a2.md`: la auditoría del 17-09 y su plan, ya cumplido;
+   - `actividades-nuevas.md`: la evidencia detrás de cada actividad.
 
-## Estado (v0.9.6)
+## Estado verificado (28-09, v0.9.10, en los archivos de la app)
 
-**Etapas 0-4 CERRADAS.** Diagnóstico y arreglos · charla libre con memoria y
-escenarios por nivel · adivina-antes-de-ver, mazo Leitner, corrige-tu-error,
-contrarreloj y Aguanta · historias con retell.
+| Qué | Cuánto |
+|---|---|
+| Curso | **A1 43 · A2 45 · B1 45 · B2 45 = 178 lecciones, 2.179 ejercicios.** Cada lección trae su ficha de teoría con la trampa del hispanohablante |
+| Vocabulario | 164 bancos, 3.339 parejas (A1 26 · A2 45 · B1 53 · B2 40 bancos), sin repetidos. Con las lecciones, **≈ 3.335 palabras distintas de A1 a B2 (71 % de English Profile)** |
+| Crucigramas | 210 (A1 34 · A2 69 · B1 63 · B2 44) |
+| Historias | 30 (una tanda por nivel, dos de A2) |
+| Escenarios | 23 (A1 5 · A2 6 · B1 6 · B2 6) + charla libre con memoria |
+| Oído | 16 bloques, 147 pares (medidos con las voces; u/uu quedó con 5) |
+| Dictado de números | 80 ítems |
+| Drills | 70 |
+| Modo Aptis | Core 120 ítems. Writing 60 · Reading 67 · Listening 73 · Speaking 63 (sin el simulacro; ≥ 8 por nivel y B1 ≥ 30 en las cuatro). **Fotos de Speaking: 20 puestas; faltan 15** (`integrado/2026-09-24-aptis-b1/PROMPT-GEMINI-FOTOS-2.md`) |
+| Pantallas | lecciones, repaso/mazo, Aguanta, contrarreloj, historias, conversación, pronunciación, Oído, dictado, crucigramas, Gramática + «¿Por qué?», Modo Aptis con simulacro, respaldo del progreso |
 
-**Contenido puesto:** A1 y A2 completos (56 lecciones, 565 ejercicios, 56
-fichas de teoría) · 17 escenarios (5 A1 · 6 A2 · 6 B1) · 41 bancos de
-vocabulario (368 parejas) · 12 historias (2 tandas).
+**Uso real de Fero** (cuaderno, 24-09): aprobó 11 de 178 lecciones, todas de A1, y no ha usado la app desde el 19-09. **El cuello de botella es usarla, no el contenido.** Claude Code preguntó si ~20 entradas del cuaderno del 16-09 eran pruebas suyas; está pendiente la respuesta de Fero.
 
-## Actualización 17-09 (tarde): dos correcciones y una auditoría
+## Entregado y pendiente de integrar
 
-- **El rediseño del Modo Aptis YA LO CONSTRUYÓ Claude Code** (0.9.7, en el PC,
-  sin commit todavía): cinco pistas, tablero con el piso, simulacro bloqueado
-  hasta B1. No hay que volver a mandar `CAMBIO-MODO-APTIS.md`.
-- **Formato de las pistas:** resuelto. Claude Code ya integró Writing tal cual
-  (`aptis-writing.json`, commit 9103ce1): el parser acepta `partes` y dentro
-  de cada parte las tareas van en el formato de su sección del simulacro
-  (`aptis-diagnostico.json`). Reading, Listening y Speaking: mismo esquema.
-- Claude Code ya hizo los cambios de código de la auditoría: `accept` en
-  translate, build y type, respetado en mazo, Aguanta y adivina (6ff3cc9).
-- **Auditoría de A1 y A2** en `contenido-nuevo/auditoria-a1-a2/`: faltan 16
-  lecciones básicas de A1 y 14 de A2, el vocabulario va al 38 % de A2, ≈ 220
-  defectos en los 565 ejercicios (informes por unidad con el arreglo exacto),
-  y tres cambios de código (`accept` en translate/build/type). **Su plan de 10
-  pasos es el orden de trabajo vigente.**
+- Nada. `aptis-niveles/` (28-09) **se integró el 08-10** tal cual (ninguna tarea vieja cambió, las fotos siguen), archivado en `integrado/2026-09-28-aptis-niveles/`.
 
-## Lo que falta, en orden
+## Pendiente (en orden de valor)
 
-0. **Estado al 17-09 (tarde), verificado en los assets y el código (0.9.8):**
-   INTEGRADO todo lo de la auditoría: parche, A1 (43 lecciones), A2 (45),
-   vocabulario A1-A2 (84 bancos), 24 historias, 70 drills, pistas de Aptis
-   (Reading 42 · Listening 42 · Speaking 28 · Writing 16), crucigramas (103),
-   Oído (132 pares, 15 descartados por medición: ver
-   `integrado/2026-09-17-oido-dictado-drills/DESCARTES-OIDO.md`), dictado
-   (80, comparación estricta), pantalla de Gramática + "¿Por qué?", soporte
-   de `imagenes` en Speaking.
-   ESCRITO, falta integrar: `b1-nivel/` (45 lecciones, 540 ejercicios) y
-   `vocab-b1/` (40 bancos, 1.000 parejas + 63 crucigramas B1).
-   Pendiente de Fero: las 20 fotos de Speaking.
-   B2 COMPLETO escrito y verificado (24-09) en `contenido-nuevo/b2-completo/`
-   (45 lecciones, 1.000 parejas, 44 crucigramas, 6 historias, 6 escenarios);
-   INTEGRADO el 24-09 (0.9.10), archivado en `integrado/2026-09-24-b2-completo/`. Prompt de las fotos para Gemini: `contenido-nuevo/fotos-gemini/`.
-   Pendiente de Cowork: repuestos para los 15 pares de Oído
-   descartados (bloques t/d final y u/uu quedaron cortos).
-1. **Pistas de Aptis**: Writing **hecho**
-   (`contenido-nuevo/aptis/pista-writing.json`, 16 tareas). Faltan **Reading,
-   Listening y Speaking** — mismo formato, ver `validar_pista.py`.
-   El Core ya está: `core-gramatica.json` + `core-vocabulario.json`, 120 ítems.
-2. **Contenido B1 y B2** del curso. Es la montaña: A1+A2 son el 27 % del camino.
-3. **Cuatro actividades sin construir**: crucigramas (las rejillas las genera
-   Cowork), pantalla de Oído, doblar la escena, dictogloss.
-4. **Fotos de Speaking** — partes 2 y 3 son describir y comparar fotos. Las
-   genera **Fero** con su suscripción de Google; Cowork escribe las preguntas.
+1. **Que Fero use la app a diario** y reporte lo que marque mal. Un fallo que le enseña inglés incorrecto va antes que cualquier cosa nueva.
+2. **Fero:** las 15 fotos de la segunda tanda.
+3. **Claude Code:** medir `integrado/2026-09-24-aptis-b1/oido-repuestos.json`, si no lo hizo. Los bloques y/j y u/uu no tienen más pares comunes.
+4. **Cowork, opcional:** subir el vocabulario B2 hacia English Profile (faltan ~1.300 palabras) y la parte 3 de Reading de Aptis (opiniones), que necesita un tipo nuevo en la app.
+5. **Deudas pequeñas:**
+   - 7 ejercicios con más de 150 `accept` (a2u16l2e8, b2u13l1e2, b2u13l1e8, b2u14l3e2…). Se reducen fijando el sujeto en el español.
+   - 2 fichas pasan de 130 palabras.
+   - Actividades sin construir: doblar la escena y dictogloss (evidencia en `actividades-nuevas.md`).
+
+## Cómo trabaja Cowork (método que funcionó)
+
+- **Redactores en paralelo + un revisor adversarial por lote.** Todas las pasadas encontraron defectos reales (entre 12 y 130 por lote). **Ninguna entrega sale sin verificación.**
+- Antes de entregar: validar con `herramientas-cowork/` **y** probar sobre una copia de los archivos actuales en el PC, con los scripts de `tools/content/` del repo.
+- Cada redactor usa un script con **nombre único** en el scratchpad. Dos agentes se pisaron un `gen.py` compartido.
+- **Para ahorrar recursos** (Fero lo pidió):
+  - lotes grandes en un solo pedido;
+  - un revisor para varios archivos;
+  - respuestas cortas de los agentes.
 
 ## Reglas que no se negocian
 
-- **El reconocedor nunca ve la frase esperada.** Ni hotwords ni sesgos.
-- **Marcar mal algo que está bien es el peor fallo.** Le enseña que su inglés
-  correcto es incorrecto.
-- **No trabajar a ciegas** (regla suya): buscar si alguien ya lo midió antes de
-  elegir modelo, umbral o actividad, y citar la cifra en el commit.
-- **Todo contenido se verifica de forma adversarial antes de entregarlo.** Las
-  seis pasadas hechas encontraron entre 12 y 33 defectos reales **cada una**.
-  Ninguna entrega se salta ese paso. Nunca ha fallado en encontrar algo.
-- **El curso va en inglés americano; el Modo Aptis enseña la diferencia con el
-  británico** como contenido (Aptis es del British Council).
-- **Aptis no puntúa fonemas**: el GOP sirve para hablar mejor, no para la nota.
-- **Una etapa a la vez**, y termina cuando Fero la usó, no cuando compila.
+- **Marcar mal algo que está bien es el peor fallo.** Cada `write` o `cloze` lleva en `accept` todas las respuestas naturales. **Un `accept` con inglés incorrecto es igual de grave**: le enseña que lo malo está bien.
+- **El reconocedor nunca ve la frase esperada.**
+- **No trabajar a ciegas:** buscar la evidencia antes de elegir un modelo, un umbral o una actividad, y citar la cifra.
+- **El curso va en inglés americano.** El Modo Aptis enseña el británico como contenido, en el `why`. El español, colombiano: carro, celular, apartamento, plata solo como coloquial, no «piso», «móvil» ni «vacilar» con sentido de España.
+- **Aptis no puntúa fonemas.**
+- **Una etapa a la vez**: termina cuando Fero la usó.
 
-## Trampa de Cowork
+## Trampas de Cowork (ya pisadas)
 
-- **No correr `git` desde Cowork en la carpeta del repo.** El 17-09 un
-  `git status` dejó `.git/index.lock` sin poder borrarlo (el puente no deja
-  borrar sin permiso) y habría bloqueado los commits de Claude Code. Para
-  saber el estado, leer archivos o preguntarle a Claude Code.
+- **No correr `git` desde Cowork** en la carpeta del repo: deja `.git/index.lock` y bloquea a Claude Code.
+- **Cómo corrige la app** (`Correccion.kt`):
+  - mayúsculas, puntuación, tildes y guiones no cuentan;
+  - las cifras 0-100 se igualan a palabras;
+  - se expanden `I'm…let's`, `must've…might've`, `hadn't/hasn't/haven't`;
+  - `'s` y `'d` solo tras sujeto (is/has, would/had);
+  - **no** se normalizan «7:30», «$12.50», los años ni «o'clock».
+  - Un `accept` que repite la respuesta según esas reglas **rompe la compilación**; eso se limpia con `dedupe_accept.py` de `tools/content/`.
+  - El dictado usa una comparación estricta: «$650» no vale por «$6.50».
+- **«May 3» se lee «may three»**: no pongas «May 3» en `accept`.
+- **Piper (las voces):**
+  - con palabras sueltas es inestable; mejor dentro de una frase;
+  - **nunca heterónimos**: live, read, lead, close, record, present, produce…;
+  - con la voz Grace, las letras sueltas no se entienden.
+- **Los bancos de vocabulario:** ningún inglés ni español se repite en todo el archivo. Dentro de un banco no puede haber dos respuestas válidas a la vez.
+- **`device_commit_files` puede tardar en reflejarse.** Comprueba con `device_bash` antes de dar algo por escrito.
 
 ## Dos cosas que parecen bug y NO lo son
 
-- **"Spanish" marcado dudoso con dictado perfecto**: el modelo de fonemas oye
-  la ε de "espanish" y el dictado es ciego a eso. **No subir ese umbral.**
-- **live/leave**: Piper lo dice bien. Fue error de oído real de Fero.
+- **"Spanish" marcado dudoso con dictado perfecto:** el modelo de fonemas oye la ε de «espanish». No se sube ese umbral.
+- **live/leave:** Piper lo dice bien. Fue un error de oído real de Fero.

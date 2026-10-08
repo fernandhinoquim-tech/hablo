@@ -49,9 +49,17 @@ class AptisTest {
         // los C1 del banco entran como B2: la pista no distingue más arriba
         assertEquals(listOf(NivelAptis.A2, NivelAptis.B1, NivelAptis.B2), core.niveles)
         assertEquals(NivelAptis.A2, core.nivelInicial)
-        // Reading y Listening: las 42 de Cowork (17-09), 17 y 21 más de B1 (24-09) y las del simulacro (4 y 6); arrancan en A1
-        assertEquals(63, b.pista("reading")!!.tareas.size)
-        assertEquals(69, b.pista("listening")!!.tareas.size)
+        // Reading y Listening: las 42 de Cowork (17-09), 17 y 21 más de B1 (24-09), 8 y 10 de A1-A2 (28-09)
+        // y las del simulacro (4 y 6); arrancan en A1
+        assertEquals(71, b.pista("reading")!!.tareas.size)
+        assertEquals(79, b.pista("listening")!!.tareas.size)
+        // Ningún nivel con tan pocas tareas que la promoción las repita (28-09: A1, A2 y B2 traían 2-9)
+        for (id in listOf("reading", "listening", "writing", "speaking")) {
+            for (n in listOf(NivelAptis.A1, NivelAptis.A2, NivelAptis.B1, NivelAptis.B2)) {
+                val k = b.pista(id)!!.tareas.count { it.nivel == n }
+                assertTrue("$id tiene $k tareas $n", k >= 8)
+            }
+        }
         // B1 es el umbral del examen: al menos 30 tareas por destreza, para que la promoción mida
         // inglés y no memoria (24-09; antes 6 en Writing y 10 en Speaking)
         for (id in listOf("reading", "listening", "writing", "speaking")) {
@@ -62,9 +70,10 @@ class AptisTest {
         assertEquals(NivelAptis.A1, b.pista("listening")!!.nivelInicial)
         assertTrue(b.pista("reading")!!.tareas.filterIsInstance<TareaLectura.Ordenar>().size >= 12)
         assertTrue(b.pista("listening")!!.tareas.filterIsInstance<TareaEscucha>().count { it.tipo == "quien" } >= 10)
-        // Writing: las 16 de Cowork (4 partes del examen, A1 a B2), 24 más de B1 (24-09) y las 2 del simulacro
+        // Writing: las 16 de Cowork (4 partes del examen, A1 a B2), 24 más de B1 (24-09), 20 de A1/A2/B2 (28-09)
+        // y las 2 del simulacro
         val writing = b.pista("writing")!!
-        assertEquals(42, writing.tareas.size)
+        assertEquals(62, writing.tareas.size)
         assertEquals(listOf(NivelAptis.A1, NivelAptis.A2, NivelAptis.B1, NivelAptis.B2), writing.niveles)
         assertEquals(NivelAptis.A1, writing.nivelInicial)
         val w1 = writing.tarea("w1-01") as TareaEscrita
@@ -74,10 +83,10 @@ class AptisTest {
         assertEquals("50 + 120-150", (writing.tarea("w4-01") as TareaEscrita).palabras)
         val prompt = JuezAptis.promptEscrita(w1, "Fernando, Bogota, Rice, Four, Saturday", 60)
         assertTrue(prompt, prompt.contains("MENSAJES A LOS QUE RESPONDE") && prompt.contains("1. What's your first name?") && prompt.contains("Parte 1"))
-        // Speaking: las 28 de Cowork (4 partes), 22 más de B1 (24-09) y las 3 del simulacro; las de foto traen su
+        // Speaking: las 28 de Cowork (4 partes), 22 más de B1 (24-09), 13 de A1/A2/B2 (28-09) y las 3 del simulacro; las de foto traen su
         // descripción y, desde el 24-09, sus fotos (parte 3: dos); s-035…s-044 esperan su tanda de fotos
         val speaking = b.pista("speaking")!!
-        assertEquals(53, speaking.tareas.size)
+        assertEquals(66, speaking.tareas.size)
         val s9 = speaking.tarea("s-009") as TareaHablada
         assertTrue(s9.foto.startsWith("A family of four"))
         assertEquals(listOf("images/speaking/s-009.webp"), s9.imagenes)

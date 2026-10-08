@@ -765,6 +765,14 @@ SECCIÓN APARTE del curso. Cómo está construido:
   Reading parte 3 (opiniones) no tiene tipo en la app; Cowork escribe el
   banco si se construye. `checkContent` avisa (no falla) si un nivel tiene
   menos tareas que las que pide la promoción (Writing A1 trae 2).
+  **A1, A2 y B2 completados (28-09, Cowork, `…/integrado/2026-09-28-aptis-niveles/`;
+  integrado el 08-10):** esos niveles traían 2-9 tareas por pista y Fero
+  (A1-A2 real) iba a repetirlas. Ahora cada nivel de las cuatro pistas trae
+  ≥ 8 (`AptisTest` lo exige): Writing 62, Speaking 66, Reading 71, Listening
+  79 con el simulacro. Mismo método (añadidas al final de cada parte;
+  comprobado id por id que ninguna cambió y que las `"imagenes"` siguen:
+  esta vez no hubo que correr `fotos_speaking.py`). Sin fotos nuevas: lo de
+  Speaking va en las partes 1 y 4.
 - **Cinco pistas** (`PistaAptis`: Core, Reading, Listening, Writing,
   Speaking). Cada una tiene DOS niveles a propósito (`Aptis`): el que se
   ENTRENA (`nivel`, arranca en el nivel más bajo con tareas: A2 hoy, A1
