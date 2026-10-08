@@ -762,8 +762,23 @@ SECCIÓN APARTE del curso. Cómo está construido:
   `fotos_speaking.py`, que ahora avisa y sigue si faltan fotos. s-035…s-044
   (partes 2 y 3) esperan 15 fotos más de Fero (`PROMPT-GEMINI-FOTOS-2.md`);
   mientras, `prompt_es` describe la foto.
-  Reading parte 3 (opiniones) no tiene tipo en la app; Cowork escribe el
-  banco si se construye. `checkContent` avisa (no falla) si un nivel tiene
+  **Reading parte 3 · opiniones (08-10, Cowork, `contenido-nuevo/integrado/2026-10-08-aptis-reading-parte3/`):**
+  tipo `opiniones` (`TareaLectura.Opiniones` + `Persona`; `lectura()`,
+  `checkContent` con UNA función `opiniones()` llamada desde pistas y
+  simulacro; `TareaOpinionesUi`). Cuatro personas con su texto en una caja con
+  scroll propio (340 dp) y debajo la pregunta con los nombres en 2 × 2: así
+  cabe todo en la pantalla del S25 sin desplazar la página. Aprobada con el
+  70 % (`aprobada`: A2 3 de 4, B1/B2 5 de 7; en el examen cada pregunta puntúa
+  sola, todo o nada mediría suerte). La corrección dice "✓ 5 de 7" / "✗ 4 de
+  7 · hacían falta 5" y, por pregunta, el nombre, "Era X (elegiste Y)" y la
+  cita en cursiva. 18 tareas (A2 4 · B1 10 · B2 4) metidas como parte
+  `opiniones` entre `parte2` y `parte3` de `aptis-reading.json` (Reading: 89
+  con el simulacro). Probado en el S25 sembrando Reading en A2 y en B1 y
+  devolviendo `aptis.json` idéntico: 3/4 ✓, 2/4 ✗, 5/7 ✓, 4/7 ✗.
+  **De paso:** la pista y el simulacro guardaban el desplazamiento de la
+  página entre tareas (la corrección abría abajo y escondía el resultado;
+  la tarea siguiente podía abrir a media página): ahora `LaunchedEffect(fase,
+  idx) { scroll.scrollTo(0) }`. `checkContent` avisa (no falla) si un nivel tiene
   menos tareas que las que pide la promoción (Writing A1 trae 2).
   **A1, A2 y B2 completados (28-09, Cowork, `…/integrado/2026-09-28-aptis-niveles/`;
   integrado el 08-10):** esos niveles traían 2-9 tareas por pista y Fero

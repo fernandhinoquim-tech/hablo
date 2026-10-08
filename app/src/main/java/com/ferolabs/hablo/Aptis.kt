@@ -110,7 +110,28 @@ sealed class TareaLectura(override val id: String, override val level: String, v
 
     class Titulos(id: String, level: String, val instruccion: String, val parrafos: List<String>, val titulos: List<String>, val answer: List<String>, why: String = "") :
         TareaLectura(id, level, "titulos", why)
+
+    /**
+     * Reading parte 3 del examen (08-10, Cowork): cuatro personas opinan sobre un [tema] y
+     * cada pregunta "Who…?" se responde con el nombre de una (una persona puede ser la
+     * respuesta de varias). [citas] es la frase textual que lo prueba, una por pregunta.
+     * Cada pregunta puntúa sola en el examen: la tarea cuenta como acierto con el 70 %
+     * ([aprobada]: A2 3 de 4, B1/B2 5 de 7); todo o nada con 7 mediría suerte.
+     */
+    class Opiniones(
+        id: String, level: String, val instruccion: String, val tema: String, val personas: List<Persona>,
+        val preguntas: List<String>, val answer: List<String>, val citas: List<String>, why: String = ""
+    ) : TareaLectura(id, level, "opiniones", why) {
+        /** Los nombres en el orden del texto (los botones de respuesta). */
+        val nombres: List<String> get() = personas.map { it.nombre }
+        fun aprobada(aciertos: Int): Boolean = aciertos * 10 >= preguntas.size * 7
+        /** Las que hacen falta para aprobar (la corrección lo dice). */
+        val minimo: Int get() = (preguntas.size * 7 + 9) / 10
+    }
 }
+
+/** Una de las cuatro personas de una tarea de opiniones. */
+data class Persona(val nombre: String, val texto: String)
 
 data class TareaEscucha(
     override val id: String, val tipo: String, override val level: String, val audio: String, val pregunta: String,
@@ -330,6 +351,26 @@ internal class Lector(val idsTarea: HashSet<String>) {
                 if (answer.size != parrafos.size) throw IllegalArgumentException("$where: \"answer\" necesita un título por párrafo")
                 if (answer.toSet().size != answer.size || answer.any { it !in titulos }) throw IllegalArgumentException("$where: \"answer\" con títulos repetidos o fuera de \"titulos\"")
                 TareaLectura.Titulos(tid, lvl, t.optString("instruccion"), parrafos, titulos, answer, why)
+            }
+            "opiniones" -> {
+                val arr = t.optJSONArray("personas")
+                val personas = (0 until (arr?.length() ?: 0)).map { i ->
+                    val p = arr!!.getJSONObject(i)
+                    Persona(p.optString("nombre").trim(), p.optString("texto").trim())
+                }
+                if (personas.size != 4) throw IllegalArgumentException("$where: hacen falta 4 personas (hay ${personas.size})")
+                if (personas.any { it.nombre.isBlank() || it.texto.isBlank() }) throw IllegalArgumentException("$where: una persona sin nombre o sin texto")
+                if (personas.map { it.nombre }.toSet().size != 4) throw IllegalArgumentException("$where: nombres repetidos")
+                val preguntas = jsonStrings(t.optJSONArray("preguntas"))
+                val answer = jsonStrings(t.optJSONArray("answer"))
+                val citas = jsonStrings(t.optJSONArray("citas"))
+                if (preguntas.isEmpty() || answer.size != preguntas.size || citas.size != preguntas.size)
+                    throw IllegalArgumentException("$where: \"preguntas\", \"answer\" y \"citas\" tienen que tener el mismo tamaño (y no estar vacías)")
+                for ((i, a) in answer.withIndex()) {
+                    val p = personas.firstOrNull { it.nombre == a } ?: throw IllegalArgumentException("$where: la respuesta ${i + 1} («$a») no es ninguna de las personas")
+                    if (citas[i].isBlank() || !p.texto.contains(citas[i])) throw IllegalArgumentException("$where: la cita ${i + 1} no está en el texto de $a")
+                }
+                TareaLectura.Opiniones(tid, lvl, t.optString("instruccion"), t.optString("tema"), personas, preguntas, answer, citas, why)
             }
             else -> throw IllegalArgumentException("$where: tipo desconocido \"$tipo\"")
         }
@@ -899,6 +940,7 @@ object TarjetaAptis {
         if (lectura != null) return when (lectura.tipo) {
             "ordenar" -> "Ordenar las frases de un relato (parte 2 de Reading): fíjate en los conectores y en el tiempo."
             "titulos" -> "Elegir el título de cada párrafo (parte 4 de Reading): busca la idea principal, no una palabra suelta."
+            "opiniones" -> "Decir quién opina qué (parte 3 de Reading): busca la misma idea dicha con otras palabras, no la palabra repetida."
             else -> "Completar frases con la palabra exacta (parte 1 de Reading): vocabulario de ${lectura.level}."
         }
         val escucha = seccion.escucha.firstOrNull { it.id == fallado.id }

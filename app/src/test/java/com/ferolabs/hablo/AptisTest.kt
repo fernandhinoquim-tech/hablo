@@ -50,8 +50,8 @@ class AptisTest {
         assertEquals(listOf(NivelAptis.A2, NivelAptis.B1, NivelAptis.B2), core.niveles)
         assertEquals(NivelAptis.A2, core.nivelInicial)
         // Reading y Listening: las 42 de Cowork (17-09), 17 y 21 más de B1 (24-09), 8 y 10 de A1-A2 (28-09)
-        // y las del simulacro (4 y 6); arrancan en A1
-        assertEquals(71, b.pista("reading")!!.tareas.size)
+        // y las del simulacro (4 y 6); arrancan en A1. Reading suma las 18 de opiniones (parte 3, 08-10)
+        assertEquals(89, b.pista("reading")!!.tareas.size)
         assertEquals(79, b.pista("listening")!!.tareas.size)
         // Ningún nivel con tan pocas tareas que la promoción las repita (28-09: A1, A2 y B2 traían 2-9)
         for (id in listOf("reading", "listening", "writing", "speaking")) {
@@ -115,6 +115,37 @@ class AptisTest {
         val gra = ItemCore("g1", "A2", "My sister ___ in a hospital.", listOf("works", "work", "working"), "works", "He/she/it llevan -s.", point = "presente simple")
         assertEquals("My sister works in a hospital.", gra.resuelto)
         assertEquals("", gra.instruccion)
+    }
+
+    @Test
+    fun `opiniones de Reading parte 3 cargan, aprueban con el 70 por ciento y revientan si estan mal`() {
+        val ops = banco().pista("reading")!!.tareas.filterIsInstance<TareaLectura.Opiniones>()
+        assertEquals(18, ops.size)
+        assertEquals(mapOf("A2" to 4, "B1" to 10, "B2" to 4), ops.groupingBy { it.level }.eachCount())
+        for (t in ops) {
+            assertEquals(4, t.personas.size)
+            t.answer.forEachIndexed { i, a -> assertTrue("${t.id} cita ${i + 1}", t.personas.first { it.nombre == a }.texto.contains(t.citas[i])) }
+        }
+        val a2 = ops.first { it.preguntas.size == 4 }
+        val b1 = ops.first { it.preguntas.size == 7 }
+        assertTrue(a2.aprobada(3)); assertFalse(a2.aprobada(2)); assertEquals(3, a2.minimo)
+        assertTrue(b1.aprobada(5)); assertFalse(b1.aprobada(4)); assertEquals(5, b1.minimo)
+
+        // Lo que tiene que reventar, con la tarea rop-01 tocada en el archivo real
+        fun roto(cambio: (JSONObject) -> Unit): String {
+            val o = JSONObject(leerAsset("aptis-reading.json")!!)
+            val partes = o.getJSONArray("partes")
+            for (i in 0 until partes.length()) {
+                val ts = partes.getJSONObject(i).getJSONArray("tareas")
+                for (j in 0 until ts.length()) if (ts.getJSONObject(j).getString("id") == "rop-01") cambio(ts.getJSONObject(j))
+            }
+            return try { parseBancoAptis { n -> if (n == "aptis-reading.json") o.toString() else leerAsset(n) }; "" } catch (e: IllegalArgumentException) { e.message ?: "?" }
+        }
+        assertTrue(roto { it.getJSONArray("citas").put(0, "una frase que no está en ningún texto") }.contains("cita 1"))
+        assertTrue(roto { it.getJSONArray("answer").put(0, "Nadie") }.contains("no es ninguna de las personas"))
+        assertTrue(roto { it.getJSONArray("personas").remove(3) }.contains("4 personas"))
+        assertTrue(roto { it.getJSONArray("preguntas").put("Who else?") }.contains("mismo tamaño"))
+        assertTrue(roto { it.getJSONArray("personas").getJSONObject(1).put("nombre", it.getJSONArray("personas").getJSONObject(0).getString("nombre")) }.contains("repetidos"))
     }
 
     @Test

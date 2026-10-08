@@ -744,6 +744,22 @@ val checkContent = tasks.register("checkContent") {
         fun hueco(where: String, text: Any?) {
             if (text.toString().split("___").size != 2) problems.add("$where: el texto necesita exactamente un hueco ___")
         }
+        // Reading parte 3 (opiniones, 08-10): las mismas reglas que Aptis.kt; se llama desde las pistas y el simulacro.
+        fun opiniones(where: String, tm: Map<*, *>) {
+            val personas = (tm["personas"] as? List<*>)?.map { it as? Map<*, *> ?: emptyMap<Any, Any>() } ?: emptyList()
+            val nombres = personas.map { it["nombre"]?.toString()?.trim().orEmpty() }
+            if (personas.size != 4) problems.add("$where: hacen falta 4 personas (hay ${personas.size})")
+            if (personas.any { it["nombre"]?.toString().isNullOrBlank() || it["texto"]?.toString().isNullOrBlank() }) problems.add("$where: una persona sin nombre o sin texto")
+            if (nombres.toSet().size != nombres.size) problems.add("$where: nombres repetidos")
+            val preguntas = strs(tm["preguntas"]); val answer = strs(tm["answer"]); val citas = strs(tm["citas"])
+            if (preguntas.isEmpty() || answer.size != preguntas.size || citas.size != preguntas.size)
+                problems.add("$where: \"preguntas\", \"answer\" y \"citas\" tienen que tener el mismo tamano (y no estar vacias)")
+            answer.forEachIndexed { i, a ->
+                val p = personas.firstOrNull { it["nombre"]?.toString()?.trim() == a }
+                if (p == null) problems.add("$where: la respuesta ${i + 1} (\"$a\") no es ninguna de las personas")
+                else if (citas.getOrNull(i).isNullOrBlank() || !p["texto"].toString().contains(citas[i])) problems.add("$where: la cita ${i + 1} no esta en el texto de $a")
+            }
+        }
         // Una tarea de pista o de simulacro, segun la destreza (como Lector en Aptis.kt).
         fun tareaDe(pista: String, where: String, tm: Map<*, *>) {
             idNuevo(where, tm["id"]); nivel(where, tm)
@@ -766,6 +782,7 @@ val checkContent = tasks.register("checkContent") {
                         if (answer.size != parrafos.size) problems.add("$where: \"answer\" necesita un titulo por parrafo")
                         if (answer.toSet().size != answer.size || answer.any { it !in titulos }) problems.add("$where: \"answer\" con titulos repetidos o fuera de \"titulos\"")
                     }
+                    "opiniones" -> opiniones(where, tm)
                     else -> problems.add("$where: tipo desconocido \"${tm["tipo"]}\"")
                 }
                 "listening" -> {
@@ -882,6 +899,7 @@ val checkContent = tasks.register("checkContent") {
                                     if (answer.size != parrafos.size) problems.add("$where: \"answer\" necesita un titulo por parrafo")
                                     if (answer.toSet().size != answer.size || answer.any { it !in titulos }) problems.add("$where: \"answer\" con titulos repetidos o fuera de \"titulos\"")
                                 }
+                                "opiniones" -> opiniones(where, tm)
                                 else -> problems.add("$where: tipo desconocido \"${tm["tipo"]}\"")
                             }
                         }

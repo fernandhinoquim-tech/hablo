@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
@@ -40,6 +41,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -368,6 +370,10 @@ fun PistaScreen(
     }
     val permiso = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { ok -> if (ok) armar() }
     fun empezar() { if (esHabla && !listener.hasMicPermission()) permiso.launch(Manifest.permission.RECORD_AUDIO) else armar() }
+    // Cada pantalla (tarea, corrección, fin) empieza arriba: con las opiniones de Reading la
+    // página queda abajo al contestar y la corrección abría escondiendo el "✓ 3 de 4" (08-10).
+    val scroll = rememberScrollState()
+    LaunchedEffect(fase, idx) { scroll.scrollTo(0) }
 
     Column(modifier = Modifier.fillMaxSize()) {
         TopBar(
@@ -382,7 +388,7 @@ fun PistaScreen(
             verticalArrangement = Arrangement.spacedBy(12.dp),
             modifier = Modifier
                 .weight(1f)
-                .verticalScroll(rememberScrollState())
+                .verticalScroll(scroll)
                 .padding(20.dp)
         ) {
             when (fase) {
@@ -547,6 +553,27 @@ private fun CorreccionAptis(t: TareaAptis, intento: Intento?, fallido: JuicioIa?
             }
             if (t.why.isNotBlank()) Tarjeta { Text("POR QUÉ", style = MaterialTheme.typography.labelMedium, color = AvisoTinta); Text(t.why, style = MaterialTheme.typography.bodyMedium, color = Ink) }
         }
+        is TareaLectura.Opiniones -> {
+            val puestos = intento?.puesto.orEmpty().split(" | ")
+            val aciertos = t.answer.indices.count { puestos.getOrNull(it) == t.answer[it] }
+            val n = t.preguntas.size
+            Text(
+                if (ok) "✓ $aciertos de $n" else "✗ $aciertos de $n · hacían falta ${t.minimo}",
+                style = MaterialTheme.typography.headlineSmall, color = if (ok) GoodGreen else BadRed
+            )
+            t.preguntas.forEachIndexed { i, pregunta ->
+                val bien = puestos.getOrNull(i) == t.answer[i]
+                Tarjeta {
+                    Text((if (bien) "✓ " else "✗ ") + pregunta, style = MaterialTheme.typography.titleMedium, color = if (bien) GoodGreen else BadRed)
+                    Text(
+                        if (bien) t.answer[i] else "Era ${t.answer[i]}" + (puestos.getOrNull(i)?.takeIf { it.isNotBlank() }?.let { " (elegiste $it)" } ?: ""),
+                        style = MaterialTheme.typography.bodyLarge, fontWeight = FontWeight.Bold, color = Ink
+                    )
+                    Text("«${t.citas[i]}»", style = MaterialTheme.typography.bodyMedium, fontStyle = FontStyle.Italic, color = InkSoft)
+                }
+            }
+            if (t.why.isNotBlank()) Tarjeta { Text("POR QUÉ", style = MaterialTheme.typography.labelMedium, color = AvisoTinta); Text(t.why, style = MaterialTheme.typography.bodyMedium, color = Ink) }
+        }
         is TareaEscucha -> {
             Text(if (ok) "✓ Correcto" else "✗ Era «${t.answer}»", style = MaterialTheme.typography.headlineSmall, color = if (ok) GoodGreen else BadRed)
             Text(t.pregunta, style = MaterialTheme.typography.bodyMedium, color = InkSoft)
@@ -589,6 +616,7 @@ private fun TareaUi(
                 is TareaLectura.Completar -> TareaCompletarUi(t, accent, onRespuesta)
                 is TareaLectura.Ordenar -> TareaOrdenarUi(t, accent, onRespuesta)
                 is TareaLectura.Titulos -> TareaTitulosUi(t, accent, onRespuesta)
+                is TareaLectura.Opiniones -> TareaOpinionesUi(t, accent, onRespuesta)
             }
         }
         is TareaEscucha -> TareaEscuchaUi(t, n, total, accent, teacher, speaker, sayQueued, onRespuesta)
@@ -791,6 +819,9 @@ fun AptisParteScreen(
     val permiso = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { ok ->
         if (ok) { idx = 0; fase = FaseParte.TAREAS }
     }
+    // Cada tarea empieza arriba (igual que en la pista).
+    val scroll = rememberScrollState()
+    LaunchedEffect(fase, idx) { scroll.scrollTo(0) }
 
     Column(modifier = Modifier.fillMaxSize()) {
         TopBar(
@@ -806,7 +837,7 @@ fun AptisParteScreen(
             verticalArrangement = Arrangement.spacedBy(12.dp),
             modifier = Modifier
                 .weight(1f)
-                .verticalScroll(rememberScrollState())
+                .verticalScroll(scroll)
                 .padding(20.dp)
         ) {
             when (fase) {
@@ -1038,6 +1069,56 @@ private fun TareaTitulosUi(t: TareaLectura.Titulos, accent: Color, onRespuesta: 
         val nuevos = asignados + t.titulos[chosen]
         if (p + 1 < t.parrafos.size) { asignados = nuevos; p += 1; chosen = -1 }
         else onRespuesta(nuevos.joinToString(" | "), nuevos == t.answer)
+    }
+}
+
+/**
+ * Reading parte 3: cuatro personas opinan y se dice quién dice cada cosa. Los textos van
+ * en una caja con su propio scroll, siempre a la vista (en el examen se releen todo el
+ * tiempo), y debajo la pregunta del momento con los cuatro nombres.
+ */
+@Composable
+private fun TareaOpinionesUi(t: TareaLectura.Opiniones, accent: Color, onRespuesta: (String, Boolean) -> Unit) {
+    var q by remember { mutableStateOf(0) }
+    var elegidos by remember { mutableStateOf(listOf<String>()) }
+    var chosen by remember { mutableStateOf(-1) }
+    Text(t.instruccion.ifBlank { "Lee lo que opinan cuatro personas. ¿Quién dice cada cosa?" }, style = MaterialTheme.typography.bodyMedium, color = InkSoft)
+    if (t.tema.isNotBlank()) Text(t.tema, style = MaterialTheme.typography.titleLarge, color = Ink)
+    Column(
+        verticalArrangement = Arrangement.spacedBy(10.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            // Con 340 dp + nombres en 2 × 2 cabe todo en la pantalla del S25 sin desplazar la página.
+            .heightIn(max = 340.dp)
+            .background(Color.White, RoundedCornerShape(14.dp))
+            .border(1.dp, Line, RoundedCornerShape(14.dp))
+            .verticalScroll(rememberScrollState())
+            .padding(14.dp)
+    ) {
+        t.personas.forEach { p ->
+            Text(p.nombre, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold, color = Ink)
+            Text(p.texto, style = MaterialTheme.typography.bodyLarge, color = Ink)
+        }
+    }
+    Text("Desliza dentro del recuadro para releer a las cuatro.", style = MaterialTheme.typography.labelSmall, color = InkSoft)
+    Text("Pregunta ${q + 1} de ${t.preguntas.size}", style = MaterialTheme.typography.labelMedium, color = InkSoft)
+    Text(t.preguntas[q], style = MaterialTheme.typography.titleMedium, color = Ink)
+    // Los nombres son cortos: dos por fila, para que la pregunta y los textos quepan a la vez.
+    t.nombres.chunked(2).forEachIndexed { fila, par ->
+        Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {
+            par.forEachIndexed { j, n ->
+                val i = fila * 2 + j
+                Box(modifier = Modifier.weight(1f)) { Opcion(n, chosen == i, accent) { chosen = i } }
+            }
+        }
+    }
+    BigButton(if (q + 1 < t.preguntas.size) "Siguiente pregunta" else "Siguiente", enabled = chosen >= 0, container = accent) {
+        val nuevos = elegidos + t.nombres[chosen]
+        if (q + 1 < t.preguntas.size) { elegidos = nuevos; q += 1; chosen = -1 }
+        else {
+            val aciertos = nuevos.indices.count { nuevos[it] == t.answer[it] }
+            onRespuesta(nuevos.joinToString(" | "), t.aprobada(aciertos))
+        }
     }
 }
 

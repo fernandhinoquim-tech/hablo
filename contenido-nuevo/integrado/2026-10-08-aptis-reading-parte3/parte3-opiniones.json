@@ -1,0 +1,930 @@
+{
+ "partes": [
+  {
+   "id": "opiniones",
+   "aptis": "Parte 3 · opiniones",
+   "title": "¿Quién opina qué?",
+   "descripcion": "En la Parte 3 de Reading lees lo que opinan cuatro personas sobre un mismo tema y, para cada frase, eliges quién lo dice. En el examen son 7 frases y una persona puede ser la respuesta de varias. Las preguntas casi nunca repiten las palabras del texto: dicen lo mismo con otras. Desconfía de la persona que usa la misma palabra que la pregunta: suele ser la trampa.",
+   "tareas": [
+    {
+     "id": "rop-01",
+     "level": "A2",
+     "tipo": "opiniones",
+     "instruccion": "Lee lo que opinan cuatro personas. ¿Quién dice cada cosa? Una persona puede ser la respuesta de varias preguntas.",
+     "tema": "Pets",
+     "personas": [
+      {
+       "nombre": "Lucy",
+       "texto": "I have two cats. They are very easy to look after because they don't need to go for walks. When I come home from work, they are always happy to see me. I think every family should have a pet."
+      },
+      {
+       "nombre": "Omar",
+       "texto": "I love dogs, but I live in a small flat on the fifth floor, so I can't have one. My neighbour has a big dog, and sometimes I take it to the park on Sundays."
+      },
+      {
+       "nombre": "Kate",
+       "texto": "When I was a child, we had a rabbit. Now I don't want any animals in my house. They make everything dirty, and it's difficult to go away on holiday."
+      },
+      {
+       "nombre": "Sam",
+       "texto": "My son wanted a dog for years. Last month we finally got one from an animal centre. It's a lot of work, but my son is more responsible now."
+      }
+     ],
+     "preguntas": [
+      "Who doesn't have enough space for a pet?",
+      "Who thinks animals are not clean?",
+      "Who says a pet has helped a child?",
+      "Who has animals that need little care?"
+     ],
+     "answer": [
+      "Omar",
+      "Kate",
+      "Sam",
+      "Lucy"
+     ],
+     "citas": [
+      "I live in a small flat on the fifth floor",
+      "They make everything dirty",
+      "my son is more responsible now",
+      "They are very easy to look after"
+     ],
+     "why": "Las preguntas dicen lo mismo con otras palabras: «not enough space» = «a small flat», «not clean» = «dirty». «Flat» es británico; en EE. UU. dicen «apartment»."
+    },
+    {
+     "id": "rop-02",
+     "level": "A2",
+     "tipo": "opiniones",
+     "instruccion": "Lee lo que opinan cuatro personas. ¿Quién dice cada cosa? Una persona puede ser la respuesta de varias preguntas.",
+     "tema": "Breakfast",
+     "personas": [
+      {
+       "nombre": "Pablo",
+       "texto": "I never have breakfast at home. I'm not hungry in the morning, so I just have a coffee. At eleven o'clock I buy a sandwich near my office."
+      },
+      {
+       "nombre": "Mia",
+       "texto": "Breakfast is the most important meal for me. I get up early and make eggs, bread and fruit for the whole family. We always eat together at the table."
+      },
+      {
+       "nombre": "Leo",
+       "texto": "On weekdays I eat cereal very quickly, standing in the kitchen. But on Sundays I go to a café with my friends and we have a big breakfast for two hours."
+      },
+      {
+       "nombre": "Rosa",
+       "texto": "My doctor told me to eat more fruit, so now I have a big glass of orange juice and a banana every morning. I feel much better and I have more energy."
+      }
+     ],
+     "preguntas": [
+      "Who eats breakfast with other people every day?",
+      "Who changed their breakfast because of advice?",
+      "Who eats something later in the morning?",
+      "Who has a different breakfast at the weekend?"
+     ],
+     "answer": [
+      "Mia",
+      "Rosa",
+      "Pablo",
+      "Leo"
+     ],
+     "citas": [
+      "We always eat together at the table",
+      "My doctor told me to eat more fruit",
+      "At eleven o'clock I buy a sandwich",
+      "But on Sundays I go to a café"
+     ],
+     "why": "La 1 es la trampa: Leo también desayuna con amigos, pero solo los domingos; Mia lo hace todos los días (always)."
+    },
+    {
+     "id": "rop-03",
+     "level": "A2",
+     "tipo": "opiniones",
+     "instruccion": "Lee lo que opinan cuatro personas. ¿Quién dice cada cosa? Una persona puede ser la respuesta de varias preguntas.",
+     "tema": "Holidays",
+     "personas": [
+      {
+       "nombre": "Eva",
+       "texto": "I always go to the beach in summer. I love swimming in the sea and lying in the sun with a good book. The mountains are too cold for me."
+      },
+      {
+       "nombre": "Tom",
+       "texto": "Last year I went to the mountains for the first time. I walked every day and the views were amazing. Next year I want to go again with my brother."
+      },
+      {
+       "nombre": "Nina",
+       "texto": "I don't like the beach because there are too many people in summer. I prefer quiet places, so I usually go to a small village in the mountains in spring."
+      },
+      {
+       "nombre": "Hugo",
+       "texto": "My children love the beach, but I get bored after two days. So we do both: one week by the sea and one week in the mountains. Everybody is happy!"
+      }
+     ],
+     "preguntas": [
+      "Who doesn't like crowds?",
+      "Who tried something new last year?",
+      "Who prefers warm weather?",
+      "Who goes to two different places on holiday?"
+     ],
+     "answer": [
+      "Nina",
+      "Tom",
+      "Eva",
+      "Hugo"
+     ],
+     "citas": [
+      "there are too many people",
+      "for the first time",
+      "The mountains are too cold for me",
+      "So we do both"
+     ],
+     "why": "«Crowds» es mucha gente: es lo que dice Nina con «too many people». Eva también habla de la playa, pero a ella le encanta."
+    },
+    {
+     "id": "rop-04",
+     "level": "A2",
+     "tipo": "opiniones",
+     "instruccion": "Lee lo que opinan cuatro personas. ¿Quién dice cada cosa? Una persona puede ser la respuesta de varias preguntas.",
+     "tema": "Getting to work",
+     "personas": [
+      {
+       "nombre": "Jack",
+       "texto": "I go to work by bike every day. It's only fifteen minutes, and it's good exercise. When it rains, I take the bus, but I don't enjoy it."
+      },
+      {
+       "nombre": "Sara",
+       "texto": "I drive to work because there is no bus from my village. Petrol is very expensive now, so I share my car with two colleagues. We talk and listen to the radio."
+      },
+      {
+       "nombre": "Ali",
+       "texto": "I walk to the office. It takes forty minutes, but I listen to music or call my mum. It's my favourite part of the day. I never take the car."
+      },
+      {
+       "nombre": "Paula",
+       "texto": "I take the train. It's fast, but it's often late, and in the mornings it's so full that I never get a seat. I read the news on my phone while I stand."
+      }
+     ],
+     "preguntas": [
+      "Who travels with people from work?",
+      "Who enjoys the journey most?",
+      "Who complains that the transport is not on time?",
+      "Who changes how they travel when the weather is bad?"
+     ],
+     "answer": [
+      "Sara",
+      "Ali",
+      "Paula",
+      "Jack"
+     ],
+     "citas": [
+      "I share my car with two colleagues",
+      "It's my favourite part of the day",
+      "it's often late",
+      "When it rains, I take the bus"
+     ],
+     "why": "«Petrol» es británico; en EE. UU. dicen «gas». En la 3, «not on time» es lo mismo que «late»."
+    },
+    {
+     "id": "rop-05",
+     "level": "B1",
+     "tipo": "opiniones",
+     "instruccion": "Lee lo que opinan cuatro personas. ¿Quién dice cada cosa? Una persona puede ser la respuesta de varias preguntas.",
+     "tema": "Social media",
+     "personas": [
+      {
+       "nombre": "Daniel",
+       "texto": "I deleted my social media accounts two years ago. I was spending three hours a day looking at other people's photos and feeling bad about my own life. Now I read more and sleep better. I still use a messaging app to talk to my family, but that's all. My friends thought I was crazy, but now two of them have done the same."
+      },
+      {
+       "nombre": "Helen",
+       "texto": "For my small bakery, social media is essential. I post photos of our cakes every morning, and most of our new customers find us that way. It takes time, but advertising in newspapers would cost me much more. Personally, I'm not a big fan: I never post photos of my family, and I don't read the comments after ten at night."
+      },
+      {
+       "nombre": "Marco",
+       "texto": "I think social media is fine for adults, but I worry about teenagers. My daughter is fourteen and she compares herself with influencers all the time. She thinks she isn't pretty enough, which is crazy. We have a rule at home: no phones after nine o'clock. She complained at first, but I think she's happier now."
+      },
+      {
+       "nombre": "Julia",
+       "texto": "I use social media mainly to keep in touch with friends abroad. I moved to Canada last year, and seeing their photos makes me feel less lonely. Of course, some people share too much, but you can always choose who to follow. I've also found a group of people from my country in my new city, and we meet every month."
+      }
+     ],
+     "preguntas": [
+      "Who uses social media for their business?",
+      "Who is concerned about the effect on young people?",
+      "Who decided to stop using most social media?",
+      "Who says it is a cheap way to find customers?",
+      "Who limits when a family member can use their phone?",
+      "Who feels less alone thanks to social media?",
+      "Who was less happy when they used social media more?"
+     ],
+     "answer": [
+      "Helen",
+      "Marco",
+      "Daniel",
+      "Helen",
+      "Marco",
+      "Julia",
+      "Daniel"
+     ],
+     "citas": [
+      "For my small bakery, social media is essential",
+      "I worry about teenagers",
+      "I deleted my social media accounts two years ago",
+      "advertising in newspapers would cost me much more",
+      "no phones after nine o'clock",
+      "makes me feel less lonely",
+      "feeling bad about my own life"
+     ],
+     "why": "Helen, Marco y Daniel salen dos veces: en esta parte una persona puede ser la respuesta de varias preguntas. Trampa en la 6: Daniel habla con su familia por mensajes, pero quien dice sentirse menos sola es Julia."
+    },
+    {
+     "id": "rop-06",
+     "level": "B1",
+     "tipo": "opiniones",
+     "instruccion": "Lee lo que opinan cuatro personas. ¿Quién dice cada cosa? Una persona puede ser la respuesta de varias preguntas.",
+     "tema": "Learning a language as an adult",
+     "personas": [
+      {
+       "nombre": "Ingrid",
+       "texto": "I started learning Italian at fifty, after my children left home. My memory isn't as good as it was, so I need to repeat new words many times. But I'm more patient than when I was young, and I really enjoy my classes. Next summer I'm going to Rome with my husband, and I want to order dinner in Italian."
+      },
+      {
+       "nombre": "Pedro",
+       "texto": "Honestly, I think apps are not enough. I used one every day for a year and I could read quite well, but when I visited Germany I couldn't understand anyone. People spoke so fast! Now I pay for conversation classes with a teacher online. It's more expensive, but after three months I can already have a simple conversation."
+      },
+      {
+       "nombre": "Fiona",
+       "texto": "I learn languages for my job. I work for a hotel chain, and every new language means a better salary. I already speak French and Spanish, and now I'm learning Portuguese. I study on the train every morning with podcasts, because I don't have time in the evenings. It's hard work, but it's worth it."
+      },
+      {
+       "nombre": "Kenji",
+       "texto": "People say adults can't lose their accent, and maybe that's true. But my goal isn't to sound like a native speaker. I just want people to understand me when I speak, and they do. I moved to Australia ten years ago, and I use English at work every day. My children correct my grammar, but I don't mind."
+      }
+     ],
+     "preguntas": [
+      "Who finds remembering vocabulary harder now?",
+      "Who had problems communicating on a trip?",
+      "Who earns more money thanks to languages?",
+      "Who is not trying to have a perfect accent?",
+      "Who studies while travelling?",
+      "Who thinks age has also brought an advantage?",
+      "Who switched from studying alone to having a teacher?"
+     ],
+     "answer": [
+      "Ingrid",
+      "Pedro",
+      "Fiona",
+      "Kenji",
+      "Fiona",
+      "Ingrid",
+      "Pedro"
+     ],
+     "citas": [
+      "My memory isn't as good as it was",
+      "when I visited Germany I couldn't understand anyone",
+      "every new language means a better salary",
+      "my goal isn't to sound like a native speaker",
+      "I study on the train every morning",
+      "I'm more patient than when I was young",
+      "Now I pay for conversation classes with a teacher online"
+     ],
+     "why": "Trampa en la 7: Ingrid también va a clases, pero no dice que haya cambiado de método; Pedro pasó de una app a un profesor. «Travelling» con doble l es británico."
+    },
+    {
+     "id": "rop-07",
+     "level": "B1",
+     "tipo": "opiniones",
+     "instruccion": "Lee lo que opinan cuatro personas. ¿Quién dice cada cosa? Una persona puede ser la respuesta de varias preguntas.",
+     "tema": "Shopping online",
+     "personas": [
+      {
+       "nombre": "Grace",
+       "texto": "I buy almost everything online now, even food. I live in a village and the nearest supermarket is twenty kilometres away, so it saves me a lot of time and petrol. Delivery is sometimes slow, but I plan ahead. I know some people worry about using their bank card online, but I've never had a problem."
+      },
+      {
+       "nombre": "Victor",
+       "texto": "I never buy clothes online. I tried a few times, but nothing fitted me, and sending things back was a nightmare. I prefer to go to a shop, try things on and pay at the till. I do buy books and music online, though, because I always know exactly what I'm getting."
+      },
+      {
+       "nombre": "Amira",
+       "texto": "I work in a bookshop, and I've seen many small shops in my street close because of online shopping. I understand that it's convenient, but I always try to buy from local businesses. They often cost a bit more, but the owners know me, and they give much better advice than any website."
+      },
+      {
+       "nombre": "Leon",
+       "texto": "I compare prices online before I buy anything expensive. Last month I found the same TV for two hundred pounds less on a website. But for small things, I just go to the shop on the corner. It's not worth spending an hour on the internet to save fifty pence on a bottle of shampoo."
+      }
+     ],
+     "preguntas": [
+      "Who lives far from the shops?",
+      "Who had problems returning products?",
+      "Who wants to support shops in their area?",
+      "Who paid less for something after checking prices online?",
+      "Who has noticed changes in their neighbourhood?",
+      "Who doesn't mind waiting for deliveries?",
+      "Who shops differently depending on the price of the item?"
+     ],
+     "answer": [
+      "Grace",
+      "Victor",
+      "Amira",
+      "Leon",
+      "Amira",
+      "Grace",
+      "Leon"
+     ],
+     "citas": [
+      "the nearest supermarket is twenty kilometres away",
+      "sending things back was a nightmare",
+      "I always try to buy from local businesses",
+      "I found the same TV for two hundred pounds less",
+      "many small shops in my street close",
+      "Delivery is sometimes slow, but I plan ahead",
+      "for small things, I just go to the shop on the corner"
+     ],
+     "why": "«Till» es la caja (británico; en EE. UU. «register»). Trampa en la 3: Leon también compra en la tienda de la esquina, pero por comodidad, no para apoyar al barrio."
+    },
+    {
+     "id": "rop-08",
+     "level": "B1",
+     "tipo": "opiniones",
+     "instruccion": "Lee lo que opinan cuatro personas. ¿Quién dice cada cosa? Una persona puede ser la respuesta de varias preguntas.",
+     "tema": "City or countryside",
+     "personas": [
+      {
+       "nombre": "Rachel",
+       "texto": "I grew up on a farm and moved to London at twenty. At first I hated the noise, but now I love it. There's always something to do, and I can walk to the theatre or the cinema. I'd never go back to the countryside. My parents still live on the farm, and I visit them at Christmas."
+      },
+      {
+       "nombre": "Tariq",
+       "texto": "We moved from the city to a small village when our first child was born. The air is clean and the kids can play outside safely. The only problem is that my husband has to drive an hour to work. He says the journey gives him time to listen to podcasts, but I know he's often tired."
+      },
+      {
+       "nombre": "Elena",
+       "texto": "I live in the city, but every weekend I escape to my parents' house in the mountains. I need both: the city for my job and my friends, and nature to relax. On Sunday evenings the traffic back into the city is terrible, but it's worth it. I couldn't live in only one of the two places."
+      },
+      {
+       "nombre": "Mike",
+       "texto": "People think the countryside is peaceful, but life there can be hard. When I lived in a village, there was one bus a day and no doctor. If you're old or don't drive, it can be very difficult. Five years ago I moved to a small town, and it's a good balance: quiet, but with shops and a hospital."
+      }
+     ],
+     "preguntas": [
+      "Who changed their opinion about city life?",
+      "Who left the city when their family grew?",
+      "Who mentions a long journey to work?",
+      "Who divides every week between two places?",
+      "Who thinks rural life is hard for some people?",
+      "Who likes being close to entertainment?",
+      "Who says there were few services where they lived?"
+     ],
+     "answer": [
+      "Rachel",
+      "Tariq",
+      "Tariq",
+      "Elena",
+      "Mike",
+      "Rachel",
+      "Mike"
+     ],
+     "citas": [
+      "At first I hated the noise, but now I love it",
+      "We moved from the city to a small village when our first child was born",
+      "my husband has to drive an hour to work",
+      "every weekend I escape to my parents' house",
+      "If you're old or don't drive, it can be very difficult",
+      "I can walk to the theatre or the cinema",
+      "there was one bus a day and no doctor"
+     ],
+     "why": "La 1 pregunta por un cambio de opinión, no de casa: Rachel odiaba el ruido y ahora le encanta. Tariq sí se mudó, pero no dice que cambiara de opinión."
+    },
+    {
+     "id": "rop-09",
+     "level": "B1",
+     "tipo": "opiniones",
+     "instruccion": "Lee lo que opinan cuatro personas. ¿Quién dice cada cosa? Una persona puede ser la respuesta de varias preguntas.",
+     "tema": "Public transport",
+     "personas": [
+      {
+       "nombre": "Bruno",
+       "texto": "The new metro line has changed my life. My journey to work used to take an hour and a half by bus; now it takes thirty-five minutes. I just wish it ran later at night, because the last train leaves at eleven. When I go out with friends, I have to leave early or pay for a taxi."
+      },
+      {
+       "nombre": "Chloe",
+       "texto": "Buses in my town are cheap, but they're dirty and nobody knows when they will arrive. Last year I bought a scooter, and I'm much happier. I can go wherever I want, whenever I want. It's not perfect, because I get wet when it rains, but I wouldn't go back to the bus for anything."
+      },
+      {
+       "nombre": "Ahmed",
+       "texto": "I think public transport should be free. If it were free, fewer people would use their cars, and the air would be cleaner. Some cities already do it, and it seems to work. Of course, someone has to pay for it, but I'd prefer my taxes to go to buses rather than to new roads."
+      },
+      {
+       "nombre": "Wendy",
+       "texto": "As a wheelchair user, I find most stations impossible. There are stairs everywhere and the lifts are often broken. Last month I missed a job interview because I couldn't get to the platform. Things are improving, but very slowly. The new buses are much better for people like me, because they have ramps."
+      }
+     ],
+     "preguntas": [
+      "Who wants the service to run for more hours?",
+      "Who has stopped using public transport?",
+      "Who believes a change would help the environment?",
+      "Who has trouble getting into stations?",
+      "Who says their journey is now much shorter?",
+      "Who says you can't predict when transport will come?",
+      "Who thinks the situation is getting better, but too slowly?"
+     ],
+     "answer": [
+      "Bruno",
+      "Chloe",
+      "Ahmed",
+      "Wendy",
+      "Bruno",
+      "Chloe",
+      "Wendy"
+     ],
+     "citas": [
+      "I just wish it ran later at night",
+      "I wouldn't go back to the bus for anything",
+      "the air would be cleaner",
+      "There are stairs everywhere",
+      "now it takes thirty-five minutes",
+      "nobody knows when they will arrive",
+      "Things are improving, but very slowly"
+     ],
+     "why": "«Lift» es británico (en EE. UU. «elevator»). En la 6, la clave es «nobody knows when they will arrive»: no se sabe cuándo llega."
+    },
+    {
+     "id": "rop-10",
+     "level": "B1",
+     "tipo": "opiniones",
+     "instruccion": "Lee lo que opinan cuatro personas. ¿Quién dice cada cosa? Una persona puede ser la respuesta de varias preguntas.",
+     "tema": "Keeping fit",
+     "personas": [
+      {
+       "nombre": "Olivia",
+       "texto": "I paid for a year at the gym in January and went four times. It was too expensive to waste, but I just didn't enjoy it. Now I go running with a group in the park on Tuesdays, and it's free. We chat while we run, and afterwards we sometimes have breakfast together."
+      },
+      {
+       "nombre": "Carlos",
+       "texto": "The gym is my second home. I go five times a week before work. Some people think it's boring, but I like seeing my progress, so I write down everything I lift in a notebook. I've also made good friends there. We follow each other's progress and push each other to train harder."
+      },
+      {
+       "nombre": "Hannah",
+       "texto": "After my knee operation, my doctor recommended swimming. I was nervous at first, because I hadn't been in a pool for twenty years. But now I swim three mornings a week and my knee doesn't hurt anymore. I've even started taking lessons with a coach, and I feel ten years younger."
+      },
+      {
+       "nombre": "Felix",
+       "texto": "I don't do any sport, and I'm not ashamed of it. I walk to work and take the stairs, and I think that's enough for most people. You don't need expensive equipment to be healthy. My brother spends a fortune on bikes and special clothes, and honestly, he's no fitter than me."
+      }
+     ],
+     "preguntas": [
+      "Who wasted money on exercise?",
+      "Who started an activity for health reasons?",
+      "Who keeps a record of their training?",
+      "Who thinks everyday activity is enough?",
+      "Who prefers exercising outdoors with other people?",
+      "Who felt worried at the beginning?",
+      "Who trains on most days of the week?"
+     ],
+     "answer": [
+      "Olivia",
+      "Hannah",
+      "Carlos",
+      "Felix",
+      "Olivia",
+      "Hannah",
+      "Carlos"
+     ],
+     "citas": [
+      "I paid for a year at the gym in January and went four times",
+      "my doctor recommended swimming",
+      "I write down everything I lift",
+      "I think that's enough for most people",
+      "I go running with a group in the park",
+      "I was nervous at first",
+      "I go five times a week before work"
+     ],
+     "why": "Trampa en la 4: Olivia también hace ejercicio sin gastar, pero quien dice que la actividad diaria basta es Felix. «Nervous» = nervioso, preocupado."
+    },
+    {
+     "id": "rop-11",
+     "level": "B1",
+     "tipo": "opiniones",
+     "instruccion": "Lee lo que opinan cuatro personas. ¿Quién dice cada cosa? Una persona puede ser la respuesta de varias preguntas.",
+     "tema": "Tourism in my town",
+     "personas": [
+      {
+       "nombre": "Isabel",
+       "texto": "I've lived in this old town all my life. Ten years ago it was quiet; now there are tourists everywhere, and rents have gone up so much that young people can't afford to live here. My own son had to move out. Of course, I'm happy that people want to see our beautiful streets, but the town is changing too fast."
+      },
+      {
+       "nombre": "George",
+       "texto": "I run a small restaurant near the cathedral, and tourism is the reason I can pay my staff. Without visitors, half the shops in the centre would close. I know some neighbours complain about the noise in summer, and I understand them, so we close our terrace at ten o'clock every night."
+      },
+      {
+       "nombre": "Lina",
+       "texto": "Tourists don't bother me. What bothers me is the big cruise ships. Thousands of people arrive at the same time, take photos for three hours and leave without spending anything. The streets are so full that I can't get to the market. Visitors who stay for a few nights are different: they eat in our restaurants and sleep in our hotels."
+      },
+      {
+       "nombre": "Pat",
+       "texto": "I think the solution is a small tax for visitors, like in other European cities. The money could pay for cleaning the streets and repairing old buildings. Two or three euros a night wouldn't stop anyone from coming. The important thing is that local people decide how the money is spent."
+      }
+     ],
+     "preguntas": [
+      "Who says local people can no longer pay for housing?",
+      "Who depends on visitors for their business?",
+      "Who complains about one particular type of tourism?",
+      "Who suggests a way to raise money?",
+      "Who says a family member had to leave the town?",
+      "Who thinks some tourists bring little money to the town?",
+      "Who believes other businesses would suffer without tourists?"
+     ],
+     "answer": [
+      "Isabel",
+      "George",
+      "Lina",
+      "Pat",
+      "Isabel",
+      "Lina",
+      "George"
+     ],
+     "citas": [
+      "young people can't afford to live here",
+      "tourism is the reason I can pay my staff",
+      "What bothers me is the big cruise ships",
+      "a small tax for visitors",
+      "My own son had to move out",
+      "leave without spending anything",
+      "half the shops in the centre would close"
+     ],
+     "why": "«Rents have gone up» = los arriendos subieron. En la 6, «bring little money» dice lo mismo que «without spending anything»."
+    },
+    {
+     "id": "rop-12",
+     "level": "B1",
+     "tipo": "opiniones",
+     "instruccion": "Lee lo que opinan cuatro personas. ¿Quién dice cada cosa? Una persona puede ser la respuesta de varias preguntas.",
+     "tema": "Homework",
+     "personas": [
+      {
+       "nombre": "Nadia",
+       "texto": "My son is eight and he gets two hours of homework every night. He's exhausted, and we argue about it every evening. Children need time to play, not more work after six hours at school. At the weekend he's too tired even to play football, which he used to love. I've already spoken to his teacher twice."
+      },
+      {
+       "nombre": "Roberto",
+       "texto": "As a teacher, I give a little homework, but only reading. Studies show that reading at home makes a real difference, while worksheets at primary school don't help much. I ask my students to read for twenty minutes a day, any book they like, and to tell me about it on Fridays. Most of them love it."
+      },
+      {
+       "nombre": "Agnes",
+       "texto": "When I was a child, we had lots of homework and it taught me discipline. I learned to organise my time, and that helped me at university. I think children today have it too easy. They have tablets, calculators and the internet, and they never have to find the answers themselves. Life won't be that easy for them later."
+      },
+      {
+       "nombre": "Luke",
+       "texto": "Homework isn't fair. My kids have parents who can help them, but many children don't, so homework makes the differences between students bigger. Some parents work at night, and some don't speak the language of the school. I'd prefer schools to give children an hour after class to do their homework there, with a teacher."
+      }
+     ],
+     "preguntas": [
+      "Who says homework causes problems at home?",
+      "Who thinks one type of homework is useful?",
+      "Who believes homework helped them personally?",
+      "Who thinks homework is worse for some families?",
+      "Who mentions research?",
+      "Who thinks children's lives are easier now?",
+      "Who says their child is very tired?"
+     ],
+     "answer": [
+      "Nadia",
+      "Roberto",
+      "Agnes",
+      "Luke",
+      "Roberto",
+      "Agnes",
+      "Nadia"
+     ],
+     "citas": [
+      "we argue about it every evening",
+      "reading at home makes a real difference",
+      "it taught me discipline",
+      "many children don't, so homework makes the differences between students bigger",
+      "Studies show",
+      "children today have it too easy",
+      "He's exhausted"
+     ],
+     "why": "«Exhausted» = muy cansado. En la 2, Roberto sí deja tareas, pero solo de lectura: dice que las hojas de ejercicios ayudan poco. «Organise» con s es británico."
+    },
+    {
+     "id": "rop-13",
+     "level": "B1",
+     "tipo": "opiniones",
+     "instruccion": "Lee lo que opinan cuatro personas. ¿Quién dice cada cosa? Una persona puede ser la respuesta de varias preguntas.",
+     "tema": "Volunteering",
+     "personas": [
+      {
+       "nombre": "Simon",
+       "texto": "Every Saturday I help at a food bank. I started because I lost my job and had too much free time, but I kept going because of the people I met there. Some of them are now my best friends. We sort the food on Saturday mornings and give it out in the afternoon. It's tiring, but I always go home in a good mood."
+      },
+      {
+       "nombre": "Teresa",
+       "texto": "I'd like to volunteer, but between my job and my two children I simply don't have time. Instead, I give money to a children's charity every month. It isn't much, but I know exactly how it's spent, because they send me a report every year. Maybe when my kids are older, I'll volunteer with them."
+      },
+      {
+       "nombre": "Yusuf",
+       "texto": "I volunteered abroad for three months after university. I paid a lot to an agency, and honestly, I'm not sure the village needed us. We built a wall that local workers could have built faster and better. I think it was more useful for me than for them. Now I help at a homework club in my own city."
+      },
+      {
+       "nombre": "Clara",
+       "texto": "At my company, we get two paid days a year to volunteer. Last year my team painted a school. It was hard work, but it was the best team-building activity we've ever had. People who never talk in the office were laughing together all day. This year we want to help at an animal centre."
+      }
+     ],
+     "preguntas": [
+      "Who made friends through volunteering?",
+      "Who supports a good cause in a different way?",
+      "Who doubts that their help was useful?",
+      "Who volunteers with colleagues?",
+      "Who began volunteering when they were unemployed?",
+      "Who says their employer pays them to volunteer?",
+      "Who spent money in order to volunteer?"
+     ],
+     "answer": [
+      "Simon",
+      "Teresa",
+      "Yusuf",
+      "Clara",
+      "Simon",
+      "Clara",
+      "Yusuf"
+     ],
+     "citas": [
+      "Some of them are now my best friends",
+      "I give money to a children's charity every month",
+      "I'm not sure the village needed us",
+      "my team painted a school",
+      "I started because I lost my job",
+      "we get two paid days a year to volunteer",
+      "I paid a lot to an agency"
+     ],
+     "why": "Trampa en la 7: Teresa también da dinero, pero a una fundación, no para hacer voluntariado. «Unemployed» = sin trabajo."
+    },
+    {
+     "id": "rop-14",
+     "level": "B1",
+     "tipo": "opiniones",
+     "instruccion": "Lee lo que opinan cuatro personas. ¿Quién dice cada cosa? Una persona puede ser la respuesta de varias preguntas.",
+     "tema": "Phones at the table",
+     "personas": [
+      {
+       "nombre": "Adam",
+       "texto": "In our house, phones go in a box during dinner. It was my wife's idea, and at first the kids hated it. Now dinner is the only time we really talk to each other. My daughter even told me last week that she likes it. Of course, I have to follow the rule too, which isn't always easy for me."
+      },
+      {
+       "nombre": "Sofia",
+       "texto": "I don't see the problem. If I'm having lunch alone, I like reading the news on my phone. It's only rude if you're with someone who wants to talk to you. When I go out with friends, I put my phone in my bag and forget about it. Some people just like to complain about everything."
+      },
+      {
+       "nombre": "Hector",
+       "texto": "I own a café, and I've noticed that people stay much longer now. They use their laptops and phones for hours and order one coffee. It's not good for business. I don't want to be unfriendly, so I haven't made any rules, but I've stopped offering free wifi at lunchtime, when we're busiest."
+      },
+      {
+       "nombre": "Megan",
+       "texto": "I'm a nurse and I work long shifts, so I have to keep my phone on the table in case the hospital calls. My friends understand, but some people think I'm being impolite. I always explain why at the beginning of a meal, and I never use it for social media or games."
+      }
+     ],
+     "preguntas": [
+      "Who has a family rule about phones?",
+      "Who thinks it is fine to use a phone when eating alone?",
+      "Who says phones are costing them money?",
+      "Who needs their phone because of their job?",
+      "Who says their children didn't like a change?",
+      "Who feels some people misunderstand them?",
+      "Who has noticed customers changing their habits?"
+     ],
+     "answer": [
+      "Adam",
+      "Sofia",
+      "Hector",
+      "Megan",
+      "Adam",
+      "Megan",
+      "Hector"
+     ],
+     "citas": [
+      "phones go in a box during dinner",
+      "If I'm having lunch alone, I like reading the news on my phone",
+      "It's not good for business",
+      "in case the hospital calls",
+      "at first the kids hated it",
+      "some people think I'm being impolite",
+      "people stay much longer now"
+     ],
+     "why": "«Rude» e «impolite» son sinónimos: maleducado. En la 3, «not good for business» quiere decir que pierde dinero."
+    },
+    {
+     "id": "rop-15",
+     "level": "B2",
+     "tipo": "opiniones",
+     "instruccion": "Lee lo que opinan cuatro personas. ¿Quién dice cada cosa? Una persona puede ser la respuesta de varias preguntas.",
+     "tema": "A four-day working week",
+     "personas": [
+      {
+       "nombre": "Laura",
+       "texto": "My company tried a four-day week last year, and productivity actually went up. People wasted less time in meetings because they knew Friday was off. We also found it much easier to recruit new staff, since candidates loved the idea. That said, I'm not convinced it would work in hospitals or schools, where someone has to be there every day, and you can't simply close on Fridays."
+      },
+      {
+       "nombre": "Owen",
+       "texto": "It sounds wonderful, but in practice my 'day off' became a day of answering emails from home. My manager never said I had to reply, but everyone did, so I felt I had to as well. Unless managers change their expectations, a shorter week just means the same work squeezed into fewer days, and more stress. I'd honestly rather go back to five normal days and switch off properly at weekends."
+      },
+      {
+       "nombre": "Priya",
+       "texto": "I'm a mother of two, and the extra day has transformed my life. I'm no longer exhausted on Monday mornings, and I spend Fridays with my kids instead of paying for after-school clubs. My employer was worried that I'd be less available, but I've learned to plan my week much better. Frankly, I'd accept a slightly lower salary to keep it. Many of my friends envy me."
+      },
+      {
+       "nombre": "Martin",
+       "texto": "I run a small building firm, and our clients don't care about our work-life balance; they care about deadlines. If my competitors are working five days and I'm working four, I'll lose contracts. Big companies can afford experiments; we can't. I'm not against the idea, and my workers would love it, but it would have to be the law for everyone, not a choice."
+      }
+     ],
+     "preguntas": [
+      "Who says the shorter week benefited the whole organisation?",
+      "Who says the idea did not work as promised for them?",
+      "Who would give up some income for the shorter week?",
+      "Who thinks the size of a business matters?",
+      "Who doubts it suits every profession?",
+      "Who believes success depends on the bosses?",
+      "Who mentions saving on childcare?"
+     ],
+     "answer": [
+      "Laura",
+      "Owen",
+      "Priya",
+      "Martin",
+      "Laura",
+      "Owen",
+      "Priya"
+     ],
+     "citas": [
+      "productivity actually went up",
+      "my 'day off' became a day of answering emails from home",
+      "I'd accept a slightly lower salary to keep it",
+      "Big companies can afford experiments; we can't",
+      "I'm not convinced it would work in hospitals or schools",
+      "Unless managers change their expectations",
+      "instead of paying for after-school clubs"
+     ],
+     "why": "En la 1, Laura habla de la empresa entera (productivity, recruit); Priya también está contenta, pero habla de su vida personal. Trampa en la 4: Laura también dice dónde no serviría, pero por el tipo de trabajo, no por el tamaño de la empresa."
+    },
+    {
+     "id": "rop-16",
+     "level": "B2",
+     "tipo": "opiniones",
+     "instruccion": "Lee lo que opinan cuatro personas. ¿Quién dice cada cosa? Una persona puede ser la respuesta de varias preguntas.",
+     "tema": "Electric cars",
+     "personas": [
+      {
+       "nombre": "Richard",
+       "texto": "I switched to an electric car two years ago, and the running costs are a fraction of what I used to pay. The real problem is long journeys: finding a working charger on the motorway can turn a four-hour trip into a six-hour one. Still, most of my trips are short, and I charge the car at home overnight, so I'd never go back to petrol."
+      },
+      {
+       "nombre": "Mei",
+       "texto": "People talk as if electric cars were the answer to climate change, but building the batteries requires mining that damages the environment too, often in poor countries far from where the cars are sold. And a traffic jam of electric cars is still a traffic jam. The greenest option is still to use fewer cars, full stop: better buses, safe bike lanes and cities where you can actually walk everywhere."
+      },
+      {
+       "nombre": "Dominic",
+       "texto": "I'd buy one tomorrow if I could afford it. Even second-hand, they're still far more expensive than petrol cars, and the government cut the grant that used to make them affordable. It's a strange decision: they tell us to go green and then take away the help. So, for now, I'm keeping my old diesel car and hoping it lasts until prices come down."
+      },
+      {
+       "nombre": "Alice",
+       "texto": "I live in a flat with no garage, so charging at home is impossible. The nearest public charger is a ten-minute walk away and it's usually busy, so I'd spend half my life waiting. Until there are chargers in every street, electric cars will remain something for people with houses and driveways. I don't blame anyone, but somebody needs to think about people like me."
+      }
+     ],
+     "preguntas": [
+      "Who says an electric car has saved them money?",
+      "Who questions how environmentally friendly they really are?",
+      "Who blames a political decision?",
+      "Who mentions a problem related to their type of home?",
+      "Who is waiting for prices to fall before buying one?",
+      "Who thinks we should rely less on cars of any kind?",
+      "Who has had trouble on long trips?"
+     ],
+     "answer": [
+      "Richard",
+      "Mei",
+      "Dominic",
+      "Alice",
+      "Dominic",
+      "Mei",
+      "Richard"
+     ],
+     "citas": [
+      "the running costs are a fraction of what I used to pay",
+      "building the batteries requires mining that damages the environment too",
+      "the government cut the grant",
+      "I live in a flat with no garage",
+      "hoping it lasts until prices come down",
+      "The greenest option is still to use fewer cars",
+      "finding a working charger on the motorway"
+     ],
+     "why": "«Motorway» es autopista (británico; en EE. UU. «highway»). La 4 y la 5 se parecen: a Dominic lo frena el precio; a Alice, su vivienda."
+    },
+    {
+     "id": "rop-17",
+     "level": "B2",
+     "tipo": "opiniones",
+     "instruccion": "Lee lo que opinan cuatro personas. ¿Quién dice cada cosa? Una persona puede ser la respuesta de varias preguntas.",
+     "tema": "Free museums",
+     "personas": [
+      {
+       "nombre": "Thomas",
+       "texto": "When the national museums became free, visitor numbers doubled within a year. More importantly, families who had never set foot in a museum started coming. I take my nephews at weekends, and I see children from poor neighbourhoods discovering dinosaurs for the first time in their lives. That alone justifies the cost to taxpayers. Some galleries are crowded, I admit, but that's a sign of success, not a problem."
+      },
+      {
+       "nombre": "Beatriz",
+       "texto": "Free entry sounds generous, but someone pays for it. In my city, the museum had to cut its opening hours and close two galleries, because the money from the government wasn't enough. Half the collection is now in storage, where nobody can see it. I'd rather pay ten pounds and see the whole collection. People pay much more than that for a football match or a concert without complaining."
+      },
+      {
+       "nombre": "Kevin",
+       "texto": "I'm a tour guide, and to be honest, free museums are so crowded in summer that my groups can barely see the paintings. We often wait twenty minutes just to get near the most famous ones, and some visitors leave disappointed after paying for an expensive trip. A small fee in peak season would improve the experience for everyone. In winter, when the rooms are half empty, entry could stay free for all."
+      },
+      {
+       "nombre": "Ruth",
+       "texto": "Charging tourists while keeping museums free for residents seems the fairest solution. Locals already pay through their taxes, so why should they pay twice? Many cities around the world already do this, and nobody complains. Tourists are used to paying for attractions, and five or ten pounds is nothing compared with the cost of their flights and hotels. It would be easy to check: you just show an ID card."
+      }
+     ],
+     "preguntas": [
+      "Who mentions a change in the kind of visitors?",
+      "Who says the museum no longer receives enough money?",
+      "Who suggests charging only at certain times of year?",
+      "Who proposes different prices for different groups?",
+      "Who would rather pay and have the whole museum open?",
+      "Who talks about the problem from a professional point of view?",
+      "Who thinks the public money is well spent?"
+     ],
+     "answer": [
+      "Thomas",
+      "Beatriz",
+      "Kevin",
+      "Ruth",
+      "Beatriz",
+      "Kevin",
+      "Thomas"
+     ],
+     "citas": [
+      "families who had never set foot in a museum started coming",
+      "the money from the government wasn't enough",
+      "A small fee in peak season",
+      "Charging tourists while keeping museums free for residents",
+      "I'd rather pay ten pounds",
+      "I'm a tour guide",
+      "That alone justifies the cost to taxpayers"
+     ],
+     "why": "«Never set foot in» = nunca habían entrado. Trampa en la 7: Ruth también habla de impuestos, pero para decir que los residentes no deben pagar dos veces."
+    },
+    {
+     "id": "rop-18",
+     "level": "B2",
+     "tipo": "opiniones",
+     "instruccion": "Lee lo que opinan cuatro personas. ¿Quién dice cada cosa? Una persona puede ser la respuesta de varias preguntas.",
+     "tema": "Studying online",
+     "personas": [
+      {
+       "nombre": "Gabriel",
+       "texto": "I did my master's degree online while working full-time, which would have been impossible otherwise. The lectures were excellent, and I could watch them again whenever I didn't understand something. But I never really got to know my classmates, and I suspect that network is half the value of a degree. My friends who studied on campus still get job offers through people they met there."
+      },
+      {
+       "nombre": "Sandra",
+       "texto": "As a lecturer, I've taught both ways. Online students who are self-disciplined do brilliantly; the rest quietly disappear. Around a third of my online students never finish the course, compared with about one in ten on campus. Nobody notices when you stop logging in, whereas in a classroom I'd see an empty chair and call you. I think universities should check on online students much more."
+      },
+      {
+       "nombre": "Ivan",
+       "texto": "Employers in my field still look down on online degrees, whatever universities say. When I applied for jobs, two interviewers asked me why I hadn't studied 'properly'. In the end I got a good position, but only after a long search. I now mention the name of the university on my CV and leave out the word 'online'; it's a bit sad that I have to."
+      },
+      {
+       "nombre": "Fatima",
+       "texto": "For me there was no alternative. I live in a rural area, and the nearest university is three hundred kilometres away. Moving to the city would have cost far more than my family could pay. Online study gave me opportunities my parents never had. It wasn't always easy to stay motivated, but I'd make the same decision again without hesitation. My younger sister is now doing the same degree."
+      }
+     ],
+     "preguntas": [
+      "Who missed the social side of studying?",
+      "Who says many students drop out?",
+      "Who experienced prejudice from employers?",
+      "Who could not study in person because of where they live?",
+      "Who combined studying with a job?",
+      "Who thinks success online depends on personality?",
+      "Who compares their situation with an older generation?"
+     ],
+     "answer": [
+      "Gabriel",
+      "Sandra",
+      "Ivan",
+      "Fatima",
+      "Gabriel",
+      "Sandra",
+      "Fatima"
+     ],
+     "citas": [
+      "I never really got to know my classmates",
+      "Around a third of my online students never finish the course",
+      "Employers in my field still look down on online degrees",
+      "the nearest university is three hundred kilometres away",
+      "while working full-time",
+      "Online students who are self-disciplined do brilliantly",
+      "opportunities my parents never had"
+     ],
+     "why": "«Look down on» = menospreciar; por eso la 3 habla de prejuicio. «Drop out» (la 2) = abandonar los estudios."
+    }
+   ]
+  }
+ ]
+}

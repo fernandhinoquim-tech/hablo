@@ -45,7 +45,9 @@ App Android para que **Fero** (colombiano, 40 años, doctorando, **no programa**
 
 ## Entregado y pendiente de integrar
 
-- Nada. `aptis-niveles/` (28-09) **se integró el 08-10** tal cual (ninguna tarea vieja cambió, las fotos siguen), archivado en `integrado/2026-09-28-aptis-niveles/`.
+- `aptis-niveles` ya entró (08-10, `integrado/2026-09-28-aptis-niveles/`): Writing 60 · Speaking 63 · Reading 67 · Listening 73.
+- **`contenido-nuevo/aptis-reading-parte3/`** (08-10): Reading parte 3 (opiniones), la única parte del examen que faltaba. 18 tareas (A2 4 · B1 10 · B2 4) con cita textual por pregunta. Necesita el tipo nuevo `opiniones` en `Aptis.kt`, `checkContent` y `ScreenAptis.kt`; la especificación está en su `COMO-INTEGRAR.md`.
+- Guía para Fero «Aptis B1 parte por parte» (doc en claude.ai, 08-10): formato oficial del Core y las 4 destrezas parte por parte, ejemplos resueltos, respuestas modelo B1, plan diario y los enlaces a las prácticas oficiales del British Council.
 
 ## Pendiente (en orden de valor)
 
